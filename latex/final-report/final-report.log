@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.12.4)  31 MAY 2021 12:34
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.12.4)  1 JUN 2021 13:53
 entering extended mode
-**./report.tex
-(report.tex
+**./final-report.tex
+(final-report.tex
 LaTeX2e <2020-10-01> patch level 2
 L3 programming layer <2020-10-27> xparse <2020-03-03>
 (C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
@@ -31,8 +31,8 @@ ftex.def
 File: l3backend-pdftex.def 2020-09-24 L3 backend support: PDF output (pdfTeX)
 \l__kernel_color_stack_int=\count183
 \l__pdf_internal_box=\box47
-) (report.aux)
-\openout1 = `report.aux'.
+) (final-report.aux)
+\openout1 = `final-report.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 8.
 LaTeX Font Info:    ... okay on input line 8.
@@ -57,21 +57,21 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <8> on input line 11.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 11.
- [2] (report.aux) ) 
+ [2] (final-report.aux) ) 
 Here is how much of TeX's memory you used:
  433 strings out of 479799
- 7872 string characters out of 2869248
- 271067 words of memory out of 3000000
+ 7962 string characters out of 2869248
+ 271079 words of memory out of 3000000
  17493 multiletter control sequences out of 15000+200000
  538728 words of font info for 41 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 43i,6n,49p,154b,189s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/p
-ublic/amsfonts/cm/cmbx12.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fon
-ts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Connor/AppData/Local/Programs/M
-iKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Connor/AppData/Local/P
-rograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb>
-Output written on report.pdf (2 pages, 44684 bytes).
+ 43i,6n,49p,160b,189s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/t
+ype1/public/amsfonts/cm/cmbx12.pfb><C:/Users/Connor/AppData/Local/Programs/MiKT
+eX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Connor/AppData/Local/Prog
+rams/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Connor/AppData/L
+ocal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb>
+Output written on final-report.pdf (2 pages, 44237 bytes).
 PDF statistics:
  25 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
