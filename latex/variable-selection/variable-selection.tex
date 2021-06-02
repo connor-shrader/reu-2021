@@ -8,22 +8,43 @@
 
 \pagestyle{fancy}
 \fancyhead[L]{Variable Selection Techniques}
-\fancyhead[R]{Connor Shrader}
+\fancyhead[R]{G. Ackall, C. Shrader}
 \fancyfoot{}
 \fancyfoot[C]{\thepage}
 
 \title{Variable Selection Techniques}
-\author{Gabe Ackall and Connor Shrader}
+\author{Gabriel Ackall and Connor Shrader}
 \date{\today}
 
 \begin{document}
-Test
+\maketitle
+
+In mathematical modeling, especially when using linear regression, it is often important to reduce the number of predictors, or variables, used to predict an output. This can help to increase the interpretability of a model and reduce its error.
+% might need to add more here in the future
 
 \section{Best Subset Selection}
-details
+Best subset selection is a method for selecting the most influential predictors that minimize error in a least squares linear regression. It does this by fitting a linear regression model to every possible combination of predictors and then choosing the best model of all the possible combinations. The best model is determined through the use of a test error estimate. The most common examples of test error estimation indicators are AIC, BIC, Adjusted $R^2$, and cross validation.\\
+
+While best subset selection results in the best possible model given the predictors, it is very computationally expensive. As the number of predictors increases, the number of linear models that best subset selection has to fit increases exponentially. This can be seen in Table \ref{tab:subset-combinations}. Thus, for models with more than 40 predictors, this can become infeasible for most computers to compute \cite{james2013introduction}. Given that in many scenarios, especially those seen in medicine with genomic data or in scenarios where $p>>n$, there can be many thousands of predictors, and best subset selection becomes impossible.
+
+\begin{table}[h!]
+	\centering
+	\caption{Number of fitted models depending on number of predictors (p)}
+	\vspace{0.1in}
+	\begin{tabular}{c|c}
+		\hline
+		p  &  Fitted Models\\
+		\hline
+		2   & $2^2$ \\
+		10  & $2^{10}$ \\
+		100 & $2^{100}$ \\
+		k   & $2^k$ \\
+	\end{tabular}
+\label{tab:subset-combinations}
+\end{table}
 
 \section{Forward Stepwise Selection}
-details
+Forward stepwise selection aims to approximate the best combination of predictors in a linear regression model, but with a more computationally efficient method than best subset selection. Forward stepwise selection starts without using any predictors. It then slowly begins adding the most important predictor to the model. The importance of a predictor is determined by it having the lowest p-value, lowest AIC, lowest BIC, and lowest Adjusted $R^2$, to name a few. This is repeated until a stopping point is reached which can be defined by p-value, AIC, BIC, and more.
 
 \section{Backward Stepwise Selection}
 details
@@ -34,4 +55,6 @@ details
 \section{Forward Stagewise Selection}
 details
 
+\bibliographystyle{plain}
+\bibliography{references}
 \end{document}
