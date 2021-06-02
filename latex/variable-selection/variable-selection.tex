@@ -25,9 +25,9 @@ In mathematical modeling, especially when using linear regression, it is often i
 % might need to add more here in the future
 
 \section{Best Subset Selection}
-Best subset selection is a method for selecting the most influential predictors that minimize error in a least squares linear regression. It does this by fitting a linear regression model to every possible combination of predictors and then choosing the best model of all the possible combinations. The best model is determined through the use of a test error estimate. The most common examples of test error estimation indicators are AIC, BIC, Adjusted $R^2$, and cross validation.
+Best subset selection is a method for selecting the most influential predictors that minimize error in a least squares linear regression. It does this by fitting a linear regression model to every possible combination of predictors and then choosing the best model of all the possible combinations. The best model is determined through the use of a test error estimate. The most common examples of test error estimation indicators are Akaike information criterion (AIC), Bayesian information criterion (BIC), Adjusted $R^2$, and cross validation.
 
-While best subset selection results in the best possible model given the predictors, it is very computationally expensive. As the number of predictors increases, the number of linear models that best subset selection has to fit increases exponentially. This can be seen in Table \ref{tab:subset-combinations}. Thus, for models with more than 40 predictors, this can become infeasible for most computers to compute \cite{james2013introduction}. Given that in many scenarios, especially those seen in medicine with genomic data or in scenarios where $p>>n$, there can be many thousands of predictors, and best subset selection becomes impossible.
+While best subset selection results in the best possible model given the predictors, it is very computationally expensive. As the number of predictors increases, the number of linear models that best subset selection has to fit increases exponentially. This can be seen in Table \ref{tab:subset-combinations}. Thus, for models with more than 40 predictors, this can become infeasible for most computers to compute \cite{james2013introduction}. Given that in many scenarios, especially those seen in medicine with genomic data or in scenarios where there are more predictors than data samples, there can be many thousands of predictors, and best subset selection becomes impossible.
 
 \begin{table}[h!]
 	\centering
@@ -48,15 +48,17 @@ While best subset selection results in the best possible model given the predict
 \section{Forward Stepwise Selection}
 Forward stepwise selection aims to approximate the best combination of predictors in a linear regression model, but with a more computationally efficient method than best subset selection. Forward stepwise selection starts without using any predictors. It then slowly begins adding the most important predictor to the model. The importance of a predictor is determined by it having the lowest p-value, lowest AIC, lowest BIC, and lowest Adjusted $R^2$, to name a few. This is repeated until a stopping point is reached which can be defined by p-value, AIC, BIC, and more.
 
-This results in a model that is much more computationally efficient than best subset selection, but at the cost that it does not necessarily result in the best combination of parameters in the linear regression.
+This process is much more computationally efficient than best subset selection, but at the cost that it does not necessarily result in the best combination of parameters in the linear regression and is not guaranteed to result in the best model.
 
 \section{Backward Stepwise Selection}
-details
+Backwards stepwise selection works very similarly to forward stepwise selection, except that it starts with every single predictor included in the least squares linear regression. Instead of adding predictors like in forward stepwise selection, backward stepwise selection removes the least important predictor. Similar to the forward method, the importance of a predictor can be determined by its p-value, AIC, BIC, or Adjusted $R^2$. This is repeated until a pre-determined stopping point is reached.
+
+Backward stepwise selection can often result in better models than forward stepwise selection because it is guaranteed to test all the predictors together. This is different from forward stepwise selection that can sometimes suppress predictors, especially those that are collinear. For these reasons, when its use is possible, backward stepwise selection is preferred to forward stepwise selection. However, in cases where the number of predictors are greater than the number of samples, backward stepwise selection is impossible. In these case, forward stepwise selection must be used.
 
 \section{Hybrid Stepwise Selection}
 One weakness of the forward stepwise and backward stepwise methods is that they are greedy algorithms; in general, they will not find the best model for a given number of predictors. One way to improve model accuracy is to use hybrid stepwise selection, which allows for both forward steps and backward steps.
 
-The algorithm could start with either zero predictors or all predictors. In each iteration, the method would either add a new predictor to the model or remove a predictor that does not increase performance. Like the forward and backward stepwise selection methods, this algorithm terminates when the model cannot be improved further; measuring the accuracy of the model can be determined using the Akaike information criterion (AIC) or Bayesian information criterion (BIC).
+The algorithm could start with either zero predictors or all predictors. In each iteration, the method would either add a new predictor to the model or remove a predictor that does not increase performance. Like the forward and backward stepwise selection methods, this algorithm terminates when the model cannot be improved further; measuring the accuracy of the model can be determined using the AIC or BIC.
 
 Although this strategy is slightly more computationally expensive than forward stepwise or backward stepwise selection, a hybrid approach may improve model results.
 
