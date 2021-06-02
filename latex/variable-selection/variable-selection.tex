@@ -12,6 +12,8 @@
 \fancyfoot{}
 \fancyfoot[C]{\thepage}
 
+\setlength{\parskip}{6pt}
+
 \title{Variable Selection Techniques}
 \author{Gabe Ackall and Connor Shrader}
 \date{\today}
@@ -29,9 +31,15 @@ details
 details
 
 \section{Hybrid Stepwise Selection}
-details
+One weakness of the forward stepwise and backward stepwise methods is that they are greedy algorithms; in general, they will not find the best model for a given number of predictors. One way to improve model accuracy is to use hybrid stepwise selection, which allows for both forward steps and backward steps.
+
+The algorithm could start with either zero predictors or all predictors. In each iteration, the method would either add a new predictor to the model or remove a predictor that does not increase performance. Like the forward and backward stepwise selection methods, this algorithm terminates when the model cannot be improved further; measuring the accuracy of the model can be determined using the Akaike information criterion (AIC) or Bayesian information criterion (BIC).
+
+Although this strategy is slightly more computationally expensive than forward stepwise or backward stepwise selection, a hybrid approach may improve model results.
 
 \section{Forward Stagewise Selection}
-details
+One last method for feature selection is called forward stagewise regression. Like forward stepwise selection, forward stagewise selection starts by fitting a model using none of the predictors. In each iteration, the method chooses the predictor most closely correlated to the residuals of the current model, and fits a simple linear regression using the predictor against the residuals. The coefficient for this predictor in the simple model is then added to the corresponding coefficient in the other model. This process is repeated until none of the predictors are correlated with the residuals.
+
+Note that in each iteration of this algorithm, only one of the coefficients is changed. As a result, this method has a long runtime. In the long run, forward stagewise selection is still competitive compared to the strategies previously discussed.
 
 \end{document}
