@@ -1,5 +1,21 @@
 \begin{thebibliography}{1}
 
+\bibitem{lumley2020leaps}
+Thomas~Lumley based on Fortran code~by Alan~Miller.
+\newblock {\em leaps: Regression Subset Selection}, 2020.
+\newblock R package version 3.1.
+
+\bibitem{friedman2001elements}
+Jerome Friedman, Trevor Hastie, Robert Tibshirani, et~al.
+\newblock {\em The elements of statistical learning}, volume~1.
+\newblock Springer series in statistics New York, 2001.
+
+\bibitem{james2017islr}
+Gareth James, Daniela Witten, Trevor Hastie, and Rob Tibshirani.
+\newblock {\em ISLR: Data for an Introduction to Statistical Learning with
+  Applications in R}, 2017.
+\newblock R package version 1.2.
+
 \bibitem{james2013introduction}
 Gareth James, Daniela Witten, Trevor Hastie, and Robert Tibshirani.
 \newblock {\em An introduction to statistical learning}, volume 112.
