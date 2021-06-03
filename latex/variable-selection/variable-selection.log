@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.12.4)  2 JUN 2021 14:00
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.12.4)  3 JUN 2021 11:10
 entering extended mode
 **./variable-selection.tex
 (variable-selection.tex
@@ -278,35 +278,40 @@ File: forward-stepwise-selection.png Graphic file (type png)
 Package pdftex.def Info: forward-stepwise-selection.png  used on input line 80.
 
 (pdftex.def)             Requested size: 433.62pt x 203.6498pt.
- [2 <./best-subset-selection.png> <./forward-stepwise-selection.png>]
-<backward-stepwise-selection.png, id=20, 694.09312pt x 325.96782pt>
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[2 <./best-subset-selection.png>]
+<backward-stepwise-selection.png, id=19, 694.09312pt x 325.96782pt>
 File: backward-stepwise-selection.png Graphic file (type png)
 <use backward-stepwise-selection.png>
 Package pdftex.def Info: backward-stepwise-selection.png  used on input line 94
 .
 (pdftex.def)             Requested size: 433.62pt x 203.6498pt.
- [3 <./backward-stepwise-selection.png>] (variable-selection.bbl) [4] (variable
--selection.aux) ) 
+ [3 <./forward-stepwise-selection.png> <./backward-stepwise-selection.png>] (va
+riable-selection.bbl) [4]
+(variable-selection.aux) ) 
 Here is how much of TeX's memory you used:
  4852 strings out of 479799
  66014 string characters out of 2869248
- 530283 words of memory out of 3000000
+ 531283 words of memory out of 3000000
  21815 multiletter control sequences out of 15000+200000
  540370 words of font info for 48 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 66i,10n,72p,850b,1721s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/pub
-lic/amsfonts/cm/cmbx12.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts
-/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Connor/AppData/Local/Programs/Mi
-KTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/Connor/AppData/Local/Pr
-ograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Connor/AppData
-/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Conno
-r/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Us
-ers/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pf
-b><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm
-/cmti10.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/public/a
-msfonts/cm/cmtt10.pfb>
-Output written on variable-selection.pdf (4 pages, 131977 bytes).
+ 66i,10n,72p,872b,1721s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/
+type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/Connor/AppData/Local/Programs/MiK
+TeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Connor/AppData/Local/Pr
+ograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/Connor/AppData
+/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Conno
+r/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Us
+ers/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.p
+fb><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/c
+m/cmr7.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
+sfonts/cm/cmti10.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type1
+/public/amsfonts/cm/cmtt10.pfb>
+Output written on variable-selection.pdf (4 pages, 133134 bytes).
 PDF statistics:
  57 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

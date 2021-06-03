@@ -33,7 +33,7 @@
 \begin{document}
 \maketitle
 
-In mathematical modeling, especially when using linear regression, it is often important to reduce the number of predictors, or variables, used to predict an output. This can help to increase the interpretability of a model and reduce its error.
+In mathematical modeling, especially when using linear regression, it is often important to reduce the number of predictors, or variables, used to predict an output. This can help to increase the interpretability of a model and reduce its error. Below are five methods used to select a linear model using a subset of the predictors.
 % might need to add more here in the future
 
 \section{Best Subset Selection}
@@ -45,19 +45,19 @@ While best subset selection results in the best possible model given the predict
 	\centering
 	\caption{Number of fitted models depending on number of predictors (p)}
 	\vspace{0.1in}
-	\begin{tabular}{c|c}
+	\begin{tabular}{c|r@{\hskip 4pt}l}
 		\hline
-		p  &  Fitted Models\\
+		p  &  \multicolumn{2}{c}{Fitted Models}\\
 		\hline
-		2   & $2^2$ \\
-		10  & $2^{10}$ \\
-		100 & $2^{100}$ \\
-		k   & $2^k$ \\
+		2   & $2^2$ & $=4$ \\
+		10  & $2^{10}$ & $=1024$ \\
+		100 & $2^{100}$ & $>10^{30}$ \\
+		k   & $2^k$ & \\
 	\end{tabular}
 \label{tab:subset-combinations}
 \end{table}
 
-Figure \ref{fig:best-subset-selection} below demonstrates how the number of predictors can affect $R^2$ and BIC when using best subset selection. This plot was created by using the \lstinline!leaps! library (which provides a function to run best subset selection) \cite{lumley2020leaps}. We used the \lstinline!College! dataset provided by the \lstinline!ISLR! library \cite{james2017islr}, and fit models using \lstinline!Grad.Rate! as the response. We see that as the number of predictors increases, $R^2$ always increases (as expected). On the other hand, BIC is minimized with a moderate number of variables (between seven and nine). According to the BIC statistic, the best model has seven variables. The code used for this figure is in the \lstinline!r! folder of the GitHub repository.
+Figure \ref{fig:best-subset-selection} below demonstrates how the number of predictors can affect $R^2$ and BIC when using best subset selection. This plot was created by using the \lstinline!leaps! library (which provides a function to run best subset selection) \cite{lumley2020leaps}. We used the \lstinline!College! dataset provided by the \lstinline!ISLR! library \cite{james2017islr}, and fit linear regression models using \lstinline!Grad.Rate! as the response. We see that as the number of predictors increases, $R^2$ always increases (as expected). On the other hand, BIC is minimized with a moderate number of variables (between seven and nine). According to the BIC statistic, the best model has seven variables. The code used for this figure is in the \lstinline!r! folder of the REU GitHub repository.
 
 \begin{figure}[!h]
 	\label{fig:best-subset-selection}
@@ -67,11 +67,11 @@ Figure \ref{fig:best-subset-selection} below demonstrates how the number of pred
 \end{figure}
 
 \section{Forward Stepwise Selection}
-Forward stepwise selection aims to approximate the best combination of predictors in a linear regression model, but with a more computationally efficient method than best subset selection. Forward stepwise selection starts without using any predictors. It then slowly begins adding the most important predictor to the model. The importance of a predictor is determined by it having the lowest p-value, lowest AIC, lowest BIC, and lowest Adjusted $R^2$, to name a few. This is repeated until a stopping point is reached which can be defined by p-value, AIC, BIC, and more.
+Forward stepwise selection aims to approximate the best combination of predictors in a linear regression model, but with a more computationally efficient method than best subset selection. Forward stepwise selection starts without using any predictors. It then slowly begins adding the most important predictor to the model. The predictor is chosen to minimize statistics such as p-value, AIC, BIC, or Adjusted $R^2$, to name a few. This is repeated until a stopping point is reached which can be defined by p-value, AIC, BIC, and more.
 
-This process is much more computationally efficient than best subset selection, but at the cost that it does not necessarily result in the best combination of parameters in the linear regression and is not guaranteed to result in the best model.
+This process is much more computationally efficient than best subset selection, but it does not necessarily result in the best combination of parameters in the linear regression and is not guaranteed to result in the best model.
 
-Figure \ref{fig:forward-stepwise-selection} shows the $R^2$ and BIC statistics when fitting models using forward stepwise selection. Again, we predicted \lstinline!Grad.Rate! using the \lstinline!College! data set using the \lstinline!leaps! library. The results are almost identical to what we saw for best subset selection. Even though the plots are similar, the specific model chosen by forward stepwise selection is actually different than the one used for best subset selection.
+Figure \ref{fig:forward-stepwise-selection} shows the $R^2$ and BIC statistics when fitting models using forward stepwise selection. Again, we predicted \lstinline!Grad.Rate! using the \lstinline!College! data set using the \lstinline!leaps! library. The results are almost identical to what we saw for best subset selection. Even though the plots are similar, the specific model chosen by forward stepwise selection is actually different than the one found using best subset selection.
 
 \begin{figure}[!h]
 	\label{fig:forward-stepwise-selection}
@@ -81,7 +81,7 @@ Figure \ref{fig:forward-stepwise-selection} shows the $R^2$ and BIC statistics w
 \end{figure}
 
 \section{Backward Stepwise Selection}
-Backwards stepwise selection works very similarly to forward stepwise selection, except that it starts with every single predictor included in the least squares linear regression. Instead of adding predictors like in forward stepwise selection, backward stepwise selection removes the least important predictor. Similar to the forward method, the importance of a predictor can be determined by its p-value, AIC, BIC, or Adjusted $R^2$. This is repeated until a pre-determined stopping point is reached.
+Backwards stepwise selection works very similarly to forward stepwise selection, except that it starts with every single predictor included in the least squares linear regression. Instead of adding predictors like in forward stepwise selection, backward stepwise selection removes the least important predictor in each iteration. Similar to the forward method, the importance of a predictor can be determined by its p-value, AIC, BIC, or Adjusted $R^2$. This is repeated until a pre-determined stopping point is reached.
 
 Backward stepwise selection can often result in better models than forward stepwise selection because it is guaranteed to test all the predictors together. This is different from forward stepwise selection that can sometimes suppress predictors, especially those that are collinear. For these reasons, when its use is possible, backward stepwise selection is preferred to forward stepwise selection. However, in cases where the number of predictors are greater than the number of samples, backward stepwise selection is impossible. In these case, forward stepwise selection must be used.
 
@@ -99,7 +99,7 @@ One weakness of the forward stepwise and backward stepwise methods is that they 
 
 The algorithm could start with either zero predictors or all predictors. In each iteration, the method would either add a new predictor to the model or remove a predictor that does not increase performance. Like the forward and backward stepwise selection methods, this algorithm terminates when the model cannot be improved further; measuring the accuracy of the model can be determined using the AIC or BIC.
 
-Although this strategy is slightly more computationally expensive than forward stepwise or backward stepwise selection, a hybrid approach may improve model results.
+Although this strategy is slightly more computationally expensive than forward stepwise or backward stepwise selection, a hybrid approach may improve model results while still avoiding the unrealistic runtime of best subset selection.
 
 \section{Forward Stagewise Selection}
 One last method for feature selection is called forward stagewise regression. Like forward stepwise selection, forward stagewise selection starts by fitting a model using none of the predictors. In each iteration, the method chooses the predictor most closely correlated to the residuals of the current model, and fits a simple linear regression using the predictor against the residuals. The coefficient for this predictor in the simple model is then added to the corresponding coefficient in the other model. This process is repeated until none of the predictors are correlated with the residuals.
