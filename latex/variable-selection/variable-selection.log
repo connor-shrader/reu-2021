@@ -1,58 +1,58 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.12.4)  3 JUN 2021 11:10
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.2) (preloaded format=pdflatex 2021.5.29)  4 JUN 2021 15:52
 entering extended mode
 **./variable-selection.tex
 (variable-selection.tex
-LaTeX2e <2020-10-01> patch level 2
-L3 programming layer <2020-10-27> xparse <2020-03-03>
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
+LaTeX2e <2020-10-01> patch level 4
+L3 programming layer <2021-02-18> xparse <2020-03-03>
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
 Document Class: article 2020/04/10 v1.4m Standard LaTeX document class
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/base\size10.clo
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/base\size10.clo
 File: size10.clo 2020/04/10 v1.4m Standard LaTeX file (size option)
 )
-\c@part=\count175
-\c@section=\count176
-\c@subsection=\count177
-\c@subsubsection=\count178
-\c@paragraph=\count179
-\c@subparagraph=\count180
-\c@figure=\count181
-\c@table=\count182
+\c@part=\count179
+\c@section=\count180
+\c@subsection=\count181
+\c@subsubsection=\count182
+\c@paragraph=\count183
+\c@subparagraph=\count184
+\c@figure=\count185
+\c@table=\count186
 \abovecaptionskip=\skip47
 \belowcaptionskip=\skip48
 \bibindent=\dimen138
 )
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/base\inputenc.sty
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/base\inputenc.sty
 Package: inputenc 2020/08/01 v1.3d Input encoding file
 \inpenc@prehook=\toks15
 \inpenc@posthook=\toks16
 )
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsmath.sty
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsmath.sty
 Package: amsmath 2020/09/23 v2.17i AMS math features
 \@mathmargin=\skip49
 
 For additional information on amsmath, use the `?' option.
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amstext.sty
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amstext.sty
 Package: amstext 2000/06/29 v2.01 AMS text
 
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsgen.sty
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks17
 \ex@=\dimen139
 ))
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsbsy.sty
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 \pmbraise@=\dimen140
 )
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsopn.sty
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsopn.sty
 Package: amsopn 2016/03/08 v2.02 operator names
 )
-\inf@bad=\count183
+\inf@bad=\count187
 LaTeX Info: Redefining \frac on input line 234.
-\uproot@=\count184
-\leftroot@=\count185
+\uproot@=\count188
+\leftroot@=\count189
 LaTeX Info: Redefining \overline on input line 399.
-\classnum@=\count186
-\DOTSCASE@=\count187
+\classnum@=\count190
+\DOTSCASE@=\count191
 LaTeX Info: Redefining \ldots on input line 496.
 LaTeX Info: Redefining \dots on input line 499.
 LaTeX Info: Redefining \cdots on input line 620.
@@ -61,15 +61,15 @@ LaTeX Info: Redefining \cdots on input line 620.
 \big@size=\dimen141
 LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
-\macc@depth=\count188
-\c@MaxMatrixCols=\count189
+\macc@depth=\count192
+\c@MaxMatrixCols=\count193
 \dotsspace@=\muskip16
-\c@parentequation=\count190
-\dspbrk@lvl=\count191
+\c@parentequation=\count194
+\dspbrk@lvl=\count195
 \tag@help=\toks18
-\row@=\count192
-\column@=\count193
-\maxfields@=\count194
+\row@=\count196
+\column@=\count197
+\maxfields@=\count198
 \andhelp@=\toks19
 \eqnshift@=\dimen142
 \alignsep@=\dimen143
@@ -84,22 +84,22 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
 LaTeX Info: Redefining \[ on input line 2923.
 LaTeX Info: Redefining \] on input line 2924.
 )
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.sty
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
 
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.sty
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.sty
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 \KV@toks@=\toks22
 )
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/generic/iftex\ifvtex.sty
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/generic/iftex\ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/generic/iftex\iftex.sty
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/generic/iftex\iftex.sty
 Package: iftex 2020/03/06 v1.0d TeX engine tests
 ))
-\Gm@cnth=\count195
-\Gm@cntv=\count196
-\c@Gm@tempcnt=\count197
+\Gm@cnth=\count199
+\Gm@cntv=\count266
+\c@Gm@tempcnt=\count267
 \Gm@bindingoffset=\dimen148
 \Gm@wd@mp=\dimen149
 \Gm@odd@mp=\dimen150
@@ -110,36 +110,35 @@ Package: iftex 2020/03/06 v1.0d TeX engine tests
 \Gm@layoutvoffset=\dimen155
 \Gm@dimlist=\toks23
 
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.cfg)
-)
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/listings\listings.sty
-\lst@mode=\count198
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.cfg))
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/listings\listings.sty
+\lst@mode=\count268
 \lst@gtempboxa=\box49
 \lst@token=\toks24
-\lst@length=\count199
+\lst@length=\count269
 \lst@currlwidth=\dimen156
-\lst@column=\count266
-\lst@pos=\count267
+\lst@column=\count270
+\lst@pos=\count271
 \lst@lostspace=\dimen157
 \lst@width=\dimen158
-\lst@newlines=\count268
-\lst@lineno=\count269
+\lst@newlines=\count272
+\lst@lineno=\count273
 \lst@maxwidth=\dimen159
 
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstmisc.sty
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstmisc.sty
 File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
-\c@lstnumber=\count270
-\lst@skipnumbers=\count271
+\c@lstnumber=\count274
+\lst@skipnumbers=\count275
 \lst@framebox=\box50
 )
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/listings\listings.cfg
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/listings\listings.cfg
 File: listings.cfg 2020/03/24 1.8d listings configuration
 ))
 Package: listings 2020/03/24 1.8d (Carsten Heinz)
 
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/fancyhdr\fancyhdr.sty
-Package: fancyhdr 2019/01/31 v3.10 Extensive control of page headers and footer
-s
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/fancyhdr\fancyhdr.sty
+Package: fancyhdr 2021/01/28 v4.0.1 Extensive control of page headers and foote
+rs
 \f@nch@headwidth=\skip52
 \f@nch@O@elh=\skip53
 \f@nch@O@erh=\skip54
@@ -149,41 +148,38 @@ s
 \f@nch@O@erf=\skip58
 \f@nch@O@olf=\skip59
 \f@nch@O@orf=\skip60
-) (C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphicx.st
-y
+)
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphicx.sty
 Package: graphicx 2020/09/09 v1.2b Enhanced LaTeX Graphics (DPC,SPQR)
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphics.sty
+
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphics.sty
 Package: graphics 2020/08/30 v1.4c Standard LaTeX Graphics (DPC,SPQR)
 
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/graphics\trig.sty
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/graphics\trig.sty
 Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
 )
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\graphics.
-cfg
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\graphics.cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: pdftex.def on input line 105.
-
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/graphics-def\pdftex.de
-f
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/graphics-def\pdftex.def
 File: pdftex.def 2020/10/05 v1.2a Graphics/color driver for pdftex
 ))
 \Gin@req@height=\dimen160
 \Gin@req@width=\dimen161
-)
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
+) (C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
-) (C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang2.st
-y
+)
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang2.sty
 File: lstlang2.sty 2020/03/24 1.8d listings language file
 )
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang3.sty
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang3.sty
 File: lstlang3.sty 2020/03/24 1.8d listings language file
 )
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pd
-ftex.def
-File: l3backend-pdftex.def 2020-09-24 L3 backend support: PDF output (pdfTeX)
-\l__kernel_color_stack_int=\count272
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdftex
+.def
+File: l3backend-pdftex.def 2021-02-18 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count276
 \l__pdf_internal_box=\box51
 ) (variable-selection.aux)
 \openout1 = `variable-selection.aux'.
@@ -237,25 +233,23 @@ LaTeX Font Info:    ... okay on input line 33.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-\c@lstlisting=\count273
-
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.m
-kii
+\c@lstlisting=\count277
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count274
+\scratchcounter=\count278
 \scratchdimen=\dimen162
 \scratchbox=\box52
-\nofMPsegments=\count275
-\nofMParguments=\count276
+\nofMPsegments=\count279
+\nofMParguments=\count280
 \everyMPshowfont=\toks25
-\MPscratchCnt=\count277
+\MPscratchCnt=\count281
 \MPscratchDim=\dimen163
-\MPnumerator=\count278
-\makeMPintoPDFobject=\count279
+\MPnumerator=\count282
+\makeMPintoPDFobject=\count283
 \everyMPtoPDFconversion=\toks26
 )
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-
-base.sty
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base
+.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 85.
@@ -263,7 +257,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 <best-subset-selection.png, id=1, 694.09312pt x 325.96782pt>
 File: best-subset-selection.png Graphic file (type png)
 <use best-subset-selection.png>
-Package pdftex.def Info: best-subset-selection.png  used on input line 66.
+Package pdftex.def Info: best-subset-selection.png  used on input line 68.
 (pdftex.def)             Requested size: 433.62pt x 203.6498pt.
 
 
@@ -271,47 +265,45 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [1
 
-{C:/Users/Connor/AppData/Local/MiKTeX/pdftex/config/pdftex.map}]
+{C:/Users/PC/AppData/Local/MiKTeX/pdftex/config/pdftex.map}]
 <forward-stepwise-selection.png, id=14, 694.09312pt x 325.96782pt>
 File: forward-stepwise-selection.png Graphic file (type png)
 <use forward-stepwise-selection.png>
-Package pdftex.def Info: forward-stepwise-selection.png  used on input line 80.
+Package pdftex.def Info: forward-stepwise-selection.png  used on input line 82.
 
 (pdftex.def)             Requested size: 433.62pt x 203.6498pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[2 <./best-subset-selection.png>]
-<backward-stepwise-selection.png, id=19, 694.09312pt x 325.96782pt>
+<backward-stepwise-selection.png, id=15, 694.09312pt x 325.96782pt>
 File: backward-stepwise-selection.png Graphic file (type png)
 <use backward-stepwise-selection.png>
-Package pdftex.def Info: backward-stepwise-selection.png  used on input line 94
+Package pdftex.def Info: backward-stepwise-selection.png  used on input line 96
 .
 (pdftex.def)             Requested size: 433.62pt x 203.6498pt.
- [3 <./forward-stepwise-selection.png> <./backward-stepwise-selection.png>] (va
-riable-selection.bbl) [4]
+[2 <./best-subset-selection.png>] [3 <./forward-stepwise-selection.png> <./back
+ward-stepwise-selection.png>] (variable-selection.bbl) [4]
 (variable-selection.aux) ) 
 Here is how much of TeX's memory you used:
- 4852 strings out of 479799
- 66014 string characters out of 2869248
- 531283 words of memory out of 3000000
- 21815 multiletter control sequences out of 15000+200000
- 540370 words of font info for 48 fonts, out of 3000000 for 9000
+ 4891 strings out of 479334
+ 66287 string characters out of 2858509
+ 550030 words of memory out of 3000000
+ 22317 multiletter control sequences out of 15000+200000
+ 409019 words of font info for 47 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 66i,10n,72p,872b,1721s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/
-type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/Connor/AppData/Local/Programs/MiK
-TeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Connor/AppData/Local/Pr
-ograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/Connor/AppData
-/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Conno
-r/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Us
-ers/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.p
-fb><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/c
-m/cmr7.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
-sfonts/cm/cmti10.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type1
-/public/amsfonts/cm/cmtt10.pfb>
-Output written on variable-selection.pdf (4 pages, 133134 bytes).
+ 68i,10n,74p,872b,1718s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Users/PC/AppData/Local/Programs/MiKTeX/fonts/type
+1/public/amsfonts/cm/cmbx12.pfb><C:/Users/PC/AppData/Local/Programs/MiKTeX/font
+s/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/PC/AppData/Local/Programs/MiKTe
+X/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/PC/AppData/Local/Programs/
+MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/PC/AppData/Local/Prog
+rams/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/PC/AppData/Local
+/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/PC/AppData/
+Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/PC/AppD
+ata/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/P
+C/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on variable-selection.pdf (4 pages, 135946 bytes).
 PDF statistics:
  57 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
