@@ -30,6 +30,8 @@
 \author{Gabriel Ackall and Connor Shrader}
 \date{\today}
 
+\newcommand{\argmin}{\text{argmin}}
+
 \begin{document}
 \maketitle
 
@@ -120,6 +122,11 @@ Ridge regression works by minimizing Residual Sum Squared (RSS) plus a penalty a
 \end{equation}
 
 \subsection{Lasso Regression}
+
+The least absolute shrinkage and selection operation, often referred to as \textit{lasso}, is a shrinkage method. Unlike ridge regression, the lasso is able to perform variable selection. The coefficient estimates satisfy
+\[
+	\hat{\beta}^{\text{lasso}}=\argmin\left\{ \sum\limits_{i = 1}^n \left( y_i - \beta_0 - \sum\limits_{i = 1}^p \beta_j x_{ij} \right) + \lambda\sum\limits_{j = 1}^p \beta_j^2 \right\}
+\]
 
 \subsection{Elastic Net Regression}
 
