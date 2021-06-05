@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.12.4)  5 JUN 2021 11:45
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.12.4)  5 JUN 2021 13:00
 entering extended mode
 **./variable-selection.tex
 (variable-selection.tex
@@ -188,20 +188,20 @@ File: l3backend-pdftex.def 2020-09-24 L3 backend support: PDF output (pdfTeX)
 ) (variable-selection.aux)
 \openout1 = `variable-selection.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -263,7 +263,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 <best-subset-selection.png, id=1, 694.09312pt x 325.96782pt>
 File: best-subset-selection.png Graphic file (type png)
 <use best-subset-selection.png>
-Package pdftex.def Info: best-subset-selection.png  used on input line 70.
+Package pdftex.def Info: best-subset-selection.png  used on input line 71.
 (pdftex.def)             Requested size: 433.62pt x 203.6498pt.
 
 
@@ -275,7 +275,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 <forward-stepwise-selection.png, id=14, 694.09312pt x 325.96782pt>
 File: forward-stepwise-selection.png Graphic file (type png)
 <use forward-stepwise-selection.png>
-Package pdftex.def Info: forward-stepwise-selection.png  used on input line 84.
+Package pdftex.def Info: forward-stepwise-selection.png  used on input line 85.
 
 (pdftex.def)             Requested size: 433.62pt x 203.6498pt.
 
@@ -285,17 +285,17 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 <backward-stepwise-selection.png, id=15, 694.09312pt x 325.96782pt>
 File: backward-stepwise-selection.png Graphic file (type png)
 <use backward-stepwise-selection.png>
-Package pdftex.def Info: backward-stepwise-selection.png  used on input line 98
+Package pdftex.def Info: backward-stepwise-selection.png  used on input line 99
 .
 (pdftex.def)             Requested size: 433.62pt x 203.6498pt.
 [2 <./best-subset-selection.png>] [3 <./forward-stepwise-selection.png> <./back
-ward-stepwise-selection.png>] [4] (variable-selection.bbl) [5]
+ward-stepwise-selection.png>] [4] (variable-selection.bbl [5]) [6]
 (variable-selection.aux) ) 
 Here is how much of TeX's memory you used:
- 4855 strings out of 479799
- 66046 string characters out of 2869248
- 531283 words of memory out of 3000000
- 21818 multiletter control sequences out of 15000+200000
+ 4856 strings out of 479799
+ 66050 string characters out of 2869248
+ 532283 words of memory out of 3000000
+ 21819 multiletter control sequences out of 15000+200000
  540677 words of font info for 49 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  66i,11n,72p,872b,1721s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -310,11 +310,12 @@ pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/
 cm/cmr17.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/public/
 amsfonts/cm/cmr7.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type1
 /public/amsfonts/cm/cmsy10.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX/f
-onts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/Connor/AppData/Local/Program
-s/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on variable-selection.pdf (5 pages, 165569 bytes).
+onts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/Connor/AppData/Local/Programs
+/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/Connor/AppData/Loca
+l/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on variable-selection.pdf (6 pages, 179091 bytes).
 PDF statistics:
- 68 PDF objects out of 1000 (max. 8388607)
+ 75 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  16 words of extra memory for PDF output out of 10000 (max. 10000000)
 
