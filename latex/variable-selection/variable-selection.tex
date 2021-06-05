@@ -110,6 +110,14 @@ Note that in each iteration of this algorithm, only one of the coefficients is c
 
 \section{Penalized Regression}
 \subsection{Ridge Regression}
+Ridge regression helps to solve multicollinearity in predictors while also minimizing insignificant predictors. While it does not minimize these insignificant predictors completely to 0 and thus cannot be considered a variable selection method, it still proves very useful in large datasets.
+
+Ridge regression works by minimizing Residual Sum Squared (RSS) plus a penalty as seen in Equation \ref{ridge_reg}. $\lambda$ is a tuning parameter and can be used to determine how much of an effect the penalty has on the regression. if $\lambda=0$, then the regression acts exactly like ordinary least squares regression, but if $\lambda \rightarrow \infty$, then $\beta_j \rightarrow 0$ and the regression line will only be to $\beta_0$.
+
+\begin{equation}
+	\hat{\beta}^{Ridge} = arg \: min \: \sum_{i=1}^{n} \left( y_i - \beta_0 - \sum_{j=1}^{p} \beta_jx_{ij} \right)^2 + \lambda \sum_{j=1}^{p} \beta_j^2
+	\label{ridge_reg}
+\end{equation}
 
 \subsection{Lasso Regression}
 
