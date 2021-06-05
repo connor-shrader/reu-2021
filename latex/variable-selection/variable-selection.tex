@@ -145,7 +145,7 @@ for some tuning parameter $t$.
 
 \subsection{Lasso Regression}
 
-The least absolute shrinkage and selection operation, often referred to as \textit{lasso}, is a shrinkage method with a very similar form to lasso regression. The coefficient estimates satisfy
+The least absolute shrinkage and selection operation, often referred to as \textit{lasso}, is a shrinkage method with a very similar form to lasso regression \cite{tibshirani1996regression, james2017islr, james2013introduction}. The coefficient estimates satisfy
 \begin{equation}
 	\hat{\beta}^{\text{lasso}}=\argmin\left\{ \sum\limits_{i = 1}^n \left( y_i - \beta_0 - \sum\limits_{i = 1}^p \beta_j x_{ij} \right) + \lambda\sum\limits_{j = 1}^p \vert \beta_j \vert \right\}
 \end{equation}
@@ -164,21 +164,47 @@ for some tuning parameter $t$.
 \subsection{Adaptive Lasso}
 
 \subsection{Smoothly Clipped Absolute Deviation Regression}
-One way to modify the lasso method is to use the \textit{smoothly clipped absolute deviation} (SCAD) penalty.
+One major flaw of the lasso method is that the penalty punishes large coefficients, even if those coefficients should be large. One way to modify the lasso method is to use the \textit{smoothly clipped absolute deviation} (SCAD) penalty \cite{fan2001variable}.The goal of this method is to punish large coefficients less severely, which can help mitigate some of the bias introduced by the lasso method.
+\begin{equation}
+	\hat{\beta}^{\text{SCAD}}=\argmin\left\{ \sum\limits_{i = 1}^n \left( y_i - \beta_0 - \sum\limits_{i = 1}^p \beta_j x_{ij} \right) + \lambda\sum\limits_{j = 1}^p J_a(\beta_j, \lambda) \right\}
+\end{equation}
+Here, $J_a(\beta, \lambda)$ is a penalty function that satisfies
 \begin{equation}
 	\frac{dJ_a(\beta, \lambda)}{d\beta} = \lambda\cdot\sign(\beta)\left[ I(\vert \beta \vert<\lambda) + \frac{(a\lambda - \vert \beta\vert)_+}{(a - 1)\lambda}I(\vert \beta \vert > \lambda) \right]
 \end{equation}
-where $\lambda \geq 0$ and $a\geq 2$ are tuning parameters. This is equivalent to
+where $\lambda \geq 0$ and $a\geq 2$ are tuning parameters. An equivalent way to write this is
 \begin{equation}
 	\frac{dJ_a(\beta, \lambda)}{d\beta}\left\{\begin{array}{ll}
 		\lambda,&\vert \beta \vert\leq \lambda\\
-		\frac{a\lambda - \vert \beta \vert}{a - 1},&\lambda < \vert \beta \vert < \alpha\lambda\\
+		\frac{a\lambda - \vert \beta \vert}{a - 1},&\lambda < \vert \beta \vert < a\lambda\\
 		0,&\alpha\lambda < \vert \beta \vert
 	\end{array}\right.
 \end{equation}
+Integrating with respect to $\beta$, we find that
+\begin{equation}
+	J_a(\beta, \lambda) = \left\{\begin{array}{ll}
+		\lambda \vert \beta \vert,&\vert \beta \vert \leq \lambda\\
+		\frac{2a\lambda\vert\beta\vert - \beta^2-\lambda^2}{2(a - 1)},&\lambda < \vert \beta \vert < a\lambda\\
+		\frac{\lambda^2(a + 1)}{2},&a\lambda < \vert \beta \vert
+	\end{array}\right.
+\end{equation}
 
-\subsection{Multiple Change Points Regression}
+\subsection{Minmax Concave Penalty Regression}
+[TODO: intro]
 
+\begin{equation}
+	\frac{dJ_a(\beta, \lambda)}{d\beta} = \left\{\begin{array}{ll}
+		\sign(\beta)\left(\lambda - \frac{\vert \beta \vert}{a}\right),& \vert \beta \vert \leq a\lambda\\
+		0,&a\lambda < \vert \beta \vert
+	\end{array}\right.
+\end{equation}
+
+\begin{equation}
+	J_a(\beta, \lambda) = \left\{\begin{array}{ll}
+		\lambda \vert \beta \vert - \frac{\beta^2}{2a},&\vert \beta \vert \leq a\lambda\\
+		\frac{1}{2}a\lambda^2,&a\lambda < \vert \beta \vert
+	\end{array}\right.
+\end{equation}
 \bibliographystyle{plain}
 \bibliography{references}
 \end{document}

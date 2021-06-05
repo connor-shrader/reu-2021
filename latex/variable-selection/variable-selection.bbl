@@ -5,6 +5,13 @@ Thomas~Lumley based on Fortran code~by Alan~Miller.
 \newblock {\em leaps: Regression Subset Selection}, 2020.
 \newblock R package version 3.1.
 
+\bibitem{fan2001variable}
+Jianqing Fan and Runze Li.
+\newblock Variable selection via nonconcave penalized likelihood and its oracle
+  properties.
+\newblock {\em Journal of the American statistical Association},
+  96(456):1348--1360, 2001.
+
 \bibitem{friedman2001elements}
 Jerome Friedman, Trevor Hastie, Robert Tibshirani, et~al.
 \newblock {\em The elements of statistical learning}, volume~1.
@@ -20,5 +27,11 @@ Gareth James, Daniela Witten, Trevor Hastie, and Rob Tibshirani.
 Gareth James, Daniela Witten, Trevor Hastie, and Robert Tibshirani.
 \newblock {\em An introduction to statistical learning}, volume 112.
 \newblock Springer, 2013.
+
+\bibitem{tibshirani1996regression}
+Robert Tibshirani.
+\newblock Regression shrinkage and selection via the lasso.
+\newblock {\em Journal of the Royal Statistical Society: Series B
+  (Methodological)}, 58(1):267--288, 1996.
 
 \end{thebibliography}

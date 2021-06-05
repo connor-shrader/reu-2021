@@ -6,45 +6,45 @@ The style file: plain.bst
 Reallocating 'name_of_file' (item size: 1) to 11 items.
 Database file #1: references.bib
 Warning--can't use both volume and number fields in friedman2001elements
-You've used 4 entries,
+You've used 6 entries,
             2118 wiz_defined-function locations,
-            519 strings with 4645 characters,
-and the built_in function-call counts, 1166 in all, are:
-= -- 99
-> -- 76
+            535 strings with 5037 characters,
+and the built_in function-call counts, 1814 in all, are:
+= -- 168
+> -- 96
 < -- 2
-+ -- 32
-- -- 26
-* -- 81
-:= -- 211
-add.period$ -- 12
-call.type$ -- 4
-change.case$ -- 20
++ -- 40
+- -- 32
+* -- 131
+:= -- 317
+add.period$ -- 18
+call.type$ -- 6
+change.case$ -- 29
 chr.to.int$ -- 0
-cite$ -- 5
-duplicate$ -- 42
-empty$ -- 81
-format.name$ -- 26
-if$ -- 228
+cite$ -- 7
+duplicate$ -- 64
+empty$ -- 137
+format.name$ -- 32
+if$ -- 361
 int.to.chr$ -- 0
-int.to.str$ -- 4
-missing$ -- 4
-newline$ -- 23
-num.names$ -- 8
-pop$ -- 29
+int.to.str$ -- 6
+missing$ -- 6
+newline$ -- 33
+num.names$ -- 12
+pop$ -- 34
 preamble$ -- 1
-purify$ -- 20
+purify$ -- 27
 quote$ -- 0
-skip$ -- 29
+skip$ -- 44
 stack$ -- 0
-substring$ -- 22
-swap$ -- 9
+substring$ -- 88
+swap$ -- 11
 text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 12
+type$ -- 20
 warning$ -- 1
-while$ -- 8
-width$ -- 5
-write$ -- 44
+while$ -- 16
+width$ -- 7
+write$ -- 66
 (There was 1 warning)
