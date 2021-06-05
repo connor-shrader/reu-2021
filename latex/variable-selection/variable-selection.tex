@@ -138,7 +138,7 @@ Ridge regression works by minimizing Residual Sum Squared (RSS) plus a penalty a
 
 An alternative way to express ridge regression is with the equation
 \begin{equation}
-	\beta^{\text{ridge}} = \argmin{ \sum_{i=1}^{n} \left( y_i - \beta_0 - \sum_{j=1}^{p} \beta_jx_{ij} \right)^2}\quad\text{subject to}\quad \sum_{j=1}^{p} \beta_j^2\leq t
+	\hat{\beta}^{\text{ridge}} = \argmin{ \sum_{i=1}^{n} \left( y_i - \beta_0 - \sum_{j=1}^{p} \beta_jx_{ij} \right)^2}\quad\text{subject to}\quad \sum_{j=1}^{p} \beta_j^2\leq t
 \end{equation}
 for some tuning parameter $t$.
 
@@ -156,7 +156,7 @@ Unlike ridge regression, the lasso is able to perform variable selection.
 
 Lasso regression equivalently satisfies
 \begin{equation}
-	\beta^{\text{ridge}} = \argmin{ \sum_{i=1}^{n} \left( y_i - \beta_0 - \sum_{j=1}^{p} \beta_jx_{ij} \right)^2 }\quad\text{subject to}\quad \sum_{j=1}^{p} \vert \beta_j \vert\leq t
+	\hat{\beta}^{\text{ridge}} = \argmin{ \sum_{i=1}^{n} \left( y_i - \beta_0 - \sum_{j=1}^{p} \beta_jx_{ij} \right)^2 }\quad\text{subject to}\quad \sum_{j=1}^{p} \vert \beta_j \vert\leq t
 \end{equation}
 for some tuning parameter $t$.
 	
