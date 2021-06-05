@@ -6,6 +6,7 @@
 \usepackage{fancyhdr}
 \usepackage{graphicx}
 \usepackage{listings}
+\usepackage{url}
 
 \lstset{
 	literate={~} {$\sim$}{1},
@@ -164,7 +165,7 @@ for some tuning parameter $t$.
 \subsection{Adaptive Lasso}
 
 \subsection{Smoothly Clipped Absolute Deviation Regression}
-One major flaw of the lasso method is that the penalty punishes large coefficients, even if those coefficients should be large. One way to modify the lasso method is to use the \textit{smoothly clipped absolute deviation} (SCAD) penalty \cite{fan2001variable}.The goal of this method is to punish large coefficients less severely, which can help mitigate some of the bias introduced by the lasso method.
+One major flaw of the lasso method is that the penalty punishes large coefficients, even if those coefficients should be large. One way to modify the lasso method is to use the \textit{smoothly clipped absolute deviation} (SCAD) penalty \cite{fan2001variable}. The goal of this method is to punish large coefficients less severely, which can help mitigate some of the bias introduced by the lasso method.
 \begin{equation}
 	\hat{\beta}^{\text{SCAD}}=\argmin\left\{ \sum\limits_{i = 1}^n \left( y_i - \beta_0 - \sum\limits_{i = 1}^p \beta_j x_{ij} \right) + \lambda\sum\limits_{j = 1}^p J_a(\beta_j, \lambda) \right\}
 \end{equation}
@@ -180,6 +181,8 @@ where $\lambda \geq 0$ and $a\geq 2$ are tuning parameters. An equivalent way to
 		0,&\alpha\lambda < \vert \beta \vert
 	\end{array}\right.
 \end{equation}
+This penalty function does not punish coefficients with large magnitude as heavily as the lasso method. In fact, if the magnitude of a coefficient is larger than $a\lambda$, then the penalty becomes constant.
+
 Integrating with respect to $\beta$, we find that
 \begin{equation}
 	J_a(\beta, \lambda) = \left\{\begin{array}{ll}
@@ -190,15 +193,14 @@ Integrating with respect to $\beta$, we find that
 \end{equation}
 
 \subsection{Minmax Concave Penalty Regression}
-[TODO: intro]
-
+The minmax concave penalty (MCP) method is very similar to smoothly clipped absolute deviation \cite{zhang2010nearly, breheny2016lasso}. Both methods are used to avoid the high bias caused by the lasso method. MCP uses a penalty function that satisfies
 \begin{equation}
 	\frac{dJ_a(\beta, \lambda)}{d\beta} = \left\{\begin{array}{ll}
 		\sign(\beta)\left(\lambda - \frac{\vert \beta \vert}{a}\right),& \vert \beta \vert \leq a\lambda\\
 		0,&a\lambda < \vert \beta \vert
 	\end{array}\right.
 \end{equation}
-
+where $\lambda\geq 0$ and $a\geq 1$ are tuning parameters. Integrating, we see that
 \begin{equation}
 	J_a(\beta, \lambda) = \left\{\begin{array}{ll}
 		\lambda \vert \beta \vert - \frac{\beta^2}{2a},&\vert \beta \vert \leq a\lambda\\

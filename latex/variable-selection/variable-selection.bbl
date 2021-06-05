@@ -5,6 +5,13 @@ Thomas~Lumley based on Fortran code~by Alan~Miller.
 \newblock {\em leaps: Regression Subset Selection}, 2020.
 \newblock R package version 3.1.
 
+\bibitem{breheny2016lasso}
+Breheny.
+\newblock Adaptive lasso, mcp, and scad.
+\newblock
+  \textsc{url:}~\url{https://myweb.uiowa.edu/pbreheny/7600/s16/notes/2-29.pdf},
+  2016.
+
 \bibitem{fan2001variable}
 Jianqing Fan and Runze Li.
 \newblock Variable selection via nonconcave penalized likelihood and its oracle
@@ -33,5 +40,10 @@ Robert Tibshirani.
 \newblock Regression shrinkage and selection via the lasso.
 \newblock {\em Journal of the Royal Statistical Society: Series B
   (Methodological)}, 58(1):267--288, 1996.
+
+\bibitem{zhang2010nearly}
+Cun-Hui Zhang et~al.
+\newblock Nearly unbiased variable selection under minimax concave penalty.
+\newblock {\em The Annals of statistics}, 38(2):894--942, 2010.
 
 \end{thebibliography}
