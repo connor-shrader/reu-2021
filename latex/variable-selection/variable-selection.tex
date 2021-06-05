@@ -111,6 +111,7 @@ One last method for feature selection is called forward stagewise regression. Li
 Note that in each iteration of this algorithm, only one of the coefficients is changed. As a result, this method has a long runtime. In the long run, forward stagewise selection is still competitive compared to the strategies previously discussed.
 
 \section{Penalized Regression}
+The following sections discuss several modifications to the ordinary least squares model that penalize large coefficient estimates. Penalized regression is especially useful when $p>n$ because the penalties can reduce variance and perform variable selection.
 \subsection{Ridge Regression}
 Ridge regression helps to solve multicollinearity in predictors while also minimizing insignificant predictors. While it does not minimize these insignificant predictors completely to 0 and thus cannot be considered a variable selection method, it still proves very useful in large datasets.
 
