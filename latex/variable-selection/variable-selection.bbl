@@ -46,4 +46,10 @@ Cun-Hui Zhang et~al.
 \newblock Nearly unbiased variable selection under minimax concave penalty.
 \newblock {\em The Annals of statistics}, 38(2):894--942, 2010.
 
+\bibitem{zou2005regularization}
+Hui Zou and Trevor Hastie.
+\newblock Regularization and variable selection via the elastic net.
+\newblock {\em Journal of the royal statistical society: series B (statistical
+  methodology)}, 67(2):301--320, 2005.
+
 \end{thebibliography}
