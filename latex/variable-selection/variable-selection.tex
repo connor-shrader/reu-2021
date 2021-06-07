@@ -8,6 +8,10 @@
 \usepackage{listings}
 \usepackage{url}
 
+% Allows us to use subfigures
+\usepackage{caption}
+\usepackage{subcaption}
+
 \lstset{
 	literate={~} {$\sim$}{1},
 	belowcaptionskip=1\baselineskip,
@@ -230,6 +234,38 @@ where $\lambda\geq 0$ and $a\geq 1$ are tuning parameters. Integrating, we see t
 		\frac{1}{2}a\lambda^2,&a\lambda < \vert \beta \vert
 	\end{array}\right.
 \end{equation}
+
+Figure \ref{fig:lasso-scad-mcp} below shows the penalty functions (and their derivatives) for LASSO, SCAD, and MCP as a function of a coefficient value $\beta$. We see that LASSO applies a much stronger penalty to large coefficients than SCAD or MCP.
+
+\begin{figure}[!h]
+	\caption{Penalty functions for LASSO, SCAD, and MCP, as well as their derivatives. These plots use $\lambda = 2$ and $a = 3$.}
+	\label{fig:lasso-scad-mcp}
+	\centering
+	\begin{subfigure}[b]{0.4\textwidth}
+		\caption{Penalty functions for LASSO, SCAD, and MCP}
+		\label{fig:penalty}
+		\includegraphics[width=\textwidth]{penalty.png}
+	\end{subfigure}
+	\hspace{30pt}
+	\begin{subfigure}[b]{0.4\textwidth}
+		\caption{Derivatives of the penalty functions for LASSO, SCAD, and MCP}
+		\label{fig:derivative}
+		\includegraphics[width=\textwidth]{derivative.png}
+	\end{subfigure}
+\end{figure}
+
+Now, consider the case where $p=1$ (there is only one predictor). Figure \ref{fig:prediction} shows the solutions given when using LASSO, SCAD, and MCP on such a model. The $x$-axis gives the actual coefficient for the single variable, and the $y$-axis represents the value produced using each of the algorithms. We used the particular values $\lambda = 2$ and $a = 3$. The gray line is the identity function, which also equals the solution for using ordinary least squares.
+
+We see that all three methods set the predicted value to zero when the actual coefficient is small. Also, note that the LASSO method is always off from the identity function when the coefficient is large. On the other hand, SCAD and MCP merge with the identity function when the coefficient is sufficiently large. This shows that both SCAD and MCP can avoid the high bias that LASSO introduces.
+
+\begin{figure}[!h]
+	\centering
+	\caption{Solutions for LASSO, SCAD, and MCP for a single predictor when $\lambda=2$, and $a = 3$.}
+	\label{fig:prediction}
+	\includegraphics[width = 0.4\textwidth]{prediction.png}
+\end{figure}
+
+\newpage
 \bibliographystyle{plain}
 \bibliography{references}
 \end{document}
