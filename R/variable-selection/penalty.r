@@ -241,3 +241,66 @@ legend(x = -8,
        col = c("red", "blue", "green", "gray"),
        lty = c("solid", "solid", "solid", "dashed")
 )
+
+######Stability of Regression Models######
+library(ISLR)
+library(dplyr)
+library(glmnet)
+
+#create empty dataframe of lasso and ridge coefs over 100 fits
+lasso.coefs <- as.data.frame(matrix(0, ncol = 2, nrow = 100))
+colnames(lasso.coefs) <- c("Beta1", "Beta2")
+ridge.coefs <- as.data.frame(matrix(0, ncol = 2, nrow = 100))
+colnames(ridge.coefs) <- c("Beta1", "Beta2")
+
+#extract x training data from College database
+x_full <- dplyr::select(College, Top25perc, Expend)
+y_full <- College$Grad.Rate
+
+for (i in 1:100)
+{
+  #remove random row from training data
+  row_del <- as.numeric(sample(1:777, 1))
+  x_train <- x_full[-row_del,]
+  y_train <- y_full[-row_del]
+  
+  ridge1_cv <- cv.glmnet(x = as.matrix(x_train), y = as.matrix(y_train),
+                         ## type.measure: loss to use for cross-validation.
+                         type.measure = "mse",
+                         ## K = 10 is the default.
+                         nfold = 10,
+                         ## 'alpha = 1' is the lasso penalty, and 'alpha = 0' the ridge penalty.
+                         alpha = 0)
+  #record ridge regression coefficients
+  Beta1 <- as.numeric(coef(ridge1_cv, s = ridge1_cv$lambda.min)[2])
+  Beta2 <- as.numeric(coef(ridge1_cv, s = ridge1_cv$lambda.min)[3])
+  
+  ridge.coefs[i,1] <- Beta1
+  ridge.coefs[i,2] <- Beta2
+  
+  lasso1_cv <- cv.glmnet(x = as.matrix(x_train), y = as.matrix(y_train),
+                         ## type.measure: loss to use for cross-validation.
+                         type.measure = "mse",
+                         ## K = 10 is the default.
+                         nfold = 10,
+                         ## 'alpha = 1' is the lasso penalty, and 'alpha = 0' the ridge penalty.
+                         alpha = 1)
+  #record ridge regression coefficients
+  Beta1 <- as.numeric(coef(lasso1_cv, s = lasso1_cv$lambda.min)[2])
+  Beta2 <- as.numeric(coef(lasso1_cv, s = lasso1_cv$lambda.min)[3])
+  
+  lasso.coefs[i,1] <- Beta1
+  lasso.coefs[i,2] <- Beta2
+  
+}
+
+coefs_tot <- rbind(lasso.coefs, ridge.coefs)
+
+#plot different coefficient values for each regression
+plot(Beta2 ~ Beta1, data = lasso.coefs, col = "red", xlim=c(min(coefs_tot$Beta1), max(coefs_tot$Beta1)), ylim=c(min(coefs_tot$Beta2), max(coefs_tot$Beta2)))
+points(Beta2 ~ Beta1, data = ridge.coefs, col = "black")
+legend("topleft", legend=c("Lasso", "Ridge"), col = c("red", "black"), pch=c(1,1))
+
+
+
+

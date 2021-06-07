@@ -157,7 +157,7 @@ The least absolute shrinkage and selection operation, often referred to as \text
 \end{equation}
 If $\lambda = 0$, then the lasso model is equivalent to the ordinary least squares model; if $\lambda \to \infty$, then the coefficients for all predictors will be set to 0.
 
-Despite having a form similar to ridge regression, the lasso method has some very different properties. Unlike ridge regression, the lasso is able to perform variable selection. This is useful in the case where $p>n$ because a model with fewer variables has less variance and is more interpretable. One major downside of lasso regression is that it does not handle multicollinearity as nicely as ridge regression. Another downside of lasso regression is that it does not have a closed-form solution.
+Despite having a form similar to ridge regression, the lasso method has some very different properties. Unlike ridge regression, the lasso is able to perform variable selection. This is useful in the case where $p>n$ because a model with fewer variables has less variance and is more interpretable. One major downside of lasso regression is that it does not handle multicollinearity as nicely as ridge regression. Another downside of lasso regression is that it does not have a closed-form solution which can lead to instability in the model. This can be demonstrated by the greater spread of $\beta$ coefficients compared to ridge regression, as visible in Figure \ref{fig:lasso-and-ridge-instability}.
 
 An equivalent expression for lasso regression is
 \begin{equation}
@@ -165,8 +165,15 @@ An equivalent expression for lasso regression is
 \end{equation}
 for some tuning parameter $t$.
 
+\begin{figure}[!ht]
+	\centering
+	\caption{Instability of Lasso and Ridge Regression to Changes in Training Data}
+	\includegraphics[width = 0.7\linewidth]{lassoVSridge-instability.png}
+	\label{fig:lasso-and-ridge-instability}
+\end{figure}
+
 \subsection{Elastic Net Regression}
-Elastic net regression serves as a combination between ridge and lasso regression. It can handle  multicollinearity as well as perform variable selection. The coefficients for elastic net regression can be determined by
+Elastic net regression serves as a combination between ridge and lasso regression. It can handle  multicollinearity as well as perform variable selection. The coefficients for elastic net regression can be determined by 
 \begin{equation}
 	\hat{\beta}^{\text{ENet}}=\argmin\left\{ \sum\limits_{i = 1}^n \left( y_i - \beta_0 - \sum\limits_{i = 1}^p \beta_j x_{ij} \right) + \lambda_2\sum\limits_{j = 1}^p \beta_j^2 + \lambda_1\sum\limits_{j = 1}^p \vert \beta_j \vert \right\}
 \end{equation}
