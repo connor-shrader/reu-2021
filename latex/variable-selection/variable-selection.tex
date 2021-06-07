@@ -169,8 +169,23 @@ Elastic net regression serves as a combination between ridge and lasso regressio
 where $\lambda_1$ and $\lambda_2$ are both tuning parameters to be determined later.
 
 An important limitation to note is that elastic net performs best when it close to either ridge or lasso regression, meaning that either $\lambda_1 >> \lambda_2$ or vice versa \cite{zou2005regularization}. Additionally, because elastic net requires two tuning parameters, this makes it much more difficult to determine the best combination of tuning parameters to minimize error in the regression. However, this problem has been largely solved through by the LARS-EN algorithm developed by Zou et. al. which efficiently solves for the tuning parameters.
+% I will add more here later
 
-\subsection{Adaptive Lasso}
+\subsection{Adaptive Lasso Regression}
+Normally in lasso regression, each predictor is weighted the same in the penalty function. Adaptive lasso regression is different in that a weight, $\hat{w}_j$ is multiplied to the penalty function. The coefficients for adaptive lasso regression as designed by Zou et. al. \cite{zou2006adaptive} can be defined by
+\begin{equation}
+	\hat{\beta}^{\text{adaptive}}=\argmin\left\{ \sum\limits_{i = 1}^n \left( y_i - \beta_0 - \sum\limits_{i = 1}^p \beta_j x_{ij} \right) + \lambda\sum\limits_{j = 1}^p \hat{w}_j\vert \beta_j \vert \right\}
+\end{equation}
+where $\lambda$ is a tuning parameter to be determined later and $\hat{w}_j$ is defined as $\frac{1}{\vert\hat{\beta}\vert^{\gamma}}$ with $\gamma$ being a chosen parameter greater than 0.
+
+Because of the weight that is implemented in adaptive lasso regression, zero-coefficients have a weight that is inflated up to infinity, and thus are punished much more harshly than large coefficients whose weight is much smaller in comparison. This is a similar rationale to SCAD and helps to reduce some of the bias from lasso regression. Bridge regression is the general form of lasso regression from which adaptive lasso originates from. When $\gamma < 1$, bridge regression as shown in Equation \ref{adap_lasso} is not continuous, which results in model prediction instability. However, adaptive lasso regression is completely continuous and thus has much more consistent coefficients when fitted.
+% I will add more here in the future
+
+\begin{equation}
+	\hat{\beta}^{\text{lasso}}=\argmin\left\{ \sum\limits_{i = 1}^n \left( y_i - \beta_0 - \sum\limits_{i = 1}^p \beta_j x_{ij} \right) + \lambda\sum\limits_{j = 1}^p \vert \beta_j \vert ^\gamma \right\}
+	\label{adap_lasso}
+\end{equation}
+
 
 \subsection{Smoothly Clipped Absolute Deviation Regression}
 One major flaw of the lasso method is that the penalty punishes large coefficients, even if those coefficients should be large. One way to modify the lasso method is to use the \textit{smoothly clipped absolute deviation} (SCAD) penalty \cite{fan2001variable}. The goal of this method is to punish large coefficients less severely, which can help mitigate some of the bias introduced by the lasso method.
