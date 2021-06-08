@@ -235,8 +235,8 @@ Integrating with respect to $\beta$ \cite{breheny2016lasso}, we see that
 	\end{array}\right.
 \end{equation}
 
-\subsection{Minmax Concave Penalty Regression}
-The minmax concave penalty (MCP) method is very similar to smoothly clipped absolute deviation \cite{zhang2010nearly, breheny2016lasso}. Both methods are used to avoid the high bias caused by the lasso method. MCP uses a penalty function that satisfies
+\subsection{Minimax Concave Penalty Regression}
+The minimax concave penalty (MCP) method is very similar to smoothly clipped absolute deviation \cite{zhang2010nearly, breheny2016lasso}. Both methods are used to avoid the high bias caused by the lasso method. MCP uses a penalty function that satisfies
 \begin{equation}
 	\frac{dJ_a(\beta, \lambda)}{d\beta} = \left\{\begin{array}{ll}
 		\sign(\beta)\left(\lambda - \frac{\vert \beta \vert}{a}\right),& \vert \beta \vert \leq a\lambda\\
