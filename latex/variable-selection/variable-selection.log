@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.12.4)  7 JUN 2021 20:18
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.12.4)  8 JUN 2021 09:32
 entering extended mode
 **./variable-selection.tex
 (variable-selection.tex
@@ -360,29 +360,32 @@ ward-stepwise-selection.png>] [4]
 <ridge-lasso.png, id=31, 691.08188pt x 536.75531pt>
 File: ridge-lasso.png Graphic file (type png)
 <use ridge-lasso.png>
-Package pdftex.def Info: ridge-lasso.png  used on input line 166.
+Package pdftex.def Info: ridge-lasso.png  used on input line 170.
 (pdftex.def)             Requested size: 281.85587pt x 218.91628pt.
- [5 <./ridge-lasso.png>]
-<lassoVSridge-instability.png, id=37, 806.26219pt x 584.1825pt>
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<lassoVSridge-instability.png, id=32, 806.26219pt x 584.1825pt>
 File: lassoVSridge-instability.png Graphic file (type png)
 <use lassoVSridge-instability.png>
-Package pdftex.def Info: lassoVSridge-instability.png  used on input line 182.
+Package pdftex.def Info: lassoVSridge-instability.png  used on input line 180.
 (pdftex.def)             Requested size: 328.82707pt x 238.2506pt.
- [6 <./lassoVSridge-instability.png>] [7]
-<penalty.png, id=48, 691.08188pt x 536.75531pt>
+[5] [6 <./ridge-lasso.png> <./lassoVSridge-instability.png>] [7]
+<penalty.png, id=49, 691.08188pt x 536.75531pt>
 File: penalty.png Graphic file (type png)
 <use penalty.png>
-Package pdftex.def Info: penalty.png  used on input line 265.
+Package pdftex.def Info: penalty.png  used on input line 263.
 (pdftex.def)             Requested size: 187.89914pt x 145.93326pt.
-<derivative.png, id=49, 691.08188pt x 536.75531pt>
+<derivative.png, id=50, 691.08188pt x 536.75531pt>
 File: derivative.png Graphic file (type png)
 <use derivative.png>
-Package pdftex.def Info: derivative.png  used on input line 271.
+Package pdftex.def Info: derivative.png  used on input line 269.
 (pdftex.def)             Requested size: 187.89914pt x 145.93326pt.
-<prediction.png, id=50, 691.08188pt x 536.75531pt>
+<prediction.png, id=51, 691.08188pt x 536.75531pt>
 File: prediction.png Graphic file (type png)
 <use prediction.png>
-Package pdftex.def Info: prediction.png  used on input line 283.
+Package pdftex.def Info: prediction.png  used on input line 281.
 (pdftex.def)             Requested size: 187.89914pt x 145.93326pt.
 
 
@@ -397,11 +400,11 @@ LaTeX Warning: There were undefined references.
 Here is how much of TeX's memory you used:
  6284 strings out of 479799
  93133 string characters out of 2869248
- 557506 words of memory out of 3000000
+ 558506 words of memory out of 3000000
  23228 multiletter control sequences out of 15000+200000
  541585 words of font info for 52 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 66i,11n,72p,872b,1723s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 66i,11n,72p,886b,1723s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm
 /cmbx10.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/public/a
 msfonts/cm/cmbx12.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type
@@ -422,7 +425,7 @@ ocal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/Connor/
 AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Use
 rs/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.p
 fb>
-Output written on variable-selection.pdf (9 pages, 279250 bytes).
+Output written on variable-selection.pdf (9 pages, 279441 bytes).
 PDF statistics:
  116 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

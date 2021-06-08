@@ -117,7 +117,7 @@ One last method for feature selection is called forward stagewise regression. Li
 Note that in each iteration of this algorithm, only one of the coefficients is changed. As a result, this method has a long runtime. In the long run, forward stagewise selection is still competitive compared to the strategies previously discussed.
 
 \section{Penalized Regression}
-The following sections discuss several modifications to the ordinary least squares model that penalize large coefficient estimates. Recall that an ordinary least squares model assumes that some response variable $y$ can be expressed as
+The following sections discuss several modifications to the ordinary least squares model that penalize large coefficient estimates. Recall that an ordinary least squares model assumes that some response variable $y$ can be modeled by
 
 \begin{equation}
 	y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_p x_p + \epsilon
@@ -155,9 +155,13 @@ The least absolute shrinkage and selection operation, often referred to as \text
 \begin{equation}
 	\hat{\beta}^{\text{lasso}}=\argmin\left\{ \sum\limits_{i = 1}^n \left( y_i - \beta_0 - \sum\limits_{i = 1}^p \beta_j x_{ij} \right) + \lambda\sum\limits_{j = 1}^p \vert \beta_j \vert \right\}
 \end{equation}
-If $\lambda = 0$, then the lasso model is equivalent to the ordinary least squares model; if $\lambda \to \infty$, then the coefficients for all predictors will be set to 0.
+If $\lambda = 0$, then the lasso model is equivalent to the ordinary least squares model; if $\lambda \to \infty$, then the coefficients for all predictors will be set to 0. An equivalently way to define lasso regression is by
+\begin{equation}
+	\hat{\beta}^{\text{ridge}} = \argmin\left\{ \sum_{i=1}^{n} \left( y_i - \beta_0 - \sum_{j=1}^{p} \beta_jx_{ij} \right)^2 \right\}\quad\text{subject to}\quad \sum_{j=1}^{p} \vert \beta_j \vert\leq t
+\end{equation}
+where $t$ is a tuning parameter.
 
-To understand why lasso regression can perform variable selection whereas ride regression cannot, consider Figure \ref{fig:ridge-lasso} below. This figure demonstrates the case when there are $p=2$ predictors, $\beta_1$ and $\beta_2$. The red diamond on the left represents the condition $\vert \beta_1 \vert < 1$ for ridge regression, whereas the circle on the right represents the condition $\beta_1^2 + \beta_2^2 < 1$ for lasso regression. The black curves represent contours of the residual sum of squares error for values of $\beta_1$ and $\beta_2$. The black point in the center of these curves is where the RSS is minimized; this represents the values of $\beta_1$ and $\beta_2$ that would be selected by ordinary least squares.
+One useful property of the lasso method is that it can perform variable selection by setting some coefficients to zero. To understand why lasso regression can perform variable selection whereas ride regression cannot, consider Figure \ref{fig:ridge-lasso} below. This figure demonstrates the case when $p=2$ and $t = 1$. The red diamond on the left represents the condition $\vert \beta_1 \vert + \vert \beta_2 \vert < 1$ for ridge regression, while the circle on the right represents the condition $\beta_1^2 + \beta_2^2 < 1$ for lasso regression. The black curves represent contours of the residual sum of squares error for values of $\beta_1$ and $\beta_2$. The black point in the center of these curves is where the RSS is minimized; this represents the values of $\beta_1$ and $\beta_2$ that would be selected by ordinary least squares.
 
 \begin{figure}[!h]
 	\centering
@@ -166,15 +170,9 @@ To understand why lasso regression can perform variable selection whereas ride r
 	\includegraphics[width = 0.6\textwidth]{ridge-lasso.png}
 \end{figure}
 
-In the left plot, the intersection of the black curve and the red diamond represents the parameter values chosen by lasso regression. Because the red region is a square, this intersection can occur at a point where $\beta_1 = 0$; hence, the lasso method removes the predictor $\beta_1$. On the other hand, the circular shape of the constrained region for ridge regression cannot perform variable selection because the intersection cannot occur exactly at one of the axes.
+In the left plot, the intersection of the black curve and the red diamond represents the parameter values chosen by lasso regression; this point minimizes the RSS under the condition $\vert \beta_1 \vert + \vert \beta_2 \vert < 1$. Because the red region is a square, this intersection occurs at a point where $\beta_1 = 0$; hence, the lasso method removes the predictor $\beta_1$. On the other hand, the circular shape of the constrained region for ridge regression cannot perform variable selection because the intersection does not occur at one of the axes.
 
-Despite having a form similar to ridge regression, the lasso method has some very different properties. Unlike ridge regression, the lasso is able to perform variable selection. This is useful in the case where $p>n$ because a model with fewer variables has less variance and is more interpretable. One major downside of lasso regression is that it does not handle multicollinearity as nicely as ridge regression. Another downside of lasso regression is that it does not have a closed-form solution which can lead to instability in the model. This can be demonstrated by the greater spread of $\beta$ coefficients compared to ridge regression, as visible in Figure \ref{fig:lasso-and-ridge-instability}.
-
-An equivalent expression for lasso regression is
-\begin{equation}
-	\hat{\beta}^{\text{ridge}} = \argmin\left\{ \sum_{i=1}^{n} \left( y_i - \beta_0 - \sum_{j=1}^{p} \beta_jx_{ij} \right)^2 \right\}\quad\text{subject to}\quad \sum_{j=1}^{p} \vert \beta_j \vert\leq t
-\end{equation}
-for some tuning parameter $t$.
+The lasso method is particularly useful in the case where $p>n$ because of its ability to select variables; a model with fewer variables has less variance and is more interpretable. One major downside of lasso regression is that it does not handle multicollinearity as nicely as ridge regression. Another downside of lasso regression is that it does not have a closed-form solution, which can lead to instability in the model. This can be demonstrated by the greater spread of $\beta$ coefficients compared to ridge regression, as visible in Figure \ref{fig:lasso-and-ridge-instability}.
 
 \begin{figure}[!ht]
 	\centering
@@ -226,9 +224,9 @@ where $\lambda \geq 0$ and $a\geq 2$ are tuning parameters. An equivalent way to
 		0,&\alpha\lambda < \vert \beta \vert
 	\end{array}\right.
 \end{equation}
-This penalty function does not punish coefficients with large magnitude as heavily as the lasso method. In fact, if the magnitude of a coefficient is larger than $a\lambda$, then the penalty becomes constant.
+This penalty function does not punish coefficients with large magnitude as heavily as the lasso method. In fact, if the magnitude of a coefficient is larger than $a\lambda$, then the penalty becomes constant. See Figure \ref{fig:penalty} for a plot of the SCAD penalty as a function of the coefficient value.
 
-Integrating with respect to $\beta$, we find that
+Integrating with respect to $\beta$ \cite{breheny2016lasso}, we see that
 \begin{equation}
 	J_a(\beta, \lambda) = \left\{\begin{array}{ll}
 		\lambda \vert \beta \vert,&\vert \beta \vert \leq \lambda\\
@@ -245,7 +243,7 @@ The minmax concave penalty (MCP) method is very similar to smoothly clipped abso
 		0,&a\lambda < \vert \beta \vert
 	\end{array}\right.
 \end{equation}
-where $\lambda\geq 0$ and $a\geq 1$ are tuning parameters. Integrating, we see that
+where $\lambda\geq 0$ and $a> 0$ are tuning parameters. Integrating \cite{breheny2016lasso}, we see that
 \begin{equation}
 	J_a(\beta, \lambda) = \left\{\begin{array}{ll}
 		\lambda \vert \beta \vert - \frac{\beta^2}{2a},&\vert \beta \vert \leq a\lambda\\
@@ -253,7 +251,7 @@ where $\lambda\geq 0$ and $a\geq 1$ are tuning parameters. Integrating, we see t
 	\end{array}\right.
 \end{equation}
 
-Figure \ref{fig:lasso-scad-mcp} below shows the penalty functions (and their derivatives) for LASSO, SCAD, and MCP as a function of a coefficient value $\beta$. We see that LASSO applies a much stronger penalty to large coefficients than SCAD or MCP.
+Figure \ref{fig:lasso-scad-mcp} below shows the penalty functions (and their derivatives) for LASSO, SCAD, and MCP as a function of a coefficient value $\beta$. We see that LASSO applies a much stronger penalty to large coefficients than SCAD or MCP. Also, note that SCAD starts with a derivative equal to that of the lasso for small values of $\beta$; on the other hand, the derivative of the penalty function for MCP starts decreasing immediately.
 
 \begin{figure}[!h]
 	\caption{Penalty functions for LASSO, SCAD, and MCP, as well as their derivatives. These plots use $\lambda = 2$ and $a = 3$.}
@@ -272,7 +270,7 @@ Figure \ref{fig:lasso-scad-mcp} below shows the penalty functions (and their der
 	\end{subfigure}
 \end{figure}
 
-Now, consider the case where $p=1$ (there is only one predictor). Figure \ref{fig:prediction} shows the solutions given when using LASSO, SCAD, and MCP on such a model. The $x$-axis gives the actual coefficient for the single variable, and the $y$-axis represents the value produced using each of the algorithms. We used the particular values $\lambda = 2$ and $a = 3$. The gray line is the identity function, which also equals the solution for using ordinary least squares.
+Now, consider the case where $p=1$ (there is only one predictor). Figure \ref{fig:prediction} shows the solutions given when using LASSO, SCAD, and MCP on such a model. The $x$-axis gives the actual coefficient for the single variable, and the $y$-axis represents the coefficient estimate produced using each of the algorithms. We used the particular values $\lambda = 2$ and $a = 3$. The gray line is the identity function, which also equals the solution obtained using ordinary least squares.
 
 We see that all three methods set the predicted value to zero when the actual coefficient is small. Also, note that the LASSO method is always off from the identity function when the coefficient is large. On the other hand, SCAD and MCP merge with the identity function when the coefficient is sufficiently large. This shows that both SCAD and MCP can avoid the high bias that LASSO introduces.
 
