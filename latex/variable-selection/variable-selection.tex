@@ -157,6 +157,17 @@ The least absolute shrinkage and selection operation, often referred to as \text
 \end{equation}
 If $\lambda = 0$, then the lasso model is equivalent to the ordinary least squares model; if $\lambda \to \infty$, then the coefficients for all predictors will be set to 0.
 
+To understand why lasso regression can perform variable selection whereas ride regression cannot, consider Figure \ref{fig:ridge-lasso} below. This figure demonstrates the case when there are $p=2$ predictors, $\beta_1$ and $\beta_2$. The red diamond on the left represents the condition $\vert \beta_1 \vert < 1$ for ridge regression, whereas the circle on the right represents the condition $\beta_1^2 + \beta_2^2 < 1$ for lasso regression. The black curves represent contours of the residual sum of squares error for values of $\beta_1$ and $\beta_2$. The black point in the center of these curves is where the RSS is minimized; this represents the values of $\beta_1$ and $\beta_2$ that would be selected by ordinary least squares.
+
+\begin{figure}[!h]
+	\centering
+	\caption{Error and constrant curves for the lasso and ridge models when $p=2$.}
+	\label{fig:ridge-lasso}
+	\includegraphics[width = 0.6\textwidth]{ridge-lasso.png}
+\end{figure}
+
+In the left plot, the intersection of the black curve and the red diamond represents the parameter values chosen by lasso regression. Because the red region is a square, this intersection can occur at a point where $\beta_1 = 0$; hence, the lasso method removes the predictor $\beta_1$. On the other hand, the circular shape of the constrained region for ridge regression cannot perform variable selection because the intersection cannot occur exactly at one of the axes.
+
 Despite having a form similar to ridge regression, the lasso method has some very different properties. Unlike ridge regression, the lasso is able to perform variable selection. This is useful in the case where $p>n$ because a model with fewer variables has less variance and is more interpretable. One major downside of lasso regression is that it does not handle multicollinearity as nicely as ridge regression. Another downside of lasso regression is that it does not have a closed-form solution which can lead to instability in the model. This can be demonstrated by the greater spread of $\beta$ coefficients compared to ridge regression, as visible in Figure \ref{fig:lasso-and-ridge-instability}.
 
 An equivalent expression for lasso regression is
