@@ -52,6 +52,23 @@ asb = stepAIC(fm, scope=list(lower=nm, upper=fm), direction="both", k=2, trace=F
 bsb = stepAIC(fm, scope=list(lower=nm, upper=fm), direction="both", k=log(nrow(ex.dat)), trace=F, steps=3000) #BIC 
 
 
+# Lasso model for variable selection
+lasso <- cv.glmnet(x = model.matrix(y~., data = ex.dat), y = ex.dat$y, alpha = 1)
+lasso_c <- data.frame(as.matrix(coef(lasso))[-2:-3,]) #turns coefs into usable dataframe
+colnames(lasso_c) <- c("lasso")
+lasso_c$betas <- row.names(lasso_c)
+
+# Ridge model for dealing with multicollinearity
+ridge <- cv.glmnet(x = model.matrix(y~., data = ex.dat), y = ex.dat$y, alpha = 0)
+ridge_c <- data.frame(as.matrix(coef(ridge))[-2:-3,]) #turns coefs into usable dataframe
+colnames(ridge_c) <- c("ridge")
+ridge_c$betas <- row.names(ridge_c)
+
+# Elastic Net model for multicollinearity and variable selection
+enet <- cv.glmnet(x = model.matrix(y~., data = ex.dat), y = ex.dat$y, alpha = 0.8) #small alpha is not needed since small multicollinearity
+enet_c <- data.frame(as.matrix(coef(enet))[-2:-3,]) #turns coefs into usable dataframe
+colnames(enet_c) <- c("elastic.net")
+enet_c$betas <- row.names(enet_c)
 
 
 #####Putting Models into DataFrame#####
@@ -83,6 +100,8 @@ get.coef <- function(model)
 
 df <- data.frame(lapply(models, get.coef), row.names = row.names)
 
+
+
 # Gabe's probably slower method to put models into a dataframe
 library(dplyr)
 multi.merge <-function(model_list, col_names){ #takes input of list of lm models, and vector of column names
@@ -108,8 +127,9 @@ multi.merge <-function(model_list, col_names){ #takes input of list of lm models
 
 coefs_df <- multi.merge(list(fm, af, bf, ab, bb, asf, bsf, asb, bsb), c("fm", "af", "bf", "ab", "bb", "asf", "bsf", "asb", "bsb"))
 
+#manually add lasso, ridge, and enet coefs
+coefs_df <- left_join(coefs_df, lasso_c, by = "betas")
+coefs_df <- left_join(coefs_df, ridge_c, by = "betas")
+coefs_df <- left_join(coefs_df, enet_c, by = "betas")
 
-
-
-summary(lm)   #
 
