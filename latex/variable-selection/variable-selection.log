@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.12.4)  8 JUN 2021 09:41
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.12.4)  9 JUN 2021 09:57
 entering extended mode
 **./variable-selection.tex
 (variable-selection.tex
@@ -288,146 +288,101 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 )
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-
-
-Package caption Warning: \label without proper reference on input line 73.
-See the caption package documentation for explanation.
-
-
-LaTeX Warning: Reference `fig:best-subset-selection' on page 1 undefined on inp
-ut line 70.
-
-<best-subset-selection.png, id=1, 694.09312pt x 325.96782pt>
-File: best-subset-selection.png Graphic file (type png)
-<use best-subset-selection.png>
-Package pdftex.def Info: best-subset-selection.png  used on input line 76.
-(pdftex.def)             Requested size: 433.62pt x 203.6498pt.
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[1
+ [1
 
 {C:/Users/Connor/AppData/Local/MiKTeX/pdftex/config/pdftex.map}]
-
-Package caption Warning: \label without proper reference on input line 87.
-See the caption package documentation for explanation.
-
-
-LaTeX Warning: Reference `fig:forward-stepwise-selection' on page 2 undefined o
-n input line 84.
-
-<forward-stepwise-selection.png, id=15, 694.09312pt x 325.96782pt>
-File: forward-stepwise-selection.png Graphic file (type png)
-<use forward-stepwise-selection.png>
-Package pdftex.def Info: forward-stepwise-selection.png  used on input line 90.
-
+<best-subset-selection.png, id=16, 694.09312pt x 325.96782pt>
+File: best-subset-selection.png Graphic file (type png)
+<use best-subset-selection.png>
+Package pdftex.def Info: best-subset-selection.png  used on input line 100.
 (pdftex.def)             Requested size: 433.62pt x 203.6498pt.
+
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-
-Package caption Warning: \label without proper reference on input line 101.
-See the caption package documentation for explanation.
-
-
-LaTeX Warning: Reference `fig:backward-stepwise-selection' on page 2 undefined 
-on input line 98.
-
-
-Package caption Warning: \label without proper reference on input line 73.
-See the caption package documentation for explanation.
-
-
-LaTeX Warning: Reference `fig:best-subset-selection' on page 2 undefined on inp
-ut line 98.
-
-
-Package caption Warning: \label without proper reference on input line 87.
-See the caption package documentation for explanation.
-
-
-LaTeX Warning: Reference `fig:forward-stepwise-selection' on page 2 undefined o
-n input line 98.
-
-<backward-stepwise-selection.png, id=16, 694.09312pt x 325.96782pt>
+[2]
+<forward-stepwise-selection.png, id=21, 694.09312pt x 325.96782pt>
+File: forward-stepwise-selection.png Graphic file (type png)
+<use forward-stepwise-selection.png>
+Package pdftex.def Info: forward-stepwise-selection.png  used on input line 114
+.
+(pdftex.def)             Requested size: 433.62pt x 203.6498pt.
+ [3 <./best-subset-selection.png> <./forward-stepwise-selection.png>]
+<backward-stepwise-selection.png, id=27, 694.09312pt x 325.96782pt>
 File: backward-stepwise-selection.png Graphic file (type png)
 <use backward-stepwise-selection.png>
-Package pdftex.def Info: backward-stepwise-selection.png  used on input line 10
-4.
+Package pdftex.def Info: backward-stepwise-selection.png  used on input line 12
+8.
 (pdftex.def)             Requested size: 433.62pt x 203.6498pt.
-[2 <./best-subset-selection.png>] [3 <./forward-stepwise-selection.png> <./back
-ward-stepwise-selection.png>] [4]
-<ridge-lasso.png, id=31, 691.08188pt x 536.75531pt>
+
+[4 <./backward-stepwise-selection.png>] [5]
+<ridge-lasso.png, id=35, 691.08188pt x 536.75531pt>
 File: ridge-lasso.png Graphic file (type png)
 <use ridge-lasso.png>
-Package pdftex.def Info: ridge-lasso.png  used on input line 170.
+Package pdftex.def Info: ridge-lasso.png  used on input line 198.
 (pdftex.def)             Requested size: 281.85587pt x 218.91628pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<lassoVSridge-instability.png, id=32, 806.26219pt x 584.1825pt>
+<lassoVSridge-instability.png, id=36, 806.26219pt x 584.1825pt>
 File: lassoVSridge-instability.png Graphic file (type png)
 <use lassoVSridge-instability.png>
-Package pdftex.def Info: lassoVSridge-instability.png  used on input line 180.
+Package pdftex.def Info: lassoVSridge-instability.png  used on input line 208.
 (pdftex.def)             Requested size: 328.82707pt x 238.2506pt.
-[5] [6 <./ridge-lasso.png> <./lassoVSridge-instability.png>] [7]
-<penalty.png, id=49, 691.08188pt x 536.75531pt>
+[6] [7 <./ridge-lasso.png> <./lassoVSridge-instability.png>] [8]
+<penalty.png, id=52, 691.08188pt x 536.75531pt>
 File: penalty.png Graphic file (type png)
 <use penalty.png>
-Package pdftex.def Info: penalty.png  used on input line 263.
+Package pdftex.def Info: penalty.png  used on input line 291.
 (pdftex.def)             Requested size: 187.89914pt x 145.93326pt.
-<derivative.png, id=50, 691.08188pt x 536.75531pt>
+<derivative.png, id=53, 691.08188pt x 536.75531pt>
 File: derivative.png Graphic file (type png)
 <use derivative.png>
-Package pdftex.def Info: derivative.png  used on input line 269.
+Package pdftex.def Info: derivative.png  used on input line 297.
 (pdftex.def)             Requested size: 187.89914pt x 145.93326pt.
-<prediction.png, id=51, 691.08188pt x 536.75531pt>
+<prediction.png, id=54, 691.08188pt x 536.75531pt>
 File: prediction.png Graphic file (type png)
 <use prediction.png>
-Package pdftex.def Info: prediction.png  used on input line 281.
+Package pdftex.def Info: prediction.png  used on input line 309.
 (pdftex.def)             Requested size: 187.89914pt x 145.93326pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[8 <./penalty.png> <./derivative.png>] (variable-selection.bbl) [9 <./predictio
-n.png>] (variable-selection.aux)
-
-LaTeX Warning: There were undefined references.
-
- ) 
+[9 <./penalty.png> <./derivative.png>] (variable-selection.bbl) [10 <./predicti
+on.png>] (variable-selection.aux) ) 
 Here is how much of TeX's memory you used:
- 6284 strings out of 479799
- 93133 string characters out of 2869248
- 558506 words of memory out of 3000000
- 23228 multiletter control sequences out of 15000+200000
- 541585 words of font info for 52 fonts, out of 3000000 for 9000
+ 6288 strings out of 479799
+ 93171 string characters out of 2869248
+ 559506 words of memory out of 3000000
+ 23230 multiletter control sequences out of 15000+200000
+ 542204 words of font info for 54 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 66i,11n,72p,886b,1723s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm
-/cmbx10.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/public/a
-msfonts/cm/cmbx12.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type
-1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX
-/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/Connor/AppData/Local/Progr
-ams/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Connor/AppData/L
-ocal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/Connor/
-AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/User
-s/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb
-><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
-cmr12.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
-fonts/cm/cmr17.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/p
-ublic/amsfonts/cm/cmr5.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts
-/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/Connor/AppData/Local/Programs/MiKT
-eX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/Connor/AppData/Local/Progr
-ams/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Connor/AppData/L
-ocal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/Connor/
-AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Use
-rs/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.p
-fb>
-Output written on variable-selection.pdf (9 pages, 279453 bytes).
+ 66i,13n,72p,886b,1723s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Users/Connor/AppData/Local/Programs/MiKT
+eX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/Connor/AppData/Local/Pro
+grams/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/Connor/AppData
+/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/Con
+nor/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:
+/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi
+10.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
+ts/cm/cmmi5.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/publ
+ic/amsfonts/cm/cmmi7.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/t
+ype1/public/amsfonts/cm/cmr10.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTe
+X/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Connor/AppData/Local/Progr
+ams/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/Connor/AppData/Lo
+cal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/Connor/Ap
+pData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/C
+onnor/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:
+/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy
+10.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
+ts/cm/cmsy7.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/publ
+ic/amsfonts/cm/cmti10.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/
+type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on variable-selection.pdf (10 pages, 284262 bytes).
 PDF statistics:
- 116 PDF objects out of 1000 (max. 8388607)
+ 119 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  41 words of extra memory for PDF output out of 10000 (max. 10000000)
 

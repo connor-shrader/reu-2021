@@ -35,7 +35,7 @@
 \author{Gabriel Ackall and Connor Shrader}
 \date{\today}
 
-\newcommand{\argmin}{\text{arg min}}
+\newcommand{\argmin}[1]{\underset{\beta}{\text{arg min}}}
 \newcommand{\sign}{\text{sign}}
 
 \begin{document}
@@ -44,8 +44,32 @@
 In mathematical modeling, especially when using linear regression, it is often important to reduce the number of predictors, or variables, used to predict an output. This can help to increase the interpretability of a model and reduce its error. Below are five methods used to select a linear model using a subset of the predictors.
 % might need to add more here in the future
 
+\section{Introduction}
+Linear regression is one of the simplest forms of statistical learning models. It assumes that some predictor variable $y$ can be modeled as a linear combination of a set of predictor variables $x_1, x_2, \dotsc, x_p$. More precisely, a linear regression model assumes that
+\begin{equation}
+	y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_p x_p + \epsilon
+\end{equation}
+where $\beta_0, \beta_1, \dotsc, \beta_p$ are coefficients and $\epsilon$ is a random error with mean zero and variance $\sigma^2$. We also assume that this error has no correlation between different observations. When working with real data sets, the coefficient values are usually unknown; the goal of linear regression is to compute coefficient estimates $\hat{\beta_0}, \hat{\beta_1}, \dotsc, \hat{\beta_p}$ that are good estimates for the actual coefficients.
+
+Let $\beta = [\beta_0, \beta_1, \dotsc, \beta_p]^{T}$ be a vector of coefficient values, and let $\hat{\beta} = [\hat{\beta}_0, \hat{\beta}_1, \dotsc, \hat{\beta}_p]^{T}$ represent a vector of coefficient estimates. Also, let $\mathbf{X}$ be a $n\times(p + 1)$ matrix containing $n$ observations in $p$ variables. $\mathbf{X}$ also contains a column with every entry equal to 1; the corresponding coefficient estimate will represent $\hat{\beta}_0$. Finally, let $\mathbf{y}$ represent the vector of response values for each observation.
+
+The most common way to compute $\hat{\beta}$ is with ordinary least squares. This method computes $\hat{\beta}$ by minimizing the residual sum of squares:
+\begin{align}
+	\hat{\beta}^{\text{OLS}} &= \argmin{\beta}\left\{\sum_{i=1}^{n} \left( y_i - \beta_0 - \sum_{j=1}^{p} \beta_jx_{ij} \right)^2 \right\}\\
+	&= \argmin{\beta} \left\{ (\mathbf{y} - \mathbf{X}\beta)^{T} (\mathbf{y} - \mathbf{X}\beta)^{T} \right\}
+\end{align}
+Ordinary least squares is favored for a few reasons. For one, the solution is very easy to compute; it is given by
+\begin{equation}
+	\hat{\beta} = (\mathbf{X}^{T}\mathbf{X})^{-1}\mathbf{X}^{T}\mathbf{y}
+\end{equation}
+Another advantage of ordinary least squares comes from the Gauss-Markov Theorem. This theorem states that of all the linear unbiased estimators, ordinary least squares has the lowest variance. Alternative unbiased estimators will necessarily have a larger variance, which can lead to more inaccurate predictions.
+
+Why, then, would we use anything other than ordinary least squares? One issue is that the matrix $\mathbf{X}^T\mathbf{X}$ is not always invertible. In fact, this matrix is never invertible in the case when $p>n$. Hence, in some situations, we cannot use ordinary least squares. Even if the matrix is invertible, other methods may be preferable. Despite having no bias in ideal situations, ordinary least squares may still have high variance. Consequently, it may be worthwhile to sacrifice some bias in order to decrease variance.
+
+The rest of this document describes numerous ways to modify ordinary least squares to obtain models with lower variance. Some of these algorithms also use variable selection; these methods set some coefficient estimates to zero if they do not have a strong influence on model accuracy. This not only helps reduce variance, but it also creates more interpretable models. 
 
 \section{Subset Selection}
+First, we discuss subset selection techniques. In general, these techniques are discrete algorithms that attempt to find a good model using only a subset of the available predictors.
 \subsection{Best Subset Selection}
 Best subset selection is a method for selecting the most influential predictors that minimize error in a least squares linear regression. It does this by fitting a linear regression model to every possible combination of predictors and then choosing the best model of all the possible combinations. The best model is determined through the use of a test error estimate. The most common examples of test error estimation indicators are Akaike information criterion (AIC), Bayesian information criterion (BIC), Adjusted $R^2$, and cross validation.
 
@@ -70,9 +94,9 @@ While best subset selection results in the best possible model given the predict
 Figure \ref{fig:best-subset-selection} below demonstrates how the number of predictors can affect $R^2$ and BIC when using best subset selection. This plot was created by using the \lstinline!leaps! library (which provides a function to run best subset selection) \cite{lumley2020leaps}. We used the \lstinline!College! dataset provided by the \lstinline!ISLR! library \cite{james2017islr}, and fit linear regression models using \lstinline!Grad.Rate! as the response. We see that as the number of predictors increases, $R^2$ always increases (as expected). On the other hand, BIC is minimized with a moderate number of variables (between seven and nine). According to the BIC statistic, the best model has seven variables. The code used for this figure is in the \lstinline!r! folder of the REU GitHub repository.
 
 \begin{figure}[!h]
-	\label{fig:best-subset-selection}
 	\centering
 	\caption{$R^2$ and BIC when applying best subset selection}
+	\label{fig:best-subset-selection}
 	\includegraphics[width = 6in]{best-subset-selection.png}
 \end{figure}
 
@@ -84,9 +108,9 @@ This process is much more computationally efficient than best subset selection, 
 Figure \ref{fig:forward-stepwise-selection} shows the $R^2$ and BIC statistics when fitting models using forward stepwise selection. Again, we predicted \lstinline!Grad.Rate! using the \lstinline!College! data set using the \lstinline!leaps! library. The results are almost identical to what we saw for best subset selection. Even though the plots are similar, the specific model chosen by forward stepwise selection is actually different than the one found using best subset selection.
 
 \begin{figure}[!h]
-	\label{fig:forward-stepwise-selection}
 	\centering
 	\caption{$R^2$ and BIC when applying forward stepwise selection}
+	\label{fig:forward-stepwise-selection}
 	\includegraphics[width = 6in]{forward-stepwise-selection.png}
 \end{figure}
 
@@ -98,9 +122,9 @@ Backward stepwise selection can often result in better models than forward stepw
 Figure \ref{fig:backward-stepwise-selection} shows $R^2$ and BIC after applying backward stepwise selection to the \lstinline!College! data set. Again, the results are very similar to Figures \ref{fig:best-subset-selection} and \ref{fig:forward-stepwise-selection}, but the particular models chosen by the algorithm were slightly different. 
 
 \begin{figure}[!h]
-	\label{fig:backward-stepwise-selection}
 	\centering
 	\caption{$R^2$ and BIC when applying backward stepwise selection}
+	\label{fig:backward-stepwise-selection}
 	\includegraphics[width = 6in]{backward-stepwise-selection.png}
 \end{figure}
 
@@ -123,13 +147,17 @@ The following sections discuss several modifications to the ordinary least squar
 	y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_p x_p + \epsilon
 \end{equation}
 
-where $x_1, x_2, \dotsc, x_p$ are predictors, $\beta_0, \beta_1, \dotsc, \beta_p$ are coefficients, and $\epsilon$ is some random error. An ordinary least squares model estimates the coefficients as
+where $x_1, x_2, \dotsc, x_p$ are predictors, $\beta_0, \beta_1, \dotsc, \beta_p$ are coefficients, and $\epsilon$ is some random error with mean 0 and variance $\sigma^2$. An ordinary least squares model estimates the coefficients as
 
 \begin{equation}
-	\hat{\beta}^{\text{OLS}} = \argmin\left\{\sum_{i=1}^{n} \left( y_i - \beta_0 - \sum_{j=1}^{p} \beta_jx_{ij} \right)^2 \right\}
+	\hat{\beta}^{\text{OLS}} = \argmin{\beta}\left\{\sum_{i=1}^{n} \left( y_i - \beta_0 - \sum_{j=1}^{p} \beta_jx_{ij} \right)^2 \right\}
 \end{equation}
 
-In general, a penalized regression imposes some additional restriction that punishes large coefficient estimates. This is especially useful when $p>n$ because the penalties can reduce variance and perform variable selection.
+In general, a penalized regression imposes some additional restriction that punishes large coefficient estimates. The coefficient estimates are then given by
+\begin{equation}
+	\hat{\beta} = \argmin{\beta}\left\{ \sum_{i=1}^{n} \left( y_i - \beta_0 - \sum_{j=1}^{p} \beta_jx_{ij} \right)^2 + \sum\limits_{j = 1}^p p(\beta_j) \right\}
+\end{equation}
+where $p(\beta_j)$ is some penalty function. Generally, this function should be large when the coefficient is large so that a model with smaller coefficients is favored. Penalized regression is especially useful when $p>n$ because the penalties can reduce variance and perform variable selection at the cost of some bias.
 
 Because these models place penalties on large coefficient estimates, it is common to standardize the predictors to have a mean of 0 and a variance of 1. This ensures that none of the predictors have a disproportionate effect on the estimated coefficients.
 
@@ -139,13 +167,13 @@ Ridge regression helps to solve multicollinearity in predictors while also minim
 Ridge regression works by minimizing Residual Sum Squared (RSS) plus a penalty as seen in Equation \ref{ridge_reg}. $\lambda$ is a tuning parameter and can be used to determine how much of an effect the penalty has on the regression. if $\lambda=0$, then the regression acts exactly like ordinary least squares regression, but if $\lambda \rightarrow \infty$, then $\beta_j \rightarrow 0$ and the regression line will be a horizontal line at the intercept, $\beta_0$.
 
 \begin{equation}
-	\hat{\beta}^{\text{ridge}} = \argmin\left\{ \sum_{i=1}^{n} \left( y_i - \beta_0 - \sum_{j=1}^{p} \beta_jx_{ij} \right)^2 + \lambda \sum_{j=1}^{p} \beta_j^2  \right\}
+	\hat{\beta}^{\text{ridge}} = \argmin{\beta}\left\{ \sum_{i=1}^{n} \left( y_i - \beta_0 - \sum_{j=1}^{p} \beta_jx_{ij} \right)^2 + \lambda \sum_{j=1}^{p} \beta_j^2  \right\}
 	\label{ridge_reg}
 \end{equation}
 
 An alternative way to express ridge regression is with the equation
 \begin{equation}
-	\hat{\beta}^{\text{ridge}} = \argmin\left\{ \sum_{i=1}^{n} \left( y_i - \beta_0 - \sum_{j=1}^{p} \beta_jx_{ij} \right)^2\right\}\quad\text{subject to}\quad \sum_{j=1}^{p} \beta_j^2\leq t
+	\hat{\beta}^{\text{ridge}} = \argmin{\beta}\left\{ \sum_{i=1}^{n} \left( y_i - \beta_0 - \sum_{j=1}^{p} \beta_jx_{ij} \right)^2\right\}\quad\text{subject to}\quad \sum_{j=1}^{p} \beta_j^2\leq t
 \end{equation}
 for some tuning parameter $t$.
 
@@ -153,11 +181,11 @@ for some tuning parameter $t$.
 
 The least absolute shrinkage and selection operation, often referred to as \textit{lasso}, is a shrinkage method with a very similar form to lasso regression \cite{tibshirani1996regression, james2017islr, james2013introduction}. The coefficient estimates satisfy
 \begin{equation}
-	\hat{\beta}^{\text{lasso}}=\argmin\left\{ \sum\limits_{i = 1}^n \left( y_i - \beta_0 - \sum\limits_{i = 1}^p \beta_j x_{ij} \right) + \lambda\sum\limits_{j = 1}^p \vert \beta_j \vert \right\}
+	\hat{\beta}^{\text{lasso}}=\argmin{\beta}\left\{ \sum\limits_{i = 1}^n \left( y_i - \beta_0 - \sum\limits_{i = 1}^p \beta_j x_{ij} \right) + \lambda\sum\limits_{j = 1}^p \vert \beta_j \vert \right\}
 \end{equation}
 If $\lambda = 0$, then the lasso model is equivalent to the ordinary least squares model; if $\lambda \to \infty$, then the coefficients for all predictors will be set to 0. An equivalently way to define lasso regression is by
 \begin{equation}
-	\hat{\beta}^{\text{ridge}} = \argmin\left\{ \sum_{i=1}^{n} \left( y_i - \beta_0 - \sum_{j=1}^{p} \beta_jx_{ij} \right)^2 \right\}\quad\text{subject to}\quad \sum_{j=1}^{p} \vert \beta_j \vert\leq t
+	\hat{\beta}^{\text{ridge}} = \argmin{\beta}\left\{ \sum_{i=1}^{n} \left( y_i - \beta_0 - \sum_{j=1}^{p} \beta_jx_{ij} \right)^2 \right\}\quad\text{subject to}\quad \sum_{j=1}^{p} \vert \beta_j \vert\leq t
 \end{equation}
 where $t$ is a tuning parameter.
 
@@ -184,7 +212,7 @@ The lasso method is particularly useful in the case where $p>n$ because of its a
 \subsection{Elastic Net Regression}
 Elastic net regression serves as a combination between ridge and lasso regression. It can handle  multicollinearity as well as perform variable selection. The coefficients for elastic net regression can be determined by 
 \begin{equation}
-	\hat{\beta}^{\text{ENet}}=\argmin\left\{ \sum\limits_{i = 1}^n \left( y_i - \beta_0 - \sum\limits_{i = 1}^p \beta_j x_{ij} \right) + \lambda_2\sum\limits_{j = 1}^p \beta_j^2 + \lambda_1\sum\limits_{j = 1}^p \vert \beta_j \vert \right\}
+	\hat{\beta}^{\text{ENet}}=\argmin{\beta}\left\{ \sum\limits_{i = 1}^n \left( y_i - \beta_0 - \sum\limits_{i = 1}^p \beta_j x_{ij} \right) + \lambda_2\sum\limits_{j = 1}^p \beta_j^2 + \lambda_1\sum\limits_{j = 1}^p \vert \beta_j \vert \right\}
 \end{equation}
 where $\lambda_1$ and $\lambda_2$ are both tuning parameters to be determined later.
 
@@ -194,7 +222,7 @@ An important limitation to note is that elastic net performs best when it close 
 \subsection{Adaptive Lasso Regression}
 Normally in lasso regression, each predictor is weighted the same in the penalty function. Adaptive lasso regression is different in that a weight, $\hat{w}_j$ is multiplied to the penalty function. The coefficients for adaptive lasso regression as designed by Zou et. al. \cite{zou2006adaptive} can be defined by
 \begin{equation}
-	\hat{\beta}^{\text{adaptive}}=\argmin\left\{ \sum\limits_{i = 1}^n \left( y_i - \beta_0 - \sum\limits_{i = 1}^p \beta_j x_{ij} \right) + \lambda\sum\limits_{j = 1}^p \hat{w}_j\vert \beta_j \vert \right\}
+	\hat{\beta}^{\text{adaptive}}=\argmin{\beta}\left\{ \sum\limits_{i = 1}^n \left( y_i - \beta_0 - \sum\limits_{i = 1}^p \beta_j x_{ij} \right) + \lambda\sum\limits_{j = 1}^p \hat{w}_j\vert \beta_j \vert \right\}
 \end{equation}
 where $\lambda$ is a tuning parameter to be determined later and $\hat{w}_j$ is defined as $\frac{1}{\vert\hat{\beta}\vert^{\gamma}}$ with $\gamma$ being a chosen parameter greater than 0.
 
@@ -202,7 +230,7 @@ Because of the weight that is implemented in adaptive lasso regression, zero-coe
 % I will add more here in the future
 
 \begin{equation}
-	\hat{\beta}^{\text{lasso}}=\argmin\left\{ \sum\limits_{i = 1}^n \left( y_i - \beta_0 - \sum\limits_{i = 1}^p \beta_j x_{ij} \right) + \lambda\sum\limits_{j = 1}^p \vert \beta_j \vert ^\gamma \right\}
+	\hat{\beta}^{\text{lasso}}=\argmin{\beta}\left\{ \sum\limits_{i = 1}^n \left( y_i - \beta_0 - \sum\limits_{i = 1}^p \beta_j x_{ij} \right) + \lambda\sum\limits_{j = 1}^p \vert \beta_j \vert ^\gamma \right\}
 	\label{adap_lasso}
 \end{equation}
 
@@ -210,7 +238,7 @@ Because of the weight that is implemented in adaptive lasso regression, zero-coe
 \subsection{Smoothly Clipped Absolute Deviation Regression}
 One major flaw of the lasso method is that the penalty punishes large coefficients, even if those coefficients should be large. One way to modify the lasso method is to use the \textit{smoothly clipped absolute deviation} (SCAD) penalty \cite{fan2001variable}. The goal of this method is to punish large coefficients less severely, which can help mitigate some of the bias introduced by the lasso method.
 \begin{equation}
-	\hat{\beta}^{\text{SCAD}}=\argmin\left\{ \sum\limits_{i = 1}^n \left( y_i - \beta_0 - \sum\limits_{i = 1}^p \beta_j x_{ij} \right) + \lambda\sum\limits_{j = 1}^p J_a(\beta_j, \lambda) \right\}
+	\hat{\beta}^{\text{SCAD}}=\argmin{\beta}\left\{ \sum\limits_{i = 1}^n \left( y_i - \beta_0 - \sum\limits_{i = 1}^p \beta_j x_{ij} \right) + \lambda\sum\limits_{j = 1}^p J_a(\beta_j, \lambda) \right\}
 \end{equation}
 Here, $J_a(\beta, \lambda)$ is a penalty function that satisfies
 \begin{equation}
