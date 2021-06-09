@@ -53,6 +53,7 @@ bsb = stepAIC(fm, scope=list(lower=nm, upper=fm), direction="both", k=log(nrow(e
 
 
 # Lasso model for variable selection
+library(glmnet)
 lasso <- cv.glmnet(x = model.matrix(y~., data = ex.dat), y = ex.dat$y, alpha = 1)
 lasso_c <- data.frame(as.matrix(coef(lasso))[-2:-3,]) #turns coefs into usable dataframe
 colnames(lasso_c) <- c("lasso")
@@ -69,6 +70,16 @@ enet <- cv.glmnet(x = model.matrix(y~., data = ex.dat), y = ex.dat$y, alpha = 0.
 enet_c <- data.frame(as.matrix(coef(enet))[-2:-3,]) #turns coefs into usable dataframe
 colnames(enet_c) <- c("elastic.net")
 enet_c$betas <- row.names(enet_c)
+
+# MCP
+library(ncvreg)
+
+scad <- cv.ncvreg(X = model.matrix(y ~ ., data = ex.dat[, -2]), y = ex.dat$y, penalty = "SCAD")
+scad_c <- coef(scad, lambda = scad$lambda.min)
+
+mcp <- cv.ncvreg(X = model.matrix(y ~ ., data = ex.dat[, -2]), y = ex.dat$y)
+mcp_c <- coef(mcp, lambda = mcp$lambda.min)
+# calling coef(mcp, lambda = 0.05) has two intercepts?
 
 
 #####Putting Models into DataFrame#####
