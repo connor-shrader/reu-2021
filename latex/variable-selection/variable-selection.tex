@@ -105,7 +105,7 @@ Figure \ref{fig:best-subset-selection} below demonstrates how the number of pred
 	\centering
 	\caption{$R^2$ and BIC when applying best subset selection}
 	\label{fig:best-subset-selection}
-	\includegraphics[width = 6in]{best-subset-selection.png}
+	\includegraphics[width = 6in]{images/best-subset-selection.png}
 \end{figure}
 
 \subsection{Forward Stepwise Selection}
@@ -119,7 +119,7 @@ Figure \ref{fig:forward-stepwise-selection} shows the $R^2$ and BIC statistics w
 	\centering
 	\caption{$R^2$ and BIC when applying forward stepwise selection}
 	\label{fig:forward-stepwise-selection}
-	\includegraphics[width = 6in]{forward-stepwise-selection.png}
+	\includegraphics[width = 6in]{images/forward-stepwise-selection.png}
 \end{figure}
 
 \subsection{Backward Stepwise Selection}
@@ -133,7 +133,7 @@ Figure \ref{fig:backward-stepwise-selection} shows $R^2$ and BIC after applying 
 	\centering
 	\caption{$R^2$ and BIC when applying backward stepwise selection}
 	\label{fig:backward-stepwise-selection}
-	\includegraphics[width = 6in]{backward-stepwise-selection.png}
+	\includegraphics[width = 6in]{images/backward-stepwise-selection.png}
 \end{figure}
 
 \subsection{Hybrid Stepwise Selection}
@@ -203,7 +203,7 @@ One useful property of the lasso method is that it can perform variable selectio
 	\centering
 	\caption{Error and constrant curves for the lasso and ridge models when $p=2$.}
 	\label{fig:ridge-lasso}
-	\includegraphics[width = 0.6\textwidth]{ridge-lasso.png}
+	\includegraphics[width = 0.6\textwidth]{images/ridge-lasso.png}
 \end{figure}
 
 In the left plot, the intersection of the black curve and the red diamond represents the parameter values chosen by lasso regression; this point minimizes the RSS under the condition $\vert \beta_1 \vert + \vert \beta_2 \vert < 1$. Because the red region is a square, this intersection occurs at a point where $\beta_1 = 0$; hence, the lasso method removes the predictor $\beta_1$. On the other hand, the circular shape of the constrained region for ridge regression cannot perform variable selection because the intersection does not occur at one of the axes.
@@ -213,7 +213,7 @@ The lasso method is particularly useful in the case where $p>n$ because of its a
 \begin{figure}[!ht]
 	\centering
 	\caption{Instability of Lasso and Ridge Regression to Changes in Training Data}
-	\includegraphics[width = 0.7\linewidth]{lassoVSridge-instability.png}
+	\includegraphics[width = 0.7\linewidth]{images/lassoVSridge-instability.png}
 	\label{fig:lasso-and-ridge-instability}
 \end{figure}
 
@@ -296,13 +296,13 @@ Figure \ref{fig:lasso-scad-mcp} below shows the penalty functions (and their der
 	\begin{subfigure}[b]{0.4\textwidth}
 		\caption{Penalty functions for LASSO, SCAD, and MCP}
 		\label{fig:penalty}
-		\includegraphics[width=\textwidth]{penalty.png}
+		\includegraphics[width=\textwidth]{images/penalty.png}
 	\end{subfigure}
 	\hspace{30pt}
 	\begin{subfigure}[b]{0.4\textwidth}
 		\caption{Derivatives of the penalty functions for LASSO, SCAD, and MCP}
 		\label{fig:derivative}
-		\includegraphics[width=\textwidth]{derivative.png}
+		\includegraphics[width=\textwidth]{images/derivative.png}
 	\end{subfigure}
 \end{figure}
 
@@ -314,7 +314,7 @@ We see that all three methods set the predicted value to zero when the actual co
 	\centering
 	\caption{Solutions for LASSO, SCAD, and MCP for a single predictor when $\lambda=2$, and $a = 3$.}
 	\label{fig:prediction}
-	\includegraphics[width = 0.4\textwidth]{prediction.png}
+	\includegraphics[width = 0.4\textwidth]{images/prediction.png}
 \end{figure}
 
 \newpage
