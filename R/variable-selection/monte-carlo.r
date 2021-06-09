@@ -76,3 +76,26 @@ get.coef <- function(model)
 }
 
 df <- data.frame(lapply(models, get.coef), row.names = row.names)
+
+# puts models into a dataframe                
+multi.merge <-function(model_vec, col_names){
+  for (i in 1:length(model_vec)){
+    model_vec[[i]] <- data.frame(model_vec[[i]]$coefficients)
+    model_vec[[i]]$betas <- row.names(model_vec[[i]])
+  }
+  
+  full_df <- model_vec[[1]]
+  full_df <- full_df[-1]
+  full_df$fm <- model_vec[[1]][[1]]
+  
+  for (i in 2:length(model_vec)){
+    full_df <- left_join(full_df, model_vec[[i]], by = "betas")
+  }
+  
+  full_df[is.na(full_df)] <- 0
+  colnames(full_df) <- c("betas", col_names)
+  
+  return(full_df)
+}
+
+coefs_df <- multi.merge(list(fm, af, bf, ab, bb), c("fm", "af", "bf", "ab", "bb"))
