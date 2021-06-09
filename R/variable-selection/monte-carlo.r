@@ -86,7 +86,8 @@ df <- data.frame(lapply(models, get.coef), row.names = row.names)
 
 
 
-# Gabe's probably slower method to put models into a dataframe                
+# Gabe's probably slower method to put models into a dataframe
+library(dplyr)
 multi.merge <-function(model_vec, col_names){ #takes input of list of lm models, and vector of column names
   for (i in 1:length(model_vec)){
     model_vec[[i]] <- data.frame(model_vec[[i]]$coefficients) #turns lm model class into dataframe of coefficients
