@@ -83,9 +83,6 @@ get.coef <- function(model)
 
 df <- data.frame(lapply(models, get.coef), row.names = row.names)
 
-
-
-
 # Gabe's probably slower method to put models into a dataframe
 library(dplyr)
 multi.merge <-function(model_list, col_names){ #takes input of list of lm models, and vector of column names
@@ -94,7 +91,7 @@ multi.merge <-function(model_list, col_names){ #takes input of list of lm models
     model_list[[i]]$betas <- row.names(model_list[[i]]) #adds column of beta coefficient names
   }
   
-  #ugly code to rearrange order of beta column and full model column
+  # ugly code to rearrange order of beta column and full model column
   full_df <- model_list[[1]]
   full_df <- full_df[-1]
   full_df$fm <- model_list[[1]][[1]]
@@ -110,3 +107,9 @@ multi.merge <-function(model_list, col_names){ #takes input of list of lm models
 }
 
 coefs_df <- multi.merge(list(fm, af, bf, ab, bb, asf, bsf, asb, bsb), c("fm", "af", "bf", "ab", "bb", "asf", "bsf", "asb", "bsb"))
+
+
+
+
+summary(lm)   #
+
