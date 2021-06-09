@@ -74,10 +74,10 @@ enet_c$betas <- row.names(enet_c)
 # MCP
 library(ncvreg)
 
-scad <- cv.ncvreg(X = model.matrix(y ~ ., data = ex.dat[, -2]), y = ex.dat$y, penalty = "SCAD")
+scad <- cv.ncvreg(X = ex.dat[, -1:-2], y = ex.dat$y, penalty = "SCAD")
 scad_c <- coef(scad, lambda = scad$lambda.min)
 
-mcp <- cv.ncvreg(X = model.matrix(y ~ ., data = ex.dat[, -2]), y = ex.dat$y)
+mcp <- cv.ncvreg(X = ex.dat[, -1:-2], y = ex.dat$y)
 mcp_c <- coef(mcp, lambda = mcp$lambda.min)
 # calling coef(mcp, lambda = 0.05) has two intercepts?
 
@@ -101,16 +101,18 @@ df$bsb <- unlist(lapply(names(fm$coefficients), function(str) bsb$coefficients[s
 
 # Putting each mode into a data frame with a loop.
 
-models <- list(af = af, bf = bf, ab = ab, bb = bb, asf = asf, bsf = bsf, asb = asb, bsb = bsb)
+models <- list(fm = fm, nm = nm, af = af, bf = bf, ab = ab, bb = bb, asf = asf, bsf = bsf,
+               asb = asb, bsb = bsb,
+               scad = scad, mcp = mcp)
 row.names <- c("(Intercept)", paste("x", 1:10, sep = ""))
 
 get.coef <- function(model)
 {
-  unlist(lapply(row.names, function(predictor) model$coefficients[predictor]))
+  coef_values <- unlist(lapply(row.names, function(predictor) coef(model)[predictor]))
 }
 
 df <- data.frame(lapply(models, get.coef), row.names = row.names)
-
+df[df == 0] <- NA
 
 
 # Gabe's probably slower method to put models into a dataframe
