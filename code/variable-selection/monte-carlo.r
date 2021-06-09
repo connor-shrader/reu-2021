@@ -78,7 +78,7 @@ row.names <- c("(Intercept)", paste("x", 1:10, sep = ""))
 
 get.coef <- function(model)
 {
-  unlist(lapply(row.names, function(str) model$coefficients[str]))
+  unlist(lapply(row.names, function(predictor) model$coefficients[predictor]))
 }
 
 df <- data.frame(lapply(models, get.coef), row.names = row.names)
@@ -88,19 +88,19 @@ df <- data.frame(lapply(models, get.coef), row.names = row.names)
 
 # Gabe's probably slower method to put models into a dataframe
 library(dplyr)
-multi.merge <-function(model_vec, col_names){ #takes input of list of lm models, and vector of column names
-  for (i in 1:length(model_vec)){
-    model_vec[[i]] <- data.frame(model_vec[[i]]$coefficients) #turns lm model class into dataframe of coefficients
-    model_vec[[i]]$betas <- row.names(model_vec[[i]]) #adds column of beta coefficient names
+multi.merge <-function(model_list, col_names){ #takes input of list of lm models, and vector of column names
+  for (i in 1:length(model_list)){
+    model_list[[i]] <- data.frame(model_list[[i]]$coefficients) #turns lm model class into dataframe of coefficients
+    model_list[[i]]$betas <- row.names(model_list[[i]]) #adds column of beta coefficient names
   }
   
   #ugly code to rearrange order of beta column and full model column
-  full_df <- model_vec[[1]]
+  full_df <- model_list[[1]]
   full_df <- full_df[-1]
-  full_df$fm <- model_vec[[1]][[1]]
+  full_df$fm <- model_list[[1]][[1]]
   
-  for (i in 2:length(model_vec)){
-    full_df <- left_join(full_df, model_vec[[i]], by = "betas") #joins code together by beta coefficient name
+  for (i in 2:length(model_list)){
+    full_df <- left_join(full_df, model_list[[i]], by = "betas") #joins code together by beta coefficient name
   }
   
   full_df[is.na(full_df)] <- 0
