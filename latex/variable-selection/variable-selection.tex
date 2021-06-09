@@ -1,6 +1,6 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
-\usepackage{amsmath}
+\usepackage{amsmath, amsfonts, amssymb}
 \usepackage[margin = 1in]{geometry}
 \usepackage{listings}
 \usepackage{fancyhdr}
@@ -58,19 +58,23 @@ Let $\beta = [\beta_0, \beta_1, \dotsc, \beta_p]^{T}$ be a vector of coefficient
 The most common way to compute $\hat{\beta}$ is with ordinary least squares. This method computes $\hat{\beta}$ by minimizing the residual sum of squares:
 \begin{align}
 	\hat{\beta}^{\text{OLS}} &= \argmin{\beta}\left\{\sum_{i=1}^{n} \left( y_i - \beta_0 - \sum_{j=1}^{p} \beta_jx_{ij} \right)^2 \right\}\\
-	&= \argmin{\beta} \left\{ (\mathbf{y} - \mathbf{X}\beta)^{T} (\mathbf{y} - \mathbf{X}\beta)^{T} \right\}
+	&= \argmin{\beta} \left\{ (\mathbf{y} - \mathbf{X}\beta)^\top (\mathbf{y} - \mathbf{X}\beta)^\top\right\}
 \end{align}
 Ordinary least squares is favored for a few reasons. For one, the solution is very easy to compute; it is given by
 \begin{equation}
-	\hat{\beta} = (\mathbf{X}^{T}\mathbf{X})^{-1}\mathbf{X}^{T}\mathbf{y}
+	\hat{\beta} = (\mathbf{X}^\top\mathbf{X})^{-1}\mathbf{X}^\top\mathbf{y}
 \end{equation}
 Another advantage of ordinary least squares comes from the Gauss-Markov Theorem. This theorem states that of all the linear unbiased estimators, ordinary least squares has the lowest variance. Alternative unbiased estimators will necessarily have a larger variance, which can lead to more inaccurate predictions.
 
 \subsection{Alternative Techniques}
 
-Why, then, would we use anything other than ordinary least squares? One issue is that the matrix $\mathbf{X}^T\mathbf{X}$ is not always invertible. In fact, this matrix is never invertible in the case when $p>n$. Hence, in some situations, we cannot use ordinary least squares. Even if the matrix is invertible, other methods may be preferable. Despite having no bias in ideal situations, ordinary least squares may still have high variance. Consequently, it may be worthwhile to sacrifice some bias in order to decrease variance.
+If ordinary least squares minimizes variance among all unbiased estimators, why would we use anything else? One issue is that the matrix $\mathbf{X}^\top\mathbf{X}$ is not always invertible. In fact, this matrix is never invertible in the case when $p>n$. Hence, in some situations, we cannot use ordinary least squares.
 
-The rest of this document describes numerous ways to modify ordinary least squares to obtain models with lower variance. Some of these algorithms also use variable selection; these methods set some coefficient estimates to zero if they do not have a strong influence on model accuracy. This not only helps reduce variance, but it also creates more interpretable models. 
+Even if the matrix is invertible, other methods may lead to better model performance. Despite having the least variance among unbiased estimators, ordinary least squares may still have high variance. Consequently, it may be worthwhile to sacrifice some bias in order to decrease variance.
+
+Most algorithms used to decrease model variance perform variable selection. In many applications, not all of the predictors will be related to the response, but ordinary least squares still attempts to use every predictor when computing coefficient estimates. Variable selection techniques can identify the predictors most strongly correlated to the data and eliminate the rest. This results in a simpler model that uses $p^\ast$ of the $p$ available predictors. This not only helps reduce variance, but it also creates more interpretable models.
+
+The rest of this document examines many approaches to linear regression. These techniques fall under two large categories: subset selection and penalized regression. Subset selection algorithms attempt to find a subset of predictors that is most strongly correlated to the response and  fits an ordinary least squares model to that subset. Penalized regression techniques punish large coefficient estimates, which encourages models that have smaller coefficient values. Depending on the particular algorithm used, penalized regression can also perform variable selection.
 
 \section{Subset Selection}
 First, we discuss subset selection techniques. In general, these techniques are discrete algorithms that attempt to find a good model using only a subset of the available predictors.
