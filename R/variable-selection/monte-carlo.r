@@ -51,6 +51,12 @@ bsf = stepAIC(nm, scope=list(lower=nm, upper=fm), direction="both", k=log(nrow(e
 asb = stepAIC(fm, scope=list(lower=nm, upper=fm), direction="both", k=2, trace=F, steps=3000) #AIC
 bsb = stepAIC(fm, scope=list(lower=nm, upper=fm), direction="both", k=log(nrow(ex.dat)), trace=F, steps=3000) #BIC 
 
+
+
+
+#####Putting Models into DataFrame#####
+
+
 # Putting these models into a data frame
 
 # Putting each model into a data frame manually.
@@ -77,25 +83,29 @@ get.coef <- function(model)
 
 df <- data.frame(lapply(models, get.coef), row.names = row.names)
 
-# puts models into a dataframe                
-multi.merge <-function(model_vec, col_names){
+
+
+
+# Gabe's probably slower method to put models into a dataframe                
+multi.merge <-function(model_vec, col_names){ #takes input of list of lm models, and vector of column names
   for (i in 1:length(model_vec)){
-    model_vec[[i]] <- data.frame(model_vec[[i]]$coefficients)
-    model_vec[[i]]$betas <- row.names(model_vec[[i]])
+    model_vec[[i]] <- data.frame(model_vec[[i]]$coefficients) #turns lm model class into dataframe of coefficients
+    model_vec[[i]]$betas <- row.names(model_vec[[i]]) #adds column of beta coefficient names
   }
   
+  #ugly code to rearrange order of beta column and full model column
   full_df <- model_vec[[1]]
   full_df <- full_df[-1]
   full_df$fm <- model_vec[[1]][[1]]
   
   for (i in 2:length(model_vec)){
-    full_df <- left_join(full_df, model_vec[[i]], by = "betas")
+    full_df <- left_join(full_df, model_vec[[i]], by = "betas") #joins code together by beta coefficient name
   }
   
   full_df[is.na(full_df)] <- 0
-  colnames(full_df) <- c("betas", col_names)
+  colnames(full_df) <- c("betas", col_names) #renames columns according to what was input to the function
   
   return(full_df)
 }
 
-coefs_df <- multi.merge(list(fm, af, bf, ab, bb), c("fm", "af", "bf", "ab", "bb"))
+coefs_df <- multi.merge(list(fm, af, bf, ab, bb, asf, bsf, asb, bsb), c("fm", "af", "bf", "ab", "bb", "asf", "bsf", "asb", "bsb"))
