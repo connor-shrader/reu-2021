@@ -51,6 +51,8 @@ Linear regression is one of the simplest forms of statistical learning models. I
 \end{equation}
 where $\beta_0, \beta_1, \dotsc, \beta_p$ are coefficients and $\epsilon$ is a random error with mean zero and variance $\sigma^2$. We also assume that this error has no correlation between different observations. When working with real data sets, the coefficient values are usually unknown; the goal of linear regression is to compute coefficient estimates $\hat{\beta_0}, \hat{\beta_1}, \dotsc, \hat{\beta_p}$ that are good estimates for the actual coefficients.
 
+\subsection{Ordinary Least Squares}
+
 Let $\beta = [\beta_0, \beta_1, \dotsc, \beta_p]^{T}$ be a vector of coefficient values, and let $\hat{\beta} = [\hat{\beta}_0, \hat{\beta}_1, \dotsc, \hat{\beta}_p]^{T}$ represent a vector of coefficient estimates. Also, let $\mathbf{X}$ be a $n\times(p + 1)$ matrix containing $n$ observations in $p$ variables. $\mathbf{X}$ also contains a column with every entry equal to 1; the corresponding coefficient estimate will represent $\hat{\beta}_0$. Finally, let $\mathbf{y}$ represent the vector of response values for each observation.
 
 The most common way to compute $\hat{\beta}$ is with ordinary least squares. This method computes $\hat{\beta}$ by minimizing the residual sum of squares:
@@ -63,6 +65,8 @@ Ordinary least squares is favored for a few reasons. For one, the solution is ve
 	\hat{\beta} = (\mathbf{X}^{T}\mathbf{X})^{-1}\mathbf{X}^{T}\mathbf{y}
 \end{equation}
 Another advantage of ordinary least squares comes from the Gauss-Markov Theorem. This theorem states that of all the linear unbiased estimators, ordinary least squares has the lowest variance. Alternative unbiased estimators will necessarily have a larger variance, which can lead to more inaccurate predictions.
+
+\subsection{Alternative Techniques}
 
 Why, then, would we use anything other than ordinary least squares? One issue is that the matrix $\mathbf{X}^T\mathbf{X}$ is not always invertible. In fact, this matrix is never invertible in the case when $p>n$. Hence, in some situations, we cannot use ordinary least squares. Even if the matrix is invertible, other methods may be preferable. Despite having no bias in ideal situations, ordinary least squares may still have high variance. Consequently, it may be worthwhile to sacrifice some bias in order to decrease variance.
 
