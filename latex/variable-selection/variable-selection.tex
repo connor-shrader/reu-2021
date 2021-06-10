@@ -41,26 +41,23 @@
 \begin{document}
 \maketitle
 
-In mathematical modeling, especially when using linear regression, it is often important to reduce the number of predictors, or variables, used to predict an output. This can help to increase the interpretability of a model and reduce its error. Below are five methods used to select a linear model using a subset of the predictors.
-% might need to add more here in the future
-
 \section{Introduction}
 Linear regression is one of the simplest forms of statistical learning models. It assumes that some predictor variable $y$ can be modeled as a linear combination of a set of predictor variables $x_1, x_2, \dotsc, x_p$. More precisely, a linear regression model assumes that
-\begin{equation}
+\begin{equation}\label{eqn:linear-model}
 	y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_p x_p + \epsilon
 \end{equation}
 where $\beta_0, \beta_1, \dotsc, \beta_p$ are coefficients and $\epsilon$ is a random error with mean zero and variance $\sigma^2$. We also assume that this error has no correlation between different observations. When working with real data sets, the coefficient values are usually unknown; the goal of linear regression is to compute coefficient estimates $\hat{\beta_0}, \hat{\beta_1}, \dotsc, \hat{\beta_p}$ that are good estimates for the actual coefficients.
 
 \subsection{Ordinary Least Squares}
 
-Let $\beta = [\beta_0, \beta_1, \dotsc, \beta_p]^{T}$ be a vector of coefficient values, and let $\hat{\beta} = [\hat{\beta}_0, \hat{\beta}_1, \dotsc, \hat{\beta}_p]^{T}$ represent a vector of coefficient estimates. Also, let $\mathbf{X}$ be a $n\times(p + 1)$ matrix containing $n$ observations in $p$ variables. $\mathbf{X}$ also contains a column with every entry equal to 1; the corresponding coefficient estimate will represent $\hat{\beta}_0$. Finally, let $\mathbf{y}$ represent the vector of response values for each observation.
+Let $\beta = [\beta_0, \beta_1, \dotsc, \beta_p]^{T}$ be a vector of coefficient values, and let $\hat{\beta} = [\hat{\beta}_0, \hat{\beta}_1, \dotsc, \hat{\beta}_p]^{T}$ represent a vector of coefficient estimates. Let $\mathbf{X}$ be a $n\times(p + 1)$ matrix containing $n$ observations in $p$ variables. In order to account for the constant $\beta_0$ term in Equation \ref{eqn:linear-model}, we include an extra column in $\mathbf{X}$ with each entry equal to 1; the coefficient estimate for this additional ``variable'' will be $\hat{\beta}_0$. Finally, let $\mathbf{y}$ represent the vector of response values for each observation.
 
 The most common way to compute $\hat{\beta}$ is with ordinary least squares. This method computes $\hat{\beta}$ by minimizing the residual sum of squares:
 \begin{align}
 	\hat{\beta}^{\text{OLS}} &= \argmin{\beta}\left\{\sum_{i=1}^{n} \left( y_i - \beta_0 - \sum_{j=1}^{p} \beta_jx_{ij} \right)^2 \right\}\\
 	&= \argmin{\beta} \left\{ (\mathbf{y} - \mathbf{X}\beta)^\top (\mathbf{y} - \mathbf{X}\beta)^\top\right\}
 \end{align}
-Ordinary least squares is favored for a few reasons. For one, the solution is very easy to compute; it is given by
+Ordinary least squares is favored for a few reasons. For one, the solution is very easy to compute; the coefficient estimate is given by
 \begin{equation}
 	\hat{\beta} = (\mathbf{X}^\top\mathbf{X})^{-1}\mathbf{X}^\top\mathbf{y}
 \end{equation}
@@ -70,14 +67,14 @@ Another advantage of ordinary least squares comes from the Gauss-Markov Theorem.
 
 If ordinary least squares minimizes variance among all unbiased estimators, why would we use anything else? One issue is that the matrix $\mathbf{X}^\top\mathbf{X}$ is not always invertible. In fact, this matrix is never invertible in the case when $p>n$. Hence, in some situations, we cannot use ordinary least squares.
 
-Even if the matrix is invertible, other methods may lead to better model performance. Despite having the least variance among unbiased estimators, ordinary least squares may still have high variance. Consequently, it may be worthwhile to sacrifice some bias in order to decrease variance.
+Even if the matrix is invertible, other methods may lead to better model performance. Despite having the least variance among unbiased estimators, ordinary least squares may still have high variance. Consequently, it may be worthwhile to sacrifice some bias in order to reduce variance.
 
-Most algorithms used to decrease model variance perform variable selection. In many applications, not all of the predictors will be related to the response, but ordinary least squares still attempts to use every predictor when computing coefficient estimates. Variable selection techniques can identify the predictors most strongly correlated to the data and eliminate the rest. This results in a simpler model that uses $p^\ast$ of the $p$ available predictors. This not only helps reduce variance, but it also creates more interpretable models.
+Many biased linear regression models perform \textit{variable selection}, meaning that some coefficient estimates will be set to zero. In many applications, not all of the predictors will be related to the response, but ordinary least squares still attempts to use every predictor when computing coefficient estimates. Variable selection techniques can identify the predictors most strongly correlated to the data and eliminate the rest. This results in a simpler model that uses $p^\ast$ of the $p$ available predictors. This not only helps reduce variance, but it also creates more interpretable models.
 
-The rest of this document examines many approaches to linear regression. These techniques fall under two large categories: subset selection and penalized regression. Subset selection algorithms attempt to find a subset of predictors that is most strongly correlated to the response and  fits an ordinary least squares model to that subset. Penalized regression techniques punish large coefficient estimates, which encourages models that have smaller coefficient values. Depending on the particular algorithm used, penalized regression can also perform variable selection.
+The rest of this document examines many approaches to fitting linear regression models. These techniques fall under two categories: subset selection and penalized regression. Subset selection algorithms attempt to find a subset of predictors that is most strongly correlated to the response and  fits an ordinary least squares model to that subset. Penalized regression techniques punish large coefficient estimates, which encourages models that have smaller coefficient values. Depending on the particular algorithm used, penalized regression can also perform variable selection.
 
 \subsection{Alternative Techniques with High Dimensionality Data}
-In addition to many penalized and subset selection linear regression techniques used for variable selection, there are other techniques that can achieve similar results. One of these such methods includes using boosting. Boosting achieves accurate predictions by sequentially updating inaccurate models, each time correcting on the weaknesses of the predecessor. While boosting is traditionally used with decision trees and classification, its premise has shown success with linear models and regression, as demonstrated by Buehlmann et. al. \cite{buehlmann2006boosting}.
+In addition to penalized and subset selection linear regression methods used for variable selection, there are other techniques that can achieve similar results. One of these such methods includes using boosting. Boosting achieves accurate predictions by sequentially updating inaccurate models, each time correcting on the weaknesses of the predecessor. While boosting is traditionally used with decision trees and classification, its premise has shown success with linear models and regression, as demonstrated by Buehlmann et. al. \cite{buehlmann2006boosting}.
 
 Random forest techniques have also shown promise and perform very well for high dimensionality data. However, they are limited in that they do not perform as well when the number of predictors is greater than the number of data samples. This is because random forests work by using the majority vote of thousands of decision trees on bootstrapped data. Due to the lack of samples, tree pruning can lead to increased error, and this can contribute to overfitting where the model fits the training data well, but cannot capture the true relationships of the data. This will lead to decreased accuracy when exposed to new testing data \cite{genuer2008random}. Still, random forest is a common model used when the number of predictors is greater than the number of samples and recently, some statisticians have proposed new random forest methods that perform much better than traditional methods \cite{capitaine2021random}.
 
