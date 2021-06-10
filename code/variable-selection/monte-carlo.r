@@ -67,11 +67,11 @@ enet <- cv.glmnet(x = as.matrix(ex.dat[,-1]), y = ex.dat$y, alpha = 0.8) #small 
 # MCP
 library(ncvreg)
 
-scad <- cv.ncvreg(X = ex.dat[, -1:-2], y = ex.dat$y, penalty = "SCAD")
-scad_c <- coef(scad, lambda = scad$lambda.min)
+scad <- cv.ncvreg(X = ex.dat[, -1], y = ex.dat$y, penalty = "SCAD")
+#scad_c <- coef(scad, lambda = scad$lambda.min)
 
-mcp <- cv.ncvreg(X = ex.dat[, -1:-2], y = ex.dat$y)
-mcp_c <- coef(mcp, lambda = mcp$lambda.min)
+mcp <- cv.ncvreg(X = ex.dat[, -1], y = ex.dat$y)
+#mcp_c <- coef(mcp, lambda = mcp$lambda.min)
 # calling coef(mcp, lambda = 0.05) has two intercepts?
 
 
@@ -80,31 +80,29 @@ mcp_c <- coef(mcp, lambda = mcp$lambda.min)
 
 # Putting these models into a data frame
 
-# Putting each model into a data frame manually.
+# Connor's method
 
-df <- data.frame(row.names = paste("x", 0:10, sep = ""))
-df$af <- unlist(lapply(names(fm$coefficients), function(str) af$coefficients[str]))
-df$bf <- unlist(lapply(names(fm$coefficients), function(str) bf$coefficients[str]))
-df$ab <- unlist(lapply(names(fm$coefficients), function(str) ab$coefficients[str]))
-df$bb <- unlist(lapply(names(fm$coefficients), function(str) bb$coefficients[str]))
-df$asf <- unlist(lapply(names(fm$coefficients), function(str) asf$coefficients[str]))
-df$bsf <- unlist(lapply(names(fm$coefficients), function(str) bsf$coefficients[str]))
-df$asb <- unlist(lapply(names(fm$coefficients), function(str) asb$coefficients[str]))
-df$bsb <- unlist(lapply(names(fm$coefficients), function(str) bsb$coefficients[str]))
-
-# Putting each mode into a data frame with a loop.
-
+# List of all of the models. I did not include lasso, ridge, and enet because I
+# could not get them to work with my method.
 models <- list(fm = fm, nm = nm, af = af, bf = bf, ab = ab, bb = bb, asf = asf, bsf = bsf,
-               asb = asb, bsb = bsb,
-               scad = scad, mcp = mcp)
+               asb = asb, bsb = bsb, scad = scad, mcp = mcp)
+
+# Names of the rows for the final dataframe: (Intercept), x1, x2, ..., xp
 row.names <- c("(Intercept)", paste("x", 1:10, sep = ""))
 
+# get.coef inputs a model and returns a vector with the values for each coefficient.
+# Depending on the model, unused variables will be set to 0 or NA. A later line will
+# make the outputs consistent.
 get.coef <- function(model)
 {
   coef_values <- unlist(lapply(row.names, function(predictor) coef(model)[predictor]))
 }
 
+# Create a new dataframe. The rows are the predictors, and the columns are the
+# models. The (i, j) entry contains the coefficient for predictor i using model j.
 df <- data.frame(lapply(models, get.coef), row.names = row.names)
+
+# Sets all zero coefficients to NA (this makes it easier to read).
 df[df == 0] <- NA
 
 
