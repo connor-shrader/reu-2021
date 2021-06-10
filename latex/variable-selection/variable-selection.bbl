@@ -12,6 +12,16 @@ Breheny.
   \textsc{url:}~\url{https://myweb.uiowa.edu/pbreheny/7600/s16/notes/2-29.pdf},
   2016.
 
+\bibitem{buehlmann2006boosting}
+Peter Buehlmann et~al.
+\newblock Boosting for high-dimensional linear models.
+\newblock {\em The Annals of Statistics}, 34(2):559--583, 2006.
+
+\bibitem{capitaine2021random}
+Louis Capitaine, Robin Genuer, and Rodolphe Thi{\'e}baut.
+\newblock Random forests for high-dimensional longitudinal data.
+\newblock {\em Statistical Methods in Medical Research}, 30(1):166--184, 2021.
+
 \bibitem{fan2001variable}
 Jianqing Fan and Runze Li.
 \newblock Variable selection via nonconcave penalized likelihood and its oracle
@@ -23,6 +33,11 @@ Jianqing Fan and Runze Li.
 Jerome Friedman, Trevor Hastie, Robert Tibshirani, et~al.
 \newblock {\em The elements of statistical learning}, volume~1.
 \newblock Springer series in statistics New York, 2001.
+
+\bibitem{genuer2008random}
+Robin Genuer, Jean-Michel Poggi, and Christine Tuleau.
+\newblock Random forests: some methodological insights.
+\newblock {\em arXiv preprint arXiv:0811.3619}, 2008.
 
 \bibitem{james2017islr}
 Gareth James, Daniela Witten, Trevor Hastie, and Rob Tibshirani.

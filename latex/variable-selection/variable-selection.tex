@@ -66,7 +66,7 @@ Ordinary least squares is favored for a few reasons. For one, the solution is ve
 \end{equation}
 Another advantage of ordinary least squares comes from the Gauss-Markov Theorem. This theorem states that of all the linear unbiased estimators, ordinary least squares has the lowest variance. Alternative unbiased estimators will necessarily have a larger variance, which can lead to more inaccurate predictions.
 
-\subsection{Alternative Techniques}
+\subsection{Linear Regression with High Dimensionality Data}
 
 If ordinary least squares minimizes variance among all unbiased estimators, why would we use anything else? One issue is that the matrix $\mathbf{X}^\top\mathbf{X}$ is not always invertible. In fact, this matrix is never invertible in the case when $p>n$. Hence, in some situations, we cannot use ordinary least squares.
 
@@ -75,6 +75,11 @@ Even if the matrix is invertible, other methods may lead to better model perform
 Most algorithms used to decrease model variance perform variable selection. In many applications, not all of the predictors will be related to the response, but ordinary least squares still attempts to use every predictor when computing coefficient estimates. Variable selection techniques can identify the predictors most strongly correlated to the data and eliminate the rest. This results in a simpler model that uses $p^\ast$ of the $p$ available predictors. This not only helps reduce variance, but it also creates more interpretable models.
 
 The rest of this document examines many approaches to linear regression. These techniques fall under two large categories: subset selection and penalized regression. Subset selection algorithms attempt to find a subset of predictors that is most strongly correlated to the response and  fits an ordinary least squares model to that subset. Penalized regression techniques punish large coefficient estimates, which encourages models that have smaller coefficient values. Depending on the particular algorithm used, penalized regression can also perform variable selection.
+
+\subsection{Alternative Techniques with High Dimensionality Data}
+In addition to many penalized and subset selection linear regression techniques used for variable selection, there are other techniques that can achieve similar results. One of these such methods includes using boosting. Boosting achieves accurate predictions by sequentially updating inaccurate models, each time correcting on the weaknesses of the predecessor. While boosting is traditionally used with decision trees and classification, its premise has shown success with linear models and regression, as demonstrated by Buehlmann et. al. \cite{buehlmann2006boosting}.
+
+Random forest techniques have also shown promise and perform very well for high dimensionality data. However, they are limited in that they do not perform as well when the number of predictors is greater than the number of data samples. This is because random forests work by using the majority vote of thousands of decision trees on bootstrapped data. Due to the lack of samples, tree pruning can lead to increased error, and this can contribute to overfitting where the model fits the training data well, but cannot capture the true relationships of the data. This will lead to decreased accuracy when exposed to new testing data \cite{genuer2008random}. Still, random forest is a common model used when the number of predictors is greater than the number of samples and recently, some statisticians have proposed new random forest methods that perform much better than traditional methods \cite{capitaine2021random}.
 
 \section{Subset Selection}
 First, we discuss subset selection techniques. In general, these techniques are discrete algorithms that attempt to find a good model using only a subset of the available predictors.
