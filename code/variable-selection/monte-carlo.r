@@ -119,7 +119,7 @@ df[df == 0] <- NA
 library(dplyr)
 multi.merge <-function(model_list, col_names){ #takes input of list of lm models, and vector of column names
   for (i in 1:length(model_list)){
-    model_list[[i]] <- data.frame(model_list[[i]]$coefficients) #turns lm model class into dataframe of coefficients
+    model_list[[i]] <- data.frame(coef(model_list[[i]])) #turns lm model class into dataframe of coefficients
     model_list[[i]]$betas <- row.names(model_list[[i]]) #adds column of beta coefficient names
   }
   
@@ -138,7 +138,8 @@ multi.merge <-function(model_list, col_names){ #takes input of list of lm models
   return(full_df)
 }
 
-coefs_df <- multi.merge(list(fm, af, bf, ab, bb, asf, bsf, asb, bsb), c("fm", "af", "bf", "ab", "bb", "asf", "bsf", "asb", "bsb"))
+coefs_df <- multi.merge(list(fm, af, bf, ab, bb, asf, bsf, asb, bsb, mcp, scad), 
+                        c("fm", "af", "bf", "ab", "bb", "asf", "bsf", "asb", "bsb", "mcp", "scad"))
 
 #manually add lasso, ridge, and enet coefs
 coefs_df <- left_join(coefs_df, lasso_c, by = "betas")
