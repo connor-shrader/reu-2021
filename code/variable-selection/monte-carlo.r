@@ -54,22 +54,15 @@ bsb = stepAIC(fm, scope=list(lower=nm, upper=fm), direction="both", k=log(nrow(e
 
 # Lasso model for variable selection
 library(glmnet)
-lasso <- cv.glmnet(x = model.matrix(y~., data = ex.dat), y = ex.dat$y, alpha = 1)
-lasso_c <- data.frame(as.matrix(coef(lasso))[-2:-3,]) #turns coefs into usable dataframe
-colnames(lasso_c) <- c("lasso")
-lasso_c$betas <- row.names(lasso_c)
+lasso <- cv.glmnet(x = as.matrix(ex.dat[,-1]), y = ex.dat$y, alpha = 1)
+
 
 # Ridge model for dealing with multicollinearity
-ridge <- cv.glmnet(x = model.matrix(y~., data = ex.dat), y = ex.dat$y, alpha = 0)
-ridge_c <- data.frame(as.matrix(coef(ridge))[-2:-3,]) #turns coefs into usable dataframe
-colnames(ridge_c) <- c("ridge")
-ridge_c$betas <- row.names(ridge_c)
+ridge <- cv.glmnet(x = as.matrix(ex.dat[,-1]), y = ex.dat$y, alpha = 0)
+
 
 # Elastic Net model for multicollinearity and variable selection
-enet <- cv.glmnet(x = model.matrix(y~., data = ex.dat), y = ex.dat$y, alpha = 0.8) #small alpha is not needed since small multicollinearity
-enet_c <- data.frame(as.matrix(coef(enet))[-2:-3,]) #turns coefs into usable dataframe
-colnames(enet_c) <- c("elastic.net")
-enet_c$betas <- row.names(enet_c)
+enet <- cv.glmnet(x = as.matrix(ex.dat[,-1]), y = ex.dat$y, alpha = 0.8) #small alpha is not needed since small multicollinearity
 
 # MCP
 library(ncvreg)
@@ -119,7 +112,7 @@ df[df == 0] <- NA
 library(dplyr)
 multi.merge <-function(model_list, col_names){ #takes input of list of lm models, and vector of column names
   for (i in 1:length(model_list)){
-    model_list[[i]] <- data.frame(coef(model_list[[i]])) #turns lm model class into dataframe of coefficients
+    model_list[[i]] <- data.frame(as.matrix(coef(model_list[[i]]))) #turns lm model class into dataframe of coefficients
     model_list[[i]]$betas <- row.names(model_list[[i]]) #adds column of beta coefficient names
   }
   
@@ -138,12 +131,7 @@ multi.merge <-function(model_list, col_names){ #takes input of list of lm models
   return(full_df)
 }
 
-coefs_df <- multi.merge(list(fm, af, bf, ab, bb, asf, bsf, asb, bsb, mcp, scad), 
-                        c("fm", "af", "bf", "ab", "bb", "asf", "bsf", "asb", "bsb", "mcp", "scad"))
-
-#manually add lasso, ridge, and enet coefs
-coefs_df <- left_join(coefs_df, lasso_c, by = "betas")
-coefs_df <- left_join(coefs_df, ridge_c, by = "betas")
-coefs_df <- left_join(coefs_df, enet_c, by = "betas")
+coefs_df <- multi.merge(list(fm, af, bf, ab, bb, asf, bsf, asb, bsb, mcp, scad, lasso, ridge, enet), 
+                        c("fm", "af", "bf", "ab", "bb", "asf", "bsf", "asb", "bsb", "mcp", "scad", "lasso", "ridge", "elastic_net"))
 
 
