@@ -4,8 +4,9 @@
 # This file contains functions for generating data and fitting regression models
 # using Monte Carlo simulations.
 
-library(tidyverse)
-library(dplyr)
+# R version: 4.1.0
+library(tidyverse) # v1.3.1
+library(dplyr) # v1.0.6
 
 # generate_data() is used to generate data.
 #
@@ -51,45 +52,67 @@ generate_data <- function(n, p, var = 1, covar = "independent", rho = 0) {
 # This function takes in a data frame of generated data (using generate_data())
 # and fits various regression models. This function then returns a list of the
 # models.
-fit_models <- function(dat) {
-  # Full model for backward selection
-  fm <- lm(y ~ ., data = dat)
+fit_models <- function(dat, n, p) {
+  models <- list()
   
   # Null model for forward selection
   nm <- lm(y ~ 1, data = dat)
+  models[["nm"]] <- nm
+  
+  if (p < n) {
+    # Full model for backward selection
+    fm <- lm(y ~ ., data = dat)
+    models[["fm"]] <- fm
+    
+    # AIC and BIC model selection for backward
+    ab = stepAIC(fm, scope=list(lower=nm, upper=fm), direction="backward", k=2, trace=F, steps=3000) #AIC
+    models[["ab"]] <- ab
+    
+    bb = stepAIC(fm, scope=list(lower=nm, upper=fm), direction="backward", k=log(nrow(dat)), trace=F, steps=3000) #BIC 
+    models[["bb"]] <- bb
+    
+    # AIC and BIC model selection for stepwise backward
+    asb = stepAIC(fm, scope=list(lower=nm, upper=fm), direction="both", k=2, trace=F, steps=3000) #AIC
+    models[["asb"]] <- asb
+    
+    bsb = stepAIC(fm, scope=list(lower=nm, upper=fm), direction="both", k=log(nrow(dat)), trace=F, steps=3000) #BIC
+    models[["bsb"]] <- bsb
+  }
+  
   
   # AIC and BIC model selection for forward
   af = stepAIC(nm, scope=list(lower=nm, upper=fm), direction="forward", k=2, trace=F, steps=3000) #AIC
-  bf = stepAIC(nm, scope=list(lower=nm, upper=fm), direction="forward", k=log(nrow(dat)), trace=F, steps=3000) #BIC
+  models[["af"]] <- af
   
-  # AIC and BIC model selection for backward
-  ab = stepAIC(fm, scope=list(lower=nm, upper=fm), direction="backward", k=2, trace=F, steps=3000) #AIC
-  bb = stepAIC(fm, scope=list(lower=nm, upper=fm), direction="backward", k=log(nrow(dat)), trace=F, steps=3000) #BIC  
+  bf = stepAIC(nm, scope=list(lower=nm, upper=fm), direction="forward", k=log(nrow(dat)), trace=F, steps=3000) #BIC
+  models[["bf"]] <- bf
+   
   
   # AIC and BIC model selection for stepwise forward
   asf = stepAIC(nm, scope=list(lower=nm, upper=fm), direction="both", k=2, trace=F, steps=3000) #AIC
-  bsf = stepAIC(nm, scope=list(lower=nm, upper=fm), direction="both", k=log(nrow(dat)), trace=F, steps=3000) #BIC  
+  models[["asf"]] <- asf
   
-  # AIC and BIC model selection for stepwise backward
-  asb = stepAIC(fm, scope=list(lower=nm, upper=fm), direction="both", k=2, trace=F, steps=3000) #AIC
-  bsb = stepAIC(fm, scope=list(lower=nm, upper=fm), direction="both", k=log(nrow(dat)), trace=F, steps=3000) #BIC 
+  bsf = stepAIC(nm, scope=list(lower=nm, upper=fm), direction="both", k=log(nrow(dat)), trace=F, steps=3000) #BIC  
+  models[["bsf"]] <- bsf
   
   # Lasso model for variable selection
   lasso <- cv.glmnet(x = as.matrix(dat[,-1]), y = dat$y, alpha = 1)
+  models[["lasso"]] <- lasso
   
   # Ridge model for dealing with multicollinearity
   ridge <- cv.glmnet(x = as.matrix(dat[,-1]), y = dat$y, alpha = 0)
+  models[["ridge"]] <- ridge
   
   # Elastic Net model for multicollinearity and variable selection
   enet <- cv.glmnet(x = as.matrix(dat[,-1]), y = dat$y, alpha = 0.8) #small alpha is not needed since small multicollinearity
+  models[["enet"]] <- enet
   
   # MCP
   scad <- cv.ncvreg(X = dat[, -1], y = dat$y, penalty = "SCAD")
+  models[["scad"]] <- scad
   
   mcp <- cv.ncvreg(X = dat[, -1], y = dat$y)
-  
-  models <- list(fm, af, bf, ab, bb, asf, bsf, asb, bsb, mcp, scad, lasso, ridge, enet)
-  names(models) <- c("fm", "af", "bf", "ab", "bb", "asf", "bsf", "asb", "bsb", "mcp", "scad", "lasso", "ridge", "enet")
+  models[["mcp"]] <- mcp
   
   return(models)
 }
@@ -168,7 +191,7 @@ monte_carlo <- function(seed){
   
   test.dat <- all.dat[101:nrow(all.dat), ]
   
-  models <- fit_models(ex.dat)
+  models <- fit_models(ex.dat, n = 100, p = 10)
   
   mse_list <- lapply(models, calc_mse, test_dat = test.dat)
   
@@ -181,7 +204,7 @@ monte_carlo <- function(seed){
 seeds <- list(100:110)
 
 # results <- lapply(seeds[[1]], monte_carlo)
-d <- monte_carlo(35246)
+d <- monte_carlo(1)
 
 
 
