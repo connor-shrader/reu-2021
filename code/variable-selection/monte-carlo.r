@@ -302,12 +302,14 @@ seeds <- c(100:119)
 
 # Run monte_carlo 20 times, each time with 200 observations and 10 predictors.
 results <- lapply(seeds, monte_carlo, n = 200, p = 10, method = "independent")
+#(lapply(seeds, monte_carlo, n = 200, p = 10, method = "independent"))
 results2 <- lapply(seeds, monte_carlo, n = 200, p = 10, method = "symmetric")
+#system.time(lapply(seeds, monte_carlo, n = 200, p = 10, method = "symmetric"))
 
 
 # Calculate sample variance of the coefficients
 x_dif_2 <- function(coef_df, model){
-  x_hat <- coef_df[["coefficients"]][[model]]
+  x_hat <- coef_df[["coefficients"]][model]
   betas <- coef_df[["coefficients"]]["soln"]
   x_difference <- betas - x_hat
   return(x_difference^2)
@@ -315,15 +317,18 @@ x_dif_2 <- function(coef_df, model){
 
 sample_mean <- function(row, df){  #takes sample mean: sum(x)/(n-1)
   total <- sum(df[row,])
-  n <- length(x_dif_df[row, ])
+  n <- length(df[row, ])
   samp_avg <- total / (n-1)
+  return(samp_avg)
 }
 
-sample_var <- function(model, coefs_df){
-  x_dif_df <-  data.frame(lapply(coefs_df, x_dif_2, model = model))
-  coef_variance <- lapply(row.names(x_dif_df), sample_mean, df = x_dif_df) #returns list with sample variance for each coefficient in model
-  
+sample_var <- function(model, coefs_list){
+  x_dif_df <-  lapply(coefs_list, x_dif_2, model = model)
+  x_dif_df <- as.data.frame(x_dif_df)
+  names_list <- rownames(x_dif_df)
+  coef_variance <- lapply(names_list, sample_mean, df = x_dif_df) #returns list with sample variance for each coefficient in model
+  return(coef_variance)
 }
 
-coef_sample_var <- sample_var(model = "lasso", coefs_df = results) #sample variance for coefficients of lasso model
+coef_sample_var <- sample_var(model = "lasso", coefs_list = results) #sample variance for coefficients of lasso model
 
