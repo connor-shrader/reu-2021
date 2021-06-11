@@ -14,6 +14,7 @@ library(dplyr) # v1.0.6
 #   n: Number of observations.
 #   p: Number of predictors. We require that p >= 6. If p < 6, an empty
 #     data frame is returned.
+#   seed: Random seed to generate the data.
 #   var (default 1): Variance of each variable.
 #   covar (default "independent"): Determines the covariance of the data.
 #     "independent": No covariance.
@@ -23,10 +24,12 @@ library(dplyr) # v1.0.6
 #     "blockwise": Blockwise covariance.
 #   rho (default 0): The value of rho used for AR(1). If AR(1) is not used, then
 #     rho is unused.
-generate_data <- function(n, p, var = 1, covar = "independent", rho = 0) {
+generate_data <- function(n, p, seed, var = 1, covar = "independent", rho = 0) {
   if (p < 6) {
     return(data.frame())
   }
+  
+  set.seed(seed)
   
   # Generate coefficient values.
   beta <- c(1, 2, -2, 0, 0, 0.5, 3, rep(0, (p-6)))
@@ -183,33 +186,68 @@ calc_mse <- function(model, test_dat) {
   return(mse)
 }
 
-monte_carlo <- function(seed){
+monte_carlo <- function(n, p, seed){
   set.seed(seed) # to generate the same data
-  all.dat <- generate_data(n=200, p = 10) # n> p, p>6
+  all.dat <- generate_data(n = n, p = p, seed = seed) # n> p, p>6
  
-  ex.dat <- all.dat[1:100,]
+  ex.dat <- all.dat[1:trunc(n / 2),]
   
-  test.dat <- all.dat[101:nrow(all.dat), ]
+  test.dat <- all.dat[(trunc(n / 2) + 1):n,]
   
-  models <- fit_models(ex.dat, n = 100, p = 10)
+  models <- fit_models(ex.dat, n = n, p = p)
   
   mse_list <- lapply(models, calc_mse, test_dat = test.dat)
   
-  print(names(models))
-  coefs_df <- results_table(models, p = 10)
+  coefs_df <- results_table(models, p = p)
   
-  return(list(coefs_df, mse_list))
+  return(list(coefficients = coefs_df, mse = mse_list))
 }
+
+
+compare_coefficient_estimate <- function(solution, prediction) {
+  if (solution & prediction) {
+    return("tp")
+  }
+  else if (solution & !prediction) {
+    return("fn")
+  }
+  else if (!solution & prediction) {
+    return("fp")
+  }
+  else {
+    return("tn")
+  }
+}
+
+confusion_matrix <- function(lis) {
+  confusion_matrix <- data.frame(
+    actual_negative = c(sum(lis == "tn"), sum(lis == "fp")),
+    actual_positive = c(sum(lis == "fn"), sum(lis == "tp")),
+    row.names = c("predicted_negative", "predicted_positive")
+  )
+  
+  return(confusion_matrix)
+}
+
+generate_confusion_matrices <- function(coefs) {
+  tf_table <- as.data.frame(ifelse(coefs == 0, FALSE, TRUE))
+  test_results <- as.data.frame(
+    apply(X = tf_table,
+          MARGIN = 2,
+          FUN = function(prediction, solution) {
+            mapply(compare_coefficient_estimate, solution, prediction)
+          },
+          solution = tf_table$soln)
+  )
+  
+  matrices <- apply(X = test_results, MARGIN = 2, FUN = confusion_matrix)
+  
+  return(matrices)
+}
+
 
 seeds <- list(100:110)
 
 # results <- lapply(seeds[[1]], monte_carlo)
-d <- monte_carlo(1)
-
-
-
-
-#row_names <- c("(Intercept)", paste("x", 1:p, sep = ""))
-#models <- list(fm, af, bf, ab, bb, asf, bsf, asb, bsb, mcp, scad, lasso, ridge, enet)
-#names(models) <- c("fm", "af", "bf", "ab", "bb", "asf", "bsf", "asb", "bsb", "mcp", "scad", "lasso", "ridge", "enet")
-#df <- create_table(models)
+d <- monte_carlo(n = 100, p = 10, seed = 11)
+cm <- generate_confusion_matrices(d$coefficients)
