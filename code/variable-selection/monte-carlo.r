@@ -4,7 +4,8 @@
 # This file contains functions for generating data and fitting regression models
 # using Monte Carlo simulations.
 
-
+library(tidyverse)
+library(dplyr)
 
 # generate_data() is used to generate data.
 #
@@ -138,75 +139,6 @@ results_table <- function(models) {
   results[, -1]
 }
 
-
-
-# step 2 - implementing the DG function
-set.seed(35246) # to generate the same data
-p <- 10
-ex.dat <- lin.dat(n=100, p = p) # n> p, p>6
-
-library(tidyverse)
-View(ex.dat)
-
-
-#####Putting Models into DataFrame#####
-
-
-# Putting these models into a data frame
-
-# Connor's method
-
-# List of all of the models. I did not include lasso, ridge, and enet because I
-# could not get them to work with my method.
-models <- list(fm = fm, nm = nm, af = af, bf = bf, ab = ab, bb = bb, asf = asf, bsf = bsf,
-               asb = asb, bsb = bsb, scad = scad, mcp = mcp)
-
-# Names of the rows for the final dataframe: (Intercept), x1, x2, ..., xp
-row.names <- c("(Intercept)", paste("x", 1:p, sep = ""))
-
-# get.coef inputs a model and returns a vector with the values for each coefficient.
-# Depending on the model, unused variables will be set to 0 or NA. A later line will
-# make the outputs consistent.
-get.coef <- function(model)
-{
-  coef_values <- unlist(lapply(row.names, function(predictor) coef(model)[predictor]))
-}
-
-# Create a new dataframe. The rows are the predictors, and the columns are the
-# models. The (i, j) entry contains the coefficient for predictor i using model j.
-df <- data.frame(lapply(models, get.coef), row.names = row.names)
-df["true"] <- c(1, 2, -2, 0, 0, 0.5, 3, rep(0, (p-6)))
-
-# Sets all zero coefficients to NA (this makes it easier to read).
-df[is.na(df)] <- 0
-
-
-
-# Gabe's probably slower method to put models into a dataframe
-library(dplyr)
-multi.merge <-function(model_list, col_names){ #takes input of list of lm models, and vector of column names
-  for (i in 1:length(model_list)){
-    model_list[[i]] <- data.frame(as.matrix(coef(model_list[[i]]))) #turns lm model class into dataframe of coefficients
-    model_list[[i]]$betas <- row.names(model_list[[i]]) #adds column of beta coefficient names
-  }
-  
-  # ugly code to rearrange order of beta column and full model column
-  full_df <- model_list[[1]]
-  full_df <- full_df[-1]
-  full_df$fm <- model_list[[1]][[1]]
-  
-  for (i in 2:length(model_list)){
-    full_df <- left_join(full_df, model_list[[i]], by = "betas") #joins code together by beta coefficient name
-  }
-  
-  full_df[is.na(full_df)] <- 0
-  colnames(full_df) <- c("betas", col_names) #renames columns according to what was input to the function
-  
-  return(full_df)
-}
-
-# coefs_df <- multi.merge(list(fm, af, bf, ab, bb, asf, bsf, asb, bsb, mcp, scad, lasso, ridge, enet), 
-                        # c("fm", "af", "bf", "ab", "bb", "asf", "bsf", "asb", "bsb", "mcp", "scad", "lasso", "ridge", "elastic_net"))
 
 
 #####Monte Carlo Replication Function #####
