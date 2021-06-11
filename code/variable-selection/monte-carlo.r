@@ -169,8 +169,10 @@ results_table <- function(models, p) {
 
 
 
-#####Monte Carlo Replication Function #####
-calc_mse <- function(model, test_dat) {
+
+# This function inputs a model and test data. It then computes and returns
+# the mean squared error.
+test_mse <- function(model, test_dat) {
   if (class(model) == "cv.ncvreg") { #checks for mcp or scad model
     y_hat <-  data.frame(predict(model, X = as.matrix(test_dat[,-1])))
   }
@@ -186,24 +188,44 @@ calc_mse <- function(model, test_dat) {
   return(mse)
 }
 
-monte_carlo <- function(n, p, seed){
-  set.seed(seed) # to generate the same data
-  all.dat <- generate_data(n = n, p = p, seed = seed) # n> p, p>6
- 
-  ex.dat <- all.dat[1:trunc(n / 2),]
+# This function combines the processes from the functions
+# generate_data(), fit_models(), test_mse(), and results_table().
+#
+# Arguments:
+#   n: Number of observations.
+#   p: Number of predictors. We require that p >= 6. If p < 6, this function
+#     does nothing.
+#   seed: Random seed to generate the data.
+monte_carlo <- function(seed, n, p) {
+  if (p < 6) {
+    return(NONE)
+  }
   
+  # Generated training AND test data.
+  all.dat <- generate_data(n = n, p = p, seed = seed)
+  
+  # The first half of the data is used for training. The other half
+  # is used for testing.
+  ex.dat <- all.dat[1:trunc(n / 2),]
   test.dat <- all.dat[(trunc(n / 2) + 1):n,]
   
+  # Fit the models using the training data.
   models <- fit_models(ex.dat, n = n, p = p)
   
-  mse_list <- lapply(models, calc_mse, test_dat = test.dat)
-  
+  # Generate the coefficient table and compute the mean squared error
+  # for each model.
   coefs_df <- results_table(models, p = p)
+  mse_list <- lapply(models, calc_mse, test_dat = test.dat)
   
   return(list(coefficients = coefs_df, mse = mse_list))
 }
 
 
+# This helper function compares two boolean values and determines whether there
+# is a true positive (tp), false negative (fn), false positive (fp), or
+# true negative (tn). The first boolean is the actual value, while the second
+# boolean is the predicted value. This function is used for
+# generate_confusion_matrices().
 compare_coefficient_estimate <- function(solution, prediction) {
   if (solution & prediction) {
     return("tp")
@@ -219,6 +241,10 @@ compare_coefficient_estimate <- function(solution, prediction) {
   }
 }
 
+# This function takes in a list of test results (true negative, false negative,
+# false positive or true negative) and combines the sum of each result into
+# a confusion matrix. Despite being called a confusion matrix, the returned
+# object is a data frame. This function is used in generate_confusion_matrices().
 confusion_matrix <- function(lis) {
   confusion_matrix <- data.frame(
     actual_negative = c(sum(lis == "tn"), sum(lis == "fp")),
@@ -229,25 +255,37 @@ confusion_matrix <- function(lis) {
   return(confusion_matrix)
 }
 
+# This function takes a table of coefficient estimates (from results_table())
+# and computes the confusion matrix for each model. This function then returns a list
+# containing these matrices.
 generate_confusion_matrices <- function(coefs) {
-  tf_table <- as.data.frame(ifelse(coefs == 0, FALSE, TRUE))
+  # Create a data frame where each entry is TRUE if the corresponding entry in
+  # coefs is non-zero; otherwise, the entry is FALSE.
+  coef_is_nonzero <- as.data.frame(ifelse(coefs == 0, FALSE, TRUE))
+  
+  # For each column of coef_is_nonzero, we compare its entries to the entries
+  # in the "soln" column. This gives us a list whose entries have four possible values:
+  # tn (true negative), false negative (fn), false positive (fp), or true
+  # positive (tp). For example, if a certain model correctly predicts that a
+  # coefficient will be non-zero, the corresponding entry will be set to "tp".
   test_results <- as.data.frame(
-    apply(X = tf_table,
+    apply(X = coef_is_nonzero,
           MARGIN = 2,
           FUN = function(prediction, solution) {
             mapply(compare_coefficient_estimate, solution, prediction)
           },
-          solution = tf_table$soln)
+          solution = coef_is_nonzero$soln)
   )
   
+  # For each column of test_results, compute the confusion matrix based on the
+  # counts of tn, fn, fp, and tp. This then gets returned.
   matrices <- apply(X = test_results, MARGIN = 2, FUN = confusion_matrix)
   
   return(matrices)
 }
 
 
-seeds <- list(100:110)
+seeds <- c(100:109)
 
-# results <- lapply(seeds[[1]], monte_carlo)
-d <- monte_carlo(n = 100, p = 10, seed = 11)
-cm <- generate_confusion_matrices(d$coefficients)
+# Run monte_carlo 10 times, each time with 200 observations and 10 predictors.
+results <- lapply(seeds, monte_carlo, n = 2000, p = 10)
