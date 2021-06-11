@@ -319,7 +319,73 @@ We see that all three methods set the predicted value to zero when the actual co
 	\includegraphics[width = 0.4\textwidth]{images/prediction.png}
 \end{figure}
 
+\section{Evaluating Methods}
+\subsection{Monte Carlo Data Generation}
+Using Monte Carlo simulations to generate data is extremely useful for evaluating linear regression models and comparing them against each other. Generated data is beneficial because it allows us to know the true coefficient values, which allows accuracy, bias, and more to be calculated. It additionally allows for control of the data and situations. For example, this can be used to test different models in environments where predictors are completely independent, which is impossible with real data, or on the opposite spectrum when predictors are heavily correlated with each other. This can allow for the testing of model strengths and weaknesses. Because datasets can be generated thousands of times, Monte Carlo simulations can be used to evaluate randomness and variation of different models.
+
+Data with $n$ samples from $p$ predictors is created through Monte Carlo simulations by first defining a vector M such that \\
+\[M = \begin{bmatrix}
+	\beta_0 \\
+	\beta_1 \\
+	\vdots \\
+	\beta_p
+\end{bmatrix} \]
+with the true coefficient values $\beta_0$ through $\beta_p$ that will later be compared to the fitted coefficient values.
+
+Secondly, a $n$ x $p$ matrix $X$ is generated such that
+
+\[X = \begin{bmatrix}
+	\mathcal{N}(\mu,\,\sigma^{2})_{1,1} & \mathcal{N}(\mu,\,\sigma^{2})_{1,2} & \dots & \mathcal{N}(\mu,\,\sigma^{2})_{1,p}\\
+	\mathcal{N}(\mu,\,\sigma^{2})_{2,1} & \mathcal{N}(\mu,\,\sigma^{2})_{2,2} & &\\
+	\vdots & & \ddots &\\
+	\mathcal{N}(\mu,\,\sigma^{2})_{n,1} & & & \mathcal{N}(\mu,\,\sigma^{2})_{n,p}
+\end{bmatrix} .\]
+This serves as the predictor data that will be used to determine the output result.
+
+Another vector, $E$, is generated such that
+\[E = \begin{bmatrix}
+	\mathcal{N}(\mu,\,\sigma^{2})_1 \\
+ 	\mathcal{N}(\mu,\,\sigma^{2})_2 \\
+  	\vdots \\
+   	\mathcal{N}(\mu,\,\sigma^{2})_n
+\end{bmatrix} .\]
+This serves as the error between the predicted values using the true coefficients with predictor data and the output values.
+
+Lastly, the output data, $Y$, is a vector such that
+
+\[ Y = XM + E\]
+\[ Y = 
+\begin{bmatrix}
+	\mathcal{N}(\mu,\,\sigma^{2})_{1,1} & \mathcal{N}(\mu,\,\sigma^{2})_{1,2} & \dots & \mathcal{N}(\mu,\,\sigma^{2})_{1,p}\\
+	\mathcal{N}(\mu,\,\sigma^{2})_{2,1} & \mathcal{N}(\mu,\,\sigma^{2})_{2,2} & &\\
+	\vdots & & \ddots &\\
+	\mathcal{N}(\mu,\,\sigma^{2})_{n,1} & & & \mathcal{N}(\mu,\,\sigma^{2})_{n,p}
+\end{bmatrix}
+\begin{bmatrix}
+	\beta_0 \\
+	\beta_1 \\
+	\vdots \\
+	\beta_p
+\end{bmatrix}
++
+\begin{bmatrix}
+	\mathcal{N}(\mu,\,\sigma^{2})_1 \\
+	\mathcal{N}(\mu,\,\sigma^{2})_2 \\
+	\vdots \\
+	\mathcal{N}(\mu,\,\sigma^{2})_n
+	\end{bmatrix} .
+\]
+
+Completely independent predictor data and their corresponding outputs can be generated thousands of times, each time yielding different values. A model can be fit to the data from each iteration to determine the variance of the model and evaluate randomness.
+
+\subsection{Variance}
+
+\subsection{Accuracy}
+
+\subsection{Bias}
+
 \newpage
 \bibliographystyle{plain}
 \bibliography{references}
 \end{document}
+4
