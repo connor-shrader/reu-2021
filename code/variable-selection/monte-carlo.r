@@ -10,6 +10,7 @@ library(dplyr) # v1.0.6
 library(faux)
 library(ncvreg)
 library(glmnet)
+library(MASS)
 
 # generate_data() is used to generate data.
 #
@@ -191,7 +192,7 @@ test_mse <- function(model, test_dat) {
   else if (class(model) == "cv.glmnet") { #check for lasso, ridge, enet model
     y_hat <-  data.frame(predict(model, newx = as.matrix(test_dat[,-1])))
   }
-  else { #rest is lm models
+  else { #rest are lm models
     y_hat <- data.frame(predict(model, newdata = test_dat[,-1]))
   }
   
@@ -227,7 +228,7 @@ monte_carlo <- function(seed, n, p, ...) {
   # Generate the coefficient table and compute the mean squared error
   # for each model.
   coefs_df <- results_table(models, p = p)
-  mse_list <- lapply(models, calc_mse, test_dat = test.dat)
+  mse_list <- lapply(models, test_mse, test_dat = test.dat)
   
   return(list(coefficients = coefs_df, mse = mse_list))
 }
@@ -297,8 +298,32 @@ generate_confusion_matrices <- function(coefs) {
 }
 
 
-seeds <- c(100:109)
+seeds <- c(100:119)
 
-# Run monte_carlo 10 times, each time with 200 observations and 10 predictors.
+# Run monte_carlo 20 times, each time with 200 observations and 10 predictors.
 results <- lapply(seeds, monte_carlo, n = 200, p = 10, method = "independent")
 results2 <- lapply(seeds, monte_carlo, n = 200, p = 10, method = "symmetric")
+
+
+# Calculate sample variance of the coefficients
+x_dif_2 <- function(coef_df, model){
+  x_hat <- coef_df[["coefficients"]][[model]]
+  betas <- coef_df[["coefficients"]]["soln"]
+  x_difference <- betas - x_hat
+  return(x_difference^2)
+}
+
+sample_mean <- function(row, df){  #takes sample mean: sum(x)/(n-1)
+  total <- sum(df[row,])
+  n <- length(x_dif_df[row, ])
+  samp_avg <- total / (n-1)
+}
+
+sample_var <- function(model, coefs_df){
+  x_dif_df <-  data.frame(lapply(coefs_df, x_dif_2, model = model))
+  coef_variance <- lapply(row.names(x_dif_df), sample_mean, df = x_dif_df) #returns list with sample variance for each coefficient in model
+  
+}
+
+coef_sample_var <- sample_var(model = "lasso", coefs_df = results) #sample variance for coefficients of lasso model
+
