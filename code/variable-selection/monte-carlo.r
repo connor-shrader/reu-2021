@@ -23,19 +23,19 @@ library(dplyr)
 #   rho (default 0): The value of rho used for AR(1). If AR(1) is not used, then
 #     rho is unused.
 generate_data <- function(n, p, var = 1, covar = "independent", rho = 0) {
-  if (p > 6) {
+  if (p < 6) {
     return(data.frame())
   }
   
   # Generate coefficient values.
   beta <- c(1, 2, -2, 0, 0, 0.5, 3, rep(0, (p-6)))
   
-  if (covar = "independent") {
-    x <- cbind(1, matrix(rnorm(n * p)), nrow = n, ncol = p)
+  if (covar == "independent") {
+    x <- cbind(1, matrix(rnorm(n * p), nrow = n, ncol = p))
   }
   
   # Generate corresponding y values.
-  y <- x%*%b + rnorm(n, sd = sqrt(var))
+  y <- x %*% beta + rnorm(n, sd = sqrt(var))
   
   # Create return data frame. We removed the column of 1's that we used as
   # an intercept for generating the data.
@@ -53,40 +53,40 @@ generate_data <- function(n, p, var = 1, covar = "independent", rho = 0) {
 # models.
 fit_models <- function(dat) {
   # Full model for backward selection
-  fm <- lm(y ~ ., data = ex.dat[, -2])
+  fm <- lm(y ~ ., data = dat)
   
   # Null model for forward selection
-  nm <- lm(y ~ 1, data = ex.dat)
+  nm <- lm(y ~ 1, data = dat)
   
   # AIC and BIC model selection for forward
   af = stepAIC(nm, scope=list(lower=nm, upper=fm), direction="forward", k=2, trace=F, steps=3000) #AIC
-  bf = stepAIC(nm, scope=list(lower=nm, upper=fm), direction="forward", k=log(nrow(ex.dat)), trace=F, steps=3000) #BIC
+  bf = stepAIC(nm, scope=list(lower=nm, upper=fm), direction="forward", k=log(nrow(dat)), trace=F, steps=3000) #BIC
   
   # AIC and BIC model selection for backward
   ab = stepAIC(fm, scope=list(lower=nm, upper=fm), direction="backward", k=2, trace=F, steps=3000) #AIC
-  bb = stepAIC(fm, scope=list(lower=nm, upper=fm), direction="backward", k=log(nrow(ex.dat)), trace=F, steps=3000) #BIC  
+  bb = stepAIC(fm, scope=list(lower=nm, upper=fm), direction="backward", k=log(nrow(dat)), trace=F, steps=3000) #BIC  
   
   # AIC and BIC model selection for stepwise forward
   asf = stepAIC(nm, scope=list(lower=nm, upper=fm), direction="both", k=2, trace=F, steps=3000) #AIC
-  bsf = stepAIC(nm, scope=list(lower=nm, upper=fm), direction="both", k=log(nrow(ex.dat)), trace=F, steps=3000) #BIC  
+  bsf = stepAIC(nm, scope=list(lower=nm, upper=fm), direction="both", k=log(nrow(dat)), trace=F, steps=3000) #BIC  
   
   # AIC and BIC model selection for stepwise backward
   asb = stepAIC(fm, scope=list(lower=nm, upper=fm), direction="both", k=2, trace=F, steps=3000) #AIC
-  bsb = stepAIC(fm, scope=list(lower=nm, upper=fm), direction="both", k=log(nrow(ex.dat)), trace=F, steps=3000) #BIC 
+  bsb = stepAIC(fm, scope=list(lower=nm, upper=fm), direction="both", k=log(nrow(dat)), trace=F, steps=3000) #BIC 
   
   # Lasso model for variable selection
-  lasso <- cv.glmnet(x = as.matrix(ex.dat[,-1]), y = ex.dat$y, alpha = 1)
+  lasso <- cv.glmnet(x = as.matrix(dat[,-1]), y = dat$y, alpha = 1)
   
   # Ridge model for dealing with multicollinearity
-  ridge <- cv.glmnet(x = as.matrix(ex.dat[,-1]), y = ex.dat$y, alpha = 0)
+  ridge <- cv.glmnet(x = as.matrix(dat[,-1]), y = dat$y, alpha = 0)
   
   # Elastic Net model for multicollinearity and variable selection
-  enet <- cv.glmnet(x = as.matrix(ex.dat[,-1]), y = ex.dat$y, alpha = 0.8) #small alpha is not needed since small multicollinearity
+  enet <- cv.glmnet(x = as.matrix(dat[,-1]), y = dat$y, alpha = 0.8) #small alpha is not needed since small multicollinearity
   
   # MCP
-  scad <- cv.ncvreg(X = ex.dat[, -1], y = ex.dat$y, penalty = "SCAD")
+  scad <- cv.ncvreg(X = dat[, -1], y = dat$y, penalty = "SCAD")
   
-  mcp <- cv.ncvreg(X = ex.dat[, -1], y = ex.dat$y)
+  mcp <- cv.ncvreg(X = dat[, -1], y = dat$y)
   
   models <- list(fm, af, bf, ab, bb, asf, bsf, asb, bsb, mcp, scad, lasso, ridge, enet)
   names(models) <- c("fm", "af", "bf", "ab", "bb", "asf", "bsf", "asb", "bsb", "mcp", "scad", "lasso", "ridge", "enet")
@@ -112,9 +112,11 @@ model_data_frame <- function(model, model_name) {
   df
 }
 
-# This function takes in a named list of models and returns a data frame containing
-# the coefficient estimates for each model.
-results_table <- function(models) {
+# This function takes in a named list of models and the number of predictors.
+# It returns a data frame containing the coefficient estimates for each model.
+results_table <- function(models, p) {
+  row_names <- c("(Intercept)", paste("x", 1:p, sep = ""))
+  
   # Create a dataframe with two columns. The first column are the variable names
   # ((Intercept), x1, x2, ..., xp). The second column contains the actual
   # coefficient values.
@@ -124,7 +126,7 @@ results_table <- function(models) {
   # coefficient estimates for that model. Then, this dataframe is joined with df.
   # At the end of the loop, df contains the coefficients from all models.
   for (i in 1:length(models)) {
-    df <- left_join(results, create_df(models[[i]], names(models)[[i]]),
+    results <- left_join(results, model_data_frame(models[[i]], names(models)[[i]]),
                     by = "row_names",
                     all.x = TRUE
     )
@@ -136,7 +138,7 @@ results_table <- function(models) {
   # Remove the row_names column from df. We needed this column earlier in order to
   # run left_join. We return the resulting data.frame.
   results[is.na(results)] <- 0
-  results[, -1]
+  return(results[, -1])
 }
 
 
@@ -160,74 +162,26 @@ calc_mse <- function(model, test_dat) {
 
 monte_carlo <- function(seed){
   set.seed(seed) # to generate the same data
-  all.dat <- lin.dat(n=200, p = 10) # n> p, p>6
+  all.dat <- generate_data(n=200, p = 10) # n> p, p>6
+ 
   ex.dat <- all.dat[1:100,]
+  
   test.dat <- all.dat[101:nrow(all.dat), ]
   
-  # Full model for backward selection
-  fm <- lm(y ~ ., data = ex.dat[, -2])
+  models <- fit_models(ex.dat)
   
-  # Null model for forward selection
-  nm <- lm(y ~ 1, data = ex.dat)
+  mse_list <- lapply(models, calc_mse, test_dat = test.dat)
   
-  # AIC and BIC model selection for forward
-  af = stepAIC(nm, scope=list(lower=nm, upper=fm), direction="forward", k=2, trace=F, steps=3000) #AIC
-  summary(af)  # the final model selected by AIC forward method
-  bf = stepAIC(nm, scope=list(lower=nm, upper=fm), direction="forward", k=log(nrow(ex.dat)), trace=F, steps=3000) #BIC  
-  summary(bf)
-  
-  # AIC and BIC model selection for backward
-  ab = stepAIC(fm, scope=list(lower=nm, upper=fm), direction="backward", k=2, trace=F, steps=3000) #AIC
-  bb = stepAIC(fm, scope=list(lower=nm, upper=fm), direction="backward", k=log(nrow(ex.dat)), trace=F, steps=3000) #BIC  
-  
-  # AIC and BIC model selection for stepwise forward
-  asf = stepAIC(nm, scope=list(lower=nm, upper=fm), direction="both", k=2, trace=F, steps=3000) #AIC
-  bsf = stepAIC(nm, scope=list(lower=nm, upper=fm), direction="both", k=log(nrow(ex.dat)), trace=F, steps=3000) #BIC  
-  
-  # AIC and BIC model selection for stepwise backward
-  asb = stepAIC(fm, scope=list(lower=nm, upper=fm), direction="both", k=2, trace=F, steps=3000) #AIC
-  bsb = stepAIC(fm, scope=list(lower=nm, upper=fm), direction="both", k=log(nrow(ex.dat)), trace=F, steps=3000) #BIC 
-  
-  # Lasso model for variable selection
-  lasso <- cv.glmnet(x = as.matrix(ex.dat[,-1]), y = ex.dat$y, alpha = 1)
-  
-  # Ridge model for dealing with multicollinearity
-  ridge <- cv.glmnet(x = as.matrix(ex.dat[,-1]), y = ex.dat$y, alpha = 0)
-  
-  # Elastic Net model for multicollinearity and variable selection
-  enet <- cv.glmnet(x = as.matrix(ex.dat[,-1]), y = ex.dat$y, alpha = 0.8) #small alpha is not needed since small multicollinearity
-  
-  # MCP
-  scad <- cv.ncvreg(X = ex.dat[, -1], y = ex.dat$y, penalty = "SCAD")
-  #scad_c <- coef(scad, lambda = scad$lambda.min)
-  
-  mcp <- cv.ncvreg(X = ex.dat[, -1], y = ex.dat$y)
-  #mcp_c <- coef(mcp, lambda = mcp$lambda.min)
-  # calling coef(mcp, lambda = 0.05) has two intercepts?
-  
-  mse_list <- list(af = calc_mse(af, test.dat),  #creates list of mse for each model
-                   bf = calc_mse(bf, test.dat),
-                   ab = calc_mse(ab, test.dat),
-                   bb = calc_mse(bb, test.dat),
-                   asf = calc_mse(asf, test.dat),
-                   bsf = calc_mse(bsf, test.dat),
-                   asb = calc_mse(asb, test.dat),
-                   bsb = calc_mse(bsb, test.dat),
-                   mcp = calc_mse(mcp, test.dat),
-                   scad = calc_mse(scad, test.dat),
-                   lasso = calc_mse(lasso, test.dat),
-                   ridge = calc_mse(ridge, test.dat),
-                   enet = calc_mse(enet, test.dat))
-  
-  coefs_df <- multi.merge(list(fm, af, bf, ab, bb, asf, bsf, asb, bsb, mcp, scad, lasso, ridge, enet), 
-                          c("fm", "af", "bf", "ab", "bb", "asf", "bsf", "asb", "bsb", "mcp", "scad", "lasso", "ridge", "elastic_net"))
+  print(names(models))
+  coefs_df <- results_table(models, p = 10)
   
   return(list(coefs_df, mse_list))
 }
 
 seeds <- list(100:110)
 
-results <- lapply(seeds[[1]], monte_carlo)
+# results <- lapply(seeds[[1]], monte_carlo)
+d <- monte_carlo(35246)
 
 
 
