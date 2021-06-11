@@ -7,6 +7,9 @@
 # R version: 4.1.0
 library(tidyverse) # v1.3.1
 library(dplyr) # v1.0.6
+library(faux)
+library(ncvreg)
+library(glmnet)
 
 # generate_data() is used to generate data.
 #
@@ -16,7 +19,7 @@ library(dplyr) # v1.0.6
 #     data frame is returned.
 #   seed: Random seed to generate the data.
 #   var (default 1): Variance of each variable.
-#   covar (default "independent"): Determines the covariance of the data.
+#   method (default "independent"): Determines the covariance of the data.
 #     "independent": No covariance.
 #     "unstructured": All pairs of variables have different covariances.
 #     "symmetric": All pairs of variables have equal covariance.
@@ -24,7 +27,7 @@ library(dplyr) # v1.0.6
 #     "blockwise": Blockwise covariance.
 #   rho (default 0): The value of rho used for AR(1). If AR(1) is not used, then
 #     rho is unused.
-generate_data <- function(n, p, seed, var = 1, covar = "independent", rho = 0) {
+generate_data <- function(n, p, seed, var = 1, method = "independent", rho = 0) {
   if (p < 6) {
     return(data.frame())
   }
@@ -34,8 +37,17 @@ generate_data <- function(n, p, seed, var = 1, covar = "independent", rho = 0) {
   # Generate coefficient values.
   beta <- c(1, 2, -2, 0, 0, 0.5, 3, rep(0, (p-6)))
   
-  if (covar == "independent") {
+  if (method == "independent") {
     x <- cbind(1, matrix(rnorm(n * p), nrow = n, ncol = p))
+  }
+  else if (method == "symmetric") {
+    x <- cbind(1, data.matrix(rnorm_multi(
+      n = n,
+      vars = p,
+      mu = 0,
+      sd = 1,
+      r = 0.9
+    )))
   }
   
   # Generate corresponding y values.
@@ -196,13 +208,13 @@ test_mse <- function(model, test_dat) {
 #   p: Number of predictors. We require that p >= 6. If p < 6, this function
 #     does nothing.
 #   seed: Random seed to generate the data.
-monte_carlo <- function(seed, n, p) {
+monte_carlo <- function(seed, n, p, ...) {
   if (p < 6) {
     return(NONE)
   }
   
   # Generated training AND test data.
-  all.dat <- generate_data(n = n, p = p, seed = seed)
+  all.dat <- generate_data(n = n, p = p, seed = seed, ...)
   
   # The first half of the data is used for training. The other half
   # is used for testing.
@@ -288,4 +300,5 @@ generate_confusion_matrices <- function(coefs) {
 seeds <- c(100:109)
 
 # Run monte_carlo 10 times, each time with 200 observations and 10 predictors.
-results <- lapply(seeds, monte_carlo, n = 2000, p = 10)
+results <- lapply(seeds, monte_carlo, n = 200, p = 10, method = "independent")
+results2 <- lapply(seeds, monte_carlo, n = 200, p = 10, method = "symmetric")
