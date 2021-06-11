@@ -8,17 +8,18 @@
 # step 1 - defining the data generating function
 
 lin.dat <- function(n, p){
-  b = c(1, 2, -2, 0, 0, 0.5, 3, rep(0, (p-6))) ## p-6 >= 0
-  x = cbind(1, matrix(rnorm(n*p), nrow = n, ncol = p))
-  y = x%*%b + rnorm(n)
-  dat = data.frame(cbind(y, x))
-  colnames(dat) = c("y", paste("x", 0:p, sep=""))
+  b <- c(1, 2, -2, 0, 0, 0.5, 3, rep(0, (p-6))) ## p-6 >= 0
+  x <- cbind(1, matrix(rnorm(n*p), nrow = n, ncol = p))
+  y <- x%*%b + rnorm(n)
+  dat <- data.frame(cbind(y, x[, -1]))
+  colnames(dat) <- c("y", paste("x", 1:p, sep=""))
   return(dat)
 }
 
 # step 2 - implementing the DG function
 set.seed(35246) # to generate the same data
-ex.dat <- lin.dat(n=100, p = 10) # n> p, p>6
+p <- 10
+ex.dat <- lin.dat(n=100, p = p) # n> p, p>6
 
 library(tidyverse)
 View(ex.dat)
@@ -28,7 +29,7 @@ View(ex.dat)
 library(MASS)  # We need this package for stepwise selection
 
 # Full model for backward selection
-fm <- lm(y ~ ., data = ex.dat[, -2])
+fm <- lm(y ~ ., data = ex.dat)
 
 # Null model for forward selection
 nm <- lm(y ~ 1, data = ex.dat)
@@ -88,7 +89,7 @@ models <- list(fm = fm, nm = nm, af = af, bf = bf, ab = ab, bb = bb, asf = asf, 
                asb = asb, bsb = bsb, scad = scad, mcp = mcp)
 
 # Names of the rows for the final dataframe: (Intercept), x1, x2, ..., xp
-row.names <- c("(Intercept)", paste("x", 1:10, sep = ""))
+row.names <- c("(Intercept)", paste("x", 1:p, sep = ""))
 
 # get.coef inputs a model and returns a vector with the values for each coefficient.
 # Depending on the model, unused variables will be set to 0 or NA. A later line will
@@ -101,9 +102,10 @@ get.coef <- function(model)
 # Create a new dataframe. The rows are the predictors, and the columns are the
 # models. The (i, j) entry contains the coefficient for predictor i using model j.
 df <- data.frame(lapply(models, get.coef), row.names = row.names)
+df["true"] <- c(1, 2, -2, 0, 0, 0.5, 3, rep(0, (p-6)))
 
 # Sets all zero coefficients to NA (this makes it easier to read).
-df[df == 0] <- NA
+df[is.na(df)] <- 0
 
 
 
@@ -130,10 +132,11 @@ multi.merge <-function(model_list, col_names){ #takes input of list of lm models
   return(full_df)
 }
 
-coefs_df <- multi.merge(list(fm, af, bf, ab, bb, asf, bsf, asb, bsb, mcp, scad, lasso, ridge, enet), 
-                        c("fm", "af", "bf", "ab", "bb", "asf", "bsf", "asb", "bsb", "mcp", "scad", "lasso", "ridge", "elastic_net"))
+# coefs_df <- multi.merge(list(fm, af, bf, ab, bb, asf, bsf, asb, bsb, mcp, scad, lasso, ridge, enet), 
+                        # c("fm", "af", "bf", "ab", "bb", "asf", "bsf", "asb", "bsb", "mcp", "scad", "lasso", "ridge", "elastic_net"))
 
 
+<<<<<<< HEAD
 
 #####Monte Carlo Replication Function #####
 calc_mse <- function(model, test_dat) {
@@ -223,3 +226,50 @@ seeds <- list(100:110)
 
 results <- lapply(seeds[[1]], monte_carlo)
 
+
+# This helper function takes in a model and a name for the model as parameters.
+# It returns a data frame containing the coefficient estimates using that model
+# as well as the names of the corresponding variables. This function is used in
+# results_table().
+model_data_frame <- function(model, model_name) {
+  # Create a data frame with the coefficient estimates.
+  df <- data.frame(as.matrix(coef(model)))
+  
+  # Rename the column to have the correct model name.
+  colnames(df) <- model_name
+  
+  # Add a row containing the name of the variable corresponding to each coefficient.
+  df$row_names <- row.names(df)
+  df
+}
+
+# This function takes in a named list of models and returns a data frame containing
+# the coefficient estimates for each model.
+results_table <- function(models) {
+  # Create a dataframe with two columns. The first column are the variable names
+  # ((Intercept), x1, x2, ..., xp). The second column contains the actual
+  # coefficient values.
+  results <- data.frame(row_names = row_names, soln = c(1, 2, -2, 0, 0, 0.5, 3, rep(0, (p-6))))
+  
+  # This loop iterates through each model and creates a dataframe containing the
+  # coefficient estimates for that model. Then, this dataframe is joined with df.
+  # At the end of the loop, df contains the coefficients from all models.
+  for (i in 1:length(models)) {
+    df <- left_join(results, create_df(models[[i]], names(models)[[i]]),
+                    by = "row_names",
+                    all.x = TRUE
+    )
+  }
+  
+  # Set the row names for df to the column called row_names.
+  row.names(results) <- results$row_names
+  
+  # Remove the row_names column from df. We needed this column earlier in order to
+  # run left_join. We return the resulting data.frame.
+  results[, -1]
+}
+
+#row_names <- c("(Intercept)", paste("x", 1:p, sep = ""))
+#models <- list(fm, af, bf, ab, bb, asf, bsf, asb, bsb, mcp, scad, lasso, ridge, enet)
+#names(models) <- c("fm", "af", "bf", "ab", "bb", "asf", "bsf", "asb", "bsb", "mcp", "scad", "lasso", "ridge", "enet")
+#df <- create_table(models)
