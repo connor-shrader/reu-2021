@@ -136,8 +136,6 @@ multi.merge <-function(model_list, col_names){ #takes input of list of lm models
                         # c("fm", "af", "bf", "ab", "bb", "asf", "bsf", "asb", "bsb", "mcp", "scad", "lasso", "ridge", "elastic_net"))
 
 
-<<<<<<< HEAD
-
 #####Monte Carlo Replication Function #####
 calc_mse <- function(model, test_dat) {
   if (class(model) == "cv.ncvreg") { #checks for mcp or scad model
