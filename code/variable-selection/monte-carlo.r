@@ -132,7 +132,7 @@ multi.merge <-function(model_list, col_names){ #takes input of list of lm models
 }
 
 # coefs_df <- multi.merge(list(fm, af, bf, ab, bb, asf, bsf, asb, bsb, mcp, scad, lasso, ridge, enet), 
-                        c("fm", "af", "bf", "ab", "bb", "asf", "bsf", "asb", "bsb", "mcp", "scad", "lasso", "ridge", "elastic_net"))
+                        # c("fm", "af", "bf", "ab", "bb", "asf", "bsf", "asb", "bsb", "mcp", "scad", "lasso", "ridge", "elastic_net"))
 
 
 # This helper function takes in a model and a name for the model as parameters.
