@@ -1,17 +1,46 @@
-# Data generating
+# monte-carlo.r
+# Gabe Ackall, Seongtae Kim, Connor Shrader
 
-# x - nxp matrix of p independent predictors generated from N(0,1)
-# b - (p+1)x1 vector of parameters
-# y - linear function of xb
+# This file contains functions for generating data and fitting regression models
+# using Monte Carlo simulations.
 
 
-# step 1 - defining the data generating function
 
-lin.dat <- function(n, p){
-  b <- c(1, 2, -2, 0, 0, 0.5, 3, rep(0, (p-6))) ## p-6 >= 0
-  x <- cbind(1, matrix(rnorm(n*p), nrow = n, ncol = p))
-  y <- x%*%b + rnorm(n)
+# generate_data() is used to generate data.
+#
+# Arguments:
+#   n: Number of observations.
+#   p: Number of predictors. We require that p >= 6. If p < 6, an empty
+#     data frame is returned.
+#   var (default 1): Variance of each variable.
+#   covar (default "independent"): Determines the covariance of the data.
+#     "independent": No covariance.
+#     "unstructured": All pairs of variables have different covariances.
+#     "symmetric": All pairs of variables have equal covariance.
+#     "autoregressive": AR(1)
+#     "blockwise": Blockwise covariance.
+#   rho (default 0): The value of rho used for AR(1). If AR(1) is not used, then
+#     rho is unused.
+generate_data <- function(n, p, var = 1, covar = "independent", rho = 0) {
+  if (p > 6) {
+    return(data.frame())
+  }
+  
+  # Generate coefficient values.
+  beta <- c(1, 2, -2, 0, 0, 0.5, 3, rep(0, (p-6)))
+  
+  if (covar = "independent") {
+    x <- cbind(1, matrix(rnorm(n * p)), nrow = n, ncol = p)
+  }
+  
+  # Generate corresponding y values.
+  y <- x%*%b + rnorm(n, sd = sqrt(var))
+  
+  # Create return data frame. We removed the column of 1's that we used as
+  # an intercept for generating the data.
   dat <- data.frame(cbind(y, x[, -1]))
+  
+  # Set the column names to "y, x1, x2, ..., xp"
   colnames(dat) <- c("y", paste("x", 1:p, sep=""))
   return(dat)
 }
