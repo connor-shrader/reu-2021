@@ -7,52 +7,98 @@
 # R version: 4.1.0
 library(tidyverse) # v1.3.1
 library(dplyr) # v1.0.6
-library(faux)
-library(ncvreg)
-library(glmnet)
-library(MASS)
+library(faux) # v1.0.0
+library(ncvreg) # v3.13.0
+library(glmnet) # v4.1-1
+library(MASS) # v7.3-54
 
 # generate_data() is used to generate data.
 #
 # Arguments:
 #   n: Number of observations.
-#   p: Number of predictors. We require that p >= 6. If p < 6, an empty
-#     data frame is returned.
+#   p: Number of predictors.
 #   seed: Random seed to generate the data.
-#   var (default 1): Variance of each variable.
-#   method (default "independent"): Determines the covariance of the data.
+#   var (default 1): Vector containing the variance of each predictor. If the
+#     length of var is less than p, then var is extended using rep()
+#   type (default "independent"): Determines the covariance of the data.
 #     "independent": No covariance.
-#     "unstructured": All pairs of variables have different covariances.
 #     "symmetric": All pairs of variables have equal covariance.
 #     "autoregressive": AR(1)
 #     "blockwise": Blockwise covariance.
-#   rho (default 0): The value of rho used for AR(1). If AR(1) is not used, then
-#     rho is unused.
-generate_data <- function(n, p, seed, var = 1, method = "independent", rho = 0) {
-  if (p < 6) {
-    return(data.frame())
-  }
-  
+#     "unstructured": All pairs of variables have different covariances.
+#   corr (default 0): The use of corr depends on the value of type.
+#     type = "independent": corr is unused.
+#     type = "symmetric": Used as the value of rho,
+#       the correlation any pair of predictors.
+#     type = "autoregressive": Used as the value of rho in an AR(1) matrix.
+#     type = "blockwise": TODO.
+#     type = "unstructured": corr should be the correlation matrix.
+#   beta (default NONE): The true values of the coefficient values. If beta contains
+#     less than (p + 1) values, beta is extended by zero until it has length (p + 1).
+#     If beta = NONE, some default coefficient values are used.
+#   error_var (default 1): The variance of the random error.
+generate_data <- function(n, p, seed, var = 1, type = "independent", corr = 0,
+                          beta = NULL, error_var = 1) {
   set.seed(seed)
   
-  # Generate coefficient values.
-  beta <- c(1, 2, -2, 0, 0, 0.5, 3, rep(0, (p-6)))
-  
-  if (method == "independent") {
-    x <- cbind(1, matrix(rnorm(n * p), nrow = n, ncol = p))
-  }
-  else if (method == "symmetric") {
-    x <- cbind(1, data.matrix(rnorm_multi(
-      n = n,
-      vars = p,
-      mu = 0,
-      sd = 1,
-      r = 0.9
-    )))
+  # If no coefficient values were provided, generate some default values.
+  if (is.null(beta)) {
+    beta <- c(1, 2, -2, 0, 0, 0.5, 3)
   }
   
-  # Generate corresponding y values.
-  y <- x %*% beta + rnorm(n, sd = sqrt(var))
+  # Extend or shrink the coefficient list to have length (p + 1). If beta
+  # is too short, the entries added are set to zero.
+  if (length(beta) < p + 1) {
+    zeroes <- rep(0, (p + 1) - length(beta))
+    beta <- c(beta, zeroes)
+  }
+  else if (length(beta) > p + 1) {
+    beta <- beta[1:(p + 1)]
+  }
+  
+  # sd will be used for the standard deviation when we call rnorm_multi() (which
+  # will generate our data). sd[i] is the standard deviation for predictor i.
+  sd <- rep(sqrt(var), length.out = p)
+  
+  # The following if-else chain will calculate r, which is used as the correlation
+  # parameter for rnorm_multi().
+  if (type == "independent") {
+    # There is no covariance, so the correlation is zero.
+    r <- 0
+  }
+  else if (type == "symmetric") {
+    # The correlation when we call rnorm_multi will be exactly the argument
+    # corr passed into this function.
+    r <- corr
+  }
+  else if (type == "autoregressive") {
+    # With AR(1), we need to generate the correlation matrix. The source for this
+    # code can be found at the following link:
+    # https://statisticaloddsandends.wordpress.com/2020/02/07/generating-correlation-matrix-for-ar1-model/
+    
+    exponent <- abs(matrix(1:n - 1, nrow = n, ncol = n, byrow = TRUE) - (1:n - 1))
+    r <- corr^exponent
+  }
+  else if (type == "unstructured") {
+    # If our data is unstructed, we will set r = corr. corr should contain the
+    # correlation matrix already.
+    r <- corr
+  }
+  
+  # Generate the data using rnorm_multi() from the faux package. We then append
+  # a column of 1's to the left of this matrix (which will correspond to the
+  # intercept).
+  x <- cbind(1, rnorm_multi(
+    n = n,
+    vars = p,
+    mu = 0,
+    sd = sd,
+    r = r,
+    as.matrix = TRUE
+  ))
+  
+  # Generate corresponding y values for our data.
+  y <- x %*% beta + rnorm(n, sd = sqrt(error_var))
   
   # Create return data frame. We removed the column of 1's that we used as
   # an intercept for generating the data.
@@ -210,10 +256,6 @@ test_mse <- function(model, test_dat) {
 #     does nothing.
 #   seed: Random seed to generate the data.
 monte_carlo <- function(seed, n, p, ...) {
-  if (p < 6) {
-    return(NONE)
-  }
-  
   # Generated training AND test data.
   all.dat <- generate_data(n = n, p = p, seed = seed, ...)
   
@@ -301,10 +343,10 @@ generate_confusion_matrices <- function(coefs) {
 seeds <- c(100:119)
 
 # Run monte_carlo 20 times, each time with 200 observations and 10 predictors.
-results <- lapply(seeds, monte_carlo, n = 200, p = 10, method = "independent")
-#(lapply(seeds, monte_carlo, n = 200, p = 10, method = "independent"))
-results2 <- lapply(seeds, monte_carlo, n = 200, p = 10, method = "symmetric")
-#system.time(lapply(seeds, monte_carlo, n = 200, p = 10, method = "symmetric"))
+results <- lapply(seeds, monte_carlo, n = 200, p = 10, type = "independent")
+#(lapply(seeds, monte_carlo, n = 200, p = 10, type = "independent"))
+results2 <- lapply(seeds, monte_carlo, n = 200, p = 10, type = "symmetric")
+#system.time(lapply(seeds, monte_carlo, n = 200, p = 10, type = "symmetric"))
 
 
 # Calculate sample variance of the coefficients
