@@ -335,19 +335,19 @@ with the true coefficient values $\beta_0$ through $\beta_p$ that will later be 
 Secondly, a $n$ x $p$ matrix $X$ is generated such that
 
 \[X = \begin{bmatrix}
-	\mathcal{N}(\mu,\,\sigma^{2})_{1,1} & \mathcal{N}(\mu,\,\sigma^{2})_{1,2} & \dots & \mathcal{N}(\mu,\,\sigma^{2})_{1,p}\\
-	\mathcal{N}(\mu,\,\sigma^{2})_{2,1} & \mathcal{N}(\mu,\,\sigma^{2})_{2,2} & &\\
+	\mathcal{N}(0,\,1)_{1\,1} & \mathcal{N}(0,\,1)_{1\,2} & \dots & \mathcal{N}(0,\,1)_{1\,p}\\
+	\mathcal{N}(0,\,1)_{2\,1} & \mathcal{N}(0,\,1)_{2\,2} & &\\
 	\vdots & & \ddots &\\
-	\mathcal{N}(\mu,\,\sigma^{2})_{n,1} & & & \mathcal{N}(\mu,\,\sigma^{2})_{n,p}
+	\mathcal{N}(0,\,1)_{n\,1} & & & \mathcal{N}(0,\,1)_{n\,p}
 \end{bmatrix} .\]
 This serves as the predictor data that will be used to determine the output result.
 
 Another vector, $E$, is generated such that
 \[E = \begin{bmatrix}
-	\mathcal{N}(\mu,\,\sigma^{2})_1 \\
- 	\mathcal{N}(\mu,\,\sigma^{2})_2 \\
+	\mathcal{N}(0,\,1)_1 \\
+ 	\mathcal{N}(0,\,1)_2 \\
   	\vdots \\
-   	\mathcal{N}(\mu,\,\sigma^{2})_n
+   	\mathcal{N}(0,\,1)_n
 \end{bmatrix} .\]
 This serves as the error between the predicted values using the true coefficients with predictor data and the output values.
 
@@ -356,10 +356,10 @@ Lastly, the output data, $Y$, is a vector such that
 \[ Y = XM + E\]
 \[ Y = 
 \begin{bmatrix}
-	\mathcal{N}(\mu,\,\sigma^{2})_{1,1} & \mathcal{N}(\mu,\,\sigma^{2})_{1,2} & \dots & \mathcal{N}(\mu,\,\sigma^{2})_{1,p}\\
-	\mathcal{N}(\mu,\,\sigma^{2})_{2,1} & \mathcal{N}(\mu,\,\sigma^{2})_{2,2} & &\\
+	\mathcal{N}(0,\,1)_{1\,1} & \mathcal{N}(0,\,1)_{1\,2} & \dots & \mathcal{N}(0,\,1)_{1\,p}\\
+	\mathcal{N}(0,\,1)_{2\,1} & \mathcal{N}(0,\,1)_{2\,2} & &\\
 	\vdots & & \ddots &\\
-	\mathcal{N}(\mu,\,\sigma^{2})_{n,1} & & & \mathcal{N}(\mu,\,\sigma^{2})_{n,p}
+	\mathcal{N}(0,\,1)_{n\,1} & & & \mathcal{N}(0,\,1)_{n\,p}
 \end{bmatrix}
 \begin{bmatrix}
 	\beta_0 \\
@@ -369,10 +369,10 @@ Lastly, the output data, $Y$, is a vector such that
 \end{bmatrix}
 +
 \begin{bmatrix}
-	\mathcal{N}(\mu,\,\sigma^{2})_1 \\
-	\mathcal{N}(\mu,\,\sigma^{2})_2 \\
+	\mathcal{N}(0,\,1)_1 \\
+	\mathcal{N}(0,\,1)_2 \\
 	\vdots \\
-	\mathcal{N}(\mu,\,\sigma^{2})_n
+	\mathcal{N}(0,\,1)_n
 	\end{bmatrix} .
 \]
 
@@ -383,6 +383,13 @@ Completely independent predictor data and their corresponding outputs can be gen
 \subsection{Accuracy}
 
 \subsection{Bias}
+Bias is the difference between the estimated value of a coefficient and its true value. Because it necessitates the true value of a coefficient, bias can only be calculated when data is generated using Monte Carlo methods. Bias can be calculated as a function of the euclidean distance between the predictor coefficients through the equation
+
+\begin{equation}
+	bias \text{(model)} = \sqrt{\sum_{i=1}^{p}\left( \beta_i - \hat{\beta}_i \right)^2} \, .
+\end{equation}
+
+Variable selection linear regression methods increase bias, but still lead to overall decreases in error because they decrease error from variance. This trade-off must be carefully balanced and depends greatly on the environment of the data.
 
 \newpage
 \bibliographystyle{plain}
