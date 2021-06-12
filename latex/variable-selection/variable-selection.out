@@ -1,0 +1,28 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [2][-]{subsection.1.1}{Ordinary Least Squares}{section.1}% 2
+\BOOKMARK [2][-]{subsection.1.2}{Linear Regression with High Dimensionality Data}{section.1}% 3
+\BOOKMARK [2][-]{subsection.1.3}{Alternative Techniques with High Dimensionality Data}{section.1}% 4
+\BOOKMARK [1][-]{section.2}{Subset Selection}{}% 5
+\BOOKMARK [2][-]{subsection.2.1}{Best Subset Selection}{section.2}% 6
+\BOOKMARK [2][-]{subsection.2.2}{Forward Stepwise Selection}{section.2}% 7
+\BOOKMARK [2][-]{subsection.2.3}{Backward Stepwise Selection}{section.2}% 8
+\BOOKMARK [2][-]{subsection.2.4}{Hybrid Stepwise Selection}{section.2}% 9
+\BOOKMARK [2][-]{subsection.2.5}{Forward Stagewise Selection}{section.2}% 10
+\BOOKMARK [1][-]{section.3}{Penalized Regression}{}% 11
+\BOOKMARK [2][-]{subsection.3.1}{Ridge Regression}{section.3}% 12
+\BOOKMARK [2][-]{subsection.3.2}{Lasso Regression}{section.3}% 13
+\BOOKMARK [2][-]{subsection.3.3}{Elastic Net Regression}{section.3}% 14
+\BOOKMARK [2][-]{subsection.3.4}{Adaptive Lasso Regression}{section.3}% 15
+\BOOKMARK [2][-]{subsection.3.5}{Smoothly Clipped Absolute Deviation Regression}{section.3}% 16
+\BOOKMARK [2][-]{subsection.3.6}{Minimax Concave Penalty Regression}{section.3}% 17
+\BOOKMARK [1][-]{section.4}{Evaluating Methods}{}% 18
+\BOOKMARK [2][-]{subsection.4.1}{Monte Carlo Data Generation}{section.4}% 19
+\BOOKMARK [3][-]{subsubsection.4.1.1}{Choice of the Covariance Matrix}{subsection.4.1}% 20
+\BOOKMARK [3][-]{subsubsection.4.1.2}{Independent Covariance}{subsection.4.1}% 21
+\BOOKMARK [3][-]{subsubsection.4.1.3}{Symmetric Compound}{subsection.4.1}% 22
+\BOOKMARK [3][-]{subsubsection.4.1.4}{Blockwise}{subsection.4.1}% 23
+\BOOKMARK [3][-]{subsubsection.4.1.5}{Unstructured Covariance}{subsection.4.1}% 24
+\BOOKMARK [2][-]{subsection.4.2}{Autoregressive Covariance}{section.4}% 25
+\BOOKMARK [2][-]{subsection.4.3}{Variance}{section.4}% 26
+\BOOKMARK [2][-]{subsection.4.4}{Accuracy}{section.4}% 27
+\BOOKMARK [2][-]{subsection.4.5}{Bias}{section.4}% 28

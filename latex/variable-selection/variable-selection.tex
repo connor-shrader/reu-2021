@@ -8,6 +8,15 @@
 \usepackage{listings}
 \usepackage{url}
 
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,      
+	urlcolor=cyan,
+	citecolor=blue
+}
+
 % Allows us to use subfigures
 \usepackage{caption}
 \usepackage{subcaption}
@@ -40,6 +49,7 @@
 
 \begin{document}
 \maketitle
+\tableofcontents
 
 \section{Introduction}
 Linear regression is one of the simplest forms of statistical learning models. It assumes that some predictor variable $y$ can be modeled as a linear combination of a set of predictor variables $x_1, x_2, \dotsc, x_p$. More precisely, a linear regression model assumes that
@@ -323,61 +333,90 @@ We see that all three methods set the predicted value to zero when the actual co
 \subsection{Monte Carlo Data Generation}
 Using Monte Carlo simulations to generate data is extremely useful for evaluating linear regression models and comparing them against each other. Generated data is beneficial because it allows us to know the true coefficient values, which allows accuracy, bias, and more to be calculated. It additionally allows for control of the data and situations. For example, this can be used to test different models in environments where predictors are completely independent, which is impossible with real data, or on the opposite spectrum when predictors are heavily correlated with each other. This can allow for the testing of model strengths and weaknesses. Because datasets can be generated thousands of times, Monte Carlo simulations can be used to evaluate randomness and variation of different models.
 
-Data with $n$ samples from $p$ predictors is created through Monte Carlo simulations by first defining a vector M such that \\
-\[M = \begin{bmatrix}
-	\beta_0 \\
-	\beta_1 \\
-	\vdots \\
-	\beta_p
-\end{bmatrix} \]
-with the true coefficient values $\beta_0$ through $\beta_p$ that will later be compared to the fitted coefficient values.
+Data with $n$ samples from $p$ predictors is created through Monte Carlo simulations by first defining the $(p + 1)\times 1$ vector $\beta = [\beta_0, \beta_1, \dotsc, \beta_p]^\top$ of coefficient values.
 
-Secondly, a $n$ x $p$ matrix $X$ is generated such that
+Next, a $n\times(p + 1)$ matrix $\mathbf{X}$ is generated such that the entries of the first column are all 1 and the remaining $n\times p$ submatrix is distributed according to the $p$-dimensional multivariate normal distribution $\mathcal{N}_p(0, \mathbf{\Sigma})$. Entries have mean zero and covariance determined by the covariance matrix $\mathbf{\Sigma}$. The next section discusses different choices for the covariance matrix and how they can reflect real data.
 
-\[X = \begin{bmatrix}
-	\mathcal{N}(0,\,1)_{1\,1} & \mathcal{N}(0,\,1)_{1\,2} & \dots & \mathcal{N}(0,\,1)_{1\,p}\\
-	\mathcal{N}(0,\,1)_{2\,1} & \mathcal{N}(0,\,1)_{2\,2} & &\\
-	\vdots & & \ddots &\\
-	\mathcal{N}(0,\,1)_{n\,1} & & & \mathcal{N}(0,\,1)_{n\,p}
-\end{bmatrix} .\]
-This serves as the predictor data that will be used to determine the output result.
+Finally, a $n\times 1$ error vector $E\sim \mathcal{N}(0, \sigma^2)$ is generated with mean zero and variance $\sigma^2$. This error term reflects the random error for the general linear model from equation \ref{eqn:linear-model}.
 
-Another vector, $E$, is generated such that
-\[E = \begin{bmatrix}
-	\mathcal{N}(0,\,1)_1 \\
- 	\mathcal{N}(0,\,1)_2 \\
-  	\vdots \\
-   	\mathcal{N}(0,\,1)_n
-\end{bmatrix} .\]
-This serves as the error between the predicted values using the true coefficients with predictor data and the output values.
+The response $\mathbf{y}$ can then be computed as
+\begin{equation}
+	\mathbf{y}=\mathbf{X}\beta + E
+\end{equation}
+We can then fit statistical models using the predictor variables from $\mathbf{X}$ and the corresponding response $\mathbf{y}$. This process can then be repeated many times to evaluate model effectiveness.
 
-Lastly, the output data, $Y$, is a vector such that
+\subsubsection{Choice of the Covariance Matrix}
+Recall that data generated using Monte Carlo simulations is distributed according to the $p$-dimensional multivariate normal distribution $\mathcal{N}_p(0, \mathbf{\Sigma})$. The choice for the covariance matrix $\mathbf{\Sigma}$ can have a significant effect on the performance of statistical models. Here, we describe several different types of covariance matrices.
 
-\[ Y = XM + E\]
-\[ Y = 
-\begin{bmatrix}
-	\mathcal{N}(0,\,1)_{1\,1} & \mathcal{N}(0,\,1)_{1\,2} & \dots & \mathcal{N}(0,\,1)_{1\,p}\\
-	\mathcal{N}(0,\,1)_{2\,1} & \mathcal{N}(0,\,1)_{2\,2} & &\\
-	\vdots & & \ddots &\\
-	\mathcal{N}(0,\,1)_{n\,1} & & & \mathcal{N}(0,\,1)_{n\,p}
-\end{bmatrix}
-\begin{bmatrix}
-	\beta_0 \\
-	\beta_1 \\
-	\vdots \\
-	\beta_p
-\end{bmatrix}
-+
-\begin{bmatrix}
-	\mathcal{N}(0,\,1)_1 \\
-	\mathcal{N}(0,\,1)_2 \\
-	\vdots \\
-	\mathcal{N}(0,\,1)_n
-	\end{bmatrix} .
-\]
+\subsubsection{Independent Covariance}
+Independent covariance assumes that the covariance matrix is diagonal; that is, it can be written as
+\begin{equation}
+	\mathbf{\Sigma} = \begin{bmatrix}
+		\sigma_1^2 & 0 & \cdots & 0\\
+		0 & \sigma_2^2 & \cdots & 0\\
+		\vdots & \vdots & \ddots & \vdots\\
+		0 & 0 & \cdots & \sigma_p^2
+	\end{bmatrix}
+\end{equation}
+where $\sigma_i^2$ is the variance of predictor $i$. Because $\mathbf{\Sigma}_{ij}$ whenever $i\neq j$, each pair of predictors are independent.
 
-Completely independent predictor data and their corresponding outputs can be generated thousands of times, each time yielding different values. A model can be fit to the data from each iteration to determine the variance of the model and evaluate randomness.
+\subsubsection{Symmetric Compound}
+With a symmetric compound covariance matrix, we assume that $\mathbf{\Sigma}$ takes the form
+\begin{equation}
+	\mathbf{\Sigma} = \begin{bmatrix}
+		\sigma_1^2 & \rho & \cdots & \rho\\
+		\rho & \sigma_2^2 & \cdots & \rho\\
+		\vdots & \vdots & \ddots & \vdots\\
+		\rho & \rho & \cdots & \sigma_p^2
+	\end{bmatrix}
+\end{equation}
+where $\sigma_i^2$ is the variance of predictor $i$ and $\rho \in (0, 1)$ is the covariance between every pair of predictors.
 
+\subsubsection{Blockwise}
+In a blockwise covariance distribution, we assume that $\mathbf{\Sigma}$ is can be written as a block-diagonal matrix
+\begin{equation}
+	\mathbf{\Sigma} = \begin{bmatrix}
+		S_1 & O & \cdots & O\\
+		O & S_2 & \cdots & O\\
+		\vdots & \vdots & \ddots & \vdots\\
+		O & O & \cdots & S_k
+	\end{bmatrix}
+\end{equation}
+
+Blocks denoted as $O$ are zero blocks. Each block $S_i$ has the form
+\begin{equation}
+	\mathbf{\Sigma} = \begin{bmatrix}
+		\sigma_{r}^2 & \rho & \cdots & \rho\\
+		\rho & \sigma_{r + 1}^2 & \cdots & \rho\\
+		\vdots & \vdots & \ddots & \vdots\\
+		\rho & \rho & \cdots & \sigma_{s}^2
+	\end{bmatrix}	
+\end{equation}
+where $\sigma_i^2$ is the variance of predictor $i$ and $\rho\in (0, 1)$ is the covariance of predictors in the same block.
+
+\subsubsection{Unstructured Covariance}
+Finally, unstructed covariance assumes that $\mathbf{\Sigma}$ takes no structured form. We have
+\begin{equation}
+	\mathbf{\Sigma} = \begin{bmatrix}
+		\sigma_1^2 & \sigma_{12} & \cdots 7 \sigma_{1p}\\
+		\sigma_{21} & \sigma_2^2 & \cdots & \sigma_{2p}\\
+		\vdots & \vdots & \ddots & \vdots \\
+		\sigma_{p1} & \sigma_{p2} & \cdots & \sigma_p^2
+	\end{bmatrix}	
+\end{equation}
+where $\sigma_i^2$ is the variance of predictor $i$ and $\sigma_{ij}$ is the covariance of predictors $i$ and $j$. The covariance matrix is always symmetric, so $\sigma_{ij} = \sigma_{ji}$.
+
+\subsection{Autoregressive Covariance}
+Autoregressive covariance (also called $\text{AR}(1)$), assumes that
+\begin{equation}
+	\mathbf{\Sigma} = \begin{bmatrix}
+		\sigma_1^2 & \rho & \cdots & \rho^{p - 1}\\
+		\rho & \sigma_2^2 & \cdots & \rho^{p - 2}\\
+		\vdots & \vdots & \ddots & \vdots\\
+		\rho^{p - 1} & \rho^{p - 2} & \cdots & \sigma_p^2
+	\end{bmatrix}
+\end{equation}
+where $\sigma_i^2$ is the variance of predictor $i$ and $\rho \in (0, 1)$. In general, for $i\neq j$, we have $\mathbf{\Sigma}_{ij} = \rho^{\vert i - j\vert}$. This implies that predictors that are near each other are more correlated than predictors far apart.
 \subsection{Variance}
 
 \subsection{Accuracy}
