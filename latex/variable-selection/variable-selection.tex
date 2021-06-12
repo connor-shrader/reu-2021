@@ -345,7 +345,7 @@ The response $\mathbf{y}$ can then be computed as
 \end{equation}
 We can then fit statistical models using the predictor variables from $\mathbf{X}$ and the corresponding response $\mathbf{y}$. This process can then be repeated many times to evaluate model effectiveness.
 
-\subsubsection{Choice of the Covariance Matrix}
+\subsection{Choice of the Covariance Matrix}
 Recall that data generated using Monte Carlo simulations is distributed according to the $p$-dimensional multivariate normal distribution $\mathcal{N}_p(0, \mathbf{\Sigma})$. The choice for the covariance matrix $\mathbf{\Sigma}$ can have a significant effect on the performance of statistical models. Here, we describe several different types of covariance matrices.
 
 \subsubsection{Independent Covariance}
@@ -359,6 +359,8 @@ Independent covariance assumes that the covariance matrix is diagonal; that is, 
 	\end{bmatrix}
 \end{equation}
 where $\sigma_i^2$ is the variance of predictor $i$. Because $\mathbf{\Sigma}_{ij}$ whenever $i\neq j$, each pair of predictors are independent.
+
+An independent covariance matrix is easy to use since it is equivalent to just taking $p$ single-variable normal distributions. However, the assumption that each pair of variables is independent is unrealistic; in most real-world situations, there is some correlation between different variables. As such, considering other covariance matrices can lead to results that better reflect real-world data.
 
 \subsubsection{Symmetric Compound}
 With a symmetric compound covariance matrix, we assume that $\mathbf{\Sigma}$ takes the form
@@ -383,9 +385,9 @@ In a blockwise covariance distribution, we assume that $\mathbf{\Sigma}$ is can 
 	\end{bmatrix}
 \end{equation}
 
-Blocks denoted as $O$ are zero blocks. Each block $S_i$ has the form
+Blocks denoted as $O$ are zero blocks. Each block $S_l$ has the form
 \begin{equation}
-	\mathbf{\Sigma} = \begin{bmatrix}
+	S_l = \begin{bmatrix}
 		\sigma_{r}^2 & \rho & \cdots & \rho\\
 		\rho & \sigma_{r + 1}^2 & \cdots & \rho\\
 		\vdots & \vdots & \ddots & \vdots\\
@@ -398,7 +400,7 @@ where $\sigma_i^2$ is the variance of predictor $i$ and $\rho\in (0, 1)$ is the 
 Finally, unstructed covariance assumes that $\mathbf{\Sigma}$ takes no structured form. We have
 \begin{equation}
 	\mathbf{\Sigma} = \begin{bmatrix}
-		\sigma_1^2 & \sigma_{12} & \cdots 7 \sigma_{1p}\\
+		\sigma_1^2 & \sigma_{12} & \cdots & \sigma_{1p}\\
 		\sigma_{21} & \sigma_2^2 & \cdots & \sigma_{2p}\\
 		\vdots & \vdots & \ddots & \vdots \\
 		\sigma_{p1} & \sigma_{p2} & \cdots & \sigma_p^2
