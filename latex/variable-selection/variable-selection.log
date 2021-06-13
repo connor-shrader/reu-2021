@@ -1,58 +1,58 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.12.4)  12 JUN 2021 13:49
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.2) (preloaded format=pdflatex 2021.6.10)  12 JUN 2021 22:04
 entering extended mode
 **./variable-selection.tex
 (variable-selection.tex
-LaTeX2e <2020-10-01> patch level 2
-L3 programming layer <2020-10-27> xparse <2020-03-03>
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
+LaTeX2e <2020-10-01> patch level 4
+L3 programming layer <2021-02-18> xparse <2020-03-03>
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
 Document Class: article 2020/04/10 v1.4m Standard LaTeX document class
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/base\size10.clo
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/base\size10.clo
 File: size10.clo 2020/04/10 v1.4m Standard LaTeX file (size option)
 )
-\c@part=\count175
-\c@section=\count176
-\c@subsection=\count177
-\c@subsubsection=\count178
-\c@paragraph=\count179
-\c@subparagraph=\count180
-\c@figure=\count181
-\c@table=\count182
+\c@part=\count179
+\c@section=\count180
+\c@subsection=\count181
+\c@subsubsection=\count182
+\c@paragraph=\count183
+\c@subparagraph=\count184
+\c@figure=\count185
+\c@table=\count186
 \abovecaptionskip=\skip47
 \belowcaptionskip=\skip48
 \bibindent=\dimen138
 )
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/base\inputenc.sty
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/base\inputenc.sty
 Package: inputenc 2020/08/01 v1.3d Input encoding file
 \inpenc@prehook=\toks15
 \inpenc@posthook=\toks16
 )
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsmath.sty
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsmath.sty
 Package: amsmath 2020/09/23 v2.17i AMS math features
 \@mathmargin=\skip49
 
 For additional information on amsmath, use the `?' option.
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amstext.sty
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amstext.sty
 Package: amstext 2000/06/29 v2.01 AMS text
 
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsgen.sty
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks17
 \ex@=\dimen139
 ))
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsbsy.sty
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 \pmbraise@=\dimen140
 )
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsopn.sty
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsopn.sty
 Package: amsopn 2016/03/08 v2.02 operator names
 )
-\inf@bad=\count183
+\inf@bad=\count187
 LaTeX Info: Redefining \frac on input line 234.
-\uproot@=\count184
-\leftroot@=\count185
+\uproot@=\count188
+\leftroot@=\count189
 LaTeX Info: Redefining \overline on input line 399.
-\classnum@=\count186
-\DOTSCASE@=\count187
+\classnum@=\count190
+\DOTSCASE@=\count191
 LaTeX Info: Redefining \ldots on input line 496.
 LaTeX Info: Redefining \dots on input line 499.
 LaTeX Info: Redefining \cdots on input line 620.
@@ -61,15 +61,15 @@ LaTeX Info: Redefining \cdots on input line 620.
 \big@size=\dimen141
 LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
-\macc@depth=\count188
-\c@MaxMatrixCols=\count189
+\macc@depth=\count192
+\c@MaxMatrixCols=\count193
 \dotsspace@=\muskip16
-\c@parentequation=\count190
-\dspbrk@lvl=\count191
+\c@parentequation=\count194
+\dspbrk@lvl=\count195
 \tag@help=\toks18
-\row@=\count192
-\column@=\count193
-\maxfields@=\count194
+\row@=\count196
+\column@=\count197
+\maxfields@=\count198
 \andhelp@=\toks19
 \eqnshift@=\dimen142
 \alignsep@=\dimen143
@@ -84,31 +84,33 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
 LaTeX Info: Redefining \[ on input line 2923.
 LaTeX Info: Redefining \] on input line 2924.
 )
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amsfonts.sty
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amsfonts.sty
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 \symAMSa=\mathgroup4
 \symAMSb=\mathgroup5
 LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
-) (C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amssymb.sty
+)
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
-) (C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.st
-y
+)
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.sty
+
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.sty
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 \KV@toks@=\toks22
 )
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/generic/iftex\ifvtex.sty
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/generic/iftex\ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/generic/iftex\iftex.sty
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/generic/iftex\iftex.sty
 Package: iftex 2020/03/06 v1.0d TeX engine tests
 ))
-\Gm@cnth=\count195
-\Gm@cntv=\count196
-\c@Gm@tempcnt=\count197
+\Gm@cnth=\count199
+\Gm@cntv=\count266
+\c@Gm@tempcnt=\count267
 \Gm@bindingoffset=\dimen148
 \Gm@wd@mp=\dimen149
 \Gm@odd@mp=\dimen150
@@ -119,36 +121,35 @@ Package: iftex 2020/03/06 v1.0d TeX engine tests
 \Gm@layoutvoffset=\dimen155
 \Gm@dimlist=\toks23
 
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.cfg)
-)
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/listings\listings.sty
-\lst@mode=\count198
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.cfg))
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/listings\listings.sty
+\lst@mode=\count268
 \lst@gtempboxa=\box49
 \lst@token=\toks24
-\lst@length=\count199
+\lst@length=\count269
 \lst@currlwidth=\dimen156
-\lst@column=\count266
-\lst@pos=\count267
+\lst@column=\count270
+\lst@pos=\count271
 \lst@lostspace=\dimen157
 \lst@width=\dimen158
-\lst@newlines=\count268
-\lst@lineno=\count269
+\lst@newlines=\count272
+\lst@lineno=\count273
 \lst@maxwidth=\dimen159
 
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstmisc.sty
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstmisc.sty
 File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
-\c@lstnumber=\count270
-\lst@skipnumbers=\count271
+\c@lstnumber=\count274
+\lst@skipnumbers=\count275
 \lst@framebox=\box50
 )
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/listings\listings.cfg
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/listings\listings.cfg
 File: listings.cfg 2020/03/24 1.8d listings configuration
 ))
 Package: listings 2020/03/24 1.8d (Carsten Heinz)
 
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/fancyhdr\fancyhdr.sty
-Package: fancyhdr 2019/01/31 v3.10 Extensive control of page headers and footer
-s
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/fancyhdr\fancyhdr.sty
+Package: fancyhdr 2021/01/28 v4.0.1 Extensive control of page headers and foote
+rs
 \f@nch@headwidth=\skip52
 \f@nch@O@elh=\skip53
 \f@nch@O@erh=\skip54
@@ -158,216 +159,228 @@ s
 \f@nch@O@erf=\skip58
 \f@nch@O@olf=\skip59
 \f@nch@O@orf=\skip60
-) (C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphicx.st
-y
+)
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphicx.sty
 Package: graphicx 2020/09/09 v1.2b Enhanced LaTeX Graphics (DPC,SPQR)
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphics.sty
+
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphics.sty
 Package: graphics 2020/08/30 v1.4c Standard LaTeX Graphics (DPC,SPQR)
 
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/graphics\trig.sty
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/graphics\trig.sty
 Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
 )
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\graphics.
-cfg
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\graphics.cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: pdftex.def on input line 105.
-
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/graphics-def\pdftex.de
-f
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/graphics-def\pdftex.def
 File: pdftex.def 2020/10/05 v1.2a Graphics/color driver for pdftex
 ))
 \Gin@req@height=\dimen160
 \Gin@req@width=\dimen161
-) (C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/url\url.sty
+) (C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/multirow\multirow.sty
+Package: multirow 2021/03/15 v2.8 Span multiple rows of a table
+\multirow@colwidth=\skip61
+\multirow@cntb=\count276
+\multirow@dima=\skip62
+\bigstrutjot=\dimen162
+)
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/url\url.sty
 \Urlmuskip=\muskip17
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hyperref.sty
-Package: hyperref 2020-05-15 v7.00e Hypertext links for LaTeX
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hyperref.sty
+Package: hyperref 2021-02-10 v7.00j Hypertext links for LaTeX
 
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/generic/ltxcmds\ltxcmds.sty
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/generic/ltxcmds\ltxcmds.sty
 Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
 )
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/generic/pdftexcmds\pdftexcmd
-s.sty
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/generic/pdftexcmds\pdftexcmds.st
+y
 Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
 )
 
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/generic/infwarerr\infwarerr.
-sty
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/generic/infwarerr\infwarerr.sty
 Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
 )
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
 )
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/generic/kvsetkeys\kvsetkeys.
-sty
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/generic/kvsetkeys\kvsetkeys.sty
 Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
 )
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/generic/kvdefinekeys\kvdefin
-ekeys.sty
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/generic/kvdefinekeys\kvdefinekey
+s.sty
 Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
 )
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/generic/pdfescape\pdfescape.
-sty
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/generic/pdfescape\pdfescape.sty
 Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
-)
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/hycolor\hycolor.sty
+) (C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/hycolor\hycolor.sty
 Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
 )
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/letltxmacro\letltxmacr
-o.sty
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/letltxmacro\letltxmacro.st
+y
 Package: letltxmacro 2019/12/03 v1.6 Let assignment for LaTeX macros (HO)
-)
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/auxhook\auxhook.sty
+) (C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/auxhook\auxhook.sty
 Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
 )
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/kvoptions\kvoptions.st
-y
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/kvoptions\kvoptions.sty
 Package: kvoptions 2020-10-07 v3.14 Key value format for package options (HO)
 )
-\@linkdim=\dimen162
-\Hy@linkcounter=\count272
-\Hy@pagecounter=\count273
- (C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\pd1enc.def
-File: pd1enc.def 2020-05-15 v7.00e Hyperref: PDFDocEncoding definition (HO)
+\@linkdim=\dimen163
+\Hy@linkcounter=\count277
+\Hy@pagecounter=\count278
+
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\pd1enc.def
+File: pd1enc.def 2021-02-10 v7.00j Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
 ... no UTF-8 mapping file for font encoding PD1
 )
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/generic/intcalc\intcalc.sty
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hyperref-langpatc
+hes.def
+File: hyperref-langpatches.def 2021-02-10 v7.00j Hyperref: patches for babel la
+nguages
+)
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/generic/intcalc\intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/generic/etexcmds\etexcmds.st
-y
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/generic/etexcmds\etexcmds.sty
 Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
 )
-\Hy@SavedSpaceFactor=\count274
-Package hyperref Info: Hyper figures OFF on input line 4464.
-Package hyperref Info: Link nesting OFF on input line 4469.
-Package hyperref Info: Hyper index ON on input line 4472.
-Package hyperref Info: Plain pages OFF on input line 4479.
-Package hyperref Info: Backreferencing OFF on input line 4484.
+\Hy@SavedSpaceFactor=\count279
+
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\puenc.def
+File: puenc.def 2021-02-10 v7.00j Hyperref: PDF Unicode definition (HO)
+Now handling font encoding PU ...
+... no UTF-8 mapping file for font encoding PU
+)
+Package hyperref Info: Hyper figures OFF on input line 4192.
+Package hyperref Info: Link nesting OFF on input line 4197.
+Package hyperref Info: Hyper index ON on input line 4200.
+Package hyperref Info: Plain pages OFF on input line 4207.
+Package hyperref Info: Backreferencing OFF on input line 4212.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
-Package hyperref Info: Bookmarks ON on input line 4717.
-\c@Hy@tempcnt=\count275
-LaTeX Info: Redefining \url on input line 5076.
-\XeTeXLinkMargin=\dimen163
- (C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/generic/bitset\bitset.sty
+Package hyperref Info: Bookmarks ON on input line 4445.
+\c@Hy@tempcnt=\count280
+LaTeX Info: Redefining \url on input line 4804.
+\XeTeXLinkMargin=\dimen164
+
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/generic/bitset\bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
 
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/generic/bigintcalc\bigintcal
-c.sty
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/generic/bigintcalc\bigintcalc.st
+y
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 )
 ))
-\Fld@menulength=\count276
-\Field@Width=\dimen164
-\Fld@charsize=\dimen165
-Package hyperref Info: Hyper figures OFF on input line 6347.
-Package hyperref Info: Link nesting OFF on input line 6352.
-Package hyperref Info: Hyper index ON on input line 6355.
-Package hyperref Info: backreferencing OFF on input line 6362.
-Package hyperref Info: Link coloring OFF on input line 6367.
-Package hyperref Info: Link coloring with OCG OFF on input line 6372.
-Package hyperref Info: PDF/A mode OFF on input line 6377.
-LaTeX Info: Redefining \ref on input line 6417.
-LaTeX Info: Redefining \pageref on input line 6421.
-
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/base\atbegshi-ltx.sty
+\Fld@menulength=\count281
+\Field@Width=\dimen165
+\Fld@charsize=\dimen166
+Package hyperref Info: Hyper figures OFF on input line 6075.
+Package hyperref Info: Link nesting OFF on input line 6080.
+Package hyperref Info: Hyper index ON on input line 6083.
+Package hyperref Info: backreferencing OFF on input line 6090.
+Package hyperref Info: Link coloring OFF on input line 6095.
+Package hyperref Info: Link coloring with OCG OFF on input line 6100.
+Package hyperref Info: PDF/A mode OFF on input line 6105.
+LaTeX Info: Redefining \ref on input line 6145.
+LaTeX Info: Redefining \pageref on input line 6149.
+ (C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/base\atbegshi-ltx.sty
 Package: atbegshi-ltx 2020/08/17 v1.0a Emulation of the original atbegshi packa
 ge
 with kernel methods
 )
-\Hy@abspage=\count277
-\c@Item=\count278
-\c@Hfootnote=\count279
+\Hy@abspage=\count282
+\c@Item=\count283
+\c@Hfootnote=\count284
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
- (C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hpdftex.def
-File: hpdftex.def 2020-05-15 v7.00e Hyperref driver for pdfTeX
+ (C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hpdftex.def
+File: hpdftex.def 2021-02-10 v7.00j Hyperref driver for pdfTeX
 
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/base\atveryend-ltx.sty
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/base\atveryend-ltx.sty
 Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atvery packag
 e
 with kernel methods
 )
-\Fld@listcount=\count280
-\c@bookmark@seq@number=\count281
+\Fld@listcount=\count285
+\c@bookmark@seq@number=\count286
 
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/rerunfilecheck\rerunfi
-lecheck.sty
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/rerunfilecheck\rerunfilech
+eck.sty
 Package: rerunfilecheck 2019/12/05 v1.9 Rerun checks for auxiliary files (HO)
 
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/generic/uniquecounter\unique
-counter.sty
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/generic/uniquecounter\uniquecoun
+ter.sty
 Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 )
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 86.
 )
-\Hy@SectionHShift=\skip61
+\Hy@SectionHShift=\skip63
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 18.
+Package hyperref Info: Option `colorlinks' set `true' on input line 19.
 
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption.sty
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption.sty
 Package: caption 2020/10/26 v3.5g Customizing captions (AR)
 
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption3.sty
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption3.sty
 Package: caption3 2020/10/21 v2.2e caption3 kernel (AR)
-\captionmargin=\dimen166
-\captionmargin@=\dimen167
-\captionwidth=\dimen168
-\caption@tempdima=\dimen169
-\caption@indent=\dimen170
-\caption@parindent=\dimen171
-\caption@hangindent=\dimen172
+\captionmargin=\dimen167
+\captionmargin@=\dimen168
+\captionwidth=\dimen169
+\caption@tempdima=\dimen170
+\caption@indent=\dimen171
+\caption@parindent=\dimen172
+\caption@hangindent=\dimen173
 Package caption Info: Standard document class detected.
 )
-\c@caption@flags=\count282
-\c@continuedfloat=\count283
+\c@caption@flags=\count287
+\c@continuedfloat=\count288
 Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
 )
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/caption\subcaption.sty
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/caption\subcaption.sty
 Package: subcaption 2020/10/07 v1.3j Sub-captions (AR)
-\c@subfigure=\count284
-\c@subtable=\count285
+\c@subfigure=\count289
+\c@subtable=\count290
 )
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
-) (C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang2.st
-y
+)
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang2.sty
 File: lstlang2.sty 2020/03/24 1.8d listings language file
 )
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang3.sty
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang3.sty
 File: lstlang3.sty 2020/03/24 1.8d listings language file
 )
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pd
-ftex.def
-File: l3backend-pdftex.def 2020-09-24 L3 backend support: PDF output (pdfTeX)
-\l__kernel_color_stack_int=\count286
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdftex
+.def
+File: l3backend-pdftex.def 2021-02-18 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count291
 \l__pdf_internal_box=\box51
 ) (variable-selection.aux)
 \openout1 = `variable-selection.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -403,75 +416,72 @@ LaTeX Font Info:    ... okay on input line 50.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-\c@lstlisting=\count287
-
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.m
-kii
+\c@lstlisting=\count292
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count288
-\scratchdimen=\dimen173
+\scratchcounter=\count293
+\scratchdimen=\dimen174
 \scratchbox=\box52
-\nofMPsegments=\count289
-\nofMParguments=\count290
+\nofMPsegments=\count294
+\nofMParguments=\count295
 \everyMPshowfont=\toks25
-\MPscratchCnt=\count291
-\MPscratchDim=\dimen174
-\MPnumerator=\count292
-\makeMPintoPDFobject=\count293
+\MPscratchCnt=\count296
+\MPscratchDim=\dimen175
+\MPnumerator=\count297
+\makeMPintoPDFobject=\count298
 \everyMPtoPDFconversion=\toks26
 )
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-
-base.sty
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base
+.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 85.
-)
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/graphics\color.sty
+) (C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/graphics\color.sty
 Package: color 2020/02/24 v1.2b Standard LaTeX Color (DPC)
 
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\color.cfg
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package color Info: Driver file: pdftex.def on input line 147.
 )
-Package hyperref Info: Link coloring ON on input line 50.
+Package hyperref Info: Link coloring ON on input line 51.
 
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\nameref.sty
-Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\nameref.sty
+Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
 
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/refcount\refcount.sty
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/refcount\refcount.sty
 Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 )
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/generic/gettitlestring\getti
-tlestring.sty
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/generic/gettitlestring\gettitles
+tring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count294
+\c@section@level=\count299
 )
-LaTeX Info: Redefining \ref on input line 50.
-LaTeX Info: Redefining \pageref on input line 50.
-LaTeX Info: Redefining \nameref on input line 50.
+LaTeX Info: Redefining \ref on input line 51.
+LaTeX Info: Redefining \pageref on input line 51.
+LaTeX Info: Redefining \nameref on input line 51.
  (variable-selection.out) (variable-selection.out)
 \@outlinefile=\write3
 \openout3 = `variable-selection.out'.
 
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 52.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 53.
 
 
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 52.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 53.
 
 
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
+(C:\Users\PC\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 (variable-selection.toc [1
 
-{C:/Users/Connor/AppData/Local/MiKTeX/pdftex/config/pdftex.map}])
+{C:/Users/PC/AppData/Local/MiKTeX/pdftex/config/pdftex.map}])
 \tf@toc=\write4
 \openout4 = `variable-selection.toc'.
 
@@ -480,28 +490,28 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [3]
-<images/best-subset-selection.png, id=188, 694.09312pt x 325.96782pt>
+<images/best-subset-selection.png, id=183, 694.09312pt x 325.96782pt>
 File: images/best-subset-selection.png Graphic file (type png)
 <use images/best-subset-selection.png>
 Package pdftex.def Info: images/best-subset-selection.png  used on input line 1
-20.
+21.
 (pdftex.def)             Requested size: 433.62pt x 203.6498pt.
-<images/forward-stepwise-selection.png, id=190, 694.09312pt x 325.96782pt>
+<images/forward-stepwise-selection.png, id=185, 694.09312pt x 325.96782pt>
 File: images/forward-stepwise-selection.png Graphic file (type png)
 <use images/forward-stepwise-selection.png>
 Package pdftex.def Info: images/forward-stepwise-selection.png  used on input l
-ine 134.
+ine 135.
 (pdftex.def)             Requested size: 433.62pt x 203.6498pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [4 <./images/best-subset-selection.png>]
-<images/backward-stepwise-selection.png, id=203, 694.09312pt x 325.96782pt>
+<images/backward-stepwise-selection.png, id=198, 694.09312pt x 325.96782pt>
 File: images/backward-stepwise-selection.png Graphic file (type png)
 <use images/backward-stepwise-selection.png>
 Package pdftex.def Info: images/backward-stepwise-selection.png  used on input 
-line 148.
+line 149.
 (pdftex.def)             Requested size: 433.62pt x 203.6498pt.
 
 
@@ -509,73 +519,73 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [5 <./images/forward-stepwise-selection.png>] [6 <./images/backward-stepwise-se
 lection.png>] [7]
-<images/ridge-lasso.png, id=235, 691.08188pt x 536.75531pt>
+<images/ridge-lasso.png, id=230, 691.08188pt x 536.75531pt>
 File: images/ridge-lasso.png Graphic file (type png)
 <use images/ridge-lasso.png>
-Package pdftex.def Info: images/ridge-lasso.png  used on input line 218.
+Package pdftex.def Info: images/ridge-lasso.png  used on input line 219.
 (pdftex.def)             Requested size: 281.85587pt x 218.91628pt.
-<images/lasso-vs-ridge-instability.png, id=237, 806.26219pt x 584.1825pt>
+<images/lasso-vs-ridge-instability.png, id=232, 806.26219pt x 584.1825pt>
 File: images/lasso-vs-ridge-instability.png Graphic file (type png)
 <use images/lasso-vs-ridge-instability.png>
 Package pdftex.def Info: images/lasso-vs-ridge-instability.png  used on input l
-ine 228.
+ine 229.
 (pdftex.def)             Requested size: 328.82707pt x 238.2506pt.
  [8 <./images/ridge-lasso.png>] [9 <./images/lasso-vs-ridge-instability.png>]
-<images/penalty.png, id=266, 691.08188pt x 536.75531pt>
+<images/penalty.png, id=261, 691.08188pt x 536.75531pt>
 File: images/penalty.png Graphic file (type png)
 <use images/penalty.png>
-Package pdftex.def Info: images/penalty.png  used on input line 311.
+Package pdftex.def Info: images/penalty.png  used on input line 312.
 (pdftex.def)             Requested size: 187.89914pt x 145.93326pt.
-<images/derivative.png, id=267, 691.08188pt x 536.75531pt>
+<images/derivative.png, id=262, 691.08188pt x 536.75531pt>
 File: images/derivative.png Graphic file (type png)
 <use images/derivative.png>
-Package pdftex.def Info: images/derivative.png  used on input line 317.
+Package pdftex.def Info: images/derivative.png  used on input line 318.
 (pdftex.def)             Requested size: 187.89914pt x 145.93326pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<images/prediction.png, id=269, 691.08188pt x 536.75531pt>
+<images/prediction.png, id=264, 691.08188pt x 536.75531pt>
 File: images/prediction.png Graphic file (type png)
 <use images/prediction.png>
-Package pdftex.def Info: images/prediction.png  used on input line 329.
+Package pdftex.def Info: images/prediction.png  used on input line 330.
 (pdftex.def)             Requested size: 187.89914pt x 145.93326pt.
 [10] [11 <./images/penalty.png> <./images/derivative.png> <./images/prediction.
-png>] [12] [13] [14] (variable-selection.bbl) [15] (variable-selection.aux)
+png>] [12] [13] [14] [15] (variable-selection.bbl) [16] (variable-selection.aux
+)
 Package rerunfilecheck Info: File `variable-selection.out' has not changed.
-(rerunfilecheck)             Checksum: 1268C362688DBBCC5BABA4F1CCC36343;2032.
+(rerunfilecheck)             Checksum: 9474C9AC190B99198E27C1A29CC117D4;4936.
  ) 
 Here is how much of TeX's memory you used:
- 10701 strings out of 479799
- 162332 string characters out of 2869248
- 640054 words of memory out of 3000000
- 27426 multiletter control sequences out of 15000+200000
- 544684 words of font info for 66 fonts, out of 3000000 for 9000
+ 13425 strings out of 479334
+ 198381 string characters out of 2858509
+ 679736 words of memory out of 3000000
+ 30597 multiletter control sequences out of 15000+200000
+ 413026 words of font info for 64 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 66i,13n,72p,968b,1723s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm
-/cmbx10.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/public/a
-msfonts/cm/cmbx12.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type
-1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX
-/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/Connor/AppData/Local/Progr
-ams/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Connor/AppData/L
-ocal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/Connor/
-AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/User
-s/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb
-><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
-cmr12.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
-fonts/cm/cmr17.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/p
-ublic/amsfonts/cm/cmr5.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts
-/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/Connor/AppData/Local/Programs/MiKT
-eX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/Connor/AppData/Local/Progr
-ams/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Connor/AppData/L
-ocal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/Connor/
-AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Use
-rs/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.p
-fb>
-Output written on variable-selection.pdf (15 pages, 345620 bytes).
+ 71i,13n,74p,992b,1720s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Users/PC/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmb
+x10.pfb><C:/Users/PC/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/
+cm/cmbx12.pfb><C:/Users/PC/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
+fonts/cm/cmcsc10.pfb><C:/Users/PC/AppData/Local/Programs/MiKTeX/fonts/type1/pub
+lic/amsfonts/cm/cmex10.pfb><C:/Users/PC/AppData/Local/Programs/MiKTeX/fonts/typ
+e1/public/amsfonts/cm/cmmi10.pfb><C:/Users/PC/AppData/Local/Programs/MiKTeX/fon
+ts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/PC/AppData/Local/Programs/MiKTe
+X/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/PC/AppData/Local/Programs/
+MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/PC/AppData/Local/Prog
+rams/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/PC/AppData/Local
+/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/PC/AppData/
+Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/PC/AppD
+ata/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/PC/
+AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users
+/PC/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:
+/Users/PC/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pf
+b><C:/Users/PC/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmt
+i10.pfb><C:/Users/PC/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/
+cm/cmtt10.pfb>
+Output written on variable-selection.pdf (16 pages, 354432 bytes).
 PDF statistics:
- 399 PDF objects out of 1000 (max. 8388607)
- 95 named destinations out of 1000 (max. 500000)
- 265 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 406 PDF objects out of 1000 (max. 8388607)
+ 101 named destinations out of 1000 (max. 500000)
+ 257 words of extra memory for PDF output out of 10000 (max. 10000000)
 

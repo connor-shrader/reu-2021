@@ -6,6 +6,7 @@
 \usepackage{fancyhdr}
 \usepackage{graphicx}
 \usepackage{listings}
+\usepackage{multirow}
 \usepackage{url}
 
 \usepackage{hyperref}
@@ -419,9 +420,49 @@ Autoregressive covariance (also called $\text{AR}(1)$), assumes that
 	\end{bmatrix}
 \end{equation}
 where $\sigma_i^2$ is the variance of predictor $i$ and $\rho \in (0, 1)$. In general, for $i\neq j$, we have $\mathbf{\Sigma}_{ij} = \rho^{\vert i - j\vert}$. This implies that predictors that are near each other are more correlated than predictors far apart.
-\subsection{Variance}
 
-\subsection{Accuracy}
+\subsection{Confusion Matrix}
+In classification, a confusion matrix, as visible in Table \ref{tab:confusion_matrix}, can tell us how well a model classifies different objects. For regression, there is no classification, and so a confusion matrix cannot be used in its traditional way. However, it can be used to identify how well a variable selection linear regression model chooses its predictors. In this case, it can be viewed as classification of whether the model chooses the predictor or not, compared to the truth of whether the predictor has a coefficient $> 0$ or is not significant and thus is 0. This results in 4 possibilities for each model coefficient: True Positive meaning that the model correctly included the predictor, True Negative meaning that the model correctly didn't include the predictor, False Positive meaning that the model incorrectly included the predictor, and False Negative meaning that the model incorrectly didn't include the predictor.
+
+
+The values in a confusion matrix can be used to calculate a variety of different statistics. Some of the most common of these statistics are accuracy, sensitivity, and specificity. The importance of each statistic depends on the scenario, but the higher the accuracy, sensitivity, or specificity; the better.
+
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{llll}
+		&                       & \multicolumn{2}{c}{Predicted Condition}                       \\ \cline{3-4} 
+		& \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{Positive} & \multicolumn{1}{l|}{Negative} \\ \cline{2-4} 
+		\multicolumn{1}{c|}{\multirow{2}{*}{True Condition}} & \multicolumn{1}{l|}{Positive} & \multicolumn{1}{l|}{True Positive (TP)} & \multicolumn{1}{l|}{False Negative (FN)} \\ \cline{2-4} 
+		\multicolumn{1}{c|}{}                                & \multicolumn{1}{l|}{Negative} & \multicolumn{1}{l|}{False Positive (FP)} & \multicolumn{1}{l|}{True Negative (TN)}  \\ \cline{2-4} 
+	\end{tabular}
+	\caption{Confusion Matrix}
+	\label{tab:confusion_matrix}
+\end{table}
+
+Accuracy represents the total percentage of classifications that are classified correctly. This is by far the most commonly used statistic and can be calculated by
+\begin{equation}
+	\text{Accuracy (ACC)} = \frac{TP + TN}{Total} \,.
+\end{equation}
+
+Sensitivity is the true positive rate. In other words, it is the rate of True Positive classifications against the total amount of actual Positive classifications. Sensitivity is often very important in tests for a disease or illness. This is because a patient can always be tested again if their positive result is false, but if a positive patient is mistakenly diagnosed as negative, the illness can go undetected and can lead to injuries or mortality. In these scenarios, specificity will often be sacrificed for increased sensitivity. Sensitivity can be calculated by
+\begin{equation}
+	\text{Sensitivity (SEN)} = \frac{TP}{TP + FN} \, .
+\end{equation}
+
+Specificity is the true negative rate. It is the rate of True Negative classifications against the total number of actual Negative classifications. Specificity is very important when False Positive results are very detrimental. In many cases, False Positive results are not as detrimental as False Negatives and thus specificity is often traded for sensitivity. However, in cases such as the court system, having a very high specificity is important so that innocent people are not wrongly convicted of crimes they did not commit. Specificity, also known as true negative rate, can be calculated by
+\begin{equation}
+	\text{Specificity (TNR)} = \frac{TN}{TN + FP} \, .
+\end{equation}
+
+Another commonly used confusion matrix statistic is F-score. F-score also helps measure the accuracy of classifications. It is determined from the precision and sensitivity of a model and helps to portray the balance between the two. Precision, also known as positive predictive value, can be calculated by
+\begin{equation}
+	\text{Precision (PPV)} = \frac{TP}{TP + FP} .
+\end{equation}
+
+With the equation for precision and sensitivity, the F-score can be calculated and simplified to
+\begin{equation}
+	F_1 = \frac{2 \cdot PPV \cdot SEN}{PPV + SEN} = \frac{2 \cdot TP}{2 \cdot TP + FP + FN}\, .
+\end{equation}
 
 \subsection{Bias}
 Bias is the difference between the estimated value of a coefficient and its true value. Because it necessitates the true value of a coefficient, bias can only be calculated when data is generated using Monte Carlo methods. Bias can be calculated as a function of the euclidean distance between the predictor coefficients through the equation
@@ -431,6 +472,8 @@ Bias is the difference between the estimated value of a coefficient and its true
 \end{equation}
 
 Variable selection linear regression methods increase bias, but still lead to overall decreases in error because they decrease error from variance. This trade-off must be carefully balanced and depends greatly on the environment of the data.
+%can add a graphic about the variance-bias tradeoff, once we find out how to calculate that
+
 
 \newpage
 \bibliographystyle{plain}
