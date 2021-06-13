@@ -202,11 +202,11 @@ for some tuning parameter $t$.
 
 The least absolute shrinkage and selection operation, often referred to as \textit{lasso}, is a shrinkage method with a very similar form to lasso regression \cite{tibshirani1996regression, james2017islr, james2013introduction}. The coefficient estimates satisfy
 \begin{equation}
-	\hat{\beta}^{\text{lasso}}=\argmin{\beta}\left\{ \sum\limits_{i = 1}^n \left( y_i - \beta_0 - \sum\limits_{i = 1}^p \beta_j x_{ij} \right) + \lambda\sum\limits_{j = 1}^p \vert \beta_j \vert \right\}
+	\hat{\beta}^{\text{lasso}}=\argmin{\beta}\left\{ \sum\limits_{i = 1}^n \left( y_i - \beta_0 - \sum\limits_{j = 1}^p \beta_j x_{ij} \right) + \lambda\sum\limits_{j = 1}^p \vert \beta_j \vert \right\}
 \end{equation}
 If $\lambda = 0$, then the lasso model is equivalent to the ordinary least squares model; if $\lambda \to \infty$, then the coefficients for all predictors will be set to 0. An equivalently way to define lasso regression is by
 \begin{equation}
-	\hat{\beta}^{\text{ridge}} = \argmin{\beta}\left\{ \sum_{i=1}^{n} \left( y_i - \beta_0 - \sum_{j=1}^{p} \beta_jx_{ij} \right)^2 \right\}\quad\text{subject to}\quad \sum_{j=1}^{p} \vert \beta_j \vert\leq t
+	\hat{\beta}^{\text{lasso}} = \argmin{\beta}\left\{ \sum_{i=1}^{n} \left( y_i - \beta_0 - \sum_{j=1}^{p} \beta_jx_{ij} \right)^2 \right\}\quad\text{subject to}\quad \sum_{j=1}^{p} \vert \beta_j \vert\leq t
 \end{equation}
 where $t$ is a tuning parameter.
 
