@@ -1,8 +1,16 @@
-# monte-carlo.r
+# simulation.r
 # Gabe Ackall, Seongtae Kim, Connor Shrader
 
 # This file contains functions for generating data and fitting regression models
 # using Monte Carlo simulations.
+
+# FUNCTIONS:
+#   generate_coefficients() (Helper function)
+#   generate_data()
+#   fit_models()
+#   model_data_frame() (Helper function)
+#   results_table()
+#   monte_carlo()
 
 # R version: 4.1.0
 library(tidyverse) # v1.3.1
@@ -12,12 +20,40 @@ library(ncvreg) # v3.13.0
 library(glmnet) # v4.1-1
 library(MASS) # v7.3-54
 
+
+# This helper function takes in a vector beta and the number of
+# predictors p. If beta is NULL, then this function returns a default
+# vector containing some coefficient values. If beta is not NULL, then beta
+# is shortened or extended to have (p + 1) values. Any entries that are added
+# will have a value of zero.
+# This function is used to create a valid coefficient vector which is used to
+# generate simulated data in generate_data().
+generate_coefficients <- function(beta, p) {
+  if (is.null(beta)) {
+    beta <- c(1, 2, -2, 0, 0, 0.5, 3)
+  }
+  
+  # Extend or shrink the coefficient list to have length (p + 1). If beta
+  # is too short, the entries added are set to zero.
+  if (length(beta) < p + 1) {
+    zeroes <- rep(0, (p + 1) - length(beta))
+    beta <- c(beta, zeroes)
+  }
+  else if (length(beta) > p + 1) {
+    beta <- beta[1:(p + 1)]
+  }
+  
+  return(beta)
+}
+
+
+
 # generate_data() is used to generate data.
 #
 # Arguments:
+#   seed: Random seed to generate the data.
 #   n: Number of observations.
 #   p: Number of predictors.
-#   seed: Random seed to generate the data.
 #   var (default 1): Vector containing the variance of each predictor. If the
 #     length of var is less than p, then var is extended using rep()
 #   type (default "independent"): Determines the covariance of the data.
@@ -37,24 +73,13 @@ library(MASS) # v7.3-54
 #     less than (p + 1) values, beta is extended by zero until it has length (p + 1).
 #     If beta = NONE, some default coefficient values are used.
 #   error_var (default 1): The variance of the random error.
-generate_data <- function(n, p, seed, var = 1, type = "independent", corr = 0,
+generate_data <- function(seed, n, p, var = 1, type = "independent", corr = 0,
                           beta = NULL, error_var = 1) {
   set.seed(seed)
   
-  # If no coefficient values were provided, generate some default values.
-  if (is.null(beta)) {
-    beta <- c(1, 2, -2, 0, 0, 0.5, 3)
-  }
-  
-  # Extend or shrink the coefficient list to have length (p + 1). If beta
-  # is too short, the entries added are set to zero.
-  if (length(beta) < p + 1) {
-    zeroes <- rep(0, (p + 1) - length(beta))
-    beta <- c(beta, zeroes)
-  }
-  else if (length(beta) > p + 1) {
-    beta <- beta[1:(p + 1)]
-  }
+  # Generate the coefficient values if beta is NULL or does not have the right
+  # length.
+  beta <- generate_coefficients(beta, p)
   
   # sd will be used for the standard deviation when we call rnorm_multi() (which
   # will generate our data). sd[i] is the standard deviation for predictor i.
@@ -148,7 +173,7 @@ fit_models <- function(dat, n, p) {
   
   bf = stepAIC(nm, scope=list(lower=nm, upper=fm), direction="forward", k=log(nrow(dat)), trace=F, steps=3000) #BIC
   models[["bf"]] <- bf
-   
+  
   
   # AIC and BIC model selection for stepwise forward
   asf = stepAIC(nm, scope=list(lower=nm, upper=fm), direction="both", k=2, trace=F, steps=3000) #AIC
@@ -197,23 +222,25 @@ model_data_frame <- function(model, model_name) {
   df
 }
 
+
+
 # This function takes in a named list of models and the number of predictors.
 # It returns a data frame containing the coefficient estimates for each model.
-results_table <- function(models, p) {
+results_table <- function(models, beta, p) {
   row_names <- c("(Intercept)", paste("x", 1:p, sep = ""))
   
   # Create a dataframe with two columns. The first column are the variable names
   # ((Intercept), x1, x2, ..., xp). The second column contains the actual
   # coefficient values.
-  results <- data.frame(row_names = row_names, soln = c(1, 2, -2, 0, 0, 0.5, 3, rep(0, (p-6))))
+  results <- data.frame(row_names = row_names, soln = generate_coefficients(beta, p))
   
   # This loop iterates through each model and creates a dataframe containing the
   # coefficient estimates for that model. Then, this dataframe is joined with df.
   # At the end of the loop, df contains the coefficients from all models.
   for (i in 1:length(models)) {
     results <- left_join(results, model_data_frame(models[[i]], names(models)[[i]]),
-                    by = "row_names",
-                    all.x = TRUE
+                         by = "row_names",
+                         all.x = TRUE
     )
   }
   
@@ -228,47 +255,13 @@ results_table <- function(models, p) {
 
 
 
-
-# This function inputs a model and test data. It then computes and returns
-# the mean squared error.
-test_mse <- function(model, test_dat) {
-  if (class(model) == "cv.ncvreg") { #checks for mcp or scad model
-    y_hat <-  data.frame(predict(model, X = as.matrix(test_dat[,-1])))
-  }
-  else if (class(model) == "cv.glmnet") { #check for lasso, ridge, enet model
-    y_hat <-  data.frame(predict(model, newx = as.matrix(test_dat[,-1])))
-  }
-  else { #rest are lm models
-    y_hat <- data.frame(predict(model, newdata = test_dat[,-1]))
-  }
-  
-  y <- test_dat[,1]
-  mse <- mean(((y - y_hat)^2)[,1]) #take mean of residuals squared
-  return(mse)
-}
-
-
-# This function inputs a result table (from calling results_table())
-# and the name of a column and computes the Euclidean distance between
-# results$soln and results$col. This gives an estimate for the bias for the
-# coefficients of a model.
-coefficient_bias <- function(results, col) {
-  return(sqrt(sum((results$soln - results$col)^2)))
-}
-
-
-
-# This function combines the processes from the functions
-# generate_data(), fit_models(), test_mse(), and results_table().
-#
-# Arguments:
-#   n: Number of observations.
-#   p: Number of predictors. We require that p >= 6. If p < 6, this function
-#     does nothing.
-#   seed: Random seed to generate the data.
-monte_carlo <- function(seed, n, p, ...) {
+# This function combines the processes of generate_data(), fit_models(), and
+# results_table(). This function takes in any inputs that go into generate_data(),
+# and this function outputs a list containing the outputs of fit_models()
+# and results_table().
+monte_carlo <- function(seed, n, p, beta = NULL, ...) {
   # Generated training AND test data.
-  all.dat <- generate_data(n = n, p = p, seed = seed, ...)
+  all.dat <- generate_data(seed = seed, n = n, p = p, beta = beta, ...)
   
   # The first half of the data is used for training. The other half
   # is used for testing.
@@ -280,114 +273,8 @@ monte_carlo <- function(seed, n, p, ...) {
   
   # Generate the coefficient table and compute the mean squared error
   # for each model.
-  coefs_df <- results_table(models, p = p)
+  coefs_df <- results_table(models, beta = beta, p = p)
   mse_list <- lapply(models, test_mse, test_dat = test.dat)
   
   return(list(coefficients = coefs_df, models = models, mse = mse_list))
 }
-
-
-# This helper function compares two boolean values and determines whether there
-# is a true positive (tp), false negative (fn), false positive (fp), or
-# true negative (tn). The first boolean is the actual value, while the second
-# boolean is the predicted value. This function is used for
-# generate_confusion_matrices().
-compare_coefficient_estimate <- function(solution, prediction) {
-  if (solution & prediction) {
-    return("tp")
-  }
-  else if (solution & !prediction) {
-    return("fn")
-  }
-  else if (!solution & prediction) {
-    return("fp")
-  }
-  else {
-    return("tn")
-  }
-}
-
-# This function takes in a list of test results (true negative, false negative,
-# false positive or true negative) and combines the sum of each result into
-# a confusion matrix. Despite being called a confusion matrix, the returned
-# object is a data frame. This function is used in generate_confusion_matrices().
-confusion_matrix <- function(lis) {
-  confusion_matrix <- data.frame(
-    actual_negative = c(sum(lis == "tn"), sum(lis == "fp")),
-    actual_positive = c(sum(lis == "fn"), sum(lis == "tp")),
-    row.names = c("predicted_negative", "predicted_positive")
-  )
-  
-  return(confusion_matrix)
-}
-
-# This function takes a table of coefficient estimates (from results_table())
-# and computes the confusion matrix for each model. This function then returns a list
-# containing these matrices.
-generate_confusion_matrices <- function(coefs) {
-  # Create a data frame where each entry is TRUE if the corresponding entry in
-  # coefs is non-zero; otherwise, the entry is FALSE.
-  coef_is_nonzero <- as.data.frame(ifelse(coefs == 0, FALSE, TRUE))
-  
-  # For each column of coef_is_nonzero, we compare its entries to the entries
-  # in the "soln" column. This gives us a list whose entries have four possible values:
-  # tn (true negative), false negative (fn), false positive (fp), or true
-  # positive (tp). For example, if a certain model correctly predicts that a
-  # coefficient will be non-zero, the corresponding entry will be set to "tp".
-  test_results <- as.data.frame(
-    apply(X = coef_is_nonzero,
-          MARGIN = 2,
-          FUN = function(prediction, solution) {
-            mapply(compare_coefficient_estimate, solution, prediction)
-          },
-          solution = coef_is_nonzero$soln)
-  )
-  
-  # For each column of test_results, compute the confusion matrix based on the
-  # counts of tn, fn, fp, and tp. This then gets returned.
-  matrices <- apply(X = test_results, MARGIN = 2, FUN = confusion_matrix)
-  
-  return(matrices)
-}
-
-
-seeds <- c(100:119)
-
-# Run monte_carlo 20 times, each time with 200 observations and 10 predictors.
-# results <- lapply(seeds, monte_carlo, n = 200, p = 10, type = "independent")
-#(lapply(seeds, monte_carlo, n = 200, p = 10, type = "independent"))
-# results2 <- lapply(seeds, monte_carlo, n = 200, p = 10, type = "symmetric")
-#system.time(lapply(seeds, monte_carlo, n = 200, p = 10, type = "symmetric"))
-
-
-# Calculate sample variance of the coefficients
-x_dif_2 <- function(coef_df, model){
-  x_hat <- coef_df[["coefficients"]][model]
-  betas <- coef_df[["coefficients"]]["soln"]
-  x_difference <- betas - x_hat
-  return(x_difference^2)
-}
-
-sample_mean <- function(row, df){  #takes sample mean: sum(x)/(n-1)
-  total <- sum(df[row,])
-  n <- length(df[row, ])
-  samp_avg <- total / (n-1)
-  return(samp_avg)
-}
-
-sample_var <- function(model, coefs_list){
-  x_dif_df <-  lapply(coefs_list, x_dif_2, model = model)
-  x_dif_df <- as.data.frame(x_dif_df)
-  names_list <- rownames(x_dif_df)
-  coef_variance <- lapply(names_list, sample_mean, df = x_dif_df) #returns list with sample variance for each coefficient in model
-  return(coef_variance)
-}
-
-# coef_sample_var <- sample_var(model = "lasso", coefs_list = results) #sample variance for coefficients of lasso model
-
-ex.dat <- generate_data(n = 100, p = 10, seed = 1)
-models <- fit_models(ex.dat, n = 100, p = 10)
-results <- results_table(models, p = 10)
-
-coefficient_bias(results$soln, models$lasso)
-
