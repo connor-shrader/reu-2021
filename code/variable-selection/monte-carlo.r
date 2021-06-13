@@ -247,6 +247,17 @@ test_mse <- function(model, test_dat) {
   return(mse)
 }
 
+
+# This function inputs a result table (from calling results_table())
+# and the name of a column and computes the Euclidean distance between
+# results$soln and results$col. This gives an estimate for the bias for the
+# coefficients of a model.
+coefficient_bias <- function(results, col) {
+  return(sqrt(sum((results$soln - results$col)^2)))
+}
+
+
+
 # This function combines the processes from the functions
 # generate_data(), fit_models(), test_mse(), and results_table().
 #
@@ -343,9 +354,9 @@ generate_confusion_matrices <- function(coefs) {
 seeds <- c(100:119)
 
 # Run monte_carlo 20 times, each time with 200 observations and 10 predictors.
-results <- lapply(seeds, monte_carlo, n = 200, p = 10, type = "independent")
+# results <- lapply(seeds, monte_carlo, n = 200, p = 10, type = "independent")
 #(lapply(seeds, monte_carlo, n = 200, p = 10, type = "independent"))
-results2 <- lapply(seeds, monte_carlo, n = 200, p = 10, type = "symmetric")
+# results2 <- lapply(seeds, monte_carlo, n = 200, p = 10, type = "symmetric")
 #system.time(lapply(seeds, monte_carlo, n = 200, p = 10, type = "symmetric"))
 
 
@@ -372,5 +383,11 @@ sample_var <- function(model, coefs_list){
   return(coef_variance)
 }
 
-coef_sample_var <- sample_var(model = "lasso", coefs_list = results) #sample variance for coefficients of lasso model
+# coef_sample_var <- sample_var(model = "lasso", coefs_list = results) #sample variance for coefficients of lasso model
+
+ex.dat <- generate_data(n = 100, p = 10, seed = 1)
+models <- fit_models(ex.dat, n = 100, p = 10)
+results <- results_table(models, p = 10)
+
+coefficient_bias(results$soln, models$lasso)
 
