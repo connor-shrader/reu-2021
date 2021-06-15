@@ -132,6 +132,7 @@ generate_data <- function(seed, n, p, var = 1, type = "independent", corr = 0,
   
   # Set the column names to "y, x1, x2, ..., xp"
   colnames(dat) <- c("y", paste("x", 1:p, sep=""))
+  View(dat)
   return(dat)
 }
 

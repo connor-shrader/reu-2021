@@ -50,7 +50,7 @@ test_mse <- function(model, test_dat) {
 # results$soln and results$col. This gives an estimate for the bias for the
 # coefficients of a model.
 coefficient_bias <- function(results, col) {
-  return(sqrt(sum((results$soln - results$col)^2)))
+  return(sqrt(sum((results$soln - results[[col]])^2)))
 }
 
 
