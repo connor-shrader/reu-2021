@@ -16,7 +16,29 @@ source("simulation.r")
 source("metrics.r")
 
 
-dat <- monte_carlo(n = 100, p = 10, iterations = 5, beta = c(1, 1, 1), error_var = 0.2)
-View(dat$coefficients[[1]])
-conf_matrices <- generate_confusion_matrices(dat[[1]]$coefficients)
-coef_bias <- coefficient_bias(dat[[1]]$coefficients, "lasso")
+dat <- monte_carlo(n = 100, p = 10, iterations = 50, beta = c(1, 1, 1), error_var = 0.2)
+# View(dat[[1]]$coefficients)
+conf_matrices <- confusion_matrices(dat[[1]]$coefficients)
+# View(conf_matrices)
+
+# plot CV-error vs. lambda for scad.
+# plot(dat[[1]]$models$scad)
+
+# mean_coefficient_estimates <- lapply(dat, function(iter) {iter$coefficients$scad})
+
+euclidean_distance <- function(v1, v2) {
+  { sum((v1 - v2)^2) }
+}
+
+all_coefs <- lapply(dat, function(iter) {iter$coefficients})
+mean_coefficient_estimates <- Reduce("+", all_coefs) / length(all_coefs)
+bias <- apply(X = mean_coefficient_estimates, 
+              FUN = euclidean_distance,
+              MARGIN = 2,
+              v2 = mean_coefficient_estimates$soln)
+
+variance_for_one_table <- function(coefficients, mean_coefficients) {
+  mapply(euclidean_distance, coefficients, mean_coefficients)
+}
+
+# difference <- lapply(dat, euclidean_distance, v2 )
