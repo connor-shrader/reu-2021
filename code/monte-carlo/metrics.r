@@ -55,71 +55,25 @@ coefficient_bias <- function(results, col) {
 
 
 
-# This helper function compares two boolean values and determines whether there
-# is a true positive (tp), false negative (fn), false positive (fp), or
-# true negative (tn). The first boolean is the actual value, while the second
-# boolean is the predicted value. This function is used for
-# generate_confusion_matrices().
-compare_coefficient_estimate <- function(solution, prediction) {
-  if (solution & prediction) {
-    return("tp")
-  }
-  else if (solution & !prediction) {
-    return("fn")
-  }
-  else if (!solution & prediction) {
-    return("fp")
-  }
-  else {
-    return("tn")
-  }
+# This function is a helper method for the confusion_matrices() function. It assumes
+# that the inputs are columns from a dataframe containing only zeros and ones (which
+# represent whether a model predicted zero for a coefficient or non-zero). This function
+# then creates a confusion matrix where the actual coefficient values are found
+# from the "actual" column.
+individual_confusion_matrix <- function(actual, prediction) {
+  predicted_variables <- factor(prediction, levels = 0:1)
+  true_variables <- factor(actual, levels = 0:1)
+  confusionMatrix(data = predicted_variables, reference = true_variables, positive = "1")
 }
 
 
 
-# This function takes in a list of test results (true negative, false negative,
-# false positive or true negative) and combines the sum of each result into
-# a confusion matrix. Despite being called a confusion matrix, the returned
-# object is a data frame. This function is used in generate_confusion_matrices().
-confusion_matrix <- function(lis) {
-  confusion_matrix <- data.frame(
-    actual_negative = c(sum(lis == "tn"), sum(lis == "fp")),
-    actual_positive = c(sum(lis == "fn"), sum(lis == "tp")),
-    row.names = c("predicted_negative", "predicted_positive")
-  )
-  
-  return(confusion_matrix)
-}
-
-
-
-# This function takes a table of coefficient estimates (from results_table())
-# and computes the confusion matrix for each model. This function then returns a list
-# containing these matrices.
-generate_confusion_matrices <- function(coefs) {
-  # Create a data frame where each entry is TRUE if the corresponding entry in
-  # coefs is non-zero; otherwise, the entry is FALSE.
-  coef_is_nonzero <- as.data.frame(ifelse(coefs == 0, FALSE, TRUE))
-  
-  # For each column of coef_is_nonzero, we compare its entries to the entries
-  # in the "soln" column. This gives us a list whose entries have four possible values:
-  # tn (true negative), false negative (fn), false positive (fp), or true
-  # positive (tp). For example, if a certain model correctly predicts that a
-  # coefficient will be non-zero, the corresponding entry will be set to "tp".
-  test_results <- as.data.frame(
-    apply(X = coef_is_nonzero,
-          MARGIN = 2,
-          FUN = function(prediction, solution) {
-            mapply(compare_coefficient_estimate, solution, prediction)
-          },
-          solution = coef_is_nonzero$soln)
-  )
-  
-  # For each column of test_results, compute the confusion matrix based on the
-  # counts of tn, fn, fp, and tp. This then gets returned.
-  matrices <- apply(X = test_results, MARGIN = 2, FUN = confusion_matrix)
-  
-  return(matrices)
+# This function inputs a dataframe of coefficient estimates and outputs a list of
+# confusion matrices. Each confusion matrix represents whether each model correctly
+# guessed if each coefficient is non-zero or zero.
+confusion_matrices <- function(coefs) {
+  coef_is_nonzero <- as.data.frame(ifelse(coefs != 0, 1, 0))
+  apply(X = coef_is_nonzero, FUN = make_conf_mat, MARGIN = 2, actual = coef_is_nonzero$soln)
 }
 
 

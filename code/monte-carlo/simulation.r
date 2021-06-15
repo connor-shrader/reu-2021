@@ -63,7 +63,7 @@ generate_coefficients <- function(beta, p) {
 #     "autoregressive": AR(1)
 #     "blockwise": Blockwise covariance.
 #     "unstructured": All pairs of variables have different covariances.
-#   corr (default 0): The use of corr depends on the value of type.
+#   corr (default 0): The use of corr depends on the value of the argument "type".
 #     type = "independent": corr is unused.
 #     type = "symmetric": Used as the value of rho,
 #       the correlation any pair of predictors.
@@ -132,6 +132,8 @@ generate_data <- function(seed, n, p, var = 1, type = "independent", corr = 0,
   
   # Set the column names to "y, x1, x2, ..., xp"
   colnames(dat) <- c("y", paste("x", 1:p, sep=""))
+  #View(dat)
+  print(cor(dat))
   return(dat)
 }
 
