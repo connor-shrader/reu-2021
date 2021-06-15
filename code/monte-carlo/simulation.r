@@ -278,8 +278,9 @@ monte_carlo_single_iteration <- function(seed, n, p, beta = NULL, ...) {
   # for each model.
   coefs_df <- results_table(models, beta = beta, p = p)
   mse_list <- lapply(models, test_mse, test_dat = test.dat)
+  conf_matrices <- generate_confusion_matrices(coefs_df)
   
-  return(list(coefficients = coefs_df, models = models, mse = mse_list))
+  return(list(coefficients = coefs_df, models = models, mse = mse_list, confusion = conf_matrices))
 }
 
 
