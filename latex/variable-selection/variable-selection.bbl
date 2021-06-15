@@ -39,6 +39,11 @@ Robin Genuer, Jean-Michel Poggi, and Christine Tuleau.
 \newblock Random forests: some methodological insights.
 \newblock {\em arXiv preprint arXiv:0811.3619}, 2008.
 
+\bibitem{hoerl1970ridge}
+Arthur~E Hoerl and Robert~W Kennard.
+\newblock Ridge regression: Biased estimation for nonorthogonal problems.
+\newblock {\em Technometrics}, 12(1):55--67, 1970.
+
 \bibitem{james2017islr}
 Gareth James, Daniela Witten, Trevor Hastie, and Rob Tibshirani.
 \newblock {\em ISLR: Data for an Introduction to Statistical Learning with

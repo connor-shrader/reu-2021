@@ -10,6 +10,7 @@
 #   fit_models()
 #   model_data_frame() (Helper function)
 #   results_table()
+#   monte_carlo_single_iteration (Helper function)
 #   monte_carlo()
 
 # R version: 4.1.0
@@ -101,7 +102,7 @@ generate_data <- function(seed, n, p, var = 1, type = "independent", corr = 0,
     # code can be found at the following link:
     # https://statisticaloddsandends.wordpress.com/2020/02/07/generating-correlation-matrix-for-ar1-model/
     
-    exponent <- abs(matrix(1:n - 1, nrow = n, ncol = n, byrow = TRUE) - (1:n - 1))
+    exponent <- abs(matrix(1:p - 1, nrow = p, ncol = p, byrow = TRUE) - (1:p - 1))
     r <- corr^exponent
   }
   else if (type == "unstructured") {
@@ -259,7 +260,7 @@ results_table <- function(models, beta, p) {
 # results_table(). This function takes in any inputs that go into generate_data(),
 # and this function outputs a list containing the outputs of fit_models()
 # and results_table().
-monte_carlo <- function(seed, n, p, beta = NULL, ...) {
+monte_carlo_single_iteration <- function(seed, n, p, beta = NULL, ...) {
   # Generated training AND test data.
   all.dat <- generate_data(seed = seed, n = n, p = p, beta = beta, ...)
   
@@ -277,4 +278,20 @@ monte_carlo <- function(seed, n, p, beta = NULL, ...) {
   mse_list <- lapply(models, test_mse, test_dat = test.dat)
   
   return(list(coefficients = coefs_df, models = models, mse = mse_list))
+}
+
+
+
+# This function iterates the monte_carlo_single_iteration() function multiple times.
+# The seed is automatically set for each iteration. If iterations == 1, this function
+# returns the same thing as calling monte_carlo_single_simulation(seed = 1);
+# otherwise, this function returns a list of repeated calls to
+# monte_carlo_single_simulation.
+monte_carlo <- function(n, p, beta = NULL, iterations = 1, ...) {
+  if (iterations == 1) {
+    monte_carlo_single_iteration(seed = 1, n = n, p = p, beta = beta, ...)
+  }
+  else {
+    lapply(1:iterations, monte_carlo_single_iteration, n = n, p = p, beta = beta, ...)
+  }
 }

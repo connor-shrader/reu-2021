@@ -183,7 +183,7 @@ where $p(\beta_j)$ is some penalty function. Generally, this function should be 
 Because these models place penalties on large coefficient estimates, it is common to standardize the predictors to have a mean of 0 and a variance of 1. This ensures that none of the predictors have a disproportionate effect on the estimated coefficients.
 
 \subsection{Ridge Regression}
-Ridge regression helps to solve multicollinearity in predictors while also minimizing insignificant predictors. While it does not minimize these insignificant predictors completely to 0 and thus cannot be considered a variable selection method, it still proves very useful in large datasets.
+Ridge regression helps to solve multicollinearity in predictors while also minimizing insignificant predictors \cite{hoerl1970ridge}. While it does not minimize these insignificant predictors completely to 0 and thus cannot be considered a variable selection method, it still proves very useful in large datasets.
 
 Ridge regression works by minimizing Residual Sum Squared (RSS) plus a penalty as seen in Equation \ref{ridge_reg}. $\lambda$ is a tuning parameter and can be used to determine how much of an effect the penalty has on the regression. if $\lambda=0$, then the regression acts exactly like ordinary least squares regression, but if $\lambda \rightarrow \infty$, then $\beta_j \rightarrow 0$ and the regression line will be a horizontal line at the intercept, $\beta_0$.
 
@@ -479,4 +479,3 @@ Variable selection linear regression methods increase bias, but still lead to ov
 \bibliographystyle{plain}
 \bibliography{references}
 \end{document}
-4

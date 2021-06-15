@@ -14,3 +14,7 @@ library(MASS) # v7.3-54
 source("simulation.r")
 source("metrics.r")
 
+dat <- monte_carlo(n = 100, p = 10, iterations = 5, beta = c(1, 1, 1),
+                   type = "autoregressive", corr = 0.9, error_var = 50)
+View(dat[[1]]$coefficients)
+conf_matrices <- generate_confusion_matrices(dat[[1]]$coefficients)
