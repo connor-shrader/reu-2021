@@ -332,7 +332,45 @@ We see that all three methods set the predicted value to zero when the actual co
 
 \section{Non-linear Models}
 We next discuss several non-linear methods for regression and classification.
-\subsection{Decision Trees}
+\subsection{Decision Tree Regression}
+A decision tree is a machine learning algorithm of nodes and branches in a tree-like structure. They work from top to bottom by iteratively splitting into groups based on input values in order to minimize residual sum squared. This creates a flowchart that starts from the top and can be followed down. The direction of movement is determined by a boolean condition on the node.
+
+An example decision tree can be seen in Figure \ref{fig:decision-tree}. An example row of predictor data points can be seen in Table \ref{tab:decision-tree-data}. In this illustration, if the condition on the node is true, then the left direction is taken, and if the condition is false, then the right direction is taken. For these example data points, the decision tree predicts a median housing value of \$20,630, which is slightly over the correct value of \$18,900.
+
+Decision trees have many other uses and can be used for both classification and regression. Additionally, decision trees can prune branches that use a variable with low importance. This can serve as a type of variable selection and helps to reduce overfitting as well as the complexity of the model. This will inherently cause some bias, but because of the reduction in variance, overall error is decreased.
+
+\begin{table}[!ht]
+	\centering
+	\caption{Example predictor data points of house values in Boston Suburbs}
+	\label{tab:decision-tree-data}
+	\begin{tabular}{|l|l|l|l|l|l|l}
+		\hline
+		\begin{tabular}[c]{@{}l@{}}crim\\ (crime per \\ capita)\end{tabular} &
+		\begin{tabular}[c]{@{}l@{}}zn\\ (lot zone \\ proportion)\end{tabular} &
+		\begin{tabular}[c]{@{}l@{}}indus\\ (proportion \\ of non-retail \\ business)\end{tabular} &
+		\begin{tabular}[c]{@{}l@{}}chas\\ (bounds \\ Charles River)\end{tabular} &
+		\begin{tabular}[c]{@{}l@{}}nox\\ (nitrogen \\ oxides\\ concentration)\end{tabular} &
+		\begin{tabular}[c]{@{}l@{}}rm\\ (rooms per\\ dwelling)\end{tabular} &
+		\multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}age\\ (proportion of \\ units built \\ before 1940)\end{tabular}} \\ \hline
+		0.11747 & 12.5  & 7.87   & 0    & 0.524 & 6.009 & \multicolumn{1}{l|}{82.9} \\ \hline
+		\begin{tabular}[c]{@{}l@{}}tax\\ (tax rate)\end{tabular} &
+		\begin{tabular}[c]{@{}l@{}}black\\ (proportion\\ of black \\ population)\end{tabular} &
+		\begin{tabular}[c]{@{}l@{}}dis\\ (distance to\\ employment \\ centers)\end{tabular} &
+		\begin{tabular}[c]{@{}l@{}}ptratio\\ (pupil-teacher\\ ratio)\end{tabular} &
+		\begin{tabular}[c]{@{}l@{}}rad\\ (accessibility\\ to radial\\ highways)\end{tabular} &
+		\begin{tabular}[c]{@{}l@{}}lstat\\ (lower \\ status of\\ population)\end{tabular} &
+		\\ \cline{1-6}
+		311     & 396.9 & 6.2267 & 15.2 & 5     & 13.27 &                           \\ \cline{1-6}
+	\end{tabular}
+\end{table}
+\begin{figure}[!ht]
+	\centering
+	\caption{Decision tree of Boston suburbs median home value (in \$1000s)}
+	\includegraphics[width = 0.6\linewidth]{Images/decision-tree.png}
+	\label{fig:decision-tree}
+\end{figure}
+
+
 
 \subsection{Random Forests}
 
