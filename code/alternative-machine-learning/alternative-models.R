@@ -36,7 +36,7 @@ gbm_mse <- mean((test_y_data - predict(gbm_boost, as.data.frame(test_x_data))) ^
 
 # XGBoost Model using Tree Boosting
 xgb_tree <- xgboost(data = train_x_data, label = train_y_data,
-                     booster = "gbtree", #use devision trees
+                     booster = "gbtree", #use decision trees
                      nrounds = 1000,  #number of boosting iterations
                      objective = "reg:squarederror",  #regression by RSS
                      early_stopping_rounds = 3,  #stops boosting early if mse doesnt improve after a certain number of rounds

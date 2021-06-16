@@ -19,7 +19,7 @@ scale01 <- function(x){
 dat <- dat %>%
   mutate_all(scale01)
 
-set.seed(12345) #set seed for consistency
+set.seed(23122) #set seed for consistency
 
 # Split into test and train sets
 nrows <-  nrow(dat)
@@ -44,6 +44,7 @@ ANN3_mse <- mean((data_test[,"medv"] - predict(boston_ANN3, data_test[,-length(d
 boston_ANN4 <- neuralnet(medv ~ ., data = data_train, hidden = c(5,5,3,1))
 ANN4_mse <- mean((data_test[,"medv"] - predict(boston_ANN4, data_test[,-length(data_test)])) ^ 2)
 
+plot(boston_ANN4)
 
 # Comparison with RandomForest model
 rf <- randomForest(medv ~ ., data = data_train)
