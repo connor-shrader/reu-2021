@@ -373,6 +373,9 @@ Decision trees have many other uses and can be used for both classification and 
 
 
 \subsection{Random Forests}
+One of the flaws of decision tree models is that they generally have high variance. A small change in some of the data points can completely change the tree's structure. Random forest models can overcome the high variance of decision tree models by aggregating the predictions of many separate trees. Each individual tree is fitted using only a subset of the available observations and predictors. This means that each tree will be significantly different from any of the other trees. To make a prediction with a random forest model, the predictions of each individual tree are calculated and aggregated (usually using the mean for regression and the mode for classification).
+
+By only considering a subset of the predictors for each tree, there will be relatively little correlation different trees. In the case where all $p$ predictors are used for each tree (which is called bagging), many of the trees will have similar structures because they all use the predictors most correlated with the response. This can cause high variance. In many random forest models, it is common to use $\sqrt{p}$ predictors for each individual tree.
 
 \subsection{Boosting}
 
