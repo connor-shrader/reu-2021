@@ -373,7 +373,7 @@ With a symmetric compound covariance matrix, we assume that $\mathbf{\Sigma}$ ta
 		\rho & \rho & \cdots & \sigma_p^2
 	\end{bmatrix}
 \end{equation}
-where $\sigma_i^2$ is the variance of predictor $i$ and $\rho \in (0, 1)$ is the covariance between every pair of predictors.
+where $\sigma_i^2$ is the variance of predictor $i$ and $\rho \in (0, 1)$ is the covariance between every pair of predictors. This type of covariance is more general than independent covariance, and it can also be more realistic. However, in most real-world scenarios, the correlations between pairs of parameters will likely not be the same.
 
 \subsubsection{Blockwise}
 In a blockwise covariance distribution, we assume that $\mathbf{\Sigma}$ is can be written as a block-diagonal matrix
@@ -419,7 +419,7 @@ Autoregressive covariance (also called $\text{AR}(1)$), assumes that
 		\rho^{p - 1} & \rho^{p - 2} & \cdots & \sigma_p^2
 	\end{bmatrix}
 \end{equation}
-where $\sigma_i^2$ is the variance of predictor $i$ and $\rho \in (0, 1)$. In general, for $i\neq j$, we have $\mathbf{\Sigma}_{ij} = \rho^{\vert i - j\vert}$. This implies that predictors that are near each other are more correlated than predictors far apart.
+where $\sigma_i^2$ is the variance of predictor $i$ and $\rho \in (0, 1)$. In general, for $i\neq j$, we have $\mathbf{\Sigma}_{ij} = \rho^{\vert i - j\vert}$. This implies that predictors that are near each other are more correlated than predictors far apart. AR(1) is a very useful type of covariance matrix because it is not as simple as independent or symmetric compound covariance. AR(1) is particularly useful when used for applications such as time-series analysis, since nearby predictors are usually close together in time. Consequently, it makes sense for predictors close in time to have the highest correlation.
 
 \subsection{Factorial Design}
 Using Monte Carlo simulations, we can study the effectiveness of regression models using a factorial design. For each simulation, we have control over parameters such as the number of predictors, the correlation of predictors, and the amount of random error. For each parameter, we chose two or three different levels. our simulations  go through every possible combination of these parameter values.
@@ -428,7 +428,7 @@ Below is a list of the parameters we tuned and the values that we used:
 \begin{itemize}
 	\item $n$, the number of observations.
 	\item $p$, the number of predictors.
-	\item $p^\ast$, the number [proportion] of predictors that are non-zero.
+	\item $p^\ast$, the number [proportion?] of predictors that are non-zero.
 	\item $\sigma$, the variance of the random error in each observation.
 	\item The type of covariance among the predictors [do we include blockwise and unstructured?].
 	\item $\rho$, the covariance between predictors (the exact meaning of $\rho$ depends on the type of covariance used).

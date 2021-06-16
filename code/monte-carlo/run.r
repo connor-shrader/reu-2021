@@ -16,7 +16,12 @@ source("simulation.r")
 source("metrics.r")
 
 
-dat <- monte_carlo(n = 100, p = 10, iterations = 50, beta = c(1, 1, 1), error_var = 0.2)
+dat <- monte_carlo(n = 100,
+                   p = 10,
+                   iterations = 50,
+                   beta = c(1, 2, -2, 0, 0, 3, 0.5),
+                   error_var = 1
+)
 # View(dat[[1]]$coefficients)
 conf_matrices <- confusion_matrices(dat[[1]]$coefficients)
 # View(conf_matrices)
@@ -24,21 +29,53 @@ conf_matrices <- confusion_matrices(dat[[1]]$coefficients)
 # plot CV-error vs. lambda for scad.
 # plot(dat[[1]]$models$scad)
 
-# mean_coefficient_estimates <- lapply(dat, function(iter) {iter$coefficients$scad})
+# n <- c(50, 200, 1000)
+# p <- c(10, 100, 2000)
+# sigma <- c(1, 3, 6)
+# covar <- c("independent", "symmetric compound", "autoregressive")
+# rho <- c(0.2, 0.5, 0.9)
+n <- c(20, 50)
+p <- c(5, 10)
+sigma <- c(1)
+covar <- c("independent", "symmetric-compound")
+rho <- c(0.2, 0.5)
 
-euclidean_distance <- function(v1, v2) {
-  { sum((v1 - v2)^2) }
+parameters <- expand.grid(n, p, sigma, covar, rho)
+colnames(parameters) <- c("n", "p", "sigma", "covar", "rho")
+
+# Delete extraneous rows caused by having covar = "independent." For
+# rows with covar = "independent", set their rho to 0 (this is optional).
+parameters <- parameters[!(parameters$covar == "independent" & parameters$rho != 0.2), ]
+parameters$rho <- ifelse(parameters$covar == "independent",
+                         0,
+                         parameters$rho)
+
+parameters[, c("n", "p", "sigma", "rho")] <- sapply(parameters[, c("n", "p", "sigma", "rho")], as.numeric)
+
+# Not needed
+# parameters2[parameters$covar == "independent" & parameters$rho != 0.2]$rho <- 0
+
+
+run_simulations <- function(row) {
+  print(row)
+  iterations <- 5
+  n <- as.numeric(row["n"])
+  p <- as.numeric(row["p"])
+  error_var <- as.numeric(row["sigma"])^2
+  type <- row["covar"]
+  corr <- as.numeric(row["rho"])
+  
+  results <- monte_carlo(n = n,
+                         p = p,
+                         iterations = iterations,
+                         error_var = error_var,
+                         type = type,
+                         corr = corr)
+  
+  save(results, file = paste("../../data/simulations/sim_results_", n, "_", p, "_", error_var, "_", type, "_", corr, ".Rdata", sep = ""))
 }
 
-all_coefs <- lapply(dat, function(iter) {iter$coefficients})
-mean_coefficient_estimates <- Reduce("+", all_coefs) / length(all_coefs)
-bias <- apply(X = mean_coefficient_estimates, 
-              FUN = euclidean_distance,
-              MARGIN = 2,
-              v2 = mean_coefficient_estimates$soln)
 
-variance_for_one_table <- function(coefficients, mean_coefficients) {
-  mapply(euclidean_distance, coefficients, mean_coefficients)
-}
+apply(X = parameters, MARGIN = 1, FUN = run_simulations)
 
-# difference <- lapply(dat, euclidean_distance, v2 )
+res <- monte_carlo(n = 100, p = 10, iterations = 5, error_var = 1, type = "independent", corr = 1)

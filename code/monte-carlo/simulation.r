@@ -288,11 +288,6 @@ monte_carlo_single_iteration <- function(seed, n, p, beta = NULL, ...) {
 # returns the same thing as calling monte_carlo_single_simulation(seed = 1);
 # otherwise, this function returns a list of repeated calls to
 # monte_carlo_single_simulation.
-monte_carlo <- function(n, p, beta = NULL, iterations = 1, ...) {
-  if (iterations == 1) {
-    monte_carlo_single_iteration(seed = 1, n = n, p = p, beta = beta, ...)
-  }
-  else {
-    lapply(1:iterations, monte_carlo_single_iteration, n = n, p = p, beta = beta, ...)
-  }
+monte_carlo <- function(n, p, iterations, beta = NULL, ...) {
+  lapply(1:iterations, monte_carlo_single_iteration, n = n, p = p, beta = beta, ...)
 }
