@@ -73,7 +73,7 @@ individual_confusion_matrix <- function(actual, prediction) {
 # guessed if each coefficient is non-zero or zero.
 confusion_matrices <- function(coefs) {
   coef_is_nonzero <- as.data.frame(ifelse(coefs != 0, 1, 0))
-  apply(X = coef_is_nonzero, FUN = make_conf_mat, MARGIN = 2, actual = coef_is_nonzero$soln)
+  apply(X = coef_is_nonzero, FUN = individual_confusion_matrix, MARGIN = 2, actual = coef_is_nonzero$soln)
 }
 
 

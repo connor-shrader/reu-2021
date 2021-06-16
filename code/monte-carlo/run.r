@@ -11,6 +11,7 @@ library(faux) # v1.0.0
 library(ncvreg) # v3.13.0
 library(glmnet) # v4.1-1
 library(MASS) # v7.3-54
+library(caret)
 
 source("simulation.r")
 source("metrics.r")
@@ -18,7 +19,7 @@ source("metrics.r")
 
 dat <- monte_carlo(n = 100,
                    p = 10,
-                   iterations = 50,
+                   iterations = 5,
                    beta = c(1, 2, -2, 0, 0, 3, 0.5),
                    error_var = 1
 )
@@ -32,12 +33,12 @@ conf_matrices <- confusion_matrices(dat[[1]]$coefficients)
 # n <- c(50, 200, 1000)
 # p <- c(10, 100, 2000)
 # sigma <- c(1, 3, 6)
-# covar <- c("independent", "symmetric compound", "autoregressive")
+# covar <- c("independent", "symmetric", "autoregressive")
 # rho <- c(0.2, 0.5, 0.9)
-n <- c(20, 50)
-p <- c(5, 10)
+n <- c(20)
+p <- c(10)
 sigma <- c(1)
-covar <- c("independent", "symmetric-compound")
+covar <- c("independent", "symmetric")
 rho <- c(0.2, 0.5)
 
 parameters <- expand.grid(n, p, sigma, covar, rho)
@@ -50,11 +51,8 @@ parameters$rho <- ifelse(parameters$covar == "independent",
                          0,
                          parameters$rho)
 
-parameters[, c("n", "p", "sigma", "rho")] <- sapply(parameters[, c("n", "p", "sigma", "rho")], as.numeric)
-
 # Not needed
 # parameters2[parameters$covar == "independent" & parameters$rho != 0.2]$rho <- 0
-
 
 run_simulations <- function(row) {
   print(row)
@@ -78,4 +76,4 @@ run_simulations <- function(row) {
 
 apply(X = parameters, MARGIN = 1, FUN = run_simulations)
 
-res <- monte_carlo(n = 100, p = 10, iterations = 5, error_var = 1, type = "independent", corr = 1)
+# res <- monte_carlo(n = 100, p = 10, iterations = 5, error_var = 1, type = "independent", corr = 1)

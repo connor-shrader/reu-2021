@@ -330,6 +330,36 @@ We see that all three methods set the predicted value to zero when the actual co
 	\includegraphics[width = 0.4\textwidth]{images/prediction.png}
 \end{figure}
 
+\section{Non-linear Models}
+We next discuss several non-linear methods for regression and classification.
+\subsection{Decision Trees}
+
+\subsection{Random Forests}
+
+\subsection{Boosting}
+
+\subsection{Support Vector Machines}
+Support vector machines are versatile statistical models; they can be used for both regression and classification. In the most basic case, a support vector machine is a binary classier whose decision boundary is a $(p-1)$-dimensional hyperplane in $p$-dimensional space. This hyperplane separates all of the observations for one class on one side, and the observations for the other class lie on the opposite side. Moreover, the hyperplane chosen by a support vector machine will maximize the distance between this hyperplane and any of the observation points. Figure \ref{fig:svm-1} demonstrates the line chosen by a support vector machine in the case where there are two predictors.
+
+\begin{figure}[!h]
+	\centering
+	\caption{The decision line for a support vector machine maximizes the margin between itself and any observations. Image source: \cite{james2013introduction}, page 340}
+	\label{fig:svm-1}
+	\includegraphics[width = 3in]{images/svm-1.png}
+\end{figure}
+
+This description of a support vector machine is simple but incomplete. Most datasets are not able to be split perfectly into two sides like the example shown in \ref{fig:svm-1}. Furthermore, this model has very high variance changing the points near the hyperplane can significantly alter the hyperplane. Finally, this model cannot handle cases where the true boundary is non-linear.
+
+Luckily, support vector machines in practice can handle such issues. Typically, support vector machines are allowed to misclassify some of the training data, which address the cases where the data cannot be split perfectly by a hyperplane. Also, the predictor space can be enlarged to handle non-linear decision boundaries; this is typically done by using \textbf{kernels}. For example, using a radial kernel can create decision boundaries that enclose regions of the $p$-dimensional space. Figure \ref{fig:svm-2} shows an example of this.
+
+\begin{figure}[!h]
+	\centering
+	\caption{Using a radial kernel to create a decision boundary. Image source: \cite{james2013introduction}, page 353}
+	\label{fig:svm-2}
+	\includegraphics[width = 3in]{images/svm-2}
+\end{figure}
+
+Support vector machines can be generalized even further to handle more than two classes, or even regression.
 \section{Evaluating Methods}
 \subsection{Monte Carlo Data Generation}
 Using Monte Carlo simulations to generate data is extremely useful for evaluating linear regression models and comparing them against each other. Generated data is beneficial because it allows us to know the true coefficient values, which allows accuracy, bias, and more to be calculated. It additionally allows for control of the data and situations. For example, this can be used to test different models in environments where predictors are completely independent, which is impossible with real data, or on the opposite spectrum when predictors are heavily correlated with each other. This can allow for the testing of model strengths and weaknesses. Because datasets can be generated thousands of times, Monte Carlo simulations can be used to evaluate randomness and variation of different models.
