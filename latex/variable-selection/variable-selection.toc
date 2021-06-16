@@ -23,5 +23,6 @@
 \contentsline {subsubsection}{\numberline {4.2.3}Blockwise}{13}{subsubsection.4.2.3}%
 \contentsline {subsubsection}{\numberline {4.2.4}Unstructured Covariance}{13}{subsubsection.4.2.4}%
 \contentsline {subsubsection}{\numberline {4.2.5}Autoregressive Covariance}{13}{subsubsection.4.2.5}%
-\contentsline {subsection}{\numberline {4.3}Confusion Matrix}{13}{subsection.4.3}%
-\contentsline {subsection}{\numberline {4.4}Bias}{14}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.3}Factorial Design}{13}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Confusion Matrix}{14}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.5}Bias}{15}{subsection.4.5}%
