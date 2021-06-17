@@ -377,7 +377,13 @@ One of the flaws of decision tree models is that they generally have high varian
 
 By only considering a subset of the predictors for each tree, there will be relatively little correlation different trees. In the case where all $p$ predictors are used for each tree (which is called bagging), many of the trees will have similar structures because they all use the predictors most correlated with the response. This can cause high variance. In many random forest models, it is common to use $\sqrt{p}$ predictors for each individual tree.
 
-\subsection{Boosting}
+\subsection{Gradient Boosting Model}
+Boosting is the technique of sequentially improving a weak learner until it becomes a strong learner. A gradient boosting model (GBM) is a boosting technique that uses gradient descent to minimize error in a model and correct the shortcomings of the previous weak learner model. This is done through fitting a model, whether that is a linear regression or decision tree model, to a set of data points. From there, the residual of each data point is calculated and another linear regression or decision tree model is fitted to those residuals. A new model is fitted to the residual data of the residual data fitted model, and so on. These models are then all added together to result in a strong GBM model.
+
+GBMs can be used for both regression and classification if they use decision trees, or if they use linear regression models, they can only perform regression. When using XGBoost with decision trees, variable importance and pruning can be used as a sort of pseudo-variable selection method to lower complexity and prevent over-fitting. However, when using XGBoost with linear regression, there is the ability to use lasso, ridge, and elastic net penalized regression.
+
+\subsubsection{XGBoost}
+GBMs often suffer from slow computation speeds due to the large number of sequential models that need to be trained. Extreme Gradient Boosting (XGBoost) is a faster version of GBM that utilizes parallel computing as well as different optimization techniques to speed up computation. For these reasons, XGBoost is often preferred over standard GBMs and is very commonly used in many machine learning applications.
 
 \subsection{Support Vector Machines}
 Support vector machines are versatile statistical models; they can be used for both regression and classification. In the most basic case, a support vector machine is a binary classier whose decision boundary is a $(p-1)$-dimensional hyperplane in $p$-dimensional space. This hyperplane separates all of the observations for one class on one side, and the observations for the other class lie on the opposite side. Moreover, the hyperplane chosen by a support vector machine will maximize the distance between this hyperplane and any of the observation points. Figure \ref{fig:svm-1} demonstrates the line chosen by a support vector machine in the case where there are two predictors.
