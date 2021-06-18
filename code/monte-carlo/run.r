@@ -17,14 +17,14 @@ source("simulation.r")
 source("metrics.r")
 
 
-dat <- monte_carlo(n = 100,
-                   p = 10,
-                   iterations = 5,
-                   beta = c(1, 2, -2, 0, 0, 3, 0.5),
-                   error_var = 1
-)
+# dat <- monte_carlo(n = 100,
+#                    p = 10,
+#                    iterations = 5,
+#                    beta = c(1, 2, -2, 0, 0, 3, 0.5),
+#                    error_var = 1
+# )
 # View(dat[[1]]$coefficients)
-conf_matrices <- confusion_matrices(dat[[1]]$coefficients)
+# conf_matrices <- confusion_matrices(dat[[1]]$coefficients)
 # View(conf_matrices)
 
 # plot CV-error vs. lambda for scad.
@@ -35,11 +35,15 @@ conf_matrices <- confusion_matrices(dat[[1]]$coefficients)
 # sigma <- c(1, 3, 6)
 # covar <- c("independent", "symmetric", "autoregressive")
 # rho <- c(0.2, 0.5, 0.9)
-n <- c(20)
-p <- c(10)
+
+# p == 100: 4 blocks of 25 predictors
+# p
+
+n <- c(200)
+p <- c(2000)
 sigma <- c(1)
-covar <- c("independent", "symmetric")
-rho <- c(0.2, 0.5)
+covar <- c("independent")
+rho <- c(0.2)
 
 parameters <- expand.grid(n, p, sigma, covar, rho)
 colnames(parameters) <- c("n", "p", "sigma", "covar", "rho")
@@ -56,7 +60,7 @@ parameters$rho <- ifelse(parameters$covar == "independent",
 
 run_simulations <- function(row) {
   print(row)
-  iterations <- 5
+  iterations <- 1
   n <- as.numeric(row["n"])
   p <- as.numeric(row["p"])
   error_var <- as.numeric(row["sigma"])^2
@@ -73,7 +77,6 @@ run_simulations <- function(row) {
   save(results, file = paste("../../data/simulations/sim_results_", n, "_", p, "_", error_var, "_", type, "_", corr, ".Rdata", sep = ""))
 }
 
-
-apply(X = parameters, MARGIN = 1, FUN = run_simulations)
+system.time(apply(X = parameters, MARGIN = 1, FUN = run_simulations))
 
 # res <- monte_carlo(n = 100, p = 10, iterations = 5, error_var = 1, type = "independent", corr = 1)

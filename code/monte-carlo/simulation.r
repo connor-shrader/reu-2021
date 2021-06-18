@@ -147,7 +147,7 @@ fit_models <- function(dat, n, p) {
   nm <- lm(y ~ 1, data = dat)
   models[["nm"]] <- nm
   
-  if (p < n) {
+  if (2 * p < n) {
     # Full model for backward selection
     fm <- lm(y ~ ., data = dat)
     models[["fm"]] <- fm
@@ -165,23 +165,22 @@ fit_models <- function(dat, n, p) {
     
     bsb = stepAIC(fm, scope=list(lower=nm, upper=fm), direction="both", k=log(nrow(dat)), trace=F, steps=3000) #BIC
     models[["bsb"]] <- bsb
+    
+    # AIC and BIC model selection for forward
+    af = stepAIC(nm, scope=list(lower=nm, upper=fm), direction="forward", k=2, trace=F, steps=3000) #AIC
+    models[["af"]] <- af
+    
+    bf = stepAIC(nm, scope=list(lower=nm, upper=fm), direction="forward", k=log(nrow(dat)), trace=F, steps=3000) #BIC
+    models[["bf"]] <- bf
+    
+    
+    # AIC and BIC model selection for stepwise forward
+    asf = stepAIC(nm, scope=list(lower=nm, upper=fm), direction="both", k=2, trace=F, steps=3000) #AIC
+    models[["asf"]] <- asf
+    
+    bsf = stepAIC(nm, scope=list(lower=nm, upper=fm), direction="both", k=log(nrow(dat)), trace=F, steps=3000) #BIC  
+    models[["bsf"]] <- bsf
   }
-  
-  
-  # AIC and BIC model selection for forward
-  af = stepAIC(nm, scope=list(lower=nm, upper=fm), direction="forward", k=2, trace=F, steps=3000) #AIC
-  models[["af"]] <- af
-  
-  bf = stepAIC(nm, scope=list(lower=nm, upper=fm), direction="forward", k=log(nrow(dat)), trace=F, steps=3000) #BIC
-  models[["bf"]] <- bf
-  
-  
-  # AIC and BIC model selection for stepwise forward
-  asf = stepAIC(nm, scope=list(lower=nm, upper=fm), direction="both", k=2, trace=F, steps=3000) #AIC
-  models[["asf"]] <- asf
-  
-  bsf = stepAIC(nm, scope=list(lower=nm, upper=fm), direction="both", k=log(nrow(dat)), trace=F, steps=3000) #BIC  
-  models[["bsf"]] <- bsf
   
   # Lasso model for variable selection
   lasso <- cv.glmnet(x = as.matrix(dat[,-1]), y = dat$y, alpha = 1)
