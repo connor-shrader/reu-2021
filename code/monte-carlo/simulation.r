@@ -68,14 +68,17 @@ generate_coefficients <- function(beta, p) {
 #     type = "symmetric": Used as the value of rho,
 #       the correlation any pair of predictors.
 #     type = "autoregressive": Used as the value of rho in an AR(1) matrix.
-#     type = "blockwise": TODO.
+#     type = "blockwise": The correlation of predictors that are in the same block.
+#       Predictors in different blocks have correlation zero.
 #     type = "unstructured": corr should be the correlation matrix.
+#   block_size (default NULL): The size of each block if using blockwise correlation.
+#     block_size should divide the number of predictors.
 #   beta (default NONE): The true values of the coefficient values. If beta contains
 #     less than (p + 1) values, beta is extended by zero until it has length (p + 1).
 #     If beta = NONE, some default coefficient values are used.
 #   error_var (default 1): The variance of the random error.
 generate_data <- function(seed, n, p, var = 1, type = "independent", corr = 0,
-                          beta = NULL, error_var = 1) {
+                          block_size = NULL, beta = NULL, error_var = 1) {
   set.seed(seed)
   
   # Generate the coefficient values if beta is NULL or does not have the right
@@ -104,6 +107,39 @@ generate_data <- function(seed, n, p, var = 1, type = "independent", corr = 0,
     
     exponent <- abs(matrix(1:p - 1, nrow = p, ncol = p, byrow = TRUE) - (1:p - 1))
     r <- corr^exponent
+  }
+  else if (type == "blockwise") {
+    # The correlation matrix will be a block diagonal matrix. a_ij = 0 if i = j,
+    # a_ij = corr if i and j are in the same block, and a_ij = 0 otherwise.
+    
+    # If block_size is NULL, stop the function (unless p = 10, 100, or 2000, in which
+    # case default values are used.)
+    if (is.null(block_size)) {
+      if (p == 10) {
+        block_size <- 5
+      }
+      else if (p == 100) {
+        block_size <- 25
+      }
+      else if (p == 2000) {
+        block_size <- 100
+      }
+      else {
+        stop("block_size not provided.")
+      }
+    }
+    
+    if (p %% block_size != 0) {
+      stop("block_size should divide p")
+    }
+    
+    # To generate the correct matrix, we take the Kronecker product of the 
+    # (p / block_size) * (p / block_size) identity matrix and a matrix representing
+    # one block.
+    r <- kronecker(diag(p / block_size),
+                   matrix(rep(c(1, rep(corr, times = block_size)),
+                          length.out = block_size^2),
+                          nrow = block_size, ncol = block_size))
   }
   else if (type == "unstructured") {
     # If our data is unstructed, we will set r = corr. corr should contain the
@@ -260,7 +296,8 @@ results_table <- function(models, beta, p) {
 # and this function outputs a list containing the outputs of fit_models()
 # and results_table().
 monte_carlo_single_iteration <- function(seed, n, p, beta = NULL, ...) {
-  # Generated training AND test data.
+  # Generate training AND test data.
+  n <- 2 * n
   all.dat <- generate_data(seed = seed, n = n, p = p, beta = beta, ...)
   
   # The first half of the data is used for training. The other half

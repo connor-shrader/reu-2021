@@ -12,20 +12,23 @@ library(ncvreg) # v3.13.0
 library(glmnet) # v4.1-1
 library(MASS) # v7.3-54
 library(caret)
+library(rstudioapi)
 
+setwd(dirname(getActiveDocumentContext()$path))
 source("simulation.r")
 source("metrics.r")
 
 
-# dat <- monte_carlo(n = 100,
-#                    p = 10,
-#                    iterations = 5,
-#                    beta = c(1, 2, -2, 0, 0, 3, 0.5),
-#                    error_var = 1
-# )
-# View(dat[[1]]$coefficients)
-# conf_matrices <- confusion_matrices(dat[[1]]$coefficients)
-# View(conf_matrices)
+dat <- monte_carlo(n = 200,
+                    p = 500,
+                    iterations = 1,
+                    type = "autoregressive",
+                   corr = 0.9,
+                    error_var = 1,
+)
+View(dat[[1]]$coefficients)
+conf_matrices <- confusion_matrices(dat[[1]]$coefficients)
+View(conf_matrices)
 
 # plot CV-error vs. lambda for scad.
 # plot(dat[[1]]$models$scad)
