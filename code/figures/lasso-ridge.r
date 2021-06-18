@@ -24,8 +24,8 @@ circleFun <- function(center = c(0,0),diameter = 1, npoints = 100){
 
 c <- circleFun(diameter = 2, npoints = 400)
 
-# LASSO
-lasso <- ggplot(
+# ridge
+ridge <- ggplot(
   data = dat,
   mapping = aes(x = x, y = y, z = z, color = z)) +
   
@@ -45,7 +45,7 @@ lasso <- ggplot(
     inherit.aes = FALSE
   ) +
   
-  # Points for the OLS and LASSO solutions
+  # Points for the OLS and ridge solutions
   geom_point(
     data = data.frame(x = c(0.255, 2), y = c(0.967, 2)),
     mapping = aes(x = x, y = y),
@@ -81,7 +81,7 @@ lasso <- ggplot(
   
   annotate(
     "text", 
-    label = "hat(beta)^LASSO", 
+    label = "hat(beta)^ridge", 
     parse = TRUE, 
     x = 0.455, 
     y = 1.067, 
@@ -96,8 +96,8 @@ lasso <- ggplot(
 
 
 
-# RIDGE
-ridge <- ggplot(
+# lasso
+lasso <- ggplot(
   data = dat,
   mapping = aes(x = x, y = y, z = z, color = z)) +
   
@@ -117,7 +117,7 @@ ridge <- ggplot(
     inherit.aes = FALSE
   ) +
   
-  # Points for the OLS and ridge solutions
+  # Points for the OLS and lasso solutions
   geom_point(
     data = data.frame(x = c(0, 2), y = c(1, 2)),
     mapping = aes(x = x, y = y),
@@ -153,7 +153,7 @@ ridge <- ggplot(
   
   annotate(
     "text", 
-    label = "hat(beta)^ridge", 
+    label = "hat(beta)^lasso", 
     parse = TRUE, 
     x = 0.20, 
     y = 1.10, 

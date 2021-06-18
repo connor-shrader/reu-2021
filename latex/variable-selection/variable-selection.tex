@@ -210,16 +210,26 @@ If $\lambda = 0$, then the lasso model is equivalent to the ordinary least squar
 \end{equation}
 where $t$ is a tuning parameter.
 
-One useful property of the lasso method is that it can perform variable selection by setting some coefficients to zero. To understand why lasso regression can perform variable selection whereas ride regression cannot, consider Figure \ref{fig:ridge-lasso} below. This figure demonstrates the case when $p=2$ and $t = 1$. The red diamond on the left represents the condition $\vert \beta_1 \vert + \vert \beta_2 \vert < 1$ for ridge regression, while the circle on the right represents the condition $\beta_1^2 + \beta_2^2 < 1$ for lasso regression. The black curves represent contours of the residual sum of squares error for values of $\beta_1$ and $\beta_2$. The black point in the center of these curves is where the RSS is minimized; this represents the values of $\beta_1$ and $\beta_2$ that would be selected by ordinary least squares.
+One useful property of the lasso method is that it can perform variable selection by setting some coefficients to zero. To understand why lasso regression can perform variable selection whereas ride regression cannot, consider Figure \ref{fig:ridge-lasso-diagram} below. This figure demonstrates the case when $p=2$ and $t = 1$. The circle in \ref{fig:ridge-diagram} represents the condition $\beta_1^2 + \beta_2^2 < 1$ for ridge regression, while the red diamond in Figure \ref{fig:lasso-diagram} represents the condition $\vert \beta_1 \vert + \vert \beta_2 \vert < t$ for lasso regression. The blue curves represent contours of the residual sum of squares for values of $\beta_1$ and $\beta_2$. The black point in the center of these curves is where the RSS is minimized; this represents the values of $\beta_1$ and $\beta_2$ that would be selected by ordinary least squares.
 
 \begin{figure}[!h]
+	\caption{RSS contours and penalty bounds for the ridge and lasso models when $p=2$ and $t = 1$.}
+	\label{fig:ridge-lasso-diagram}
 	\centering
-	\caption{Error and constant curves for the lasso and ridge models when $p=2$.}
-	\label{fig:ridge-lasso}
-	\includegraphics[width = 0.6\textwidth]{images/ridge-lasso.png}
+	\begin{subfigure}[b]{0.45\textwidth}
+		\caption{RSS contours and the ridge penalty boundary.}
+		\label{fig:ridge-diagram}
+		\includegraphics[width=\textwidth]{images/ridge-diagram.png}
+	\end{subfigure}
+	\hspace{30pt}
+	\begin{subfigure}[b]{0.45\textwidth}
+		\caption{RSS contours and the lasso penalty boundary.}
+		\label{fig:lasso-diagram}
+		\includegraphics[width=\textwidth]{images/lasso-diagram.png}
+	\end{subfigure}
 \end{figure}
 
-In the left plot, the intersection of the black curve and the red diamond represents the parameter values chosen by lasso regression; this point minimizes the RSS under the condition $\vert \beta_1 \vert + \vert \beta_2 \vert < 1$. Because the red region is a square, this intersection occurs at a point where $\beta_1 = 0$; hence, the lasso method removes the predictor $\beta_1$. On the other hand, the circular shape of the constrained region for ridge regression cannot perform variable selection because the intersection does not occur at one of the axes.
+In \ref{fig:ridge-diagram}, the intersection of the black curve and the red diamond represents the parameter values chosen by ridge regression; this point minimizes the RSS under the condition $\beta_1^2 + \beta_2^2 \leq 1$. Because the red region is a circle, this intersection cannot occur exactly at $\beta_1 = 0$; hence, the ridge method cannot remove the predictor $\beta_1$. On the other hand, the square shape of the constrained region for lasso regression can perform variable selection because the intersection occurs at one of the axes.
 
 The lasso method is particularly useful in the case where $p>n$ because of its ability to select variables; a model with fewer variables has less variance and is more interpretable. One major downside of lasso regression is that it does not handle multicollinearity as nicely as ridge regression. Another downside of lasso regression is that it does not have a closed-form solution, which can lead to instability in the model. This can be demonstrated by the greater spread of $\beta$ coefficients compared to ridge regression, as visible in Figure \ref{fig:lasso-and-ridge-instability}.
 

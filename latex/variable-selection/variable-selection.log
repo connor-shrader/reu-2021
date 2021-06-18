@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.12.4)  17 JUN 2021 12:02
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.12.4)  18 JUN 2021 12:46
 entering extended mode
 **./variable-selection.tex
 (variable-selection.tex
@@ -508,76 +508,76 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [5 <./images/forward-stepwise-selection.png>] [6 <./images/backward-stepwise-se
 lection.png>] [7]
-<images/ridge-lasso.png, id=264, 691.08188pt x 536.75531pt>
-File: images/ridge-lasso.png Graphic file (type png)
-<use images/ridge-lasso.png>
-Package pdftex.def Info: images/ridge-lasso.png  used on input line 219.
-(pdftex.def)             Requested size: 281.85587pt x 218.91628pt.
- [8 <./images/ridge-lasso.png>]
-<images/lasso-vs-ridge-instability.png, id=275, 806.26219pt x 584.1825pt>
+<images/ridge-diagram.png, id=266, 3011.25pt x 1806.75pt>
+File: images/ridge-diagram.png Graphic file (type png)
+<use images/ridge-diagram.png>
+Package pdftex.def Info: images/ridge-diagram.png  used on input line 222.
+(pdftex.def)             Requested size: 211.38832pt x 126.81624pt.
+<images/lasso-diagram.png, id=267, 3011.25pt x 1806.75pt>
+File: images/lasso-diagram.png Graphic file (type png)
+<use images/lasso-diagram.png>
+Package pdftex.def Info: images/lasso-diagram.png  used on input line 228.
+(pdftex.def)             Requested size: 211.38832pt x 126.81624pt.
+<images/lasso-vs-ridge-instability.png, id=270, 806.26219pt x 584.1825pt>
 File: images/lasso-vs-ridge-instability.png Graphic file (type png)
 <use images/lasso-vs-ridge-instability.png>
 Package pdftex.def Info: images/lasso-vs-ridge-instability.png  used on input l
-ine 229.
+ine 239.
 (pdftex.def)             Requested size: 328.82707pt x 238.2506pt.
- [9 <./images/lasso-vs-ridge-instability.png>] [10]
-<images/penalty.png, id=312, 691.08188pt x 536.75531pt>
+ [8 <./images/ridge-diagram.png> <./images/lasso-diagram.png>] [9 <./images/las
+so-vs-ridge-instability.png>] [10]
+<images/penalty.png, id=317, 691.08188pt x 536.75531pt>
 File: images/penalty.png Graphic file (type png)
 <use images/penalty.png>
-Package pdftex.def Info: images/penalty.png  used on input line 312.
+Package pdftex.def Info: images/penalty.png  used on input line 322.
 (pdftex.def)             Requested size: 187.89914pt x 145.93326pt.
-<images/derivative.png, id=313, 691.08188pt x 536.75531pt>
+<images/derivative.png, id=318, 691.08188pt x 536.75531pt>
 File: images/derivative.png Graphic file (type png)
 <use images/derivative.png>
-Package pdftex.def Info: images/derivative.png  used on input line 318.
+Package pdftex.def Info: images/derivative.png  used on input line 328.
 (pdftex.def)             Requested size: 187.89914pt x 145.93326pt.
-<images/prediction.png, id=315, 691.08188pt x 536.75531pt>
+<images/prediction.png, id=320, 691.08188pt x 536.75531pt>
 File: images/prediction.png Graphic file (type png)
 <use images/prediction.png>
-Package pdftex.def Info: images/prediction.png  used on input line 330.
+Package pdftex.def Info: images/prediction.png  used on input line 340.
 (pdftex.def)             Requested size: 187.89914pt x 145.93326pt.
  [11 <./images/penalty.png> <./images/derivative.png> <./images/prediction.png>
 ]
-Overfull \hbox (3.27388pt too wide) in paragraph at lines 346--365
+Overfull \hbox (3.27388pt too wide) in paragraph at lines 356--375
  [][] 
  []
 
-<Images/decision-tree.png, id=328, 637.63219pt x 612.78937pt>
+<Images/decision-tree.png, id=331, 637.63219pt x 612.78937pt>
 File: Images/decision-tree.png Graphic file (type png)
 <use Images/decision-tree.png>
-Package pdftex.def Info: Images/decision-tree.png  used on input line 369.
+Package pdftex.def Info: Images/decision-tree.png  used on input line 379.
 (pdftex.def)             Requested size: 281.85587pt x 270.87175pt.
-[12] [13 <./Images/decision-tree.png>]
-<images/svm-1.png, id=345, 384.2355pt x 382.42876pt>
+[12 <./Images/decision-tree.png>]
+<images/svm-1.png, id=343, 384.2355pt x 382.42876pt>
 File: images/svm-1.png Graphic file (type png)
 <use images/svm-1.png>
-Package pdftex.def Info: images/svm-1.png  used on input line 395.
+Package pdftex.def Info: images/svm-1.png  used on input line 405.
 (pdftex.def)             Requested size: 216.81pt x 215.78671pt.
-<images/svm-2.png, id=350, 575.14874pt x 572.73975pt>
-File: images/svm-2.png Graphic file (type png)
-<use images/svm-2.png>
-Package pdftex.def Info: images/svm-2.png  used on input line 406.
-(pdftex.def)             Requested size: 216.81pt x 215.90424pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[14 <./images/svm-1.png>] [15 <./images/svm-2.png>] [16] [17] [18] [19]
-(variable-selection.bbl) [20] (variable-selection.aux)
-
-Package rerunfilecheck Warning: File `variable-selection.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `variable-selection.out':
-(rerunfilecheck)             Before: CD6AFC1C88C717C7B22351C2672491B0;6019
-(rerunfilecheck)             After:  80B49089315963D96A7BBC0264435EB6;2452.
+[13]
+<images/svm-2.png, id=354, 575.14874pt x 572.73975pt>
+File: images/svm-2.png Graphic file (type png)
+<use images/svm-2.png>
+Package pdftex.def Info: images/svm-2.png  used on input line 416.
+(pdftex.def)             Requested size: 216.81pt x 215.90424pt.
+ [14 <./images/svm-1.png> <./images/svm-2.png>] [15] [16] [17] [18]
+[19] (variable-selection.bbl) [20] (variable-selection.aux)
+Package rerunfilecheck Info: File `variable-selection.out' has not changed.
+(rerunfilecheck)             Checksum: 80B49089315963D96A7BBC0264435EB6;2452.
  ) 
 Here is how much of TeX's memory you used:
- 10815 strings out of 479799
- 164199 string characters out of 2869248
+ 10825 strings out of 479799
+ 164459 string characters out of 2869248
  642604 words of memory out of 3000000
- 27508 multiletter control sequences out of 15000+200000
+ 27517 multiletter control sequences out of 15000+200000
  545019 words of font info for 67 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  66i,14n,72p,992b,1723s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -602,9 +602,9 @@ pData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/
 Connor/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb>
 <C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/c
 mtt10.pfb>
-Output written on variable-selection.pdf (20 pages, 465658 bytes).
+Output written on variable-selection.pdf (20 pages, 639400 bytes).
 PDF statistics:
- 489 PDF objects out of 1000 (max. 8388607)
+ 492 PDF objects out of 1000 (max. 8388607)
  118 named destinations out of 1000 (max. 500000)
- 328 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 333 words of extra memory for PDF output out of 10000 (max. 10000000)
 
