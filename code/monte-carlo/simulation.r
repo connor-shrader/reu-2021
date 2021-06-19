@@ -230,12 +230,100 @@ fit_models <- function(dat, n, p) {
   enet <- cv.glmnet(x = as.matrix(dat[,-1]), y = dat$y, alpha = 0.8) #small alpha is not needed since small multicollinearity
   models[["enet"]] <- enet
   
-  # MCP
+  # SCAD
   scad <- cv.ncvreg(X = dat[, -1], y = dat$y, penalty = "SCAD")
   models[["scad"]] <- scad
   
+  # MCP
   mcp <- cv.ncvreg(X = dat[, -1], y = dat$y)
   models[["mcp"]] <- mcp
+  
+  ## Grid Search Random Forest ##
+  num_p <- length(dat) - 1
+  
+  rf_grid.h2o <- list(
+    ntrees      = c(200, 500, 1500),
+    mtries      = c(round(num_p /2), round(num_p / 3))#,
+    #max_depth   = c(20, 30, 40),
+    #sample_rate = c(.55, .632, .75)
+  )
+  
+  # random grid search criteria
+  search_criteria <- list(
+    strategy = "RandomDiscrete",
+    stopping_metric = "mse",
+    stopping_tolerance = 0.005,
+    stopping_rounds = 10,
+    max_runtime_secs = 30*60
+  )
+  
+  # build grid search 
+  rf_grid <- h2o.grid(
+    algorithm = "randomForest",
+    y = "y", 
+    training_frame = as.h2o(dat),
+    hyper_params = rf_grid.h2o,
+    search_criteria = search_criteria
+  )
+  
+  # collect the results and sort by our model performance metric of choice
+  rf_grid_perf <- h2o.getGrid(
+    grid_id = rf_grid@grid_id, 
+    sort_by = "mse", 
+    decreasing = FALSE
+  )
+  
+  # Grab the model_id for the top model, chosen by validation error
+  rf_best_model_id <- rf_grid_perf@model_ids[[1]]
+  rf_best_model <- h2o.getModel(rf_best_model_id)
+  models[["rf"]] <- rf_best_model
+  
+  
+  ##Grid Search GDM##
+  # create hyperparameter grid
+  hyper_grid <- list(
+    max_depth = c(1, 3, 5),
+    min_rows = c(1, 5, 10)#,
+    #learn_rate = c(0.01, 0.05, 0.1),
+    #learn_rate_annealing = c(.99, 1),
+    #sample_rate = c(.5, .75, 1),
+    #col_sample_rate = c(.8, .9, 1)
+  )
+  
+  gdm_search_criteria <- list(
+    strategy = "RandomDiscrete",
+    stopping_metric = "mse",
+    stopping_tolerance = 0.005,
+    stopping_rounds = 10,
+    max_runtime_secs = 60*60
+  )
+  
+  # perform grid search for gdm
+  gdm_grid <- h2o.grid(
+    algorithm = "gbm",
+    y = "y", 
+    training_frame = as.h2o(dat),
+    hyper_params = hyper_grid,
+    search_criteria = gdm_search_criteria,
+    ntrees = 5000,
+    stopping_rounds = 10,
+    stopping_tolerance = 0,
+    seed = 123
+  )
+  
+  # collect the results and sort by our model performance metric of choice
+  gdm_grid_perf <- h2o.getGrid(
+    grid_id = gdm_grid@grid_id, 
+    sort_by = "mse", 
+    decreasing = FALSE
+  )
+  
+  #gdm_grid_perf
+  
+  # Grab the model_id for the top model, chosen by validation error
+  gdm_best_model_id <- gdm_grid_perf@model_ids[[1]]
+  gdm_best_model <- h2o.getModel(gdm_best_model_id)
+  models[["gdm"]] <- gdm_best_model
   
   return(models)
 }

@@ -13,10 +13,15 @@ library(glmnet) # v4.1-1
 library(MASS) # v7.3-54
 library(caret)
 library(rstudioapi)
+library(h2o)
 
 setwd(dirname(getActiveDocumentContext()$path))
 source("simulation.r")
 source("metrics.r")
+
+# Initiate h2o
+h2o.no_progress()
+h2o.init(max_mem_size = "5g")  #start up h2o, use 5gb of ram
 
 
 dat <- monte_carlo(n = 200,
