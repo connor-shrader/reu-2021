@@ -34,9 +34,8 @@ mean_squared_error <- function(model, test_dat) {
   else if (class(model) == "cv.glmnet") { #check for lasso, ridge, enet model
     y_hat <-  data.frame(predict(model, newx = as.matrix(test_dat[,-1])))
   }
-  else if (class(model)[1] == "H2ORegressionModel") { #check for H2O model
-    print(h2o.mse(h2o.performance(model, newdata = as.h2o(test_dat))))
-    return(h2o.mse(h2o.performance(model, newdata = as.h2o(test_dat))))
+  else if (class(model) == "xgb.Booster") { 
+    y_hat <- data.frame(predict(model, newdata = as.matrix(test_dat[, -1])))
   }
   else { #rest are lm models
     y_hat <- data.frame(predict(model, newdata = test_dat[,-1]))

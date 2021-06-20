@@ -222,96 +222,84 @@ fit_models <- function(dat, n, p) {
   mcp <- cv.ncvreg(X = dat[, -1], y = dat$y)
   models[["mcp"]] <- mcp
   
-  print("rf")
+  print("xg")
   
-  ## Grid Search Random Forest ##
-  num_p <- length(dat) - 1
+  train_x_data <- as.matrix(dat[, -1])
+  train_y_data <- as.matrix(dat[, 1])
   
-  rf_grid.h2o <- list(
-    ntrees      = c(200, 500, 1500),
-    mtries      = c(round(num_p /2), round(num_p / 3))#,
-    #max_depth   = c(20, 30, 40),
-    #sample_rate = c(.55, .632, .75)
+  ##XGBoost Grid Search##
+  xgb_hyper_grid <- expand.grid(
+    eta = c(.01, .1, .3),  #learning rate
+    max_depth = c(1, 3, 7),
+    min_child_weight = c(3),
+    subsample = c(.8), 
+    colsample_bytree = c(.9),
+    optimal_trees = 0,               # a place to dump results
+    min_RMSE = 0                     # a place to dump results
   )
   
-  # random grid search criteria
-  search_criteria <- list(
-    strategy = "RandomDiscrete",
-    stopping_metric = "mse",
-    stopping_tolerance = 0.005,
-    stopping_rounds = 10,
-    max_runtime_secs = 30*60
+  # grid search 
+  for(i in 1:nrow(xgb_hyper_grid)) {
+    
+    # create parameter list
+    params <- list(
+      eta = xgb_hyper_grid$eta[i],
+      max_depth = xgb_hyper_grid$max_depth[i],
+      min_child_weight = xgb_hyper_grid$min_child_weight[i],
+      subsample = xgb_hyper_grid$subsample[i],
+      colsample_bytree = xgb_hyper_grid$colsample_bytree[i]
+    )
+    
+    # reproducibility
+    set.seed(123)
+    
+    # train model
+    xgb.tune <- xgb.cv(
+      params = params,
+      data = train_x_data,
+      label = train_y_data,
+      nrounds = 5000,
+      nfold = 5,
+      objective = "reg:squarederror",  # for regression models
+      verbose = 0,               # silent,
+      early_stopping_rounds = 10 # stop if no improvement for 10 consecutive trees
+    )
+    
+    # add min training error and trees to grid
+    xgb_hyper_grid$optimal_trees[i] <- which.min(xgb.tune$evaluation_log$test_rmse_mean)
+    xgb_hyper_grid$min_RMSE[i] <- min(xgb.tune$evaluation_log$test_rmse_mean)
+  }
+  
+  xgb_best_grid <- xgb_hyper_grid %>%
+    dplyr::arrange(min_RMSE)
+  
+  xgb_best_params <- list(
+    eta = xgb_best_grid$eta[1],
+    max_depth = xgb_best_grid$max_depth[1],
+    min_child_weight = xgb_best_grid$min_child_weight[1],
+    subsample = xgb_best_grid$subsample[1],
+    colsample_bytree = xgb_best_grid$colsample_bytree[1]
   )
   
-  # build grid search 
-  rf_grid <- h2o.grid(
-    algorithm = "randomForest",
-    y = "y", 
-    training_frame = as.h2o(dat),
-    hyper_params = rf_grid.h2o,
-    search_criteria = search_criteria
+  train_size <- floor(nrow(dat)/2)
+  print(train_size)
+  dat_train <- dat[1:train_size, ]
+  dat_val <- dat[(train_size + 1):nrow(dat), ]
+  train_set <- xgb.DMatrix(data = as.matrix(dat_train[, -1]), label = as.matrix(dat_train[, 1]))
+  test_set <- xgb.DMatrix(data = as.matrix(dat_val[, -1]), label = as.matrix(dat_val[, 1]))
+  
+  # train best model
+  xgb.best <- xgb.train(
+    params = xgb_best_params,
+    data = train_set,
+    nrounds = 5000,
+    objective = "reg:squarederror",  # for regression models
+    verbose = 0,               # silent,
+    early_stopping_rounds = 10, # stop if no improvement for 10 consecutive trees
+    watchlist = list(validation = test_set)
   )
-  
-  # collect the results and sort by our model performance metric of choice
-  rf_grid_perf <- h2o.getGrid(
-    grid_id = rf_grid@grid_id, 
-    sort_by = "mse", 
-    decreasing = FALSE
-  )
-  
-  # Grab the model_id for the top model, chosen by validation error
-  rf_best_model_id <- rf_grid_perf@model_ids[[1]]
-  rf_best_model <- h2o.getModel(rf_best_model_id)
-  models[["rf"]] <- rf_best_model
-  
-  print("gbm")
-  ##Grid Search gbm##
-  # create hyperparameter grid
-  hyper_grid <- list(
-    max_depth = c(1, 3, 5),
-    min_rows = c(1, 5, 10),
-    learn_rate = c(0.01, 0.05, 0.1),
-    ntrees = c(500, 2000, 5000)
-    #learn_rate_annealing = c(.99, 1),
-    #sample_rate = c(.5, .75, 1),
-    #col_sample_rate = c(.8, .9, 1)
-  )
-  
-  gbm_search_criteria <- list(
-    strategy = "RandomDiscrete",
-    stopping_metric = "mse",
-    stopping_tolerance = 0.005,
-    stopping_rounds = 2,
-    max_runtime_secs = 60*60
-  )
-  
-  # perform grid search for gbm
-  gbm_grid <- h2o.grid(
-    algorithm = "gbm",
-    y = "y", 
-    training_frame = as.h2o(dat[1:80, ]),
-    validation_frame = as.h2o(dat[81:100, ]),
-    hyper_params = hyper_grid,
-    search_criteria = gbm_search_criteria,
-    stopping_rounds = 10,
-    # stopping_tolerance = 0,
-    seed = 123
-  )
-  
-  # collect the results and sort by our model performance metric of choice
-  gbm_grid_perf <- h2o.getGrid(
-    grid_id = gbm_grid@grid_id, 
-    sort_by = "mse", 
-    decreasing = TRUE
-  )
-  
-  View(gbm_grid_perf)
-  #gbm_grid_perf
-  
-  # Grab the model_id for the top model, chosen by validation error
-  gbm_best_model_id <- gbm_grid_perf@model_ids[[1]]
-  gbm_best_model <- h2o.getModel(gbm_best_model_id)
-  models[["gbm"]] <- gbm_best_model
+  models[["gbm"]] <- xgb.best
+  print(class(xgb.best))
   
   return(models)
 }

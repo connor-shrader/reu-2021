@@ -15,6 +15,7 @@ library(caret)
 library(rstudioapi)
 library(h2o)
 library(bit64)
+library(xgboost)
 
 setwd(dirname(getActiveDocumentContext()$path))
 source("simulation.r")
