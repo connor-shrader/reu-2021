@@ -6,6 +6,7 @@
 library(MASS) #includes databases
 library(tidyverse) #data cleaning
 library(neuralnet) #neural network model
+library(randomForest) #random forest model
 
 
 dat <- Boston
@@ -44,7 +45,7 @@ ANN3_mse <- mean((data_test[,"medv"] - predict(boston_ANN3, data_test[,-length(d
 boston_ANN4 <- neuralnet(medv ~ ., data = data_train, hidden = c(5,5,3,1))
 ANN4_mse <- mean((data_test[,"medv"] - predict(boston_ANN4, data_test[,-length(data_test)])) ^ 2)
 
-plot(boston_ANN4)
+#plot(boston_ANN4)
 
 # Comparison with RandomForest model
 rf <- randomForest(medv ~ ., data = data_train)
