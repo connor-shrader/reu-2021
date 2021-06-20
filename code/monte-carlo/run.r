@@ -21,7 +21,7 @@ source("metrics.r")
 
 # Initiate h2o
 h2o.no_progress()
-h2o.init(max_mem_size = "5g")  #start up h2o, use 5gb of ram
+h2o.init(max_mem_size = "5g", ip = "localhost", startH2O = TRUE)  #start up h2o, use 5gb of ram
 
 
 dat <- monte_carlo(n = 200,

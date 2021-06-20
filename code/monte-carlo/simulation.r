@@ -335,15 +335,17 @@ fit_models <- function(dat, n, p) {
 # as well as the names of the corresponding variables. This function is used in
 # results_table().
 model_data_frame <- function(model, model_name) {
-  # Create a data frame with the coefficient estimates.
-  df <- data.frame(as.matrix(coef(model)))
-  
-  # Rename the column to have the correct model name.
-  colnames(df) <- model_name
-  
-  # Add a row containing the name of the variable corresponding to each coefficient.
-  df$row_names <- row.names(df)
-  df
+  if (class(model) %in% c("cv.glmnet", "lm", "cv.ncvreg")){
+    # Create a data frame with the coefficient estimates.
+    df <- data.frame(as.matrix(coef(model)))
+    
+    # Rename the column to have the correct model name.
+    colnames(df) <- model_name
+    
+    # Add a row containing the name of the variable corresponding to each coefficient.
+    df$row_names <- row.names(df)
+    return(df)
+  }
 }
 
 
@@ -362,10 +364,12 @@ results_table <- function(models, beta, p) {
   # coefficient estimates for that model. Then, this dataframe is joined with df.
   # At the end of the loop, df contains the coefficients from all models.
   for (i in 1:length(models)) {
-    results <- left_join(results, model_data_frame(models[[i]], names(models)[[i]]),
-                         by = "row_names",
-                         all.x = TRUE
+    if (class(models[[i]]) %in% c("cv.glmnet", "lm", "cv.ncvreg")){
+      results <- left_join(results, model_data_frame(models[[i]], names(models)[[i]]),
+                           by = "row_names",
+                           all.x = TRUE
     )
+    }
   }
   
   # Set the row names for df to the column called row_names.
@@ -400,6 +404,7 @@ monte_carlo_single_iteration <- function(seed, n, p, beta = NULL, ...) {
   # for each model.
   coefs_df <- results_table(models, beta = beta, p = p)
   mse_list <- lapply(models, test_mse, test_dat = test.dat)
+  print(mse_list)
   conf_matrices <- confusion_matrices(coefs_df)
   
   return(list(coefficients = coefs_df, models = models, mse = mse_list, confusion = conf_matrices))
