@@ -538,6 +538,40 @@ Table \ref{tab:simulation-parameters} shows the values chosen for each parameter
 
 Because of the factorial design, every possible combination of these parameters will be considered.
 
+\subsection{Fitting Models}
+\subsubsection{Subset Selection Models}
+We fitted subset selection models (such as stepwise forward and stepwise backward selection) using the \lstinline!stepAIC! function from the \lstinline!MASS! package. For each subset selection algorithm, we fitted two different models: one using the Akaike Information Criterion (AIC) and one using the Bayesian Information Criterion (BIC). This gave us a total of eight subset selection models. We also evaluated the full OLS model (containing all predictors) and the null model (containing no predictors).
+
+In the case where $p>n$, the full model cannot be computated. Furthermore, due to the functionality of \lstinline!stepAIC!, we did not compute the subset selection models in the case where $2p>n$. Hence, when $2p>n$, the only models computed were the null model, the penalized regression models, and the non-linear models.
+
+\subsubsection{Penalized Regression Models}
+The lasso, ridge, and elastic-net models were computed using the \lstinline!glmnet! library. We used the \lstinline!cv.glmnet! function, which automatically selects the optimal value of $\lambda$ that minimizes the test mean-squared error (using cross-validation). However, \lstinline!glmnet! only tests $\lambda$ in a certain range, so it is possible that the function misses the best possible value of $\lambda$. To avoid this issue, we manually checked the values of $\lambda$ chosen by \lstinline!glmnet! to make sure that none of them were corner cases.
+
+For elastic-net, we used a value of $\alpha = 0.8$. This means that the penalty function more closely resembles the lasso penalty than the ridge penalty.
+
+For SCAD and MCP, we used the \lstinline!ncvreg! library. Like \lstinline!glmnet!, \lstinline!ncvreg! contains a cross-validation function \lstinline!cv.ncvreg! to find the value of $\lambda$ that minimizes the mean-squared error. By default, \lstinline!ncvreg! uses $\gamma = 3.7$ for SCAD and $\gamma = 3$ for MCP.
+
+\subsubsection{Non-Linear Models}
+To fit models using random forests and gradient boosting, we used grid search. This means that we generated models using many different combinations of hyperparameters and selected the combination that made the best predictions for a validation set. The resulting model was then used to make predictions on the test set to evaluate performance. Tables \ref{tab:rf-parameters} and \ref{tab:gb-parameters} below show the choices of hyperparameters we turned with grid search.
+
+\begin{table}[h]
+	\caption{Choice of hyperparameter values for random forest grid search.}
+	\label{tab:rf-parameters}
+	\begin{tabular}{l|lll}
+		Parameter       & Value 1     & Value 2            & Value 3        \\ \hline
+		something		& something	  & something		   & something		 
+	\end{tabular}
+\end{table}
+
+\begin{table}[h]
+	\caption{Choice of hyperparameter values for gradient boosting grid search.}
+	\label{tab:gb-parameters}
+	\begin{tabular}{l|lll}
+		Parameter       & Value 1     & Value 2            & Value 3        \\ \hline
+		something		& something	  & something		   & something		 
+	\end{tabular}
+\end{table}
+
 \subsection{Confusion Matrix}
 In classification, a confusion matrix, as visible in Table \ref{tab:confusion_matrix}, can tell us how well a model classifies different objects. For regression, there is no classification, and so a confusion matrix cannot be used in its traditional way. However, it can be used to identify how well a variable selection linear regression model chooses its predictors. In this case, it can be viewed as classification of whether the model chooses the predictor or not, compared to the truth of whether the predictor has a coefficient $> 0$ or is not significant and thus is 0. This results in 4 possibilities for each model coefficient: True Positive meaning that the model correctly included the predictor, True Negative meaning that the model correctly didn't include the predictor, False Positive meaning that the model incorrectly included the predictor, and False Negative meaning that the model incorrectly didn't include the predictor.
 
