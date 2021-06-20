@@ -55,11 +55,12 @@ h2o.init(max_mem_size = "5g", ip = "localhost", startH2O = TRUE)  #start up h2o,
 
 
 dat <- monte_carlo(n = 100,
-                    p = 10,
-                    iterations = 1,
-                    type = "independent",
+                   p = 10,
+                   type = "independent",
                    corr = 0,
-                    error_var = 1,
+                   sd = 1,
+                   iterations = 1,
+                   seed = 1
 )
 View(dat[[1]]$coefficients)
 conf_matrices <- confusion_matrices(dat[[1]]$coefficients)
@@ -104,6 +105,18 @@ run_simulations <- function(row) {
   error_var <- as.numeric(row["sigma"])^2
   type <- row["covar"]
   corr <- as.numeric(row["rho"])
+  
+  if (type == "blockwise") {
+    if (p == 10) {
+      block_size <- 5
+    }
+    else if (p == 100) {
+      block_size <- 25
+    }
+    else if (p == 2000) {
+      block_size <- 100
+    }
+  }
   
   results <- monte_carlo(n = n,
                          p = p,

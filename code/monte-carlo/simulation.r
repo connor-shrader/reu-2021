@@ -52,11 +52,12 @@ generate_coefficients <- function(beta, p) {
 # generate_data() is used to generate data.
 #
 # Arguments:
-#   seed: Random seed to generate the data.
 #   n: Number of observations.
 #   p: Number of predictors.
-#   var (default 1): Vector containing the variance of each predictor. If the
-#     length of var is less than p, then var is extended using rep()
+#   beta (default NONE): The true values of the coefficient values. If beta contains
+#     less than (p + 1) values, beta is extended by zero until it has length (p + 1).
+#     If beta = NONE, some default coefficient values are used.
+#   sd (default 1): The standard deviation of the random error.
 #   type (default "independent"): Determines the covariance of the data.
 #     "independent": No covariance.
 #     "symmetric": All pairs of variables have equal covariance.
@@ -73,21 +74,16 @@ generate_coefficients <- function(beta, p) {
 #     type = "unstructured": corr should be the correlation matrix.
 #   block_size (default NULL): The size of each block if using blockwise correlation.
 #     block_size should divide the number of predictors.
-#   beta (default NONE): The true values of the coefficient values. If beta contains
-#     less than (p + 1) values, beta is extended by zero until it has length (p + 1).
-#     If beta = NONE, some default coefficient values are used.
-#   error_var (default 1): The variance of the random error.
-generate_data <- function(seed, n, p, var = 1, type = "independent", corr = 0,
-                          block_size = NULL, beta = NULL, error_var = 1) {
-  set.seed(seed)
+#   seed (default NULL): Random seed to generate the data. If NULL, no seed it set.
+generate_data <- function(n, p, beta = NULL, type = "independent", corr = 0,
+                          sd = 1, block_size = NULL, seed = NULL) {
+  if(!is.null(seed)) {
+    set.seed(seed)
+  }
   
   # Generate the coefficient values if beta is NULL or does not have the right
   # length.
   beta <- generate_coefficients(beta, p)
-  
-  # sd will be used for the standard deviation when we call rnorm_multi() (which
-  # will generate our data). sd[i] is the standard deviation for predictor i.
-  sd <- rep(sqrt(var), length.out = p)
   
   # The following if-else chain will calculate r, which is used as the correlation
   # parameter for rnorm_multi().
@@ -112,24 +108,10 @@ generate_data <- function(seed, n, p, var = 1, type = "independent", corr = 0,
     # The correlation matrix will be a block diagonal matrix. a_ij = 0 if i = j,
     # a_ij = corr if i and j are in the same block, and a_ij = 0 otherwise.
     
-    # If block_size is NULL, stop the function (unless p = 10, 100, or 2000, in which
-    # case default values are used.)
     if (is.null(block_size)) {
-      if (p == 10) {
-        block_size <- 5
-      }
-      else if (p == 100) {
-        block_size <- 25
-      }
-      else if (p == 2000) {
-        block_size <- 100
-      }
-      else {
-        stop("block_size not provided.")
-      }
+      stop("block size must be given a value")
     }
-    
-    if (p %% block_size != 0) {
+    else if (p %% block_size != 0) {
       stop("block_size should divide p")
     }
     
@@ -160,7 +142,7 @@ generate_data <- function(seed, n, p, var = 1, type = "independent", corr = 0,
   ))
   
   # Generate corresponding y values for our data.
-  y <- x %*% beta + rnorm(n, sd = sqrt(error_var))
+  y <- x %*% beta + rnorm(n, sd = sd)
   
   # Create return data frame. We removed the column of 1's that we used as
   # an intercept for generating the data.
@@ -393,29 +375,33 @@ results_table <- function(models, beta, p) {
 # results_table(). This function takes in any inputs that go into generate_data(),
 # and this function outputs a list containing the outputs of fit_models()
 # and results_table().
-monte_carlo_single_iteration <- function(seed, n, p, beta = NULL, ...) {
-  # Generate training AND test data.
+full_simulation <- function(n, p, beta = NULL, seed = NULL, ...) {
+  if (!is.null(seed)) {
+    set.seed(seed)
+  }
   
-  train.data <- generate_data(seed = seed, n = n, p = p, beta = beta, ...)
-  test.data <- generate_data(seed = seed + 1, n = n, p = p, beta = beta, ...)
+  # Generate training and test data.
+  train_data <- generate_data(n = n, p = p, beta = beta, ...)
+  test_data <- generate_data(n = n, p = p, beta = beta, ...)
   
   # Fit the models using the training data.
-  models <- fit_models(train.data, n = n, p = p)
+  models <- fit_models(train_data, n = n, p = p)
   
   # Generate the coefficient table and compute the mean squared error
   # for each model.
-  coefs_df <- results_table(models, beta = beta, p = p)
+  coefficients_table <- results_table(models, beta = beta, p = p)
   
-  train_mse <- lapply(models, test_mse, test_dat = train.data)
-  test_mse <- lapply(models, test_mse, test_dat = test.data)
+  train_mse <- lapply(models, mean_squared_error, test_dat = train_data)
+  test_mse <- lapply(models, mean_squared_error, test_dat = test_data)
   
-  #rf_pred <- h2o.performance(models$rf, newdata = as.h2o(test.data))
-  #print("MSE IS...")
-  #print(h2o.mse(rf_pred))
-  print(test_mse)
-  conf_matrices <- confusion_matrices(coefs_df)
+  confusion_matrices <- confusion_matrices(coefficients_table)
   
-  return(list(coefficients = coefs_df, models = models, train_mse = train_mse, test_mse = test_mse, confusion = conf_matrices))
+  return(list(
+    coefficients = coefficients_table, 
+    models = models, 
+    train_mse = train_mse, 
+    test_mse = test_mse, 
+    confusion_matrices = confusion_matrices))
 }
 
 
@@ -426,5 +412,6 @@ monte_carlo_single_iteration <- function(seed, n, p, beta = NULL, ...) {
 # otherwise, this function returns a list of repeated calls to
 # monte_carlo_single_simulation.
 monte_carlo <- function(n, p, iterations, beta = NULL, ...) {
-  lapply(1:iterations, monte_carlo_single_iteration, n = n, p = p, beta = beta, ...)
+  set.seed(1)
+  rep(full_simulation(n = n, p = p, beta = beta, ...), times = iterations)
 }

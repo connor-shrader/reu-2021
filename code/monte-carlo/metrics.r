@@ -27,7 +27,7 @@ library(MASS) # v7.3-54
 
 # This function inputs a model and test data. It then computes and returns
 # the mean squared error.
-test_mse <- function(model, test_dat) {
+mean_squared_error <- function(model, test_dat) {
   if (class(model) == "cv.ncvreg") { #checks for mcp or scad model
     y_hat <-  data.frame(predict(model, X = as.matrix(test_dat[,-1])))
   }
