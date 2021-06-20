@@ -14,6 +14,7 @@ library(MASS) # v7.3-54
 library(caret)
 library(rstudioapi)
 library(h2o)
+library(bit64)
 
 setwd(dirname(getActiveDocumentContext()$path))
 source("simulation.r")
@@ -23,12 +24,41 @@ source("metrics.r")
 h2o.no_progress()
 h2o.init(max_mem_size = "5g", ip = "localhost", startH2O = TRUE)  #start up h2o, use 5gb of ram
 
+#random_data <- generate_data(seed = 1, n = 100, p = 10, corr = 0, type = "independent")
+#models <- fit_models(dat = random_data, n = 100, p = 10)
 
-dat <- monte_carlo(n = 200,
-                    p = 500,
+#test_data <- generate_data(seed = 1, n = 100, p = 10, corr = 0, type = "independent")
+
+#lasso_pred <- predict(models$lasso, as.matrix(test_data[, -1]))
+#lasso_eval <- data.frame(lasso_pred, test_data[, 1])
+#lasso_mse <- 1/100 * sum((lasso_eval[, 1] - lasso_eval[, 2])^2)
+
+#rf_pred <- h2o.performance(models$rf, newdata = as.h2o(test_data))
+
+#rf_pred <- as.data.frame(predict(object = models$rf, newdata = as.h2o(test_data[, -1])))
+#rf_eval <- data.frame(rf_pred, test_data[, 1])
+#rf_mse <- 1/100 * sum((rf_eval[, 1] - rf_eval[, 2])^2)
+
+#rf_eval[3] <- lasso_eval[1]
+#colnames(rf_eval) <- c("rf", "true", "lasso")
+
+
+
+
+
+
+
+
+
+
+
+
+
+dat <- monte_carlo(n = 100,
+                    p = 10,
                     iterations = 1,
-                    type = "autoregressive",
-                   corr = 0.9,
+                    type = "independent",
+                   corr = 0,
                     error_var = 1,
 )
 View(dat[[1]]$coefficients)

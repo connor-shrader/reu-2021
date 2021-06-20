@@ -35,7 +35,8 @@ test_mse <- function(model, test_dat) {
     y_hat <-  data.frame(predict(model, newx = as.matrix(test_dat[,-1])))
   }
   else if (class(model)[1] == "H2ORegressionModel") { #check for H2O model
-    y_hat <-  predict(model, newdata = as.h2o(test_dat[,-1]))
+    print(h2o.mse(h2o.performance(model, newdata = as.h2o(test_dat))))
+    return(h2o.mse(h2o.performance(model, newdata = as.h2o(test_dat))))
   }
   else { #rest are lm models
     y_hat <- data.frame(predict(model, newdata = test_dat[,-1]))

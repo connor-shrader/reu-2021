@@ -180,6 +180,7 @@ fit_models <- function(dat, n, p) {
   models <- list()
   
   # Null model for forward selection
+  print("nm")
   nm <- lm(y ~ 1, data = dat)
   models[["nm"]] <- nm
   
@@ -218,6 +219,7 @@ fit_models <- function(dat, n, p) {
     models[["bsf"]] <- bsf
   }
   
+  print("lasso")
   # Lasso model for variable selection
   lasso <- cv.glmnet(x = as.matrix(dat[,-1]), y = dat$y, alpha = 1)
   models[["lasso"]] <- lasso
@@ -237,6 +239,8 @@ fit_models <- function(dat, n, p) {
   # MCP
   mcp <- cv.ncvreg(X = dat[, -1], y = dat$y)
   models[["mcp"]] <- mcp
+  
+  print("rf")
   
   ## Grid Search Random Forest ##
   num_p <- length(dat) - 1
@@ -278,52 +282,54 @@ fit_models <- function(dat, n, p) {
   rf_best_model <- h2o.getModel(rf_best_model_id)
   models[["rf"]] <- rf_best_model
   
-  
-  ##Grid Search GDM##
+  print("gbm")
+  ##Grid Search gbm##
   # create hyperparameter grid
   hyper_grid <- list(
     max_depth = c(1, 3, 5),
-    min_rows = c(1, 5, 10)#,
-    #learn_rate = c(0.01, 0.05, 0.1),
+    min_rows = c(1, 5, 10),
+    learn_rate = c(0.01, 0.05, 0.1),
+    ntrees = c(500, 2000, 5000)
     #learn_rate_annealing = c(.99, 1),
     #sample_rate = c(.5, .75, 1),
     #col_sample_rate = c(.8, .9, 1)
   )
   
-  gdm_search_criteria <- list(
+  gbm_search_criteria <- list(
     strategy = "RandomDiscrete",
     stopping_metric = "mse",
     stopping_tolerance = 0.005,
-    stopping_rounds = 10,
+    stopping_rounds = 2,
     max_runtime_secs = 60*60
   )
   
-  # perform grid search for gdm
-  gdm_grid <- h2o.grid(
+  # perform grid search for gbm
+  gbm_grid <- h2o.grid(
     algorithm = "gbm",
     y = "y", 
-    training_frame = as.h2o(dat),
+    training_frame = as.h2o(dat[1:80, ]),
+    validation_frame = as.h2o(dat[81:100, ]),
     hyper_params = hyper_grid,
-    search_criteria = gdm_search_criteria,
-    ntrees = 5000,
+    search_criteria = gbm_search_criteria,
     stopping_rounds = 10,
-    stopping_tolerance = 0,
+    # stopping_tolerance = 0,
     seed = 123
   )
   
   # collect the results and sort by our model performance metric of choice
-  gdm_grid_perf <- h2o.getGrid(
-    grid_id = gdm_grid@grid_id, 
+  gbm_grid_perf <- h2o.getGrid(
+    grid_id = gbm_grid@grid_id, 
     sort_by = "mse", 
-    decreasing = FALSE
+    decreasing = TRUE
   )
   
-  #gdm_grid_perf
+  View(gbm_grid_perf)
+  #gbm_grid_perf
   
   # Grab the model_id for the top model, chosen by validation error
-  gdm_best_model_id <- gdm_grid_perf@model_ids[[1]]
-  gdm_best_model <- h2o.getModel(gdm_best_model_id)
-  models[["gdm"]] <- gdm_best_model
+  gbm_best_model_id <- gbm_grid_perf@model_ids[[1]]
+  gbm_best_model <- h2o.getModel(gbm_best_model_id)
+  models[["gbm"]] <- gbm_best_model
   
   return(models)
 }
@@ -389,25 +395,27 @@ results_table <- function(models, beta, p) {
 # and results_table().
 monte_carlo_single_iteration <- function(seed, n, p, beta = NULL, ...) {
   # Generate training AND test data.
-  n <- 2 * n
-  all.dat <- generate_data(seed = seed, n = n, p = p, beta = beta, ...)
   
-  # The first half of the data is used for training. The other half
-  # is used for testing.
-  ex.dat <- all.dat[1:trunc(n / 2),]
-  test.dat <- all.dat[(trunc(n / 2) + 1):n,]
+  train.data <- generate_data(seed = seed, n = n, p = p, beta = beta, ...)
+  test.data <- generate_data(seed = seed + 1, n = n, p = p, beta = beta, ...)
   
   # Fit the models using the training data.
-  models <- fit_models(ex.dat, n = n, p = p)
+  models <- fit_models(train.data, n = n, p = p)
   
   # Generate the coefficient table and compute the mean squared error
   # for each model.
   coefs_df <- results_table(models, beta = beta, p = p)
-  mse_list <- lapply(models, test_mse, test_dat = test.dat)
-  print(mse_list)
+  
+  train_mse <- lapply(models, test_mse, test_dat = train.data)
+  test_mse <- lapply(models, test_mse, test_dat = test.data)
+  
+  #rf_pred <- h2o.performance(models$rf, newdata = as.h2o(test.data))
+  #print("MSE IS...")
+  #print(h2o.mse(rf_pred))
+  print(test_mse)
   conf_matrices <- confusion_matrices(coefs_df)
   
-  return(list(coefficients = coefs_df, models = models, mse = mse_list, confusion = conf_matrices))
+  return(list(coefficients = coefs_df, models = models, train_mse = train_mse, test_mse = test_mse, confusion = conf_matrices))
 }
 
 
