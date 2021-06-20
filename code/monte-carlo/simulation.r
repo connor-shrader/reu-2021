@@ -289,14 +289,13 @@ fit_models <- function(dat, n, p) {
   test_set <- xgb.DMatrix(data = as.matrix(dat_val[, -1]), label = as.matrix(dat_val[, 1]))
   
   # train best model
-  xgb.best <- xgb.train(
+  xgb.best <- xgboost(
     params = xgb_best_params,
     data = train_set,
     nrounds = 5000,
     objective = "reg:squarederror",  # for regression models
     verbose = 0,               # silent,
     early_stopping_rounds = 10, # stop if no improvement for 10 consecutive trees
-    watchlist = list(validation = test_set)
   )
   models[["gbm"]] <- xgb.best
   print(class(xgb.best))

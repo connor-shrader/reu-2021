@@ -131,4 +131,4 @@ run_simulations <- function(row) {
 
 system.time(apply(X = parameters, MARGIN = 1, FUN = run_simulations))
 
-# res <- monte_carlo(n = 100, p = 10, iterations = 5, error_var = 1, type = "independent", corr = 1)
+# res <- monte_carlo(n = 100, p = 10, iterations = 5, type = "independent", corr = 1)
