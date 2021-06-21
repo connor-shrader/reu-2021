@@ -11,14 +11,17 @@ library(faux) # v1.0.0
 library(ncvreg) # v3.13.0
 library(glmnet) # v4.1-1
 library(MASS) # v7.3-54
-library(caret)
+
+# Used for confusion matrices.
+library(caret) # v6.0-88
 
 # Used to set the current working directory to this script.
-library(rstudioapi)
-library(bit64)
+library(rstudioapi) # v0.13
+library(bit64) # v4.0.5
 
 # Used for XGBoost models.
-library(xgboost)
+library(xgboost) # v1.4.1.1
+library(ranger) # v0.12.1
 
 setwd(dirname(getActiveDocumentContext()$path))
 source("simulation.r")
@@ -54,14 +57,14 @@ source("metrics.r")
 
 
 
-dat <- monte_carlo(n = 100,
+system.time(dat <- monte_carlo(n = 100,
                    p = 10,
                    type = "independent",
                    corr = 0,
                    sd = 1,
                    iterations = 1,
                    seed = 1
-)
+))
 View(dat[[1]]$coefficients)
 conf_matrices <- confusion_matrices(dat[[1]]$coefficients)
 View(conf_matrices)

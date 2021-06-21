@@ -262,7 +262,7 @@ fit_models <- function(dat, n, p) {
       nfold = 5,
       objective = "reg:squarederror",  # for regression models
       verbose = 0,               # silent,
-      early_stopping_rounds = 10 # stop if no improvement for 10 consecutive trees
+      early_stopping_rounds = 10, # stop if no improvement for 10 consecutive trees
     )
     
     # add min training error and trees to grid
@@ -294,7 +294,7 @@ fit_models <- function(dat, n, p) {
   )
   models[["gbm"]] <- xgb.best
   
-  
+  print("rf")
   ##Random Forest Grid Search##
   n_pred <- length(dat) - 1
   
