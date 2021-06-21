@@ -162,7 +162,6 @@ fit_models <- function(dat, n, p) {
   models <- list()
   
   # Null model for forward selection
-  print("nm")
   nm <- lm(y ~ 1, data = dat)
   models[["nm"]] <- nm
   
@@ -201,7 +200,6 @@ fit_models <- function(dat, n, p) {
     models[["bsf"]] <- bsf
   }
   
-  print("lasso")
   # Lasso model for variable selection
   lasso <- cv.glmnet(x = as.matrix(dat[,-1]), y = dat$y, alpha = 1)
   models[["lasso"]] <- lasso
@@ -400,6 +398,5 @@ full_simulation <- function(n, p, beta = NULL, seed = NULL, ...) {
 # otherwise, this function returns a list of repeated calls to
 # monte_carlo_single_simulation.
 monte_carlo <- function(n, p, iterations, beta = NULL, ...) {
-  set.seed(1)
-  rep(full_simulation(n = n, p = p, beta = beta, ...), times = iterations)
+  replicate(iterations, full_simulation(n = n, p = p, beta = beta, ...), simplify = FALSE)
 }
