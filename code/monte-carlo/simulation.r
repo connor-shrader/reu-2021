@@ -163,69 +163,85 @@ generate_data <- function(n, p, beta = NULL, type = "independent", corr = 0,
 # models.
 fit_models <- function(dat, n, p) {
   models <- list()
+  runtimes <- list()
   
   # Null model for forward selection
-  nm <- lm(y ~ 1, data = dat)
+  nm_time <- system.time(nm <- lm(y ~ 1, data = dat))
   models[["nm"]] <- nm
+  runtimes[["nm"]] <- nm_time
   
   if (2 * p < n) {
     # Full model for backward selection
-    fm <- lm(y ~ ., data = dat)
+    fm_time <- system.time(fm <- lm(y ~ ., data = dat))
     models[["fm"]] <- fm
+    runtimes[["fm"]] <- fm_time
     
     # AIC and BIC model selection for backward
-    ab = stepAIC(fm, scope=list(lower=nm, upper=fm), direction="backward", k=2, trace=F, steps=3000) #AIC
+    ab_time <- system.time(ab <-  stepAIC(fm, scope=list(lower=nm, upper=fm), direction="backward", k=2, trace=F, steps=3000)) #AIC
     models[["ab"]] <- ab
+    runtimes[["ab"]] <- ab_time
     
-    bb = stepAIC(fm, scope=list(lower=nm, upper=fm), direction="backward", k=log(nrow(dat)), trace=F, steps=3000) #BIC 
+    bb_time <- system.time(bb <-  stepAIC(fm, scope=list(lower=nm, upper=fm), direction="backward", k=log(nrow(dat)), trace=F, steps=3000)) #BIC 
     models[["bb"]] <- bb
+    runtimes[["bb"]] <- bb_time
     
     # AIC and BIC model selection for stepwise backward
-    asb = stepAIC(fm, scope=list(lower=nm, upper=fm), direction="both", k=2, trace=F, steps=3000) #AIC
+    asb_time <- system.time(asb <-  stepAIC(fm, scope=list(lower=nm, upper=fm), direction="both", k=2, trace=F, steps=3000)) #AIC
     models[["asb"]] <- asb
+    runtimes[["asb"]] <- asb_time
     
-    bsb = stepAIC(fm, scope=list(lower=nm, upper=fm), direction="both", k=log(nrow(dat)), trace=F, steps=3000) #BIC
+    bsb_time <- system.time(bsb <-  stepAIC(fm, scope=list(lower=nm, upper=fm), direction="both", k=log(nrow(dat)), trace=F, steps=3000)) #BIC
     models[["bsb"]] <- bsb
+    runtimes[["bsb"]] <- bsb_time
     
     # AIC and BIC model selection for forward
-    af = stepAIC(nm, scope=list(lower=nm, upper=fm), direction="forward", k=2, trace=F, steps=3000) #AIC
+    af_time <- system.time(af <-  stepAIC(nm, scope=list(lower=nm, upper=fm), direction="forward", k=2, trace=F, steps=3000)) #AIC
     models[["af"]] <- af
+    runtimes[["af"]] <- af_time
     
-    bf = stepAIC(nm, scope=list(lower=nm, upper=fm), direction="forward", k=log(nrow(dat)), trace=F, steps=3000) #BIC
+    bf_time <- system.time(bf <-  stepAIC(nm, scope=list(lower=nm, upper=fm), direction="forward", k=log(nrow(dat)), trace=F, steps=3000)) #BIC
     models[["bf"]] <- bf
-    
+    runtimes[["bf"]] <- bf_time
     
     # AIC and BIC model selection for stepwise forward
-    asf = stepAIC(nm, scope=list(lower=nm, upper=fm), direction="both", k=2, trace=F, steps=3000) #AIC
+    asf_time <- system.time(asf <-  stepAIC(nm, scope=list(lower=nm, upper=fm), direction="both", k=2, trace=F, steps=3000)) #AIC
     models[["asf"]] <- asf
+    runtimes[["asf"]] <- asf_time
     
-    bsf = stepAIC(nm, scope=list(lower=nm, upper=fm), direction="both", k=log(nrow(dat)), trace=F, steps=3000) #BIC  
+    bsf_time <- system.time(bsf <-  stepAIC(nm, scope=list(lower=nm, upper=fm), direction="both", k=log(nrow(dat)), trace=F, steps=3000)) #BIC  
     models[["bsf"]] <- bsf
+    runtimes[["bsf"]] <- bsf_time
     
     # Ridge model for dealing with multicollinearity
-    ridge <- cv.glmnet(x = as.matrix(dat[,-1]), y = dat$y, alpha = 0)
+    ridge_time <- system.time(ridge <- cv.glmnet(x = as.matrix(dat[,-1]), y = dat$y, alpha = 0))
     models[["ridge"]] <- ridge
+    runtimes[["ridge"]] <- ridge_time
   }
   
   # Lasso model for variable selection
-  lasso <- cv.glmnet(x = as.matrix(dat[,-1]), y = dat$y, alpha = 1)
+  lasso_time <- system.time(lasso <- cv.glmnet(x = as.matrix(dat[,-1]), y = dat$y, alpha = 1))
   models[["lasso"]] <- lasso
+  runtimes[["lasso"]] <- lasso_time
   
   # Elastic Net model for multicollinearity and variable selection
-  enet <- cv.glmnet(x = as.matrix(dat[,-1]), y = dat$y, alpha = 0.8) #small alpha is not needed since small multicollinearity
+  enet_time <- system.time(enet <- cv.glmnet(x = as.matrix(dat[,-1]), y = dat$y, alpha = 0.8)) #small alpha is not needed since small multicollinearity
   models[["enet"]] <- enet
+  runtimes[["enet"]] <- enet_time
   
   # Adaptive Elastic Net model for variable selection and multicollinearity
-  adap_enet <- cv.gcdnet(x = as.matrix(dat[,-1]), y = dat$y, nfolds = 10, method = "ls")
+  adap_enet_time <- system.time(adap_enet <- cv.gcdnet(x = as.matrix(dat[,-1]), y = dat$y, nfolds = 10, method = "ls"))
   models[["adap_enet"]] <- adap_enet
+  runtimes[["adap_enet"]] <- adap_enet_time
   
   # SCAD
-  scad <- cv.ncvreg(X = dat[, -1], y = dat$y, penalty = "SCAD")
+  scad_time <- system.time(scad <- cv.ncvreg(X = dat[, -1], y = dat$y, penalty = "SCAD"))
   models[["scad"]] <- scad
+  runtimes[["scad"]] <- scad_time
   
   # MCP
-  mcp <- cv.ncvreg(X = dat[, -1], y = dat$y)
+  mcp_time <-  system.time(mcp <- cv.ncvreg(X = dat[, -1], y = dat$y))
   models[["mcp"]] <- mcp
+  runtimes[["mcp"]] <- mcp_time
   
   print("xg")
   
@@ -233,6 +249,7 @@ fit_models <- function(dat, n, p) {
   train_y_data <- as.matrix(dat[, 1])
   
   ##XGBoost Grid Search##
+  xgb_time <- system.time({
   xgb_hyper_grid <- expand.grid(
     eta = c(.01, .1, .3),  #learning rate
     max_depth = c(1, 3, 7),
@@ -263,7 +280,7 @@ fit_models <- function(dat, n, p) {
       params = params,
       data = train_x_data,
       label = train_y_data,
-      nrounds = 5000,
+      nrounds = 1000,
       nfold = 5,
       objective = "reg:squarederror",  # for regression models
       verbose = 0,               # silent,
@@ -292,15 +309,18 @@ fit_models <- function(dat, n, p) {
   xgb.best <- xgboost(
     params = xgb_best_params,
     data = train_set,
-    nrounds = 5000,
+    nrounds = 1000,
     objective = "reg:squarederror",  # for regression models
     verbose = 0,               # silent,
     early_stopping_rounds = 10, # stop if no improvement for 10 consecutive trees
   )
+  })
   models[["gbm"]] <- xgb.best
+  runtimes[["gbm"]] <- xgb_time
   
   print("rf")
   ##Random Forest Grid Search##
+  rf_time <- system.time({
   n_pred <- length(dat) - 1
   
   rf_hyper_grid <- expand.grid(
@@ -342,21 +362,26 @@ fit_models <- function(dat, n, p) {
     sample.fraction = rf_best_grid$sampe_size[1],
     seed            = 123
   )
+  })
   models[["rf"]] <- best_rf_model
+  runtimes[["rf"]] <- rf_time
   
   print("svm")
   
   # Support Vector Machine
+  svm_time <- system.time({
   svm_tune <- tune.svm(y ~ ., data = dat,
                         epsilon = seq(0,1,0.2),
                         cost = 2^(2:4)
   )
   
   svm_model <- svm_tune$best.model
+  })
   
   models[["svm"]] <- svm_model
+  runtimes[["svm"]] <- svm_time
   
-  return(models)
+  return(list(models, runtimes))
 }
 
 
@@ -366,7 +391,7 @@ fit_models <- function(dat, n, p) {
 # as well as the names of the corresponding variables. This function is used in
 # results_table().
 model_data_frame <- function(model, model_name) {
-  if (class(model) %in% c("cv.glmnet", "lm", "cv.ncvreg")){
+  if (class(model) %in% c("cv.glmnet", "lm", "cv.ncvreg", "cv.gcdnet")){
     # Create a data frame with the coefficient estimates.
     df <- data.frame(as.matrix(coef(model)))
     
@@ -395,7 +420,7 @@ results_table <- function(models, beta, p) {
   # coefficient estimates for that model. Then, this dataframe is joined with df.
   # At the end of the loop, df contains the coefficients from all models.
   for (i in 1:length(models)) {
-    if (class(models[[i]])[1] %in% c("cv.glmnet", "lm", "cv.ncvreg")){
+    if (class(models[[i]])[1] %in% c("cv.glmnet", "lm", "cv.ncvreg", "cv.gcdnet")){
       results <- left_join(results, model_data_frame(models[[i]], names(models)[[i]]),
                            by = "row_names",
                            all.x = TRUE
@@ -428,7 +453,9 @@ full_simulation <- function(n, p, beta = NULL, seed = NULL, ...) {
   test_data <- generate_data(n = n, p = p, beta = beta, ...)
   
   # Fit the models using the training data.
-  models <- fit_models(train_data, n = n, p = p)
+  models_list <- fit_models(train_data, n = n, p = p)
+  models <- models_list[[1]]
+  runtimes <- models_list[[2]]
   
   # Generate the coefficient table and compute the mean squared error
   # for each model.
@@ -444,7 +471,7 @@ full_simulation <- function(n, p, beta = NULL, seed = NULL, ...) {
     models = models, 
     train_mse = train_mse, 
     test_mse = test_mse, 
-    confusion_matrices = confusion_matrices))
+    confusion_matrices = confusion_matrices, runtimes = runtimes))
 }
 
 

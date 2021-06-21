@@ -65,14 +65,15 @@ source("metrics.r")
 
 
 
-system.time(dat <- monte_carlo(n = 50,
-                   p = 100,
+system.time(dat <- monte_carlo(n = 100,
+                   p = 10,
                    type = "symmetric",
                    corr = 0.5,
                    sd = 1,
                    iterations = 1,
                    seed = 1
 ))
+
 View(dat[[1]]$coefficients)
 conf_matrices <- confusion_matrices(dat[[1]]$coefficients)
 View(conf_matrices)
