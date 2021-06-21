@@ -281,12 +281,7 @@ fit_models <- function(dat, n, p) {
     colsample_bytree = xgb_best_grid$colsample_bytree[1]
   )
   
-  train_size <- floor(nrow(dat)/2)
-  print(train_size)
-  dat_train <- dat[1:train_size, ]
-  dat_val <- dat[(train_size + 1):nrow(dat), ]
-  train_set <- xgb.DMatrix(data = as.matrix(dat_train[, -1]), label = as.matrix(dat_train[, 1]))
-  test_set <- xgb.DMatrix(data = as.matrix(dat_val[, -1]), label = as.matrix(dat_val[, 1]))
+  train_set <- xgb.DMatrix(data = as.matrix(dat[, -1]), label = as.matrix(dat[, 1]))
   
   # train best model
   xgb.best <- xgboost(

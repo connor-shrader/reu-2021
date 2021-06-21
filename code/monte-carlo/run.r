@@ -12,18 +12,17 @@ library(ncvreg) # v3.13.0
 library(glmnet) # v4.1-1
 library(MASS) # v7.3-54
 library(caret)
+
+# Used to set the current working directory to this script.
 library(rstudioapi)
-library(h2o)
 library(bit64)
+
+# Used for XGBoost models.
 library(xgboost)
 
 setwd(dirname(getActiveDocumentContext()$path))
 source("simulation.r")
 source("metrics.r")
-
-# Initiate h2o
-h2o.no_progress()
-h2o.init(max_mem_size = "5g", ip = "localhost", startH2O = TRUE)  #start up h2o, use 5gb of ram
 
 #random_data <- generate_data(seed = 1, n = 100, p = 10, corr = 0, type = "independent")
 #models <- fit_models(dat = random_data, n = 100, p = 10)
