@@ -10,15 +10,25 @@ library(dplyr) # v1.0.6
 library(faux) # v1.0.0
 library(ncvreg) # v3.13.0
 library(glmnet) # v4.1-1
+
+# Used for stepwise selection.
 library(MASS) # v7.3-54
-library(caret)
+
+# Used for confusion matrices.
+library(caret) # v6.0-88
 
 # Used to set the current working directory to this script.
-library(rstudioapi)
-library(bit64)
+library(rstudioapi) # v0.13
+library(bit64) # v4.0.5
 
 # Used for XGBoost models.
-library(xgboost)
+library(xgboost) # v1.4.1.1
+
+# Used for random forest models.
+library(ranger) # v0.12.1
+
+# Support vector machine model
+library(e1071) # v1.7-7
 
 setwd(dirname(getActiveDocumentContext()$path))
 source("simulation.r")
@@ -54,8 +64,8 @@ source("metrics.r")
 
 
 
-system.time(dat <- monte_carlo(n = 100,
-                   p = 10,
+system.time(dat <- monte_carlo(n = 1000,
+                   p = 100,
                    type = "independent",
                    corr = 0,
                    sd = 1,

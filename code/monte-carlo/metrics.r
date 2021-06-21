@@ -28,18 +28,23 @@ library(MASS) # v7.3-54
 # This function inputs a model and test data. It then computes and returns
 # the mean squared error.
 mean_squared_error <- function(model, test_dat) {
-  if (class(model) == "cv.ncvreg") { #checks for mcp or scad model
+  model_class <- class(model)[1]
+  
+  if (model_class == "cv.ncvreg") { #checks for mcp or scad model
     y_hat <-  data.frame(predict(model, X = as.matrix(test_dat[,-1])))
   }
-  else if (class(model) == "cv.glmnet") { #check for lasso, ridge, enet model
+  else if (model_class == "cv.glmnet") { #check for lasso, ridge, enet model
     y_hat <-  data.frame(predict(model, newx = as.matrix(test_dat[,-1])))
   }
-  else if (class(model) == "xgb.Booster") { #check for xgboost model
+  else if (model_class == "xgb.Booster") { #check for xgboost model
     y_hat <- data.frame(predict(model, newdata = as.matrix(test_dat[, -1])))
   }
-  else if (class(model) == "ranger") { #check for ranger random forest model
+  else if (model_class == "ranger") { #check for ranger random forest model
     predict_data <- predict(model, data = as.matrix(test_dat[, -1]))
     y_hat <- as.data.frame(predict_data$predictions)
+  }
+  else if (model_class == "svm") {
+    y_hat <- data.frame(predict(model, newdata = as.matrix(test_dat[, -1])))
   }
   else { #rest are lm models
     y_hat <- data.frame(predict(model, test_dat[,-1]))

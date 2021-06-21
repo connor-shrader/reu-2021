@@ -97,8 +97,8 @@ grid_svm_model <- svm_grid(medv~., data = Boston[train,], test_data = Boston[-tr
 
 
 #Better way to tune SVM using CV
-tuneResult <- tune(svm, medv ~ ., data = Boston[train, ],
-                   ranges = list(epsilon = seq(0,1,0.2), cost = 2^(2:4))
+tuneResult <- tune.svm(medv ~ ., data = Boston[train, ],
+                   epsilon = seq(0,1,0.2), cost = 2^(2:4)
 )
 
 
