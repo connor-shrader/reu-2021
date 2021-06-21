@@ -10,6 +10,7 @@ library(dplyr) # v1.0.6
 library(faux) # v1.0.0
 library(ncvreg) # v3.13.0
 library(glmnet) # v4.1-1
+library(gcdnet) #v1.0.5
 
 # Used for stepwise selection.
 library(MASS) # v7.3-54
@@ -64,8 +65,8 @@ source("metrics.r")
 
 
 
-system.time(dat <- monte_carlo(n = 300,
-                   p = 10,
+system.time(dat <- monte_carlo(n = 50,
+                   p = 100,
                    type = "symmetric",
                    corr = 0.5,
                    sd = 1,

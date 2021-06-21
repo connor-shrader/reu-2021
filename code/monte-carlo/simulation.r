@@ -22,6 +22,7 @@ library(glmnet) # v4.1-1
 library(MASS) # v7.3-54
 library(ranger)
 library(xgboost)
+library(gcdnet) #used for adaptive elastic net regression
 
 
 # This helper function takes in a vector beta and the number of
@@ -213,6 +214,10 @@ fit_models <- function(dat, n, p) {
   # Elastic Net model for multicollinearity and variable selection
   enet <- cv.glmnet(x = as.matrix(dat[,-1]), y = dat$y, alpha = 0.8) #small alpha is not needed since small multicollinearity
   models[["enet"]] <- enet
+  
+  # Adaptive Elastic Net model for variable selection and multicollinearity
+  adap_enet <- cv.gcdnet(x = as.matrix(dat[,-1]), y = dat$y, nfolds = 10, method = "ls")
+  models[["adap_enet"]] <- adap_enet
   
   # SCAD
   scad <- cv.ncvreg(X = dat[, -1], y = dat$y, penalty = "SCAD")

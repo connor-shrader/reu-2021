@@ -24,6 +24,6 @@ adap_enet_yhat <- predict(adap_enet, newx = test_x_data)
 adap_enet_mse <- mean((adap_enet_yhat - test_y_data)^2)
 
 
-lasso <- cv.glmnet(x = train_x_data, y = train_y_data, alpha = 1)
+time <- system.time(lasso <- cv.glmnet(x = train_x_data, y = train_y_data, alpha = 1))
 lasso_yhat <- predict(lasso, newx = test_x_data)
 lasso_mse <- mean((lasso_yhat - test_y_data)^2)
