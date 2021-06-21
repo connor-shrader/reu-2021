@@ -27,6 +27,9 @@ library(xgboost) # v1.4.1.1
 # Used for random forest models.
 library(ranger) # v0.12.1
 
+# Support vector machine model
+library(e1071) # v1.7-7
+
 setwd(dirname(getActiveDocumentContext()$path))
 source("simulation.r")
 source("metrics.r")
@@ -61,8 +64,8 @@ source("metrics.r")
 
 
 
-system.time(dat <- monte_carlo(n = 100,
-                   p = 150,
+system.time(dat <- monte_carlo(n = 1000,
+                   p = 100,
                    type = "independent",
                    corr = 0,
                    sd = 1,

@@ -200,15 +200,15 @@ fit_models <- function(dat, n, p) {
     
     bsf = stepAIC(nm, scope=list(lower=nm, upper=fm), direction="both", k=log(nrow(dat)), trace=F, steps=3000) #BIC  
     models[["bsf"]] <- bsf
+    
+    # Ridge model for dealing with multicollinearity
+    ridge <- cv.glmnet(x = as.matrix(dat[,-1]), y = dat$y, alpha = 0)
+    models[["ridge"]] <- ridge
   }
   
   # Lasso model for variable selection
   lasso <- cv.glmnet(x = as.matrix(dat[,-1]), y = dat$y, alpha = 1)
   models[["lasso"]] <- lasso
-  
-  # Ridge model for dealing with multicollinearity
-  ridge <- cv.glmnet(x = as.matrix(dat[,-1]), y = dat$y, alpha = 0)
-  models[["ridge"]] <- ridge
   
   # Elastic Net model for multicollinearity and variable selection
   enet <- cv.glmnet(x = as.matrix(dat[,-1]), y = dat$y, alpha = 0.8) #small alpha is not needed since small multicollinearity
@@ -339,6 +339,18 @@ fit_models <- function(dat, n, p) {
   )
   models[["rf"]] <- best_rf_model
   
+  print("svm")
+  
+  # Support Vector Machine
+  svm_tune <- tune.svm(y ~ ., data = dat,
+                        epsilon = seq(0,1,0.2),
+                        cost = 2^(2:4)
+  )
+  
+  svm_model <- svm_tune$best.model
+  
+  models[["svm"]] <- svm_model
+  
   return(models)
 }
 
@@ -378,7 +390,7 @@ results_table <- function(models, beta, p) {
   # coefficient estimates for that model. Then, this dataframe is joined with df.
   # At the end of the loop, df contains the coefficients from all models.
   for (i in 1:length(models)) {
-    if (class(models[[i]]) %in% c("cv.glmnet", "lm", "cv.ncvreg")){
+    if (class(models[[i]])[1] %in% c("cv.glmnet", "lm", "cv.ncvreg")){
       results <- left_join(results, model_data_frame(models[[i]], names(models)[[i]]),
                            by = "row_names",
                            all.x = TRUE
