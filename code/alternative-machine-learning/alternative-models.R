@@ -97,9 +97,8 @@ grid_svm_model <- svm_grid(medv~., data = Boston[train,], test_data = Boston[-tr
 
 
 #Better way to tune SVM using CV
-kernels <-  c("linear", "polynomial", "radial")
-tuneResult <- tune(svm, medv ~ ., data = Boston[train, ], 
-                   ranges = list(epsilon = seq(0,1,0.2), cost = 2^(2:4), kernel = c(0:2))
+tuneResult <- tune(svm, medv ~ ., data = Boston[train, ],
+                   ranges = list(epsilon = seq(0,1,0.2), cost = 2^(2:4))
 )
 
 
@@ -258,12 +257,11 @@ xgb_best_params <- list(
 )
 
 # train best model
-xgb.best <- xgb.cv(
+xgb.best <- xgboost(
   params = xgb_best_params,
   data = train_x_data,
   label = train_y_data,
   nrounds = 5000,
-  nfold = 5,
   objective = "reg:squarederror",  # for regression models
   verbose = 0,               # silent,
   early_stopping_rounds = 10 # stop if no improvement for 10 consecutive trees
