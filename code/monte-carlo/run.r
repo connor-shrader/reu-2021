@@ -10,6 +10,8 @@ library(dplyr) # v1.0.6
 library(faux) # v1.0.0
 library(ncvreg) # v3.13.0
 library(glmnet) # v4.1-1
+
+# Used for stepwise selection.
 library(MASS) # v7.3-54
 
 # Used for confusion matrices.
@@ -21,6 +23,8 @@ library(bit64) # v4.0.5
 
 # Used for XGBoost models.
 library(xgboost) # v1.4.1.1
+
+# Used for random forest models.
 library(ranger) # v0.12.1
 
 setwd(dirname(getActiveDocumentContext()$path))
@@ -58,7 +62,7 @@ source("metrics.r")
 
 
 system.time(dat <- monte_carlo(n = 100,
-                   p = 10,
+                   p = 150,
                    type = "independent",
                    corr = 0,
                    sd = 1,
