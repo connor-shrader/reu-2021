@@ -64,10 +64,10 @@ source("metrics.r")
 
 
 
-system.time(dat <- monte_carlo(n = 1000,
-                   p = 100,
-                   type = "independent",
-                   corr = 0,
+system.time(dat <- monte_carlo(n = 300,
+                   p = 10,
+                   type = "symmetric",
+                   corr = 0.5,
                    sd = 1,
                    iterations = 1,
                    seed = 1
