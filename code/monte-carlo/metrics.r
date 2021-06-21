@@ -34,11 +34,15 @@ mean_squared_error <- function(model, test_dat) {
   else if (class(model) == "cv.glmnet") { #check for lasso, ridge, enet model
     y_hat <-  data.frame(predict(model, newx = as.matrix(test_dat[,-1])))
   }
-  else if (class(model) == "xgb.Booster") { 
+  else if (class(model) == "xgb.Booster") { #check for xgboost model
     y_hat <- data.frame(predict(model, newdata = as.matrix(test_dat[, -1])))
   }
+  else if (class(model) == "ranger") { #check for ranger random forest model
+    predict_data <- predict(model, data = as.matrix(test_dat[, -1]))
+    y_hat <- as.data.frame(predict_data$predictions)
+  }
   else { #rest are lm models
-    y_hat <- data.frame(predict(model, newdata = test_dat[,-1]))
+    y_hat <- data.frame(predict(model, test_dat[,-1]))
   }
   
   y <- test_dat[,1]

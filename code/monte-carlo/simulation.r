@@ -20,6 +20,8 @@ library(faux) # v1.0.0
 library(ncvreg) # v3.13.0
 library(glmnet) # v4.1-1
 library(MASS) # v7.3-54
+library(ranger)
+library(xgboost)
 
 
 # This helper function takes in a vector beta and the number of
@@ -298,7 +300,51 @@ fit_models <- function(dat, n, p) {
     early_stopping_rounds = 10, # stop if no improvement for 10 consecutive trees
   )
   models[["gbm"]] <- xgb.best
-  print(class(xgb.best))
+  
+  
+  ##Random Forest Grid Search##
+  n_pred <- length(dat) - 1
+  
+  rf_hyper_grid <- expand.grid(
+    mtry       = seq(1, n_pred, by = round(n_pred/10)),  #number of predictors to use in each tree
+    n.trees    = c(300, 400, 500, 600),
+    node_size  = c(5),
+    sampe_size = c(.80),  #number of samples to use in each tree
+    OOB_RMSE   = 0
+  )
+  
+  for(i in 1:nrow(rf_hyper_grid)) {
+    
+    # train model
+    rf_model <- ranger(
+      formula         = y ~ ., 
+      data            = dat, 
+      num.trees       = rf_hyper_grid$n.trees[i],
+      mtry            = rf_hyper_grid$mtry[i],
+      min.node.size   = rf_hyper_grid$node_size[i],
+      sample.fraction = rf_hyper_grid$sampe_size[i],
+      seed            = 123
+    )
+    
+    # add OOB error to grid
+    rf_hyper_grid$OOB_RMSE[i] <- sqrt(rf_model$prediction.error)
+  }
+  
+  rf_best_grid <- rf_hyper_grid %>% 
+    dplyr::arrange(OOB_RMSE)
+  
+  
+  # train best model
+  best_rf_model <- ranger(
+    formula         = y ~ ., 
+    data            = dat, 
+    num.trees       = rf_best_grid$n.trees[1],
+    mtry            = rf_best_grid$mtry[1],
+    min.node.size   = rf_best_grid$node_size[1],
+    sample.fraction = rf_best_grid$sampe_size[1],
+    seed            = 123
+  )
+  models[["rf"]] <- best_rf_model
   
   return(models)
 }
