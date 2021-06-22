@@ -1,8 +1,6 @@
 library(ggplot2)
 
 reu <- theme(
-  text = element_text(size = 16),
-  
   # Set legend background to white underneath the lines
   legend.key = element_rect(fill = "white")
 )

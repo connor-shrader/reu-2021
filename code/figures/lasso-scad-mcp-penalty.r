@@ -46,6 +46,13 @@ mcp <- function(beta, lambda, a)
 }
 
 penalty <- ggplot() +
+  geom_vline(
+    data = data.frame(xint = c(-4, -1, 1, 4)),
+    mapping = aes(xintercept = xint),
+    linetype = "dashed",
+    color = "gray"
+  ) +
+  
   geom_function(
     mapping = aes(color = "LASSO"),
     fun = lasso,
@@ -65,13 +72,6 @@ penalty <- ggplot() +
     fun = mcp,
     args = list(lambda = 1, a = 4),
     xlim = c(-6, 6)
-  ) +
-  
-  geom_vline(
-    data = data.frame(xint = c(-4, -1, 1, 4)),
-    mapping = aes(xintercept = xint),
-    linetype = "dashed",
-    color = "gray"
   ) +
   
   xlab(label = "Coefficient Value") +
@@ -103,3 +103,194 @@ ggsave(
   height = 6,
   unit = "in"
 )
+
+# PLOT 2
+
+# The following three functions compute the derivative of the 
+# penalty for some coefficient value beta using the parameters lambda and a.
+
+d.lasso <- function(beta, lambda)
+{
+  return(ifelse(beta < 0, -1, 1))
+}
+
+d.scad <- function(beta, lambda, a)
+{
+  beta <- abs(beta)
+  output <- ifelse(beta < lambda, lambda, 0)
+  output <- ifelse(beta >= lambda & beta < a * lambda,
+                   (a * lambda - beta) / (a - 1),
+                   output)
+  output <- ifelse(beta >= a * lambda, 0, output)
+  return(output)
+}
+
+d.mcp <- function(beta, lambda, a)
+{
+  beta <- abs(beta)
+  return(ifelse(beta < a * lambda, sign(beta) * (lambda - beta / a), 0))
+}
+
+derivative <- ggplot() +
+  geom_vline(
+    data = data.frame(xint = c(1, 4)),
+    mapping = aes(xintercept = xint),
+    linetype = "dashed",
+    color = "gray"
+  ) +
+  
+  geom_function(
+    mapping = aes(color = "LASSO"),
+    fun = d.lasso,
+    args = list(lambda = 1),
+    xlim = c(0, 6)
+  ) +
+  
+  geom_function(
+    mapping = aes(color = "SCAD"),
+    fun = d.scad,
+    args = list(lambda = 1, a = 4),
+    xlim = c(0, 6)
+  ) +
+  
+  geom_function(
+    mapping = aes(color = "MCP"),
+    fun = d.mcp,
+    args = list(lambda = 1, a = 4),
+    xlim = c(0, 6)
+  ) +
+  
+  xlab(label = "Coefficient Value") +
+  ylab(label = "Derivative of Penalty") +
+  
+  scale_x_continuous(breaks = seq(0, 6, by = 1), limits = c(0, 6)) +
+  scale_y_continuous(breaks = seq(0, 1, by = 1), limits = c(0, 1)) + 
+  
+  reu_border +
+  theme(legend.title = element_blank(),
+        text = element_text(size = 16))
+
+
+ggsave(
+  filename = "lasso-scad-mcp-derivative.png",
+  path = "./images",
+  plot = derivative,
+  type = "cairo-png",
+  width = 10,
+  height = 6,
+  unit = "in"
+)
+
+ggsave(
+  filename = "lasso-scad-mcp-penalty.eps",
+  path = "./images",
+  plot = derivative,
+  width = 10,
+  height = 6,
+  unit = "in"
+)
+
+# PLOT 3
+
+# The following three functions assume a model with one predictor and determine
+# the predicted value for that coefficient based on the actual value of that
+# coefficient. The predicted values are found for LASSO, SCAD, and MCP.
+
+# Formulas for SCAD and MCP came from (Fan and Li, 2001) and (Zhang, 2010),
+# respectively.
+
+lasso.s <- function(x, lambda)
+{
+  return(ifelse(abs(x) < lambda, 0, sign(x) * (abs(x) - lambda)))
+}
+
+scad.s <- function(x, lambda, a)
+{
+  output <- ifelse(abs(x) < lambda, 0, 0)
+  output <- ifelse(abs(x) >= lambda & abs(x) < 2 * lambda,
+                   sign(x) * (abs(x) - lambda),
+                   output)
+  output <- ifelse(abs(x) >= 2 * lambda & abs(x) < a * lambda,
+                   ((a - 1) * x - sign(x) * a * lambda) / (a - 2),
+                   output)
+  output <- ifelse(abs(x) >= a * lambda, x, output)
+  return(output)
+}
+
+mcp.s <- function(x, lambda, a)
+{
+  output <- ifelse(abs(x) < lambda, 0, 0)
+  output <- ifelse(abs(x) >= lambda & abs(x) < a * lambda,
+                   sign(x) * (a * (abs(x) - lambda)) / (a - 1),
+                   output)
+  output <- ifelse(abs(x) >= a * lambda, x, output)
+  return(output)
+}
+
+solution <- ggplot() +
+  geom_vline(
+    data = data.frame(xint = c(-4, -1, 1, 4)),
+    mapping = aes(xintercept = xint),
+    linetype = "dashed",
+    color = "gray"
+  ) +
+  
+  geom_function(
+    mapping = aes(color = "OLS"),
+    fun = function(x) {x},
+    xlim = c(-6, 6)
+  ) +
+  
+  geom_function(
+    mapping = aes(color = "LASSO"),
+    fun = lasso.s,
+    args = list(lambda = 1),
+    xlim = c(-6, 6)
+  ) +
+  
+  geom_function(
+    mapping = aes(color = "SCAD"),
+    fun = scad.s,
+    args = list(lambda = 1, a = 4),
+    xlim = c(-6, 6)
+  ) +
+  
+  geom_function(
+    mapping = aes(color = "MCP"),
+    fun = mcp.s,
+    args = list(lambda = 1, a = 4),
+    xlim = c(-6, 6)
+  ) +
+  
+  xlab(label = "Actual Coefficient Value") +
+  ylab(label = "Predicted Coefficient Value") +
+  
+  scale_x_continuous(breaks = seq(-6, 6, by = 1), limits = c(-6, 6)) +
+  scale_y_continuous(breaks = seq(-6, 6, by = 1), limits = c(-6, 6)) + 
+  
+  reu_border +
+  theme(legend.title = element_blank(),
+        text = element_text(size = 16)) +
+  
+  scale_color_manual(values=c("#F8766D", "#00BA38", "gray45", "#619CFF"))
+
+
+ggsave(
+  filename = "lasso-scad-mcp-solution.png",
+  path = "./images",
+  plot = solution,
+  type = "cairo-png",
+  width = 10,
+  height = 6,
+  unit = "in"
+)
+
+ggsave(
+  filename = "lasso-scad-mcp-solution.eps",
+  path = "./images",
+  plot = solution,
+  width = 10,
+  height = 6,
+  unit = "in"
+)
+

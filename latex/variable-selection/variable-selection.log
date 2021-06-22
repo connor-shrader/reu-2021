@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.12.4)  21 JUN 2021 20:32
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.12.4)  22 JUN 2021 09:23
 entering extended mode
 **./variable-selection.tex
 (variable-selection.tex
@@ -537,37 +537,40 @@ File: images/lasso-scad-mcp-penalty.png Graphic file (type png)
 Package pdftex.def Info: images/lasso-scad-mcp-penalty.png  used on input line 
 329.
 (pdftex.def)             Requested size: 187.89914pt x 112.7286pt.
-<images/derivative.png, id=337, 691.08188pt x 536.75531pt>
-File: images/derivative.png Graphic file (type png)
-<use images/derivative.png>
-Package pdftex.def Info: images/derivative.png  used on input line 335.
-(pdftex.def)             Requested size: 187.89914pt x 145.93326pt.
-<images/prediction.png, id=339, 691.08188pt x 536.75531pt>
-File: images/prediction.png Graphic file (type png)
-<use images/prediction.png>
-Package pdftex.def Info: images/prediction.png  used on input line 347.
-(pdftex.def)             Requested size: 187.89914pt x 145.93326pt.
+<images/lasso-scad-mcp-derivative.png, id=337, 3011.25pt x 1806.75pt>
+File: images/lasso-scad-mcp-derivative.png Graphic file (type png)
+<use images/lasso-scad-mcp-derivative.png>
+Package pdftex.def Info: images/lasso-scad-mcp-derivative.png  used on input li
+ne 335.
+(pdftex.def)             Requested size: 187.89914pt x 112.7286pt.
+<images/lasso-scad-mcp-solution.png, id=339, 3011.25pt x 1806.75pt>
+File: images/lasso-scad-mcp-solution.png Graphic file (type png)
+<use images/lasso-scad-mcp-solution.png>
+Package pdftex.def Info: images/lasso-scad-mcp-solution.png  used on input line
+ 347.
+(pdftex.def)             Requested size: 187.89914pt x 112.7286pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[11 <./images/lasso-scad-mcp-penalty.png> <./images/derivative.png>]
+[11 <./images/lasso-scad-mcp-penalty.png> <./images/lasso-scad-mcp-derivative.p
+ng>]
 Overfull \hbox (3.27388pt too wide) in paragraph at lines 363--382
  [][] 
  []
 
-<Images/decision-tree.png, id=351, 637.63219pt x 612.78937pt>
+<Images/decision-tree.png, id=350, 637.63219pt x 612.78937pt>
 File: Images/decision-tree.png Graphic file (type png)
 <use Images/decision-tree.png>
 Package pdftex.def Info: Images/decision-tree.png  used on input line 386.
 (pdftex.def)             Requested size: 281.85587pt x 270.87175pt.
-[12 <./images/prediction.png>] [13 <./Images/decision-tree.png>]
-<images/svm-1.png, id=369, 384.2355pt x 382.42876pt>
+[12 <./images/lasso-scad-mcp-solution.png>] [13 <./Images/decision-tree.png>]
+<images/svm-1.png, id=367, 384.2355pt x 382.42876pt>
 File: images/svm-1.png Graphic file (type png)
 <use images/svm-1.png>
 Package pdftex.def Info: images/svm-1.png  used on input line 412.
 (pdftex.def)             Requested size: 216.81pt x 215.78671pt.
-<images/svm-2.png, id=374, 575.14874pt x 572.73975pt>
+<images/svm-2.png, id=372, 575.14874pt x 572.73975pt>
 File: images/svm-2.png Graphic file (type png)
 <use images/svm-2.png>
 Package pdftex.def Info: images/svm-2.png  used on input line 423.
@@ -576,22 +579,15 @@ Package pdftex.def Info: images/svm-2.png  used on input line 423.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[14 <./images/svm-1.png>] [15 <./images/svm-2.png>] [16]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[17]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[18] [19] [20] (variable-selection.bbl) [21] (variable-selection.aux)
+[14 <./images/svm-1.png>] [15 <./images/svm-2.png>] [16] [17] [18] [19]
+[20] (variable-selection.bbl) [21] (variable-selection.aux)
 Package rerunfilecheck Info: File `variable-selection.out' has not changed.
 (rerunfilecheck)             Checksum: A2E1CA5E106BFD623E7BEA963817BBA4;2763.
  ) 
 Here is how much of TeX's memory you used:
  10848 strings out of 479799
- 164871 string characters out of 2869248
- 643604 words of memory out of 3000000
+ 165039 string characters out of 2869248
+ 642604 words of memory out of 3000000
  27530 multiletter control sequences out of 15000+200000
  545672 words of font info for 69 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -619,9 +615,9 @@ C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cm
 ti10.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsf
 onts/cm/cmti9.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/pu
 blic/amsfonts/cm/cmtt10.pfb>
-Output written on variable-selection.pdf (21 pages, 786366 bytes).
+Output written on variable-selection.pdf (21 pages, 1005822 bytes).
 PDF statistics:
- 528 PDF objects out of 1000 (max. 8388607)
+ 526 PDF objects out of 1000 (max. 8388607)
  125 named destinations out of 1000 (max. 500000)
  365 words of extra memory for PDF output out of 10000 (max. 10000000)
 

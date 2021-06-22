@@ -16,23 +16,23 @@
 \contentsline {subsection}{\numberline {3.5}Smoothly Clipped Absolute Deviation Regression}{10}{subsection.3.5}%
 \contentsline {subsection}{\numberline {3.6}Minimax Concave Penalty Regression}{11}{subsection.3.6}%
 \contentsline {section}{\numberline {4}Non-linear Models}{11}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Decision Tree Regression}{12}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.1}Decision Tree Regression}{11}{subsection.4.1}%
 \contentsline {subsection}{\numberline {4.2}Random Forests}{12}{subsection.4.2}%
 \contentsline {subsection}{\numberline {4.3}Gradient Boosting Model}{13}{subsection.4.3}%
-\contentsline {subsubsection}{\numberline {4.3.1}XGBoost}{14}{subsubsection.4.3.1}%
-\contentsline {subsection}{\numberline {4.4}Support Vector Machines}{14}{subsection.4.4}%
-\contentsline {section}{\numberline {5}Evaluating Methods}{15}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Monte Carlo Data Generation}{15}{subsection.5.1}%
-\contentsline {subsection}{\numberline {5.2}Choice of the Covariance Matrix}{16}{subsection.5.2}%
-\contentsline {subsubsection}{\numberline {5.2.1}Independent Covariance}{16}{subsubsection.5.2.1}%
+\contentsline {subsubsection}{\numberline {4.3.1}XGBoost}{13}{subsubsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.4}Support Vector Machines}{13}{subsection.4.4}%
+\contentsline {section}{\numberline {5}Evaluating Methods}{14}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Monte Carlo Data Generation}{14}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Choice of the Covariance Matrix}{15}{subsection.5.2}%
+\contentsline {subsubsection}{\numberline {5.2.1}Independent Covariance}{15}{subsubsection.5.2.1}%
 \contentsline {subsubsection}{\numberline {5.2.2}Symmetric Compound}{16}{subsubsection.5.2.2}%
 \contentsline {subsubsection}{\numberline {5.2.3}Blockwise}{16}{subsubsection.5.2.3}%
-\contentsline {subsubsection}{\numberline {5.2.4}Unstructured Covariance}{17}{subsubsection.5.2.4}%
+\contentsline {subsubsection}{\numberline {5.2.4}Unstructured Covariance}{16}{subsubsection.5.2.4}%
 \contentsline {subsubsection}{\numberline {5.2.5}Autoregressive Covariance}{17}{subsubsection.5.2.5}%
 \contentsline {subsection}{\numberline {5.3}Factorial Design}{17}{subsection.5.3}%
 \contentsline {subsection}{\numberline {5.4}Fitting Models}{18}{subsection.5.4}%
 \contentsline {subsubsection}{\numberline {5.4.1}Subset Selection Models}{18}{subsubsection.5.4.1}%
 \contentsline {subsubsection}{\numberline {5.4.2}Penalized Regression Models}{18}{subsubsection.5.4.2}%
 \contentsline {subsubsection}{\numberline {5.4.3}Non-Linear Models}{18}{subsubsection.5.4.3}%
-\contentsline {subsection}{\numberline {5.5}Confusion Matrix}{19}{subsection.5.5}%
-\contentsline {subsection}{\numberline {5.6}Bias}{20}{subsection.5.6}%
+\contentsline {subsection}{\numberline {5.5}Confusion Matrix}{18}{subsection.5.5}%
+\contentsline {subsection}{\numberline {5.6}Bias}{19}{subsection.5.6}%
