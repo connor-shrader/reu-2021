@@ -4,9 +4,8 @@ library(rstudioapi)
 setwd(dirname(getActiveDocumentContext()$path))
 source("themes.r")
 
-par(mfrow = c(1, 3))
-
 length <- 400
+
 x <- seq(-1, 5, length.out = length)
 y <- seq(-1, 5, length.out = length)
 
@@ -60,6 +59,7 @@ ridge <- ggplot(
     parse = TRUE, 
     x = 2, 
     y = -0.2, 
+    size = 6
   ) +
   
   annotate(
@@ -68,23 +68,26 @@ ridge <- ggplot(
     parse = TRUE, 
     x = -0.2, 
     y = 2, 
-    angle = 90
+    size = 6,
+    angle = 90,
   ) +
   
   annotate(
     "text", 
     label = "hat(beta)^OLS", 
     parse = TRUE, 
-    x = 2.20, 
+    x = 2.30, 
     y = 2.10, 
+    size = 6
   ) +
   
   annotate(
     "text", 
     label = "hat(beta)^ridge", 
     parse = TRUE, 
-    x = 0.455, 
+    x = 0.555, 
     y = 1.067, 
+    size = 6
   ) +
   
   
@@ -132,6 +135,7 @@ lasso <- ggplot(
     parse = TRUE, 
     x = 2, 
     y = -0.2, 
+    size = 6
   ) +
   
   annotate(
@@ -140,6 +144,7 @@ lasso <- ggplot(
     parse = TRUE, 
     x = -0.2, 
     y = 2, 
+    size = 6,
     angle = 90
   ) +
   
@@ -147,16 +152,18 @@ lasso <- ggplot(
     "text", 
     label = "hat(beta)^OLS", 
     parse = TRUE, 
-    x = 2.20, 
+    x = 2.30, 
     y = 2.10, 
+    size = 6
   ) +
   
   annotate(
     "text", 
     label = "hat(beta)^lasso", 
     parse = TRUE, 
-    x = 0.20, 
+    x = 0.30, 
     y = 1.10, 
+    size = 6
   ) +
   
   
