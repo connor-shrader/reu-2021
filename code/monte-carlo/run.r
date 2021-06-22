@@ -90,8 +90,8 @@ View(conf_matrices)
 # p == 100: 4 blocks of 25 predictors
 # p
 
-n <- c(200)
-p <- c(2000)
+n <- c(100)
+p <- c(10)
 sigma <- c(1)
 covar <- c("independent")
 rho <- c(0.2)
