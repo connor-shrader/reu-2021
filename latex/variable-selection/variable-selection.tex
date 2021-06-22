@@ -45,11 +45,18 @@
 \author{Gabriel Ackall and Connor Shrader}
 \date{\today}
 
+
 \newcommand{\argmin}[1]{\underset{\beta}{\text{arg min}}}
 \newcommand{\sign}{\text{sign}}
 
 \begin{document}
 \maketitle
+\begin{abstract}
+	With the prevalence of big data in the modern age, the importance of modeling high dimensionality data has increased greatly. This data has traditionally been modeled through the use of random forests, gradient boosting models, or support vector machines. In this paper, we will investigate the use of penalized regression methods instead of, or in conjunction with, the traditional machine learning methods. We will focus on lasso, ridge, and elastic net for our penalized regression models.\\
+	
+	\textit{Keywords}: penalized regression, variable selection
+\end{abstract}
+
 \tableofcontents
 
 \section{Introduction}
@@ -485,7 +492,7 @@ Blocks denoted as $O$ are zero blocks. Each block $S_l$ has the form
 where $\sigma_i^2$ is the variance of predictor $i$ and $\rho\in (0, 1)$ is the covariance of predictors in the same block.
 
 \subsubsection{Unstructured Covariance}
-Finally, unstructed covariance assumes that $\mathbf{\Sigma}$ takes no structured form. We have
+Finally, unstructured covariance assumes that $\mathbf{\Sigma}$ takes no structured form. We have
 \begin{equation}
 	\mathbf{\Sigma} = \begin{bmatrix}
 		\sigma_1^2 & \sigma_{12} & \cdots & \sigma_{1p}\\

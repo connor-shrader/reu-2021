@@ -33,7 +33,7 @@ mean_squared_error <- function(model, test_dat) {
   if (model_class == "cv.ncvreg") { #checks for mcp or scad model
     y_hat <-  data.frame(predict(model, X = as.matrix(test_dat[,-1])))
   }
-  else if (model_class == "cv.glmnet") { #check for lasso, ridge, enet model
+  else if (model_class == "cv.glmnet" || model_class == "cv.gcdnet") { #check for lasso, ridge, enet, adap enet model
     y_hat <-  data.frame(predict(model, newx = as.matrix(test_dat[,-1])))
   }
   else if (model_class == "xgb.Booster") { #check for xgboost model
