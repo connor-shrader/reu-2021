@@ -25,33 +25,46 @@ library(MASS) # v7.3-54
 
 
 
-# This function inputs a model and test data. It then computes and returns
-# the mean squared error.
-mean_squared_error <- function(model, test_dat) {
+# This function inputs a model and a data set (either the training data or test
+# data). It then computes and returns the mean squared error.
+mean_squared_error <- function(model, dat) {
+  # Obtain the first class for each model.
   model_class <- class(model)[1]
   
+  # This if chain computes the predicted response variables. The syntax to
+  # make predictions depends on the model used, since they come from different
+  # libraries.
   if (model_class == "cv.ncvreg") { #checks for mcp or scad model
-    y_hat <-  data.frame(predict(model, X = as.matrix(test_dat[,-1])))
+    # Model is SCAD or MCP.
+    y_hat <-  data.frame(predict(model, X = as.matrix(dat[,-1])))
   }
-  else if (model_class == "cv.glmnet" || model_class == "cv.gcdnet") { #check for lasso, ridge, enet, adap enet model
-    y_hat <-  data.frame(predict(model, newx = as.matrix(test_dat[,-1])))
+  else if (model_class == "cv.glmnet" || model_class == "cv.gcdnet") { 
+    # Model is LASSO, ridge, enet, or adaptive enet.
+    y_hat <-  data.frame(predict(model, newx = as.matrix(dat[,-1])))
   }
-  else if (model_class == "xgb.Booster") { #check for xgboost model
-    y_hat <- data.frame(predict(model, newdata = as.matrix(test_dat[, -1])))
+  else if (model_class == "xgb.Booster") { 
+    # Model is XGBoost.
+    y_hat <- data.frame(predict(model, newdata = as.matrix(dat[, -1])))
   }
-  else if (model_class == "ranger") { #check for ranger random forest model
-    predict_data <- predict(model, data = as.matrix(test_dat[, -1]))
+  else if (model_class == "ranger") { 
+    # Model is random forest.
+    predict_data <- predict(model, data = as.matrix(dat[, -1]))
     y_hat <- as.data.frame(predict_data$predictions)
   }
   else if (model_class == "svm") {
-    y_hat <- data.frame(predict(model, newdata = as.matrix(test_dat[, -1])))
+    # Model is SVM.
+    y_hat <- data.frame(predict(model, newdata = as.matrix(dat[, -1])))
   }
-  else { #rest are lm models
-    y_hat <- data.frame(predict(model, test_dat[,-1]))
+  else { 
+    # lm model.
+    y_hat <- data.frame(predict(model, dat[,-1]))
   }
   
-  y <- test_dat[,1]
-  mse <- mean(((y - y_hat)^2)[,1]) #take mean of residuals squared
+  # Get the actual response values.
+  y <- dat[, 1]
+  
+  # Compute MSE.
+  mse <- mean(((y - y_hat)^2)[, 1]) #take mean of residuals squared
   return(mse)
 }
 

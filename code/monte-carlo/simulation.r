@@ -10,7 +10,8 @@
 #   fit_models()
 #   model_data_frame() (Helper function)
 #   results_table()
-#   monte_carlo_single_iteration (Helper function)
+#   full_simulation (Helper function)
+#   repeat_simulation_until_successful (Helper function)
 #   monte_carlo()
 
 # R version: 4.1.0
@@ -48,11 +49,11 @@ library(e1071) # v1.7-7
 # predictors p. If beta is NULL, then this function returns a default
 # vector containing some coefficient values. If beta is not NULL, then beta
 # is shortened or extended to have (p + 1) values. Any entries that are added
-# will have a value of zero.
+# to beta will have a value of zero.
 # This function is used to create a valid coefficient vector which is used to
-# generate simulated data in generate_data().
+# generate simulated data in generate_data(). This function is also needed
+# to create a results table using results_table().
 generate_coefficients <- function(beta, p) {
-  message(c("generate_coefficients received beta = ", beta, ", p = ", p))
   if (is.null(beta)) {
     beta <- c(1, 2, -2, 0, 0, 0.5, 3)
   }
@@ -77,10 +78,11 @@ generate_coefficients <- function(beta, p) {
 # Arguments:
 #   n: Number of observations.
 #   p: Number of predictors.
-#   beta (default NONE): The true values of the coefficient values. If beta contains
-#     less than (p + 1) values, beta is extended by zero until it has length (p + 1).
-#     If beta = NONE, some default coefficient values are used.
-#   st_dev (default 1): The standard deviation of the random error.
+#   beta (default NONE): The true values of the coefficients. The function
+#     generate_coefficients() is called to ensure that beta is a vector with
+#     (p + 1) coefficients. If beta contains less than (p + 1) values, beta
+#     is extended by zeros until it has length (p + 1). If beta = NONE, some
+#     default coefficient values are used.
 #   type (default "independent"): Determines the covariance of the data.
 #     "independent": No covariance.
 #     "symmetric": All pairs of variables have equal covariance.
@@ -95,6 +97,7 @@ generate_coefficients <- function(beta, p) {
 #     type = "blockwise": The correlation of predictors that are in the same block.
 #       Predictors in different blocks have correlation zero.
 #     type = "unstructured": corr should be the correlation matrix.
+#   st_dev (default 1): The standard deviation of the random error.
 #   block_size (default NULL): The size of each block if using blockwise correlation.
 #     block_size should divide the number of predictors.
 #   seed (default NULL): Random seed to generate the data. If NULL, no seed it set.
@@ -102,13 +105,10 @@ generate_data <- function(n, p, beta = NULL, type = "independent", corr = 0,
                           st_dev = 1, block_size = NULL) {
   # Generate the coefficient values if beta is NULL or does not have the right
   # length.
-  print("Entering generate_data")
-  print(list(type, corr, st_dev, block_size))
   beta <- generate_coefficients(beta, p)
   
   # The following if-else chain will calculate r, which is used as the correlation
   # parameter for rnorm_multi().
-  message("e ", type)
   if (type == "independent") {
     # There is no covariance, so the correlation is zero.
     r <- 0
@@ -154,7 +154,6 @@ generate_data <- function(n, p, beta = NULL, type = "independent", corr = 0,
   # Generate the data using rnorm_multi() from the faux package. We then append
   # a column of 1's to the left of this matrix (which will correspond to the
   # intercept).
-  message("r = ", r)
   x <- cbind(1, rnorm_multi(
     n = n,
     vars = p,
@@ -263,20 +262,24 @@ fit_models <- function(dat, n, p) {
   models[["mcp"]] <- mcp
   runtimes[["mcp"]] <- mcp_time
   
+  # Separate data into x and y matrices. This is needed to run xgboost.
   train_x_data <- as.matrix(dat[, -1])
   train_y_data <- as.matrix(dat[, 1])
   
-  ##XGBoost Grid Search##
+  # XGBoost Grid Search
   xgb_time <- system.time({
   xgb_hyper_grid <- expand.grid(
-    eta = c(.05, .1, .3),  #learning rate
-    max_depth = c(1, 3, 7),
-    min_child_weight = c(3),
+    eta = c(.05, .1, .3),  # learning rate
+    max_depth = c(1, 3, 7), # maximum depth of each tree
+    min_child_weight = c(3), 
     subsample = c(.8), 
     colsample_bytree = c(.9),
     optimal_trees = 0,               # a place to dump results
     min_RMSE = 0                     # a place to dump results
   )
+  
+  xgb_hyper_grid$optimal_trees <- 0
+  xgb_hyper_grid$min_RMSE <- 0
   
   lapply(1:nrow(xgb_hyper_grid), function(i) {
     # create parameter list
@@ -300,10 +303,18 @@ fit_models <- function(dat, n, p) {
       early_stopping_rounds = 10, # stop if no improvement for 10 consecutive trees
     )
     
+    View(xgb.tune)
     # add min training error and trees to grid
     xgb_hyper_grid$optimal_trees[i] <- which.min(xgb.tune$evaluation_log$test_rmse_mean)
+    message("optimal trees ", xgb_hyper_grid$optimal_trees[i])
+    message(which.min(xgb.tune$evaluation_log$test_rmse_mean))
     xgb_hyper_grid$min_RMSE[i] <- min(xgb.tune$evaluation_log$test_rmse_mean)
+    message("test rmse mean", xgb_hyper_grid$min_RMSE[i])
+    message(min(xgb.tune$evaluation_log$test_rmse_mean))
+    print(xgb_hyper_grid)
   })
+  print(xgb_hyper_grid)
+  View(xgb_hyper_grid)
   
   # grid search 
   # for(i in 1:nrow(xgb_hyper_grid)) {
@@ -337,6 +348,8 @@ fit_models <- function(dat, n, p) {
   xgb_best_grid <- xgb_hyper_grid %>%
     dplyr::arrange(min_RMSE)
   
+  View(xgb_best_grid)
+  
   xgb_best_params <- list(
     eta = xgb_best_grid$eta[1],
     max_depth = xgb_best_grid$max_depth[1],
@@ -360,7 +373,7 @@ fit_models <- function(dat, n, p) {
   models[["gbm"]] <- xgb.best
   runtimes[["gbm"]] <- xgb_time
   
-  ##Random Forest Grid Search##
+  # Random Forest Grid Search
   rf_time <- system.time({
   n_pred <- length(dat) - 1
   
@@ -465,8 +478,6 @@ model_data_frame <- function(model, model_name) {
 # This function takes in a named list of models and the number of predictors.
 # It returns a data frame containing the coefficient estimates for each model.
 results_table <- function(models, beta, p) {
-  print("Entering results table")
-  print(list(beta, p))
   row_names <- c("(Intercept)", paste("x", 1:p, sep = ""))
   
   # Create a dataframe with two columns. The first column are the variable names
@@ -502,12 +513,12 @@ results_table <- function(models, beta, p) {
 # and this function outputs a list containing the outputs of fit_models()
 # and results_table().
 full_simulation <- function(seed, n, p, beta = NULL, ...) {
-  print("Full simulation")
-  print(list(...))
   set.seed(seed)
   
+  # Set coefficient values. If beta is NULL, default values are used. Otherwise,
+  # beta is extended/shortened to have length (p + 1).
   beta <- generate_coefficients(beta, p)
-  #message("a", type)
+  
   # Generate training and test data.
   train_data <- generate_data(n = n, p = p, ...)
   test_data <- generate_data(n = n, p = p, ...)
@@ -521,9 +532,11 @@ full_simulation <- function(seed, n, p, beta = NULL, ...) {
   # for each model.
   coefficients_table <- results_table(models, beta = beta, p = p)
   
-  train_mse <- lapply(models, mean_squared_error, test_dat = train_data)
-  test_mse <- lapply(models, mean_squared_error, test_dat = test_data)
+  # Compute training and test MSE.
+  train_mse <- lapply(models, mean_squared_error, dat = train_data)
+  test_mse <- lapply(models, mean_squared_error, dat = test_data)
   
+  # Generate confusion matrices for linear models.
   confusion_matrices <- confusion_matrices(coefficients_table)
   
   return(list(
@@ -536,24 +549,26 @@ full_simulation <- function(seed, n, p, beta = NULL, ...) {
 
 
 
+# This helper function repeats a full simulation until it successfully runs without
+# any errors. This is used by monte_carlo() to ensure that the given number
+# of iterations are run.
+repeat_simulation_until_successful <- function(seed, n, p, beta = NULL, ...) {
+  finished_simulation <- FALSE
+  while (!finished_simulation) {
+    tryCatch(
+      {
+        simulation_result <- full_simulation(seed = seed, n = n, p = p, beta = beta, ...)
+        finished_simulation <- TRUE
+      },
+      error = function(error_message) {
+        message("Error while running simulation. Another simulation will be run.")
+        message(error_message)
+      }
+    )
+  }
 
-# repeat_simulation_until_successful <- function(seed, n, p, beta = NULL, ...) {
-#   finished_simulation <- FALSE
-#   while (!finished_simulation) {
-#     tryCatch(
-#       {
-#         simulation_result <- full_simulation(seed = seed, n = n, p = p, beta = beta, ...)
-#         finished_simulation <- TRUE
-#       },
-#       error = function(error_message) {
-#         message("Error while running simulation. Another simulation will be run.")
-#         message(error_message)
-#       }
-#     )
-#   }
-#   
-#   return(simulation_result)
-# }
+  return(simulation_result)
+}
 
 
 
@@ -563,12 +578,8 @@ full_simulation <- function(seed, n, p, beta = NULL, ...) {
 # otherwise, this function returns a list of repeated calls to
 # monte_carlo_single_simulation.
 monte_carlo <- function(n, p, iterations, ...) {
-  print("Entering monte_carlo")
-  print(list(...))
-  # a <- st_dev
-  # print(a)
   lapply(1:iterations,
-         full_simulation,
+         repeat_simulation_until_successful,
          n = n,
          p = p,
          ...)
