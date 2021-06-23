@@ -10,6 +10,7 @@ load("../../data/monte-carlo/factorial-design.Rdata")
 
 run_simulations <- function(indices, iterations = 1, ...) {
   results <- lapply(indices, function(i) {
+    message("Beginning to run row ", i, ".")
     row <- parameters[i, ]
     n <- row$n
     p <- row$p
@@ -40,14 +41,17 @@ run_simulations <- function(indices, iterations = 1, ...) {
         }
       }
       
-      results <- monte_carlo(n = n,
-                             p = p,
-                             iterations = iterations,
-                             st_dev = st_dev,
-                             type = type,
-                             corr = corr,
-                             block_size = block_size,
-                             ...)
+      time_taken <- system.time(results <- monte_carlo(n = n,
+                                                       p = p,
+                                                       iterations = iterations,
+                                                       st_dev = st_dev,
+                                                       type = type,
+                                                       corr = corr,
+                                                       block_size = block_size,
+                                                       ...))
+      
+      message("Finished running row ", i, " at ", Sys.time(), ". Time taken: ")
+      print(time_taken)
       
       saveRDS(results, file = filename)
     }
@@ -59,5 +63,4 @@ run_simulations <- function(indices, iterations = 1, ...) {
   return(results)
 }
 
-
-system.time(run_simulations(141:143, iterations = 100))
+res <- run_simulations(indices = 136, iterations = 1)
