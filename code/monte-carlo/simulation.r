@@ -44,8 +44,6 @@ library(ranger) # v0.12.1
 # Support vector machine model
 library(e1071) # v1.7-7
 
-library(snow) # v0.4-3
-
 
 # This helper function takes in a vector beta and the number of
 # predictors p. If beta is NULL, then this function returns a default
@@ -250,6 +248,16 @@ fit_models <- function(dat, n, p) {
   enet_time <- system.time(enet <- cv.glmnet(x = as.matrix(dat[,-1]), y = dat$y, alpha = 0.8)) #small alpha is not needed since small multicollinearity
   models[["enet"]] <- enet
   runtimes[["enet"]] <- enet_time
+  
+  # Adaptive Ridge
+  adap_ridge_time <- system.time(adap_ridge <- cv.gcdnet(x = as.matrix(dat[,-1]), y = dat$y, nfolds = 10, method = "ls", lambda = 0))
+  models[["adap_ridge"]] <- adap_ridge
+  runtimes[["adap_ridge"]] <- adap_ridge_time
+  
+  # Adaptive Lasso
+  adap_lasso_time <- system.time(adap_lasso <- cv.gcdnet(x = as.matrix(dat[,-1]), y = dat$y, nfolds = 10, method = "ls", lambda2 = 0))
+  models[["adap_lasso"]] <- adap_lasso
+  runtimes[["adap_lasso"]] <- adap_lasso_time
   
   # Adaptive Elastic Net model for variable selection and multicollinearity
   adap_enet_time <- system.time(adap_enet <- cv.gcdnet(x = as.matrix(dat[,-1]), y = dat$y, nfolds = 10, method = "ls"))

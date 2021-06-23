@@ -12,43 +12,12 @@ setwd(dirname(getActiveDocumentContext()$path))
 source("simulation.r")
 source("metrics.r")
 
-#random_data <- generate_data(seed = 1, n = 100, p = 10, corr = 0, type = "independent")
-#models <- fit_models(dat = random_data, n = 100, p = 10)
-
-#test_data <- generate_data(seed = 1, n = 100, p = 10, corr = 0, type = "independent")
-
-#lasso_pred <- predict(models$lasso, as.matrix(test_data[, -1]))
-#lasso_eval <- data.frame(lasso_pred, test_data[, 1])
-#lasso_mse <- 1/100 * sum((lasso_eval[, 1] - lasso_eval[, 2])^2)
-
-#rf_pred <- h2o.performance(models$rf, newdata = as.h2o(test_data))
-
-#rf_pred <- as.data.frame(predict(object = models$rf, newdata = as.h2o(test_data[, -1])))
-#rf_eval <- data.frame(rf_pred, test_data[, 1])
-#rf_mse <- 1/100 * sum((rf_eval[, 1] - rf_eval[, 2])^2)
-
-#rf_eval[3] <- lasso_eval[1]
-#colnames(rf_eval) <- c("rf", "true", "lasso")
-
-
-
-
-
-
-
-
-
-
-
-
-
 system.time(dat <- monte_carlo(n = 1000,
                    p = 10,
                    type = "symmetric",
                    corr = 0.5,
-                   sd = 1,
-                   iterations = 1,
-                   seed = 1
+                   st_dev = 1,
+                   iterations = 1
 ))
 
 View(dat[[1]]$coefficients)
