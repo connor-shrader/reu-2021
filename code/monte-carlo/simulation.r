@@ -52,6 +52,7 @@ library(e1071) # v1.7-7
 # This function is used to create a valid coefficient vector which is used to
 # generate simulated data in generate_data().
 generate_coefficients <- function(beta, p) {
+  message(c("generate_coefficients received beta = ", beta, ", p = ", p))
   if (is.null(beta)) {
     beta <- c(1, 2, -2, 0, 0, 0.5, 3)
   }
@@ -98,10 +99,11 @@ generate_coefficients <- function(beta, p) {
 #     block_size should divide the number of predictors.
 #   seed (default NULL): Random seed to generate the data. If NULL, no seed it set.
 generate_data <- function(n, p, beta = NULL, type = "independent", corr = 0,
-                          st_dev = 1, block_size = NULL, seed = NULL, ...) {
-  print(st_dev)
+                          st_dev = 1, block_size = NULL) {
   # Generate the coefficient values if beta is NULL or does not have the right
   # length.
+  print("Entering generate_data")
+  print(list(type, corr, st_dev, block_size))
   beta <- generate_coefficients(beta, p)
   
   # The following if-else chain will calculate r, which is used as the correlation
@@ -152,6 +154,7 @@ generate_data <- function(n, p, beta = NULL, type = "independent", corr = 0,
   # Generate the data using rnorm_multi() from the faux package. We then append
   # a column of 1's to the left of this matrix (which will correspond to the
   # intercept).
+  message("r = ", r)
   x <- cbind(1, rnorm_multi(
     n = n,
     vars = p,
@@ -462,6 +465,8 @@ model_data_frame <- function(model, model_name) {
 # This function takes in a named list of models and the number of predictors.
 # It returns a data frame containing the coefficient estimates for each model.
 results_table <- function(models, beta, p) {
+  print("Entering results table")
+  print(list(beta, p))
   row_names <- c("(Intercept)", paste("x", 1:p, sep = ""))
   
   # Create a dataframe with two columns. The first column are the variable names
@@ -496,12 +501,16 @@ results_table <- function(models, beta, p) {
 # results_table(). This function takes in any inputs that go into generate_data(),
 # and this function outputs a list containing the outputs of fit_models()
 # and results_table().
-full_simulation <- function(n, p, beta = NULL, ...) {
-  set.seed(1)
+full_simulation <- function(seed, n, p, beta = NULL, ...) {
+  print("Full simulation")
+  print(list(...))
+  set.seed(seed)
   
+  beta <- generate_coefficients(beta, p)
+  #message("a", type)
   # Generate training and test data.
-  train_data <- generate_data(n = n, p = p, beta = beta, ...)
-  test_data <- generate_data(n = n, p = p, beta = beta, ...)
+  train_data <- generate_data(n = n, p = p, ...)
+  test_data <- generate_data(n = n, p = p, ...)
   
   # Fit the models using the training data.
   models_list <- fit_models(train_data, n = n, p = p)
@@ -528,23 +537,23 @@ full_simulation <- function(n, p, beta = NULL, ...) {
 
 
 
-repeat_simulation_until_successful <- function(seed, n, p, beta = NULL, ...) {
-  finished_simulation <- FALSE
-  while (!finished_simulation) {
-    tryCatch(
-      {
-        simulation_result <- full_simulation(seed = seed, n = n, p = p, beta = beta, ...)
-        finished_simulation <- TRUE
-      },
-      error = function(error_message) {
-        message("Error while running simulation. Another simulation will be run.")
-        message(error_message)
-      }
-    )
-  }
-  
-  return(simulation_result)
-}
+# repeat_simulation_until_successful <- function(seed, n, p, beta = NULL, ...) {
+#   finished_simulation <- FALSE
+#   while (!finished_simulation) {
+#     tryCatch(
+#       {
+#         simulation_result <- full_simulation(seed = seed, n = n, p = p, beta = beta, ...)
+#         finished_simulation <- TRUE
+#       },
+#       error = function(error_message) {
+#         message("Error while running simulation. Another simulation will be run.")
+#         message(error_message)
+#       }
+#     )
+#   }
+#   
+#   return(simulation_result)
+# }
 
 
 
@@ -553,15 +562,16 @@ repeat_simulation_until_successful <- function(seed, n, p, beta = NULL, ...) {
 # returns the same thing as calling monte_carlo_single_simulation(seed = 1);
 # otherwise, this function returns a list of repeated calls to
 # monte_carlo_single_simulation.
-monte_carlo <- function(n, p, iterations, beta = NULL, ...) {
+monte_carlo <- function(n, p, iterations, ...) {
+  print("Entering monte_carlo")
+  print(list(...))
   # a <- st_dev
   # print(a)
-  # lapply(1:iterations,
-  #        full_simulation,
-  #        n = n,
-  #        p = p,
-  #        beta = beta,
-  #        ...)
+  lapply(1:iterations,
+         full_simulation,
+         n = n,
+         p = p,
+         ...)
 
-  replicate(iterations, full_simulation(n = n, p = p, beta = beta, ...), simplify = FALSE)
+  # replicate(iterations, full_simulation(n = n, p = p, ...), simplify = FALSE)
 }

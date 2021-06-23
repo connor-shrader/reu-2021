@@ -28,6 +28,7 @@ run_simulations <- function(indices) {
                       type, "_", 
                       corr, ".rds", sep = "")
     
+    block_size <- 0
     if (!file.exists(filename)) {
       if (type == "blockwise") {
         if (p == 10) {
@@ -42,6 +43,7 @@ run_simulations <- function(indices) {
       }
       
       print(type)
+      print(block_size)
       results <- monte_carlo(n = n,
                              p = p,
                              iterations = iterations,
@@ -58,4 +60,4 @@ run_simulations <- function(indices) {
   }
 }
 
-system.time(run_simulations(1))
+system.time(run_simulations(28))
