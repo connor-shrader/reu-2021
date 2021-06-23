@@ -14,15 +14,34 @@
 #   monte_carlo()
 
 # R version: 4.1.0
+
+# Used for data cleaning
 library(tidyverse) # v1.3.1
 library(dplyr) # v1.0.6
-library(faux) # v1.0.0
+
+# SCAD and MCP models
 library(ncvreg) # v3.13.0
+
+# Used for LASSO, ridge
 library(glmnet) # v4.1-1
+
+# Used for adaptive elastic net regression
+library(gcdnet) #v1.0.5
+
+# Used for stepwise selection.
 library(MASS) # v7.3-54
-library(ranger)
-library(xgboost)
-library(gcdnet) #used for adaptive elastic net regression
+
+# Used for confusion matrices.
+library(caret) # v6.0-88
+
+# Used for XGBoost models.
+library(xgboost) # v1.4.1.1
+
+# Used for random forest models.
+library(ranger) # v0.12.1
+
+# Support vector machine model
+library(e1071) # v1.7-7
 
 
 # This helper function takes in a vector beta and the number of
@@ -60,7 +79,7 @@ generate_coefficients <- function(beta, p) {
 #   beta (default NONE): The true values of the coefficient values. If beta contains
 #     less than (p + 1) values, beta is extended by zero until it has length (p + 1).
 #     If beta = NONE, some default coefficient values are used.
-#   sd (default 1): The standard deviation of the random error.
+#   st_dev (default 1): The standard deviation of the random error.
 #   type (default "independent"): Determines the covariance of the data.
 #     "independent": No covariance.
 #     "symmetric": All pairs of variables have equal covariance.
@@ -79,17 +98,15 @@ generate_coefficients <- function(beta, p) {
 #     block_size should divide the number of predictors.
 #   seed (default NULL): Random seed to generate the data. If NULL, no seed it set.
 generate_data <- function(n, p, beta = NULL, type = "independent", corr = 0,
-                          sd = 1, block_size = NULL, seed = NULL) {
-  if(!is.null(seed)) {
-    set.seed(seed)
-  }
-  
+                          st_dev = 1, block_size = NULL, seed = NULL, ...) {
+  print(st_dev)
   # Generate the coefficient values if beta is NULL or does not have the right
   # length.
   beta <- generate_coefficients(beta, p)
   
   # The following if-else chain will calculate r, which is used as the correlation
   # parameter for rnorm_multi().
+  message("e ", type)
   if (type == "independent") {
     # There is no covariance, so the correlation is zero.
     r <- 0
@@ -139,13 +156,13 @@ generate_data <- function(n, p, beta = NULL, type = "independent", corr = 0,
     n = n,
     vars = p,
     mu = 0,
-    sd = sd,
+    sd = st_dev,
     r = r,
     as.matrix = TRUE
   ))
   
   # Generate corresponding y values for our data.
-  y <- x %*% beta + rnorm(n, sd = sd)
+  y <- x %*% beta + rnorm(n, sd = st_dev)
   
   # Create return data frame. We removed the column of 1's that we used as
   # an intercept for generating the data.
@@ -243,15 +260,13 @@ fit_models <- function(dat, n, p) {
   models[["mcp"]] <- mcp
   runtimes[["mcp"]] <- mcp_time
   
-  print("xg")
-  
   train_x_data <- as.matrix(dat[, -1])
   train_y_data <- as.matrix(dat[, 1])
   
   ##XGBoost Grid Search##
   xgb_time <- system.time({
   xgb_hyper_grid <- expand.grid(
-    eta = c(.01, .1, .3),  #learning rate
+    eta = c(.05, .1, .3),  #learning rate
     max_depth = c(1, 3, 7),
     min_child_weight = c(3),
     subsample = c(.8), 
@@ -260,9 +275,7 @@ fit_models <- function(dat, n, p) {
     min_RMSE = 0                     # a place to dump results
   )
   
-  # grid search 
-  for(i in 1:nrow(xgb_hyper_grid)) {
-    
+  lapply(1:nrow(xgb_hyper_grid), function(i) {
     # create parameter list
     params <- list(
       eta = xgb_hyper_grid$eta[i],
@@ -271,9 +284,6 @@ fit_models <- function(dat, n, p) {
       subsample = xgb_hyper_grid$subsample[i],
       colsample_bytree = xgb_hyper_grid$colsample_bytree[i]
     )
-    
-    # reproducibility
-    set.seed(123)
     
     # train model
     xgb.tune <- xgb.cv(
@@ -290,7 +300,36 @@ fit_models <- function(dat, n, p) {
     # add min training error and trees to grid
     xgb_hyper_grid$optimal_trees[i] <- which.min(xgb.tune$evaluation_log$test_rmse_mean)
     xgb_hyper_grid$min_RMSE[i] <- min(xgb.tune$evaluation_log$test_rmse_mean)
-  }
+  })
+  
+  # grid search 
+  # for(i in 1:nrow(xgb_hyper_grid)) {
+  #   
+  #   # create parameter list
+  #   params <- list(
+  #     eta = xgb_hyper_grid$eta[i],
+  #     max_depth = xgb_hyper_grid$max_depth[i],
+  #     min_child_weight = xgb_hyper_grid$min_child_weight[i],
+  #     subsample = xgb_hyper_grid$subsample[i],
+  #     colsample_bytree = xgb_hyper_grid$colsample_bytree[i]
+  #   )
+  #   
+  #   # train model
+  #   xgb.tune <- xgb.cv(
+  #     params = params,
+  #     data = train_x_data,
+  #     label = train_y_data,
+  #     nrounds = 1000,
+  #     nfold = 5,
+  #     objective = "reg:squarederror",  # for regression models
+  #     verbose = 0,               # silent,
+  #     early_stopping_rounds = 10, # stop if no improvement for 10 consecutive trees
+  #   )
+  #   
+  #   # add min training error and trees to grid
+  #   xgb_hyper_grid$optimal_trees[i] <- which.min(xgb.tune$evaluation_log$test_rmse_mean)
+  #   xgb_hyper_grid$min_RMSE[i] <- min(xgb.tune$evaluation_log$test_rmse_mean)
+  # }
   
   xgb_best_grid <- xgb_hyper_grid %>%
     dplyr::arrange(min_RMSE)
@@ -318,7 +357,6 @@ fit_models <- function(dat, n, p) {
   models[["gbm"]] <- xgb.best
   runtimes[["gbm"]] <- xgb_time
   
-  print("rf")
   ##Random Forest Grid Search##
   rf_time <- system.time({
   n_pred <- length(dat) - 1
@@ -331,8 +369,7 @@ fit_models <- function(dat, n, p) {
     OOB_RMSE   = 0
   )
   
-  for(i in 1:nrow(rf_hyper_grid)) {
-    
+  lapply(1:nrow(rf_hyper_grid), function(i) {
     # train model
     rf_model <- ranger(
       formula         = y ~ ., 
@@ -346,7 +383,25 @@ fit_models <- function(dat, n, p) {
     
     # add OOB error to grid
     rf_hyper_grid$OOB_RMSE[i] <- sqrt(rf_model$prediction.error)
-  }
+  })
+  
+  
+  # for(i in 1:nrow(rf_hyper_grid)) {
+  # 
+  #   # train model
+  #   rf_model <- ranger(
+  #   formula         = y ~ .,
+  #     data            = dat,
+  #     num.trees       = rf_hyper_grid$n.trees[i],
+  #     mtry            = rf_hyper_grid$mtry[i],
+  #     min.node.size   = rf_hyper_grid$node_size[i],
+  #     sample.fraction = rf_hyper_grid$sampe_size[i],
+  #     seed            = 123
+  #   )
+  # 
+  #   # add OOB error to grid
+  #   rf_hyper_grid$OOB_RMSE[i] <- sqrt(rf_model$prediction.error)
+  # }
   
   rf_best_grid <- rf_hyper_grid %>% 
     dplyr::arrange(OOB_RMSE)
@@ -365,8 +420,6 @@ fit_models <- function(dat, n, p) {
   })
   models[["rf"]] <- best_rf_model
   runtimes[["rf"]] <- rf_time
-  
-  print("svm")
   
   # Support Vector Machine
   svm_time <- system.time({
@@ -443,10 +496,8 @@ results_table <- function(models, beta, p) {
 # results_table(). This function takes in any inputs that go into generate_data(),
 # and this function outputs a list containing the outputs of fit_models()
 # and results_table().
-full_simulation <- function(n, p, beta = NULL, seed = NULL, ...) {
-  if (!is.null(seed)) {
-    set.seed(seed)
-  }
+full_simulation <- function(n, p, beta = NULL, ...) {
+  set.seed(1)
   
   # Generate training and test data.
   train_data <- generate_data(n = n, p = p, beta = beta, ...)
@@ -468,10 +519,31 @@ full_simulation <- function(n, p, beta = NULL, seed = NULL, ...) {
   
   return(list(
     coefficients = coefficients_table, 
-    models = models, 
+    #models = models, 
     train_mse = train_mse, 
     test_mse = test_mse, 
     confusion_matrices = confusion_matrices, runtimes = runtimes))
+}
+
+
+
+
+repeat_simulation_until_successful <- function(seed, n, p, beta = NULL, ...) {
+  finished_simulation <- FALSE
+  while (!finished_simulation) {
+    tryCatch(
+      {
+        simulation_result <- full_simulation(seed = seed, n = n, p = p, beta = beta, ...)
+        finished_simulation <- TRUE
+      },
+      error = function(error_message) {
+        message("Error while running simulation. Another simulation will be run.")
+        message(error_message)
+      }
+    )
+  }
+  
+  return(simulation_result)
 }
 
 
@@ -482,5 +554,14 @@ full_simulation <- function(n, p, beta = NULL, seed = NULL, ...) {
 # otherwise, this function returns a list of repeated calls to
 # monte_carlo_single_simulation.
 monte_carlo <- function(n, p, iterations, beta = NULL, ...) {
+  # a <- st_dev
+  # print(a)
+  # lapply(1:iterations,
+  #        full_simulation,
+  #        n = n,
+  #        p = p,
+  #        beta = beta,
+  #        ...)
+
   replicate(iterations, full_simulation(n = n, p = p, beta = beta, ...), simplify = FALSE)
 }

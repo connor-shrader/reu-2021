@@ -4,34 +4,11 @@
 # This file contains everything to be executed using the functions from
 # simulation.r and metrics.r.
 
-# R version: 4.1.0
-library(tidyverse) # v1.3.1
-library(dplyr) # v1.0.6
-library(faux) # v1.0.0
-library(ncvreg) # v3.13.0
-library(glmnet) # v4.1-1
-library(gcdnet) #v1.0.5
-
-# Used for stepwise selection.
-library(MASS) # v7.3-54
-
-# Used for confusion matrices.
-library(caret) # v6.0-88
-
 # Used to set the current working directory to this script.
 library(rstudioapi) # v0.13
-library(bit64) # v4.0.5
-
-# Used for XGBoost models.
-library(xgboost) # v1.4.1.1
-
-# Used for random forest models.
-library(ranger) # v0.12.1
-
-# Support vector machine model
-library(e1071) # v1.7-7
 
 setwd(dirname(getActiveDocumentContext()$path))
+
 source("simulation.r")
 source("metrics.r")
 
@@ -65,7 +42,7 @@ source("metrics.r")
 
 
 
-system.time(dat <- monte_carlo(n = 100,
+system.time(dat <- monte_carlo(n = 1000,
                    p = 10,
                    type = "symmetric",
                    corr = 0.5,

@@ -2,6 +2,9 @@ library(rstudioapi) # v0.13
 
 setwd(dirname(getActiveDocumentContext()$path))
 
+# Used to generate factorial design
+library(faux) # v1.0.0
+
 n <- c(50, 200, 1000)
 p <- c(10, 100, 2000)
 sigma <- c(1, 3, 6)
