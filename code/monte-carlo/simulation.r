@@ -277,48 +277,8 @@ fit_models <- function(dat, n, p) {
     optimal_trees = 0,               # a place to dump results
     min_RMSE = 0                     # a place to dump results
   )
-  
-  xgb_hyper_grid$optimal_trees <- 0
-  xgb_hyper_grid$min_RMSE <- 0
-  
-  lapply(1:nrow(xgb_hyper_grid), function(i) {
-    # create parameter list
-    params <- list(
-      eta = xgb_hyper_grid$eta[i],
-      max_depth = xgb_hyper_grid$max_depth[i],
-      min_child_weight = xgb_hyper_grid$min_child_weight[i],
-      subsample = xgb_hyper_grid$subsample[i],
-      colsample_bytree = xgb_hyper_grid$colsample_bytree[i]
-    )
-    
-    # train model
-    xgb.tune <- xgb.cv(
-      params = params,
-      data = train_x_data,
-      label = train_y_data,
-      nrounds = 1000,
-      nfold = 5,
-      objective = "reg:squarederror",  # for regression models
-      verbose = 0,               # silent,
-      early_stopping_rounds = 10, # stop if no improvement for 10 consecutive trees
-    )
-    
-    View(xgb.tune)
-    # add min training error and trees to grid
-    xgb_hyper_grid$optimal_trees[i] <- which.min(xgb.tune$evaluation_log$test_rmse_mean)
-    message("optimal trees ", xgb_hyper_grid$optimal_trees[i])
-    message(which.min(xgb.tune$evaluation_log$test_rmse_mean))
-    xgb_hyper_grid$min_RMSE[i] <- min(xgb.tune$evaluation_log$test_rmse_mean)
-    message("test rmse mean", xgb_hyper_grid$min_RMSE[i])
-    message(min(xgb.tune$evaluation_log$test_rmse_mean))
-    print(xgb_hyper_grid)
-  })
-  print(xgb_hyper_grid)
-  View(xgb_hyper_grid)
-  
-  # grid search 
-  # for(i in 1:nrow(xgb_hyper_grid)) {
-  #   
+
+  # lapply(1:nrow(xgb_hyper_grid), function(i) {
   #   # create parameter list
   #   params <- list(
   #     eta = xgb_hyper_grid$eta[i],
@@ -327,7 +287,7 @@ fit_models <- function(dat, n, p) {
   #     subsample = xgb_hyper_grid$subsample[i],
   #     colsample_bytree = xgb_hyper_grid$colsample_bytree[i]
   #   )
-  #   
+  # 
   #   # train model
   #   xgb.tune <- xgb.cv(
   #     params = params,
@@ -339,16 +299,43 @@ fit_models <- function(dat, n, p) {
   #     verbose = 0,               # silent,
   #     early_stopping_rounds = 10, # stop if no improvement for 10 consecutive trees
   #   )
-  #   
+  # 
   #   # add min training error and trees to grid
   #   xgb_hyper_grid$optimal_trees[i] <- which.min(xgb.tune$evaluation_log$test_rmse_mean)
   #   xgb_hyper_grid$min_RMSE[i] <- min(xgb.tune$evaluation_log$test_rmse_mean)
-  # }
+  # })
+  
+  # grid search
+  for(i in 1:nrow(xgb_hyper_grid)) {
+
+    # create parameter list
+    params <- list(
+      eta = xgb_hyper_grid$eta[i],
+      max_depth = xgb_hyper_grid$max_depth[i],
+      min_child_weight = xgb_hyper_grid$min_child_weight[i],
+      subsample = xgb_hyper_grid$subsample[i],
+      colsample_bytree = xgb_hyper_grid$colsample_bytree[i]
+    )
+
+    # train model
+    xgb.tune <- xgb.cv(
+      params = params,
+      data = train_x_data,
+      label = train_y_data,
+      nrounds = 1000,
+      nfold = 5,
+      objective = "reg:squarederror",  # for regression models
+      verbose = 0,               # silent,
+      early_stopping_rounds = 10, # stop if no improvement for 10 consecutive trees
+    )
+
+    # add min training error and trees to grid
+    xgb_hyper_grid$optimal_trees[i] <- which.min(xgb.tune$evaluation_log$test_rmse_mean)
+    xgb_hyper_grid$min_RMSE[i] <- min(xgb.tune$evaluation_log$test_rmse_mean)
+  }
   
   xgb_best_grid <- xgb_hyper_grid %>%
     dplyr::arrange(min_RMSE)
-  
-  View(xgb_best_grid)
   
   xgb_best_params <- list(
     eta = xgb_best_grid$eta[1],
@@ -385,43 +372,41 @@ fit_models <- function(dat, n, p) {
     OOB_RMSE   = 0
   )
   
-  lapply(1:nrow(rf_hyper_grid), function(i) {
-    # train model
-    rf_model <- ranger(
-      formula         = y ~ ., 
-      data            = dat, 
-      num.trees       = rf_hyper_grid$n.trees[i],
-      mtry            = rf_hyper_grid$mtry[i],
-      min.node.size   = rf_hyper_grid$node_size[i],
-      sample.fraction = rf_hyper_grid$sampe_size[i],
-      seed            = 123
-    )
-    
-    # add OOB error to grid
-    rf_hyper_grid$OOB_RMSE[i] <- sqrt(rf_model$prediction.error)
-  })
-  
-  
-  # for(i in 1:nrow(rf_hyper_grid)) {
-  # 
+  # lapply(1:nrow(rf_hyper_grid), function(i) {
   #   # train model
   #   rf_model <- ranger(
-  #   formula         = y ~ .,
-  #     data            = dat,
+  #     formula         = y ~ ., 
+  #     data            = dat, 
   #     num.trees       = rf_hyper_grid$n.trees[i],
   #     mtry            = rf_hyper_grid$mtry[i],
   #     min.node.size   = rf_hyper_grid$node_size[i],
   #     sample.fraction = rf_hyper_grid$sampe_size[i],
   #     seed            = 123
   #   )
-  # 
+  #   
   #   # add OOB error to grid
   #   rf_hyper_grid$OOB_RMSE[i] <- sqrt(rf_model$prediction.error)
-  # }
+  # })
+  
+  for(i in 1:nrow(rf_hyper_grid)) {
+
+    # train model
+    rf_model <- ranger(
+    formula         = y ~ .,
+      data            = dat,
+      num.trees       = rf_hyper_grid$n.trees[i],
+      mtry            = rf_hyper_grid$mtry[i],
+      min.node.size   = rf_hyper_grid$node_size[i],
+      sample.fraction = rf_hyper_grid$sampe_size[i],
+      seed            = 123
+    )
+
+    # add OOB error to grid
+    rf_hyper_grid$OOB_RMSE[i] <- sqrt(rf_model$prediction.error)
+  }
   
   rf_best_grid <- rf_hyper_grid %>% 
     dplyr::arrange(OOB_RMSE)
-  
   
   # train best model
   best_rf_model <- ranger(
