@@ -60,4 +60,4 @@ run_simulations <- function(indices, iterations = 1, ...) {
 }
 
 
-system.time(run_simulations(136, iterations = 5))
+system.time(run_simulations(141:143, iterations = 100))
