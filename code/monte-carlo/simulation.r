@@ -20,6 +20,9 @@
 library(tidyverse) # v1.3.1
 library(dplyr) # v1.0.6
 
+# Used for multi-normal distribution.
+library(faux) # v1.0.0
+
 # SCAD and MCP models
 library(ncvreg) # v3.13.0
 
@@ -43,6 +46,9 @@ library(ranger) # v0.12.1
 
 # Support vector machine model
 library(e1071) # v1.7-7
+
+# Used for parallel processing
+library(parallel) # v4.1.0
 
 
 # This helper function takes in a vector beta and the number of
@@ -197,70 +203,95 @@ fit_models <- function(dat, n, p) {
     
     if (p <= 40) {
       # AIC and BIC model selection for backward
-      ab_time <- system.time(ab <-  stepAIC(fm, scope=list(lower=nm, upper=fm), direction="backward", k=2, trace=F, steps=3000)) #AIC
+      ab_time <- system.time(ab <-  stepAIC(fm, scope=list(lower=nm, upper=fm),
+                                            direction="backward", k=2, trace=F,
+                                            steps=3000)) #AIC
       models[["ab"]] <- ab
       runtimes[["ab"]] <- ab_time
       
-      bb_time <- system.time(bb <-  stepAIC(fm, scope=list(lower=nm, upper=fm), direction="backward", k=log(nrow(dat)), trace=F, steps=3000)) #BIC 
+      bb_time <- system.time(bb <-  stepAIC(fm, scope=list(lower=nm, upper=fm),
+                                            direction="backward", k=log(nrow(dat)),
+                                            trace=F, steps=3000)) #BIC 
       models[["bb"]] <- bb
       runtimes[["bb"]] <- bb_time
       
       # AIC and BIC model selection for stepwise backward
-      asb_time <- system.time(asb <-  stepAIC(fm, scope=list(lower=nm, upper=fm), direction="both", k=2, trace=F, steps=3000)) #AIC
+      asb_time <- system.time(asb <-  stepAIC(fm, scope=list(lower=nm, upper=fm),
+                                              direction="both", k=2, trace=F,
+                                              steps=3000)) #AIC
       models[["asb"]] <- asb
       runtimes[["asb"]] <- asb_time
       
-      bsb_time <- system.time(bsb <-  stepAIC(fm, scope=list(lower=nm, upper=fm), direction="both", k=log(nrow(dat)), trace=F, steps=3000)) #BIC
+      bsb_time <- system.time(bsb <-  stepAIC(fm, scope=list(lower=nm, upper=fm),
+                                              direction="both", k=log(nrow(dat)),
+                                              trace=F, steps=3000)) #BIC
       models[["bsb"]] <- bsb
       runtimes[["bsb"]] <- bsb_time
     }
     
     # AIC and BIC model selection for forward
-    af_time <- system.time(af <-  stepAIC(nm, scope=list(lower=nm, upper=fm), direction="forward", k=2, trace=F, steps=3000)) #AIC
+    af_time <- system.time(af <-  stepAIC(nm, scope=list(lower=nm, upper=fm),
+                                          direction="forward", k=2, trace=F,
+                                          steps=3000)) #AIC
     models[["af"]] <- af
     runtimes[["af"]] <- af_time
     
-    bf_time <- system.time(bf <-  stepAIC(nm, scope=list(lower=nm, upper=fm), direction="forward", k=log(nrow(dat)), trace=F, steps=3000)) #BIC
+    bf_time <- system.time(bf <-  stepAIC(nm, scope=list(lower=nm, upper=fm),
+                                          direction="forward", k=log(nrow(dat)),
+                                          trace=F, steps=3000)) #BIC
     models[["bf"]] <- bf
     runtimes[["bf"]] <- bf_time
     
     # AIC and BIC model selection for stepwise forward
-    asf_time <- system.time(asf <-  stepAIC(nm, scope=list(lower=nm, upper=fm), direction="both", k=2, trace=F, steps=3000)) #AIC
+    asf_time <- system.time(asf <-  stepAIC(nm, scope=list(lower=nm, upper=fm),
+                                            direction="both", k=2, trace=F,
+                                            steps=3000)) #AIC
     models[["asf"]] <- asf
     runtimes[["asf"]] <- asf_time
     
-    bsf_time <- system.time(bsf <-  stepAIC(nm, scope=list(lower=nm, upper=fm), direction="both", k=log(nrow(dat)), trace=F, steps=3000)) #BIC  
+    bsf_time <- system.time(bsf <-  stepAIC(nm, scope=list(lower=nm, upper=fm),
+                                            direction="both", k=log(nrow(dat)),
+                                            trace=F, steps=3000)) #BIC  
     models[["bsf"]] <- bsf
     runtimes[["bsf"]] <- bsf_time
     
     # Ridge model for dealing with multicollinearity
-    ridge_time <- system.time(ridge <- cv.glmnet(x = as.matrix(dat[,-1]), y = dat$y, alpha = 0))
+    ridge_time <- system.time(ridge <- cv.glmnet(x = as.matrix(dat[,-1]),
+                                                 y = dat$y, alpha = 0))
     models[["ridge"]] <- ridge
     runtimes[["ridge"]] <- ridge_time
   }
   
   # Lasso model for variable selection
-  lasso_time <- system.time(lasso <- cv.glmnet(x = as.matrix(dat[,-1]), y = dat$y, alpha = 1))
+  lasso_time <- system.time(lasso <- cv.glmnet(x = as.matrix(dat[,-1]),
+                                               y = dat$y, alpha = 1))
   models[["lasso"]] <- lasso
   runtimes[["lasso"]] <- lasso_time
   
   # Elastic Net model for multicollinearity and variable selection
-  enet_time <- system.time(enet <- cv.glmnet(x = as.matrix(dat[,-1]), y = dat$y, alpha = 0.8)) #small alpha is not needed since small multicollinearity
+  enet_time <- system.time(enet <- cv.glmnet(x = as.matrix(dat[,-1]), 
+                                             y = dat$y, alpha = 0.8)) #small alpha is not needed since small multicollinearity
   models[["enet"]] <- enet
   runtimes[["enet"]] <- enet_time
   
   # Adaptive Ridge
-  adap_ridge_time <- system.time(adap_ridge <- cv.gcdnet(x = as.matrix(dat[,-1]), y = dat$y, nfolds = 10, method = "ls", lambda = 0))
+  adap_ridge_time <- system.time(adap_ridge <- cv.gcdnet(x = as.matrix(dat[,-1]),
+                                                         y = dat$y, nfolds = 10,
+                                                         method = "ls", lambda = 0))
   models[["adap_ridge"]] <- adap_ridge
   runtimes[["adap_ridge"]] <- adap_ridge_time
   
   # Adaptive Lasso
-  adap_lasso_time <- system.time(adap_lasso <- cv.gcdnet(x = as.matrix(dat[,-1]), y = dat$y, nfolds = 10, method = "ls", lambda2 = 0))
+  adap_lasso_time <- system.time(adap_lasso <- cv.gcdnet(x = as.matrix(dat[,-1]),
+                                                         y = dat$y, nfolds = 10,
+                                                         method = "ls", lambda2 = 0))
   models[["adap_lasso"]] <- adap_lasso
   runtimes[["adap_lasso"]] <- adap_lasso_time
   
   # Adaptive Elastic Net model for variable selection and multicollinearity
-  adap_enet_time <- system.time(adap_enet <- cv.gcdnet(x = as.matrix(dat[,-1]), y = dat$y, nfolds = 10, method = "ls"))
+  adap_enet_time <- system.time(adap_enet <- cv.gcdnet(x = as.matrix(dat[,-1]),
+                                                       y = dat$y, nfolds = 10,
+                                                       method = "ls"))
   models[["adap_enet"]] <- adap_enet
   runtimes[["adap_enet"]] <- adap_enet_time
   
@@ -370,7 +401,7 @@ fit_models <- function(dat, n, p) {
   rf_time <- system.time({
   
   rf_hyper_grid <- expand.grid(
-    mtry       = c(floor(sqrt(p)), floor(p / 3), floor(p / 2)),  #number of predictors to use in each tree
+    mtry       = c(floor(sqrt(p)), floor(p / 3), floor(p / 2)),  # Predictors per tree
     n.trees    = c(300, 400, 500, 600),
     OOB_RMSE   = 0
   )
@@ -559,22 +590,62 @@ repeat_simulation_until_successful <- function(seed, n, p, beta = NULL, ...) {
 
 
 # This function iterates the monte_carlo_single_iteration() function multiple times.
-# The seed is automatically set for each iteration. If iterations == 1, this function
-# returns the same thing as calling monte_carlo_single_simulation(seed = 1);
-# otherwise, this function returns a list of repeated calls to
-# monte_carlo_single_simulation.
-monte_carlo <- function(n, p, iterations, ...) {
-  #cl <- makeCluster(3, type = "SOCK")
-
-  #clusterExport(cl, list=c(ls(), "n", "p", "iterations", ...)) #export input data to all cores
-  output_list <- lapply(1:iterations, 
-                           repeat_simulation_until_successful,
-                           n = n,
-                           p = p,
-                           ...)
-  return(output_list)
+# The seed is automatically set for each iteration. This function uses the parallel
+# package to process multiple simulations at the same time.
+#
+# Arguments:
+#   n: Number of observations in each iteration.
+#   p: Number of predictors in each iteration.
+#   iterations: Number of iterations to run
+#   num_scores (default floor(detectCores() / 2)): Number of cores to use
+#     to run simulations.
+#   ...: Extra parameters used to generate data (see comments above
+#     generate_data() for a list of optional parameters).
+monte_carlo <- function(n, p, iterations,
+                        num_cores = floor(detectCores() / 2), ...) {
   
-  #stopCluster() # close cluster when complete (particularly on shared machines)
-
-  # replicate(iterations, full_simulation(n = n, p = p, ...), simplify = FALSE)
+  # Create the clusters using the parallel package.
+  cl <- makeCluster(num_cores)
+  
+  # Load the needed libraries in each cluster.
+  clusterEvalQ(cl, {
+    library(tidyverse) # v1.3.1
+    library(dplyr) # v1.0.6
+    library(faux) # v1.0.0
+    library(ncvreg) # v3.13.0
+    library(glmnet) # v4.1-1
+    library(gcdnet) #v1.0.5
+    library(MASS) # v7.3-54
+    library(caret) # v6.0-88
+    library(xgboost) # v1.4.1.1
+    library(ranger) # v0.12.1
+    library(e1071) # v1.7-7
+  })
+  
+  # We use this tryCatch to make sure that the clusters are closed, even if
+  # an error stops the execution of this function.
+  tryCatch({
+    # Export all of the needed variables and functions to each cluster.
+    clusterExport(cl, list("n", "p", "iterations", "...", "generate_coefficients",
+                           "generate_data", "fit_models", "model_data_frame",
+                           "results_table", "full_simulation",
+                           "repeat_simulation_until_successful",
+                           "mean_squared_error", "individual_confusion_matrix",
+                           "confusion_matrices"),
+                           envir = environment())
+    
+    # Run the simulations
+    results <- parLapply(cl,
+                         1:iterations, 
+                         repeat_simulation_until_successful,
+                         n = n,
+                         p = p,
+                         ...)
+    },
+    finally = {
+      stopCluster(cl)
+    })
+  
+  # Return the list of simulation results.
+  return(results)
 }

@@ -12,12 +12,13 @@ setwd(dirname(getActiveDocumentContext()$path))
 source("simulation.r")
 source("metrics.r")
 
-system.time(dat <- monte_carlo(n = 1000,
+system.time(dat <- monte_carlo(n = 100,
                    p = 10,
-                   type = "symmetric",
-                   corr = 0.5,
+                   type = "autoregressive",
+                   corr = 0.9,
                    st_dev = 1,
-                   iterations = 1
+                   iterations = 1,
+                   block_size = 5
 ))
 
 View(dat[[1]]$coefficients)

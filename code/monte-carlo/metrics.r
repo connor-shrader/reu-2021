@@ -6,11 +6,10 @@
 # simulation.r.
 
 # FUNCTIONS
-#   test_mse()
+#   mean_squared_error()
 #   coefficient_bias()
-#   compare_coefficient_estimates() (helper function)
-#   confusion_matrix() (helper)
-#   generate_confusion_matrices()
+#   individual_confusion_matrix() (helper)
+#   confusion_matrices()
 #   x_dif_2()
 #   sample_mean()
 #   sample_var()

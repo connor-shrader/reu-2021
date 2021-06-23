@@ -1,3 +1,4 @@
+rm(list = ls())
 library(rstudioapi) # v0.13
 
 setwd(dirname(getActiveDocumentContext()$path))
@@ -7,9 +8,7 @@ source("metrics.r")
 # Load parameters from file
 load("../../data/monte-carlo/factorial-design.Rdata")
 
-run_simulations <- function(indices) {
-  iterations <- 1
-  
+run_simulations <- function(indices, iterations = 1, ...) {
   results <- lapply(indices, function(i) {
     row <- parameters[i, ]
     n <- row$n
@@ -47,7 +46,8 @@ run_simulations <- function(indices) {
                              st_dev = st_dev,
                              type = type,
                              corr = corr,
-                             block_size = block_size)
+                             block_size = block_size,
+                             ...)
       
       saveRDS(results, file = filename)
     }
@@ -60,4 +60,4 @@ run_simulations <- function(indices) {
 }
 
 
-system.time(run_simulations(1))
+system.time(run_simulations(136, iterations = 5))
