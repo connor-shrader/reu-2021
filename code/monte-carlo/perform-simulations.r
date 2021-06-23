@@ -10,7 +10,7 @@ load("../../data/monte-carlo/factorial-design.Rdata")
 run_simulations <- function(indices) {
   iterations <- 1
   
-  for (i in indices) {
+  results <- lapply(indices, function(i) {
     row <- parameters[i, ]
     print(row)
     n <- row$n
@@ -57,7 +57,10 @@ run_simulations <- function(indices) {
     else {
       warning(c("Results file already exists for row ", i, "."))
     }
-  }
+  })
+  
+  return(results)
 }
 
-system.time(run_simulations(1))
+
+system.time(run_simulations(1:3))

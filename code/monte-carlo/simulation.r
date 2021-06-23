@@ -44,6 +44,8 @@ library(ranger) # v0.12.1
 # Support vector machine model
 library(e1071) # v1.7-7
 
+library(snow) # v0.4-3
+
 
 # This helper function takes in a vector beta and the number of
 # predictors p. If beta is NULL, then this function returns a default
