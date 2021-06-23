@@ -12,7 +12,6 @@ run_simulations <- function(indices) {
   
   results <- lapply(indices, function(i) {
     row <- parameters[i, ]
-    print(row)
     n <- row$n
     p <- row$p
     st_dev <- row$sigma
@@ -42,8 +41,6 @@ run_simulations <- function(indices) {
         }
       }
       
-      print(type)
-      print(block_size)
       results <- monte_carlo(n = n,
                              p = p,
                              iterations = iterations,
@@ -63,4 +60,4 @@ run_simulations <- function(indices) {
 }
 
 
-system.time(run_simulations(1:3))
+system.time(run_simulations(9))

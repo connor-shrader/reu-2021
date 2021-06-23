@@ -197,23 +197,25 @@ fit_models <- function(dat, n, p) {
     models[["fm"]] <- fm
     runtimes[["fm"]] <- fm_time
     
-    # AIC and BIC model selection for backward
-    ab_time <- system.time(ab <-  stepAIC(fm, scope=list(lower=nm, upper=fm), direction="backward", k=2, trace=F, steps=3000)) #AIC
-    models[["ab"]] <- ab
-    runtimes[["ab"]] <- ab_time
-    
-    bb_time <- system.time(bb <-  stepAIC(fm, scope=list(lower=nm, upper=fm), direction="backward", k=log(nrow(dat)), trace=F, steps=3000)) #BIC 
-    models[["bb"]] <- bb
-    runtimes[["bb"]] <- bb_time
-    
-    # AIC and BIC model selection for stepwise backward
-    asb_time <- system.time(asb <-  stepAIC(fm, scope=list(lower=nm, upper=fm), direction="both", k=2, trace=F, steps=3000)) #AIC
-    models[["asb"]] <- asb
-    runtimes[["asb"]] <- asb_time
-    
-    bsb_time <- system.time(bsb <-  stepAIC(fm, scope=list(lower=nm, upper=fm), direction="both", k=log(nrow(dat)), trace=F, steps=3000)) #BIC
-    models[["bsb"]] <- bsb
-    runtimes[["bsb"]] <- bsb_time
+    if (p <= 40) {
+      # AIC and BIC model selection for backward
+      ab_time <- system.time(ab <-  stepAIC(fm, scope=list(lower=nm, upper=fm), direction="backward", k=2, trace=F, steps=3000)) #AIC
+      models[["ab"]] <- ab
+      runtimes[["ab"]] <- ab_time
+      
+      bb_time <- system.time(bb <-  stepAIC(fm, scope=list(lower=nm, upper=fm), direction="backward", k=log(nrow(dat)), trace=F, steps=3000)) #BIC 
+      models[["bb"]] <- bb
+      runtimes[["bb"]] <- bb_time
+      
+      # AIC and BIC model selection for stepwise backward
+      asb_time <- system.time(asb <-  stepAIC(fm, scope=list(lower=nm, upper=fm), direction="both", k=2, trace=F, steps=3000)) #AIC
+      models[["asb"]] <- asb
+      runtimes[["asb"]] <- asb_time
+      
+      bsb_time <- system.time(bsb <-  stepAIC(fm, scope=list(lower=nm, upper=fm), direction="both", k=log(nrow(dat)), trace=F, steps=3000)) #BIC
+      models[["bsb"]] <- bsb
+      runtimes[["bsb"]] <- bsb_time
+    }
     
     # AIC and BIC model selection for forward
     af_time <- system.time(af <-  stepAIC(nm, scope=list(lower=nm, upper=fm), direction="forward", k=2, trace=F, steps=3000)) #AIC
@@ -271,11 +273,8 @@ fit_models <- function(dat, n, p) {
   # XGBoost Grid Search
   xgb_time <- system.time({
   xgb_hyper_grid <- expand.grid(
-    eta = c(.05, .1, .3),  # learning rate
+    eta = c(.1, .3, .5),  # learning rate
     max_depth = c(1, 3, 7), # maximum depth of each tree
-    min_child_weight = c(3), 
-    subsample = c(.8), 
-    colsample_bytree = c(.9),
     optimal_trees = 0,               # a place to dump results
     min_RMSE = 0                     # a place to dump results
   )
@@ -313,15 +312,15 @@ fit_models <- function(dat, n, p) {
     # create parameter list
     params <- list(
       eta = xgb_hyper_grid$eta[i],
-      max_depth = xgb_hyper_grid$max_depth[i],
-      min_child_weight = xgb_hyper_grid$min_child_weight[i],
-      subsample = xgb_hyper_grid$subsample[i],
-      colsample_bytree = xgb_hyper_grid$colsample_bytree[i]
+      max_depth = xgb_hyper_grid$max_depth[i]
     )
 
     # train model
     xgb.tune <- xgb.cv(
       params = params,
+      min_child_weight = 1, 
+      subsample = 1, 
+      colsample_bytree = 1,
       data = train_x_data,
       label = train_y_data,
       nrounds = 1000,
@@ -341,10 +340,7 @@ fit_models <- function(dat, n, p) {
   
   xgb_best_params <- list(
     eta = xgb_best_grid$eta[1],
-    max_depth = xgb_best_grid$max_depth[1],
-    min_child_weight = xgb_best_grid$min_child_weight[1],
-    subsample = xgb_best_grid$subsample[1],
-    colsample_bytree = xgb_best_grid$colsample_bytree[1]
+    max_depth = xgb_best_grid$max_depth[1]
   )
   
   train_set <- xgb.DMatrix(data = as.matrix(dat[, -1]), label = as.matrix(dat[, 1]))
@@ -364,13 +360,10 @@ fit_models <- function(dat, n, p) {
   
   # Random Forest Grid Search
   rf_time <- system.time({
-  n_pred <- length(dat) - 1
   
   rf_hyper_grid <- expand.grid(
-    mtry       = seq(1, n_pred, by = round(n_pred/10)),  #number of predictors to use in each tree
+    mtry       = c(floor(sqrt(p)), floor(p / 3), floor(p / 2)),  #number of predictors to use in each tree
     n.trees    = c(300, 400, 500, 600),
-    node_size  = c(5),
-    sampe_size = c(.80),  #number of samples to use in each tree
     OOB_RMSE   = 0
   )
   
@@ -398,8 +391,7 @@ fit_models <- function(dat, n, p) {
       data            = dat,
       num.trees       = rf_hyper_grid$n.trees[i],
       mtry            = rf_hyper_grid$mtry[i],
-      min.node.size   = rf_hyper_grid$node_size[i],
-      sample.fraction = rf_hyper_grid$sampe_size[i],
+      min.node.size   = 5,
       seed            = 123
     )
 
@@ -416,8 +408,7 @@ fit_models <- function(dat, n, p) {
     data            = dat, 
     num.trees       = rf_best_grid$n.trees[1],
     mtry            = rf_best_grid$mtry[1],
-    min.node.size   = rf_best_grid$node_size[1],
-    sample.fraction = rf_best_grid$sampe_size[1],
+    min.node.size   = 5,
     seed            = 123
   )
   })
@@ -427,8 +418,8 @@ fit_models <- function(dat, n, p) {
   # Support Vector Machine
   svm_time <- system.time({
   svm_tune <- tune.svm(y ~ ., data = dat,
-                        epsilon = seq(0,1,0.2),
-                        cost = 2^(2:4)
+                        epsilon = seq(0.1, 0.5, 0.2),
+                        cost = c(0.5, 1, 2)
   )
   
   svm_model <- svm_tune$best.model
@@ -565,11 +556,17 @@ repeat_simulation_until_successful <- function(seed, n, p, beta = NULL, ...) {
 # otherwise, this function returns a list of repeated calls to
 # monte_carlo_single_simulation.
 monte_carlo <- function(n, p, iterations, ...) {
-  lapply(1:iterations,
-         repeat_simulation_until_successful,
-         n = n,
-         p = p,
-         ...)
+  #cl <- makeCluster(3, type = "SOCK")
+
+  #clusterExport(cl, list=c(ls(), "n", "p", "iterations", ...)) #export input data to all cores
+  output_list <- lapply(1:iterations, 
+                           repeat_simulation_until_successful,
+                           n = n,
+                           p = p,
+                           ...)
+  return(output_list)
+  
+  #stopCluster() # close cluster when complete (particularly on shared machines)
 
   # replicate(iterations, full_simulation(n = n, p = p, ...), simplify = FALSE)
 }
