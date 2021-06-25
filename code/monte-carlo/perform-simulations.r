@@ -56,7 +56,7 @@ run_simulations <- function(indices, iterations = 1, ...) {
       saveRDS(results, file = filename)
     }
     else {
-      warning(c("Results file already exists for row ", i, "."))
+      message("Results file already exists for row ", i, ".")
     }
   })
   
