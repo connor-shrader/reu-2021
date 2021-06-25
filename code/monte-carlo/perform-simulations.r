@@ -63,4 +63,4 @@ run_simulations <- function(indices, iterations = 1, ...) {
   return(results)
 }
 
-res <- run_simulations(indices = 10:17, iterations = 100, num_cores = 6)
+res <- run_simulations(indices = 163:168, iterations = 100)
