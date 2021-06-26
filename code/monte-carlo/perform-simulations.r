@@ -64,4 +64,3 @@ run_simulations <- function(indices, iterations = 1, ...) {
 }
 
 res <- run_simulations(indices = 162, iterations = 100)
-
