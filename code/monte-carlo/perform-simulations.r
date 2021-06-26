@@ -56,11 +56,12 @@ run_simulations <- function(indices, iterations = 1, ...) {
       saveRDS(results, file = filename)
     }
     else {
-      warning(c("Results file already exists for row ", i, "."))
+      message("Results file already exists for row ", i, ".")
     }
   })
   
   return(results)
 }
 
-res <- run_simulations(indices = c(16, 17, 19:26), iterations = 100)
+res <- run_simulations(indices = 181:186, iterations = 100)
+
