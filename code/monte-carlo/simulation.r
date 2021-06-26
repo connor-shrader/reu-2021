@@ -627,7 +627,9 @@ monte_carlo <- function(n, p, iterations,
   tryCatch({
     # Export all of the needed variables and functions to each cluster.
     clusterExport(cl, list("n", "p", "iterations", "...", "generate_coefficients",
-                           "generate_data", "fit_models", "model_data_frame",
+           
+                           
+                                           "generate_data", "fit_models", "model_data_frame",
                            "results_table", "full_simulation",
                            "repeat_simulation_until_successful",
                            "mean_squared_error", "individual_confusion_matrix",
