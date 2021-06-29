@@ -1,10 +1,16 @@
+# aggregate-results.r
+
 rm(list = ls())
 library(rstudioapi) # v0.13
+
+# Needed for rbind.fill when combining rows in the aggregate results dataframe.
+library(plyr)
 
 setwd(dirname(getActiveDocumentContext()$path))
 
 
 get_results_file <- function(n, p, st_dev, type, corr) {
+  print("In func")
   filename <- paste("../../results/monte-carlo/sim_results_",
                     n, "_", 
                     p, "_", 
@@ -12,7 +18,11 @@ get_results_file <- function(n, p, st_dev, type, corr) {
                     type, "_", 
                     corr, ".rds", sep = "")
   
-  return(readRDS(filename))
+  if(file.exists(filename)) {
+    return(readRDS(filename))
+  } else {
+    return(NULL)
+  }
 }
 
 get_mean_mse <- function(results) {
@@ -64,9 +74,34 @@ get_variable_selections <- function(results) {
   return(avg_confusion_matrices)
 }
 
+compute_results <- function(n, p, st_dev, type, corr) {
+  results <- get_results_file(n, p, st_dev, type, corr)
+  mean_mses <- get_mean_mse(results)
+  # variable_selections <- get_variable_selections(results)
+  
+  return(c(list(n = n, p = p, st_dev = st_dev, type = type, corr = corr),
+           mean_mses))
+}
 
-res <- get_results_file(n = 50, p = 10, st_dev = 1, type = "independent", corr = 0)
-mean_mses <- get_mean_mse(res)
-mat <- get_variable_selections(res)
+aggregate_results <- function(indices = 1:270) {
+  load("../../data/monte-carlo/factorial-design.Rdata")
+  
+  all_results <- lapply(indices, function(i) {
+    row <- parameters[i, ]
+    
+    n <- row$n
+    p <- row$p
+    st_dev <- row$sigma
+    
+    # Convert row$covar (which is a factor) to a character.
+    type <- as.character(row$covar)
+    corr <- row$rho
+    
+    return(as.data.frame(compute_results(n, p, st_dev, type, corr)))
+  })
+  
+  all_results_df <- as.data.frame(do.call(rbind.fill, all_results))
+  return(all_results_df)
+}
 
-names(res[[1]]$confusion_matrices)
+all_res <- aggregate_results(1:8)
