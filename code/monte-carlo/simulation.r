@@ -369,6 +369,7 @@ fit_models <- function(dat, n, p) {
       objective = "reg:squarederror",  # for regression models
       verbose = 0,               # silent,
       early_stopping_rounds = 10, # stop if no improvement for 10 consecutive trees
+      nthread = 1
     )
 
     # add min training error and trees to grid
@@ -394,6 +395,7 @@ fit_models <- function(dat, n, p) {
     objective = "reg:squarederror",  # for regression models
     verbose = 0,               # silent,
     early_stopping_rounds = 10, # stop if no improvement for 10 consecutive trees
+    nthread = 1
   )
   })
   models[["gbm"]] <- xgb.best
