@@ -195,12 +195,14 @@ fit_models <- function(dat, n, p) {
   models[["nm"]] <- nm
   runtimes[["nm"]] <- nm_time
   
-  if (2 * p < n) {
-    # Full model for backward selection
+  if (p <= n) {
+    # Full model
     fm_time <- system.time(fm <- lm(y ~ ., data = dat))
     models[["fm"]] <- fm
     runtimes[["fm"]] <- fm_time
-    
+  }
+  
+  if (2 * p <= n) {
     if (p <= 40) {
       # AIC and BIC model selection for backward
       ab_time <- system.time(ab <-  stepAIC(fm, scope=list(lower=nm, upper=fm),

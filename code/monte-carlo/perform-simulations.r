@@ -20,7 +20,7 @@ run_simulations <- function(indices, iterations = 1, ...) {
     type <- as.character(row$covar)
     corr <- row$rho
     
-    filename <- paste("../../results/monte-carlo-test2/sim_results_",
+    filename <- paste("../../results/monte-carlo/sim_results_",
                       n, "_", 
                       p, "_", 
                       st_dev, "_", 
