@@ -2,7 +2,8 @@
 # Gabe Ackall, Seongtae Kim, Connor Shrader
 
 # This file contains functions for generating data and fitting regression models
-# using Monte Carlo simulations.
+# using Monte Carlo simulations. The file perform-simulations.r contains the
+# run_simulation function, which uses this file to run the simulations.
 
 # FUNCTIONS:
 #   generate_coefficients() (Helper function)
