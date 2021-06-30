@@ -1,14 +1,15 @@
 # monte-carlo.r
-# Gabe Ackall, Seongtae Kim, Connor Shrader
+# Gabe Ackall, Connor Shrader
 
-# This file contains everything to be executed using the functions from
-# simulation.r and metrics.r.
+# This file contains any temporary code that we needed to run to test the
+# functions in metrics.r and simulation.r.
 
-# Used to set the current working directory to this script.
+rm(list = ls())
+
+# Used to set current working directory to the location of this file.
 library(rstudioapi) # v0.13
 
 setwd(dirname(getActiveDocumentContext()$path))
-
 source("simulation.r")
 source("metrics.r")
 

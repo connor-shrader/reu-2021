@@ -1,13 +1,36 @@
+# perform-simulations.r
+# Gabe Ackall, Connor Shrader
+
+# This file contains run_simulations(), a function that we used to perform
+# Monte Carlo simulations using the functions contained in metrics.r
+# and simulation.r.
+
 rm(list = ls())
+
+# Used to set current working directory to the location of this file.
 library(rstudioapi) # v0.13
 
 setwd(dirname(getActiveDocumentContext()$path))
 source("simulation.r")
 source("metrics.r")
 
-# Load parameters from file
+# Load table of parameters from file.
 load("../../data/monte-carlo/factorial-design.Rdata")
 
+# This function takes in a vector of indices and the number of iterations.
+# Then, this function iterates over the rows of the parameter table corresponding
+# to each index and runs Monte Carlo simulations. The number of times each
+# parameter combination is ran is determined by the iterations parameter.
+# Then, the results for all of the simulations are saved to as an RDS file
+# in reu-2021/results/monte-carlo.
+#
+# For example, calling run_simulations(1:5, 5) will run simulations using the
+# parameter combinations from the first five rows of the parameter table
+# contained in reu-2021/data/monte-carlo/factorial-design.Rdata. Each combination
+# is ran 5 times.
+#
+# Note that there are 270 parameter combinations, so indices should be a subset
+# of 1:270.
 run_simulations <- function(indices, iterations = 1, ...) {
   results <- lapply(indices, function(i) {
     message("Beginning to run row ", i, ".")
