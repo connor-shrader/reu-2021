@@ -1,5 +1,5 @@
 # metrics.r
-# Gabe Ackall, Seongtae Kim, Connor Shrader
+# Gabe Ackall, Connor Shrader
 
 # This file contains functions to evaluate the performance of linear regression.
 # models. To generate data and fit the models, see the functions in
