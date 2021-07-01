@@ -111,14 +111,14 @@ get_results_file <- function(n, p, st_dev, type, corr) {
 #   metric_by_model <- lapply(iteration$confusion_matrices, function(matrix) {
 #     matrix$table[i, j]
 #   })
-#   
+# 
 #   return(unlist(metric_by_model[-1]))
 # }
 # 
 # aggregate_average_metric <- function(fun, indices = 1:270, ...) {
 #   metric_averages <- lapply(indices, function(i) {
 #     row <- parameters[i, ]
-#     
+# 
 #     n <- row$n
 #     p <- row$p
 #     st_dev <- row$sigma
@@ -130,14 +130,14 @@ get_results_file <- function(n, p, st_dev, type, corr) {
 #     metric_per_simulation <- lapply(results, fun, ...)
 # 
 #     average_metric <- (1 / length(metric_per_simulation)) * Reduce("+", metric_per_simulation)
-#     
+# 
 #     parameter_values <- c(n, p, st_dev, type, corr)
 #     names(parameter_values) <- c("n", "p", "st_dev", "type", "corr")
 #     return(c(parameter_values, average_metric))
 #   })
-#   
+# 
 #   metric_averages <- lapply(metric_averages, function(row) {data.frame(t(row))})
-#   
+# 
 #   return(do.call(rbind.fill, metric_averages))
 # }
 # 
@@ -168,7 +168,8 @@ load("../../data/monte-carlo/factorial-design.Rdata")
 #   })
 # })
 
-x <- lapply(1:3, function(i) {
+all_results <- lapply(1:3, function(i) {
+  #print(i)
   row <- parameters[i, ]
 
   n <- row$n
@@ -180,14 +181,37 @@ x <- lapply(1:3, function(i) {
   results <- get_results_file(n, p, st_dev, type, corr)
 
   test_mse_for_one_row <- lapply(1:100, function(iteration) {
+    #print(iteration)
     model_names <- names(results[[iteration]]$test_mse)
-    #print("1")
+
     test_mses_for_one_simulation <- lapply(model_names, function(model_name) {
-      #print("2")
-      #print(results[[iteration]]$test_mse)
-      #print(model_name)
-      data.frame(list(n = n, p = p, st_dev = st_dev, type = type, corr = corr, model_name = model_name, test_mse = results[[iteration]]$test_mse[[model_name]]))
+      simulation <- results[[iteration]]
+      
+      simulation_summary <- list(row_index = i,
+                                 n = n,
+                                 p = p, 
+                                 st_dev = st_dev, 
+                                 type = type, 
+                                 corr = corr, 
+                                 model_name = model_name,
+                                 train_mse = simulation$train_mse[[model_name]],
+                                 test_mse = simulation$test_mse[[model_name]])
+      
+      if (model_name %in% names(simulation$confusion_matrices)) {
+        #print(model_name)
+        simulation_summary <- c(simulation_summary, list(
+                                tn = simulation$confusion_matrices[[model_name]]$table[1, 1],
+                                fn = simulation$confusion_matrices[[model_name]]$table[1, 2],
+                                fp = simulation$confusion_matrices[[model_name]]$table[2, 1],
+                                tp = simulation$confusion_matrices[[model_name]]$table[2, 2]))
+      }
+      
+      simulation_summary <- c(simulation_summary, list(runtime = simulation$runtimes[[model_name]][["elapsed"]]))
+      
+      return(data.frame(simulation_summary))
     })
+    
+    #print(test_mses_for_one_simulation)
     
     return(do.call(rbind.fill, test_mses_for_one_simulation))
   })
@@ -196,19 +220,93 @@ x <- lapply(1:3, function(i) {
 })
 
 
-x <- do.call(rbind.fill, x)
-x <- x[x$model_name != "nm", ]
+all_results <- do.call(rbind.fill, all_results)
+all_results <- all_results[all_results$model_name != "nm" & 
+                           all_results$model_name != "soln" , ]
 
+mean_results <- aggregate(list(mean_test_mse = all_results$test_mse,
+                                     mean_train_mse = all_results$train_mse,
+                                     mean_tn = all_results$tn,
+                                     mean_fn = all_results$fn,
+                                     mean_fp = all_results$fp,
+                                     mean_tp = all_results$tp),
+                                by = list(row_index = all_results$row_index,
+                                          n = all_results$n,
+                                          p = all_results$p,
+                                          st_dev = all_results$st_dev,
+                                          type = all_results$type,
+                                          corr = all_results$corr,
+                                          model_name = all_results$model_name),
+                                FUN = mean)
 
+correct_order <- c("fm", "ab", "bb", "asb", "bsb", "af", "bf", "asf", "bsf",
+                   "ridge", "lasso", "enet", "adap_ridge", "adap_lasso", 
+                   "adap_enet", "scad", "mcp", "gbm", "rf", "svm")
 
-agg.mean <- aggregate(test_mse ~ model_name + n, data = x, FUN = mean)
-agg.sd <- aggregate(test_mse ~ model_name + n, data = x, FUN = sd)
-agg <- merge(agg.mean, agg.sd, by = c("model_name", "n"))
-names(agg) <- c("model_name", "n", "mean", "sd")
+#mean_results$model_name <- factor(mean_results$model_name, levels = correct_order)
+#mean_results <- mean_results[order(mean_results$model_name), ]
 
+sd_results <- aggregate(list(sd_test_mse = all_results$test_mse,
+                               sd_train_mse = all_results$train_mse,
+                               sd_tn = all_results$tn,
+                               sd_fn = all_results$fn,
+                               sd_fp = all_results$fp,
+                               sd_tp = all_results$tp),
+                          by = list(row_index = all_results$row_index,
+                                    n = all_results$n,
+                                    p = all_results$p,
+                                    st_dev = all_results$st_dev,
+                                    type = all_results$type,
+                                    corr = all_results$corr,
+                                    model_name = all_results$model_name),
+                          FUN = sd)
+
+#sd_results$model_name <- factor(sd_results$model_name, levels = correct_order)
+#sd_results <- sd_results[order(sd_results$model_name), ]
+#sd_results <- subset(sd_results, select = -row_index)
+
+aggregate_results <- merge(mean_results, sd_results, by = c("row_index", "n", "p", "st_dev", "type", "corr", "model_name"))
+
+aggregate_results$model_name <- factor(aggregate_results$model_name, levels = correct_order)
+#aggregate_results <- aggregate_results[order(aggregate_results$model_name), ]
+
+# agg.mean <- aggregate(test_mse ~ model_name + n, data = x, FUN = mean)
+# agg.sd <- aggregate(test_mse ~ model_name + n, data = x, FUN = sd)
+# agg <- merge(agg.mean, agg.sd, by = c("model_name", "n"))
+# names(agg) <- c("model_name", "n", "mean", "sd")
+# 
 library(ggplot2)
+# 
+# ggplot(data = agg, mapping = aes(x = model_name)) +
+#   geom_col(data = agg, mapping = aes(x = model_name, y = mean), fill = "red") + 
+#   geom_errorbar(data = agg, mapping = aes(x = model_name, y = mean, ymin = mean - sd, ymax = mean + sd)) +
+#   facet_grid(rows = vars(n))
 
-ggplot(data = agg, mapping = aes(x = model_name)) +
-  geom_col(data = agg, mapping = aes(x = model_name, y = mean), fill = "red") + 
-  geom_errorbar(data = agg, mapping = aes(x = model_name, y = mean, ymin = mean - sd, ymax = mean + sd)) +
+specific_results <- aggregate_results[aggregate_results$p == 10 & 
+                                        aggregate_results$st_dev == 1 &
+                                        aggregate_results$type == "independent" &
+                                        aggregate_results$corr == 0, ]
+
+x <- aggregate_results[aggregate_results$p == 10]
+
+ggplot(data = specific_results) +
+  geom_col(mapping = aes(x = model_name, y = mean_test_mse), fill = "red") +
+  geom_errorbar(mapping = aes(x = model_name, y = mean_test_mse, ymin = mean_test_mse - sd_test_mse, ymax = mean_test_mse + sd_test_mse)) +
   facet_grid(rows = vars(n))
+
+
+plot_metric <- function(data, metric, facet, ...) {
+  args <- list(...)
+  
+  mean_metric <- paste("mean_", metric, sep = "")
+  sd_metric <- paste("sd_", metric, sep = "")
+  
+  for (fixed_parameter in names(args)) {
+    data <- data[data[[fixed_parameter]] == args[[fixed_parameter]], ]
+  }
+
+  ggplot(data = data) +
+    geom_col(mapping = aes_string(x = "model_name", y = mean_metric), fill = "red") + 
+    geom_errorbar(mapping = aes_string(x = "model_name", y = mean_metric, ymin = paste(mean_metric, "-", sd_metric), ymax = paste(mean_metric, "+", sd_metric))) +
+    facet_grid(reformulate(".", facet))
+}
