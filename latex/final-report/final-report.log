@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.2) (preloaded format=pdflatex 2021.6.10)  1 JUL 2021 09:02
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.2) (preloaded format=pdflatex 2021.6.10)  1 JUL 2021 09:42
 entering extended mode
 **./final-report.tex
 (final-report.tex
@@ -63,29 +63,33 @@ Underfull \hbox (badness 10000) in paragraph at lines 17--18
 
 [1
 
-{C:/Users/PC/AppData/Local/MiKTeX/pdftex/config/pdftex.map}] [2]
+{C:/Users/PC/AppData/Local/MiKTeX/pdftex/config/pdftex.map}]
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <9> on input line 19.
+ [2]
 (final-report.aux) ) 
 Here is how much of TeX's memory you used:
- 436 strings out of 479334
- 7871 string characters out of 2858509
+ 441 strings out of 479334
+ 7923 string characters out of 2858509
  298870 words of memory out of 3000000
- 17956 multiletter control sequences out of 15000+200000
- 408329 words of font info for 43 fonts, out of 3000000 for 9000
+ 17959 multiletter control sequences out of 15000+200000
+ 408942 words of font info for 45 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  44i,7n,50p,2612b,272s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Users/PC/AppData/Local/Programs/MiKTeX/fonts/type1/publ
 ic/amsfonts/cm/cmbx12.pfb><C:/Users/PC/AppData/Local/Programs/MiKTeX/fonts/type
 1/public/amsfonts/cm/cmbx9.pfb><C:/Users/PC/AppData/Local/Programs/MiKTeX/fonts
-/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/PC/AppData/Local/Programs/MiKTeX/
-fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/PC/AppData/Local/Programs/Mi
-KTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/PC/AppData/Local/Progra
-ms/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/PC/AppData/Local/Pr
-ograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/PC/AppData/Loca
-l/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/PC/AppData/
-Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti9.pfb>
-Output written on final-report.pdf (2 pages, 107851 bytes).
+/type1/public/amsfonts/cm/cmmi9.pfb><C:/Users/PC/AppData/Local/Programs/MiKTeX/
+fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/PC/AppData/Local/Programs/Mi
+KTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/PC/AppData/Local/Progra
+ms/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/PC/AppData/Local/P
+rograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/PC/AppData/Loc
+al/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/PC/AppData
+/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/PC/App
+Data/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti9.pfb>
+Output written on final-report.pdf (2 pages, 120504 bytes).
 PDF statistics:
- 45 PDF objects out of 1000 (max. 8388607)
+ 49 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
