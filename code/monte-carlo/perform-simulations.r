@@ -37,11 +37,11 @@ run_simulations <- function(indices, iterations = 1, ...) {
     row <- parameters[i, ]
     n <- row$n
     p <- row$p
-    st_dev <- row$sigma
+    st_dev <- row$st_dev
     
-    # Convert row$covar (which is a factor) to a character.
-    type <- as.character(row$covar)
-    corr <- row$rho
+    # Convert row$type (which is a factor) to a character.
+    type <- as.character(row$type)
+    corr <- row$corr
     
     filename <- paste("../../results/monte-carlo/sim_results_",
                       n, "_", 
@@ -86,4 +86,4 @@ run_simulations <- function(indices, iterations = 1, ...) {
   return(results)
 }
 
-# res <- run_simulations(indices = 217:222, iterations = 100)
+# res <- run_simulations(indices = 99, iterations = 100)
