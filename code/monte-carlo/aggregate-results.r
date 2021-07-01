@@ -174,9 +174,9 @@ all_results <- lapply(1:3, function(i) {
 
   n <- row$n
   p <- row$p
-  st_dev <- row$sigma
-  type <- as.character(row$covar) #row$covar is a factor
-  corr <- row$rho
+  st_dev <- row$st_dev
+  type <- as.character(row$type) #row$type is a factor
+  corr <- row$corr
 
   results <- get_results_file(n, p, st_dev, type, corr)
 
