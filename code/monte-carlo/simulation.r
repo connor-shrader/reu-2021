@@ -264,6 +264,10 @@ fit_models <- function(dat, n, p) {
     models[["ridge"]] <- ridge
     runtimes[["ridge"]] <- ridge_time
   }
+  else {
+    models[["ridge"]] <- NA
+    runtimes[["ridge"]] <- NA
+  }
   
   # Lasso model for variable selection
   lasso_time <- system.time(lasso <- cv.glmnet(x = as.matrix(dat[,-1]),
@@ -472,6 +476,15 @@ fit_models <- function(dat, n, p) {
   models[["svm"]] <- svm_model
   runtimes[["svm"]] <- svm_time
   
+  if (2 * p > n) {
+    # Ridge model for dealing with multicollinearity
+    set.seed(123)
+    ridge_time <- system.time(ridge <- cv.glmnet(x = as.matrix(dat[,-1]),
+                                                 y = dat$y, alpha = 0))
+    models[["ridge"]] <- ridge
+    runtimes[["ridge"]] <- ridge_time
+  }
+  
   return(list(models, runtimes))
 }
 
@@ -642,7 +655,7 @@ monte_carlo <- function(n, p, iterations,
                            envir = environment())
     
     # Run the simulations
-    results <- parLapply(cl,
+    results <- lapply(
                          1:iterations, 
                          repeat_simulation_until_successful,
                          n = n,
