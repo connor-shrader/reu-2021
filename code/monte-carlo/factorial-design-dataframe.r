@@ -7,20 +7,20 @@ library(faux) # v1.0.0
 
 n <- c(50, 200, 1000)
 p <- c(10, 100, 2000)
-sigma <- c(1, 3, 6)
-covar <- c("independent", "symmetric", "autoregressive", "blockwise")
-rho <- c(0.2, 0.5, 0.9)
+st_dev <- c(1, 3, 6)
+type <- c("independent", "symmetric", "autoregressive", "blockwise")
+corr <- c(0.2, 0.5, 0.9)
 
-parameters <- expand.grid(n, p, sigma, covar, rho)
-colnames(parameters) <- c("n", "p", "sigma", "covar", "rho")
+parameters <- expand.grid(n, p, st_dev, type, corr)
+colnames(parameters) <- c("n", "p", "st_dev", "type", "corr")
 
-# Because rho is not used when covar == "independent", we will remove all
-# rows where covar == "independent" and rho != 0.2. Then, the rows with
-# covar == "independent" will have their rho set to 0.
-parameters <- parameters[!(parameters$covar == "independent" & parameters$rho != 0.2), ]
-parameters$rho <- ifelse(parameters$covar == "independent",
+# Because corr is not used when type == "independent", we will remove all
+# rows where type == "independent" and corr != 0.2. Then, the rows with
+# type == "independent" will have their corr set to 0.
+parameters <- parameters[!(parameters$type == "independent" & parameters$corr != 0.2), ]
+parameters$corr <- ifelse(parameters$type == "independent",
                          0,
-                         parameters$rho)
+                         parameters$corr)
 
 rownames(parameters) <- NULL
 
