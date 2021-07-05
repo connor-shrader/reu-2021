@@ -161,12 +161,6 @@ generate_data <- function(n, p, beta = NULL, type = "independent", corr = 0,
   # Generate the data using rnorm_multi() from the faux package. We then append
   # a column of 1's to the left of this matrix (which will correspond to the
   # intercept).
-  print(n)
-  print(p)
-  print(st_dev)
-  print(r)
-  print(.Random.seed)
-  
   x <- cbind(1, rnorm_multi(
     n = n,
     vars = p,
@@ -663,7 +657,7 @@ monte_carlo <- function(n, p, iterations,
                            envir = environment())
     
     # Run the simulations
-    results <- lapply(
+    results <- parLapply(cl,
                          1:iterations, 
                          repeat_simulation_until_successful,
                          n = n,
