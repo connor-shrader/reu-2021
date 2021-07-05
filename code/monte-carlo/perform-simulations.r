@@ -43,7 +43,7 @@ run_simulations <- function(indices, iterations = 1, ...) {
     type <- as.character(row$type)
     corr <- row$corr
     
-    filename <- paste("../../results/monte-carlo/sim_results_",
+    filename <- paste("../../results/monte-carlo-test2/sim_results_",
                       n, "_", 
                       p, "_", 
                       st_dev, "_", 
@@ -64,6 +64,7 @@ run_simulations <- function(indices, iterations = 1, ...) {
         }
       }
       
+      message(n, p, st_dev, type, corr)
       time_taken <- system.time(results <- monte_carlo(n = n,
                                                        p = p,
                                                        iterations = iterations,
