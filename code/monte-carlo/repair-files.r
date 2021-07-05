@@ -74,14 +74,49 @@ fit_ridge <- function(dat, n, p) {
                                                  y = dat$y, alpha = 0))
     models[["ridge"]] <- ridge
     runtimes[["ridge"]] <- ridge_time
+    
+    #print(ridge_time)
   }
   
   return(list(models, runtimes))
 }
 
-original_results <- readRDS("../../results/monte-carlo/sim_results_50_100_3_independent_0.rds")
 
-for (i in 1:9) {
+
+num_cores = floor(detectCores() / 2)
+  
+# Create the clusters using the parallel package.
+cl <- makeCluster(num_cores)
+
+# Load the needed libraries in each cluster.
+clusterEvalQ(cl, {
+  library(tidyverse) # v1.3.1
+  library(dplyr) # v1.0.6
+  library(faux) # v1.0.0
+  library(ncvreg) # v3.13.0
+  library(glmnet) # v4.1-1
+  library(gcdnet) #v1.0.5
+  library(MASS) # v7.3-54
+  library(caret) # v6.0-88
+  library(xgboost) # v1.4.1.1
+  library(ranger) # v0.12.1
+  library(e1071) # v1.7-7
+})
+
+# We use this tryCatch to make sure that the clusters are closed, even if
+# an error stops the execution of this function.
+
+# Export all of the needed variables and functions to each cluster.
+clusterExport(cl, list("fit_ridge", "run_simulations_test", "parameters",
+                       "generate_coefficients",
+                       "generate_data", "fit_models", "model_data_frame",
+                       "results_table", "full_simulation",
+                       "repeat_simulation_until_successful",
+                       "mean_squared_error", "individual_confusion_matrix",
+                       "confusion_matrices"),
+              envir = environment())
+
+parLapply(cl, 1:9, function(i) {
   row <- parameters[i, ]
   n <- row$n
   p <- row$p
@@ -105,7 +140,9 @@ for (i in 1:9) {
                              type, "_",
                              corr, ".rds", sep = "")
 
+  results <- NA
   if (2 * p > n & file.exists(original_filename)) {
+    message("About to run ridge for row ", i)
     results <- readRDS(original_filename)
     for (i in 1:100) {
       set.seed(i)
@@ -115,15 +152,16 @@ for (i in 1:9) {
       beta <- generate_coefficients(NULL, p)
 
       # Generate training and test data.
-      train_data <- generate_data(n = n, p = p, st_dev = st_dev, type = type, corr = corr)
+      system.time(train_data <- generate_data(n = n, p = p, st_dev = st_dev, type = type, corr = corr))
       test_data <- generate_data(n = n, p = p, st_dev = st_dev, type = type, corr = corr)
-
+      
       models_list <- fit_ridge(train_data, n = n, p = p)
       models <- models_list[[1]]
       runtimes <- models_list[[2]]
       
       # Generate the coefficient table and compute the mean squared error
       # for each model.
+      
       coefficients_table2 <- results_table(models, beta = beta, p = p)
       confusion_matrices2 <- confusion_matrices(coefficients_table2)
       
@@ -153,6 +191,12 @@ for (i in 1:9) {
     
     message("Finished running row ", i, " at ", Sys.time())
   }
-}
+  
+  return(results)
+})
 
-run_simulations_test(indices = 1:9, iterations = 3)
+stopCluster(cl)
+
+#run_simulations_test(indices = 1:9, iterations = 3)
+
+#original_results <- readRDS("../../results/monte-carlo/sim_results_50_100_3_independent_0.rds")
