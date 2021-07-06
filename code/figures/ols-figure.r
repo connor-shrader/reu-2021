@@ -21,7 +21,7 @@ library(ggplot2)
 ols <- ggplot(data = dat, mapping = aes(x = x, y = y)) +
   geom_segment(aes(x = x, y = y, xend = x, yend = yhat), color = "red") +
   geom_point() + 
-  geom_abline(slope = coefs[2], intercept = coefs[1]) +
+  geom_abline(slope = coefs[2], intercept = coefs[1], color = "blue") +
   reu_border
 
 ggsave(
