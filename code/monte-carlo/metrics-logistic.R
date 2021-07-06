@@ -36,7 +36,7 @@ confusion_M <- function(model, dat) {
   if (model_class == "cv.ncvreg") { #checks for mcp or scad model
     # Model is SCAD or MCP.
     y_hat <-  data.frame(predict(model, X = as.matrix(dat[, -1])), type = "class")
-    y_hat <- ifelse(y_hat > 0.5, 1, 0)
+    y_hat <- ifelse(y_hat > 0.5, "1", "0")
   }
   else if (model_class == "cv.glmnet"){
     y_hat <-  data.frame(predict(model, newx = as.matrix(dat[, -1])), type = "class")
@@ -44,12 +44,12 @@ confusion_M <- function(model, dat) {
   else if (model_class == "cv.gcdnet") { 
     # Model is LASSO, ridge, enet, or adaptive lasso/ridge/enet.
     y_hat <-  data.frame(predict(model, newx = as.matrix(dat[, -1])), type = "class")
-    y_hat <- ifelse(y_hat > 0.5, 1, 0)
+    y_hat <- ifelse(y_hat > 0.5, "1", "0")
   }
   else if (model_class == "xgb.Booster") { 
     # Model is XGBoost.
     y_hat <- data.frame(predict(model, newdata = as.matrix(dat[, -1])))
-    y_hat <- ifelse(y_hat > 0.5, 1, 0)
+    y_hat <- ifelse(y_hat > 0.5, "1", "0")
   }
   else if (model_class == "ranger") { 
     # Model is random forest.

@@ -177,6 +177,7 @@ generate_data <- function(n, p, beta = NULL, type = "independent", corr = 0,
   
   # Set the column names to "y, x1, x2, ..., xp"
   colnames(dat) <- c("y", paste("x", 1:p, sep=""))
+  dat$y <- factor(dat$y, labels = c("0", "1"))
   return(dat)
 }
 
@@ -189,7 +190,7 @@ fit_models <- function(dat, n, p) {
   runtimes <- list()
   
   # Null model for forward selection
-  nm_time <- system.time(nm <- lm(y ~ 1, data = dat))
+  nm_time <- system.time(nm <- glm(y ~ 1 , data = dat, family = "binomial"))
   models[["nm"]] <- nm
   runtimes[["nm"]] <- nm_time
   
@@ -292,6 +293,8 @@ fit_models <- function(dat, n, p) {
   models[["adap_enet"]] <- adap_enet
   runtimes[["adap_enet"]] <- adap_enet_time
   
+  print("finished adap enet")
+  
   # SCAD
   scad_time <- system.time(scad <- cv.ncvreg(X = dat[, -1], y = dat$y, penalty = "SCAD", family = "binomial"))
   models[["scad"]] <- scad
@@ -302,6 +305,8 @@ fit_models <- function(dat, n, p) {
   models[["mcp"]] <- mcp
   runtimes[["mcp"]] <- mcp_time
   
+  print("finished mcp and scad")
+  
   # Separate data into x and y matrices. This is needed to run xgboost.
   train_x_data <- as.matrix(dat[, -1])
   train_y_data <- as.matrix(dat[, 1])
@@ -309,7 +314,7 @@ fit_models <- function(dat, n, p) {
   # XGBoost Grid Search
   xgb_time <- system.time({
     
-    train_labels <- dat[, 1]
+    train_labels <- ifelse(dat[, 1]=="0", 0, 1)
     
     xgb_hyper_grid <- expand.grid(
       eta = c(.1, .3, .5),  # learning rate
@@ -640,7 +645,7 @@ monte_carlo <- function(n, p, iterations,
     # Run the simulations
     results <- lapply(
                          1:iterations, 
-                         repeat_simulation_until_successful,
+                         full_simulation,
                          n = n,
                          p = p,
                          ...)
