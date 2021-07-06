@@ -6,9 +6,32 @@
 		Mentor: Dr. Ty Kim$^3$ \\	
 		{\footnotesize $^1$Georgia Tech, Civil and Environmental Engineering} \\
 		{\footnotesize $^2$University of Central  Florida, Mathematics} \\
-		{\footnotesize $^3$NCA\&T University, Mathematics Department} \\
+		{\footnotesize $^3$NCA\&T University, Mathematics and Statistics} \\
 		{\footnotesize *Authors contributed equally}}
 \date{\today}
+
+% Format settings
+\setlength{\parskip}{6pt}
+
+% Package imports
+\usepackage{fancyhdr}
+\usepackage[margin = 1in]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{listings} % Show code in LaTeX
+
+% Setting up headers and footers
+\pagestyle{fancy}
+\fancyhead[L]{Penalized Regression}
+\fancyhead[R]{Ackall, Shrader}
+\fancyfoot[C]{\thepage}
+
+% Set code appearance
+\lstset {
+	language = R,
+	basicstyle = \ttfamily
+}
 
 \begin{document}
 \maketitle
@@ -22,6 +45,7 @@ With the prevalence of big data in the modern age, the importance of modeling hi
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
 % introduce readers to our topic and necessary info to better understand the paper
+
 \subsection{Background}
 % We can talk about the necessary background information
 % what is linear regression and logistic regression?
@@ -36,6 +60,123 @@ With the prevalence of big data in the modern age, the importance of modeling hi
 
 \subsection{Monte Carlo Simulations}
 % outline data generation process and factorial design process
+
+Monte Carlo simulations use randomly generated data to fit and test our regression and classification models. There are several benefits to using simulated data rather than experimental data:
+\begin{itemize}
+	\item The true relationship between the predictor variables and the response is known.
+	\item Simulations can be iterated many times, giving sturdier results about the effectiveness of each model.
+	\item We have full control over factors such as the number of predictors and the amount of correlation between predictors.
+\end{itemize}
+
+For the simulated data, we assumed that the relationship between the response variable $y$ and the predictors $x_1, x_2, \dotsc, x_p$ was linear. That is, we assumed that
+\begin{equation}
+	y = \beta_0 + \beta_1 x_1 + \cdots + \beta_p x_p + \epsilon
+\end{equation}
+where $\beta_0$ is some intercept, $\beta_1, \dotsc, \beta_p$ are coefficient values and $\epsilon\sim \mathcal{N}(0, \sigma^2)$ is a normally distributed random error with mean 0 and variance $\sigma^2$.
+
+To generate the data, we first defined $\beta = [\beta_0, \beta_1, \dotsc, \beta_p]^\top$, a $(p + 1)\times 1$ vector of coefficient values. For our simulations, we used $\beta_0 = 1$, $\beta_1 = 2$, $\beta_2 = -2$, $\beta_5=0.5$ and $\beta_6 = 3$; the remaining coefficient values were set to 0.
+
+Next, we generated $\mathbf{X}$, a $n\times (p + 1)$ matrix of predictor variables. The first column contains 1 in all of its entries; this corresponds to the intercept of our linear model. Column $i$ of $\mathbf{X}$ contains the variable values for predictor $x_{i - 1}$, for $1\leq i\leq p$. These values were generated using the $p$-dimensional multivariate normal distribution $\mathcal{N}_p(0, \mathbf{\Sigma})$ with mean zero and covariance matrix $\mathbf{\Sigma}$. We assumed that every predictor had a standard deviation of 1, making the covariance matrix equivalent to a correlation matrix. Four different correlation matrix structures were considered in our study.
+
+We then generated an $n\times 1$ error vector $\mathbf{E}\sim \mathcal{N}(0, \sigma^2)$ with mean zero and variance $\sigma^2$. For regression models, the response $\mathbf{y}$ can then be computed by
+\begin{equation}
+	\mathbf{y} = \mathbf{X}\beta + \mathbf{E}
+\end{equation}
+For binary classification, the response was computed by
+\begin{equation}
+	TODO
+\end{equation}
+
+We used a \textbf{factorial design} for our simulations. This means that we considered several factors that affect the data generation process, each having multiple possible values. We then generated data using every possible combination of factor values, giving us a comprehensive assessment of model performance under various conditions.
+\begin{itemize}
+	\item $n$, the number of observations: 50, 200, 1000.
+	\item $p$, the number of predictors: 10, 100, 2000.
+	\item $\sigma$, the standard deviation of the random error: 1, 3, 6.
+	\item The correlation matrix structure: independent, symmetric compound, autoregressive, blockwise.
+	\item $\rho$, the correlation between predictors: 0.2, 0.5, 0.9.
+\end{itemize}
+
+By taking every possible combination of these factors, we obtain $3\times 3\times 3\times 4\times 3 = 324$ different settings for the simulations. However, because an independent correlation matrix does not use the correlation value $\rho$, we actually only used 270 combinations. For each combination of factors, we ran 100 simulations. In each simulation, we generated two data sets: one to train the various models, and one to test the models and evaluate performance. Both data sets contained $n$ observations, meaning that a total of $2n$ observations were generated for each simulation.
+
+As mentioned earlier, we considered four different covariance matrix structures. These structures determine the correlation between different predictors. If $\Sigma$ is a correlation matrix, then $\mathbf{\Sigma_{ij}}$, the entry at the $i$-th row and $j$-th column, represents the correlation between predictors $i$ and $j$. If $\mathbf{\Sigma_{ij}}=0$, there is no correlation; but if $\mathbf{\Sigma_{ij}}=1$, then predictors $i$ and $j$ are perfectly correlated. Note that a correlation matrix is always symmetric, so $\mathbf{\Sigma}_{ij} = \mathbf{\Sigma}_{ji}$ for all indices $i$ and $j$. This correlation can severely impact the performance of statistical models; if several predictors are highly correlated, then machine learning algorithms are less able to determine which predictors are actually related to the response.
+
+The first correlation structure we considered is \textbf{independent correlation}. This means that the correlation matrix $\mathbf{\Sigma}$ has the form
+\begin{equation}
+	\mathbf{\Sigma} = \begin{bmatrix}
+		1 & 0 & \cdots & 0 \\
+		0 & 1 & \cdots & 0 \\
+		\vdots & \vdots & \ddots & \vdots \\
+		0 & 0 & \cdots & 1
+	\end{bmatrix}
+\end{equation}
+In other words, there is no correlation between different predictors, since $\Sigma_{ij} = 0$ whenever $i\neq j$.
+
+The next covariance structure is called \textbf{symmetric compound}. This structure has the form
+\begin{equation}\label{eqn:symmetric-compound-matrix}
+	\mathbf{\Sigma} = \begin{bmatrix}
+		1 & \rho & \cdots & \rho \\
+		\rho & 1 & \cdots & \rho \\
+		\vdots & \vdots & \ddots & \vdots \\
+		\rho & \rho & \cdots & 1
+	\end{bmatrix}
+\end{equation}
+where $\rho \in [0, 1]$ is some correlation value. A symmetric compound covariance structure assumes that $\Sigma_{ij} = \rho$ whenever $i \neq j$, meaning that all predictors are equally correlated with one another.
+
+An autoregressive covariance structure assumes that
+\begin{equation}
+	\mathbf{\Sigma} = \begin{bmatrix}
+		1 & \rho & \cdots & \rho^{p - 1} \\
+		\rho & 1 & \cdots & \rho^{p - 2} \\
+		\vdots & \vdots & \ddots & \vdots \\
+		\rho^{p - 1} & \rho^{p - 2} & \cdots & 1
+	\end{bmatrix}
+\end{equation}
+For any indices $i$ and $j$, we have $\mathbf{\Sigma}_{ij} = \rho^{\vert i - j\vert}$. Consequently, each predictor is strongly correlated with nearby predictors and weakly correlated with more distant predictors. This form of covariance is commonly seen when using time series, since observed values at nearby times are likely to be highly correlated with one another.
+
+Finally, a blockwise correlation matrix has the block-diagonal form
+\begin{equation}
+	\mathbf{\Sigma} = \begin{bmatrix}
+		\mathbf{B}_1 & 0 & \cdots & 0 \\
+		0 & \mathbf{B}_2 & \cdots & 0 \\
+		\vdots & \vdots & \ddots & \vdots \\
+		0 & 0 & \cdots & \mathbf{B}_k
+	\end{bmatrix}
+\end{equation}
+where $0$ represents a block containing all zeroes, and each block $\mathbf{B}_i$ has a form identical to the symmetric compound matrix in \ref{eqn:symmetric-compound-matrix}. This implies that predictors within the same block have correlation $\rho\in [0, 1]$, whereas predictors in different blocks have zero correlation. One important consideration when using blockwise correlation is the size of each block. For our simulations, we used a block size of 5 when $p = 10$, a block size of 25 when $p = 100$, and a block size of 100 when $p = 2000$.
+
+All of our simulations were run using version 4.1.0 of \lstinline!R!. Several different libraries were used to fit machine learning models using our simulated data. Table \ref{tab:model-libraries} summarizes the libraries used to fit models.
+
+\begin{table}[h]
+	\centering
+	\caption{\lstinline!R! Libraries used and the models used from each library}
+	\label{tab:model-libraries}
+	\begin{tabular}{lll}
+		\textbf{Library}    & \textbf{Models used}                                 & \textbf{Version} \\ \hline
+		\lstinline!stats!   & Ordinary least squares                               & 4.1.0            \\
+		\lstinline!MASS!    & Stepwise selection                                   & 7.3-54           \\
+		\lstinline!glmnet!  & Ridge, lasso, elastic-net                            & 4.1-1            \\
+		\lstinline!gcdnet!  & Adaptive ridge, adaptive lasso, adaptive elastic-net & 1.0.5            \\
+		\lstinline!ncvreg!  & SCAD and MCP                                         & 3.13.0           \\
+		\lstinline!xgboost! & Gradient boosting                                    & 1.4.1.1          \\
+		\lstinline!ranger!  & Random forest                                        & 0.12.1           \\
+		\lstinline!e1071!   & Support vector machine                               & 1.7-7           
+	\end{tabular}
+\end{table}
+
+For ridge, lasso, and elastic-net regression using \lstinline!glmnet!, we used the \lstinline!cv.glmnet! function. This function uses cross-validation to determine the value of $\lambda$ that minimizes the cross-validation error. We used ten folds with \lstinline!cv.glmnet!. Using cross-validation can help generate a model that has a good test performance. For elastic-net regression, we used the hyperparameter $\alpha = 0.8$. This means that the elastic-net model is more similar to lasso (where $\alpha = 1$) than ridge (where $\alpha = 0$). The remaining hyperparameters were given their default values.
+
+We used the \lstinline!cv.gcdnet! function from the \lstinline!gcdnet! library for the adaptive versions of ridge, lasso, and elastic-net. Again, ten folds were used for the cross-validation, and all hyperparameters were given their default values.
+
+For SCAD and MCP models, we used the \lstinline!cv.ncvreg! function from the \lstinline!ncvreg! library. We used the default values of $a$ for both models: 3 for MCP and 3.7 for SCAD (note that the \lstinline!ncvreg! documentation calls this hyperparameter $\gamma$ instead of $a$).
+
+For the three non-linear models (gradient boosting, random forests, and support vector machines), we used cross-validation and grid search to find suitable hyperparameters, and then fit a model using the full training set using those hyperparameters. For gradient boosting with \lstinline!xgboost!, we used different values for the learning rate (0.1, 0.3, and 0.5) and maximum tree depth (1, 3, and 7). A maximum of 1000 trees were generated, with an early stopping condition if the model failed to improve for several iterations in a row. The cross-validation function used five folds.
+
+For random forests using \lstinline!ranger!, we tuned the number of predictors used per decision tree ($\lfloor \sqrt{p}\rfloor$, $\lfloor p / 3 \rfloor$, and $\lfloor p / 2 \rfloor$) and the number of trees (300, 400, 500 and 600). The cross-validation function used five folds.
+
+Finally, for support vector machines using \lstinline!e1071!, we varied $\epsilon$ (TODO: explain this) and the cost function (0.5, 1, and 2).
+
+
+
 
 \subsection{Empirical Data}
 % outline empirical data sources and what each database is about / what we try to predict about it

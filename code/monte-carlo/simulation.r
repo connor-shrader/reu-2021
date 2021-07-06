@@ -264,6 +264,10 @@ fit_models <- function(dat, n, p) {
     models[["ridge"]] <- ridge
     runtimes[["ridge"]] <- ridge_time
   }
+  else {
+    models[["ridge"]] <- NA
+    runtimes[["ridge"]] <- NA
+  }
   
   # Lasso model for variable selection
   lasso_time <- system.time(lasso <- cv.glmnet(x = as.matrix(dat[,-1]),
@@ -360,7 +364,7 @@ fit_models <- function(dat, n, p) {
     # train model
     xgb.tune <- xgb.cv(
       params = params,
-      min_child_weight = 1, 
+      min_child_weight = 1, # default
       subsample = 1, 
       colsample_bytree = 1,
       data = train_x_data,
@@ -472,6 +476,15 @@ fit_models <- function(dat, n, p) {
   models[["svm"]] <- svm_model
   runtimes[["svm"]] <- svm_time
   
+  if (2 * p > n) {
+    # Ridge model for dealing with multicollinearity
+    set.seed(123)
+    ridge_time <- system.time(ridge <- cv.glmnet(x = as.matrix(dat[,-1]),
+                                                 y = dat$y, alpha = 0))
+    models[["ridge"]] <- ridge
+    runtimes[["ridge"]] <- ridge_time
+  }
+  
   return(list(models, runtimes))
 }
 
@@ -544,6 +557,8 @@ full_simulation <- function(seed, n, p, beta = NULL, ...) {
   # Generate training and test data.
   train_data <- generate_data(n = n, p = p, ...)
   test_data <- generate_data(n = n, p = p, ...)
+  
+  print(list(...))
   
   # Fit the models using the training data.
   models_list <- fit_models(train_data, n = n, p = p)
