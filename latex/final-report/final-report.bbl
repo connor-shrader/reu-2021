@@ -5,4 +5,10 @@ Jerome Friedman, Trevor Hastie, Robert Tibshirani, et~al.
 \newblock {\em The elements of statistical learning}, volume~1.
 \newblock Springer series in statistics New York, 2001.
 
+\bibitem{liu2020logsum}
+Xiao-Ying Liu, Sheng-Bing Wu, Wen-Quan Zeng, Zhan-Jiang Yuan, and Hong-Bo Xu.
+\newblock Logsum+ l 2 penalized logistic regression model for biomarker
+  selection and cancer classification.
+\newblock {\em Scientific Reports}, 10(1):1--16, 2020.
+
 \end{thebibliography}
