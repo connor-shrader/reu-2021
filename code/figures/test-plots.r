@@ -1,4 +1,5 @@
 # test-plots.r
+# Gabe Ackall, Connor Shrader
 
 # This file is used to experiment with plotting results
 
@@ -8,8 +9,21 @@ library(rstudioapi) # v0.13
 setwd(dirname(getActiveDocumentContext()$path))
 source("themes.r")
 
-library(ggplot2)
+# Used to create plots
+library(ggplot2) # v3.3.3
 
+# plyr is used to map the values of the model_names column to more readable
+# values.
+library(plyr) # v1.8.6
+
+# Used to melt and cast data frames into a format appropriate for LaTeX tables.
+library(reshape) # v0.8.8
+
+# This function takes in a data frame and a list of keyword arguments (...).
+# This function then returns a subset of this dataframe that only contains rows
+# where all the keyword arguments are satisfied. For example, if one calls
+# subset_data(df, x = 3), then this function returns the rows of df such that
+# df$x == 3.
 subset_data <- function(data, ...) {
   args <- list(...)
   
@@ -20,6 +34,9 @@ subset_data <- function(data, ...) {
   return(data)
 }
 
+# This function takes in a data frame, a string representing a metric, and
+# a column to use as a facet. This function then returns a facet grid of
+# the data using ggplot2.
 plot_metric <- function(data, metric, facet, ...) {
   mean_metric <- paste("mean_", metric, sep = "")
   sd_metric <- paste("sd_", metric, sep = "")
@@ -35,6 +52,7 @@ plot_metric <- function(data, metric, facet, ...) {
     )
 }
 
+# This function is a more complete version of plot_metric.
 plot_metric_2 <- function(data, metric, facet, color, ...) {
   args <- list(...)
   
@@ -54,6 +72,12 @@ plot_metric_2 <- function(data, metric, facet, color, ...) {
   return(plt)
 }
 
+plot_table <- function(data, id, measured, tab, ...) {
+  data <- subset_data(data, ...)
+  
+  melted_table <- melt(sub_results, id = id, measured = measured)
+  reshaped_table <- cast(data, tab)
+}
 
 aggregate_results <- readRDS("../../results/monte-carlo/aggregate_results.rds")
 
@@ -63,10 +87,12 @@ aggregate_results <- readRDS("../../results/monte-carlo/aggregate_results.rds")
 
 #aggregate_results <- aggregate_results[aggregate_results$type != "independent", ]
 
-aggregate_results$corr <- factor(aggregate_results$corr)
-aggregate_results$type <- factor(aggregate_results$type, levels = c("independent", "symmetric", "autoregressive", "blockwise"))
+#aggregate_results$corr <- factor(aggregate_results$corr)
+#aggregate_results$type <- factor(aggregate_results$type, levels = c("independent", "symmetric", "autoregressive", "blockwise"))
 
-library(plyr)
+sub_results <- subset_data(aggregate_results, p = 100, n = 200)[c("st_dev", "type", "corr", "model_name", "mean_test_mse")]
+x <- melt(sub_results, id = c("type", "corr", "model_name", "st_dev"), measured = "test_mse")
+y <- cast(x, st_dev + model_name ~ type + corr)
 
 aggregate_results$model_name <- mapvalues(aggregate_results$model_name,
                   from = c("fm", "ab", "bb", "asb", "bsb", "af", "bf", "asf",
@@ -77,7 +103,9 @@ aggregate_results$model_name <- mapvalues(aggregate_results$model_name,
                          "BIC step. back.", "AIC for.", "BIC for.",
                          "AIC step. for.", "BIC step. for.", "Ridge", "Lasso",
                          "E-net", "Adap. ridge", "Adap. lasso", "Adap e-net",
-                         "SCAD", "MCP", "Grad. Boost", "RF", "SVM"))
+                         "SCAD", "MCP", "GB", "RF", "SVM"))
+
+aggregate_results <- arrange(aggregate_results, corr)
 
 test_fig <- plot_metric_2(aggregate_results, "test_mse", facet = c("type", "st_dev"), color = "corr", p = 100, n = 200) +
   theme(
@@ -85,25 +113,21 @@ test_fig <- plot_metric_2(aggregate_results, "test_mse", facet = c("type", "st_d
     panel.border = element_rect(color = "black", fill = NA, size = 0.2),
     panel.grid = element_line(color = "gray90"),
     strip.background = element_blank(),
-    strip.text = element_text()
+    strip.text = element_text(),
+    legend.key = element_rect(fill = "white")
   ) +
-  labs(x = "Model name", y = "Mean test MSE")
-
-sub_results <- subset_data(aggregate_results, p = 100, n = 200)[c("st_dev", "type", "corr", "model_name", "mean_test_mse")]
-
-# all_results <- readRDS("../../results/monte-carlo/all_results.rds")
-# t <- all_results %>% group_by(st_dev, corr, type, model_name) %>% summarize(mean_test_mse = mean(test_mse))
-x <- melt(sub_results, id = c("type", "corr", "model_name", "st_dev"), measured = "test_mse")
-y <- cast(x, st_dev + model_name ~ type + corr)
+  labs(x = "Model name", y = "Mean test MSE", color = "Correlation")
 
 
 
-# ggsave(
-#   filename = "facet.png",
-#   path = "./images",
-#   plot = test_fig,
-#   type = "cairo-png",
-#   width = 10,
-#   height = 6,
-#   unit = "in"
-# )
+
+
+ggsave(
+  filename = "facet.png",
+  path = "./images",
+  plot = test_fig,
+  type = "cairo-png",
+  width = 10,
+  height = 6,
+  unit = "in"
+)
