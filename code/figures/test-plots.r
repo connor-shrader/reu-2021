@@ -123,8 +123,11 @@ test_fig <- plot_metric_2(aggregate_results, "test_mse", facet = c("type", "st_d
     panel.border = element_rect(color = "black", fill = NA, size = 0.2),
     panel.grid = element_line(color = "gray90"),
     strip.background = element_blank(),
-    strip.text = element_text(),
-    legend.key = element_rect(fill = "white")
+    strip.text = element_text(size = 12),
+    axis.title = element_text(size = 16),
+    legend.key = element_rect(fill = "white"),
+    legend.text = element_text(size = 12),
+    legend.title = element_text(size = 16)
   ) +
   labs(x = "Model name", y = "Mean test MSE", color = "Correlation", shape = "Correlation")
 

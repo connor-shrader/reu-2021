@@ -74,15 +74,12 @@ penalty <- ggplot() +
     xlim = c(-6, 6)
   ) +
   
-  xlab(label = "Coefficient Value") +
-  ylab(label = "Penalty") +
+  labs(x = "Coefficient Value", y = "Penalty Value", color = "Penalty Function") +
   
   scale_x_continuous(breaks = seq(-6, 6, by = 1), limits = c(-6, 6)) +
   scale_y_continuous(breaks = seq(0, 6, by = 1), limits = c(0, 6)) + 
   
-  reu_border +
-  theme(legend.title = element_blank(),
-        text = element_text(size = 16))
+  reu_border
 
 
 ggsave(
@@ -160,15 +157,12 @@ derivative <- ggplot() +
     xlim = c(0, 6)
   ) +
   
-  xlab(label = "Coefficient Value") +
-  ylab(label = "Derivative of Penalty") +
+  labs(x = "Coefficient Value", y = "Penalty Derivative", color = "Penalty Function") +
   
   scale_x_continuous(breaks = seq(0, 6, by = 1), limits = c(0, 6)) +
   scale_y_continuous(breaks = seq(0, 1, by = 1), limits = c(0, 1)) + 
   
-  reu_border +
-  theme(legend.title = element_blank(),
-        text = element_text(size = 16))
+  reu_border
 
 
 ggsave(
@@ -262,15 +256,12 @@ solution <- ggplot() +
     xlim = c(-6, 6)
   ) +
   
-  xlab(label = "Actual Coefficient Value") +
-  ylab(label = "Predicted Coefficient Value") +
+  labs(x = "Actual Coefficient Value", y = "Predicted Coefficient Value", color = "Penalty Function") +
   
   scale_x_continuous(breaks = seq(-6, 6, by = 1), limits = c(-6, 6)) +
   scale_y_continuous(breaks = seq(-6, 6, by = 1), limits = c(-6, 6)) + 
   
   reu_border +
-  theme(legend.title = element_blank(),
-        text = element_text(size = 16)) +
   
   scale_color_manual(values=c("#F8766D", "#00BA38", "gray45", "#619CFF"))
 

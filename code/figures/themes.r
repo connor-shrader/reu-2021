@@ -2,7 +2,8 @@ library(ggplot2)
 
 reu <- theme(
   # Set legend background to white underneath the lines
-  legend.key = element_rect(fill = "white")
+  legend.key = element_rect(fill = "white"),
+  text = element_text(size = 16)
 )
 
 reu_border <- reu + theme(
