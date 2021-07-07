@@ -19,6 +19,9 @@ library(plyr) # v1.8.6
 # Used to melt and cast data frames into a format appropriate for LaTeX tables.
 library(reshape) # v0.8.8
 
+# Used to get the default color/fill scales for ggplot2.
+library(scales) # v1.1.1
+
 # This function takes in a data frame and a list of keyword arguments (...).
 # This function then returns a subset of this dataframe that only contains rows
 # where all the keyword arguments are satisfied. For example, if one calls
@@ -62,9 +65,9 @@ plot_metric_2 <- function(data, metric, facet, color, ...) {
   data <- subset_data(data, ...)
   
   plt <- ggplot(data = data) +
-    geom_point(mapping = aes_string(x = "model_name", y = mean_metric, color = color), size = 2, alpha = 0.5) + 
+    geom_point(mapping = aes_string(x = "model_name", y = mean_metric, color = color, shape = color, fill = color), size = 2, alpha = 0.5) + 
     # geom_errorbar(mapping = aes_string(x = "model_name", y = mean_metric, ymin = paste(mean_metric, "-", sd_metric), ymax = paste(mean_metric, "+", sd_metric))) +
-    facet_grid(reformulate(facet[1], facet[2]), scales = "free_y") +
+    facet_grid(reformulate(facet[1], facet[2]), scales = "free_y", label = "label_parsed") +
     theme(
       axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5)
     )
@@ -105,9 +108,16 @@ aggregate_results$model_name <- mapvalues(aggregate_results$model_name,
                          "E-net", "Adap. ridge", "Adap. lasso", "Adap e-net",
                          "SCAD", "MCP", "GB", "RF", "SVM"))
 
+aggregate_results$st_dev <- mapvalues(aggregate_results$st_dev,
+                                      from = c("1", "3", "6"),
+                                      to = c("sigma == 1", "sigma == 2", "sigma == 3"))
+
 aggregate_results <- arrange(aggregate_results, corr)
 
 test_fig <- plot_metric_2(aggregate_results, "test_mse", facet = c("type", "st_dev"), color = "corr", p = 100, n = 200) +
+  scale_shape_manual(values = 21:24, name = "Correlation") +
+  scale_color_manual(values = hue_pal()(4), name = "Correlation") +
+  scale_fill_manual(values = hue_pal()(4), name = "Correlation") +
   theme(
     panel.background = element_rect(fill = "white"),
     panel.border = element_rect(color = "black", fill = NA, size = 0.2),
@@ -116,7 +126,7 @@ test_fig <- plot_metric_2(aggregate_results, "test_mse", facet = c("type", "st_d
     strip.text = element_text(),
     legend.key = element_rect(fill = "white")
   ) +
-  labs(x = "Model name", y = "Mean test MSE", color = "Correlation")
+  labs(x = "Model name", y = "Mean test MSE", color = "Correlation", shape = "Correlation")
 
 
 
