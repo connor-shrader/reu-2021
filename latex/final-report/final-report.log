@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.12.4)  7 JUL 2021 16:49
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.12.4)  8 JUL 2021 11:23
 entering extended mode
 **./final-report.tex
 (final-report.tex
@@ -199,38 +199,46 @@ Package caption Info: Standard document class detected.
 \c@caption@flags=\count272
 \c@continuedfloat=\count273
 Package caption Info: listings package is loaded.
-) (C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.st
-y
-File: lstlang1.sty 2020/03/24 1.8d listings language file
 )
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang2.sty
-File: lstlang2.sty 2020/03/24 1.8d listings language file
-) (C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang3.st
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/caption\subcaption.sty
+Package: subcaption 2020/10/07 v1.3j Sub-captions (AR)
+\c@subfigure=\count274
+\c@subtable=\count275
+) (C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/url\url.sty
+\Urlmuskip=\muskip17
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
+File: lstlang1.sty 2020/03/24 1.8d listings language file
+) (C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang2.st
 y
+File: lstlang2.sty 2020/03/24 1.8d listings language file
+)
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang3.sty
 File: lstlang3.sty 2020/03/24 1.8d listings language file
 )
 (C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pd
 ftex.def
 File: l3backend-pdftex.def 2020-09-24 L3 backend support: PDF output (pdfTeX)
-\l__kernel_color_stack_int=\count274
+\l__kernel_color_stack_int=\count276
 \l__pdf_internal_box=\box51
 ) (final-report.aux)
 \openout1 = `final-report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -266,21 +274,21 @@ LaTeX Font Info:    ... okay on input line 43.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-\c@lstlisting=\count275
+\c@lstlisting=\count277
 
 (C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.m
 kii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count276
+\scratchcounter=\count278
 \scratchdimen=\dimen169
 \scratchbox=\box52
-\nofMPsegments=\count277
-\nofMParguments=\count278
+\nofMPsegments=\count279
+\nofMParguments=\count280
 \everyMPshowfont=\toks31
-\MPscratchCnt=\count279
+\MPscratchCnt=\count281
 \MPscratchDim=\dimen170
-\MPnumerator=\count280
-\makeMPintoPDFobject=\count281
+\MPnumerator=\count282
+\makeMPintoPDFobject=\count283
 \everyMPtoPDFconversion=\toks32
 )
 (C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-
@@ -292,7 +300,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
 
-Underfull \hbox (badness 10000) in paragraph at lines 47--48
+Underfull \hbox (badness 10000) in paragraph at lines 50--51
 
  []
 
@@ -307,7 +315,7 @@ Package epstopdf Info: Source file: <images/ols.eps>
 (epstopdf)                    size: 12192 bytes
 (epstopdf)             Command: <epstopdf --outfile=images/ols-eps-converted-to
 .pdf images/ols.eps>
-(epstopdf)             \includegraphics on input line 109.
+(epstopdf)             \includegraphics on input line 103.
 Package epstopdf Info: Output file is already uptodate.
 
 
@@ -317,52 +325,92 @@ usion: found PDF version <1.7>, but at most version <1.5> allowed
 File: images/ols-eps-converted-to.pdf Graphic file (type pdf)
 <use images/ols-eps-converted-to.pdf>
 Package pdftex.def Info: images/ols-eps-converted-to.pdf  used on input line 10
-9.
+3.
 (pdftex.def)             Requested size: 289.07999pt x 173.44492pt.
-[3 <./images/ols-eps-converted-to.pdf>] [4]
+[3 <./images/ols-eps-converted-to.pdf>]
+
+Package amsmath Warning: Foreign command \atopwithdelims;
+(amsmath)                \frac or \genfrac should be used instead
+(amsmath)                 on input line 129.
+
+[4]
+<images/ridge-diagram.png, id=39, 3011.25pt x 1806.75pt>
+File: images/ridge-diagram.png Graphic file (type png)
+<use images/ridge-diagram.png>
+Package pdftex.def Info: images/ridge-diagram.png  used on input line 171.
+(pdftex.def)             Requested size: 211.38832pt x 126.81624pt.
+<images/lasso-diagram.png, id=40, 3011.25pt x 1806.75pt>
+File: images/lasso-diagram.png Graphic file (type png)
+<use images/lasso-diagram.png>
+Package pdftex.def Info: images/lasso-diagram.png  used on input line 177.
+(pdftex.def)             Requested size: 211.38832pt x 126.81624pt.
+ [5 <./images/ridge-diagram.png> <./images/lasso-diagram.png>] [6]
+<images/lasso-scad-mcp-penalty.png, id=49, 3011.25pt x 1806.75pt>
+File: images/lasso-scad-mcp-penalty.png Graphic file (type png)
+<use images/lasso-scad-mcp-penalty.png>
+Package pdftex.def Info: images/lasso-scad-mcp-penalty.png  used on input line 
+260.
+(pdftex.def)             Requested size: 187.89914pt x 112.7286pt.
+<images/lasso-scad-mcp-derivative.png, id=50, 3011.25pt x 1806.75pt>
+File: images/lasso-scad-mcp-derivative.png Graphic file (type png)
+<use images/lasso-scad-mcp-derivative.png>
+Package pdftex.def Info: images/lasso-scad-mcp-derivative.png  used on input li
+ne 266.
+(pdftex.def)             Requested size: 187.89914pt x 112.7286pt.
+<images/lasso-scad-mcp-solution.png, id=51, 3011.25pt x 1806.75pt>
+File: images/lasso-scad-mcp-solution.png Graphic file (type png)
+<use images/lasso-scad-mcp-solution.png>
+Package pdftex.def Info: images/lasso-scad-mcp-solution.png  used on input line
+ 278.
+(pdftex.def)             Requested size: 187.89914pt x 112.7286pt.
+ [7 <./images/lasso-scad-mcp-penalty.png> <./images/lasso-scad-mcp-derivative.p
+ng> <./images/lasso-scad-mcp-solution.png>] [8]
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 207.
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 368.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[5] [6] [7] (final-report.bbl) [8] (final-report.aux) ) 
+[9] [10] [11] (final-report.bbl) [12] (final-report.aux) ) 
 Here is how much of TeX's memory you used:
- 6172 strings out of 479799
- 90663 string characters out of 2869248
- 564234 words of memory out of 3000000
- 23116 multiletter control sequences out of 15000+200000
- 543729 words of font info for 59 fonts, out of 3000000 for 9000
+ 6374 strings out of 479799
+ 94261 string characters out of 2869248
+ 566685 words of memory out of 3000000
+ 23304 multiletter control sequences out of 15000+200000
+ 544342 words of font info for 61 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  66i,15n,72p,2612b,1763s stack positions out of 5000i,500n,10000p,200000b,50000s
- <C:\Users\Connor\AppDat
-a\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk><C:/Users/Connor/
-AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Use
-rs/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.p
+ <C:\Users\Connor\App
+Data\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk><C:/Users/Conn
+or/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/
+Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx1
+2.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfont
+s/cm/cmbx7.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/publi
+c/amsfonts/cm/cmbx9.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/ty
+pe1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/Connor/AppData/Local/Programs/MiKT
+eX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/Connor/AppData/Local/Pro
+grams/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Connor/AppData
+/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/Conno
+r/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Us
+ers/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi9.p
 fb><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/c
-m/cmbx7.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/public/a
-msfonts/cm/cmbx9.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type1
-/public/amsfonts/cm/cmex10.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX/f
-onts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Connor/AppData/Local/Program
-s/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/Connor/AppData/Loca
-l/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Users/Connor/App
-Data/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/C
-onnor/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C
-:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr
-17.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
-ts/cm/cmr6.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/publi
-c/amsfonts/cm/cmr7.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/typ
-e1/public/amsfonts/cm/cmr8.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX/f
-onts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/Connor/AppData/Local/Programs/
-MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Connor/AppData/Local
-/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/Connor/AppD
-ata/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/C
-onnor/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti9.pfb><C
-:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmt
-t10.pfb>
-Output written on final-report.pdf (8 pages, 276047 bytes).
+m/cmr10.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/public/a
+msfonts/cm/cmr12.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type1
+/public/amsfonts/cm/cmr17.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fo
+nts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/Connor/AppData/Local/Programs/M
+iKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/Connor/AppData/Local/Pr
+ograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/Connor/AppData/
+Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/Connor/
+AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users
+/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb
+><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
+cmsy7.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
+fonts/cm/cmti10.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/
+public/amsfonts/cm/cmti9.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fon
+ts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on final-report.pdf (12 pages, 895238 bytes).
 PDF statistics:
- 122 PDF objects out of 1000 (max. 8388607)
+ 151 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 31 words of extra memory for PDF output out of 10000 (max. 10000000)
 

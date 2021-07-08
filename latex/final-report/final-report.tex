@@ -21,7 +21,9 @@
 \usepackage{amsthm}
 \usepackage{listings} % Show code in LaTeX
 \usepackage{graphicx} % Figures
-\usepackage{caption}
+\usepackage{caption} % Caption customization
+\usepackage{subcaption} % Subfigures
+\usepackage{url}
 
 % Caption format
 \captionsetup[figure]{font=small}
@@ -39,6 +41,7 @@
 }
 
 \newcommand{\argmin}[2]{\underset{#1}{\text{arg min}}\left\{#2\right\}}
+\newcommand{\sign}{\text{sign}}
 
 \begin{document}
 \maketitle
@@ -80,7 +83,7 @@ where $f$ is a function and $\epsilon$ is an independent random error with mean 
 There are two broad types of supervised models. \textbf{Regression modeling} is used when the response variable $Y$ takes numerical values on a continuous interval. For example, a model that predicts the value of a home is a regression model. On the other hand, if $Y$ can only take discrete values, then \textbf{classification modeling} is used. For instance, a model used to predict whether or not a patient has a disease is classification problem. This paper focuses on regression modeling.
 
 In practice, the function $f$ that relates the predictors to the response is complex. Most statistical models assume that $f$ takes some particular form and estimates a function $\hat{f}$ of that form. For example, many regression models assume that $f$ is a linear function of the predictors; that is, linear models assume that
-\begin{equation}
+\begin{equation}\label{eqn:linear-model}
 	f(X_1, X_2, \dotsc, X_p) = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \cdots + \beta_p X_p
 \end{equation}
 where $\beta_0, \beta_1, \beta_2, \dotsc, \beta_p$ are coefficients. Notice that the coefficient $\beta_0$ is not multiplied with any predictor; it represents an intercept value. Fitting a linear model will give estimates for these coefficient values.
@@ -95,6 +98,14 @@ is called the \textbf{residual} for observation $i$; it is the difference betwee
 \end{equation}
 Intuitively, if the residual sum of squares is low, then the differences between the response variable and its estimates is low. Thus, by minimizing the residual sum of squares, the function obtained from ordinary least squares is a relatively good approximation for $f$. Figure \ref{fig:ols} demonstrates a model fitted with ordinary least squares when there is a single predictor variable.
 
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width = 4in]{images/ols.eps}
+	\captionsetup{width=4in}
+	\caption{Ordinary least squares fitting with one predictor using simulated data. The blue line represents the line found by ordinary least squares, and the red line segments are the residuals.}
+	\label{fig:ols}
+\end{figure}
+
 One reason that ordinary least squares is popular is because it is very easy to compute. Let $\beta = [\beta_0, \beta_1, \beta_2, \dotsc, \beta_p]^\top$ be a $(p + 1) \times 1$ vector of coefficient values and let $\mathbf{X}$ be a $n\times (p + 1)$ matrix where each row contains the predictor values for one observation (with an extra value of 1 in the first entry). Then $\mathbf{X}\beta$ is a vector of the estimated response values. Let $\mathbf{y}$ represent the true response values. Then $\mathbf{y} - \mathbf{X}\beta$ is a vector of residuals. To minimize the residual sum of squares, we compute
 \begin{equation}
 	\hat{\beta}^{\text{OLS}} = \argmin{\beta}{(\mathbf{y} - \mathbf{X}\beta)^\top (\mathbf{y} - \mathbf{X}\beta)}
@@ -104,18 +115,168 @@ where $(\mathbf{y} - \mathbf{X}\beta)^\top (\mathbf{y} - \mathbf{X}\beta)$ is th
 	\hat{\beta}^{\text{OLS}} = (\mathbf{X}^\top \mathbf{X})^{-1} \mathbf{X}^\top \mathbf{y}
 \end{equation}
 
-\begin{figure}[!h]
-	\centering
-	\includegraphics[width = 4in]{images/ols.eps}
-	\captionsetup{width=4in}
-	\caption{Ordinary least squares fitting with one predictor using simulated data. The blue line represents the line found by ordinary least squares, and the red line segments are the residuals.}
-	\label{fig:ols}
-\end{figure}
+TODO: Discuss Gauss-Markov Theorem and problems with OLS.
 
 \subsection{Literature Review}
 % We can review some relevant literature such as Tibshrani et. al. lasso methods, ridge regression, enet, SCAD, or whatever else we want to do.
 
-Liu et. al. in \cite{liu2020logsum} describe three types of variable selection algorithms: filter methods, which evaluate the ability for each variable to predict individually; wrapper methods, which find a subset of predictors highly correlated to the response using feature assessment metrics; and embedded methods, which perform variable selection during the model training process. This paper focuses on the second and third types.
+Liu et. al. in \cite{liu2020logsum} describe three types of variable selection algorithms: filter methods, which evaluate the ability for each variable to predict the response individually; wrapper methods, which find a subset of predictors highly correlated to the response using feature assessment metrics; and embedded methods, which perform variable selection during the model training process. This paper focuses on the second and third types.
+
+Subset selection methods attempt to find a subset of the predictors that are most correlated with the response variable. Although subset selection techniques can be applied to many types of models, we will focus on subset selection with linear regression.
+
+There are two main benefits to using subset selection methods. By reducing the set of available predictors to just those that are strongly related to the response, overfitting can be mitigated by ignoring unimportant predictors. Another benefit of subset selection is that it creates a more interpretable model, since the fitted model only depends on a few of the predictors.
+
+\textbf{Best subset selection} is a subset selection method that fits considers every possible combination of predictors. For every possible subset size $k$ between 0 and $p$, best subset selection will fit the ${p\choose k}$ possible models using $k$ predictors and chooses the best model. Then, a final model can be selected from the $(p + 1)$ remaining models. The best model is selected using a metric such as the residual sum of squares. Although best subset selection is guaranteed to find the subset of predictors that optimize the chosen metric, this method is computationally expensive. For a data set with $p$ predictors, $2^p$ possible combinations must be considered. This makes best subset selection infeasible when the number of predictors is too large.
+
+Two alternative methods to best subset selection are \textbf{forward selection} and \textbf{backward selection}. Forward selection begins by fitting a model with no predictors and iteratively adds predictors into the model. The predictor added at each step is chosen to best increase the model fit. Conversely, backward selection starts from the full model with all $p$ predictors and repeatedly removes predictors. Then, like best subset selection, the final model is chosen from the candidate models fitted at each step. Although forward and backward selection are not guaranteed to encounter the best possible model, these methods avoid the exponential runtime of best subset selection. Consequently, forward and backward selection can be used for larger values of $p$.
+
+The models produced by forward and backward selection can be improved by allowing for predictors to be added and removed in the same algorithm. \textbf{Forward stepwise selection} begins with a model iteratively improves the model by either adding a new predictor or removing an obsolete one. \textbf{Backward stepwise selection} works in the same way but starts with the full model. These techniques take longer to run than ordinary forward and backward selection, but they are more likely to find the best possible model.
+
+[Discuss AIC/BIC]
+
+\textbf{Ridge regression} helps to solve multicollinearity in predictors while also minimizing insignificant predictors \cite{hoerl1970ridge}. While it does not minimize these insignificant predictors completely to 0 and thus cannot be considered a variable selection method, it still proves very useful in large datasets.
+
+Ridge regression works by minimizing Residual Sum Squared (RSS) plus a penalty as seen in Equation \ref{ridge_reg}. $\lambda$ is a tuning parameter and can be used to determine how much of an effect the penalty has on the regression. if $\lambda=0$, then the regression acts exactly like ordinary least squares regression, but if $\lambda \rightarrow \infty$, then $\beta_j \rightarrow 0$ and the regression line will be a horizontal line at the intercept, $\beta_0$.
+
+\begin{equation}
+	\hat{\beta}^{\text{ridge}} = \argmin{\beta}{\sum_{i=1}^{n} \left( y_i - \beta_0 - \sum_{j=1}^{p} \beta_jx_{ij} \right)^2 + \lambda \sum_{j=1}^{p} \beta_j^2  }
+	\label{ridge_reg}
+\end{equation}
+
+An alternative way to express ridge regression is with the equation
+\begin{equation}
+	\hat{\beta}^{\text{ridge}} = \argmin{\beta}{\sum_{i=1}^{n} \left( y_i - \beta_0 - \sum_{j=1}^{p} \beta_jx_{ij} \right)^2}\quad\text{subject to}\quad \sum_{j=1}^{p} \beta_j^2\leq t
+\end{equation}
+for some tuning parameter $t$.
+
+The \textbf{least absolute shrinkage and selection operation}, often referred to as LASSO, is a shrinkage method with a very similar form to lasso regression \cite{tibshirani1996regression, james2017islr, james2013introduction}. The coefficient estimates satisfy
+\begin{equation}
+	\hat{\beta}^{\text{lasso}}=\argmin{\beta}{\sum\limits_{i = 1}^n \left( y_i - \beta_0 - \sum\limits_{j = 1}^p \beta_j x_{ij} \right) + \lambda\sum\limits_{j = 1}^p \vert \beta_j \vert}
+\end{equation}
+If $\lambda = 0$, then the lasso model is equivalent to the ordinary least squares model; if $\lambda \to \infty$, then the coefficients for all predictors will be set to 0. An equivalently way to define lasso regression is by
+\begin{equation}
+	\hat{\beta}^{\text{lasso}} = \argmin{\beta}{\sum_{i=1}^{n} \left( y_i - \beta_0 - \sum_{j=1}^{p} \beta_jx_{ij} \right)^2 }\quad\text{subject to}\quad \sum_{j=1}^{p} \vert \beta_j \vert\leq t
+\end{equation}
+where $t$ is a tuning parameter.
+
+One useful property of the lasso method is that it can perform variable selection by setting some coefficients to zero. To understand why lasso regression can perform variable selection whereas ride regression cannot, consider Figure \ref{fig:ridge-lasso-diagram} below. This figure demonstrates the case when $p=2$ and $t = 1$. The circle in \ref{fig:ridge-diagram} represents the condition $\beta_1^2 + \beta_2^2 < 1$ for ridge regression, while the red diamond in Figure \ref{fig:lasso-diagram} represents the condition $\vert \beta_1 \vert + \vert \beta_2 \vert < t$ for lasso regression. The blue curves represent contours of the residual sum of squares for values of $\beta_1$ and $\beta_2$. The black point in the center of these curves is where the RSS is minimized; this represents the values of $\beta_1$ and $\beta_2$ that would be selected by ordinary least squares.
+
+\begin{figure}[!h]
+	\caption{RSS contours and penalty bounds for the ridge and lasso models when $p=2$ and $t = 1$.}
+	\label{fig:ridge-lasso-diagram}
+	\centering
+	\begin{subfigure}[b]{0.45\textwidth}
+		\caption{RSS contours and the ridge penalty boundary.}
+		\label{fig:ridge-diagram}
+		\includegraphics[width=\textwidth]{images/ridge-diagram.png}
+	\end{subfigure}
+	\hspace{30pt}
+	\begin{subfigure}[b]{0.45\textwidth}
+		\caption{RSS contours and the lasso penalty boundary.}
+		\label{fig:lasso-diagram}
+		\includegraphics[width=\textwidth]{images/lasso-diagram.png}
+	\end{subfigure}
+\end{figure}
+
+In \ref{fig:ridge-diagram}, the intersection of the black curve and the red diamond represents the parameter values chosen by ridge regression; this point minimizes the RSS under the condition $\beta_1^2 + \beta_2^2 \leq 1$. Because the red region is a circle, this intersection cannot occur exactly at $\beta_1 = 0$; hence, the ridge method cannot remove the predictor $\beta_1$. On the other hand, the square shape of the constrained region for lasso regression can perform variable selection because the intersection occurs at one of the axes.
+
+The lasso method is particularly useful in the case where $p>n$ because of its ability to select variables; a model with fewer variables has less variance and is more interpretable. One major downside of lasso regression is that it does not handle multicollinearity as nicely as ridge regression. Another downside of lasso regression is that it does not have a closed-form solution, which can lead to instability in the model.
+
+\textbf{Elastic-net} regression serves as a combination between ridge and lasso regression. It can handle  multicollinearity as well as perform variable selection. The coefficients for elastic net regression can be determined by 
+\begin{equation}
+	\hat{\beta}^{\text{ENet}}=\argmin{\beta}{\sum\limits_{i = 1}^n \left( y_i - \beta_0 - \sum\limits_{i = 1}^p \beta_j x_{ij} \right) + \lambda_2\sum\limits_{j = 1}^p \beta_j^2 + \lambda_1\sum\limits_{j = 1}^p \vert \beta_j \vert}
+\end{equation}
+where $\lambda_1$ and $\lambda_2$ are both tuning parameters to be determined later.
+
+An important limitation to note is that elastic net performs best when it close to either ridge or lasso regression, meaning that either $\lambda_1 >> \lambda_2$ or vice versa \cite{zou2005regularization}. Additionally, because elastic net requires two tuning parameters, this makes it much more difficult to determine the best combination of tuning parameters to minimize error in the regression. However, this problem has been largely solved through by the LARS-EN algorithm developed by Zou et. al. which efficiently solves for the tuning parameters.
+% I will add more here later
+
+Normally in lasso regression, each predictor is weighted the same in the penalty function. \textbf{Adaptive lasso regression} is different in that a weight, $\hat{w}_j$ is multiplied to the penalty function. The coefficients for adaptive lasso regression as designed by Zou et. al. \cite{zou2006adaptive} can be defined by
+\begin{equation}
+	\hat{\beta}^{\text{adaptive}}=\argmin{\beta}{\sum\limits_{i = 1}^n \left( y_i - \beta_0 - \sum\limits_{i = 1}^p \beta_j x_{ij} \right) + \lambda\sum\limits_{j = 1}^p \hat{w}_j\vert \beta_j \vert}
+\end{equation}
+where $\lambda$ is a tuning parameter to be determined later and $\hat{w}_j$ is defined as $\frac{1}{\vert\hat{\beta}\vert^{\gamma}}$ with $\gamma$ being a chosen parameter greater than 0.
+
+Because of the weight that is implemented in adaptive lasso regression, zero-coefficients have a weight that is inflated up to infinity, and thus are punished much more harshly than large coefficients whose weight is much smaller in comparison. This is a similar rationale to SCAD and helps to reduce some of the bias from lasso regression. Bridge regression is the general form of lasso regression from which adaptive lasso originates from. When $\gamma < 1$, bridge regression as shown in Equation \ref{adap_lasso} is not continuous, which results in model prediction instability. However, adaptive lasso regression is completely continuous and thus has much more consistent coefficients when fitted.
+% I will add more here in the future
+
+\begin{equation}
+	\hat{\beta}^{\text{lasso}}=\argmin{\beta}{\sum\limits_{i = 1}^n \left( y_i - \beta_0 - \sum\limits_{i = 1}^p \beta_j x_{ij} \right) + \lambda\sum\limits_{j = 1}^p \vert \beta_j \vert ^\gamma}
+	\label{adap_lasso}
+\end{equation}
+
+
+One major flaw of the lasso method is that the penalty punishes large coefficients, even if those coefficients should be large. One way to modify the lasso method is to use the \textbf{smoothly clipped absolute deviation} (SCAD) penalty \cite{fan2001variable}. The goal of this method is to punish large coefficients less severely, which can help mitigate some of the bias introduced by the lasso method.
+\begin{equation}
+	\hat{\beta}^{\text{SCAD}}=\argmin{\beta}{\sum\limits_{i = 1}^n \left( y_i - \beta_0 - \sum\limits_{i = 1}^p \beta_j x_{ij} \right) + \lambda\sum\limits_{j = 1}^p J_a(\beta_j, \lambda)}
+\end{equation}
+Here, $J_a(\beta, \lambda)$ is a penalty function that satisfies
+\begin{equation}
+	\frac{dJ_a(\beta, \lambda)}{d\beta} = \lambda\cdot\sign(\beta)\left[ I(\vert \beta \vert<\lambda) + \frac{(a\lambda - \vert \beta\vert)_+}{(a - 1)\lambda}I(\vert \beta \vert > \lambda) \right]
+\end{equation}
+where $\lambda \geq 0$ and $a\geq 2$ are tuning parameters. An equivalent way to write this is
+\begin{equation}
+	\frac{dJ_a(\beta, \lambda)}{d\beta}\left\{\begin{array}{ll}
+		\lambda,&\vert \beta \vert\leq \lambda\\
+		\frac{a\lambda - \vert \beta \vert}{a - 1},&\lambda < \vert \beta \vert < a\lambda\\
+		0,&\alpha\lambda < \vert \beta \vert
+	\end{array}\right.
+\end{equation}
+This penalty function does not punish coefficients with large magnitude as heavily as the lasso method. In fact, if the magnitude of a coefficient is larger than $a\lambda$, then the penalty becomes constant. See Figure \ref{fig:penalty} for a plot of the SCAD penalty as a function of the coefficient value.
+
+Integrating with respect to $\beta$ \cite{breheny2016lasso}, we see that
+\begin{equation}
+	J_a(\beta, \lambda) = \left\{\begin{array}{ll}
+		\lambda \vert \beta \vert,&\vert \beta \vert \leq \lambda\\
+		\frac{2a\lambda\vert\beta\vert - \beta^2-\lambda^2}{2(a - 1)},&\lambda < \vert \beta \vert < a\lambda\\
+		\frac{\lambda^2(a + 1)}{2},&a\lambda < \vert \beta \vert
+	\end{array}\right.
+\end{equation}
+
+The \textbf{minimax concave penalty} (MCP) method is very similar to smoothly clipped absolute deviation \cite{zhang2010nearly, breheny2016lasso}. Both methods are used to avoid the high bias caused by the lasso method. MCP uses a penalty function that satisfies
+\begin{equation}
+	\frac{dJ_a(\beta, \lambda)}{d\beta} = \left\{\begin{array}{ll}
+		\sign(\beta)\left(\lambda - \frac{\vert \beta \vert}{a}\right),& \vert \beta \vert \leq a\lambda\\
+		0,&a\lambda < \vert \beta \vert
+	\end{array}\right.
+\end{equation}
+where $\lambda\geq 0$ and $a> 0$ are tuning parameters. Integrating \cite{breheny2016lasso}, we see that
+\begin{equation}
+	J_a(\beta, \lambda) = \left\{\begin{array}{ll}
+		\lambda \vert \beta \vert - \frac{\beta^2}{2a},&\vert \beta \vert \leq a\lambda\\
+		\frac{1}{2}a\lambda^2,&a\lambda < \vert \beta \vert
+	\end{array}\right.
+\end{equation}
+
+Figure \ref{fig:lasso-scad-mcp} below shows the penalty functions (and their derivatives) for LASSO, SCAD, and MCP as a function of a coefficient value $\beta$. We see that LASSO applies a much stronger penalty to large coefficients than SCAD or MCP. Also, note that SCAD starts with a derivative equal to that of the lasso for small values of $\beta$; on the other hand, the derivative of the penalty function for MCP starts decreasing immediately.
+
+\begin{figure}[!h]
+	\caption{Penalty functions for LASSO, SCAD, and MCP, as well as their derivatives. These plots use $\lambda = 2$ and $a = 3$.}
+	\label{fig:lasso-scad-mcp}
+	\centering
+	\begin{subfigure}[b]{0.4\textwidth}
+		\caption{Penalty functions for LASSO, SCAD, and MCP}
+		\label{fig:penalty}
+		\includegraphics[width=\textwidth]{images/lasso-scad-mcp-penalty.png}
+	\end{subfigure}
+	\hspace{30pt}
+	\begin{subfigure}[b]{0.4\textwidth}
+		\caption{Derivatives of the penalty functions for LASSO, SCAD, and MCP}
+		\label{fig:derivative}
+		\includegraphics[width=\textwidth]{images/lasso-scad-mcp-derivative.png}
+	\end{subfigure}
+\end{figure}
+
+Now, consider the case where $p=1$ (there is only one predictor). Figure \ref{fig:prediction} shows the solutions given when using LASSO, SCAD, and MCP on such a model. The $x$-axis gives the actual coefficient for the single variable, and the $y$-axis represents the coefficient estimate produced using each of the algorithms. We used the particular values $\lambda = 2$ and $a = 3$. The gray line is the identity function, which also equals the solution obtained using ordinary least squares.
+
+We see that all three methods set the predicted value to zero when the actual coefficient is small. Also, note that the LASSO method is always off from the identity function when the coefficient is large. On the other hand, SCAD and MCP merge with the identity function when the coefficient is sufficiently large. This shows that both SCAD and MCP can avoid the high bias that LASSO introduces.
+
+\begin{figure}[!h]
+	\centering
+	\caption{Solutions for LASSO, SCAD, and MCP for a single predictor when $\lambda=2$, and $a = 3$.}
+	\label{fig:prediction}
+	\includegraphics[width = 0.4\textwidth]{images/lasso-scad-mcp-solution.png}
+\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Methods}
