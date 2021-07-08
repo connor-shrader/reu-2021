@@ -93,10 +93,6 @@ aggregate_results <- readRDS("../../results/monte-carlo/aggregate_results.rds")
 #aggregate_results$corr <- factor(aggregate_results$corr)
 #aggregate_results$type <- factor(aggregate_results$type, levels = c("independent", "symmetric", "autoregressive", "blockwise"))
 
-sub_results <- subset_data(aggregate_results, p = 100, n = 200)[c("st_dev", "type", "corr", "model_name", "mean_test_mse")]
-x <- melt(sub_results, id = c("type", "corr", "model_name", "st_dev"), measured = "test_mse")
-y <- cast(x, st_dev + model_name ~ type + corr)
-
 aggregate_results$model_name <- mapvalues(aggregate_results$model_name,
                   from = c("fm", "ab", "bb", "asb", "bsb", "af", "bf", "asf",
                            "bsf", "ridge", "lasso", "enet", "adap_ridge",
@@ -107,6 +103,10 @@ aggregate_results$model_name <- mapvalues(aggregate_results$model_name,
                          "AIC step. for.", "BIC step. for.", "Ridge", "Lasso",
                          "E-net", "Adap. ridge", "Adap. lasso", "Adap e-net",
                          "SCAD", "MCP", "GB", "RF", "SVM"))
+
+sub_results <- subset_data(aggregate_results, p = 100, n = 200)[c("st_dev", "type", "corr", "model_name", "mean_test_mse")]
+x <- melt(sub_results, id = c("type", "corr", "model_name", "st_dev"), measured = "test_mse")
+y <- cast(x, st_dev + model_name ~ type + corr)
 
 aggregate_results$st_dev <- mapvalues(aggregate_results$st_dev,
                                       from = c("1", "3", "6"),
@@ -135,12 +135,12 @@ test_fig <- plot_metric_2(aggregate_results, "test_mse", facet = c("type", "st_d
 
 
 
-ggsave(
-  filename = "facet.png",
-  path = "./images",
-  plot = test_fig,
-  type = "cairo-png",
-  width = 10,
-  height = 6,
-  unit = "in"
-)
+# ggsave(
+#   filename = "facet.png",
+#   path = "./images",
+#   plot = test_fig,
+#   type = "cairo-png",
+#   width = 10,
+#   height = 6,
+#   unit = "in"
+# )
