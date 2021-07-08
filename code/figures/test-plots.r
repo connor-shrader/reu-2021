@@ -84,7 +84,7 @@ plot_table <- function(data, id, measured, tab, ...) {
 
 aggregate_results <- readRDS("../../results/monte-carlo/aggregate_results.rds")
 
-#aggregate_results <- aggregate_results[aggregate_results$model_name != "gbm" &
+# aggregate_results <- aggregate_results[aggregate_results$model_name != "gbm" &
 #                                       aggregate_results$model_name != "rf" &
 #                                       aggregate_results$model_name != "svm", ]
 
@@ -114,7 +114,7 @@ aggregate_results$st_dev <- mapvalues(aggregate_results$st_dev,
 
 aggregate_results <- arrange(aggregate_results, corr)
 
-test_fig <- plot_metric_2(aggregate_results, "test_mse", facet = c("type", "st_dev"), color = "corr", p = 100, n = 200) +
+test_fig <- plot_metric_2(aggregate_results, "test_mse", facet = c("type", "st_dev"), color = "corr", p = 2000, n = 200) +
   scale_shape_manual(values = 21:24, name = "Correlation") +
   scale_color_manual(values = hue_pal()(4), name = "Correlation") +
   scale_fill_manual(values = hue_pal()(4), name = "Correlation") +
