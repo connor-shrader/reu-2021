@@ -274,24 +274,30 @@ fit_models <- function(dat, n, p) {
   models[["enet"]] <- enet
   runtimes[["enet"]] <- enet_time
   
-  # Adaptive Ridge
-  adap_ridge_time <- system.time(adap_ridge <- cv.gcdnet(x = as.matrix(dat[,-1]),
-                                                         y = dat$y, nfolds = 10,
-                                                         method = "logit", lambda = 0))
-  models[["adap_ridge"]] <- adap_ridge
-  runtimes[["adap_ridge"]] <- adap_ridge_time
+  print("finished enet")
   
-  # Adaptive Lasso
-  adap_lasso_time <- system.time(adap_lasso <- cv.gcdnet(x = as.matrix(dat[,-1]),
-                                                         y = dat$y, nfolds = 10,
-                                                         method = "logit", lambda2 = 0))
-  models[["adap_lasso"]] <- adap_lasso
-  runtimes[["adap_lasso"]] <- adap_lasso_time
-  
-  # Adaptive Elastic Net model for variable selection and multicollinearity
-  adap_enet_time <- system.time(adap_enet <- cv.gcdnet(x = as.matrix(dat[,-1]), y = dat$y, nfolds = 10, method = "logit"))
-  models[["adap_enet"]] <- adap_enet
-  runtimes[["adap_enet"]] <- adap_enet_time
+  # # Adaptive Ridge
+  # adap_ridge_time <- system.time(adap_ridge <- cv.gcdnet(x = as.matrix(dat[,-1]),
+  #                                                        y = dat$y, nfolds = 10,
+  #                                                        method = "logit", lambda = 0))
+  # models[["adap_ridge"]] <- adap_ridge
+  # runtimes[["adap_ridge"]] <- adap_ridge_time
+  # 
+  # print("finished adap ridge")
+  # 
+  # # Adaptive Lasso
+  # adap_lasso_time <- system.time(adap_lasso <- cv.gcdnet(x = as.matrix(dat[,-1]),
+  #                                                        y = dat$y, nfolds = 10,
+  #                                                        method = "logit", lambda2 = 0))
+  # models[["adap_lasso"]] <- adap_lasso
+  # runtimes[["adap_lasso"]] <- adap_lasso_time
+  # 
+  # print("finished adap lasso")
+  # 
+  # # Adaptive Elastic Net model for variable selection and multicollinearity
+  # adap_enet_time <- system.time(adap_enet <- cv.gcdnet(x = as.matrix(dat[,-1]), y = dat$y, nfolds = 10, method = "logit"))
+  # models[["adap_enet"]] <- adap_enet
+  # runtimes[["adap_enet"]] <- adap_enet_time
   
   print("finished adap enet")
   

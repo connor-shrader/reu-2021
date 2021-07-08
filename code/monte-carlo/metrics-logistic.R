@@ -63,13 +63,21 @@ confusion_M <- function(model, dat) {
   else { 
     # glm model.
     y_hat <- data.frame(predict(model, dat[,-1], type = "response"))
+    y_hat <- ifelse(y_hat > 0.5, "1", "0")
   }
   
   # Get the actual response values.
   y <- dat[, 1]
   
-  # Compute MSE.
-  confusion <- confusionMatrix(data = factor(y_hat), reference = factor(y))
+  print(model)
+  print(y_hat)
+  print(class(y_hat))
+  
+  print(y)
+  print(class(y))
+  
+  # Compute confusion matrix
+  confusion <- confusionMatrix(data = factor(y_hat, levels = c("0", "1"), labels = c("0", "1")), reference = factor(y, labels = c("0", "1")))
   return(confusion) #embrace the confusion
 }
 
