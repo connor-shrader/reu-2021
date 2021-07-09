@@ -22,6 +22,10 @@ library(reshape) # v0.8.8
 # Used to get the default color/fill scales for ggplot2.
 library(scales) # v1.1.1
 
+# Used to generate LaTeX tables of results.
+library(tables) # v0.9.6
+
+
 # This function takes in a data frame and a list of keyword arguments (...).
 # This function then returns a subset of this dataframe that only contains rows
 # where all the keyword arguments are satisfied. For example, if one calls
@@ -75,46 +79,89 @@ plot_metric_2 <- function(data, metric, facet, color, ...) {
   return(plt)
 }
 
-plot_table <- function(data, id, measured, tab, ...) {
-  data <- subset_data(data, ...)
-  
-  melted_table <- melt(sub_results, id = id, measured = measured)
-  reshaped_table <- cast(data, tab)
-}
-
 aggregate_results <- readRDS("../../results/monte-carlo/aggregate_results.rds")
+all_results <- readRDS("../../results/monte-carlo/all_results.rds")
 
 # aggregate_results <- aggregate_results[aggregate_results$model_name != "gbm" &
 #                                       aggregate_results$model_name != "rf" &
 #                                       aggregate_results$model_name != "svm", ]
 
-#aggregate_results <- aggregate_results[aggregate_results$type != "independent", ]
+old_names <- c("fm", "ab", "bb", "asb", "bsb", "af", "bf", "asf",
+               "bsf", "ridge", "lasso", "enet", "adap_ridge",
+               "adap_lasso", "adap_enet", "scad", "mcp", "gbm",
+               "rf", "svm")
+new_names <- c("OLS", "AIC back.", "BIC back.", "AIC step. back.",
+               "BIC step. back.", "AIC for.", "BIC for.",
+               "AIC step. for.", "BIC step. for.", "Ridge", "Lasso",
+               "E-net", "Adap. ridge", "Adap. lasso", "Adap e-net",
+               "SCAD", "MCP", "GB", "RF", "SVM")
 
-#aggregate_results$corr <- factor(aggregate_results$corr)
-#aggregate_results$type <- factor(aggregate_results$type, levels = c("independent", "symmetric", "autoregressive", "blockwise"))
-
+# Replace model names with more readable names.
 aggregate_results$model_name <- mapvalues(aggregate_results$model_name,
-                  from = c("fm", "ab", "bb", "asb", "bsb", "af", "bf", "asf",
-                           "bsf", "ridge", "lasso", "enet", "adap_ridge",
-                           "adap_lasso", "adap_enet", "scad", "mcp", "gbm",
-                           "rf", "svm"),
-                  to = c("OLS", "AIC back.", "BIC back.", "AIC step. back.",
-                         "BIC step. back.", "AIC for.", "BIC for.",
-                         "AIC step. for.", "BIC step. for.", "Ridge", "Lasso",
-                         "E-net", "Adap. ridge", "Adap. lasso", "Adap e-net",
-                         "SCAD", "MCP", "GB", "RF", "SVM"))
+                                          from = old_names, to = new_names)
 
-sub_results <- subset_data(aggregate_results, p = 100, n = 200)[c("st_dev", "type", "corr", "model_name", "mean_test_mse")]
-x <- melt(sub_results, id = c("type", "corr", "model_name", "st_dev"), measured = "test_mse")
-y <- cast(x, st_dev + model_name ~ type + corr)
+all_results$model_name <- mapvalues(all_results$model_name,
+                                    from = old_names, to = new_names)
 
-aggregate_results$st_dev <- mapvalues(aggregate_results$st_dev,
+# Below is some old code used to generate a table to put into the final report.
+# I ended up deciding to use the tabular() function from the tables library
+# instead.
+
+# sub_results <- subset_data(aggregate_results, p = 100, n = 200)[c("st_dev", "type", "corr", "model_name", "mean_test_mse", "sd_test_mse")]
+# x <- melt(sub_results, id = c("type", "corr", "model_name", "st_dev"), measured = c("mean_test_mse", "sd_test_mse"))
+# y <- cast(x, st_dev + model_name ~ type + corr)
+
+
+# table_results contains the data used to generate a LaTeX summary table.
+# I defined this as a new variable so that aggregate_results is not overridden.
+table_results <- subset_data(all_results, p = 100, n = 200)[c("st_dev", "type", "corr", "model_name", "test_mse")]
+names(table_results) <- c("st.dev", "type", "corr", "model.name", "test.mse")
+
+# The following definitions for Mean() and SD() are the same as mean() and sd()
+# from base R, except they return 0 when x is not a number. This is useful later
+# when subsetting the table to remove unnecessary columns and rows.
+Mean <- function(x) {
+  if(length(x) == 0) {
+    return(-1)
+  }
+  return(round(mean(x), 3))
+}
+
+SD <- function(x) {
+  if(length(x) == 0) {
+    return(-1)
+  }
+  return(round(sd(x), 3))
+}
+
+# Create a tabular object from the tables library. The rows are layered by the
+# standard deviation and model name; the columns are layered by the type
+# of correlation and strength of correlation. The means and standard deviations
+# of the test MSE are shown.
+tab <- tabular((st.dev * model.name) ~ (type * corr * test.mse) * (Mean + SD), data = table_results)
+
+# The following two lines remove rows and columns that have a 0 as the first entry.
+# This removes unncessary rows and columns that aren't used for our plot/table.
+tab <- tab[tab[, 1] > 0, ]
+tab <- tab[, tab[1, ] > 0]
+
+# Call the following line to print out the LaTeX table. I could not get it to
+# save correctly to a file, so the output must be copy/pasted.
+# 
+# toLatex(x3, options = list(justification = "l"))
+
+# Plot results contains the information that will be used to make a facet plot.
+# I defined this as a new variable so that aggregate_results is not overridden.
+plot_results <- aggregate_results
+
+# Rename the st_dev column so that the plot has better facet labels.
+plot_results$st_dev <- mapvalues(plot_results$st_dev,
                                       from = c("1", "3", "6"),
                                       to = c("sigma == 1", "sigma == 2", "sigma == 3"))
 
-aggregate_results <- arrange(aggregate_results, corr)
+plot_results <- arrange(plot_results, corr)
 
-test_fig <- plot_metric_2(aggregate_results, "test_mse", facet = c("type", "st_dev"), color = "corr", p = 2000, n = 200) +
+test_fig <- plot_metric_2(plot_results, "test_mse", facet = c("type", "st_dev"), color = "corr", p = 100, n = 200) +
   scale_shape_manual(values = 21:24, name = "Correlation") +
   scale_color_manual(values = hue_pal()(4), name = "Correlation") +
   scale_fill_manual(values = hue_pal()(4), name = "Correlation") +

@@ -24,6 +24,7 @@
 \usepackage{caption} % Caption customization
 \usepackage{subcaption} % Subfigures
 \usepackage{url}
+\usepackage{adjustbox}
 
 % Caption format
 \captionsetup[figure]{font=small}
@@ -433,6 +434,16 @@ Finally, for support vector machines using \lstinline!e1071!, we varied $\epsilo
 \subsection{Future Work}
 % maybe talk about the penalty method we came up with? Talk about how it might be able to solve issues of Logsum method?
 
+\newpage
+\appendix
+
+\setlength{\tabcolsep}{4pt}
+{\tiny
+\begin{adjustbox}{angle=90}
+\input{../../code/figures/test.tex}
+\end{adjustbox}
+}
+\setlength{\tabcolsep}{6pt}
 
 \newpage
 \bibliographystyle{plain}
