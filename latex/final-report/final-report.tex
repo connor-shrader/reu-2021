@@ -42,6 +42,8 @@
 
 \newcommand{\argmin}[2]{\underset{#1}{\text{arg min}}\left\{#2\right\}}
 \newcommand{\sign}{\text{sign}}
+\newcommand{\E}{\text{E}}
+\newcommand{\OLS}{\text{OLS}}
 
 \begin{document}
 \maketitle
@@ -88,6 +90,8 @@ In practice, the function $f$ that relates the predictors to the response is com
 \end{equation}
 where $\beta_0, \beta_1, \beta_2, \dotsc, \beta_p$ are coefficients. Notice that the coefficient $\beta_0$ is not multiplied with any predictor; it represents an intercept value. Fitting a linear model will give estimates for these coefficient values.
 
+\subsection{Ordinary Least Squares}
+
 The most common method to approximate the coefficients in a linear model is by \textbf{ordinary least squares}. Suppose that we have $n$ observations in our training set. Let $x_{ij}$ represent the value of predictor $j$ for observation $i$, and let $y_i$ be the response for observation $i$. For some coefficient estimates $\beta_0, \beta_1, \beta_2, \dotsc, \beta_p$, the expression
 \begin{equation}
 	y_i - (\beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \cdots + \beta_p x_{ip})
@@ -106,16 +110,22 @@ Intuitively, if the residual sum of squares is low, then the differences between
 	\label{fig:ols}
 \end{figure}
 
-One reason that ordinary least squares is popular is because it is very easy to compute. Let $\beta = [\beta_0, \beta_1, \beta_2, \dotsc, \beta_p]^\top$ be a $(p + 1) \times 1$ vector of coefficient values and let $\mathbf{X}$ be a $n\times (p + 1)$ matrix where each row contains the predictor values for one observation (with an extra value of 1 in the first entry). Then $\mathbf{X}\beta$ is a vector of the estimated response values. Let $\mathbf{y}$ represent the true response values. Then $\mathbf{y} - \mathbf{X}\beta$ is a vector of residuals. To minimize the residual sum of squares, we compute
+One reason that ordinary least squares is popular is because it is very easy to compute. Let $\beta = [\beta_0, \beta_1, \beta_2, \dotsc, \beta_p]^\top$ be a $(p + 1) \times 1$ vector of coefficient values and let $\mathbf{X}$ be a $n\times (p + 1)$ matrix where each row contains the predictor values for one observation (with an extra value of 1 in the first entry). Then $\mathbf{X}\beta$ is a vector of the estimated response values. Let $\mathbf{y}$ represent the true response values. Then $\mathbf{y} - \mathbf{X}\beta$ is a vector of residuals. To choose coefficient estimates that minimize the residual sum of squares, we compute
 \begin{equation}
 	\hat{\beta}^{\text{OLS}} = \argmin{\beta}{(\mathbf{y} - \mathbf{X}\beta)^\top (\mathbf{y} - \mathbf{X}\beta)}
 \end{equation}
 where $(\mathbf{y} - \mathbf{X}\beta)^\top (\mathbf{y} - \mathbf{X}\beta)$ is the same residual sum of squares seen in Equation \ref{eqn:RSS}. From \cite{friedman2001elements}, this gives us the solution
-\begin{equation}
+\begin{equation}\label{eqn:ols-solution}
 	\hat{\beta}^{\text{OLS}} = (\mathbf{X}^\top \mathbf{X})^{-1} \mathbf{X}^\top \mathbf{y}
 \end{equation}
 
-TODO: Discuss Gauss-Markov Theorem and problems with OLS.
+Another advantage of ordinary least squares is that it is an unbiased linear model. This means that if the relationship between the response variable and the predictors truly is linear (as given in Equation \ref{eqn:linear-model}), then the expected value of the coefficient vector $\hat{\beta}^\text{OLS}$ is equal to the actual coefficient vector $\beta$. Furthermore, the \textbf{Gauss-Markov theorem} states that if the random error $\epsilon$ is independent and has constant variance, then ordinary least squares has the lowest variance among all linear unbiased estimators. In other words, the coefficient estimates given by ordinary least squares are relatively close to the actual coefficient values when compared to other unbiased linear estimators. This makes ordinary least squares a relatively consistent model.
+
+If ordinary least squares is unbiased and has the lowest variance among all unbiased models, why should we use any other type of linear model? Despite having a lower variance than other unbiased models, ordinary least squares can still have a high variance. This is especially an issue when the number of predictors $p$ is large compared to the number of observations $n$. In most applications, there are more observations than predictors, and so ordinary least squares works well. However, as $p$ gets closer to $n$, a model fitted with ordinary least squares will begin to \textbf{overfit}. Because the response variable $Y$ depends on a random error $\epsilon$, a model that fits too closely to the training data will perform poorly when given new data to test on. 
+
+In the extreme case where $p$ exceeds $n$, the matrix $\mathbf{X}^\top \mathbf{X}$ from Equation \ref{eqn:ols-solution} becomes non-invertible. This means that there are many coefficient estimates that minimize the residual sum of squares. In fact, any of these coefficient estimates creates a perfect fit to the training data, which will result in very bad predictions with test data.
+
+By using models that have a small amount of bias, the high variance of ordinary least squares can be mitigated.
 
 \subsection{Literature Review}
 % We can review some relevant literature such as Tibshrani et. al. lasso methods, ridge regression, enet, SCAD, or whatever else we want to do.
