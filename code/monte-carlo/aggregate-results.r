@@ -11,7 +11,7 @@ setwd(dirname(getActiveDocumentContext()$path))
 library(plyr) # v1.8.6
 
 # Get parameters file
-load("../../data/monte-carlo/factorial-design.Rdata")
+parameters <- readRDS("../../data/monte-carlo/factorial-design.rds")
 
 # This function reads the file corresponding to the given values for n, p, etc.
 # It then returns the R object stored in that file. If the file does not exist,

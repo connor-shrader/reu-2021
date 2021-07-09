@@ -6,7 +6,7 @@ source("simulation.r")
 source("metrics.r")
 
 # Load parameters from file
-load("../../data/monte-carlo/factorial-design.Rdata")
+parameters <- readRDS("../../data/monte-carlo/factorial-design.rds")
 
 run_simulations_test <- function(indices, iterations = 1, ...) {
   results <- lapply(indices, function(i) {

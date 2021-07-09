@@ -24,4 +24,4 @@ parameters$corr <- ifelse(parameters$type == "independent",
 
 rownames(parameters) <- NULL
 
-save(parameters, file = "../../data/monte-carlo/factorial-design.Rdata")
+saveRDS(parameters, file = "../../data/monte-carlo/factorial-design.rds")

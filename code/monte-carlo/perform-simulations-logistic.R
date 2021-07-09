@@ -15,7 +15,7 @@ source("logistic-monte-carlo.r")
 source("metrics-logistic.r")
 
 # Load table of parameters from file.
-load("../../data/monte-carlo/factorial-design.Rdata")
+parameters <- readRDS("../../data/monte-carlo/factorial-design.rds")
 
 # This function takes in a vector of indices and the number of iterations.
 # Then, this function iterates over the rows of the parameter table corresponding
