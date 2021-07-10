@@ -4,6 +4,7 @@ library(glmnet)
 library(gcdnet)
 library(ncvreg)
 library(ranger)
+library(randomForest)
 library(xgboost)
 library(e1071)
 library(caret) #for cross validation data splitting
@@ -287,23 +288,23 @@ for (fold in seq(cv_folds)) {
   runtimes[[fold]][["rf"]] <- rf_time
   cv.mse[[fold]][["rf"]] <- calc_mse(best_rf_model, test_dat)
   
-  # Support Vector Machine
-  svm_time <- system.time({
-    svm_tune <- tune.svm(y ~ ., data = train_dat,
-                         epsilon = seq(0.1, 0.5, 0.2),
-                         cost = c(0.5, 1, 2)
-    )
-    
-    svm_model <- svm_tune$best.model
-  })
-  
-  models[[fold]][["svm"]] <- svm_model
-  runtimes[[fold]][["svm"]] <- svm_time
-  cv.mse[[fold]][["svm"]] <- calc_mse(svm_model, test_dat)
+  # # Support Vector Machine
+  # svm_time <- system.time({
+  #   svm_tune <- tune.svm(y ~ ., data = train_dat,
+  #                        epsilon = seq(0.1, 0.5, 0.2),
+  #                        cost = c(0.5, 1, 2), kernel = "linear"
+  #   )
+  # 
+  #   svm_model <- svm_tune$best.model
+  # })
+  # 
+  # models[[fold]][["svm"]] <- svm_model
+  # runtimes[[fold]][["svm"]] <- svm_time
+  # cv.mse[[fold]][["svm"]] <- calc_mse(svm_model, test_dat)
 }
 
 # create dataframe of cross validation values
 mse_df <- data.frame(t(matrix(unlist(cv.mse), nrow=length(cv.mse), byrow=TRUE)))
 avg_mse <- rowMeans(mse_df)
 mse_df <- cbind(mse_df, avg_mse)
-row.names(mse_df) <- c("lasso", "ridge", "enet", "adap lasso", "adap ridge", "adap enet", "scad", "mcp")
+row.names(mse_df) <- c("lasso", "ridge", "enet", "adap lasso", "adap ridge", "adap enet", "scad", "mcp", "xgboost", "rf")
