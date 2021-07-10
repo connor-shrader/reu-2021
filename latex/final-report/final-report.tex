@@ -141,7 +141,9 @@ Two alternative methods to best subset selection are \textbf{forward selection} 
 
 The models produced by forward and backward selection can be improved by allowing for predictors to be added and removed in the same algorithm. \textbf{Forward stepwise selection} begins with an empty model and iteratively improves the model by either adding a new predictor or removing an obsolete one. \textbf{Backward stepwise selection} works in the same way but starts with the full model. Like backward selection, backward stepwise selection can only be used when $p\geq n$. These techniques take longer to run than ordinary forward and backward selection, but they are more likely to find the best possible model.
 
-[Discuss AIC/BIC]
+When fitting a model using any of the subset selection methods, the performance metric used when selecting the best model is very important. At first, it may seem reasonable to choose a common metric such as the residual sum of squares from Equation \ref{eqn:RSS}. However, many metrics, including the residual sum of squares, only describe a model's performance on training data. This is problematic because including more predictors will always decrease the residual sum of squares on the training data. If $p\leq n$, then the model fitted with all $p$ predictors is exactly the same model produced ordinary least squares, which by definition minimizes the residual sum of squares! If $p>n$, then the full model cannot be fitted; instead, subset selection methods would choose a model with the maximum possible number of predictors.
+
+If we wish to produce a model that makes reliable predictions on test data, we must use a different performance metric. Two of the most common metrics used for this purpose are the \textbf{Akaike Information Criterion} (AIC) and the \textbf{Bayesian Information Criterion} (BIC). Both of these metrics work by adding the residual sum of squares with a penalty term that punishes models with many predictors. As a result, the model selected using AIC or BIC will typically contain fewer predictors.
 
 \subsection{Penalized Regression}
 
