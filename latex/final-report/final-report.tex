@@ -45,6 +45,7 @@
 \newcommand{\sign}{\text{sign}}
 \newcommand{\E}{\text{E}}
 \newcommand{\OLS}{\text{OLS}}
+\newcommand{\RSS}{\text{RSS}}
 
 \begin{document}
 \maketitle
@@ -143,9 +144,26 @@ The models produced by forward and backward selection can be improved by allowin
 
 When fitting a model using any of the subset selection methods, the performance metric used when selecting the best model is very important. At first, it may seem reasonable to choose a common metric such as the residual sum of squares from Equation \ref{eqn:RSS}. However, many metrics, including the residual sum of squares, only describe a model's performance on training data. This is problematic because including more predictors will always decrease the residual sum of squares on the training data. If $p\leq n$, then the model fitted with all $p$ predictors is exactly the same model produced ordinary least squares, which by definition minimizes the residual sum of squares! If $p>n$, then the full model cannot be fitted; instead, subset selection methods would choose a model with the maximum possible number of predictors.
 
-If we wish to produce a model that makes reliable predictions on test data, we must use a different performance metric. Two of the most common metrics used for this purpose are the \textbf{Akaike Information Criterion} (AIC) and the \textbf{Bayesian Information Criterion} (BIC). Both of these metrics work by adding the residual sum of squares with a penalty term that punishes models with many predictors. As a result, the model selected using AIC or BIC will typically contain fewer predictors.
+If we wish to produce a model that makes reliable predictions on test data, we must use a different performance metric. Two of the most common metrics used for this purpose are the \textbf{Akaike Information Criterion} (AIC) and the \textbf{Bayesian Information Criterion} (BIC). These metrics can be expressed in terms of the log-likelihood function. In the special cases where we have a linear model where the random error $\epsilon$ is Gaussian, the Akaike Information Criterion is given by
+\begin{equation}
+	\text{AIC} = \frac{1}{n\hat{\sigma}^2}(\RSS + 2p\hat{\sigma}^2)
+\end{equation}
+up to a constant, where $\hat{\sigma}^2$ is the estimated value of the variance of $\epsilon$ \cite{james2017islr}. The Bayesian Information Criterion is
+\begin{equation}
+	\text{BIC} = \frac{1}{n\hat{\sigma}^2}(\RSS + \ln(n)\hat{\sigma}^2)
+\end{equation}
+up to a constant. These metrics work by using the residual sum of squares plus some additional penalty that increases when $p$ is large. As a result, models that minimize AIC or BIC will have fewer predictors than models chosen just by minimizing the residual sum of squares. This can result in a model that has both a good training error and test error. If $n>7$, then $\ln(n)>2$ and so the penalty for BIC is larger than the penalty for AIC. Hence, a model selected using BIC will typically have fewer parameters than a model selected by AIC.
 
+In addition to AIC and BIC, there are several other metrics that modify training error to estimate test error, such as $C_p$ and adjusted $R^2$ \cite{james2017islr}. However, this paper will focus on AIC and BIC.
 \subsection{Penalized Regression}
+
+In general, \textbf{penalized regression} works by fitting a model that punishes large coefficient estimates. By forcing coefficient values to shrink, the resulting model will have relatively low variance. Most, but not all, of these methods can perform variable selection.
+
+All of the penalized regression methods in this paper solve an optimization problem of the form
+\begin{equation}
+	\argmin{\beta}{\sum\limits_{i = 1}^N(y_i - (\beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \cdots + \beta_p x_{ip})) + \sum\limits_{j = 1}^p P(\beta_j)}
+\end{equation}
+where the first summation is the usual residual sum of squares and $P(\beta_j)$ is a penalty function applied to each of the coefficients. In general, $P(\beta_j)$ is an even function that is non-decreasing as $\vert \beta_j \vert$ increases.
 
 \textbf{Ridge regression} helps to solve multicollinearity in predictors while also minimizing insignificant predictors \cite{hoerl1970ridge}. While it does not minimize these insignificant predictors completely to 0 and thus cannot be considered a variable selection method, it still proves very useful in large datasets.
 

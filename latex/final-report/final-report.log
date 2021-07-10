@@ -1,35 +1,34 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.3.27)  10 JUL 2021 12:14
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.12.4)  10 JUL 2021 15:01
 entering extended mode
 **./final-report.tex
 (final-report.tex
-LaTeX2e <2020-10-01> patch level 4
-L3 programming layer <2021-02-18>
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\article.cls
+LaTeX2e <2020-10-01> patch level 2
+L3 programming layer <2020-10-27> xparse <2020-03-03>
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
 Document Class: article 2020/04/10 v1.4m Standard LaTeX document class
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\size10.clo
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/base\size10.clo
 File: size10.clo 2020/04/10 v1.4m Standard LaTeX file (size option)
 )
-\c@part=\count179
-\c@section=\count180
-\c@subsection=\count181
-\c@subsubsection=\count182
-\c@paragraph=\count183
-\c@subparagraph=\count184
-\c@figure=\count185
-\c@table=\count186
+\c@part=\count175
+\c@section=\count176
+\c@subsection=\count177
+\c@subsubsection=\count178
+\c@paragraph=\count179
+\c@subparagraph=\count180
+\c@figure=\count181
+\c@table=\count182
 \abovecaptionskip=\skip47
 \belowcaptionskip=\skip48
 \bibindent=\dimen138
 )
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\inputenc.sty
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/base\inputenc.sty
 Package: inputenc 2020/08/01 v1.3d Input encoding file
 \inpenc@prehook=\toks15
 \inpenc@posthook=\toks16
 )
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX 2.9\tex/latex/fancyhdr\fancyhdr.
-sty
-Package: fancyhdr 2021/01/28 v4.0.1 Extensive control of page headers and foote
-rs
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/fancyhdr\fancyhdr.sty
+Package: fancyhdr 2019/01/31 v3.10 Extensive control of page headers and footer
+s
 \f@nch@headwidth=\skip49
 \f@nch@O@elh=\skip50
 \f@nch@O@erh=\skip51
@@ -39,24 +38,22 @@ rs
 \f@nch@O@erf=\skip55
 \f@nch@O@olf=\skip56
 \f@nch@O@orf=\skip57
-)
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX 2.9\tex/latex/geometry\geometry.
-sty
-Package: geometry 2020/01/02 v5.9 Page Geometry
-
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics\keyval.st
+) (C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.st
 y
+Package: geometry 2020/01/02 v5.9 Page Geometry
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.sty
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 \KV@toks@=\toks17
 )
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX 2.9\tex/generic/iftex\ifvtex.sty
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/generic/iftex\ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX 2.9\tex/generic/iftex\iftex.sty
+
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/generic/iftex\iftex.sty
 Package: iftex 2020/03/06 v1.0d TeX engine tests
 ))
-\Gm@cnth=\count187
-\Gm@cntv=\count188
-\c@Gm@tempcnt=\count189
+\Gm@cnth=\count183
+\Gm@cntv=\count184
+\c@Gm@tempcnt=\count185
 \Gm@bindingoffset=\dimen139
 \Gm@wd@mp=\dimen140
 \Gm@odd@mp=\dimen141
@@ -67,38 +64,34 @@ Package: iftex 2020/03/06 v1.0d TeX engine tests
 \Gm@layoutvoffset=\dimen146
 \Gm@dimlist=\toks18
 
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX 2.9\tex/latex/geometry\geometry.
-cfg))
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsmath\amsmath.st
-y
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.cfg)
+) (C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsmath.sty
 Package: amsmath 2020/09/23 v2.17i AMS math features
 \@mathmargin=\skip58
 
 For additional information on amsmath, use the `?' option.
-
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsmath\amstext.st
-y
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amstext.sty
 Package: amstext 2000/06/29 v2.01 AMS text
 
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsmath\amsgen.sty
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks19
 \ex@=\dimen147
 ))
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsmath\amsbsy.sty
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 \pmbraise@=\dimen148
 )
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsmath\amsopn.sty
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsopn.sty
 Package: amsopn 2016/03/08 v2.02 operator names
 )
-\inf@bad=\count190
+\inf@bad=\count186
 LaTeX Info: Redefining \frac on input line 234.
-\uproot@=\count191
-\leftroot@=\count192
+\uproot@=\count187
+\leftroot@=\count188
 LaTeX Info: Redefining \overline on input line 399.
-\classnum@=\count193
-\DOTSCASE@=\count194
+\classnum@=\count189
+\DOTSCASE@=\count190
 LaTeX Info: Redefining \ldots on input line 496.
 LaTeX Info: Redefining \dots on input line 499.
 LaTeX Info: Redefining \cdots on input line 620.
@@ -107,15 +100,15 @@ LaTeX Info: Redefining \cdots on input line 620.
 \big@size=\dimen149
 LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
-\macc@depth=\count195
-\c@MaxMatrixCols=\count196
+\macc@depth=\count191
+\c@MaxMatrixCols=\count192
 \dotsspace@=\muskip16
-\c@parentequation=\count197
-\dspbrk@lvl=\count198
+\c@parentequation=\count193
+\dspbrk@lvl=\count194
 \tag@help=\toks20
-\row@=\count199
-\column@=\count266
-\maxfields@=\count267
+\row@=\count195
+\column@=\count196
+\maxfields@=\count197
 \andhelp@=\toks21
 \eqnshift@=\dimen150
 \alignsep@=\dimen151
@@ -130,7 +123,7 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
 LaTeX Info: Redefining \[ on input line 2923.
 LaTeX Info: Redefining \] on input line 2924.
 )
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amscls\amsthm.sty
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/amscls\amsthm.sty
 Package: amsthm 2020/05/29 v2.20.6
 \thm@style=\toks24
 \thm@bodyfont=\toks25
@@ -142,64 +135,57 @@ Package: amsthm 2020/05/29 v2.20.6
 \thm@headsep=\skip63
 \dth@everypar=\toks29
 )
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX 2.9\tex/latex/listings\listings.
-sty
-\lst@mode=\count268
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/listings\listings.sty
+\lst@mode=\count198
 \lst@gtempboxa=\box49
 \lst@token=\toks30
-\lst@length=\count269
+\lst@length=\count199
 \lst@currlwidth=\dimen156
-\lst@column=\count270
-\lst@pos=\count271
+\lst@column=\count266
+\lst@pos=\count267
 \lst@lostspace=\dimen157
 \lst@width=\dimen158
-\lst@newlines=\count272
-\lst@lineno=\count273
+\lst@newlines=\count268
+\lst@lineno=\count269
 \lst@maxwidth=\dimen159
 
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX 2.9\tex/latex/listings\lstmisc.s
-ty
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstmisc.sty
 File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
-\c@lstnumber=\count274
-\lst@skipnumbers=\count275
+\c@lstnumber=\count270
+\lst@skipnumbers=\count271
 \lst@framebox=\box50
 )
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX 2.9\tex/latex/listings\listings.
-cfg
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/listings\listings.cfg
 File: listings.cfg 2020/03/24 1.8d listings configuration
 ))
 Package: listings 2020/03/24 1.8d (Carsten Heinz)
 
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics\graphicx.
-sty
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphicx.sty
 Package: graphicx 2020/09/09 v1.2b Enhanced LaTeX Graphics (DPC,SPQR)
 
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics\graphics.
-sty
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphics.sty
 Package: graphics 2020/08/30 v1.4c Standard LaTeX Graphics (DPC,SPQR)
 
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics\trig.sty
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/graphics\trig.sty
 Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
 )
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics-cfg\graph
-ics.cfg
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\graphics.
+cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: pdftex.def on input line 105.
 
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics-def\pdfte
-x.def
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/graphics-def\pdftex.de
+f
 File: pdftex.def 2020/10/05 v1.2a Graphics/color driver for pdftex
 ))
 \Gin@req@height=\dimen160
 \Gin@req@width=\dimen161
 )
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX 2.9\tex/latex/caption\caption.st
-y
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption.sty
 Package: caption 2020/10/26 v3.5g Customizing captions (AR)
 
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX 2.9\tex/latex/caption\caption3.s
-ty
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption3.sty
 Package: caption3 2020/10/21 v2.2e caption3 kernel (AR)
 \captionmargin=\dimen162
 \captionmargin@=\dimen163
@@ -210,48 +196,41 @@ Package: caption3 2020/10/21 v2.2e caption3 kernel (AR)
 \caption@hangindent=\dimen168
 Package caption Info: Standard document class detected.
 )
-\c@caption@flags=\count276
-\c@continuedfloat=\count277
+\c@caption@flags=\count272
+\c@continuedfloat=\count273
 Package caption Info: listings package is loaded.
 )
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX 2.9\tex/latex/caption\subcaption
-.sty
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/caption\subcaption.sty
 Package: subcaption 2020/10/07 v1.3j Sub-captions (AR)
-\c@subfigure=\count278
-\c@subtable=\count279
-) (C:\Users\Connor\AppData\Local\Programs\MiKTeX 2.9\tex/latex/url\url.sty
+\c@subfigure=\count274
+\c@subtable=\count275
+) (C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/url\url.sty
 \Urlmuskip=\muskip17
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX 2.9\tex/latex/adjustbox\adjustbo
-x.sty
-Package: adjustbox 2020/08/19 v1.3 Adjusting TeX boxes (trim, clip, ...)
-
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX 2.9\tex/latex/xkeyval\xkeyval.st
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/adjustbox\adjustbox.st
 y
-Package: xkeyval 2020/11/20 v2.8 package option processing (HA)
+Package: adjustbox 2020/08/19 v1.3 Adjusting TeX boxes (trim, clip, ...)
+ (C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/xkeyval\xkeyval.sty
+Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
 
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX 2.9\tex/generic/xkeyval\xkeyval.
-tex
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX 2.9\tex/generic/xkeyval\xkvutils
-.tex
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/generic/xkeyval\xkeyval.tex
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/generic/xkeyval\xkvutils.tex
 \XKV@toks=\toks31
 \XKV@tempa@toks=\toks32
 )
-\XKV@depth=\count280
+\XKV@depth=\count276
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 ))
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX 2.9\tex/latex/adjustbox\adjcalc.
-sty
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/adjustbox\adjcalc.sty
 Package: adjcalc 2012/05/16 v1.1 Provides advanced setlength with multiple back
 -ends (calc, etex, pgfmath)
 )
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX 2.9\tex/latex/adjustbox\trimclip
-.sty
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/adjustbox\trimclip.sty
 Package: trimclip 2020/08/19 v1.2 Trim and clip general TeX material
 
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX 2.9\tex/latex/collectbox\collect
-box.sty
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/collectbox\collectbox.
+sty
 Package: collectbox 2012/05/17 v0.4b Collect macro arguments as boxes
 \collectedbox=\box51
 )
@@ -261,8 +240,8 @@ Package: collectbox 2012/05/17 v0.4b Collect macro arguments as boxes
 \tc@ury=\dimen172
 Package trimclip Info: Using driver 'tc-pdftex.def'.
 
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX 2.9\tex/latex/adjustbox\tc-pdfte
-x.def
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/adjustbox\tc-pdftex.de
+f
 File: tc-pdftex.def 2019/01/04 v2.2 Clipping driver for pdftex
 ))
 \adjbox@Width=\dimen173
@@ -274,53 +253,49 @@ File: tc-pdftex.def 2019/01/04 v2.2 Clipping driver for pdftex
 \adjbox@pdepth=\dimen179
 \adjbox@ptotalheight=\dimen180
 
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX 2.9\tex/latex/ifoddpage\ifoddpag
-e.sty
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/ifoddpage\ifoddpage.st
+y
 Package: ifoddpage 2016/04/23 v1.1 Conditionals for odd/even page detection
-\c@checkoddpage=\count281
+\c@checkoddpage=\count277
 )
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX 2.9\tex/latex/varwidth\varwidth.
-sty
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/varwidth\varwidth.sty
 Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
 \@vwid@box=\box52
-\sift@deathcycles=\count282
+\sift@deathcycles=\count278
 \@vwid@loff=\dimen181
 \@vwid@roff=\dimen182
 ))
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX 2.9\tex/latex/listings\lstlang1.
-sty
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
-)
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX 2.9\tex/latex/listings\lstlang2.
-sty
+) (C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang2.st
+y
 File: lstlang2.sty 2020/03/24 1.8d listings language file
 )
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX 2.9\tex/latex/listings\lstlang3.
-sty
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang3.sty
 File: lstlang3.sty 2020/03/24 1.8d listings language file
 )
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX 2.9\tex/latex/l3backend\l3backen
-d-pdftex.def
-File: l3backend-pdftex.def 2021-03-18 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count283
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pd
+ftex.def
+File: l3backend-pdftex.def 2020-09-24 L3 backend support: PDF output (pdfTeX)
+\l__kernel_color_stack_int=\count279
 \l__pdf_internal_box=\box53
 ) (final-report.aux)
 \openout1 = `final-report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -356,52 +331,48 @@ LaTeX Font Info:    ... okay on input line 49.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-\c@lstlisting=\count284
+\c@lstlisting=\count280
 
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX 2.9\tex/context/base/mkii\supp-p
-df.mkii
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.m
+kii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count285
+\scratchcounter=\count281
 \scratchdimen=\dimen183
 \scratchbox=\box54
-\nofMPsegments=\count286
-\nofMParguments=\count287
+\nofMPsegments=\count282
+\nofMParguments=\count283
 \everyMPshowfont=\toks33
-\MPscratchCnt=\count288
+\MPscratchCnt=\count284
 \MPscratchDim=\dimen184
-\MPnumerator=\count289
-\makeMPintoPDFobject=\count290
+\MPnumerator=\count285
+\makeMPintoPDFobject=\count286
 \everyMPtoPDFconversion=\toks34
 )
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX 2.9\tex/latex/epstopdf-pkg\epsto
-pdf-base.sty
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-
+base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 85.
-
-(C:\Users\Connor\AppData\Local\Programs\MiKTeX 2.9\tex/latex/00miktex\epstopdf-
-sys.cfg
-File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
-))
+)
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
 
-Underfull \hbox (badness 10000) in paragraph at lines 53--54
+Underfull \hbox (badness 10000) in paragraph at lines 54--55
 
  []
 
 [1
 
-{C:/Users/Connor/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2]
+{C:/Users/Connor/AppData/Local/MiKTeX/pdftex/config/pdftex.map}] [2]
 Package epstopdf Info: Source file: <images/ols.eps>
-(epstopdf)                    date: 2021-07-10 10:40:49
+(epstopdf)                    date: 2021-07-07 12:42:37
 (epstopdf)                    size: 11632 bytes
 (epstopdf)             Output file: <images/ols-eps-converted-to.pdf>
-(epstopdf)                    date: 2021-07-10 10:40:49
+(epstopdf)                    date: 2021-07-07 15:39:50
 (epstopdf)                    size: 12192 bytes
-(epstopdf)             Command: <miktex-epstopdf --outfile=images/ols-eps-conve
-rted-to.pdf images/ols.eps>
-(epstopdf)             \includegraphics on input line 108.
+(epstopdf)             Command: <epstopdf --outfile=images/ols-eps-converted-to
+.pdf images/ols.eps>
+(epstopdf)             \includegraphics on input line 109.
 Package epstopdf Info: Output file is already uptodate.
 
 
@@ -411,10 +382,10 @@ usion: found PDF version <1.7>, but at most version <1.5> allowed
 File: images/ols-eps-converted-to.pdf Graphic file (type pdf)
 <use images/ols-eps-converted-to.pdf>
 Package pdftex.def Info: images/ols-eps-converted-to.pdf  used on input line 10
-8.
+9.
 (pdftex.def)             Requested size: 289.07999pt x 173.44492pt.
 [3 <./images/ols-eps-converted-to.pdf>]
-Overfull \hbox (11.56561pt too wide) in paragraph at lines 134--135
+Overfull \hbox (11.56561pt too wide) in paragraph at lines 135--136
 \OT1/cmr/bx/n/10 Subset se-lec-tion meth-ods \OT1/cmr/m/n/10 are wrap-per meth-
 ods that at-tempt to find a sub-set of the pre-dic-tors $\OML/cmm/m/it/10 X[]; 
 X[]; [] ; X[]$
@@ -423,90 +394,96 @@ X[]; [] ; X[]$
 
 Package amsmath Warning: Foreign command \atopwithdelims;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 138.
+(amsmath)                 on input line 139.
 
 [4] [5]
 <images/ridge-diagram.png, id=42, 3011.25pt x 1806.75pt>
 File: images/ridge-diagram.png Graphic file (type png)
 <use images/ridge-diagram.png>
-Package pdftex.def Info: images/ridge-diagram.png  used on input line 184.
+Package pdftex.def Info: images/ridge-diagram.png  used on input line 202.
 (pdftex.def)             Requested size: 211.38832pt x 126.81624pt.
 <images/lasso-diagram.png, id=43, 3011.25pt x 1806.75pt>
 File: images/lasso-diagram.png Graphic file (type png)
 <use images/lasso-diagram.png>
-Package pdftex.def Info: images/lasso-diagram.png  used on input line 190.
+Package pdftex.def Info: images/lasso-diagram.png  used on input line 208.
 (pdftex.def)             Requested size: 211.38832pt x 126.81624pt.
- [6 <./images/ridge-diagram.png> <./images/lasso-diagram.png>] [7]
-<images/lasso-scad-mcp-penalty.png, id=53, 3011.25pt x 1806.75pt>
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[6] [7 <./images/ridge-diagram.png> <./images/lasso-diagram.png>]
+<images/lasso-scad-mcp-penalty.png, id=52, 3011.25pt x 1806.75pt>
 File: images/lasso-scad-mcp-penalty.png Graphic file (type png)
 <use images/lasso-scad-mcp-penalty.png>
 Package pdftex.def Info: images/lasso-scad-mcp-penalty.png  used on input line 
-273.
+291.
 (pdftex.def)             Requested size: 187.89914pt x 112.7286pt.
-<images/lasso-scad-mcp-derivative.png, id=54, 3011.25pt x 1806.75pt>
+<images/lasso-scad-mcp-derivative.png, id=53, 3011.25pt x 1806.75pt>
 File: images/lasso-scad-mcp-derivative.png Graphic file (type png)
 <use images/lasso-scad-mcp-derivative.png>
 Package pdftex.def Info: images/lasso-scad-mcp-derivative.png  used on input li
-ne 279.
+ne 297.
 (pdftex.def)             Requested size: 187.89914pt x 112.7286pt.
-<images/lasso-scad-mcp-solution.png, id=55, 3011.25pt x 1806.75pt>
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<images/lasso-scad-mcp-solution.png, id=54, 3011.25pt x 1806.75pt>
 File: images/lasso-scad-mcp-solution.png Graphic file (type png)
 <use images/lasso-scad-mcp-solution.png>
 Package pdftex.def Info: images/lasso-scad-mcp-solution.png  used on input line
- 291.
+ 309.
 (pdftex.def)             Requested size: 187.89914pt x 112.7286pt.
 
-[8 <./images/lasso-scad-mcp-penalty.png> <./images/lasso-scad-mcp-derivative.pn
-g> <./images/lasso-scad-mcp-solution.png>] [9]
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[8] [9 <./images/lasso-scad-mcp-penalty.png> <./images/lasso-scad-mcp-derivativ
+e.png> <./images/lasso-scad-mcp-solution.png>] [10]
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 381.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[10] [11] [12] (../../code/figures/test.tex)
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 399.
+ [11] [12]
+(../../code/figures/test.tex)
 Overfull \vbox (2.86908pt too high) has occurred while \output is active []
 
 
 [13] (final-report.bbl) [14] (final-report.aux) ) 
 Here is how much of TeX's memory you used:
- 7495 strings out of 479287
- 114233 string characters out of 2852552
- 700096 words of memory out of 3000000
- 24871 multiletter control sequences out of 15000+600000
- 412684 words of font info for 59 fonts, out of 8000000 for 9000
+ 7442 strings out of 479799
+ 112789 string characters out of 2869248
+ 680904 words of memory out of 3000000
+ 24333 multiletter control sequences out of 15000+200000
+ 544342 words of font info for 61 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 68i,15n,74p,2612b,1799s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 66i,15n,72p,2612b,1802s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\Connor\AppData\Loca
-l\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk><C:/Users/Connor/Ap
-pData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/U
-sers/Connor/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cm
-bx12.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/
-amsfonts/cm/cmbx7.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX 2.9/fonts/
-type1/public/amsfonts/cm/cmbx9.pfb><C:/Users/Connor/AppData/Local/Programs/MiKT
-eX 2.9/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/Connor/AppData/Loca
-l/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/Conno
-r/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><
-C:/Users/Connor/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/c
-m/cmmi5.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publ
-ic/amsfonts/cm/cmmi7.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX 2.9/fon
-ts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Users/Connor/AppData/Local/Programs/M
-iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Connor/AppData/Loc
-al/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Conno
-r/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C
-:/Users/Connor/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
-/cmr5.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public
-/amsfonts/cm/cmr6.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX 2.9/fonts/
-type1/public/amsfonts/cm/cmr7.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTe
-X 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/Connor/AppData/Local/Pr
-ograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/Connor/AppD
-ata/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Use
-rs/Connor/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy
-7.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/ams
-fonts/cm/cmti10.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX 2.9/fonts/ty
-pe1/public/amsfonts/cm/cmti9.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX
- 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on final-report.pdf (14 pages, 916993 bytes).
+l\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk><C:/Users/Connor/AppDat
+a/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/Con
+nor/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:
+/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx
+7.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfont
+s/cm/cmbx9.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/publi
+c/amsfonts/cm/cmcsc10.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/
+type1/public/amsfonts/cm/cmex10.pfb><C:/Users/Connor/AppData/Local/Programs/MiK
+TeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Connor/AppData/Local/Pr
+ograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/Connor/AppData
+/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/Conno
+r/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Us
+ers/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.p
+fb><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/c
+m/cmr12.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/public/a
+msfonts/cm/cmr17.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type1
+/public/amsfonts/cm/cmr5.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fon
+ts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/Connor/AppData/Local/Programs/Mi
+KTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/Connor/AppData/Local/Pro
+grams/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/Connor/AppData/L
+ocal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/Connor/A
+ppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/User
+s/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb
+><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
+cmti10.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
+sfonts/cm/cmti9.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/
+public/amsfonts/cm/cmtt10.pfb>
+Output written on final-report.pdf (14 pages, 920304 bytes).
 PDF statistics:
  158 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
