@@ -165,6 +165,7 @@ test_fig <- plot_metric_2(plot_results, "test_mse", facet = c("type", "st_dev"),
   scale_shape_manual(values = 21:24, name = "Correlation") +
   scale_color_manual(values = hue_pal()(4), name = "Correlation") +
   scale_fill_manual(values = hue_pal()(4), name = "Correlation") +
+  labs(x = "Model name", y = "Mean test MSE", color = "Correlation", shape = "Correlation")
   theme(
     panel.background = element_rect(fill = "white"),
     panel.border = element_rect(color = "black", fill = NA, size = 0.2),
@@ -176,7 +177,6 @@ test_fig <- plot_metric_2(plot_results, "test_mse", facet = c("type", "st_dev"),
     legend.text = element_text(size = 12),
     legend.title = element_text(size = 16)
   ) +
-  labs(x = "Model name", y = "Mean test MSE", color = "Correlation", shape = "Correlation")
 
 
 
