@@ -29,6 +29,16 @@ colnames(cancer_df)[1] <- "y" #rename y column to "y"
 k_folds <- 5
 cv_folds <- createFolds(cancer_df[,1], k = k_folds)
 
+# Create histogram of y data
+# Histogram
+p<-ggplot(cancer_df, aes(x=y)) + 
+  geom_histogram(color="black", fill="tomato", binwidth = 0.25) 
+# Add mean line
+p <- p+ geom_vline(aes(xintercept=mean(y)),
+              color="black", linetype="dashed", size=1)
+p <- p + labs(x="BRCA1 Gene Expression")
+p
+
 calc_mse <- function(model, dat) {
   # Obtain the first class for each model.
   model_class <- class(model)[1]
