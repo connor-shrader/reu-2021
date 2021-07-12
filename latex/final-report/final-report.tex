@@ -423,10 +423,18 @@ For empirical data, we used the Breast Cancer database from The Cancer Genome At
 
 This data is a prime example of the $p>>n$ problem where there are many more predictors than data samples. Because of this, only penalized regression and machine learning techniques can be utilized. This is because there are more predictors than samples which makes least squares linear regression impossible and due to the high number of predictors, subset and stepwise regression becomes too computationally expensive to be feasible. Additionally, support vector machines struggle at such a high number of predictors and resulted in stack overflow errors which made fitting support vector machines on this data infeasible.
 
+For analyzing the error of models fitted using this empirical data, we performed nested cross validation. Many of the models fitted used cross validation for tuning purposes to find the best input parameters. Examples of these parameters include $\lambda$ for penalized regression techniques, the number of trees and number of predictors for random forest, as well as max depth and learning rate for XGBoost. However, we also perform 5-fold cross validation before we even allow the models to tune their parameters. By doing nested cross validation, testing data is not used for training the model \textbf{or} tuning model parameters. This results in a more accurate error calculation. If nested cross validation was not used, models could tune their parameters in a way that overfits the model to the testing data which would lead to artificially decreased error and invalid results.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results}
 \subsection{Regression Models}
 % Stick all the results from the linear regression models here
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width = 0.9\linewidth]{images/empirical_cv_mse.png}
+	\label{fig:empirical_mse}
+	\caption{Average Mean Square Error for Empirical Data Models}
+\end{figure}
 
 \subsection{Classification Models}
 % stick the results from logisitc regression and classification models here
