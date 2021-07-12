@@ -7,6 +7,11 @@ Breheny.
   \textsc{url:}~\url{https://myweb.uiowa.edu/pbreheny/7600/s16/notes/2-29.pdf},
   2016.
 
+\bibitem{donoho1994ideal}
+David~L Donoho and Jain~M Johnstone.
+\newblock Ideal spatial adaptation by wavelet shrinkage.
+\newblock {\em biometrika}, 81(3):425--455, 1994.
+
 \bibitem{fan2001variable}
 Jianqing Fan and Runze Li.
 \newblock Variable selection via nonconcave penalized likelihood and its oracle
@@ -51,12 +56,6 @@ Robert Tibshirani.
 Cun-Hui Zhang et~al.
 \newblock Nearly unbiased variable selection under minimax concave penalty.
 \newblock {\em The Annals of statistics}, 38(2):894--942, 2010.
-
-\bibitem{zou2006adaptive}
-Hui Zou.
-\newblock The adaptive lasso and its oracle properties.
-\newblock {\em Journal of the American statistical association},
-  101(476):1418--1429, 2006.
 
 \bibitem{zou2005regularization}
 Hui Zou and Trevor Hastie.

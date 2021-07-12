@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.12.4)  12 JUL 2021 15:41
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.12.4)  12 JUL 2021 17:11
 entering extended mode
 **./final-report.tex
 (final-report.tex
@@ -412,46 +412,52 @@ Package pdftex.def Info: images/lasso-diagram.png  used on input line 201.
 File: images/lasso-scad-mcp-penalty.png Graphic file (type png)
 <use images/lasso-scad-mcp-penalty.png>
 Package pdftex.def Info: images/lasso-scad-mcp-penalty.png  used on input line 
-261.
+263.
 (pdftex.def)             Requested size: 187.89914pt x 112.7286pt.
 <images/lasso-scad-mcp-derivative.png, id=52, 3011.25pt x 1806.75pt>
 File: images/lasso-scad-mcp-derivative.png Graphic file (type png)
 <use images/lasso-scad-mcp-derivative.png>
 Package pdftex.def Info: images/lasso-scad-mcp-derivative.png  used on input li
-ne 267.
+ne 269.
 (pdftex.def)             Requested size: 187.89914pt x 112.7286pt.
-<images/lasso-scad-mcp-solution.png, id=53, 3011.25pt x 1806.75pt>
+
+[8 <./images/lasso-scad-mcp-penalty.png> <./images/lasso-scad-mcp-derivative.pn
+g>]
+<images/lasso-scad-mcp-solution.png, id=57, 3011.25pt x 1806.75pt>
 File: images/lasso-scad-mcp-solution.png Graphic file (type png)
 <use images/lasso-scad-mcp-solution.png>
 Package pdftex.def Info: images/lasso-scad-mcp-solution.png  used on input line
- 282.
+ 288.
 (pdftex.def)             Requested size: 187.89914pt x 112.7286pt.
+ [9 <./images/lasso-scad-mcp-solution.png>] [10]
+LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 388.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[11]
+<images/BRCA1-expression.png, id=70, 648.17157pt x 413.29407pt>
+File: images/BRCA1-expression.png Graphic file (type png)
+<use images/BRCA1-expression.png>
+Package pdftex.def Info: images/BRCA1-expression.png  used on input line 429.
+(pdftex.def)             Requested size: 328.82707pt x 209.67357pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[8 <./images/lasso-scad-mcp-penalty.png> <./images/lasso-scad-mcp-derivative.pn
-g>] [9 <./images/lasso-scad-mcp-solution.png>] [10]
-LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 378.
- [11]
-<images/BRCA1-expression.png, id=70, 648.17157pt x 413.29407pt>
-File: images/BRCA1-expression.png Graphic file (type png)
-<use images/BRCA1-expression.png>
-Package pdftex.def Info: images/BRCA1-expression.png  used on input line 419.
-(pdftex.def)             Requested size: 328.82707pt x 209.67357pt.
- [12 <./images/BRCA1-expression.png>]
-<images/empirical_cv_mse.png, id=75, 755.82375pt x 413.29407pt>
+[12]
+<images/empirical_cv_mse.png, id=74, 755.82375pt x 413.29407pt>
 File: images/empirical_cv_mse.png Graphic file (type png)
 <use images/empirical_cv_mse.png>
-Package pdftex.def Info: images/empirical_cv_mse.png  used on input line 434.
+Package pdftex.def Info: images/empirical_cv_mse.png  used on input line 444.
 (pdftex.def)             Requested size: 422.77664pt x 231.17822pt.
- [13 <./images/empirical_cv_mse.png>]
-(../../code/figures/tables/mse_n50_p10.tex)
+ [13 <./images/BRCA1-expression.png> <./images/empirical_cv_mse.png>]
+[14] (../../code/figures/tables/mse_n50_p10.tex)
 Overfull \vbox (13.40396pt too high) has occurred while \output is active []
 
 
-[14] (final-report.bbl) [15] (final-report.aux) ) 
+[15] (final-report.bbl) [16] (final-report.aux) ) 
 Here is how much of TeX's memory you used:
  7457 strings out of 479799
  113312 string characters out of 2869248
@@ -488,9 +494,9 @@ s/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb
 cmti10.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
 sfonts/cm/cmti9.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/
 public/amsfonts/cm/cmtt10.pfb>
-Output written on final-report.pdf (15 pages, 936233 bytes).
+Output written on final-report.pdf (16 pages, 937807 bytes).
 PDF statistics:
- 165 PDF objects out of 1000 (max. 8388607)
+ 168 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  41 words of extra memory for PDF output out of 10000 (max. 10000000)
 
