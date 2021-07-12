@@ -161,35 +161,31 @@ up to a constant. These metrics work by using the residual sum of squares plus s
 In addition to AIC and BIC, there are several other metrics that modify training error to estimate test error, such as $C_p$ and adjusted $R^2$ \cite{james2017islr}. However, this paper will focus on AIC and BIC.
 \subsection{Penalized Regression}
 
-In general, \textbf{penalized regression} works by fitting a model that punishes large coefficient estimates. By forcing coefficient values to shrink, the resulting model will have relatively low variance. Most, but not all, of these methods can perform variable selection.
+In general, \textbf{penalized regression} works by fitting a model that punishes large coefficient estimates. By forcing coefficient values to shrink, the resulting model will have relatively low variance. Most, but not all, of these methods can perform variable selection. For the remainder of this section, let $\beta$ represent a single arbitrary coefficient value, rather than a vector of coefficient values.
 
 All of the penalized regression methods in this paper solve an optimization problem of the form
 \begin{equation}\label{eqn:penalized-regression-lambda}
 	\hat{\beta}=\argmin{\beta}{\sum\limits_{i = 1}^N(y_i - (\beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \cdots + \beta_p x_{ip})) + \lambda\sum\limits_{j = 1}^p P(\beta_j)}
 \end{equation}
-where the first summation is the usual residual sum of squares, $\lambda$ is a hyperparameter that controls the strength of the penalty, and $P(\beta_j)$ is a penalty function applied to each of the coefficients (but not the intercept term). In general, $P(\beta_j)$ is an even function that is non-decreasing as $\vert \beta_j \vert$ increases. If $\lambda = 0$, then we have the usual ordinary least squares estimator. As $\lambda$ increases, a stronger penalty is applied which will decrease the coefficient values. As $\lambda$ approaches $\infty$, the model becomes an empty model where only the intercept term is non-zero.
+where the first summation is the usual residual sum of squares, $\lambda\geq 0$ is a hyperparameter that controls the strength of the penalty, and $P(\beta)$ is a penalty function applied to each of the coefficients (but not the intercept term). In general, $P(\beta)$ is an even function that is non-decreasing as $\vert \beta \vert$ increases. If $\lambda = 0$, then we have the usual ordinary least squares estimator. As $\lambda$ increases, a stronger penalty is applied which will decrease the coefficient values. As $\lambda$ approaches $\infty$, the model becomes an empty model where only the intercept term is non-zero.
 
 A similar way to express penalized regression is with the form
 \begin{equation}\label{eqn:penalized-regression-t}
 	\argmin{\beta}{\sum\limits_{i = 1}^N(y_i - (\beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \cdots + \beta_p x_{ip}))} \quad \text{subject to} \quad \sum\limits_{j = 1}^p P(\beta_j)\leq t
 \end{equation}
-where $t$ is a hyperparameter. In this form, penalized regression fits the ordinary least squares such that the sum of the penalties of the coefficients are kept below some threshold. It can be shown that for eery value of $\lambda$ from Equation \ref{eqn:penalized-regression-lambda}, there is a value of $t$ from \ref{eqn:penalized-regression-t} that gives equivalent coefficient estimates \cite{james2017islr}. Most algorithms to fit penalized regression models use the form given in Equation \ref{eqn:penalized-regression-lambda}, but the form in Equation \ref{eqn:penalized-regression-t} may be considered more intuitive.
+where $t$ is a hyperparameter. In this form, penalized regression fits the ordinary least squares such that the sum of the penalties of the coefficients are kept below some threshold. It can be shown that for every value of $\lambda$ from Equation \ref{eqn:penalized-regression-lambda}, there is a value of $t$ from \ref{eqn:penalized-regression-t} that gives equivalent coefficient estimates \cite{james2017islr}. Most algorithms to fit penalized regression models use the form given in Equation \ref{eqn:penalized-regression-lambda}, but the form in Equation \ref{eqn:penalized-regression-t} may be considered more intuitive.
 
 When fitting penalized regression models, the choice of $\lambda$ is very important. If $\lambda$ is too small, then models may be overfit just like ordinary least squares; on the other hand, if $\lambda$ is large, then the resulting models are highly biased and the resulting models may be underfit. In practice, the best value of $\lambda$ can be selected using \textbf{cross-validation}. This process involves splitting the training set into $k$ disjoint subsets of equal size called \textbf{folds}. Then, $k$ models are fitted for different values of $\lambda$, where one fold is used as a testing set and the other $(k - 1)$ folds are used for training. The value of $\lambda$ that results in the lowest test error can then be selected.
 
-\textbf{Ridge regression} is a penalized regression model that uses the penalty function $P(\beta_j) = \beta_j^2$ \cite{hoerl1970ridge}. One major benefit of ridge regression is that it has a closed form solution. Letting $\beta$ be a $(p + 1)\times 1$ vector of coefficients, $\mathbf{X}$ a $n\times (p + 1)$ matrix of data and $\mathbf{y}$ a $n\times 1$ vector of response values, the coefficient estimates using ridge regression are
-\begin{equation}\label{eqn:ridge-solution}
-	TODO
-\end{equation}
-Ridge regression has some additional benefits over ordinary least squares. One advantage is that ridge regression can handle highly correlated data better than ordinary least squares. When predictors are correlated with each other, some algorithms have a hard time distinguishing which predictors are actually related to the response. One other benefit of ridge regression is that it can be used when $p>n$.
+\textbf{Ridge regression} is a penalized regression model that uses the penalty function $P(\beta) = \beta^2$ \cite{hoerl1970ridge}. One advantage of ridge regression is that it can handle highly correlated data better than ordinary least squares. When predictors are correlated with each other, some algorithms have a hard time distinguishing which predictors are actually related to the response. One other benefit of ridge regression is that it can be used when $p>n$.
 
 One drawback of ridge regression is that it cannot perform variable selection. It can shrink coefficients towards zero, but it cannot set coefficients to be exactly zero.
 
-The \textbf{least absolute shrinkage and selection operation}, often referred to as \textbf{lasso}, is a shrinkage method with a very similar form to lasso regression \cite{tibshirani1996regression, james2017islr, james2013introduction}. The penalty function for lasso is $P(\beta_j) = \vert \beta_j \vert$.
+The \textbf{least absolute shrinkage and selection operation}, often referred to as \textbf{LASSO}, is a shrinkage method with a very similar form to ridge regression \cite{tibshirani1996regression, james2017islr, james2013introduction}. The penalty function for LASSO is $P(\beta) = \vert \beta \vert$.
 
-Unlike ridge regression, lasso regression can perform variable selection by setting coefficients to zero. This makes lasso regression favorable when most predictors are not related to the response variable. On the other hand, if the response truly does depend on all of the predictors, then lasso regression may incorrectly set some coefficients to zero. In addition, lasso regression does not have a closed-form solution, but computing the coefficients is still efficient.
+Unlike ridge regression, LASSO regression can perform variable selection by setting coefficients to zero. This makes LASSO regression favorable when most predictors are not related to the response variable. On the other hand, if the response truly does depend on all of the predictors, then LASSO regression may incorrectly set some coefficients to zero. In addition, LASSO regression does not have a closed-form solution, but computing the coefficients is still efficient.
 
-Figure \ref{fig:ridge-lasso-diagram} provides a visual explanation for why ridge regression cannot perform variable selection whereas lasso regression can. Suppose that there are $p = 2$ predictors. The red circle in Figure \ref{fig:ridge-diagram} represents the circle $\beta_1^2 + \beta_2^2 \leq 1$, which is the penalty boundary for ridge regression in the form given in Equation \ref{eqn:penalized-regression-t} when $t = 1$. The red square in Figure \ref{fig:lasso-diagram} represents the boundary $\vert \beta_1 \vert + \vert \beta_2 \vert \leq 1$ for lasso regression. The point in the center of the blue ellipses represents the values of $\beta_1$ and $\beta_2$ that ordinary least squares would produce. Because this point is not within either of the red regions, ridge regression and lasso regression will give different coefficient estimates. The blue ellipses around this point represent contour curves for the residual sum of squares function, which is a quadratic function of $\beta_1$ and $\beta_2$. The first interception of these ellipses with the red regions represents the coefficient values selected by ridge and lasso regression. Because of the round boundary for ridge regression, the intersection in Figure \ref{fig:ridge-diagram} occurs when $\beta_1$ and $\beta_2$ are positive. For lasso regression in Figure \ref{fig:lasso-diagram}, the intersection occurs at a corner where $\beta_1=0$. Thus, lasso regression has set $\beta_1$ to zero, while $\beta_1$ is non-zero for ridge regression.
+Figure \ref{fig:ridge-lasso-diagram} provides a visual explanation for why ridge regression cannot perform variable selection whereas LASSO regression can. Suppose that there are $p = 2$ predictors. The red circle in Figure \ref{fig:ridge-diagram} represents the circle $\beta_1^2 + \beta_2^2 \leq 1$, which is the penalty boundary for ridge regression in the form given in Equation \ref{eqn:penalized-regression-t} when $t = 1$. The red square in Figure \ref{fig:lasso-diagram} represents the boundary $\vert \beta_1 \vert + \vert \beta_2 \vert \leq 1$ for LASSO regression. The point in the center of the blue ellipses represents the values of $\beta_1$ and $\beta_2$ that ordinary least squares would produce. Because this point is not within either of the red regions, ridge regression and LASSO regression will give different coefficient estimates. The blue ellipses around this point represent contour curves for the residual sum of squares function, which is a quadratic function of $\beta_1$ and $\beta_2$. The first interception of these ellipses with the red regions represents the coefficient values selected by ridge and LASSO regression. Because of the round boundary for ridge regression, the intersection in Figure \ref{fig:ridge-diagram} occurs when $\beta_1$ and $\beta_2$ are positive. For LASSO regression in Figure \ref{fig:lasso-diagram}, the intersection occurs at a corner where $\beta_1=0$. Thus, LASSO regression has set $\beta_1$ to zero, while $\beta_1$ is non-zero for ridge regression.
 
 \begin{figure}[!h]
 	\centering
@@ -205,65 +201,59 @@ Figure \ref{fig:ridge-lasso-diagram} provides a visual explanation for why ridge
 		\includegraphics[width=\textwidth]{images/lasso-diagram.png}
 	\end{subfigure}
 	\captionsetup{width = 5in}
-	\caption{RSS contours and penalty bounds for the ridge and lasso models when $p=2$ and $t = 1$. The red regions represent the coefficient values allowed by ridge and lasso regression, respectively. The blue ellipses represent contours of the residual sum of squares, with $\hat{\beta}^{\text{OLS}}$ being the point where the residual sum of squares is minimized. The intersection of the ellipse with the red region represents the point selected by lasso and ridge.}
+	\caption{RSS contours and penalty bounds for the ridge and LASSO models when $p=2$ and $t = 1$. The red regions represent the coefficient values allowed by ridge and LASSO regression, respectively. The blue ellipses represent contours of the residual sum of squares, with $\hat{\beta}^{\text{OLS}}$ being the point where the residual sum of squares is minimized. The intersection of the ellipse with the red region represents the point selected by LASSO and ridge.}
 	\label{fig:ridge-lasso-diagram}
 \end{figure}
 
-\textbf{Elastic-net} regression uses both the ridge penalty and the lasso penalty at the same time \cite{zou2005regularization}. Elastic-net solves the optimization problem
+\textbf{Elastic-net} regression uses both the ridge penalty and the LASSO penalty at the same time \cite{zou2005regularization}. Elastic-net solves the optimization problem
 \begin{equation}
 	\hat{\beta}^{\text{E-net}}=\argmin{\beta}{\sum\limits_{i = 1}^n \left( y_i - \beta_0 - \sum\limits_{i = 1}^p \beta_j x_{ij} \right) + \lambda_2\sum\limits_{j = 1}^p \beta_j^2 + \lambda_1\sum\limits_{j = 1}^p \vert \beta_j \vert}
 \end{equation}
 where $\lambda_1$ and $\lambda_2$ are both tuning parameters to be determined later.
 
-An important limitation to note is that elastic net performs best when it close to either ridge or lasso regression, meaning that either $\lambda_1$ greatly exceeds $\lambda_2$ or $\lambda_2$ greatly exceeds $\lambda_1$ \cite{zou2005regularization}. Additionally, because elastic net requires two tuning parameters, this makes it much more difficult to determine the best combination of tuning parameters to minimize error in the regression. However, this problem has been largely solved through by the LARS-EN algorithm developed by Zou et. al. which efficiently solves for the tuning parameters \cite{zou2005regularization}.
+An important limitation to note is that elastic net performs best when it close to either ridge or LASSO regression, meaning that either $\lambda_1$ greatly exceeds $\lambda_2$ or $\lambda_2$ greatly exceeds $\lambda_1$ \cite{zou2005regularization}. Additionally, because elastic net requires two tuning parameters, this makes it much more difficult to determine the best combination of tuning parameters to minimize error in the regression. However, this problem has been largely solved through by the LARS-EN algorithm developed by Zou et. al. which efficiently solves for the tuning parameters \cite{zou2005regularization}.
 
-One major flaw of the lasso method is that the penalty punishes large coefficients, even if those coefficients should be large. One way to modify the lasso method is to use the \textbf{smoothly clipped absolute deviation} (SCAD) penalty \cite{fan2001variable}. The goal of this method is to punish large coefficients less severely, which can help mitigate some of the bias introduced by the lasso method.
-\begin{equation}
-	\hat{\beta}^{\text{SCAD}}=\argmin{\beta}{\sum\limits_{i = 1}^n \left( y_i - \beta_0 - \sum\limits_{i = 1}^p \beta_j x_{ij} \right) + \lambda\sum\limits_{j = 1}^p J_a(\beta_j, \lambda)}
+One major flaw of the LASSO method is that the penalty punishes large coefficients, even if those coefficients should be large. One way to modify the LASSO method is to use the \textbf{smoothly clipped absolute deviation} (SCAD) penalty \cite{fan2001variable}. The goal of this method is to punish large coefficients less severely, which can help mitigate some of the bias introduced by the LASSO method. The penalty function $P(\beta)$ for SCAD satisfies
+\begin{equation}\label{eqn:scad-derivative-indicator}
+	\frac{dP}{d\beta} = \cdot\sign(\beta)\left[ I(\vert \beta \vert<\lambda) + \frac{\max(a\lambda - \vert \beta\vert, 0)}{(a - 1)\lambda}I(\vert \beta \vert > \lambda) \right]
 \end{equation}
-Here, $J_a(\beta, \lambda)$ is a penalty function that satisfies
+where $a\geq 2$ is a new hyperparameter and $I$ is the indicator function ($I(Q)$ equals 1 if a statement $Q$ is true, and equals 0 if $Q$ is false). If the hyperparameter $a$ is large, then SCAD behaves like LASSO for larger coefficient values. Also, notice that $\lambda$ is an argument for the penalty function $P$. An equivalent way to write the expression in Equation \ref{eqn:scad-derivative-indicator} is
 \begin{equation}
-	\frac{dJ_a(\beta, \lambda)}{d\beta} = \lambda\cdot\sign(\beta)\left[ I(\vert \beta \vert<\lambda) + \frac{(a\lambda - \vert \beta\vert)_+}{(a - 1)\lambda}I(\vert \beta \vert > \lambda) \right]
-\end{equation}
-where $\lambda \geq 0$ and $a\geq 2$ are tuning parameters. An equivalent way to write this is
-\begin{equation}
-	\frac{dJ_a(\beta, \lambda)}{d\beta}\left\{\begin{array}{ll}
-		\lambda,&\vert \beta \vert\leq \lambda\\
-		\frac{a\lambda - \vert \beta \vert}{a - 1},&\lambda < \vert \beta \vert < a\lambda\\
+	\frac{dP}{d\beta} = \left\{\begin{array}{ll}
+		1,&\vert \beta \vert\leq \lambda\\
+		\frac{a\lambda - \vert \beta \vert}{(a - 1)\lambda},&\lambda < \vert \beta \vert < a\lambda\\
 		0,&\alpha\lambda < \vert \beta \vert
 	\end{array}\right.
 \end{equation}
-This penalty function does not punish coefficients with large magnitude as heavily as the lasso method. In fact, if the magnitude of a coefficient is larger than $a\lambda$, then the penalty becomes constant. See Figure \ref{fig:penalty} for a plot of the SCAD penalty as a function of the coefficient value.
+This penalty function does not punish coefficients with large magnitude as heavily as the LASSO method. In fact, if the magnitude of a coefficient is larger than $a\lambda$, then the penalty becomes constant since the derivative becomes zero.
 
-Integrating with respect to $\beta$ \cite{breheny2016lasso}, we see that
+By integrating with respect to $\beta$ \cite{breheny2016lasso} and choosing $P(\beta) = 0$, we see that
 \begin{equation}
-	J_a(\beta, \lambda) = \left\{\begin{array}{ll}
-		\lambda \vert \beta \vert,&\vert \beta \vert \leq \lambda\\
-		\frac{2a\lambda\vert\beta\vert - \beta^2-\lambda^2}{2(a - 1)},&\lambda < \vert \beta \vert < a\lambda\\
-		\frac{\lambda^2(a + 1)}{2},&a\lambda < \vert \beta \vert
+	P(\beta) = \left\{\begin{array}{ll}
+		\vert \beta \vert,&\vert \beta \vert \leq \lambda\\
+		\frac{2a\lambda\vert\beta\vert - \beta^2-\lambda^2}{2(a - 1)\lambda},&\lambda < \vert \beta \vert < a\lambda\\
+		\frac{\lambda(a + 1)}{2},&a\lambda < \vert \beta \vert
 	\end{array}\right.
 \end{equation}
 
-The \textbf{minimax concave penalty} (MCP) method is very similar to smoothly clipped absolute deviation \cite{zhang2010nearly, breheny2016lasso}. Both methods are used to avoid the high bias caused by the lasso method. MCP uses a penalty function that satisfies
+The \textbf{minimax concave penalty} (MCP) method is very similar to SCAD \cite{zhang2010nearly, breheny2016lasso}. Both methods are used to avoid the high bias caused by the LASSO method. MCP uses a penalty function that satisfies
 \begin{equation}
-	\frac{dJ_a(\beta, \lambda)}{d\beta} = \left\{\begin{array}{ll}
-		\sign(\beta)\left(\lambda - \frac{\vert \beta \vert}{a}\right),& \vert \beta \vert \leq a\lambda\\
+	\frac{dP}{d\beta} = \left\{\begin{array}{ll}
+		\sign(\beta)\left(1 - \frac{\vert \beta \vert}{a\lambda}\right),& \vert \beta \vert \leq a\lambda\\
 		0,&a\lambda < \vert \beta \vert
 	\end{array}\right.
 \end{equation}
-where $\lambda\geq 0$ and $a> 0$ are tuning parameters. Integrating \cite{breheny2016lasso}, we see that
+where, like SCAD, $a>0$ is a hyperparameter. Integrating \cite{breheny2016lasso}, we see that
 \begin{equation}
-	J_a(\beta, \lambda) = \left\{\begin{array}{ll}
-		\lambda \vert \beta \vert - \frac{\beta^2}{2a},&\vert \beta \vert \leq a\lambda\\
-		\frac{1}{2}a\lambda^2,&a\lambda < \vert \beta \vert
+	P(\beta) = \left\{\begin{array}{ll}
+		\vert \beta \vert - \frac{\beta^2}{2a\lambda},&\vert \beta \vert \leq a\lambda\\
+		\frac{1}{2}a\lambda,&a\lambda < \vert \beta \vert
 	\end{array}\right.
 \end{equation}
 
-Figure \ref{fig:lasso-scad-mcp} below shows the penalty functions (and their derivatives) for LASSO, SCAD, and MCP as a function of a coefficient value $\beta$. We see that LASSO applies a much stronger penalty to large coefficients than SCAD or MCP. Also, note that SCAD starts with a derivative equal to that of the lasso for small values of $\beta$; on the other hand, the derivative of the penalty function for MCP starts decreasing immediately.
+Figure \ref{fig:lasso-scad-mcp} below shows the penalty functions (and their derivatives) for LASSO, SCAD, and MCP as a function of a coefficient value $\beta$. We see that LASSO applies a much stronger penalty to large coefficients than SCAD or MCP. Also, note that SCAD starts with a derivative equal to that of the LASSO for small values of $\beta$; on the other hand, the derivative of the penalty function for MCP starts decreasing immediately.
 
 \begin{figure}[!h]
-	\caption{Penalty functions for LASSO, SCAD, and MCP, as well as their derivatives. These plots use $\lambda = 2$ and $a = 3$.}
-	\label{fig:lasso-scad-mcp}
 	\centering
 	\begin{subfigure}[b]{0.4\textwidth}
 		\caption{Penalty functions for LASSO, SCAD, and MCP}
@@ -276,7 +266,12 @@ Figure \ref{fig:lasso-scad-mcp} below shows the penalty functions (and their der
 		\label{fig:derivative}
 		\includegraphics[width=\textwidth]{images/lasso-scad-mcp-derivative.png}
 	\end{subfigure}
+	\captionsetup{width = 5in}
+	\caption{Penalty functions for LASSO, SCAD, and MCP, as well as their derivatives. These plots use $\lambda = 2$ and $a = 3$.}
+	\label{fig:lasso-scad-mcp}
 \end{figure}
+
+Note that of the penalized regression methods discussed above, only ridge regression has a general closed-form solution. LASSO, elastic-net, SCAD and MCP do not have closed-form solutions but the solutions can be efficiently approximated. In many cases, it is beneficial to consider the special case where the predictors are completely uncorrelated with one another. In this special case, the $n\times (p + 1)$ matrix $\mathbf{X}$ containing $n$ observations of $p$ predictors (including one column for the intercept) is orthogonal. To simplify things further
 
 Now, consider the case where $p=1$ (there is only one predictor). Figure \ref{fig:prediction} shows the solutions given when using LASSO, SCAD, and MCP on such a model. The $x$-axis gives the actual coefficient for the single variable, and the $y$-axis represents the coefficient estimate produced using each of the algorithms. We used the particular values $\lambda = 2$ and $a = 3$. The gray line is the identity function, which also equals the solution obtained using ordinary least squares.
 

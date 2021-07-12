@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.3.27)  12 JUL 2021 10:43
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.3.27)  12 JUL 2021 12:38
 entering extended mode
 **./final-report.tex
 (final-report.tex
@@ -429,31 +429,31 @@ Package amsmath Warning: Foreign command \atopwithdelims;
 <images/ridge-diagram.png, id=45, 3011.25pt x 1806.75pt>
 File: images/ridge-diagram.png Graphic file (type png)
 <use images/ridge-diagram.png>
-Package pdftex.def Info: images/ridge-diagram.png  used on input line 199.
+Package pdftex.def Info: images/ridge-diagram.png  used on input line 195.
 (pdftex.def)             Requested size: 211.38832pt x 126.81624pt.
 <images/lasso-diagram.png, id=46, 3011.25pt x 1806.75pt>
 File: images/lasso-diagram.png Graphic file (type png)
 <use images/lasso-diagram.png>
-Package pdftex.def Info: images/lasso-diagram.png  used on input line 205.
+Package pdftex.def Info: images/lasso-diagram.png  used on input line 201.
 (pdftex.def)             Requested size: 211.38832pt x 126.81624pt.
  [7 <./images/ridge-diagram.png> <./images/lasso-diagram.png>]
 <images/lasso-scad-mcp-penalty.png, id=51, 3011.25pt x 1806.75pt>
 File: images/lasso-scad-mcp-penalty.png Graphic file (type png)
 <use images/lasso-scad-mcp-penalty.png>
 Package pdftex.def Info: images/lasso-scad-mcp-penalty.png  used on input line 
-271.
+261.
 (pdftex.def)             Requested size: 187.89914pt x 112.7286pt.
 <images/lasso-scad-mcp-derivative.png, id=52, 3011.25pt x 1806.75pt>
 File: images/lasso-scad-mcp-derivative.png Graphic file (type png)
 <use images/lasso-scad-mcp-derivative.png>
 Package pdftex.def Info: images/lasso-scad-mcp-derivative.png  used on input li
-ne 277.
+ne 267.
 (pdftex.def)             Requested size: 187.89914pt x 112.7286pt.
 <images/lasso-scad-mcp-solution.png, id=53, 3011.25pt x 1806.75pt>
 File: images/lasso-scad-mcp-solution.png Graphic file (type png)
 <use images/lasso-scad-mcp-solution.png>
 Package pdftex.def Info: images/lasso-scad-mcp-solution.png  used on input line
- 289.
+ 284.
 (pdftex.def)             Requested size: 187.89914pt x 112.7286pt.
 
 
@@ -462,21 +462,21 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 [8 <./images/lasso-scad-mcp-penalty.png> <./images/lasso-scad-mcp-derivative.pn
 g>] [9 <./images/lasso-scad-mcp-solution.png>] [10]
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 379.
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 374.
 
 
-Package caption Warning: \label without proper reference on input line 421.
+Package caption Warning: \label without proper reference on input line 416.
 See the caption package documentation for explanation.
 
 
 LaTeX Warning: Reference `fig:BRCA1-distribution' on page 11 undefined on input
- line 416.
+ line 411.
 
 [11]
 <images/BRCA1-expression.png, id=70, 648.17157pt x 413.29407pt>
 File: images/BRCA1-expression.png Graphic file (type png)
 <use images/BRCA1-expression.png>
-Package pdftex.def Info: images/BRCA1-expression.png  used on input line 420.
+Package pdftex.def Info: images/BRCA1-expression.png  used on input line 415.
 (pdftex.def)             Requested size: 328.82707pt x 209.67357pt.
  [12 <./images/BRCA1-expression.png>]
 (../../code/figures/tables/mse_n50_p10.tex)
@@ -490,7 +490,7 @@ LaTeX Warning: There were undefined references.
  ) 
 Here is how much of TeX's memory you used:
  7504 strings out of 479287
- 114555 string characters out of 2852552
+ 114566 string characters out of 2852552
  732096 words of memory out of 3000000
  24879 multiletter control sequences out of 15000+600000
  412684 words of font info for 59 fonts, out of 8000000 for 9000
@@ -525,7 +525,7 @@ iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/Connor/AppData/Lo
 cal/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti9.pfb><C:/Users/Conn
 or/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
 
-Output written on final-report.pdf (14 pages, 925740 bytes).
+Output written on final-report.pdf (14 pages, 925331 bytes).
 PDF statistics:
  160 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
