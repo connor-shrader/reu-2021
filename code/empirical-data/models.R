@@ -31,6 +31,7 @@ cv_folds <- createFolds(cancer_df[,1], k = k_folds)
 
 # Create histogram of y data
 # Histogram
+library(ggplot2)
 p<-ggplot(cancer_df, aes(x=y)) + 
   geom_histogram(color="black", fill="tomato", binwidth = 0.25) 
 # Add mean line

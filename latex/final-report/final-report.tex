@@ -435,14 +435,14 @@ Finally, for support vector machines using \lstinline!e1071!, we varied $\epsilo
 
 For empirical data, we used the Breast Cancer database from The Cancer Genome Atlas (bcTCGA). This contains the gene expression data of 17323 genes from 536 patients. One of these genes is the BRCA1 gene which is among the first genes discovered that can increase the risk of breast cancer. Because the BRCA1 gene interacts with other genes, it is useful to find genes that interact with BRCA1 to test in further studies. The distribution of the BRCA1 gene expression levels in the bcTCGA database can be seen in Figure \ref{fig:BRCA1-distribution}. The BRCA1 gene expression level will act as the output value in our regression analysis and the other 17322 genes will serve as predictor values.
 
-\begin{figure}
+\begin{figure}[h!]
 	\centering
 	\includegraphics[width = 0.7\linewidth]{images/BRCA1-expression.png}
 	\label{fig:BRCA1-distribution}
 	\caption{Distribution of BRCA1 gene expression levels}
 \end{figure}
 
-This data is a prime example of the $p>>n$ problem where there are many more predictors than data samples.
+This data is a prime example of the $p>>n$ problem where there are many more predictors than data samples. Because of this, only penalized regression and machine learning techniques can be utilized. This is because there are more predictors than samples which makes least squares linear regression impossible and due to the high number of predictors, subset and stepwise regression becomes too computationally expensive to be feasible. Additionally, support vector machines struggle at such a high number of predictors and resulted in stack overflow errors which made fitting support vector machines on this data infeasible.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results}
