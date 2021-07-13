@@ -1,0 +1,108 @@
+rm(list = ls())
+
+library(ggplot2)
+library(broom)
+
+library(rstudioapi)
+setwd(dirname(getActiveDocumentContext()$path))
+source("themes.r")
+source("save-plot.r")
+load("../empirical-data/simulation-environment.RData")
+
+library(dplyr)
+library(VennDiagram)
+library(glmnet)
+library(ncvreg)
+
+
+lasso <- models[[1]]$lasso
+enet <- models[[1]]$enet
+mcp <- models[[1]]$mcp
+rf <- models[[1]]$rf
+
+lasso_coef <- coef(lasso) %>% as.matrix() %>% as.data.frame()
+colnames(lasso_coef) <- "L"
+lasso_coef$predictor <- rownames(lasso_coef)
+
+enet_coef <- coef(enet) %>% as.matrix() %>% as.data.frame()
+colnames(enet_coef) <- "E"
+enet_coef$predictor <- rownames(enet_coef)
+
+mcp_coef <- coef(mcp) %>% as.matrix %>% as.data.frame()
+colnames(mcp_coef) <- "M"
+mcp_coef$predictor <- rownames(mcp_coef)
+
+min_importance <- sort(rf$importance, decreasing = TRUE)[50]
+rf_important <- rf$importance %>% as.data.frame()
+rf_important[rf$importance < min_importance, ] <- 0
+colnames(rf_important) <- "R"
+rf_important$predictor <- rownames(rf_important)
+
+gdat <- merge(lasso_coef, enet_coef, by = "predictor") %>%
+  merge(mcp_coef, by = "predictor") %>%
+  merge(rf_important, by = "predictor")
+
+gdat[, -1] <- ifelse(gdat[, -1] != 0, 1, 0)
+
+count0 <- gdat %>%
+  dplyr::select(c(L,E,M,R))%>%
+  mutate (LE = L*E, LM = L*M, LR = L*R, EM =E*M, ER = E*R, MR =M*R, LEM = L*E*M, LER=L*E*R, LMR = L*M*R, EMR = E*M*R, LEMR = L*E*M*R)%>%
+  replace(is.na(.), 0) %>%
+  summarise_all(sum)
+
+count0
+
+# count0 <- gdat %>%
+#   dplyr::select(c(L,E,M,R))%>%
+#   mutate (L2 = L & !E & !M & !R,
+#           E2 = !L & E & !M & !R,
+#           M2 = !L & !E & M & !R,
+#           R2 = !L & !E & !M & R,
+#           LE = L & E & !M & !R, 
+#           LM = L & !E & M & !R, 
+#           LR = L & !E & !M & R, 
+#           EM = !L & E & M & !R, 
+#           ER = !L & E & !M & R, 
+#           MR = !L & !E & M & R, 
+#           LEM = L & E & M & !R,
+#           LER = L & E & !M & R, 
+#           LMR = L & !E & M & R,
+#           EMR = !L & E & M & R, 
+#           LEMR = L & E & M & R)%>%
+#   replace(is.na(.), 0) %>%
+#   summarise_all(sum)
+# 
+# count0
+
+count <- as.numeric(count0)
+head(count)
+# Reference four-set diagram
+library(VennDiagram)
+venn.plot.glm <- draw.quad.venn(
+  area1 = count[1],
+  area2 = count[2],
+  area3 = count[3],
+  area4 = count[4],
+  n12 = count[5],
+  n13 = count[6],
+  n14 = count[7],
+  n23 = count[8],
+  n24 = count[9],
+  n34 = count[10],
+  n123 = count[11],
+  n124 = count[12],
+  n134 = count[13],
+  n234 = count[14],
+  n1234 = count[15],
+  category = c("LASSO", "ENET", "MCP", "Random Forest"),
+  fill = c("gray10", "gray35", "gray62", "gray87"),
+  lty = "dashed",
+  cex = 2,
+  cat.cex = 1.5,
+  cat.col = c(rep("black",4))
+);
+
+setEPS()
+postscript(file = "images/venn.eps", fonts = "serif")
+grid.draw(venn.plot.glm)
+dev.off()

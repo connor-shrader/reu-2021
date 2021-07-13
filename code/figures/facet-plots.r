@@ -8,6 +8,7 @@ library(rstudioapi) # v0.13
 
 setwd(dirname(getActiveDocumentContext()$path))
 source("themes.r")
+source("save-plot.r")
 
 # Used to create plots
 library(ggplot2) # v3.3.3
@@ -144,19 +145,23 @@ generate_table <- function(data, metric, ...) {
 aggregate_results <- readRDS("../../results/monte-carlo/aggregate_results.rds")
 all_results <- readRDS("../../results/monte-carlo/all_results.rds")
 
+aggregate_results <- aggregate_results[
+  !aggregate_results$model_name %in% c("adap_ridge", "adap_lasso", "adap_enet"), ]
+
+all_results <- all_results[
+  !all_results$model_name %in% c("adap_lasso", "adap_lasso", "adap_enet"), ]
+
 # aggregate_results <- aggregate_results[aggregate_results$model_name != "gbm" &
 #                                       aggregate_results$model_name != "rf" &
 #                                       aggregate_results$model_name != "svm", ]
 
 old_names <- c("fm", "ab", "bb", "asb", "bsb", "af", "bf", "asf",
-               "bsf", "ridge", "lasso", "enet", "adap_ridge",
-               "adap_lasso", "adap_enet", "scad", "mcp", "gbm",
+               "bsf", "ridge", "lasso", "enet", "scad", "mcp", "gbm",
                "rf", "svm")
 new_names <- c("OLS", "AIC back.", "BIC back.", "AIC step. back.",
                "BIC step. back.", "AIC for.", "BIC for.",
                "AIC step. for.", "BIC step. for.", "Ridge", "Lasso",
-               "E-net", "Adap. ridge", "Adap. lasso", "Adap e-net",
-               "SCAD", "MCP", "GB", "RF", "SVM")
+               "E-net", "SCAD", "MCP", "GB", "RF", "SVM")
 
 # Replace model names with more readable names.
 aggregate_results$model_name <- mapvalues(aggregate_results$model_name,
@@ -203,25 +208,9 @@ apply(X = dimensions, MARGIN = 1, FUN = function(row) {
   
   plt <- plot_metric(plot_results, "train_mse", facet = c("type", "st_dev"),
               color = "corr", n = n, p = p)
-  
-  ggsave(
-    filename = paste("facet_train_mse_", n, "_", p, ".png", sep = ""),
-    path = "./images/facet-train-mse",
-    plot = plt,
-    type = "cairo-png",
-    width = 10,
-    height = 6,
-    unit = "in"
-  )
-  
-  ggsave(
-    filename = paste("facet_train_mse_", n, "_", p, ".eps", sep = ""),
-    path = "./images/facet-train-mse",
-    plot = plt,
-    width = 10,
-    height = 6,
-    unit = "in"
-  )
+  save_plot(plot = plt,
+            filename = paste("facet_train_mse_", n, "_", p, sep = ""),
+            path = "./images/facet-train-mse")
   
   return(plt)
 })
@@ -232,216 +221,68 @@ apply(X = dimensions, MARGIN = 1, FUN = function(row) {
   
   plt <- plot_metric(plot_results, "test_mse", facet = c("type", "st_dev"),
                      color = "corr", n = n, p = p)
-  
-  ggsave(
-    filename = paste("facet_test_mse_", n, "_", p, ".png", sep = ""),
-    path = "./images/facet-test-mse",
-    plot = plt,
-    type = "cairo-png",
-    width = 10,
-    height = 6,
-    unit = "in"
-  )
-  
-  ggsave(
-    filename = paste("facet_test_mse_", n, "_", p, ".eps", sep = ""),
-    path = "./images/facet-test-mse",
-    plot = plt,
-    width = 10,
-    height = 6,
-    unit = "in"
-  )
+  save_plot(plot = plt,
+            filename = paste("facet_test_mse_", n, "_", p, sep = ""),
+            path = "./images/facet-test-mse")
   
   return(plt)
 })
 
 accuracy_results <- plot_results[!plot_results$model_name %in% c("OLS", "Ridge", "Adap. ridge", "GB", "RF", "SVM"), ]
+
+apply(X = dimensions, MARGIN = 1, FUN = function(row) {
+  n <- row[["n"]]
+  p <- row[["p"]]
+  
+  plt <- plot_metric(accuracy_results, "tn", facet = c("type", "st_dev"),
+                     color = "corr", n = n, p = p)
+  save_plot(plot = plt,
+            filename = paste("facet_tn_", n, "_", p, sep = ""),
+            path = "./images/facet-tn")
+  
+  return(plt)
+})
+
+apply(X = dimensions, MARGIN = 1, FUN = function(row) {
+  n <- row[["n"]]
+  p <- row[["p"]]
+  
+  plt <- plot_metric(accuracy_results, "fn", facet = c("type", "st_dev"),
+                     color = "corr", n = n, p = p)
+  save_plot(plot = plt,
+            filename = paste("facet_fn_", n, "_", p, sep = ""),
+            path = "./images/facet-fn")
+  
+  return(plt)
+})
+
+apply(X = dimensions, MARGIN = 1, FUN = function(row) {
+  n <- row[["n"]]
+  p <- row[["p"]]
+  
+  plt <- plot_metric(accuracy_results, "fp", facet = c("type", "st_dev"),
+                     color = "corr", n = n, p = p)
+  save_plot(plot = plt,
+            filename = paste("facet_fp_", n, "_", p, sep = ""),
+            path = "./images/facet-fp")
+  
+  return(plt)
+})
+
+apply(X = dimensions, MARGIN = 1, FUN = function(row) {
+  n <- row[["n"]]
+  p <- row[["p"]]
+  
+  plt <- plot_metric(accuracy_results, "tp", facet = c("type", "st_dev"),
+                     color = "corr", n = n, p = p)
+  save_plot(plot = plt,
+            filename = paste("facet_tp_", n, "_", p, sep = ""),
+            path = "./images/facet-tp")
+  
+  return(plt)
+})
+
 # plot_metric(accuracy_results, "fn", facet = c("type", "st_dev"), color = "corr", n = 50, p = 100)
 
-ggsave(
-  filename = "facet_50_10.png",
-  path = "./images",
-  plot = fig_for_n50_p10,
-  type = "cairo-png",
-  width = 10,
-  height = 6,
-  unit = "in"
-)
 
-ggsave(
-  filename = "facet_50_10.eps",
-  path = "./images",
-  plot = fig_for_n50_p10,
-  width = 10,
-  height = 6,
-  unit = "in"
-)
-
-
-
-ggsave(
-  filename = "facet_200_10.png",
-  path = "./images",
-  plot = fig_for_n200_p10,
-  type = "cairo-png",
-  width = 10,
-  height = 6,
-  unit = "in"
-)
-
-ggsave(
-  filename = "facet_200_10.eps",
-  path = "./images",
-  plot = fig_for_n200_p10,
-  width = 10,
-  height = 6,
-  unit = "in"
-)
-
-
-
-ggsave(
-  filename = "facet_1000_10.png",
-  path = "./images",
-  plot = fig_for_n1000_p10,
-  type = "cairo-png",
-  width = 10,
-  height = 6,
-  unit = "in"
-)
-
-ggsave(
-  filename = "facet_1000_10.eps",
-  path = "./images",
-  plot = fig_for_n1000_p10,
-  width = 10,
-  height = 6,
-  unit = "in"
-)
-
-
-
-ggsave(
-  filename = "facet_50_100.png",
-  path = "./images",
-  plot = fig_for_n50_p100,
-  type = "cairo-png",
-  width = 10,
-  height = 6,
-  unit = "in"
-)
-
-ggsave(
-  filename = "facet_50_100.eps",
-  path = "./images",
-  plot = fig_for_n50_p100,
-  width = 10,
-  height = 6,
-  unit = "in"
-)
-
-
-
-ggsave(
-  filename = "facet_200_100.png",
-  path = "./images",
-  plot = fig_for_n200_p100,
-  type = "cairo-png",
-  width = 10,
-  height = 6,
-  unit = "in"
-)
-
-ggsave(
-  filename = "facet_200_100.eps",
-  path = "./images",
-  plot = fig_for_n200_p100,
-  width = 10,
-  height = 6,
-  unit = "in"
-)
-
-
-
-ggsave(
-  filename = "facet_1000_100.png",
-  path = "./images",
-  plot = fig_for_n1000_p100,
-  type = "cairo-png",
-  width = 10,
-  height = 6,
-  unit = "in"
-)
-
-ggsave(
-  filename = "facet_1000_100.eps",
-  path = "./images",
-  plot = fig_for_n1000_p100,
-  width = 10,
-  height = 6,
-  unit = "in"
-)
-
-
-
-ggsave(
-  filename = "facet_50_2000.png",
-  path = "./images",
-  plot = fig_for_n50_p2000,
-  type = "cairo-png",
-  width = 10,
-  height = 6,
-  unit = "in"
-)
-
-ggsave(
-  filename = "facet_50_2000.eps",
-  path = "./images",
-  plot = fig_for_n50_p2000,
-  width = 10,
-  height = 6,
-  unit = "in"
-)
-
-
-
-ggsave(
-  filename = "facet_200_2000.png",
-  path = "./images",
-  plot = fig_for_n200_p2000,
-  type = "cairo-png",
-  width = 10,
-  height = 6,
-  unit = "in"
-)
-
-ggsave(
-  filename = "facet_200_2000.eps",
-  path = "./images",
-  plot = fig_for_n200_p2000,
-  width = 10,
-  height = 6,
-  unit = "in"
-)
-
-
-
-ggsave(
-  filename = "facet_1000_2000.png",
-  path = "./images",
-  plot = fig_for_n1000_p2000,
-  type = "cairo-png",
-  width = 10,
-  height = 6,
-  unit = "in"
-)
-
-ggsave(
-  filename = "facet_1000_2000.eps",
-  path = "./images",
-  plot = fig_for_n1000_p2000,
-  width = 10,
-  height = 6,
-  unit = "in"
-)
 

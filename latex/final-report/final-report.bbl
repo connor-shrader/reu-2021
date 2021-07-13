@@ -29,16 +29,16 @@ Arthur~E Hoerl and Robert~W Kennard.
 \newblock Ridge regression: Biased estimation for nonorthogonal problems.
 \newblock {\em Technometrics}, 12(1):55--67, 1970.
 
-\bibitem{james2017islr}
-Gareth James, Daniela Witten, Trevor Hastie, and Rob Tibshirani.
-\newblock {\em ISLR: Data for an Introduction to Statistical Learning with
-  Applications in R}, 2017.
-\newblock R package version 1.2.
-
 \bibitem{james2013introduction}
 Gareth James, Daniela Witten, Trevor Hastie, and Robert Tibshirani.
 \newblock {\em An introduction to statistical learning}, volume 112.
 \newblock Springer, 2013.
+
+\bibitem{james2017islr}
+Witten D. Hastie T. Tibshirani~R. James, G.
+\newblock {\em ISLR: Data for an Introduction to Statistical Learning with
+  Applications in R}, 2017.
+\newblock R package version 1.2.
 
 \bibitem{liu2020logsum}
 Xiao-Ying Liu, Sheng-Bing Wu, Wen-Quan Zeng, Zhan-Jiang Yuan, and Hong-Bo Xu.
