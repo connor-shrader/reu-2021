@@ -25,6 +25,7 @@
 \usepackage{subcaption} % Subfigures
 \usepackage{url}
 \usepackage{adjustbox}
+\usepackage{hyperref} % Clickable ref's
 
 % Caption format
 \captionsetup[figure]{font=small}
@@ -39,6 +40,15 @@
 \lstset {
 	language = R,
 	basicstyle = \ttfamily
+}
+
+% Clickable link setup
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,      
+	urlcolor=cyan,
+	citecolor=blue
 }
 
 \newcommand{\argmin}[2]{\underset{#1}{\text{arg min}}\left\{#2\right\}}
@@ -269,7 +279,7 @@ Figure \ref{fig:lasso-scad-mcp} below shows the penalty functions (and their der
 		\includegraphics[width=\textwidth]{images/lasso-scad-mcp-derivative.png}
 	\end{subfigure}
 	\captionsetup{width = 5in}
-	\caption{Penalty functions for LASSO, SCAD, and MCP, as well as their derivatives. These plots use $\lambda = 2$ and $a = 3$.}
+	\caption{Penalty functions for LASSO, SCAD, and MCP, as well as their derivatives. These plots use $\lambda = 2$ and $a = 3$. The dashed vertical lines are the knots for SCAD and MCP.}
 	\label{fig:lasso-scad-mcp}
 \end{figure}
 
@@ -283,9 +293,10 @@ Another feature of SCAD and MCP is that they
 
 \begin{figure}[!h]
 	\centering
-	\caption{Solutions for LASSO, SCAD, and MCP for a single predictor when $\lambda=2$, and $a = 3$.}
-	\label{fig:prediction}
 	\includegraphics[width = 0.4\textwidth]{images/lasso-scad-mcp-solution.png}
+	\captionsetup{width = 4in}
+	\caption{Thresholding function for LASSO, SCAD, and MCP when $\lambda = 2$ and $a = 3$. In an orthonormal design, this function can be applied to the true coefficient values to get the predicted coefficient values. The dashed vertical lines are the knots for SCAD and MCP.}
+	\label{fig:prediction}
 \end{figure}
 
 We see that when $\vert \beta \vert$ is small, the thresholding function for LASSO, SCAD, and MCP are all zero. This matches with the assumption that these methods should set small coefficient values to zero. As $\vert \beta \vert$ increases, the estimated value for that coefficient gets larger. Notice that ordinary least squares doesn't decrease the estimated coefficient value for any choice of $\beta$; this is because of the fact that ordinary least squares is unbiased, whereas the other methods are biased.
@@ -296,10 +307,36 @@ Another feature of SCAD and MCP is their \textbf{oracle-like properties}. In thi
 
 In the context of linear regression, an oracle estimator would know which predictors are truly correlated with the response. With the aid of an oracle, one could then fit an ordinary least squares model using only the coefficients that are actually non-zero and ignoring the predictors that are actually zero. Fan and Li in \cite{fan2001variable} and Zhang in \cite{zhang2010nearly} prove that SCAD and MCP both have oracle-like properties. Under certain conditions, SCAD and MCP can perform as well as the oracle estimator as $n$ approaches $\infty$. On the other hand, LASSO does not have oracle-like properties, meaning that its predictions cannot perform as well as a model found with the aid of an oracle.
 
-\subsection{Non-linear Models}
+\subsection{Non-linear models}
+We next discuss several non-linear methods for regression: random forests, gradient boosting, and support vector machines.
+
+Both random forest and gradient boosting models use \textbf{decision trees} to make predictions. A decision tree is a binary tree where each non-leaf node represents a condition and each leaf node represents a prediction value. To make a prediction, start at the root node and check whether the condition at that node is true or false. If true, move down to the node's first child; if false, move to the second child. This process is repeated until a leaf node is reached. This node will give a value that the decision tree predicts.
+
+Although decision trees can be used as machine learning models on their own, it is more common to use decision trees in ensemble methods, which combine many different decision trees into a single model. A single decision tree will usually have high variance since a small change in the training set can lead to a completely different decision tree \cite{james2013introduction}.
+
+\textbf{Random Forests} solve the issue of high variance by aggregating the predictions of many independent decision trees. Each tree is fit using a subset of the observations and a subset of the predictors, so that the trees are relatively independent from one another.
+
+To generate a tree within a random forest model, first select a random sample of the $n$ observations with replacement. This is a process called \textbf{bootstrapping}. The number of observations chosen for each tree is a hyperparameter that can be changed. After selecting a set of observations, a random sample of predictors are chosen out of the $p$ predictors without replacement. Again, this helps decorrelate the trees. The number of predictors used in each tree is also a hyperparameter that can be changed. Then, a decision tree is generated using the available observations and predictors. The number of trees generated is another hyperparameter; usually, a random forest model will contain at least several hundred trees.
+
+To make predictions with a random forest, a test observation is passed into each decision tree and the predictions from each tree are aggregated. For regression, the results are normally aggregated using the mean; for classification, the prediction chosen most often by the trees is usually used as the final prediction.
+
+\textbf{Boosting} is the technique of sequentially improving a weak learner until it becomes a strong learner. A \textbf{gradient boosting model} (GBM) is a boosting technique that uses gradient descent to minimize error in a model and correct the shortcomings of the previous weak learner model. This is done through fitting a model, whether that is a linear regression or decision tree model, to a set of data points. From there, the residual of each data point is calculated and another linear regression or decision tree model is fitted to those residuals. A new model is fitted to the residual data of the residual data fitted model, and so on. These models are then all added together to result in a strong GBM model.
+
+Gradient boosting can be used for both regression and classification if they use decision trees, or if they use linear regression models, they can only perform regression. When using a gradient boosting model with decision trees, variable importance and pruning can be used as a sort of pseudo-variable selection method to lower complexity and prevent over-fitting. However, when using a gradient boosting model with linear regression, there is the ability to use lasso, ridge, and elastic net penalized regression as the weak learner and perform variable selection.
+
+Gradient boosting models often suffer from slow computation speeds due to the large number of sequential models that need to be trained. \textbf{Extreme Gradient Boosting} (XGBoost) is a faster version of gradient boosting that utilizes parallel computing as well as different optimization techniques to speed up computation. For these reasons, XGBoost is often preferred over standard gradient boosting models and is very commonly used in many machine learning applications.
+
+\textbf{Support vector machines} are versatile statistical models that can be used for both regression and classification. In the ideal case, a support vector machine is a binary classier whose decision boundary is a $(p-1)$-dimensional hyperplane in $p$-dimensional space that perfectly separates all of the observations for one class on one side and the observations for the other class lie on the opposite side. Moreover, the hyperplane chosen by a support vector machine will maximize the distance between this hyperplane and any of the observation points.
+
+However, most data sets cannot be split perfectly into two sides like the example shown in \ref{fig:svm-1}. Furthermore, this model has very high variance changing the points near the hyperplane can significantly alter the hyperplane. Finally, this model cannot handle cases where the true boundary is non-linear. Luckily, support vector machines in practice can handle such issues. Typically, support vector machines are allowed to misclassify some of the training data, which address the cases where the data cannot be split perfectly by a hyperplane. Also, the predictor space can be enlarged to handle non-linear decision boundaries; this is typically done by using \textbf{kernels}. For example, using a radial kernel can create decision boundaries that enclose regions of the $p$-dimensional space.
+
+Although support vector machines are usually used for classification, they can be generalized to perform regression as well. We will be using support vector machines for regression in our study.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Methods}
+To test and evaluate each of the models discussed above, we considered both Monte Carlo simulations and empirical data. Monte Carlo simulations allow us to test the models under different environments to get a comprehensive idea of how each model performs. Furthermore, by repeating each simulation many times, our results will be more consistent than if we just relied on one data set to test each model.
+
+For our empirical data analysis, we used
 \subsection{Models}
 % lists and describes every tested model. Can include equations for models, but should not go into such great depth about each model: that can be reserved for literature review portion of the paper.
 
@@ -339,7 +376,7 @@ We used a \textbf{factorial design} for our simulations. This means that we cons
 
 By taking every possible combination of these factors, we obtain $3\times 3\times 3\times 4\times 3 = 324$ different settings for the simulations. However, because an independent correlation matrix does not use the correlation value $\rho$, we actually only used 270 combinations. For each combination of factors, we ran 100 simulations. In each simulation, we generated two data sets: one to train the various models, and one to test the models and evaluate performance. Both data sets contained $n$ observations, meaning that a total of $2n$ observations were generated for each simulation.
 
-As mentioned earlier, we considered four different covariance matrix structures. These structures determine the correlation between different predictors. If $\Sigma$ is a correlation matrix, then $\mathbf{\Sigma_{ij}}$, the entry at the $i$-th row and $j$-th column, represents the correlation between predictors $i$ and $j$. If $\mathbf{\Sigma_{ij}}=0$, there is no correlation; but if $\mathbf{\Sigma_{ij}}=1$, then predictors $i$ and $j$ are perfectly correlated. Note that a correlation matrix is always symmetric, so $\mathbf{\Sigma}_{ij} = \mathbf{\Sigma}_{ji}$ for all indices $i$ and $j$. This correlation can severely impact the performance of statistical models; if several predictors are highly correlated, then machine learning algorithms are less able to determine which predictors are actually related to the response.
+As mentioned earlier, we considered four different covariance matrix structures. These structures determine the correlation between different predictors. If $\mathbf{\Sigma}$ is a correlation matrix, then $\mathbf{\Sigma}_{ij}$, the entry at the $i$-th row and $j$-th column, represents the correlation between predictors $i$ and $j$. If $\mathbf{\Sigma}_{ij}=0$, there is no correlation; but if $\mathbf{\Sigma}_{ij}=1$, then predictors $i$ and $j$ are perfectly correlated. Note that a correlation matrix is always symmetric, so $\mathbf{\Sigma}_{ij} = \mathbf{\Sigma}_{ji}$ for all indices $i$ and $j$. This correlation can severely impact the performance of statistical models; if several predictors are highly correlated, then machine learning algorithms are less able to determine which predictors are actually related to the response.
 
 The first correlation structure we considered is \textbf{independent correlation}. This means that the correlation matrix $\mathbf{\Sigma}$ has the form
 \begin{equation}
@@ -350,7 +387,7 @@ The first correlation structure we considered is \textbf{independent correlation
 		0 & 0 & \cdots & 1
 	\end{bmatrix}
 \end{equation}
-In other words, there is no correlation between different predictors, since $\mathbf{\Sigma}_{ij} = 0$ whenever $i\neq j$.
+In other words, there is no correlation between different predictors, since $\mathbf{\Sigma}_{ij} = 0$ whenever $i\neq j$. Although this is a very simple case, it is very unrealistic.
 
 The next covariance structure is called \textbf{symmetric compound}. This structure has the form
 \begin{equation}\label{eqn:symmetric-compound-matrix}
@@ -361,7 +398,7 @@ The next covariance structure is called \textbf{symmetric compound}. This struct
 		\rho & \rho & \cdots & 1
 	\end{bmatrix}
 \end{equation}
-where $\rho \in [0, 1]$ is some correlation value. A symmetric compound covariance structure assumes that $\mathbf{\Sigma}_{ij} = \rho$ whenever $i \neq j$, meaning that all predictors are equally correlated with one another.
+where $\rho \in [0, 1]$ is some correlation value. A symmetric compound covariance structure assumes that $\mathbf{\Sigma}_{ij} = \rho$ whenever $i \neq j$, meaning that all predictors are equally correlated with one another. By introducing correlation between different predictors, the data generated in our simulations is more realistic. However, a symmetric compound covariance matrix is still relatively simplistic. In real data sets, it is unrealistic to assume that all of the predictors have the exact same correlation with one another.
 
 An autoregressive covariance structure assumes that
 \begin{equation}
@@ -372,7 +409,7 @@ An autoregressive covariance structure assumes that
 		\rho^{p - 1} & \rho^{p - 2} & \cdots & 1
 	\end{bmatrix}
 \end{equation}
-For any indices $i$ and $j$, we have $\mathbf{\Sigma}_{ij} = \rho^{\vert i - j\vert}$. Consequently, each predictor is strongly correlated with nearby predictors and weakly correlated with more distant predictors. This form of covariance is commonly seen when using time series, since observed values at nearby times are likely to be highly correlated with one another.
+For any indices $i$ and $j$, we have $\mathbf{\Sigma}_{ij} = \rho^{\vert i - j\vert}$. Consequently, each predictor is strongly correlated with nearby predictors and weakly correlated with more distant predictors. This form of covariance is commonly seen when using time series, since observed values at nearby times are likely to be highly correlated with one another. 
 
 Finally, a blockwise correlation matrix has the block-diagonal form
 \begin{equation}
@@ -383,7 +420,7 @@ Finally, a blockwise correlation matrix has the block-diagonal form
 		0 & 0 & \cdots & \mathbf{B}_k
 	\end{bmatrix}
 \end{equation}
-where $0$ represents a block containing all zeroes, and each block $\mathbf{B}_i$ has a form identical to the symmetric compound matrix in Equation \ref{eqn:symmetric-compound-matrix}. This implies that predictors within the same block have correlation $\rho\in [0, 1]$, whereas predictors in different blocks have zero correlation. One important consideration when using blockwise correlation is the size of each block. For our simulations, we used a block size of 5 when $p = 10$, a block size of 25 when $p = 100$, and a block size of 100 when $p = 2000$.
+where $0$ represents a block containing all zeroes, and each block $\mathbf{B}_i$ has a form identical to the symmetric compound matrix in Equation \ref{eqn:symmetric-compound-matrix}. This implies that predictors within the same block have correlation $\rho\in [0, 1]$, whereas predictors in different blocks have zero correlation. This type of correlation is more realistic than independent or symmetric compound correlation, since only certain groups of predictors are correlated with one another. One important consideration when using blockwise correlation is the size of each block. For our simulations, we used a block size of 5 when $p = 10$, a block size of 25 when $p = 100$, and a block size of 100 when $p = 2000$.
 
 All of our simulations were run using version 4.1.0 of \lstinline!R!. Several different libraries were used to fit machine learning models using our simulated data. Table \ref{tab:model-libraries} summarizes the libraries used to fit models.
 
@@ -394,7 +431,7 @@ All of our simulations were run using version 4.1.0 of \lstinline!R!. Several di
 	\begin{tabular}{lll}\hline
 		\textbf{Library}    & \textbf{Models used}                                 & \textbf{Version} \\ \hline
 		\lstinline!stats!   & Ordinary least squares                               & 4.1.0            \\
-		\lstinline!MASS!    & Forward/Backward selection                                   & 7.3-54           \\
+		\lstinline!MASS!    & Forward and backward selection                       & 7.3-54           \\
 		\lstinline!glmnet!  & Ridge, lasso, elastic-net                            & 4.1-1            \\
 		\lstinline!gcdnet!  & Adaptive ridge, adaptive lasso, adaptive elastic-net & 1.0.5            \\
 		\lstinline!ncvreg!  & SCAD and MCP                                         & 3.13.0           \\
@@ -436,7 +473,13 @@ This data is a prime example of the $p>>n$ problem where there are many more pre
 For analyzing the error of models fitted using this empirical data, we performed nested cross validation. Many of the models fitted used cross validation for tuning purposes to find the best input parameters. Examples of these parameters include $\lambda$ for penalized regression techniques, the number of trees and number of predictors for random forest, as well as max depth and learning rate for XGBoost. However, we also perform 5-fold cross validation before we even allow the models to tune their parameters. By doing nested cross validation, testing data is not used for training the model \textbf{or} tuning model parameters. This results in a more accurate error calculation. If nested cross validation was not used, models could tune their parameters in a way that overfits the model to the testing data which would lead to artificially decreased error and invalid results.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results}
-\subsection{Regression Models}
+
+
+\subsection{Monte Carlo Simulations}
+% stick the results from logisitc regression and classification models here
+
+
+\subsection{Empirical Data}
 % Stick all the results from the linear regression models here
 
 \begin{figure}[h!]
@@ -445,10 +488,6 @@ For analyzing the error of models fitted using this empirical data, we performed
 	\label{fig:empirical_mse}
 	\caption{Average Mean Square Error for Empirical Data Models}
 \end{figure}
-
-\subsection{Classification Models}
-% stick the results from logisitc regression and classification models here
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Discussion}
 % discussion of findings, future work, and contributions
