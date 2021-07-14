@@ -494,12 +494,12 @@ Because we ran simulations using 270 different combinations of factors, we will 
 	\caption{Average Mean Square Error for Empirical Data Models}
 \end{figure}
 
+\begin{table}
+\centering
 \begin{tabular}{lllll}
 	\hline
-	& \multicolumn{4}{l}{type} \\ 
-	& \multicolumn{2}{l}{Train MSE} & \multicolumn{2}{l}{Test MSE} \\ 
-	& \multicolumn{2}{l}{mse} & \multicolumn{2}{l}{mse} \\ 
-	model name  & mean & sd & mean & \multicolumn{1}{l}{sd} \\ 
+	& \multicolumn{2}{l}{Train} & \multicolumn{2}{l}{Test} \\ 
+	Model  & Average MSE & SD & Average MSE & \multicolumn{1}{l}{SD} \\ 
 	\hline
 	Ridge  & $0.1391293$ & $0.0265920$ & $0.2858$ & $0.06098$ \\
 	Lasso  & $0.1841874$ & $0.0159230$ & $0.2304$ & $0.03371$ \\
@@ -510,6 +510,7 @@ Because we ran simulations using 270 different combinations of factors, we will 
 	Random Forest  & $0.0377885$ & $0.0013448$ & $0.2653$ & $0.05253$ \\
 	\hline 
 \end{tabular}
+\end{table}
 
 \begin{figure}[h!]
 	\centering
