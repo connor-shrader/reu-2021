@@ -344,38 +344,73 @@ For our empirical data analysis, we used
 \subsection{Models}
 % lists and describes every tested model. Can include equations for models, but should not go into such great depth about each model: that can be reserved for literature review portion of the paper.
 
+This section gives the specific details how we fit each model for either the simulated data or the empirical data. For a conceptual overview of each of the models, refer back to the previous section.
+
+All of our simulations were run using version 4.1.0 of \lstinline!R!. Several different libraries were used to fit machine learning models using our simulated data. Table \ref{tab:model-libraries} summarizes the libraries used to fit models.
+
+\begin{table}[h]
+	\centering
+	\caption{\lstinline!R! Libraries used and the models used from each library}
+	\label{tab:model-libraries}
+	\begin{tabular}{lll}\hline
+		\textbf{Library}    & \textbf{Models used}                                 & \textbf{Version} \\ \hline
+		\lstinline!stats!   & Ordinary least squares                               & 4.1.0            \\
+		\lstinline!MASS!    & Forward and backward selection                       & 7.3-54           \\
+		\lstinline!glmnet!  & Ridge, lasso, elastic-net                            & 4.1-1            \\
+		\lstinline!ncvreg!  & SCAD and MCP                                         & 3.13.0           \\
+		\lstinline!xgboost! & Gradient boosting                                    & 1.4.1.1          \\
+		\lstinline!ranger!  & Random forest                                        & 0.12.1           \\
+		\lstinline!e1071!   & Support vector machine                               & 1.7-7            \\\hline
+	\end{tabular}
+\end{table}
+
+Ordinary least squares models were fitted using the \lstinline!lm! function from the \lstinline!stats! package in base \lstinline!R!.
+
+Subset selection models using forward selection, backward selection, stepwise forward selection, and stepwise backward selection were fitted using the \lstinline!MASS! library. For each of these four algorithms, we fit models using both AIC and BIC, giving up to eight models total.
+
+For ridge, lasso, and elastic-net regression using \lstinline!glmnet!, we used the \lstinline!cv.glmnet! function. This function uses cross-validation to determine the value of $\lambda$ that minimizes the cross-validation error. Using cross-validation can help generate a model that performs well on both training and testing data. We used the default value of 10 folds to fit models using \lstinline!glmnet!. For elastic-net regression, we used the hyperparameter $\alpha = 0.8$. This means that the elastic-net model is more similar to lasso (where $\alpha = 1$) than ridge (where $\alpha = 0$). The remaining hyperparameters were given their default values.
+
+For SCAD and MCP models, we used the \lstinline!cv.ncvreg! function from the \lstinline!ncvreg! library. Both SCAD and MCP depend on an additional hyperparameter $a$. We used the default values of $a$ for both models: 3 for MCP and 3.7 for SCAD (note that the \lstinline!ncvreg! documentation calls this hyperparameter $\gamma$ instead of $a$). All other arguments were given their default values.
+
+For the three non-linear models (gradient boosting, random forests, and support vector machines), we used cross-validation and grid search to find suitable hyperparameters, and then fit a model using the full training set using the hyperparameters selected. Because many the data sets used had large values of $n$ and $p$, only a few hyperparameters were tuned. This ensured that the models could be fit within a reasonable amount of time.
+
+For gradient boosting with \lstinline!xgboost!, we used different values for the learning rate (0.1, 0.3, and 0.5) and maximum tree depth (1, 3, and 7). A maximum of 1000 trees were generated, with an early stopping condition if the model failed to improve for several iterations in a row. We used five folds in the cross-validation.
+
+For random forests using \lstinline!ranger!, we tuned the number of predictors used per decision tree ($\lfloor \sqrt{p}\rfloor$, $\lfloor p / 3 \rfloor$, and $\lfloor p / 2 \rfloor$) and the number of trees (300, 400, 500 and 600). The best model was selected based on the out-of-bag error, which represents the average error for each observation using only the trees that did not include that observation.
+
+Finally, for support vector machines using \lstinline!e1071!, we varied $\epsilon$ (0.1, 0.5, 2), which affects the model's sensitivity to small errors. We also controlled the cost value $C$ (0.5, 1, 2), which affects how much the model punishes wrong predictions.
+
+Some of the models used could only be used for certain values of $n$ and $p$. This is because either the runtime becomes unreasonable when $n$ or $p$ are large, or the model simply cannot be used when $p$ is too large. Ordinary least squares was used when $p\leq n$, since it cannot be used at all when $p>n$. For the same reason, the forward subset selection algorithms were also used when $p\leq n$. However, the backward subset selection algorithms were only used when $p\leq 40$. When $p>40$, the runtime was very long, so we chose to discard backward selection when $p$ was too large. Ridge regression was used when $p\leq n$ as well.
+
+Lasso, SCAD, MCP, GBM, and Random Forest models were used for all data sets. Support vector machine models were made for all of the simulated data but was not used for the empirical data. The empirical data has way more predictors than a support vector machine could handle.
+
 \subsection{Monte Carlo Simulations}
 % outline data generation process and factorial design process
 
-Monte Carlo simulations use randomly generated data to fit and test our regression and classification models. There are several benefits to using simulated data rather than experimental data:
-\begin{itemize}
-	\item The true relationship between the predictor variables and the response is known.
-	\item Simulations can be iterated many times, giving sturdier results about the effectiveness of each model.
-	\item We have full control over factors such as the number of predictors and the amount of correlation between predictors.
-\end{itemize}
+\textbf{Monte Carlo simulations} use randomly generated data to fit and test our regression and classification models. There are several benefits to using simulated data rather than experimental data. For one, the true relationship between the predictor variables and the response is known. Simulations can also be iterated many times, giving sturdier results about the effectiveness of each model. Finally, Monte Carlo simulations give us full control over how our data is distributed. This enables us to evaluate the models under various conditions.
 
-For the simulated data, we assumed that the relationship between the response variable $y$ and the predictors $x_1, x_2, \dotsc, x_p$ was linear. That is, we assumed that
+For the simulated data, we assumed that the relationship between the response variable $Y$ and the predictors $X_1, X_2, \dotsc, X_p$ was linear. That is, we assumed that
 \begin{equation}
-	y = \beta_0 + \beta_1 x_1 + \cdots + \beta_p x_p + \epsilon
+	Y = \beta_0 + \beta_1 X_1 + \cdots + \beta_p X_p + \epsilon
 \end{equation}
 where $\beta_0$ is some intercept, $\beta_1, \dotsc, \beta_p$ are coefficient values and $\epsilon\sim \mathcal{N}(0, \sigma^2)$ is a normally distributed random error with mean 0 and variance $\sigma^2$.
 
 To generate the data, we first defined $\beta = [\beta_0, \beta_1, \dotsc, \beta_p]^\top$, a $(p + 1)\times 1$ vector of coefficient values. For our simulations, we used $\beta_0 = 1$, $\beta_1 = 2$, $\beta_2 = -2$, $\beta_5=0.5$ and $\beta_6 = 3$; the remaining coefficient values were set to 0.
 
-Next, we generated $\mathbf{X}$, a $n\times (p + 1)$ matrix of predictor variables. The first column contains 1 in all of its entries; this corresponds to the intercept of our linear model. Column $i$ of $\mathbf{X}$ contains the variable values for predictor $x_{i - 1}$, for $1\leq i\leq p$. These values were generated using the $p$-dimensional multivariate normal distribution $\mathcal{N}_p(0, \mathbf{\Sigma})$ with mean zero and covariance matrix $\mathbf{\Sigma}$. We assumed that every predictor had a standard deviation of 1, making the covariance matrix equivalent to a correlation matrix. Four different correlation matrix structures were considered in our study.
+Next, we generated $\mathbf{X}$, a $n\times (p + 1)$ matrix where each row contains the predictor values for one observation. The first column contains 1 in all of its entries; this corresponds to the intercept of our linear model. These values were generated using the $p$-dimensional multivariate normal distribution $\mathcal{N}_p(0, \mathbf{\Sigma})$ with mean zero and covariance matrix $\mathbf{\Sigma}$. We assumed that every predictor had a standard deviation of 1, making the covariance matrix equivalent to a correlation matrix. Four different correlation matrix structures were considered in our study, which are discussed later.
 
-We then generated an $n\times 1$ error vector $\mathbf{e}\sim \mathcal{N}(0, \sigma^2)$ with mean zero and variance $\sigma^2$. For regression models, the response $\mathbf{y}$ can then be computed by
+We then generated an $n\times 1$ error vector $\mathbf{e}\sim \mathcal{N}(0, \sigma^2)$ with mean zero and variance $\sigma^2$. The response $\mathbf{y}$ can then be computed by
 \begin{equation}
 	\mathbf{y} = \mathbf{X}\beta + \mathbf{e}
 \end{equation}
 
-We used a \textbf{factorial design} for our simulations. This means that we considered several factors that affect the data generation process, each having multiple possible values. We then generated data using every possible combination of factor values, giving us a comprehensive assessment of model performance under various conditions.
+We used a \textbf{factorial design} for our simulations. This means that we considered several factors that affect the data generation process, each having multiple possible values. We then generated data using every possible combination of factor values, giving us a comprehensive assessment of model performance under various conditions. The factors that we controlled in our simulation are:
 \begin{itemize}
-	\item $n$, the number of observations: 50, 200, 1000.
-	\item $p$, the number of predictors: 10, 100, 2000.
-	\item $\sigma$, the standard deviation of the random error: 1, 3, 6.
-	\item The correlation matrix structure: independent, symmetric compound, autoregressive, blockwise.
-	\item $\rho$, the correlation between predictors: 0.2, 0.5, 0.9.
+	\item $n$, the number of observations (50, 200, 1000),
+	\item $p$, the number of predictors (10, 100, 2000),
+	\item $\sigma$, the standard deviation of the random error (1, 3, 6),
+	\item The correlation matrix structure (independent, symmetric compound, autoregressive, blockwise), and
+	\item $\rho$, the correlation between predictors (0.2, 0.5, 0.)
 \end{itemize}
 
 By taking every possible combination of these factors, we obtain $3\times 3\times 3\times 4\times 3 = 324$ different settings for the simulations. However, because an independent correlation matrix does not use the correlation value $\rho$, we actually only used 270 combinations. For each combination of factors, we ran 100 simulations. In each simulation, we generated two data sets: one to train the various models, and one to test the models and evaluate performance. Both data sets contained $n$ observations, meaning that a total of $2n$ observations were generated for each simulation.
@@ -425,40 +460,6 @@ Finally, a blockwise correlation matrix has the block-diagonal form
 	\end{bmatrix}
 \end{equation}
 where $0$ represents a block containing all zeroes, and each block $\mathbf{B}_i$ has a form identical to the symmetric compound matrix in Equation \ref{eqn:symmetric-compound-matrix}. This implies that predictors within the same block have correlation $\rho\in [0, 1]$, whereas predictors in different blocks have zero correlation. This type of correlation is more realistic than independent or symmetric compound correlation, since only certain groups of predictors are correlated with one another. One important consideration when using blockwise correlation is the size of each block. For our simulations, we used a block size of 5 when $p = 10$, a block size of 25 when $p = 100$, and a block size of 100 when $p = 2000$.
-
-All of our simulations were run using version 4.1.0 of \lstinline!R!. Several different libraries were used to fit machine learning models using our simulated data. Table \ref{tab:model-libraries} summarizes the libraries used to fit models.
-
-\begin{table}[h]
-	\centering
-	\caption{\lstinline!R! Libraries used and the models used from each library}
-	\label{tab:model-libraries}
-	\begin{tabular}{lll}\hline
-		\textbf{Library}    & \textbf{Models used}                                 & \textbf{Version} \\ \hline
-		\lstinline!stats!   & Ordinary least squares                               & 4.1.0            \\
-		\lstinline!MASS!    & Forward and backward selection                       & 7.3-54           \\
-		\lstinline!glmnet!  & Ridge, lasso, elastic-net                            & 4.1-1            \\
-		\lstinline!gcdnet!  & Adaptive ridge, adaptive lasso, adaptive elastic-net & 1.0.5            \\
-		\lstinline!ncvreg!  & SCAD and MCP                                         & 3.13.0           \\
-		\lstinline!xgboost! & Gradient boosting                                    & 1.4.1.1          \\
-		\lstinline!ranger!  & Random forest                                        & 0.12.1           \\
-		\lstinline!e1071!   & Support vector machine                               & 1.7-7            \\\hline
-	\end{tabular}
-\end{table}
-
-For ridge, lasso, and elastic-net regression using \lstinline!glmnet!, we used the \lstinline!cv.glmnet! function. This function uses cross-validation to determine the value of $\lambda$ that minimizes the cross-validation error. We used ten folds with \lstinline!cv.glmnet!. Using cross-validation can help generate a model that has a good test performance. For elastic-net regression, we used the hyperparameter $\alpha = 0.8$. This means that the elastic-net model is more similar to lasso (where $\alpha = 1$) than ridge (where $\alpha = 0$). The remaining hyperparameters were given their default values.
-
-We used the \lstinline!cv.gcdnet! function from the \lstinline!gcdnet! library for the adaptive versions of ridge, lasso, and elastic-net. Again, ten folds were used for the cross-validation, and all hyperparameters were given their default values.
-
-For SCAD and MCP models, we used the \lstinline!cv.ncvreg! function from the \lstinline!ncvreg! library. We used the default values of $a$ for both models: 3 for MCP and 3.7 for SCAD (note that the \lstinline!ncvreg! documentation calls this hyperparameter $\gamma$ instead of $a$).
-
-For the three non-linear models (gradient boosting, random forests, and support vector machines), we used cross-validation and grid search to find suitable hyperparameters, and then fit a model using the full training set using those hyperparameters. For gradient boosting with \lstinline!xgboost!, we used different values for the learning rate (0.1, 0.3, and 0.5) and maximum tree depth (1, 3, and 7). A maximum of 1000 trees were generated, with an early stopping condition if the model failed to improve for several iterations in a row. The cross-validation function used five folds.
-
-For random forests using \lstinline!ranger!, we tuned the number of predictors used per decision tree ($\lfloor \sqrt{p}\rfloor$, $\lfloor p / 3 \rfloor$, and $\lfloor p / 2 \rfloor$) and the number of trees (300, 400, 500 and 600). The cross-validation function used five folds.
-
-Finally, for support vector machines using \lstinline!e1071!, we varied $\epsilon$ (TODO: explain this) and the cost function (0.5, 1, and 2).
-
-
-
 
 \subsection{Empirical Data}
 % outline empirical data sources and what each database is about / what we try to predict about it
