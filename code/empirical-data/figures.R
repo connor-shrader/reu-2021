@@ -33,7 +33,7 @@ y_hist
 # Create bar plot of empirical data results
 # Basic barplot
 cv_plot_df <- mse_df
-model_names <- c("Lasso", "Ridge", "Elas. Net", "Adap. Lasso", "Adap. Ridge", "Adap. Elas. Net", "SCAD", "MCP", "Random Forest", "XGBoost")
+model_names <- c("Lasso", "Ridge", "Elas. Net", "Adap. Lasso", "Adap. Ridge", "Adap. Elas. Net", "SCAD", "MCP", "XGBoost", "Random Forest")
 cv_plot_df$names <- factor(model_names, levels = model_names)
 cv_plot_df$avg_mse <- round(cv_plot_df$avg_mse, 4)
 
