@@ -17,6 +17,7 @@ library(ncvreg)
 library(ranger)
 library(randomForest)
 library(xgboost)
+library(tables)
 
 # calc_mse copied from models.R in empirical-data.
 calc_mse <- function(model, dat) {
@@ -109,5 +110,8 @@ mse_plot <- ggplot(data = all_results, mapping = aes(x = model_name, y = mse, la
   )
 
 save_plot(plot = mse_plot,
-          filename = "emprical_mse",
+          filename = "empirical_mse",
           path = "./images")
+
+tab <- tabular(model_name ~ (type * mse) * (mean + sd), data = all_results)
+print(toLatex(tab, options = list(justification = "l")))

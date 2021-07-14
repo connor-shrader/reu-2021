@@ -64,7 +64,7 @@ plot_metric_old <- function(data, metric, facet, ...) {
 }
 
 # This function is a more complete version of plot_metric.
-plot_metric <- function(data, metric, facet, color, ...) {
+plot_metric <- function(data, metric, facet, color, ylabel = "Mean test MSE", ...) {
   mean_metric <- paste("mean_", metric, sep = "")
   sd_metric <- paste("sd_", metric, sep = "")
   
@@ -77,7 +77,7 @@ plot_metric <- function(data, metric, facet, color, ...) {
     scale_shape_manual(values = 21:24, name = "Correlation") +
     scale_color_manual(values = hue_pal()(4), name = "Correlation") +
     scale_fill_manual(values = hue_pal()(4), name = "Correlation") +
-    labs(x = "Model name", y = "Mean test MSE", color = "Correlation", shape = "Correlation") +
+    labs(x = "Model name", y = ylabel, color = "Correlation", shape = "Correlation") +
     theme(
       panel.background = element_rect(fill = "white"),
       panel.border = element_rect(color = "black", fill = NA, size = 0.2),
@@ -94,6 +94,21 @@ plot_metric <- function(data, metric, facet, color, ...) {
   return(plt)
 }
 
+Mean <- function(x) {
+  if(length(x) == 0) {
+    return(-1)
+  }
+  return(round(mean(x), 2))
+}
+
+SD <- function(x) {
+  if(length(x) == 0) {
+    return(-1)
+  }
+  return(round(sd(x), 2))
+}
+
+# generate_table(all_results, metric = "train_mse", n = 1000, p = 10)
 generate_table <- function(data, metric, ...) {
   data <- subset_data(data, ...)
   data <- data[!is.na(data[[metric]]), ]
@@ -133,8 +148,8 @@ generate_table <- function(data, metric, ...) {
   
   # The following two lines remove rows and columns that have a 0 as the first entry.
   # This removes unncessary rows and columns that aren't used for our plot/table.
-  tab <- tab[tab[, 1] > 0, ]
-  tab <- tab[, tab[1, ] > 0]
+  tab <- tab[tab[, 1] > -1, ]
+  tab <- tab[, tab[1, ] > -1]
   
   # Call the following line to print out the LaTeX table. I could not get it to
   # save correctly to a file, so the output must be copy/pasted.
@@ -149,7 +164,7 @@ aggregate_results <- aggregate_results[
   !aggregate_results$model_name %in% c("adap_ridge", "adap_lasso", "adap_enet"), ]
 
 all_results <- all_results[
-  !all_results$model_name %in% c("adap_lasso", "adap_lasso", "adap_enet"), ]
+  !all_results$model_name %in% c("adap_ridge", "adap_lasso", "adap_enet"), ]
 
 # aggregate_results <- aggregate_results[aggregate_results$model_name != "gbm" &
 #                                       aggregate_results$model_name != "rf" &
@@ -158,10 +173,10 @@ all_results <- all_results[
 old_names <- c("fm", "ab", "bb", "asb", "bsb", "af", "bf", "asf",
                "bsf", "ridge", "lasso", "enet", "scad", "mcp", "gbm",
                "rf", "svm")
-new_names <- c("OLS", "AIC back.", "BIC back.", "AIC step. back.",
-               "BIC step. back.", "AIC for.", "BIC for.",
-               "AIC step. for.", "BIC step. for.", "Ridge", "Lasso",
-               "E-net", "SCAD", "MCP", "GB", "RF", "SVM")
+new_names <- c("OLS", "AIC B.", "BIC B", "AIC SB",
+               "BIC SB", "AIC F", "BIC F",
+               "AIC SF", "BIC SF", "Ridge", "Lasso",
+               "E-net", "SCAD", "MCP", "GBM", "RF", "SVM")
 
 # Replace model names with more readable names.
 aggregate_results$model_name <- mapvalues(aggregate_results$model_name,
@@ -178,20 +193,6 @@ all_results$model_name <- mapvalues(all_results$model_name,
 # x <- melt(sub_results, id = c("type", "corr", "model_name", "st_dev"), measured = c("mean_test_mse", "sd_test_mse"))
 # y <- cast(x, st_dev + model_name ~ type + corr)
 
-Mean <- function(x) {
-  if(length(x) == 0) {
-    return(-1)
-  }
-  return(round(mean(x), 3))
-}
-
-SD <- function(x) {
-  if(length(x) == 0) {
-    return(-1)
-  }
-  return(round(sd(x), 3))
-}
-
 plot_results <- aggregate_results
 
 # Rename the st_dev column so that the plot has better facet labels.
@@ -207,7 +208,7 @@ apply(X = dimensions, MARGIN = 1, FUN = function(row) {
   p <- row[["p"]]
   
   plt <- plot_metric(plot_results, "train_mse", facet = c("type", "st_dev"),
-              color = "corr", n = n, p = p)
+              color = "corr", ylabel = "Mean Train MSE", n = n, p = p)
   save_plot(plot = plt,
             filename = paste("facet_train_mse_", n, "_", p, sep = ""),
             path = "./images/facet-train-mse")
@@ -220,7 +221,7 @@ apply(X = dimensions, MARGIN = 1, FUN = function(row) {
   p <- row[["p"]]
   
   plt <- plot_metric(plot_results, "test_mse", facet = c("type", "st_dev"),
-                     color = "corr", n = n, p = p)
+                     color = "corr", ylabel = "Mean Test MSE",n = n, p = p)
   save_plot(plot = plt,
             filename = paste("facet_test_mse_", n, "_", p, sep = ""),
             path = "./images/facet-test-mse")
@@ -235,7 +236,7 @@ apply(X = dimensions, MARGIN = 1, FUN = function(row) {
   p <- row[["p"]]
   
   plt <- plot_metric(accuracy_results, "tn", facet = c("type", "st_dev"),
-                     color = "corr", n = n, p = p)
+                     color = "corr", ylabel = "Mean True Negatives",n = n, p = p)
   save_plot(plot = plt,
             filename = paste("facet_tn_", n, "_", p, sep = ""),
             path = "./images/facet-tn")
@@ -248,7 +249,7 @@ apply(X = dimensions, MARGIN = 1, FUN = function(row) {
   p <- row[["p"]]
   
   plt <- plot_metric(accuracy_results, "fn", facet = c("type", "st_dev"),
-                     color = "corr", n = n, p = p)
+                     color = "corr", ylabel = "Mean False Negatives",n = n, p = p)
   save_plot(plot = plt,
             filename = paste("facet_fn_", n, "_", p, sep = ""),
             path = "./images/facet-fn")
@@ -261,7 +262,7 @@ apply(X = dimensions, MARGIN = 1, FUN = function(row) {
   p <- row[["p"]]
   
   plt <- plot_metric(accuracy_results, "fp", facet = c("type", "st_dev"),
-                     color = "corr", n = n, p = p)
+                     color = "corr", ylabel = "Mean False Positives",n = n, p = p)
   save_plot(plot = plt,
             filename = paste("facet_fp_", n, "_", p, sep = ""),
             path = "./images/facet-fp")
@@ -274,7 +275,7 @@ apply(X = dimensions, MARGIN = 1, FUN = function(row) {
   p <- row[["p"]]
   
   plt <- plot_metric(accuracy_results, "tp", facet = c("type", "st_dev"),
-                     color = "corr", n = n, p = p)
+                     color = "corr", ylabel = "Mean True Positives",n = n, p = p)
   save_plot(plot = plt,
             filename = paste("facet_tp_", n, "_", p, sep = ""),
             path = "./images/facet-tp")

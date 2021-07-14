@@ -14,6 +14,7 @@ save_plot <- function(plot, filename, path, png_only = FALSE) {
       filename = paste(filename, ".eps", sep = ""),
       path = path,
       plot = plot,
+      device = cairo_ps,
       width = 10,
       height = 6,
       unit = "in"

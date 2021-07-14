@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.12.4)  14 JUL 2021 16:24
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.12.4)  14 JUL 2021 18:00
 entering extended mode
 **./final-report.tex
 (final-report.tex
@@ -391,6 +391,9 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip64
 )
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/graphics\lscape.sty
+Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
+)
 (C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
 ) (C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang2.st
@@ -400,7 +403,7 @@ File: lstlang2.sty 2020/03/24 1.8d listings language file
 (C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang3.sty
 File: lstlang3.sty 2020/03/24 1.8d listings language file
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 52.
+Package hyperref Info: Option `colorlinks' set `true' on input line 53.
 
 (C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pd
 ftex.def
@@ -410,22 +413,22 @@ File: l3backend-pdftex.def 2020-09-24 L3 backend support: PDF output (pdfTeX)
 ) (final-report.aux)
 \openout1 = `final-report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 60.
-LaTeX Font Info:    ... okay on input line 60.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 60.
-LaTeX Font Info:    ... okay on input line 60.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 60.
-LaTeX Font Info:    ... okay on input line 60.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 60.
-LaTeX Font Info:    ... okay on input line 60.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 60.
-LaTeX Font Info:    ... okay on input line 60.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 60.
-LaTeX Font Info:    ... okay on input line 60.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 60.
-LaTeX Font Info:    ... okay on input line 60.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 60.
-LaTeX Font Info:    ... okay on input line 60.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 61.
+LaTeX Font Info:    ... okay on input line 61.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 61.
+LaTeX Font Info:    ... okay on input line 61.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 61.
+LaTeX Font Info:    ... okay on input line 61.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 61.
+LaTeX Font Info:    ... okay on input line 61.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 61.
+LaTeX Font Info:    ... okay on input line 61.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 61.
+LaTeX Font Info:    ... okay on input line 61.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 61.
+LaTeX Font Info:    ... okay on input line 61.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 61.
+LaTeX Font Info:    ... okay on input line 61.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -496,7 +499,7 @@ File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package color Info: Driver file: pdftex.def on input line 147.
 )
-Package hyperref Info: Link coloring ON on input line 60.
+Package hyperref Info: Link coloring ON on input line 61.
 
 (C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\nameref.sty
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
@@ -510,15 +513,15 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count297
 )
-LaTeX Info: Redefining \ref on input line 60.
-LaTeX Info: Redefining \pageref on input line 60.
-LaTeX Info: Redefining \nameref on input line 60.
+LaTeX Info: Redefining \ref on input line 61.
+LaTeX Info: Redefining \pageref on input line 61.
+LaTeX Info: Redefining \nameref on input line 61.
  (final-report.out) (final-report.out)
 \@outlinefile=\write3
 \openout3 = `final-report.out'.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 64--65
+Underfull \hbox (badness 10000) in paragraph at lines 65--66
 
  []
 
@@ -533,7 +536,7 @@ Package epstopdf Info: Source file: <images/ols.eps>
 (epstopdf)                    size: 12192 bytes
 (epstopdf)             Command: <epstopdf --outfile=images/ols-eps-converted-to
 .pdf images/ols.eps>
-(epstopdf)             \includegraphics on input line 118.
+(epstopdf)             \includegraphics on input line 119.
 Package epstopdf Info: Output file is already uptodate.
 
 
@@ -543,7 +546,7 @@ usion: found PDF version <1.7>, but at most version <1.5> allowed
 File: images/ols-eps-converted-to.pdf Graphic file (type pdf)
 <use images/ols-eps-converted-to.pdf>
 Package pdftex.def Info: images/ols-eps-converted-to.pdf  used on input line 11
-8.
+9.
 (pdftex.def)             Requested size: 289.07999pt x 173.44492pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -552,31 +555,31 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 Package amsmath Warning: Foreign command \atopwithdelims;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 148.
+(amsmath)                 on input line 149.
 
 [5] [6] [7]
 <images/ridge-diagram.png, id=173, 3011.25pt x 1806.75pt>
 File: images/ridge-diagram.png Graphic file (type png)
 <use images/ridge-diagram.png>
-Package pdftex.def Info: images/ridge-diagram.png  used on input line 204.
+Package pdftex.def Info: images/ridge-diagram.png  used on input line 205.
 (pdftex.def)             Requested size: 178.86703pt x 107.29756pt.
 <images/lasso-diagram.png, id=174, 3011.25pt x 1806.75pt>
 File: images/lasso-diagram.png Graphic file (type png)
 <use images/lasso-diagram.png>
-Package pdftex.def Info: images/lasso-diagram.png  used on input line 210.
+Package pdftex.def Info: images/lasso-diagram.png  used on input line 211.
 (pdftex.def)             Requested size: 178.86703pt x 107.29756pt.
  [8 <./images/ridge-diagram.png> <./images/lasso-diagram.png>]
 <images/lasso-scad-mcp-penalty.png, id=192, 3011.25pt x 1806.75pt>
 File: images/lasso-scad-mcp-penalty.png Graphic file (type png)
 <use images/lasso-scad-mcp-penalty.png>
 Package pdftex.def Info: images/lasso-scad-mcp-penalty.png  used on input line 
-272.
+273.
 (pdftex.def)             Requested size: 158.99156pt x 95.38786pt.
 <images/lasso-scad-mcp-derivative.png, id=193, 3011.25pt x 1806.75pt>
 File: images/lasso-scad-mcp-derivative.png Graphic file (type png)
 <use images/lasso-scad-mcp-derivative.png>
 Package pdftex.def Info: images/lasso-scad-mcp-derivative.png  used on input li
-ne 278.
+ne 279.
 (pdftex.def)             Requested size: 158.99156pt x 95.38786pt.
 
 
@@ -587,7 +590,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 File: images/lasso-scad-mcp-solution.png Graphic file (type png)
 <use images/lasso-scad-mcp-solution.png>
 Package pdftex.def Info: images/lasso-scad-mcp-solution.png  used on input line
- 295.
+ 296.
 (pdftex.def)             Requested size: 158.99156pt x 95.38786pt.
 
 
@@ -596,7 +599,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 [10 <./images/lasso-scad-mcp-penalty.png> <./images/lasso-scad-mcp-derivative.p
 ng>] [11 <./images/lasso-scad-mcp-solution.png>] [12]
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 348.
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 349.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -605,28 +608,112 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 <images/BRCA1-expression.png, id=265, 648.17157pt x 413.29407pt>
 File: images/BRCA1-expression.png Graphic file (type png)
 <use images/BRCA1-expression.png>
-Package pdftex.def Info: images/BRCA1-expression.png  used on input line 470.
+Package pdftex.def Info: images/BRCA1-expression.png  used on input line 471.
 (pdftex.def)             Requested size: 278.23828pt x 177.41658pt.
  [18 <./images/BRCA1-expression.png>]
-<images/empirical_cv_mse.png, id=273, 755.82375pt x 413.29407pt>
-File: images/empirical_cv_mse.png Graphic file (type png)
-<use images/empirical_cv_mse.png>
-Package pdftex.def Info: images/empirical_cv_mse.png  used on input line 492.
-(pdftex.def)             Requested size: 357.73407pt x 195.6104pt.
- [19 <./images/empirical_cv_mse.png>] [20] (../../code/figures/tables/mse_n50_p
-10.tex) [21]
-Overfull \vbox (33.35545pt too high) has occurred while \output is active []
+Package epstopdf Info: Source file: <images/empirical_mse.eps>
+(epstopdf)                    date: 2021-07-14 16:18:57
+(epstopdf)                    size: 13004 bytes
+(epstopdf)             Output file: <images/empirical_mse-eps-converted-to.pdf>
+
+(epstopdf)                    date: 2021-07-14 17:28:02
+(epstopdf)                    size: 14902 bytes
+(epstopdf)             Command: <epstopdf --outfile=images/empirical_mse-eps-co
+nverted-to.pdf images/empirical_mse.eps>
+(epstopdf)             \includegraphics on input line 493.
+Package epstopdf Info: Output file is already uptodate.
 
 
-[22] (final-report.bbl) [23] (final-report.aux)
+pdfTeX warning: pdflatex.exe (file ./images/empirical_mse-eps-converted-to.pdf)
+: PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<images/empirical_mse-eps-converted-to.pdf, id=273, 722.7pt x 433.62pt>
+File: images/empirical_mse-eps-converted-to.pdf Graphic file (type pdf)
+<use images/empirical_mse-eps-converted-to.pdf>
+Package pdftex.def Info: images/empirical_mse-eps-converted-to.pdf  used on inp
+ut line 493.
+(pdftex.def)             Requested size: 357.73407pt x 214.63925pt.
+<images/facet-train-mse/facet_train_mse_1000_10.png, id=274, 3011.25pt x 1806.7
+5pt>
+File: images/facet-train-mse/facet_train_mse_1000_10.png Graphic file (type png
+)
+<use images/facet-train-mse/facet_train_mse_1000_10.png>
+Package pdftex.def Info: images/facet-train-mse/facet_train_mse_1000_10.png  us
+ed on input line 517.
+(pdftex.def)             Requested size: 357.73407pt x 214.62271pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<images/facet-test-mse/facet_test_mse_1000_10.png, id=276, 3011.25pt x 1806.75p
+t>
+File: images/facet-test-mse/facet_test_mse_1000_10.png Graphic file (type png)
+<use images/facet-test-mse/facet_test_mse_1000_10.png>
+Package pdftex.def Info: images/facet-test-mse/facet_test_mse_1000_10.png  used
+ on input line 526.
+(pdftex.def)             Requested size: 357.73407pt x 214.62271pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<images/facet-train-mse/facet_train_mse_50_2000.png, id=278, 3011.25pt x 1806.7
+5pt>
+File: images/facet-train-mse/facet_train_mse_50_2000.png Graphic file (type png
+)
+<use images/facet-train-mse/facet_train_mse_50_2000.png>
+Package pdftex.def Info: images/facet-train-mse/facet_train_mse_50_2000.png  us
+ed on input line 535.
+(pdftex.def)             Requested size: 357.73407pt x 214.62271pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<images/facet-test-mse/facet_test_mse_50_2000.png, id=280, 3011.25pt x 1806.75p
+t>
+File: images/facet-test-mse/facet_test_mse_50_2000.png Graphic file (type png)
+<use images/facet-test-mse/facet_test_mse_50_2000.png>
+Package pdftex.def Info: images/facet-test-mse/facet_test_mse_50_2000.png  used
+ on input line 544.
+(pdftex.def)             Requested size: 357.73407pt x 214.62271pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[19 <./images/empirical_mse-eps-converted-to.pdf>] [20 <./images/facet-train-ms
+e/facet_train_mse_1000_10.png> <./images/facet-test-mse/facet_test_mse_1000_10.
+png>] [21 <./images/facet-train-mse/facet_train_mse_50_2000.png> <./images/face
+t-test-mse/facet_test_mse_50_2000.png>] [22] [23]
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 573.
+See the caption package documentation for explanation.
+
+(tables/train_mse_1000_10.tex) [24
+
+]
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 578.
+See the caption package documentation for explanation.
+
+(tables/test_mse_1000_10.tex) [25]
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 583.
+See the caption package documentation for explanation.
+
+(tables/train_mse_50_2000.tex)
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 588.
+See the caption package documentation for explanation.
+
+(tables/test_mse_50_2000.tex) [26] (final-report.bbl) [27
+
+] (final-report.aux)
 Package rerunfilecheck Info: File `final-report.out' has not changed.
 (rerunfilecheck)             Checksum: E6EB3B93AED687B3E7EE1DBF7F884048;1106.
  ) 
 Here is how much of TeX's memory you used:
- 11311 strings out of 479799
- 175620 string characters out of 2869248
- 909131 words of memory out of 3000000
- 28019 multiletter control sequences out of 15000+200000
+ 11384 strings out of 479799
+ 177989 string characters out of 2869248
+ 756227 words of memory out of 3000000
+ 28062 multiletter control sequences out of 15000+200000
  544342 words of font info for 61 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  66i,16n,72p,2217b,1802s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -656,9 +743,9 @@ c/amsfonts/cm/cmsy7.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/ty
 pe1/public/amsfonts/cm/cmti10.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTe
 X/fonts/type1/public/amsfonts/cm/cmti9.pfb><C:/Users/Connor/AppData/Local/Progr
 ams/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on final-report.pdf (23 pages, 969642 bytes).
+Output written on final-report.pdf (27 pages, 2230222 bytes).
 PDF statistics:
- 395 PDF objects out of 1000 (max. 8388607)
- 83 named destinations out of 1000 (max. 500000)
- 185 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 436 PDF objects out of 1000 (max. 8388607)
+ 95 named destinations out of 1000 (max. 500000)
+ 205 words of extra memory for PDF output out of 10000 (max. 10000000)
 

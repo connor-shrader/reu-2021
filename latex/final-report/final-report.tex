@@ -26,6 +26,7 @@
 \usepackage{url}
 \usepackage{adjustbox}
 \usepackage{hyperref} % Clickable ref's
+\usepackage{lscape}
 
 % Caption format
 \captionsetup[figure]{font=small}
@@ -489,7 +490,7 @@ Because we ran simulations using 270 different combinations of factors, we will 
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width = 0.9\linewidth]{images/empirical_cv_mse.png}
+	\includegraphics[width = 0.9\linewidth]{images/empirical_mse.eps}
 	\label{fig:empirical_mse}
 	\caption{Average Mean Square Error for Empirical Data Models}
 \end{figure}
@@ -510,6 +511,42 @@ Because we ran simulations using 270 different combinations of factors, we will 
 	Random Forest  & $0.0377885$ & $0.0013448$ & $0.2653$ & $0.05253$ \\
 	\hline 
 \end{tabular}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width = 0.9\linewidth]{images/facet-train-mse/facet_train_mse_1000_10.png}
+	\label{fig:train-mse-1000-10}
+	\caption{Average Mean Square Error for Empirical Data Models}
+\end{figure}
+
+See table \ref{tab:train-mse-1000-10}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width = 0.9\linewidth]{images/facet-test-mse/facet_test_mse_1000_10.png}
+	\label{fig:test-mse-1000-10}
+	\caption{Average Mean Square Error for Empirical Data Models}
+\end{figure}
+
+See table \ref{tab:test-mse-1000-10}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width = 0.9\linewidth]{images/facet-train-mse/facet_train_mse_50_2000.png}
+	\label{fig:train-mse-50-2000}
+	\caption{Average Mean Square Error for Empirical Data Models}
+\end{figure}
+
+See table \ref{tab:train-mse-50-2000}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width = 0.9\linewidth]{images/facet-test-mse/facet_test_mse_50_2000.png}
+	\label{fig:test-mse-50-2000}
+	\caption{Average Mean Square Error for Empirical Data Models}
+\end{figure}
+
+See table \ref{tab:test-mse-50-2000}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Discussion}
 % discussion of findings, future work, and contributions
@@ -528,13 +565,33 @@ Because we ran simulations using 270 different combinations of factors, we will 
 \section{Full Results}
 \label{app:full_res}
 
-\setlength{\tabcolsep}{4pt}
+\setlength{\tabcolsep}{3pt}
+
 {\tiny
-\begin{adjustbox}{angle=90, max width=0.88\textwidth}
-\input{../../code/figures/tables/mse_n50_p10.tex}
-\end{adjustbox}
+\begin{landscape}
+	\centering
+	\captionof{table}{Test}\label{tab:train-mse-1000-10}
+	\input{./tables/train_mse_1000_10.tex}
+	
+	\newpage
+	
+	\captionof{table}{Test2}\label{tab:test-mse-1000-10}
+	\input{./tables/test_mse_1000_10.tex}
+	
+	\newpage
+	
+	\captionof{table}{Test3}\label{tab:train-mse-50-2000}
+	\input{./tables/train_mse_50_2000.tex}
+	
+	\bigskip
+	
+	\captionof{table}{Test4}\label{tab:test-mse-50-2000}
+	\input{./tables/test_mse_50_2000.tex}
+\end{landscape}
 }
 \setlength{\tabcolsep}{6pt}
+
+
 
 \newpage
 \bibliographystyle{plain}
