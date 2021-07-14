@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.12.4)  14 JUL 2021 10:24
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.12.4)  14 JUL 2021 16:23
 entering extended mode
 **./final-report.tex
 (final-report.tex
@@ -613,18 +613,18 @@ Package pdftex.def Info: images/empirical_cv_mse.png  used on input line 493.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[15 <./images/BRCA1-expression.png>] (../../code/figures/tables/mse_n50_p10.tex
-)
-Overfull \vbox (281.58218pt too high) has occurred while \output is active []
+[15 <./images/BRCA1-expression.png>] [16 <./images/empirical_cv_mse.png>]
+(../../code/figures/tables/mse_n50_p10.tex)
+Overfull \vbox (13.40396pt too high) has occurred while \output is active []
 
 
-[16 <./images/empirical_cv_mse.png>] (final-report.bbl) [17] (final-report.aux)
+[17] (final-report.bbl) [18] (final-report.aux)
 Package rerunfilecheck Info: File `final-report.out' has not changed.
 (rerunfilecheck)             Checksum: 07094AF132FC5A522618712CA0CBD42B;1057.
  ) 
 Here is how much of TeX's memory you used:
- 11302 strings out of 479799
- 175542 string characters out of 2869248
+ 11303 strings out of 479799
+ 175549 string characters out of 2869248
  792133 words of memory out of 3000000
  28017 multiletter control sequences out of 15000+200000
  544342 words of font info for 61 fonts, out of 3000000 for 9000
@@ -656,9 +656,9 @@ c/amsfonts/cm/cmsy7.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/ty
 pe1/public/amsfonts/cm/cmti10.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTe
 X/fonts/type1/public/amsfonts/cm/cmti9.pfb><C:/Users/Connor/AppData/Local/Progr
 ams/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on final-report.pdf (17 pages, 962744 bytes).
+Output written on final-report.pdf (18 pages, 963845 bytes).
 PDF statistics:
- 364 PDF objects out of 1000 (max. 8388607)
- 76 named destinations out of 1000 (max. 500000)
+ 368 PDF objects out of 1000 (max. 8388607)
+ 77 named destinations out of 1000 (max. 500000)
  177 words of extra memory for PDF output out of 10000 (max. 10000000)
 
