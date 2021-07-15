@@ -27,6 +27,7 @@
 \usepackage{adjustbox}
 \usepackage{hyperref} % Clickable ref's
 \usepackage{lscape}
+\usepackage{multirow}
 
 % Caption format
 \captionsetup[figure]{font=small}
@@ -467,7 +468,7 @@ For empirical data, we used the Breast Cancer database from The Cancer Genome At
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width = 0.7\linewidth]{images/BRCA1-expression.png}
+	\includegraphics[width = 0.7\linewidth]{images/empirical_histogram.eps}
 	\caption{Distribution of BRCA1 gene expression levels}
 	\label{fig:BRCA1-distribution}
 \end{figure}
@@ -570,7 +571,8 @@ See table \ref{tab:test-mse-50-2000}
 {\tiny
 \begin{landscape}
 	\centering
-	\captionof{table}{Test}\label{tab:train-mse-1000-10}
+	\captionsetup{width = 6in}
+	\captionof{table}{Mean and standard deviation of the mean squared error on training data when $n = 1000$ and $p = 10$.}\label{tab:train-mse-1000-10}
 	\input{./tables/train_mse_1000_10.tex}
 	
 	\newpage
