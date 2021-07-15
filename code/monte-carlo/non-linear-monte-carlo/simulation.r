@@ -170,8 +170,8 @@ generate_data <- function(n, p, beta = NULL, type = "independent", corr = 0,
     as.matrix = TRUE
   ))
   
-  # Generate corresponding y values for our data.
-  y <- ifelse(x[1] + x[5] > 1, 1, 0) + exp(x[2]) + x[6]^3 + rnorm(n, sd = st_dev)
+  # Generate corresponding y values for our data. Uses indicator, exponential, polynomial, and linear function
+  y <- ifelse(x[1] > 1, 1, 0) + exp(x[2]) + beta[6]*x[5] + x[6]^3 + rnorm(n, sd = st_dev)
   
   # Create return data frame. We removed the column of 1's that we used as
   # an intercept for generating the data.
