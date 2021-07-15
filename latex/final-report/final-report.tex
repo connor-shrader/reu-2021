@@ -483,7 +483,39 @@ For analyzing the error of models fitted using this empirical data, we performed
 \subsection{Monte Carlo Simulations}
 % stick the results from logisitc regression and classification models here
 
-Because we ran simulations using 270 different combinations of factors, we will just highlight results that are indicative of overall trends or that show interesting results. However, the full tables of results can be found in Appendix \ref{app:full_res}.
+Because we ran simulations using 270 different combinations of factors, we will just highlight results that are indicative of overall trends or that show interesting results. However, the full tables of results can be found in Appendix \ref{app:full-results}.
+
+Recall that we considered three possible values of $n$ (50, 200, and 1000) and three values of $p$ (10, 100, 2000). We will first consider the extreme case when $n = 1000$ and $p = 10$. Figures \ref{fig:train-mse-1000-10} and \ref{fig:test-mse-1000-10} show the average mean squared error for each model for the training set and test set, respectively. Different rows of the figure represent different values of $\sigma$, the strength of the random error. Columns represent the type of correlation (such as independent or symmetric compound). The different types of points represent the strength of the correlation. Hence, each point represents the average mean squared error for one specific combination of factors across 100 iterations. Tables \ref{tab:train-mse-1000-10} and \ref{tab:test-mse-1000-10} in Appendix \ref{app:full-results} contain all of the values in these figures, as well as the standard deviation for each point.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width = \textwidth]{images/facet-train-mse/facet_train_mse_1000_10.png}
+	\caption{Average mean squared error for all simulated models when $n = 1000$ and $p = 10$.}
+	\label{fig:train-mse-1000-10}
+	
+	\bigskip
+	
+	\includegraphics[width = \textwidth]{images/facet-test-mse/facet_test_mse_1000_10.png}
+	\caption{Average Mean Square Error for Empirical Data Models}
+	\label{fig:test-mse-1000-10}
+\end{figure}
+
+Now, we will consider the opposite extreme where $n = 50$ and $p = 2000$. Figures \ref{fig:train-mse-50-2000} and \ref{fig:test-mse-50-2000} display the average mean squared error for simulations where $n = 50$ and $p = 2000$. Because less models were fitted for this combination of $n$ and $p$, less models are shown in this figure. See table \ref{tab:train-mse-50-2000} and table \ref{tab:test-mse-50-2000} for a table of these results, including the standard deviations for each point.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width = \textwidth]{images/facet-train-mse/facet_train_mse_50_2000.png}
+	\caption{Average Mean Square Error for Empirical Data Models}
+	\label{fig:train-mse-50-2000}
+	
+	\bigskip
+	
+	\includegraphics[width = \textwidth]{images/facet-test-mse/facet_test_mse_50_2000.png}
+	\caption{Average Mean Square Error for Empirical Data Models}
+	\label{fig:test-mse-50-2000}
+\end{figure}
+
+
 
 \subsection{Empirical Data}
 % Stick all the results from the linear regression models here
@@ -491,8 +523,8 @@ Because we ran simulations using 270 different combinations of factors, we will 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width = 0.9\linewidth]{images/empirical_mse.eps}
-	\label{fig:empirical_mse}
 	\caption{Average Mean Square Error for Empirical Data Models}
+	\label{fig:empirical_mse}
 \end{figure}
 
 \begin{table}
@@ -513,41 +545,6 @@ Because we ran simulations using 270 different combinations of factors, we will 
 \end{tabular}
 \end{table}
 
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width = 0.9\linewidth]{images/facet-train-mse/facet_train_mse_1000_10.png}
-	\label{fig:train-mse-1000-10}
-	\caption{Average Mean Square Error for Empirical Data Models}
-\end{figure}
-
-See table \ref{tab:train-mse-1000-10}
-
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width = 0.9\linewidth]{images/facet-test-mse/facet_test_mse_1000_10.png}
-	\label{fig:test-mse-1000-10}
-	\caption{Average Mean Square Error for Empirical Data Models}
-\end{figure}
-
-See table \ref{tab:test-mse-1000-10}
-
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width = 0.9\linewidth]{images/facet-train-mse/facet_train_mse_50_2000.png}
-	\label{fig:train-mse-50-2000}
-	\caption{Average Mean Square Error for Empirical Data Models}
-\end{figure}
-
-See table \ref{tab:train-mse-50-2000}
-
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width = 0.9\linewidth]{images/facet-test-mse/facet_test_mse_50_2000.png}
-	\label{fig:test-mse-50-2000}
-	\caption{Average Mean Square Error for Empirical Data Models}
-\end{figure}
-
-See table \ref{tab:test-mse-50-2000}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Discussion}
 % discussion of findings, future work, and contributions
@@ -564,7 +561,7 @@ See table \ref{tab:test-mse-50-2000}
 \newpage
 \appendix
 \section{Full Results}
-\label{app:full_res}
+\label{app:full-results}
 
 \setlength{\tabcolsep}{3pt}
 
