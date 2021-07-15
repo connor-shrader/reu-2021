@@ -171,7 +171,7 @@ generate_data <- function(n, p, beta = NULL, type = "independent", corr = 0,
   ))
   
   # Generate corresponding y values for our data. Uses indicator, exponential, polynomial, and linear function
-  y <- ifelse(x[1] > 1, 1, 0) + exp(x[2]) + beta[6]*x[5] + x[6]^3 + rnorm(n, sd = st_dev)
+  y <- ifelse(x[,2] > 0.5, 1, 0) + exp(x[,3]) + beta[6]*x[,6] + x[,7]^3 + rnorm(n, sd = st_dev)
   
   # Create return data frame. We removed the column of 1's that we used as
   # an intercept for generating the data.
