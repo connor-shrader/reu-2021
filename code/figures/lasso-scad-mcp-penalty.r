@@ -54,7 +54,7 @@ penalty <- ggplot() +
   ) +
   
   geom_function(
-    mapping = aes(color = "LASSO"),
+    mapping = aes(color = "Lasso"),
     fun = lasso,
     args = list(lambda = 1),
     xlim = c(-4, 4)
@@ -137,7 +137,7 @@ derivative <- ggplot() +
   ) +
   
   geom_function(
-    mapping = aes(color = "LASSO"),
+    mapping = aes(color = "Lasso"),
     fun = d.lasso,
     args = list(lambda = 1),
     xlim = c(0, 4)

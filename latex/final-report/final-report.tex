@@ -192,11 +192,11 @@ When fitting penalized regression models, the choice of $\lambda$ is very import
 
 One drawback of ridge regression is that it cannot perform variable selection. It can shrink coefficients towards zero, but it cannot set coefficients to be exactly zero.
 
-The \textbf{least absolute shrinkage and selection operation} (LASSO) is a shrinkage method with a very similar form to ridge regression \cite{tibshirani1996regression, james2017islr, james2013introduction}. The penalty function for LASSO is $P(\beta) = \vert \beta \vert$.
+The \textbf{least absolute shrinkage and selection operation}, commonly referred to as \textbf{lasso}, is a shrinkage method with a very similar form to ridge regression \cite{tibshirani1996regression, james2017islr, james2013introduction}. The penalty function for lasso is $P(\beta) = \vert \beta \vert$.
 
-Unlike ridge regression, LASSO regression can perform variable selection by setting coefficients to zero. This makes LASSO regression favorable when most predictors are not related to the response variable. On the other hand, if the response truly does depend on all of the predictors, then LASSO regression may incorrectly set some coefficients to zero. In addition, LASSO regression does not have a closed-form solution, but computing the coefficients is still efficient.
+Unlike ridge regression, lasso regression can perform variable selection by setting coefficients to zero. This makes lasso regression favorable when most predictors are not related to the response variable. On the other hand, if the response truly does depend on all of the predictors, then lasso regression may incorrectly set some coefficients to zero. In addition, lasso regression does not have a closed-form solution, but computing the coefficients is still efficient.
 
-Figure \ref{fig:ridge-lasso-diagram} provides a visual explanation for why ridge regression cannot perform variable selection while LASSO regression can. Suppose that there are $p = 2$ predictors. The red circle in Figure \ref{fig:ridge-diagram} represents the circle $\beta_1^2 + \beta_2^2 \leq 1$, which is the penalty boundary for ridge regression in the form given in Equation \ref{eqn:penalized-regression-t} when $t = 1$. The red square in Figure \ref{fig:lasso-diagram} represents the boundary $\vert \beta_1 \vert + \vert \beta_2 \vert \leq 1$ for LASSO regression. The point in the center of the blue ellipses represents the values of $\beta_1$ and $\beta_2$ that ordinary least squares would produce. Because this point is not within either of the red regions, ridge regression and LASSO regression will give different coefficient estimates. The blue ellipses around this point represent contour curves for the residual sum of squares function, which is a quadratic function of $\beta_1$ and $\beta_2$. The first interception of these ellipses with the red regions represents the coefficient values selected by ridge and LASSO regression, since it represents the point within the red region with the lowest residual sum of squares. Because of the round boundary for ridge regression, the intersection in Figure \ref{fig:ridge-diagram} occurs when $\beta_1$ and $\beta_2$ are both positive. For LASSO regression in Figure \ref{fig:lasso-diagram}, the intersection occurs at a corner where $\beta_1=0$. Thus, LASSO regression has set $\beta_1$ to zero, while $\beta_1$ is non-zero for ridge regression.
+Figure \ref{fig:ridge-lasso-diagram} provides a visual explanation for why ridge regression cannot perform variable selection while lasso regression can. Suppose that there are $p = 2$ predictors. The red circle in Figure \ref{fig:ridge-diagram} represents the circle $\beta_1^2 + \beta_2^2 \leq 1$, which is the penalty boundary for ridge regression in the form given in Equation \ref{eqn:penalized-regression-t} when $t = 1$. The red square in Figure \ref{fig:lasso-diagram} represents the boundary $\vert \beta_1 \vert + \vert \beta_2 \vert \leq 1$ for lasso regression. The point in the center of the blue ellipses represents the values of $\beta_1$ and $\beta_2$ that ordinary least squares would produce. Because this point is not within either of the red regions, ridge regression and lasso regression will give different coefficient estimates. The blue ellipses around this point represent contour curves for the residual sum of squares function, which is a quadratic function of $\beta_1$ and $\beta_2$. The first interception of these ellipses with the red regions represents the coefficient values selected by ridge and lasso regression, since it represents the point within the red region with the lowest residual sum of squares. Because of the round boundary for ridge regression, the intersection in Figure \ref{fig:ridge-diagram} occurs when $\beta_1$ and $\beta_2$ are both positive. For lasso regression in Figure \ref{fig:lasso-diagram}, the intersection occurs at a corner where $\beta_1=0$. Thus, lasso regression has set $\beta_1$ to zero, while $\beta_1$ is non-zero for ridge regression.
 
 \begin{figure}[!h]
 	\centering
@@ -212,23 +212,23 @@ Figure \ref{fig:ridge-lasso-diagram} provides a visual explanation for why ridge
 		\includegraphics[width=\textwidth]{images/lasso-diagram.png}
 	\end{subfigure}
 	\captionsetup{width = 5in}
-	\caption{RSS contours and penalty bounds for the ridge and LASSO models when $p=2$ and $t = 1$. The red regions represent the coefficient values allowed by ridge and LASSO regression, respectively. The blue ellipses represent contours of the residual sum of squares, with $\hat{\beta}^{\text{OLS}}$ being the point where the residual sum of squares is minimized. The intersection of the ellipse with the red region represents the point selected by LASSO and ridge.}
+	\caption{RSS contours and penalty bounds for the ridge and lasso models when $p=2$ and $t = 1$. The red regions represent the coefficient values allowed by ridge and lasso regression, respectively. The blue ellipses represent contours of the residual sum of squares, with $\hat{\beta}^{\text{OLS}}$ being the point where the residual sum of squares is minimized. The intersection of the ellipse with the red region represents the point selected by lasso and ridge.}
 	\label{fig:ridge-lasso-diagram}
 \end{figure}
 
-\textbf{Elastic-net} regression uses both the ridge penalty and the LASSO penalty at the same time \cite{zou2005regularization}. Elastic-net solves the optimization problem
+\textbf{Elastic-net} regression uses both the ridge penalty and the lasso penalty at the same time \cite{zou2005regularization}. Elastic-net solves the optimization problem
 \begin{equation}
 	\hat{\beta}^{\text{E-net}}=\argmin{\beta}{\sum\limits_{i = 1}^n \left( y_i - \beta_0 - \sum\limits_{i = 1}^p \beta_j x_{ij} \right) + \lambda_2\sum\limits_{j = 1}^p \beta_j^2 + \lambda_1\sum\limits_{j = 1}^p \vert \beta_j \vert}
 \end{equation}
 where $\lambda_1$ and $\lambda_2$ are both tuning parameters to be determined later.
 
-An important limitation to note is that elastic net performs best when it close to either ridge or LASSO regression, meaning that either $\lambda_1$ greatly exceeds $\lambda_2$ or $\lambda_2$ greatly exceeds $\lambda_1$ \cite{zou2005regularization}. Additionally, because elastic net requires two tuning parameters, this makes it much more difficult to determine the best combination of tuning parameters to minimize error in the regression. However, this problem has been largely solved through by the LARS-EN algorithm developed by Zou et. al. which efficiently solves for the tuning parameters \cite{zou2005regularization}.
+An important limitation to note is that elastic net performs best when it close to either ridge or lasso regression, meaning that either $\lambda_1$ greatly exceeds $\lambda_2$ or $\lambda_2$ greatly exceeds $\lambda_1$ \cite{zou2005regularization}. Additionally, because elastic net requires two tuning parameters, this makes it much more difficult to determine the best combination of tuning parameters to minimize error in the regression. However, this problem has been largely solved through by the LARS-EN algorithm developed by Zou et. al. which efficiently solves for the tuning parameters \cite{zou2005regularization}.
 
-One major flaw of the LASSO method is that the penalty punishes large coefficients, even if those coefficients should be large. One way to modify the LASSO method is to use the \textbf{smoothly clipped absolute deviation} (SCAD) penalty \cite{fan2001variable}. The goal of this method is to punish large coefficients less severely, which can help mitigate some of the bias introduced by the LASSO method. The penalty function $P(\beta)$ for SCAD satisfies
+One major flaw of the lasso method is that the penalty punishes large coefficients, even if those coefficients should be large. One way to modify the lasso method is to use the \textbf{smoothly clipped absolute deviation} (SCAD) penalty \cite{fan2001variable}. The goal of this method is to punish large coefficients less severely, which can help mitigate some of the bias introduced by the lasso method. The penalty function $P(\beta)$ for SCAD satisfies
 \begin{equation}\label{eqn:scad-derivative-indicator}
 	\frac{dP}{d\beta} = \cdot\sign(\beta)\left[ I(\vert \beta \vert<\lambda) + \frac{\max(a\lambda - \vert \beta\vert, 0)}{(a - 1)\lambda}I(\vert \beta \vert > \lambda) \right]
 \end{equation}
-where $a\geq 2$ is a new hyperparameter and $I$ is the indicator function ($I(Q)$ equals 1 if a statement $Q$ is true, and equals 0 if $Q$ is false). If the hyperparameter $a$ is large, then SCAD behaves like LASSO for larger coefficient values. Also, notice that $\lambda$ is an argument for the penalty function $P$.
+where $a\geq 2$ is a new hyperparameter and $I$ is the indicator function ($I(Q)$ equals 1 if a statement $Q$ is true, and equals 0 if $Q$ is false). If the hyperparameter $a$ is large, then SCAD behaves like lasso for larger coefficient values. Also, notice that $\lambda$ is an argument for the penalty function $P$.
 
 An equivalent way to write the expression in Equation \ref{eqn:scad-derivative-indicator} is
 \begin{equation}
@@ -238,18 +238,18 @@ An equivalent way to write the expression in Equation \ref{eqn:scad-derivative-i
 		0,&\alpha\lambda < \vert \beta \vert
 	\end{array}\right.
 \end{equation}
-This penalty function does not punish coefficients with large magnitude as heavily as the LASSO method. In fact, if the magnitude of a coefficient is larger than $a\lambda$, then the penalty becomes constant since the derivative becomes zero.
+This penalty function does not punish coefficients with large magnitude as heavily as the lasso method. In fact, if the magnitude of a coefficient is larger than $a\lambda$, then the penalty becomes constant since the derivative becomes zero.
 
 By integrating with respect to $\beta$ \cite{breheny2016lasso} and choosing $P(\beta) = 0$, we see that
 \begin{equation}
 	P(\beta) = \left\{\begin{array}{ll}
 		\vert \beta \vert,&\vert \beta \vert \leq \lambda\\
-		\frac{2a\lambda\vert\beta\vert - \beta^2-\lambda^2}{2(a - 1)\lambda},&\lambda < \vert \beta \vert < a\lambda\\
+		\frac{2a\lambda\vert\beta\vert - \beta^2-\lambda^2}{2(a - 1)\lambda},&\lambda < \vert \beta \vert \leq a\lambda\\
 		\frac{\lambda(a + 1)}{2},&a\lambda < \vert \beta \vert
 	\end{array}\right.
 \end{equation}
 
-The \textbf{minimax concave penalty} (MCP) method is very similar to SCAD \cite{zhang2010nearly, breheny2016lasso}. Both methods are used to avoid the high bias caused by the LASSO method. MCP uses a penalty function that satisfies
+The \textbf{minimax concave penalty} (MCP) method is very similar to SCAD \cite{zhang2010nearly, breheny2016lasso}. Both methods are used to avoid the high bias caused by the lasso method. MCP uses a penalty function that satisfies
 \begin{equation}
 	\frac{dP}{d\beta} = \left\{\begin{array}{ll}
 		\sign(\beta)\left(1 - \frac{\vert \beta \vert}{a\lambda}\right),& \vert \beta \vert \leq a\lambda\\
@@ -264,31 +264,34 @@ where, like SCAD, $a>1$ is a hyperparameter. Integrating \cite{breheny2016lasso}
 	\end{array}\right.
 \end{equation}
 
-Figure \ref{fig:lasso-scad-mcp} below shows the penalty functions (and their derivatives) for LASSO, SCAD, and MCP as a function of a coefficient value $\beta$. We see that LASSO applies a much stronger penalty to large coefficients than SCAD or MCP. Also, note that SCAD starts with a derivative equal to that of the LASSO for small values of $\beta$; on the other hand, the derivative of the penalty function for MCP starts decreasing immediately.
+Figure \ref{fig:lasso-scad-mcp} below shows the penalty functions (and their derivatives) for lasso, SCAD, and MCP as a function of a coefficient value $\beta$. We see that lasso applies a much stronger penalty to large coefficients than SCAD or MCP. Also, note that SCAD starts with a derivative equal to that of the lasso for small values of $\beta$; on the other hand, the derivative of the penalty function for MCP starts decreasing immediately.
 
 \begin{figure}[!h]
 	\centering
 	\begin{subfigure}[b]{0.4\textwidth}
-		\caption{Penalty functions for LASSO, SCAD, and MCP}
+		\caption{Penalty functions for lasso, SCAD, and MCP}
 		\label{fig:penalty}
 		\includegraphics[width=\textwidth]{images/lasso-scad-mcp-penalty.png}
 	\end{subfigure}
 	\hspace{30pt}
 	\begin{subfigure}[b]{0.4\textwidth}
-		\caption{Derivatives of the penalty functions for LASSO, SCAD, and MCP}
+		\caption{Derivatives of the penalty functions for lasso, SCAD, and MCP}
 		\label{fig:derivative}
 		\includegraphics[width=\textwidth]{images/lasso-scad-mcp-derivative.png}
 	\end{subfigure}
 	\captionsetup{width = 5in}
-	\caption{Penalty functions for LASSO, SCAD, and MCP, as well as their derivatives. These plots use $\lambda = 2$ and $a = 3$. The dashed vertical lines are the knots for SCAD and MCP.}
+	\caption{Penalty functions for lasso, SCAD, and MCP, as well as their derivatives. These plots use $\lambda = 1$ and $a = 3$. The dashed vertical lines are the knots for SCAD and MCP.}
 	\label{fig:lasso-scad-mcp}
 \end{figure}
 
-Note that of the penalized regression methods discussed above, only ridge regression has a general closed-form solution. Although LASSO, elastic-net, SCAD and MCP do not have closed-form solutions, their solutions can be efficiently approximated. In some special cases, however, a closed-form solution exists. 
+Note that of the penalized regression methods discussed above, only ridge regression has a general closed-form solution. Although lasso, elastic-net, SCAD and MCP do not have closed-form solutions, their solutions can be efficiently approximated. In some special cases, however, a closed-form solution exists. 
 
-Let $\mathbf{X}$ be a $n\times p$ matrix where each row contains the predictor values for one observation. To simplify things, we will assume that our data is centralized so that the coefficient $\beta_0$ is 0; that way, we do not need to include an extra entry of 1 in each row of $\mathbf{X}$. In an \textbf{orthonormal design}, we assume that $\mathbf{X}$ is orthonormal, meaning that the magnitude of each column of $\mathbf{X}$ is one and every pair of columns of $\mathbf{X}$ is orthogonal. In this special case, the value for each coefficient is independent of the other coefficients; in other words, we can compute each coefficient value as if it were the only predictor in the data set.
+Let $\mathbf{X}$ be a $n\times p$ matrix where each row contains the predictor values for one observation. To simplify things, we will assume that our data is centralized so that the coefficient $\beta_0$ is 0; that way, we do not need to include an extra entry of 1 in each row of $\mathbf{X}$. In an \textbf{orthonormal design}, we assume that $\mathbf{X}$ is orthonormal, meaning that the magnitude of each column of $\mathbf{X}$ is one and every pair of columns of $\mathbf{X}$ is orthogonal. In this special case, the matrix $(\mathbf{X}^\top \mathbf{X})^{-1}$ is the $p\times p$ identity matrix. As a result, each coefficient is independent of the other coefficients; in other words, we can compute the coefficient estimate for each predictor without needing to use the values for the other predictors. For example, in an orthonormal design, the general solution to ordinary least squares regression given in Equation \ref{eqn:ols-solution} simplifies to
+\begin{equation}\label{ols-orthonormal-solution}
+	\hat{\beta}^{\text{OLS}} = \mathbf{X}^\top \mathbf{y}
+\end{equation}
 
-We can apply a \textbf{thresholding function} to each predictor to get the coefficient estimate for that predictor. For LASSO, elastic-net, SCAD, and MCP, a closed-form for this thresholding function exists \cite{tibshirani1996regression, fan2001variable, zou2005regularization, zhang2010nearly}. The input to the thresholding function is the actual coefficient value, and the output is the estimated value for that coefficient in an orthonormal design. Figure \ref{fig:prediction} shows the threshold functions for LASSO, SCAD and MCP when $\lambda = 2$ . For SCAD and MCP, we used the value $a = 3$. For reference, the identity line is included, which can be considered as the threshold function for ordinary least squares.
+To compute the coefficient estimates for lasso, SCAD, and MCP in an orthonormal design, we first compute the vector $\mathbf{z} = \mathbf{X}^\top \mathbf{y}$ \cite{fan2001variable}. Each entry of $\mathbf{z}$ corresponds to one predictor. We then apply a \textbf{thresholding function} to each entry of $\mathbf{z}$ to get the coefficient estimate for that predictor. For lasso, elastic-net, SCAD, and MCP, a closed-form for this thresholding function exists \cite{tibshirani1996regression, fan2001variable, zou2005regularization, zhang2010nearly}. The input to the thresholding function is the actual coefficient value, and the output is the estimated value for that coefficient in an orthonormal design. Figure \ref{fig:prediction} shows the threshold functions for lasso, SCAD and MCP when $\lambda = 1$. For SCAD and MCP, we used the value $a = 3$. For reference, the identity line is included, which can be considered as the threshold function for ordinary least squares.
 
 Another feature of SCAD and MCP is that they
 
@@ -296,17 +299,17 @@ Another feature of SCAD and MCP is that they
 	\centering
 	\includegraphics[width = 0.4\textwidth]{images/lasso-scad-mcp-solution.png}
 	\captionsetup{width = 4in}
-	\caption{Thresholding function for LASSO, SCAD, and MCP when $\lambda = 2$ and $a = 3$. In an orthonormal design, this function can be applied to the true coefficient values to get the predicted coefficient values. The dashed vertical lines are the knots for SCAD and MCP.}
+	\caption{Thresholding function for LASSO, SCAD, and MCP when $\lambda = 1$ and $a = 3$ in an orthonormal design. The input (z) represents an entry from the vector $\mathbf{z}=\mathbf{X}^\top \mathbf{y}$; the output ($\hat{\beta}$) is the coefficient estimate. The dashed vertical lines are the knots for SCAD and MCP.}
 	\label{fig:prediction}
 \end{figure}
 
-We see that when $\vert \beta \vert$ is small, the thresholding function for LASSO, SCAD, and MCP are all zero. This matches with the assumption that these methods should set small coefficient values to zero. As $\vert \beta \vert$ increases, the estimated value for that coefficient gets larger. Notice that ordinary least squares doesn't decrease the estimated coefficient value for any choice of $\beta$; this is because of the fact that ordinary least squares is unbiased, whereas the other methods are biased.
+We see that when $\vert \beta \vert$ is small, the thresholding function for lasso, SCAD, and MCP are all zero. This matches with the assumption that these methods should set small coefficient values to zero. As $\vert \beta \vert$ increases, the estimated value for that coefficient gets larger. Notice that ordinary least squares doesn't decrease the estimated coefficient value for any choice of $\beta$; this is because of the fact that ordinary least squares is unbiased, whereas the other methods are biased.
 
-In this figure, we also see that the threshold function for LASSO is parallel to the identity line for large values of $\beta$. This means that even if a predictor is very influential on the response, LASSO will predict a coefficient estimate that is less than the true coefficient value. This makes LASSO a very biased model. This issue was one of the main motivations for SCAD and MCP. Unlike LASSO, SCAD and MCP converge to the identity line as $\beta$ increases, which makes these methods less likely to decrease large coefficient estimates.
+In this figure, we also see that the threshold function for lasso is parallel to the identity line for large values of $\beta$. This means that even if a predictor is very influential on the response, lasso will predict a coefficient estimate that is less than the true coefficient value. This makes lasso a very biased model. This issue was one of the main motivations for SCAD and MCP. Unlike lasso, SCAD and MCP converge to the identity line as $\beta$ increases, which makes these methods less likely to decrease large coefficient estimates.
 
 Another feature of SCAD and MCP is their \textbf{oracle-like properties}. In this context, the term \textbf{oracle} comes from a paper by Donohe and Johnstone about spatially variable estimators \cite{donoho1994ideal}. They consider an ideal situation where a model could be fitted with the aid of an oracle. This oracle could give information about the underlying behavior of the function $f$ relating a response variable to the predictors without giving the function $f$ itself.
 
-In the context of linear regression, an oracle estimator would know which predictors are truly correlated with the response. With the aid of an oracle, one could then fit an ordinary least squares model using only the coefficients that are actually non-zero and ignoring the predictors that are actually zero. Fan and Li in \cite{fan2001variable} and Zhang in \cite{zhang2010nearly} prove that SCAD and MCP both have oracle-like properties. Under certain conditions, SCAD and MCP can perform as well as the oracle estimator as $n$ approaches $\infty$. On the other hand, LASSO does not have oracle-like properties, meaning that its predictions cannot perform as well as a model found with the aid of an oracle.
+In the context of linear regression, an oracle estimator would know which predictors are truly correlated with the response. With the aid of an oracle, one could then fit an ordinary least squares model using only the coefficients that are actually non-zero and ignoring the predictors that are actually zero. Fan and Li in \cite{fan2001variable} and Zhang in \cite{zhang2010nearly} prove that SCAD and MCP both have oracle-like properties. Under certain conditions, SCAD and MCP can perform as well as the oracle estimator as $n$ approaches $\infty$. On the other hand, lasso does not have oracle-like properties, meaning that its predictions cannot perform as well as a model found with the aid of an oracle.
 
 \subsection{Non-linear models}
 We next discuss several non-linear methods for regression: random forests, gradient boosting, and support vector machines.

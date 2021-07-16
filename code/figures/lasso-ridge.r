@@ -83,7 +83,7 @@ ridge <- ggplot(
   
   annotate(
     "text", 
-    label = "hat(beta)^ridge", 
+    label = "hat(beta)^Ridge", 
     parse = TRUE, 
     x = 0.555, 
     y = 1.067, 
@@ -159,7 +159,7 @@ lasso <- ggplot(
   
   annotate(
     "text", 
-    label = "hat(beta)^lasso", 
+    label = "hat(beta)^Lasso", 
     parse = TRUE, 
     x = 0.30, 
     y = 1.10, 
