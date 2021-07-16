@@ -75,7 +75,7 @@ for (i in 1:5) {
     n234 = count[14],
     n1234 = count[15],
     category = c("Lasso", "E-net", "MCP", "Random Forest"),
-    fill = hue_pal(h = c(180, 360))(4),
+    fill = hue_pal(h = c(120, 240), c = 100)(4),
     #fill = hue_pal()(4),
     lty = "dashed",
     cex = 2,
