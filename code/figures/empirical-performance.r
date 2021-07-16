@@ -80,11 +80,11 @@ metrics_by_fold <- lapply(1:5, function(fold) {
   test_mse <- as.numeric(lapply(models, calc_mse, dat = test_dat))
   
   test_metrics <- data.frame(model_name = model_name,
-                             type = "Test MSE",
+                             type = "Avg. Test MSE",
                              mse = test_mse)
   
   train_metrics <- data.frame(model_name = model_name,
-                              type = "Train MSE",
+                              type = "Avg. Train MSE",
                               mse = train_mse)
   
   all_metrics <- rbind(test_metrics, train_metrics)
@@ -93,20 +93,21 @@ metrics_by_fold <- lapply(1:5, function(fold) {
 })
 
 all_results <- do.call(rbind, metrics_by_fold)
-all_results$type <- factor(all_results$type, levels = c("Train MSE", "Test MSE"))
+all_results$type <- factor(all_results$type, levels = c("Avg. Train MSE", "Avg. Test MSE"))
 
 aggregate <- aggregate(mse ~ model_name + type, data = all_results, mean)
 
 mse_plot <- ggplot(data = all_results, mapping = aes(x = model_name, y = mse, label = mse)) +
-  geom_bar(mapping = aes(fill = type), stat = "summary", fun = "mean", position = position_dodge(width = 0.8), width = 0.8) +
+  geom_bar(mapping = aes(fill = type), stat = "summary", fun = "mean", position = position_dodge(width = 0.8), width = 0.8, color = "black") +
   geom_point(mapping = aes(group = type), position = position_dodge(width = 0.8)) +
   #geom_text(data = aggregate, aes(label = round(mse, 4), group = type), position = position_dodge(width = 0.8), vjust=-0.25) +
-  labs(x = "Model name", y = "Average MSE") +
+  labs(x = "Model name", y = "Mean Squared Error") +
   scale_y_continuous(expand = expansion(mult = c(0, 0.05))) +
   reu_border +
   theme(
     panel.grid = element_line(color = "gray90"),
-    legend.title=element_blank()
+    legend.title=element_blank(),
+    legend.spacing.y = unit(1.0, "cm")
   )
 
 save_plot(plot = mse_plot,
