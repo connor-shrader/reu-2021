@@ -23,31 +23,31 @@ sign <- function(x)
 
 lasso <- function(beta, lambda)
 {
-  abs(beta) * lambda
+  abs(beta)
 }
 
 scad <- function(beta, lambda, a)
 {
   beta <- abs(beta)
-  output <- ifelse (beta < lambda, lambda * beta, 0)
+  output <- ifelse (beta < lambda,  beta, 0)
   output <- ifelse(beta >= lambda & beta < a * lambda,
-                   (2 * a * lambda * beta - beta^2 - lambda^2) / (2 * (a - 1)),
+                   (2 * a * lambda * beta - beta^2 - lambda^2) / (2 * (a - 1) * lambda),
                    output)
-  output <- ifelse(beta >= a * lambda, (lambda^2 * (a + 1)) / 2, output)
+  output <- ifelse(beta >= a * lambda, (lambda * (a + 1)) / 2, output)
   return(output)
 }
 
 mcp <- function(beta, lambda, a)
 {
   beta <- abs(beta)
-  output <- ifelse(beta < a * lambda, lambda * beta - (beta^2) / (2 * a), 0)
-  output <- ifelse(beta >= a * lambda, 1/2 * a * lambda^2, output)
+  output <- ifelse(beta < a * lambda, beta - (beta^2) / (2 * a), 0)
+  output <- ifelse(beta >= a * lambda, 1/2 * a * lambda, output)
   return(output)
 }
 
 penalty <- ggplot() +
   geom_vline(
-    data = data.frame(xint = c(-4, -1, 1, 4)),
+    data = data.frame(xint = c(-3, -1, 1, 3)),
     mapping = aes(xintercept = xint),
     linetype = "dashed",
     color = "gray"
@@ -57,27 +57,27 @@ penalty <- ggplot() +
     mapping = aes(color = "LASSO"),
     fun = lasso,
     args = list(lambda = 1),
-    xlim = c(-6, 6)
+    xlim = c(-4, 4)
   ) +
   
   geom_function(
     mapping = aes(color = "SCAD"),
     fun = scad,
-    args = list(lambda = 1, a = 4),
-    xlim = c(-6, 6)
+    args = list(lambda = 1, a = 3),
+    xlim = c(-4, 4)
   ) +
   
   geom_function(
     mapping = aes(color = "MCP"),
     fun = mcp,
-    args = list(lambda = 1, a = 4),
-    xlim = c(-6, 6)
+    args = list(lambda = 1, a = 3),
+    xlim = c(-4, 4)
   ) +
   
-  labs(x = "Coefficient Value", y = "Penalty Value", color = "Penalty Function") +
+  labs(x = "Coefficient Value", y = "Penalty", color = "Penalty Function") +
   
-  scale_x_continuous(breaks = seq(-6, 6, by = 1), limits = c(-6, 6)) +
-  scale_y_continuous(breaks = seq(0, 6, by = 1), limits = c(0, 6)) + 
+  scale_x_continuous(breaks = seq(-4, 4, by = 1), limits = c(-4, 4)) +
+  scale_y_continuous(breaks = seq(0, 4, by = 1), limits = c(0, 4)) + 
   
   reu_border
 
@@ -116,7 +116,7 @@ d.scad <- function(beta, lambda, a)
   beta <- abs(beta)
   output <- ifelse(beta < lambda, lambda, 0)
   output <- ifelse(beta >= lambda & beta < a * lambda,
-                   (a * lambda - beta) / (a - 1),
+                   (a * lambda - beta) / ((a - 1) * lambda),
                    output)
   output <- ifelse(beta >= a * lambda, 0, output)
   return(output)
@@ -125,12 +125,12 @@ d.scad <- function(beta, lambda, a)
 d.mcp <- function(beta, lambda, a)
 {
   beta <- abs(beta)
-  return(ifelse(beta < a * lambda, sign(beta) * (lambda - beta / a), 0))
+  return(ifelse(beta < a * lambda, sign(beta) * (lambda - beta / (a * lambda)), 0))
 }
 
 derivative <- ggplot() +
   geom_vline(
-    data = data.frame(xint = c(1, 4)),
+    data = data.frame(xint = c(1, 3)),
     mapping = aes(xintercept = xint),
     linetype = "dashed",
     color = "gray"
@@ -140,26 +140,26 @@ derivative <- ggplot() +
     mapping = aes(color = "LASSO"),
     fun = d.lasso,
     args = list(lambda = 1),
-    xlim = c(0, 6)
+    xlim = c(0, 4)
   ) +
   
   geom_function(
     mapping = aes(color = "SCAD"),
     fun = d.scad,
-    args = list(lambda = 1, a = 4),
-    xlim = c(0, 6)
+    args = list(lambda = 1, a = 3),
+    xlim = c(0, 4)
   ) +
   
   geom_function(
     mapping = aes(color = "MCP"),
     fun = d.mcp,
-    args = list(lambda = 1, a = 4),
-    xlim = c(0, 6)
+    args = list(lambda = 1, a = 3),
+    xlim = c(0, 4)
   ) +
   
   labs(x = "Coefficient Value", y = "Penalty Derivative", color = "Penalty Function") +
   
-  scale_x_continuous(breaks = seq(0, 6, by = 1), limits = c(0, 6)) +
+  scale_x_continuous(breaks = seq(0, 4, by = 1), limits = c(0, 4)) +
   scale_y_continuous(breaks = seq(0, 1, by = 1), limits = c(0, 1)) + 
   
   reu_border
@@ -176,7 +176,7 @@ ggsave(
 )
 
 ggsave(
-  filename = "lasso-scad-mcp-penalty.eps",
+  filename = "lasso-scad-mcp-derivative.eps",
   path = "./images",
   plot = derivative,
   width = 10,
@@ -221,49 +221,52 @@ mcp.s <- function(x, lambda, a)
   return(output)
 }
 
-solution <- ggplot() +
+models <- data.frame(model_names = c("Lasso", "SCAD", "MCP", "OLS"))
+
+solution <- ggplot(data = models) +
   geom_vline(
-    data = data.frame(xint = c(-4, -1, 1, 4)),
+    data = data.frame(xint = c(-3, -1, 1, 3)),
     mapping = aes(xintercept = xint),
     linetype = "dashed",
     color = "gray"
   ) +
   
   geom_function(
-    mapping = aes(color = "OLS"),
+    mapping = aes(color = "4OLS"),
     fun = function(x) {x},
-    xlim = c(-6, 6)
+    xlim = c(-4, 4),
+    linetype = 2
   ) +
   
   geom_function(
-    mapping = aes(color = "LASSO"),
+    mapping = aes(color = "1Lasso"),
     fun = lasso.s,
     args = list(lambda = 1),
-    xlim = c(-6, 6)
+    xlim = c(-4, 4)
   ) +
   
   geom_function(
-    mapping = aes(color = "SCAD"),
+    mapping = aes(color = "2SCAD"),
     fun = scad.s,
-    args = list(lambda = 1, a = 4),
-    xlim = c(-6, 6)
+    args = list(lambda = 1, a = 3),
+    xlim = c(-4, 4)
   ) +
   
   geom_function(
-    mapping = aes(color = "MCP"),
+    mapping = aes(color = "3MCP"),
     fun = mcp.s,
-    args = list(lambda = 1, a = 4),
-    xlim = c(-6, 6)
+    args = list(lambda = 1, a = 3),
+    xlim = c(-4, 4)
   ) +
   
-  labs(x = "Actual Coefficient Value", y = "Predicted Coefficient Value", color = "Penalty Function") +
+  labs(x = expression(z), y = expression(hat(beta)), color = "Penalty Function") +
   
-  scale_x_continuous(breaks = seq(-6, 6, by = 1), limits = c(-6, 6)) +
-  scale_y_continuous(breaks = seq(-6, 6, by = 1), limits = c(-6, 6)) + 
+  scale_x_continuous(breaks = seq(-4, 4, by = 1), limits = c(-4, 4)) +
+  scale_y_continuous(breaks = seq(-4, 4, by = 1), limits = c(-4, 4)) + 
   
   reu_border +
   
-  scale_color_manual(values=c("#F8766D", "#00BA38", "gray45", "#619CFF"))
+  scale_color_manual(values=c("#F8766D", "#00BA38", "#619CFF", "gray35"), labels = c("Lasso", "SCAD", "MCP", "OLS"))
 
 
 ggsave(
