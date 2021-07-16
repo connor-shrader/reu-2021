@@ -260,16 +260,17 @@ fit_models <- function(dat, n, p) {
     models[["bsf"]] <- bsf
     runtimes[["bsf"]] <- bsf_time
     
-    # Ridge model for dealing with multicollinearity
-    ridge_time <- system.time(ridge <- cv.glmnet(x = as.matrix(dat[,-1]),
-                                                 y = dat$y, alpha = 0))
-    models[["ridge"]] <- ridge
-    runtimes[["ridge"]] <- ridge_time
   }
   else {
     models[["ridge"]] <- NA
     runtimes[["ridge"]] <- NA
   }
+  
+  # Ridge model for dealing with multicollinearity
+  ridge_time <- system.time(ridge <- cv.glmnet(x = as.matrix(dat[,-1]),
+                                               y = dat$y, alpha = 0))
+  models[["ridge"]] <- ridge
+  runtimes[["ridge"]] <- ridge_time
   
   # Lasso model for variable selection
   lasso_time <- system.time(lasso <- cv.glmnet(x = as.matrix(dat[,-1]),
@@ -283,26 +284,26 @@ fit_models <- function(dat, n, p) {
   models[["enet"]] <- enet
   runtimes[["enet"]] <- enet_time
   
-  # Adaptive Ridge
-  adap_ridge_time <- system.time(adap_ridge <- cv.gcdnet(x = as.matrix(dat[,-1]),
-                                                         y = dat$y, nfolds = 10,
-                                                         method = "ls", lambda = 0))
-  models[["adap_ridge"]] <- adap_ridge
-  runtimes[["adap_ridge"]] <- adap_ridge_time
-  
-  # Adaptive Lasso
-  adap_lasso_time <- system.time(adap_lasso <- cv.gcdnet(x = as.matrix(dat[,-1]),
-                                                         y = dat$y, nfolds = 10,
-                                                         method = "ls", lambda2 = 0))
-  models[["adap_lasso"]] <- adap_lasso
-  runtimes[["adap_lasso"]] <- adap_lasso_time
-  
-  # Adaptive Elastic Net model for variable selection and multicollinearity
-  adap_enet_time <- system.time(adap_enet <- cv.gcdnet(x = as.matrix(dat[,-1]),
-                                                       y = dat$y, nfolds = 10,
-                                                       method = "ls"))
-  models[["adap_enet"]] <- adap_enet
-  runtimes[["adap_enet"]] <- adap_enet_time
+  # # Adaptive Ridge
+  # adap_ridge_time <- system.time(adap_ridge <- cv.gcdnet(x = as.matrix(dat[,-1]),
+  #                                                        y = dat$y, nfolds = 10,
+  #                                                        method = "ls", lambda = 0))
+  # models[["adap_ridge"]] <- adap_ridge
+  # runtimes[["adap_ridge"]] <- adap_ridge_time
+  # 
+  # # Adaptive Lasso
+  # adap_lasso_time <- system.time(adap_lasso <- cv.gcdnet(x = as.matrix(dat[,-1]),
+  #                                                        y = dat$y, nfolds = 10,
+  #                                                        method = "ls", lambda2 = 0))
+  # models[["adap_lasso"]] <- adap_lasso
+  # runtimes[["adap_lasso"]] <- adap_lasso_time
+  # 
+  # # Adaptive Elastic Net model for variable selection and multicollinearity
+  # adap_enet_time <- system.time(adap_enet <- cv.gcdnet(x = as.matrix(dat[,-1]),
+  #                                                      y = dat$y, nfolds = 10,
+  #                                                      method = "ls"))
+  # models[["adap_enet"]] <- adap_enet
+  # runtimes[["adap_enet"]] <- adap_enet_time
   
   # SCAD
   scad_time <- system.time(scad <- cv.ncvreg(X = dat[, -1], y = dat$y, penalty = "SCAD"))
