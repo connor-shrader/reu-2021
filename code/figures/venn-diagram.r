@@ -13,6 +13,7 @@ library(dplyr)
 library(VennDiagram)
 library(glmnet)
 library(ncvreg)
+library(scales)
 
 
 for (i in 1:5) {
@@ -73,19 +74,30 @@ for (i in 1:5) {
     n134 = count[13],
     n234 = count[14],
     n1234 = count[15],
-    category = c("LASSO", "ENET", "MCP", "Random Forest"),
-    fill = c("gray10", "gray35", "gray62", "gray87"),
+    category = c("Lasso", "E-net", "MCP", "Random Forest"),
+    fill = hue_pal(h = c(180, 360))(4),
+    #fill = hue_pal()(4),
     lty = "dashed",
     cex = 2,
     cat.cex = 1.5,
     cat.col = c(rep("black",4))
   );
   
-  setEPS()
-  postscript(file = paste("images/venn/venn", i, ".eps", sep = ""), 
-                          fonts = "serif")
-  grid.draw(venn.plot.glm)
-  dev.off()
+  #setEPS()
+  #postscript(file = paste("images/venn/venn", i, ".eps", sep = ""), 
+  #                        fonts = "serif")
+  #grid.draw(venn.plot.glm)
+  #dev.off()
+
+  ggsave(
+    filename = paste("venn", i, ".eps", sep = ""),
+    path = "./images/venn",
+    plot = venn.plot.glm,
+    device = cairo_ps,
+    width = 10,
+    height = 6,
+    unit = "in"
+  )
   
   save_plot(plot = venn.plot.glm, 
             filename = paste("venn", i, sep = ""),
