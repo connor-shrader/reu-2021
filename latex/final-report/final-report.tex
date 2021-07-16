@@ -481,25 +481,30 @@ For analyzing the error of models fitted using this empirical data, we performed
 \section{Results}
 
 
+
 \subsection{Monte Carlo Simulations}
-% stick the results from logisitc regression and classification models here
+% stick the results from classification models here
 
-Because we ran simulations using 270 different combinations of factors, we will just highlight results that are indicative of overall trends or that show interesting results. However, the full tables of results can be found in Appendix \ref{app:full-results}.
+Because we ran simulations using 270 different combinations of factors, we will just highlight results that are indicative of overall trends or that show interesting results.
 
-Recall that we considered three possible values of $n$ (50, 200, and 1000) and three values of $p$ (10, 100, 2000). We will first consider the extreme case when $n = 1000$ and $p = 10$. Figures \ref{fig:train-mse-1000-10} and \ref{fig:test-mse-1000-10} show the average mean squared error for each model for the training set and test set, respectively. Different rows of the figure represent different values of $\sigma$, the strength of the random error (either 1, 3, or 6). Columns represent the type of correlation (independent, symmetric compound, autoregressive or blockwise). The different types of points represent the strength of the correlation. For an independent correlation structure, the correlation is 0; for the other correlation structures, we used 0.2, 0.5, and 0.9. Each point represents the average mean squared error for one specific combination of factors across 100 iterations. Tables \ref{tab:train-mse-1000-10} and \ref{tab:test-mse-1000-10} in Appendix \ref{app:full-results} contain all of the values in these figures, as well as the standard deviation for each point.
+Recall that we considered three possible values of $n$ (50, 200, and 1000) and three values of $p$ (10, 100, 2000). We will first consider the extreme case when $n = 1000$ and $p = 10$. Figures \ref{fig:train-mse-1000-10} and \ref{fig:test-mse-1000-10} show the average mean squared error for each model for the training set and test set, respectively. Different rows of the figure represent different values for $\sigma$, the standard deviation of the random error (either 1, 3, or 6). Columns represent the type of correlation (independent, symmetric compound, autoregressive or blockwise). The different types of points represent the strength of the correlation. For an independent correlation structure, the correlation is 0; for the other correlation structures, we used the values 0.2, 0.5, and 0.9. Each point represents the average mean squared error for one specific combination of factors across 100 iterations. Tables \ref{tab:train-mse-1000-10} and \ref{tab:test-mse-1000-10} in Appendix \ref{app:full-results} contain all of the values in these figures, as well as the standard deviation for each point.
 
 \begin{figure}[!h]
 	\centering
 	\includegraphics[width = \textwidth]{images/facet-train-mse/facet_train_mse_1000_10.png}
-	\caption{Average mean squared error for all simulated models when $n = 1000$ and $p = 10$.}
+	\caption{Average mean squared error using the training data for all simulated models when $n = 1000$ and $p = 10$.}
 	\label{fig:train-mse-1000-10}
 	
 	\bigskip
 	
 	\includegraphics[width = \textwidth]{images/facet-test-mse/facet_test_mse_1000_10.png}
-	\caption{Average Mean Square Error for Empirical Data Models}
+	\caption{Average mean squared error using the test data for all simulated models when $n = 1000$ and $p = 10$.}
 	\label{fig:test-mse-1000-10}
 \end{figure}
+
+Looking at Figures \ref{fig:train-mse-1000-10} and \ref{fig:test-mse-1000-10}, we see that the linear models have very similar train and test mean-squared errors. For these models, the mean squared error is approximately equal to $\sigma^2$, the square of the random error. We also see that for all of the linear models except for ridge regression, the type and strength of correlation has little effect on model performance. However, ridge regression performs worse when the correlation is high.
+
+The non-linear models all have lower training mean squared errors compared to the linear models. However, they also have higher test mean squared errors. We see that gradient boosting is not affected too strongly by the amount of correlation; on the other hand, we see that random forest and support vector machine models have better test performance when there is a strong correlation between predictors.
 
 Now, we will consider the opposite extreme where $n = 50$ and $p = 2000$. Figures \ref{fig:train-mse-50-2000} and \ref{fig:test-mse-50-2000} display the average mean squared error for simulations where $n = 50$ and $p = 2000$. Because less models were fitted for this combination of $n$ and $p$, less models are shown in this figure. See table \ref{tab:train-mse-50-2000} and table \ref{tab:test-mse-50-2000} for a table of these results, including the standard deviations for each point.
 
@@ -516,7 +521,7 @@ Now, we will consider the opposite extreme where $n = 50$ and $p = 2000$. Figure
 	\label{fig:test-mse-50-2000}
 \end{figure}
 
-
+We see in Figures \ref{fig:train-mse-50-2000} and \ref{fig:test-mse-50-2000} that the mean squared error for lasso and elastic-net are generally larger than SCAD and MCP for both the training data and test data. Gradient boosting has almost zero training mean squared error under all conditions, but has a relatively large test error. Random forest and support vector machine models have a moderate training error but a large test error. Interestingly, we see that the non-linear models all perform better when there is a strong correlation between predictors. On the other hand, the linear models are somewhat less affected by the correlation.
 
 \subsection{Empirical Data}
 % Stick all the results from the linear regression models here
