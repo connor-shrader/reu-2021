@@ -71,7 +71,7 @@ plot_metric <- function(data, metric, facet, color, ylabel = "Mean test MSE", ..
   dat <- subset_data(data, ...)
   
   plt <- ggplot(data = dat) +
-    geom_point(mapping = aes_string(x = "model_name", y = mean_metric, color = color, shape = color, fill = color), size = 2, alpha = 0.5) + 
+    geom_point(mapping = aes_string(x = "model_name", y = mean_metric, color = color, shape = color, fill = color), size = 2) + 
     # geom_errorbar(mapping = aes_string(x = "model_name", y = mean_metric, ymin = paste(mean_metric, "-", sd_metric), ymax = paste(mean_metric, "+", sd_metric))) +
     facet_grid(reformulate(facet[1], facet[2]), scales = "free_y", label = "label_parsed") +
     scale_shape_manual(values = 21:24, name = "Correlation") +
@@ -173,7 +173,7 @@ all_results <- all_results[
 old_names <- c("fm", "ab", "bb", "asb", "bsb", "af", "bf", "asf",
                "bsf", "ridge", "lasso", "enet", "scad", "mcp", "gbm",
                "rf", "svm")
-new_names <- c("OLS", "AIC B.", "BIC B", "AIC SB",
+new_names <- c("OLS", "AIC B", "BIC B", "AIC SB",
                "BIC SB", "AIC F", "BIC F",
                "AIC SF", "BIC SF", "Ridge", "Lasso",
                "E-net", "SCAD", "MCP", "GBM", "RF", "SVM")
@@ -229,7 +229,7 @@ apply(X = dimensions, MARGIN = 1, FUN = function(row) {
   return(plt)
 })
 
-accuracy_results <- plot_results[!plot_results$model_name %in% c("OLS", "Ridge", "Adap. ridge", "GB", "RF", "SVM"), ]
+accuracy_results <- plot_results[!plot_results$model_name %in% c("OLS", "Ridge", "Adap. ridge", "GBM", "RF", "SVM"), ]
 
 apply(X = dimensions, MARGIN = 1, FUN = function(row) {
   n <- row[["n"]]

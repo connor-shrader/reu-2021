@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.12.4)  16 JUL 2021 12:06
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.12.4)  16 JUL 2021 12:46
 entering extended mode
 **./final-report.tex
 (final-report.tex
@@ -635,40 +635,133 @@ Package pdftex.def Info: images/empirical_histogram-eps-converted-to.pdf  used
 on input line 472.
 (pdftex.def)             Requested size: 278.23828pt x 166.9409pt.
 [18 <./images/empirical_histogram-eps-converted-to.pdf>]
-<images/facet-train-mse/facet_train_mse_1000_10.png, id=286, 3011.25pt x 1806.7
-5pt>
-File: images/facet-train-mse/facet_train_mse_1000_10.png Graphic file (type png
-)
-<use images/facet-train-mse/facet_train_mse_1000_10.png>
-Package pdftex.def Info: images/facet-train-mse/facet_train_mse_1000_10.png  us
-ed on input line 494.
-(pdftex.def)             Requested size: 397.485pt x 238.46968pt.
-<images/facet-test-mse/facet_test_mse_1000_10.png, id=287, 3011.25pt x 1806.75p
-t>
-File: images/facet-test-mse/facet_test_mse_1000_10.png Graphic file (type png)
-<use images/facet-test-mse/facet_test_mse_1000_10.png>
-Package pdftex.def Info: images/facet-test-mse/facet_test_mse_1000_10.png  used
- on input line 500.
-(pdftex.def)             Requested size: 397.485pt x 238.46968pt.
+Package epstopdf Info: Source file: <images/facet-train-mse/facet_train_mse_100
+0_10.eps>
+(epstopdf)                    date: 2021-07-16 12:43:39
+(epstopdf)                    size: 203778 bytes
+(epstopdf)             Output file: <images/facet-train-mse/facet_train_mse_100
+0_10-eps-converted-to.pdf>
+(epstopdf)             Command: <epstopdf --outfile=images/facet-train-mse/face
+t_train_mse_1000_10-eps-converted-to.pdf images/facet-train-mse/facet_train_mse
+_1000_10.eps>
+(epstopdf)             \includegraphics on input line 494.
+runsystem(epstopdf --outfile=images/facet-train-mse/facet_train_mse_1000_10-eps
+-converted-to.pdf images/facet-train-mse/facet_train_mse_1000_10.eps)...execute
+d (allowed).
 
+Package epstopdf Info: Result file: <images/facet-train-mse/facet_train_mse_100
+0_10-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-07-16 12:46:48
+(epstopdf)                    size: 48223 bytes.
+
+
+pdfTeX warning: pdflatex.exe (file ./images/facet-train-mse/facet_train_mse_100
+0_10-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, but at most
+ version <1.5> allowed
+<images/facet-train-mse/facet_train_mse_1000_10-eps-converted-to.pdf, id=286, 7
+22.7pt x 433.62pt>
+File: images/facet-train-mse/facet_train_mse_1000_10-eps-converted-to.pdf Graph
+ic file (type pdf)
+<use images/facet-train-mse/facet_train_mse_1000_10-eps-converted-to.pdf>
+Package pdftex.def Info: images/facet-train-mse/facet_train_mse_1000_10-eps-con
+verted-to.pdf  used on input line 494.
+(pdftex.def)             Requested size: 397.485pt x 238.49173pt.
+Package epstopdf Info: Source file: <images/facet-test-mse/facet_test_mse_1000_
+10.eps>
+(epstopdf)                    date: 2021-07-16 12:43:51
+(epstopdf)                    size: 208759 bytes
+(epstopdf)             Output file: <images/facet-test-mse/facet_test_mse_1000_
+10-eps-converted-to.pdf>
+(epstopdf)             Command: <epstopdf --outfile=images/facet-test-mse/facet
+_test_mse_1000_10-eps-converted-to.pdf images/facet-test-mse/facet_test_mse_100
+0_10.eps>
+(epstopdf)             \includegraphics on input line 500.
+runsystem(epstopdf --outfile=images/facet-test-mse/facet_test_mse_1000_10-eps-c
+onverted-to.pdf images/facet-test-mse/facet_test_mse_1000_10.eps)...executed (a
+llowed).
+
+Package epstopdf Info: Result file: <images/facet-test-mse/facet_test_mse_1000_
+10-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-07-16 12:46:49
+(epstopdf)                    size: 49097 bytes.
+
+
+pdfTeX warning: pdflatex.exe (file ./images/facet-test-mse/facet_test_mse_1000_
+10-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, but at most v
+ersion <1.5> allowed
+<images/facet-test-mse/facet_test_mse_1000_10-eps-converted-to.pdf, id=287, 722
+.7pt x 433.62pt>
+File: images/facet-test-mse/facet_test_mse_1000_10-eps-converted-to.pdf Graphic
+ file (type pdf)
+<use images/facet-test-mse/facet_test_mse_1000_10-eps-converted-to.pdf>
+Package pdftex.def Info: images/facet-test-mse/facet_test_mse_1000_10-eps-conve
+rted-to.pdf  used on input line 500.
+(pdftex.def)             Requested size: 397.485pt x 238.49173pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<images/facet-train-mse/facet_train_mse_50_2000.png, id=294, 3011.25pt x 1806.7
-5pt>
-File: images/facet-train-mse/facet_train_mse_50_2000.png Graphic file (type png
-)
-<use images/facet-train-mse/facet_train_mse_50_2000.png>
-Package pdftex.def Info: images/facet-train-mse/facet_train_mse_50_2000.png  us
-ed on input line 513.
-(pdftex.def)             Requested size: 397.485pt x 238.46968pt.
-<images/facet-test-mse/facet_test_mse_50_2000.png, id=295, 3011.25pt x 1806.75p
-t>
-File: images/facet-test-mse/facet_test_mse_50_2000.png Graphic file (type png)
-<use images/facet-test-mse/facet_test_mse_50_2000.png>
-Package pdftex.def Info: images/facet-test-mse/facet_test_mse_50_2000.png  used
- on input line 519.
-(pdftex.def)             Requested size: 397.485pt x 238.46968pt.
+Package epstopdf Info: Source file: <images/facet-train-mse/facet_train_mse_50_
+2000.eps>
+(epstopdf)                    date: 2021-07-16 12:43:42
+(epstopdf)                    size: 143858 bytes
+(epstopdf)             Output file: <images/facet-train-mse/facet_train_mse_50_
+2000-eps-converted-to.pdf>
+(epstopdf)             Command: <epstopdf --outfile=images/facet-train-mse/face
+t_train_mse_50_2000-eps-converted-to.pdf images/facet-train-mse/facet_train_mse
+_50_2000.eps>
+(epstopdf)             \includegraphics on input line 513.
+runsystem(epstopdf --outfile=images/facet-train-mse/facet_train_mse_50_2000-eps
+-converted-to.pdf images/facet-train-mse/facet_train_mse_50_2000.eps)...execute
+d (allowed).
+
+Package epstopdf Info: Result file: <images/facet-train-mse/facet_train_mse_50_
+2000-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-07-16 12:46:50
+(epstopdf)                    size: 39657 bytes.
+
+
+pdfTeX warning: pdflatex.exe (file ./images/facet-train-mse/facet_train_mse_50_
+2000-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, but at most
+ version <1.5> allowed
+<images/facet-train-mse/facet_train_mse_50_2000-eps-converted-to.pdf, id=294, 7
+22.7pt x 433.62pt>
+File: images/facet-train-mse/facet_train_mse_50_2000-eps-converted-to.pdf Graph
+ic file (type pdf)
+<use images/facet-train-mse/facet_train_mse_50_2000-eps-converted-to.pdf>
+Package pdftex.def Info: images/facet-train-mse/facet_train_mse_50_2000-eps-con
+verted-to.pdf  used on input line 513.
+(pdftex.def)             Requested size: 397.485pt x 238.49173pt.
+Package epstopdf Info: Source file: <images/facet-test-mse/facet_test_mse_50_20
+00.eps>
+(epstopdf)                    date: 2021-07-16 12:43:54
+(epstopdf)                    size: 143204 bytes
+(epstopdf)             Output file: <images/facet-test-mse/facet_test_mse_50_20
+00-eps-converted-to.pdf>
+(epstopdf)             Command: <epstopdf --outfile=images/facet-test-mse/facet
+_test_mse_50_2000-eps-converted-to.pdf images/facet-test-mse/facet_test_mse_50_
+2000.eps>
+(epstopdf)             \includegraphics on input line 519.
+runsystem(epstopdf --outfile=images/facet-test-mse/facet_test_mse_50_2000-eps-c
+onverted-to.pdf images/facet-test-mse/facet_test_mse_50_2000.eps)...executed (a
+llowed).
+
+Package epstopdf Info: Result file: <images/facet-test-mse/facet_test_mse_50_20
+00-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-07-16 12:46:50
+(epstopdf)                    size: 39948 bytes.
+
+
+pdfTeX warning: pdflatex.exe (file ./images/facet-test-mse/facet_test_mse_50_20
+00-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, but at most v
+ersion <1.5> allowed
+<images/facet-test-mse/facet_test_mse_50_2000-eps-converted-to.pdf, id=295, 722
+.7pt x 433.62pt>
+File: images/facet-test-mse/facet_test_mse_50_2000-eps-converted-to.pdf Graphic
+ file (type pdf)
+<use images/facet-test-mse/facet_test_mse_50_2000-eps-converted-to.pdf>
+Package pdftex.def Info: images/facet-test-mse/facet_test_mse_50_2000-eps-conve
+rted-to.pdf  used on input line 519.
+(pdftex.def)             Requested size: 397.485pt x 238.49173pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
@@ -701,13 +794,14 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 LaTeX Warning: Text page 20 contains only floats.
 
 
-Overfull \vbox (1.77937pt too high) has occurred while \output is active []
+Overfull \vbox (1.82347pt too high) has occurred while \output is active []
 
 
-[20 <./images/facet-train-mse/facet_train_mse_1000_10.png> <./images/facet-test
--mse/facet_test_mse_1000_10.png>] [21 <./images/facet-train-mse/facet_train_mse
-_50_2000.png> <./images/facet-test-mse/facet_test_mse_50_2000.png>] [22 <./imag
-es/empirical_mse-eps-converted-to.pdf>]
+[20 <./images/facet-train-mse/facet_train_mse_1000_10-eps-converted-to.pdf> <./
+images/facet-test-mse/facet_test_mse_1000_10-eps-converted-to.pdf>] [21 <./imag
+es/facet-train-mse/facet_train_mse_50_2000-eps-converted-to.pdf> <./images/face
+t-test-mse/facet_test_mse_50_2000-eps-converted-to.pdf>] [22 <./images/empirica
+l_mse-eps-converted-to.pdf>]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 578.
@@ -741,7 +835,7 @@ Package rerunfilecheck Info: File `final-report.out' has not changed.
  ) 
 Here is how much of TeX's memory you used:
  11438 strings out of 479799
- 179013 string characters out of 2869248
+ 179381 string characters out of 2869248
  760977 words of memory out of 3000000
  28113 multiletter control sequences out of 15000+200000
  544342 words of font info for 61 fonts, out of 3000000 for 9000
@@ -774,9 +868,9 @@ pe1/public/amsfonts/cm/cmsy7.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX
 /fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/Connor/AppData/Local/Progr
 ams/MiKTeX/fonts/type1/public/amsfonts/cm/cmti9.pfb><C:/Users/Connor/AppData/Lo
 cal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on final-report.pdf (26 pages, 2244725 bytes).
+Output written on final-report.pdf (26 pages, 1169594 bytes).
 PDF statistics:
- 450 PDF objects out of 1000 (max. 8388607)
+ 490 PDF objects out of 1000 (max. 8388607)
  94 named destinations out of 1000 (max. 500000)
  205 words of extra memory for PDF output out of 10000 (max. 10000000)
 
