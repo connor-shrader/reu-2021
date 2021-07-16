@@ -75,7 +75,7 @@ metrics_by_fold <- lapply(1:5, function(fold) {
   
   models <- list(ridge, lasso, enet, scad, mcp, gbm, rf)
   
-  model_name <- factor(c("Ridge", "Lasso", "Elas. Net", "SCAD", "MCP", "XGBoost", "Random Forest"))
+  model_name <- factor(c("Ridge", "Lasso", "E-net", "SCAD", "MCP", "GBM", "RF"))
   train_mse <- as.numeric(lapply(models, calc_mse, dat = train_dat))
   test_mse <- as.numeric(lapply(models, calc_mse, dat = test_dat))
   

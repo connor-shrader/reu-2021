@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.12.4)  16 JUL 2021 12:54
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.12.4)  16 JUL 2021 13:33
 entering extended mode
 **./final-report.tex
 (final-report.tex
@@ -641,20 +641,13 @@ Package epstopdf Info: Source file: <images/facet-train-mse/facet_train_mse_100
 (epstopdf)                    size: 203746 bytes
 (epstopdf)             Output file: <images/facet-train-mse/facet_train_mse_100
 0_10-eps-converted-to.pdf>
-(epstopdf)                    date: 2021-07-16 12:46:48
-(epstopdf)                    size: 48223 bytes
+(epstopdf)                    date: 2021-07-16 12:54:11
+(epstopdf)                    size: 48218 bytes
 (epstopdf)             Command: <epstopdf --outfile=images/facet-train-mse/face
 t_train_mse_1000_10-eps-converted-to.pdf images/facet-train-mse/facet_train_mse
 _1000_10.eps>
 (epstopdf)             \includegraphics on input line 494.
-runsystem(epstopdf --outfile=images/facet-train-mse/facet_train_mse_1000_10-eps
--converted-to.pdf images/facet-train-mse/facet_train_mse_1000_10.eps)...execute
-d (allowed).
-
-Package epstopdf Info: Result file: <images/facet-train-mse/facet_train_mse_100
-0_10-eps-converted-to.pdf>
-(epstopdf)                    date: 2021-07-16 12:54:11
-(epstopdf)                    size: 48218 bytes.
+Package epstopdf Info: Output file is already uptodate.
 
 
 pdfTeX warning: pdflatex.exe (file ./images/facet-train-mse/facet_train_mse_100
@@ -674,20 +667,13 @@ Package epstopdf Info: Source file: <images/facet-test-mse/facet_test_mse_1000_
 (epstopdf)                    size: 208727 bytes
 (epstopdf)             Output file: <images/facet-test-mse/facet_test_mse_1000_
 10-eps-converted-to.pdf>
-(epstopdf)                    date: 2021-07-16 12:46:49
-(epstopdf)                    size: 49097 bytes
+(epstopdf)                    date: 2021-07-16 12:54:12
+(epstopdf)                    size: 49084 bytes
 (epstopdf)             Command: <epstopdf --outfile=images/facet-test-mse/facet
 _test_mse_1000_10-eps-converted-to.pdf images/facet-test-mse/facet_test_mse_100
 0_10.eps>
 (epstopdf)             \includegraphics on input line 500.
-runsystem(epstopdf --outfile=images/facet-test-mse/facet_test_mse_1000_10-eps-c
-onverted-to.pdf images/facet-test-mse/facet_test_mse_1000_10.eps)...executed (a
-llowed).
-
-Package epstopdf Info: Result file: <images/facet-test-mse/facet_test_mse_1000_
-10-eps-converted-to.pdf>
-(epstopdf)                    date: 2021-07-16 12:54:12
-(epstopdf)                    size: 49084 bytes.
+Package epstopdf Info: Output file is already uptodate.
 
 
 pdfTeX warning: pdflatex.exe (file ./images/facet-test-mse/facet_test_mse_1000_
@@ -710,20 +696,13 @@ Package epstopdf Info: Source file: <images/facet-train-mse/facet_train_mse_50_
 (epstopdf)                    size: 143858 bytes
 (epstopdf)             Output file: <images/facet-train-mse/facet_train_mse_50_
 2000-eps-converted-to.pdf>
-(epstopdf)                    date: 2021-07-16 12:46:50
+(epstopdf)                    date: 2021-07-16 12:54:13
 (epstopdf)                    size: 39657 bytes
 (epstopdf)             Command: <epstopdf --outfile=images/facet-train-mse/face
 t_train_mse_50_2000-eps-converted-to.pdf images/facet-train-mse/facet_train_mse
 _50_2000.eps>
 (epstopdf)             \includegraphics on input line 513.
-runsystem(epstopdf --outfile=images/facet-train-mse/facet_train_mse_50_2000-eps
--converted-to.pdf images/facet-train-mse/facet_train_mse_50_2000.eps)...execute
-d (allowed).
-
-Package epstopdf Info: Result file: <images/facet-train-mse/facet_train_mse_50_
-2000-eps-converted-to.pdf>
-(epstopdf)                    date: 2021-07-16 12:54:13
-(epstopdf)                    size: 39657 bytes.
+Package epstopdf Info: Output file is already uptodate.
 
 
 pdfTeX warning: pdflatex.exe (file ./images/facet-train-mse/facet_train_mse_50_
@@ -743,20 +722,13 @@ Package epstopdf Info: Source file: <images/facet-test-mse/facet_test_mse_50_20
 (epstopdf)                    size: 143204 bytes
 (epstopdf)             Output file: <images/facet-test-mse/facet_test_mse_50_20
 00-eps-converted-to.pdf>
-(epstopdf)                    date: 2021-07-16 12:46:50
+(epstopdf)                    date: 2021-07-16 12:54:14
 (epstopdf)                    size: 39948 bytes
 (epstopdf)             Command: <epstopdf --outfile=images/facet-test-mse/facet
 _test_mse_50_2000-eps-converted-to.pdf images/facet-test-mse/facet_test_mse_50_
 2000.eps>
 (epstopdf)             \includegraphics on input line 519.
-runsystem(epstopdf --outfile=images/facet-test-mse/facet_test_mse_50_2000-eps-c
-onverted-to.pdf images/facet-test-mse/facet_test_mse_50_2000.eps)...executed (a
-llowed).
-
-Package epstopdf Info: Result file: <images/facet-test-mse/facet_test_mse_50_20
-00-eps-converted-to.pdf>
-(epstopdf)                    date: 2021-07-16 12:54:14
-(epstopdf)                    size: 39948 bytes.
+Package epstopdf Info: Output file is already uptodate.
 
 
 pdfTeX warning: pdflatex.exe (file ./images/facet-test-mse/facet_test_mse_50_20
@@ -774,8 +746,8 @@ rted-to.pdf  used on input line 519.
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 Package epstopdf Info: Source file: <images/empirical_mse.eps>
-(epstopdf)                    date: 2021-07-16 11:18:45
-(epstopdf)                    size: 86970 bytes
+(epstopdf)                    date: 2021-07-16 13:33:28
+(epstopdf)                    size: 84048 bytes
 (epstopdf)             Output file: <images/empirical_mse-eps-converted-to.pdf>
 
 (epstopdf)                    date: 2021-07-16 11:20:20
@@ -783,7 +755,13 @@ Package epstopdf Info: Source file: <images/empirical_mse.eps>
 (epstopdf)             Command: <epstopdf --outfile=images/empirical_mse-eps-co
 nverted-to.pdf images/empirical_mse.eps>
 (epstopdf)             \includegraphics on input line 531.
-Package epstopdf Info: Output file is already uptodate.
+runsystem(epstopdf --outfile=images/empirical_mse-eps-converted-to.pdf images/e
+mpirical_mse.eps)...executed (allowed).
+
+Package epstopdf Info: Result file: <images/empirical_mse-eps-converted-to.pdf>
+
+(epstopdf)                    date: 2021-07-16 13:33:50
+(epstopdf)                    size: 25290 bytes.
 
 
 pdfTeX warning: pdflatex.exe (file ./images/empirical_mse-eps-converted-to.pdf)
@@ -876,7 +854,7 @@ pe1/public/amsfonts/cm/cmsy7.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX
 /fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/Connor/AppData/Local/Progr
 ams/MiKTeX/fonts/type1/public/amsfonts/cm/cmti9.pfb><C:/Users/Connor/AppData/Lo
 cal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on final-report.pdf (26 pages, 1169576 bytes).
+Output written on final-report.pdf (26 pages, 1168698 bytes).
 PDF statistics:
  490 PDF objects out of 1000 (max. 8388607)
  94 named destinations out of 1000 (max. 500000)
