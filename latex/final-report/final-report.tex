@@ -523,6 +523,17 @@ Now, we will consider the opposite extreme where $n = 50$ and $p = 2000$. Figure
 
 We see in Figures \ref{fig:train-mse-50-2000} and \ref{fig:test-mse-50-2000} that the mean squared error for lasso and elastic-net are generally larger than SCAD and MCP for both the training data and test data. Gradient boosting has almost zero training mean squared error under all conditions, but has a relatively large test error. Random forest and support vector machine models have a moderate training error but a large test error. Interestingly, we see that the non-linear models all perform better when there is a strong correlation between predictors. On the other hand, the linear models are somewhat less affected by the correlation.
 
+Recall that in the design of the Monte Carlo simulations, five of the predictors are truly correlated with the response: $\beta_0$ (the intercept), $\beta_1$, $\beta_2$, $\beta_5$ and $\beta_6$. Figures \ref{fig:fn-50-2000} measures the average number of predictors that were predicted by the penalized regression models to be zero that were actually non-zero. In other words, this figure measures the inability for each model to recognize important predictors.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width = \textwidth]{images/facet-fn/facet_fn_50_2000.eps}
+	\caption{Average Mean Square Error for Empirical Data Models}
+	\label{fig:fn-50-2000}
+\end{figure}
+
+We see that when there is little correlation between predictors, SCAD and MCP predict the fewest false negatives, meaning that they were more likely to recognize predictors that are related to the response. We also see that in general, stronger correlation inhibits the ability for all of the models to make correct predictions. In fact, when there is a high correlation, SCAD and MCP have the most false negatives.
+
 \subsection{Empirical Data}
 % Stick all the results from the linear regression models here
 
@@ -583,9 +594,25 @@ We see in Figures \ref{fig:train-mse-50-2000} and \ref{fig:test-mse-50-2000} tha
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Discussion}
 % discussion of findings, future work, and contributions
+
+
 \subsection{Findings}
 % overall ideas that we found out after all these results. Which type of model is best in which environment, etc?
 % Might need to break it into sub sub sections for classification vs regression or monte carlo vs empirical???
+
+Looking at the simulations, we see that the wrapper methods minimize the test mean squared error, along with SCAD and MCP. In addition to having low test error, these models are also fairly resilient to large correlation values. However, despite having good prediction error, SCAD and MCP were not the most effective at choosing the most important predictors when the correlation between predictors was high. Instead, elastic-net made the fewest mistakes when choosing important predictors, with lasso not far behind.
+
+Ridge regression performed far worse than the other linear models when $n=1000$ and $p=10$. Furthermore, the strength of correlation had a more significant effect on ridge than the other linear models. This increase in error is likely because ridge regression cannot set any coefficients to zero; as a result, the predictors that are related to the response are given smaller coefficient values. Recall that four out of the five true coefficient values are larger than 1. Because the ridge penalty function squares each coefficient, it will greatly punish coefficient estimates close to those true coefficient values.
+
+The non-linear models all appear to overfit to the training data. In particular, when $n = 1000$ and $p = 10$, random forest models had almost zero training error. When $n = 50$ and $p = 2000$, gradient boosting machine models had almost zero training error. The non-linear models performed very poorly on the test data, which indicates that these models likely became overfit to the training data.
+
+Interestingly, the mean squared error for the non-linear models generally improved as the correlation between predictors was increased. There are a few possible reasons for this. For random forest and support vector machine models, the increased correlation may have mitigated the amount of overfitting. When $n = 1000$ and $p = 10$, Figure \ref{fig:train-mse-1000-10} shows that the training mean-squared error for support vector machines increased as the correlation increased. However, the training error for gradient boosting and random forest models were less affected by the strength of correlation in this case. Furthermore, when $n = 50$ and $p = 1000$, both training error and test error decreased as correlation increased.
+
+Another possible explanation for this phenomenon is that the non-linear models are less influenced by the random error when the correlation is large. For example, consider random forest models when $n = 50$ and $p = 2000$. When the correlation is zero, only a fraction of the decision trees generated in each model will contain any of the important predictors; many of the trees will instead be fit using only predictors that are unrelated to the response. This means that the random forest model is fitting with a large amount of noise. On the other hand, when the correlation is high, all of the trees will contain predictors that somewhat correlated to some of the important predictors that are related to the response. As a result, none of the trees will truly be fitting on just random error. Similarly, for gradient boosting and support vector machine models, the strong correlation may make it more difficult to fit using just the random noise.
+
+Although wrapper methods and penalized regression models were the clear winners in this simulation study, it is worth noting that the non-linear models suffered from several unfair disadvantages. For one, the simulated data assumed that there was a linear relationship between the predictors and response, which meant that the linear models were almost unbiased. The non-linear models were relatively more biased because they did not assume a linear relationship. 
+
+Another disadvantage for the non-linear models is that they can be controlled by many different hyperparameters, but we only considered a couple for each model. This was out of necessity; it would have been infeasible to fit models using more hyperparameters given the number of simulations that had to be run. However, if more hyperparameters could be included, then the performance of the non-linear models may have been more comparable to the linear models.
 \subsection{Contributions}
 % what are our contributions, why is what we did important?
 % we have a comprehensive analysis of 21 models in 270 different environments. Allows for comprehensive comparison and gives guidance to data scientists as to which model they should use for their research
