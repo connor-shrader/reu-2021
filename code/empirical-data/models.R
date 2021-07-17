@@ -309,3 +309,14 @@ mse_df <- data.frame(t(matrix(unlist(cv.mse), nrow=length(cv.mse), byrow=TRUE)))
 avg_mse <- rowMeans(mse_df)
 mse_df <- cbind(mse_df, avg_mse)
 row.names(mse_df) <- c("lasso", "ridge", "enet", "adap lasso", "adap ridge", "adap enet", "scad", "mcp", "xgboost", "rf")
+
+# create dataframe of runtimes values
+runtimes_df <- as.data.frame(matrix(nrow = length(runtimes[[1]]), ncol = 2))
+runtimes_df[,1] <- c("lasso", "ridge", "enet", "adap lasso", "adap ridge", "adap enet", "scad", "mcp", "xgboost", "rf")
+runtimes_df[,2] <- 0
+for (i in 1:length(runtimes)) {
+  for (model in 1:length(runtimes[[i]])) {
+    runtimes_df[model,2] <- runtimes_df[model,2] + runtimes[[i]][[model]][3]
+  }
+}
+runtimes_df[,2] <- runtimes_df[,2] / 5
