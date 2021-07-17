@@ -364,14 +364,15 @@ All of our simulations were run using version 4.1.0 of \lstinline!R!. Several di
 	\caption{\lstinline!R! Libraries used and the models used from each library}
 	\label{tab:model-libraries}
 	\begin{tabular}{lll}\hline
-		\textbf{Library}    & \textbf{Models used}                                 & \textbf{Version} \\ \hline
-		\lstinline!stats!   & Ordinary least squares                               & 4.1.0            \\
-		\lstinline!MASS!    & Forward and backward selection                       & 7.3-54           \\
-		\lstinline!glmnet!  & Ridge, lasso, elastic-net                            & 4.1-1            \\
-		\lstinline!ncvreg!  & SCAD and MCP                                         & 3.13.0           \\
-		\lstinline!xgboost! & Gradient boosting                                    & 1.4.1.1          \\
-		\lstinline!ranger!  & Random forest                                        & 0.12.1           \\
-		\lstinline!e1071!   & Support vector machine                               & 1.7-7            \\\hline
+		\textbf{Library}    	  & \textbf{Models used}                                 & \textbf{Version} \\ \hline
+		\lstinline!stats!   	  & Ordinary least squares                               & 4.1.0            \\
+		\lstinline!MASS!    	  & Forward and backward selection                       & 7.3-54           \\
+		\lstinline!glmnet!  	  & Ridge, lasso, elastic-net                            & 4.1-1            \\
+		\lstinline!ncvreg! 	      & SCAD and MCP                                         & 3.13.0           \\
+		\lstinline!xgboost! 	  & Gradient boosting                                    & 1.4.1.1          \\
+		\lstinline!ranger!  	  & Random forest (simulations)                          & 0.12.1           \\
+		\lstinline!randomForest!  & Random forest (empirical data)                       & 4.6-14           \\
+		\lstinline!e1071!   	  & Support vector machine                               & 1.7-7            \\\hline
 	\end{tabular}
 \end{table}
 
@@ -388,7 +389,7 @@ For the three non-linear models (gradient boosting, random forests, and support 
 
 For gradient boosting with \lstinline!xgboost!, we used different values for the learning rate (0.1, 0.3, and 0.5) and maximum tree depth (1, 3, and 7). A maximum of 1000 trees were generated, with an early stopping condition if the model failed to improve for several iterations in a row. We used five folds in the cross-validation.
 
-For random forests using \lstinline!ranger!, we tuned the number of predictors used per decision tree ($\lfloor \sqrt{p}\rfloor$, $\lfloor p / 3 \rfloor$, and $\lfloor p / 2 \rfloor$) and the number of trees (300, 400, 500 and 600). The best model was selected based on the out-of-bag error, which represents the average error for each observation using only the trees that did not include that observation.
+For random forests, we used \lstinline!ranger! for the simulated data and \lstinline!randomForest! for the empirical data. \textbf{Why did we use randomforest for empirical again?}. For both \lstinline!ranger! and \lstinline!randomForest!, we tuned the number of predictors used per decision tree ($\lfloor \sqrt{p}\rfloor$, $\lfloor p / 3 \rfloor$, and $\lfloor p / 2 \rfloor$) and the number of trees (300, 400, 500 and 600). The best model was selected based on the out-of-bag error, which represents the average error for each observation using only the trees that did not include that observation.
 
 Finally, for support vector machines using \lstinline!e1071!, we varied $\epsilon$ (0.1, 0.5, 2), which affects the model's sensitivity to small errors. We also controlled the cost value $C$ (0.5, 1, 2), which affects how much the model punishes wrong predictions.
 
@@ -529,7 +530,7 @@ Recall that in our simulation study, five of the predictors are truly related to
 	\label{fig:tp-1000-10}
 \end{figure}
 
-Figure \ref{fig:fp-1000-10} shows the average number of coefficients that were actually zero that each model incorrectly estimated to be non-zero. We see that the subset selection models that used BIC made almost zero mistakes when identifying non-zero predictors. In comparison, wrapper models fitted using AIC made more mistakes. We see that lasso and elastic-net made almost no mistakes when the correlation was low; in fact, when the correlation structure was independent, lasso made the fewest mistakes out of all the models. As the correlation increases, lasso and elastic-net made more incorrect predictions. SCAD and MCP made more incorrect predictions than lasso and elastic-net in general. However, SCAD and MCP were also somewhat more resilient to an increase in correlation.
+Figure \ref{fig:fp-1000-10} shows the average number of coefficients that were actually zero that each model incorrectly estimated to be non-zero. We see that the subset selection models that used BIC made almost zero mistakes when identifying non-zero predictors. In comparison, wrapper models fitted using AIC made more mistakes. We see that lasso and elastic-net made almost no mistakes when the correlation was low; in fact, when the correlation structure was independent, lasso made the fewest incorrect estimates out of all the models. As the correlation increases, lasso and elastic-net made more incorrect predictions. SCAD and MCP made more incorrect predictions than lasso and elastic-net in general. However, SCAD and MCP were also somewhat more resilient to an increase in correlation.
 
 \begin{figure}[h!]
 	\centering
@@ -553,7 +554,7 @@ Now, we will consider the opposite extreme where $n = 50$ and $p = 2000$. Figure
 	\label{fig:test-mse-50-2000}
 \end{figure}
 
-We see in Figures \ref{fig:train-mse-50-2000} and \ref{fig:test-mse-50-2000} that the mean squared error for lasso and elastic-net are generally larger than SCAD and MCP for both the training data and test data. Gradient boosting has almost zero training mean squared error under all conditions, but has a relatively large test error. Random forest and support vector machine models have a moderate training error but a large test error. Interestingly, we see that the non-linear models all perform better when there is a strong correlation between predictors. On the other hand, the linear models are somewhat less affected by the correlation.
+We see that the mean squared error for lasso and elastic-net are generally larger than SCAD and MCP for both the training data and test data. Gradient boosting has almost zero training mean squared error under all conditions, but has a relatively large test error. Random forest and support vector machine models have a moderate training error but a large test error. Interestingly, we see that the non-linear models all perform better when there is a strong correlation between predictors. On the other hand, the linear models are somewhat less affected by the correlation.
 
 Figure \ref{fig:tp-50-2000} measures the average number of predictors that were predicted by the penalized regression models to be non-zero zero that were actually non-zero. Recall that the subset selection methods were not considered here because $p < n$. We see that all of the models predict most of the non-zero coefficients when the correlation is low. When the correlation is high, all of the models struggle to identify the correct predictors. SCAD and MCP perform the best when the correlation is low but perform the worst when the correlation is high. Elastic-net performs particularly well compared to the other models when the correlation is high, especially when the correlation structure is autoregressive.
 
@@ -564,7 +565,7 @@ Figure \ref{fig:tp-50-2000} measures the average number of predictors that were 
 	\label{fig:tp-50-2000}
 \end{figure}
 
-Figure \ref{fig:fp-50-2000} shows the average number of coefficients that were estimated to be non-zero but were actually zero. MCP appears to make the fewest mistakes when choosing non-zero predictors. The performance of the other models depends strongly on the type of correlation and the correlation strength. Lasso and elastic-net perform the worst when the correlation structure is symmetric compound, whereas SCAD performs poorly when the correlation structure is autoregressive or blockwise. We also see that the models generally made less mistakes as the correlation increases.
+Figure \ref{fig:fp-50-2000} shows the average number of coefficients that were estimated to be non-zero but were actually zero when $n = 50$ and $p = 2000$. MCP appears to make the fewest mistakes when choosing non-zero predictors. The performance of the other models depends heavily on the type of correlation and the correlation strength. Lasso and elastic-net perform the worst when the correlation structure is symmetric compound, whereas SCAD performs poorly when the correlation structure is autoregressive or blockwise. We also see that the models generally made less mistakes as the correlation increases.
 
 \begin{figure}[h!]
 	\centering
@@ -575,85 +576,88 @@ Figure \ref{fig:fp-50-2000} shows the average number of coefficients that were e
 
 \subsection{Empirical Data}
 % Stick all the results from the linear regression models here
-Recall that we used nested cross-validation when fitting models on the bcTCGA data set. This means that 
-
+Recall that we used nested cross-validation when fitting models on the bcTCGA data set. This means that we fitted five models using different subsets of the data for training and testing. Figure \ref{fig:empirical_mse} below shows a plot with the training and test mean squared error for every fold of every model. The bars show the average mean squared error for the five folds. In addition, Table \ref{tab:emp_results} show the aggregated results for the train and test mean squared error.
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width = 0.9\linewidth]{images/empirical_mse.eps}
-	\caption{Average Mean Square Error for Empirical Data Models}
+	\captionsetup{width = 4in}
+	\caption{Mean squared error of the models fit on the bcTCGA data set. Each point represents the mean squared error for one fold, while the bars represent the average for the five folds.}
 	\label{fig:empirical_mse}
 \end{figure}
 
 \begin{table}
 \centering
 \captionsetup{width = 5in}
-\caption{Cross validation results on empirical data}
+\caption{Average and standard deviation of the mean squared error of the models fit on the bcTCGA data set.}
 \label{tab:emp_results}
-\begin{tabular}{lllll}
+\begin{tabular}{l|ll|ll}
 	\hline
-	& \multicolumn{2}{l}{Train} & \multicolumn{2}{l}{Test} \\ 
-	Model  & Average MSE & SD & Average MSE & \multicolumn{1}{l}{SD} \\ 
+	& \multicolumn{2}{c|}{\textbf{Train MSE}} & \multicolumn{2}{c}{\textbf{Test MSE}} \\ 
+	\textbf{Model } & \textbf{Average} & \textbf{SD} & \textbf{Average} & \textbf{SD} \\ 
 	\hline
 	Ridge  & $0.1391$ & $0.0266$ & $0.2858$ & $0.0610$ \\
 	Lasso  & $0.1842$ & $0.0159$ & $0.2304$ & $0.0337$ \\
-	Elastic Net  & $0.1799$ & $0.0127$ & $0.2281$ & $0.0469$ \\
+	E-net  & $0.1799$ & $0.0127$ & $0.2281$ & $0.0469$ \\
 	SCAD  & $0.1442$ & $0.0333$ & $0.2218$ & $0.0303$ \\
 	MCP  & $0.1566$ & $0.0129$ & $0.2202$ & $0.0224$ \\
-	XGBoost  & $0.0002$ & $0.0004$ & $0.2233$ & $0.0507$ \\
-	Random Forest  & $0.0378$ & $0.0013$ & $0.2653$ & $0.0525$ \\
+	GBM  & $0.0002$ & $0.0004$ & $0.2233$ & $0.0507$ \\
+	RF  & $0.0378$ & $0.0013$ & $0.2653$ & $0.0525$ \\
 	\hline 
 \end{tabular}
 \end{table}
 
+The models can also be compared to each other by comparing the most important predictors selected by each model. Figure \ref{fig:venn} shows five Venn diagrams. Each diagram shows the number of variables selected by lasso, elastic-net, MCP, and random forest as the most important for each of the folds. Figure \ref{fig:venn1}, for example, shows that four of the predictors were chosen by all four models as important. For lasso, elastic-net, and MCP, a predictor is considered important if its coefficient is non-zero. For random forest, we used the 50 predictors with the highest importance score (as computed by \lstinline!randomForest!). We see that the predictors chosen by each model varies slightly among different folds. The second fold in \ref{fig:venn2} had six predictors common to all four models, whereas the models tested in the third fold in \ref{fig:venn3} only had three.
 \begin{figure}
 	\centering
 	\begin{subfigure}[b]{0.45\textwidth}
-		\label{fig:venn1}
 		\includegraphics[width=\textwidth]{images/venn/venn1.eps}
-		\subcaption{1st Fold}
+		\subcaption{First fold}
+		\label{fig:venn1}
 	\end{subfigure}
 	\hspace{30pt}
 	\begin{subfigure}[b]{0.45\textwidth}
-		\label{fig:venn2}
 		\includegraphics[width=\textwidth]{images/venn/venn2.eps}
-		\subcaption{2nd Fold}
+		\subcaption{Second fold}
+		\label{fig:venn2}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.45\textwidth}
-		\label{fig:venn3}
 		\includegraphics[width=\textwidth]{images/venn/venn3.eps}
-		\subcaption{3rd Fold}
+		\subcaption{Third fold}
+		\label{fig:venn3}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.45\textwidth}
-		\label{fig:venn4}
 		\includegraphics[width=\textwidth]{images/venn/venn4.eps}
-		\subcaption{4th Fold}
+		\subcaption{Fourth Fold}
+		\label{fig:venn4}
 	\end{subfigure}
 	\hspace{30pt}
 	\begin{subfigure}[b]{0.45\textwidth}
-		\label{fig:venn5}
 		\includegraphics[width=\textwidth]{images/venn/venn5.eps}
-		\subcaption{5th Fold}
+		\subcaption{Fifth Fold}
+		\label{fig:venn5}
 	\end{subfigure}
 	\captionsetup{width = 5in}
 	\caption{Venn diagrams with number of common predictors selected by each regression model.}
 	\label{fig:venn}
 \end{figure}
 
+Table \ref{tab:emp_runtimes} shows the average runtime to fit each of the models on the bcTCGA data set.
+
 \begin{table}[]
 	\centering
 	\caption{Average Runtimes for Empirical Data Models}
 	\label{tab:emp_runtimes}
-	\begin{tabular}{|l|l|}
+	\begin{tabular}{ll}
 		\hline
-		Model         & Average Runtime (s) \\ \hline
-		Ridge         & 29.29               \\ \hline
-		Lasso         & 9.57                \\ \hline
-		Elastic Net   & 9.41                \\ \hline
-		SCAD          & 17.28               \\ \hline
-		MCP           & 15.15               \\ \hline
-		XGBoost       & 538.12              \\ \hline
-		Random Forest & 4906.59             \\ \hline
+		\textbf{Model}        & \textbf{Average Runtime} (seconds) \\ \hline
+		Ridge         & 29.29               \\
+		Lasso         & 9.57                \\
+		E-net	      & 9.41                \\
+		SCAD          & 17.28               \\
+		MCP           & 15.15               \\
+		GBM      	  & 538.12              \\
+		RF 			  & 4906.59             \\ \hline
 	\end{tabular}
 \end{table}
 
