@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.12.4)  17 JUL 2021 14:07
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.12.4)  17 JUL 2021 14:43
 entering extended mode
 **./final-report.tex
 (final-report.tex
@@ -1010,7 +1010,7 @@ d-to.pdf> <./images/venn/venn4-eps-converted-to.pdf> <./images/venn/venn5-eps-c
 onverted-to.pdf>] [28] [29] [30]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 708.
+(caption)                particular \caption on input line 712.
 See the caption package documentation for explanation.
 
 (tables/train_mse_1000_10.tex) [31
@@ -1018,19 +1018,19 @@ See the caption package documentation for explanation.
 ]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 713.
+(caption)                particular \caption on input line 717.
 See the caption package documentation for explanation.
 
 (tables/test_mse_1000_10.tex) [32]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 718.
+(caption)                particular \caption on input line 722.
 See the caption package documentation for explanation.
 
 (tables/train_mse_50_2000.tex)
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 723.
+(caption)                particular \caption on input line 727.
 See the caption package documentation for explanation.
 
 (tables/test_mse_50_2000.tex) [33] (final-report.bbl) [34
@@ -1075,9 +1075,9 @@ pe1/public/amsfonts/cm/cmsy7.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX
 ams/MiKTeX/fonts/type1/public/amsfonts/cm/cmti9.pfb><C:/Users/Connor/AppData/Lo
 cal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/Connor/
 AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
-Output written on final-report.pdf (34 pages, 2767854 bytes).
+Output written on final-report.pdf (34 pages, 2770084 bytes).
 PDF statistics:
- 656 PDF objects out of 1000 (max. 8388607)
+ 659 PDF objects out of 1000 (max. 8388607)
  111 named destinations out of 1000 (max. 500000)
  271 words of extra memory for PDF output out of 10000 (max. 10000000)
 
