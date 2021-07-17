@@ -316,7 +316,15 @@ We next discuss several non-linear methods for regression: random forests, gradi
 
 Both random forest and gradient boosting models use \textbf{decision trees} to make predictions. A decision tree is a binary tree where each non-leaf node represents a condition and each leaf node represents a prediction value. To make a prediction, start at the root node and check whether the condition at that node is true or false. If true, move down to the node's first child; if false, move to the second child. This process is repeated until a leaf node is reached. This node will give a value that the decision tree predicts.
 
-Although decision trees can be used as machine learning models on their own, it is more common to use decision trees in ensemble methods, which combine many different decision trees into a single model. A single decision tree will usually have high variance since a small change in the training set can lead to a completely different decision tree \cite{james2013introduction}.
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width = 0.4\linewidth]{images/decision-tree.eps}
+	\captionsetup{width = 4in}
+	\caption{Example of a decision tree. This tree was generated using the \lstinline!iris! data set and attempts to predict the species of a flower based on its petal length and petal width. The decision tree was fitted and plotted with the \lstinline!rpart! and \lstinline!rpart.plot! libraries in \lstinline!R!.}
+	\label{fig:decision-tree}
+\end{figure}
+
+Although decision trees can be used as machine learning models on their own, it is more common to use decision trees in \textbf{ensemble methods}, which combine many different decision trees into a single model. A single decision tree will usually have high variance since a small change in the training set can lead to a completely different decision tree \cite{james2013introduction}.
 
 \textbf{Random Forests} solve the issue of high variance by aggregating the predictions of many independent decision trees. Each tree is fit using a subset of the observations and a subset of the predictors, so that the trees are relatively independent from one another.
 
