@@ -371,7 +371,7 @@ Ordinary least squares models were fitted using the \lstinline!lm! function from
 
 Subset selection models using forward selection, backward selection, stepwise forward selection, and stepwise backward selection were fitted using the \lstinline!MASS! library. For each of these four algorithms, we fit models using both AIC and BIC, giving up to eight models total.
 
-For ridge, lasso, and elastic-net regression using \lstinline!glmnet!, we used the \lstinline!cv.glmnet! function. This function uses cross-validation grid search to determine the value of $\lambda$ that minimizes the cross-validation error. Using cross-validation can help generate a model that performs well on both training and testing data. We used the default value of 10 folds to fit models using \lstinline!glmnet!. For elastic-net regression, we used the hyperparameter $\alpha = 0.8$. This means that the elastic-net model is more similar to lasso (where $\alpha = 1$) than ridge (where $\alpha = 0$). This values of $\alpha = 0.8$ was chosen so that the elastic-net model could still perform variable selection well, but while also allowing it to handle multicollinearity. The remaining hyperparameters were given their default values.
+For ridge, lasso, and elastic-net regression using \lstinline!glmnet!, we used the \lstinline!cv.glmnet! function. This function uses cross-validation grid search to determine the value of $\lambda$ that minimizes the cross-validation error. Using cross-validation can help generate a model that performs well on both training and testing data. We used the default value of 10 folds to fit models using \lstinline!glmnet!. For elastic-net regression, we used the hyperparameter $\alpha = 0.8$ in our simulation study. This means that the elastic-net model is more similar to lasso (where $\alpha = 1$) than ridge (where $\alpha = 0$). This values of $\alpha = 0.8$ was chosen so that the elastic-net model could emphasize the variable selection provided by lasso while also allowing it to handle multicollinearity from ridge. For the empirical data analysis, we used $\alpha = 0.5$. The remaining hyperparameters were given their default values.
 
 For SCAD and MCP models, we used the \lstinline!cv.ncvreg! function from the \lstinline!ncvreg! library. Both SCAD and MCP depend on an additional hyperparameter $a$. We used the default values of $a$ for both models: 3 for MCP and 3.7 for SCAD (note that the \lstinline!ncvreg! documentation calls this hyperparameter $\gamma$ instead of $a$). All other arguments were given their default values. 
 %%%%  Why did we use these values??
@@ -477,6 +477,12 @@ For empirical data, we used the Breast Cancer database from The Cancer Genome At
 This data is a prime example of the $p>>n$ problem where there are many more predictors than data samples. Because of this, only penalized regression and machine learning techniques can be utilized. This is because there are more predictors than samples which makes least squares linear regression impossible and due to the high number of predictors, subset and stepwise regression becomes too computationally expensive to be feasible. Additionally, support vector machines struggle at such a high number of predictors and resulted in stack overflow errors which made fitting support vector machines on this data infeasible.
 
 For analyzing the error of models fitted using this empirical data, we performed nested cross validation. Many of the models fitted used cross validation for tuning purposes to find the best input parameters. Examples of these parameters include $\lambda$ for penalized regression techniques, the number of trees and number of predictors for random forest, as well as max depth and learning rate for XGBoost. However, we also perform 5-fold cross validation before we even allow the models to tune their parameters. By doing nested cross validation, testing data is not used for training the model \textbf{or} tuning model parameters. This results in a more accurate error calculation. If nested cross validation was not used, models could tune their parameters in a way that overfits the model to the testing data which would lead to artificially decreased error and invalid results.
+
+Proposed alternative to the above paragraph: To evaluate the models, we used \textbf{nested cross validation}. This means that we first split the data into five folds. For each of these folds, we used the selected fold as a test set while the other four folds were used as a training set. We then fitted the models using cross-validation on this training set, where one interior fold was used as a validation set while the other folds were used to train a model. The role of the validation set in the interior cross validation is different from the test set used in the exterior cross validation. In the interior cross validation, the validation set is used to tune hyperparameters; the model that performs best against the validation set is then chosen. On the other hand, the test set in the exterior cross validation is not used to tune hyperparameters; its only purpose is to evaluate the performance of the models chosen in the inner cross validation. Because the test set is not used in the model fitting or selection process, it gives an unbiased evaluation of each model's performance.
+
+We chose to use nested cross validation because it produces five models that were fitted using different subsets of the data for training and testing. If we had only fit one model, the subset of the data we choose for training and testing can have a huge impact on our findings. By using five models that are fit with different subsets of the data, we get a more accurate view of how each model performs in general. Cross validation also allows us to get an idea of how much variance each of these models has by comparing the results between different folds.
+
+The hyperparameters tuned in each of the models were the same as those tuned in the Monte Carlo simulations. For ridge, lasso, elastic-net, SCAD, and MCP, we tuned the penalty strength $\lambda$; for elastic-net, we used the hyperparameter $\alpha = 0.5$, meaning that the penalty is in between that of lasso and ridge. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results}
 
@@ -485,11 +491,11 @@ For analyzing the error of models fitted using this empirical data, we performed
 \subsection{Monte Carlo Simulations}
 % stick the results from classification models here
 
-Because we ran simulations using 270 different combinations of factors, we will just highlight results that are indicative of overall trends or that show interesting results.
+Because we ran simulations using 270 different combinations of factors, we will just highlight the results for the two extremes: when $n = 1000$ and $p = 10$, and when $n = 50$ and $p = 2000$.
 
-Recall that we considered three possible values of $n$ (50, 200, and 1000) and three values of $p$ (10, 100, 2000). We will first consider the extreme case when $n = 1000$ and $p = 10$. Figures \ref{fig:train-mse-1000-10} and \ref{fig:test-mse-1000-10} show the average mean squared error for each model for the training set and test set, respectively. Different rows of the figure represent different values for $\sigma$, the standard deviation of the random error (either 1, 3, or 6). Columns represent the type of correlation (independent, symmetric compound, autoregressive or blockwise). The different types of points represent the strength of the correlation. For an independent correlation structure, the correlation is 0; for the other correlation structures, we used the values 0.2, 0.5, and 0.9. Each point represents the average mean squared error for one specific combination of factors across 100 iterations. Tables \ref{tab:train-mse-1000-10} and \ref{tab:test-mse-1000-10} in Appendix \ref{app:full-results} contain all of the values in these figures, as well as the standard deviation for each point.
+We will first consider the case where $n = 1000$ and $p = 10$. Figures \ref{fig:train-mse-1000-10} and \ref{fig:test-mse-1000-10} show the average mean squared error for each model for the training set and test set, respectively. Different rows of the figure represent different values for $\sigma$, the standard deviation of the random error (either 1, 3, or 6). Columns represent the type of correlation (independent, symmetric compound, autoregressive or blockwise). The different types of points represent the strength of the correlation. For an independent correlation structure, the correlation is 0; for the other correlation structures, we used the values 0.2, 0.5, and 0.9. Each point represents the average mean squared error for one specific combination of factors across 100 iterations. Tables \ref{tab:train-mse-1000-10} and \ref{tab:test-mse-1000-10} in Appendix \ref{app:full-results} contain all of the values in these figures, as well as the standard deviation for each point.
 
-\begin{figure}[!h]
+\begin{figure}[p!]
 	\centering
 	\includegraphics[width = \textwidth]{images/facet-train-mse/facet_train_mse_1000_10.eps}
 	\caption{Average mean squared error using the training data for all simulated models when $n = 1000$ and $p = 10$.}
@@ -502,13 +508,31 @@ Recall that we considered three possible values of $n$ (50, 200, and 1000) and t
 	\label{fig:test-mse-1000-10}
 \end{figure}
 
-Looking at Figures \ref{fig:train-mse-1000-10} and \ref{fig:test-mse-1000-10}, we see that the linear models have very similar train and test mean-squared errors. For these models, the mean squared error is approximately equal to $\sigma^2$, the square of the random error. We also see that for all of the linear models except for ridge regression, the type and strength of correlation has little effect on model performance. However, ridge regression performs worse when the correlation is high.
+We see that the linear models have very similar train and test mean squared errors. For these models, the mean squared error is approximately equal to $\sigma^2$, the square of the random error. We also see that for all of the linear models except for ridge regression, the type and strength of correlation has little effect on model performance. However, ridge regression performs worse when the correlation is high.
 
 The non-linear models all have lower training mean squared errors compared to the linear models. However, they also have higher test mean squared errors. We see that gradient boosting is not affected too strongly by the amount of correlation; on the other hand, we see that random forest and support vector machine models have better test performance when there is a strong correlation between predictors.
 
-Now, we will consider the opposite extreme where $n = 50$ and $p = 2000$. Figures \ref{fig:train-mse-50-2000} and \ref{fig:test-mse-50-2000} display the average mean squared error for simulations where $n = 50$ and $p = 2000$. Because less models were fitted for this combination of $n$ and $p$, less models are shown in this figure. See table \ref{tab:train-mse-50-2000} and table \ref{tab:test-mse-50-2000} for a table of these results, including the standard deviations for each point.
+Recall that in our simulation study, five of the predictors are truly related to the response (including the intercept) while the other predictors have no relation. Figure \ref{fig:tp-1000-10} displays the average number of non-zero coefficients that each model correctly identified as non-zero. Because ordinary least squares, ridge regression, and the non-linear models do not perform variable selection, we do not consider them in this plot. We see that almost all the models were able to correctly identify all of the non-zero coefficients when $n = 1000$ and $p = 10$. The only exceptions were lasso and elastic-net models when the correlation structure was blockwise and the strength of the correlation was 0.9.
 
 \begin{figure}[h!]
+	\centering
+	\includegraphics[width = \textwidth]{images/facet-tp/facet_tp_1000_10.eps}
+	\caption{Average number of non-zero coefficients that were correctly estimated as non-zero when $n = 1000$ and $p = 10$.}
+	\label{fig:tp-1000-10}
+\end{figure}
+
+Figure \ref{fig:fp-1000-10} shows the average number of coefficients that were actually zero that each model incorrectly estimated to be non-zero. We see that the subset selection models that used BIC made almost zero mistakes when identifying non-zero predictors. In comparison, wrapper models fitted using AIC made more mistakes. We see that lasso and elastic-net made almost no mistakes when the correlation was low; in fact, when the correlation structure was independent, lasso made the fewest mistakes out of all the models. As the correlation increases, lasso and elastic-net made more incorrect predictions. SCAD and MCP made more incorrect predictions than lasso and elastic-net in general. However, SCAD and MCP were also somewhat more resilient to an increase in correlation.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width = \textwidth]{images/facet-fp/facet_fp_1000_10.eps}
+	\caption{Average number of zero coefficients that were incorrectly estimated as non-zero when $n = 1000$ and $p = 10$.}
+	\label{fig:fp-1000-10}
+\end{figure}
+
+Now, we will consider the opposite extreme where $n = 50$ and $p = 2000$. Figures \ref{fig:train-mse-50-2000} and \ref{fig:test-mse-50-2000} display the average mean squared error for simulations where $n = 50$ and $p = 2000$. Because less models were fitted for this combination of $n$ and $p$, less models are shown in this figure. See table \ref{tab:train-mse-50-2000} and table \ref{tab:test-mse-50-2000} for a table of these results, including the standard deviations for each point.
+
+\begin{figure}[p!]
 	\centering
 	\includegraphics[width = \textwidth]{images/facet-train-mse/facet_train_mse_50_2000.eps}
 	\caption{Average mean square error using training data for Monte Carlo models when $n = 50$ and $p = 2000$.}
@@ -523,19 +547,28 @@ Now, we will consider the opposite extreme where $n = 50$ and $p = 2000$. Figure
 
 We see in Figures \ref{fig:train-mse-50-2000} and \ref{fig:test-mse-50-2000} that the mean squared error for lasso and elastic-net are generally larger than SCAD and MCP for both the training data and test data. Gradient boosting has almost zero training mean squared error under all conditions, but has a relatively large test error. Random forest and support vector machine models have a moderate training error but a large test error. Interestingly, we see that the non-linear models all perform better when there is a strong correlation between predictors. On the other hand, the linear models are somewhat less affected by the correlation.
 
-Recall that in the design of the Monte Carlo simulations, five of the predictors are truly correlated with the response: $\beta_0$ (the intercept), $\beta_1$, $\beta_2$, $\beta_5$ and $\beta_6$. Figures \ref{fig:fn-50-2000} measures the average number of predictors that were predicted by the penalized regression models to be zero that were actually non-zero. In other words, this figure measures the inability for each model to recognize important predictors.
+Figure \ref{fig:tp-50-2000} measures the average number of predictors that were predicted by the penalized regression models to be non-zero zero that were actually non-zero. Recall that the subset selection methods were not considered here because $p < n$. We see that all of the models predict most of the non-zero coefficients when the correlation is low. When the correlation is high, all of the models struggle to identify the correct predictors. SCAD and MCP perform the best when the correlation is low but perform the worst when the correlation is high. Elastic-net performs particularly well compared to the other models when the correlation is high, especially when the correlation structure is autoregressive.
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width = \textwidth]{images/facet-fn/facet_fn_50_2000.eps}
-	\caption{Average False Negatives for Monte Carlo Models}
-	\label{fig:fn-50-2000}
+	\includegraphics[width = \textwidth]{images/facet-tp/facet_tp_50_2000.eps}
+	\caption{Average number of non-zero coefficients that were correctly estimated as non-zero when $n = 50$ and $p = 2000$.}
+	\label{fig:tp-50-2000}
 \end{figure}
 
-We see that when there is little correlation between predictors, SCAD and MCP predict the fewest false negatives, meaning that they were more likely to recognize predictors that are related to the response. We also see that in general, stronger correlation inhibits the ability for all of the models to make correct predictions. In fact, when there is a high correlation, SCAD and MCP have the most false negatives.
+Figure \ref{fig:fp-50-2000} shows the average number of coefficients that were estimated to be non-zero but were actually zero. MCP appears to make the fewest mistakes when choosing non-zero predictors. The performance of the other models depends strongly on the type of correlation and the correlation strength. Lasso and elastic-net perform the worst when the correlation structure is symmetric compound, whereas SCAD performs poorly when the correlation structure is autoregressive or blockwise. We also see that the models generally made less mistakes as the correlation increases.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width = \textwidth]{images/facet-fp/facet_fp_50_2000.eps}
+	\caption{Average number of zero coefficients that were incorrectly estimated as non-zero when $n = 50$ and $p = 2000$.}
+	\label{fig:fp-50-2000}
+\end{figure}
 
 \subsection{Empirical Data}
 % Stick all the results from the linear regression models here
+Recall that we used nested cross-validation when fitting models on the bcTCGA data set. This means that 
+
 
 \begin{figure}[h!]
 	\centering
@@ -546,7 +579,8 @@ We see that when there is little correlation between predictors, SCAD and MCP pr
 
 \begin{table}
 \centering
-\caption{Cross Validation Results on Empirical Data}
+\captionsetup{width = 5in}
+\caption{Cross validation results on empirical data}
 \label{tab:emp_results}
 \begin{tabular}{lllll}
 	\hline

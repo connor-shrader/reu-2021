@@ -64,7 +64,7 @@ plot_metric_old <- function(data, metric, facet, ...) {
 }
 
 # This function is a more complete version of plot_metric.
-plot_metric <- function(data, metric, facet, color, ylabel = "Mean test MSE", ...) {
+plot_metric <- function(data, metric, facet, color, ylabel = "Mean test MSE", fixy = FALSE, ...) {
   mean_metric <- paste("mean_", metric, sep = "")
   sd_metric <- paste("sd_", metric, sep = "")
   
@@ -73,7 +73,6 @@ plot_metric <- function(data, metric, facet, color, ylabel = "Mean test MSE", ..
   plt <- ggplot(data = dat) +
     geom_point(mapping = aes_string(x = "model_name", y = mean_metric, color = color, shape = color, fill = color), size = 2) + 
     # geom_errorbar(mapping = aes_string(x = "model_name", y = mean_metric, ymin = paste(mean_metric, "-", sd_metric), ymax = paste(mean_metric, "+", sd_metric))) +
-    facet_grid(reformulate(facet[1], facet[2]), scales = "free_y", label = "label_parsed") +
     scale_shape_manual(values = 21:24, name = "Correlation") +
     scale_color_manual(values = hue_pal()(4), name = "Correlation") +
     scale_fill_manual(values = hue_pal()(4), name = "Correlation") +
@@ -90,6 +89,15 @@ plot_metric <- function(data, metric, facet, color, ylabel = "Mean test MSE", ..
       legend.text = element_text(size = 12),
       legend.title = element_text(size = 16)
     )
+  
+  # If fixy is false, then let y vary for different values of sigma. Otherwise, keep
+  # the y scale the same
+  if (fixy == FALSE) {
+    plt <- plt + facet_grid(reformulate(facet[1], facet[2]), scales = "free_y", label = "label_parsed")
+  }
+  else {
+    plt <- plt + facet_grid(reformulate(facet[1], facet[2]), label = "label_parsed")
+  }
   
   return(plt)
 }
@@ -208,7 +216,7 @@ apply(X = dimensions, MARGIN = 1, FUN = function(row) {
   p <- row[["p"]]
   
   plt <- plot_metric(plot_results, "train_mse", facet = c("type", "st_dev"),
-              color = "corr", ylabel = "Mean Train MSE", n = n, p = p)
+              color = "corr", ylabel = "Mean Train MSE", fixy = FALSE, n = n, p = p)
   save_plot(plot = plt,
             filename = paste("facet_train_mse_", n, "_", p, sep = ""),
             path = "./images/facet-train-mse")
@@ -221,7 +229,7 @@ apply(X = dimensions, MARGIN = 1, FUN = function(row) {
   p <- row[["p"]]
   
   plt <- plot_metric(plot_results, "test_mse", facet = c("type", "st_dev"),
-                     color = "corr", ylabel = "Mean Test MSE",n = n, p = p)
+                     color = "corr", ylabel = "Mean Test MSE", fixy = FALSE, n = n, p = p)
   save_plot(plot = plt,
             filename = paste("facet_test_mse_", n, "_", p, sep = ""),
             path = "./images/facet-test-mse")
@@ -236,7 +244,7 @@ apply(X = dimensions, MARGIN = 1, FUN = function(row) {
   p <- row[["p"]]
   
   plt <- plot_metric(accuracy_results, "tn", facet = c("type", "st_dev"),
-                     color = "corr", ylabel = "Mean True Negatives",n = n, p = p)
+                     color = "corr", ylabel = "Mean True Negatives", fixy = TRUE, n = n, p = p)
   save_plot(plot = plt,
             filename = paste("facet_tn_", n, "_", p, sep = ""),
             path = "./images/facet-tn")
@@ -249,7 +257,7 @@ apply(X = dimensions, MARGIN = 1, FUN = function(row) {
   p <- row[["p"]]
   
   plt <- plot_metric(accuracy_results, "fn", facet = c("type", "st_dev"),
-                     color = "corr", ylabel = "Mean False Negatives",n = n, p = p)
+                     color = "corr", ylabel = "Mean False Negatives", fixy = TRUE, n = n, p = p)
   save_plot(plot = plt,
             filename = paste("facet_fn_", n, "_", p, sep = ""),
             path = "./images/facet-fn")
@@ -262,7 +270,7 @@ apply(X = dimensions, MARGIN = 1, FUN = function(row) {
   p <- row[["p"]]
   
   plt <- plot_metric(accuracy_results, "fp", facet = c("type", "st_dev"),
-                     color = "corr", ylabel = "Mean False Positives",n = n, p = p)
+                     color = "corr", ylabel = "Mean False Positives", fixy = TRUE, n = n, p = p)
   save_plot(plot = plt,
             filename = paste("facet_fp_", n, "_", p, sep = ""),
             path = "./images/facet-fp")
@@ -275,7 +283,7 @@ apply(X = dimensions, MARGIN = 1, FUN = function(row) {
   p <- row[["p"]]
   
   plt <- plot_metric(accuracy_results, "tp", facet = c("type", "st_dev"),
-                     color = "corr", ylabel = "Mean True Positives",n = n, p = p)
+                     color = "corr", ylabel = "Mean True Positives", fixy = TRUE, n = n, p = p)
   save_plot(plot = plt,
             filename = paste("facet_tp_", n, "_", p, sep = ""),
             path = "./images/facet-tp")
