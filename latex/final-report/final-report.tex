@@ -586,7 +586,7 @@ Recall that we used nested cross-validation when fitting models on the bcTCGA da
 	\label{fig:empirical_mse}
 \end{figure}
 
-\begin{table}
+\begin{table}[h!]
 \centering
 \captionsetup{width = 5in}
 \caption{Average and standard deviation of the mean squared error of the models fit on the bcTCGA data set.}
@@ -607,8 +607,8 @@ Recall that we used nested cross-validation when fitting models on the bcTCGA da
 \end{tabular}
 \end{table}
 
-The models can also be compared to each other by comparing the most important predictors selected by each model. Figure \ref{fig:venn} shows five Venn diagrams. Each diagram shows the number of variables selected by lasso, elastic-net, MCP, and random forest as the most important for each of the folds. Figure \ref{fig:venn1}, for example, shows that four of the predictors were chosen by all four models as important. For lasso, elastic-net, and MCP, a predictor is considered important if its coefficient is non-zero. For random forest, we used the 50 predictors with the highest importance score (as computed by \lstinline!randomForest!). We see that the predictors chosen by each model varies slightly among different folds. The second fold in \ref{fig:venn2} had six predictors common to all four models, whereas the models tested in the third fold in \ref{fig:venn3} only had three.
-\begin{figure}
+The models can also be compared to each other by comparing the most important predictors selected by each model. Figure \ref{fig:venn} shows five Venn diagrams. Each diagram shows the number of variables selected by lasso, elastic-net, MCP, and random forest as the most important for each of the folds. Figure \ref{fig:venn1}, for example, shows that four of the predictors were chosen by all four models as important. For lasso, elastic-net, and MCP, a predictor is considered important if its coefficient is non-zero. For random forest, we used the 50 predictors with the highest importance score (as computed by \lstinline!randomForest!). We see that the predictors chosen by each model varies slightly among different folds, however, there still are common trends that are upheld between the different folds. The second fold in \ref{fig:venn2} had six predictors common to all four models, whereas the models tested in the third fold in \ref{fig:venn3} only had three.
+\begin{figure}[h!]
 	\centering
 	\begin{subfigure}[b]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{images/venn/venn1.eps}
@@ -644,7 +644,7 @@ The models can also be compared to each other by comparing the most important pr
 
 Table \ref{tab:emp_runtimes} shows the average runtime to fit each of the models on the bcTCGA data set.
 
-\begin{table}[]
+\begin{table}[h!]
 	\centering
 	\caption{Average Runtimes for Empirical Data Models}
 	\label{tab:emp_runtimes}
@@ -689,7 +689,10 @@ Although wrapper methods and penalized regression models were the clear winners 
 Another disadvantage for the non-linear models is that they can be controlled by many different hyperparameters, but we only considered a couple for each model. This was out of necessity; it would have been infeasible to fit models using more hyperparameters given the number of simulations that had to be run. If more hyperparameters could be included, then the performance of the non-linear models may have been more comparable to the linear models. At the same time, the more comprehensive tuning of several hyperparameters could act as a double edged sword in that it could increase the overfitting of these models. More hyperparameter tuning could lead a model to pick hyperparameters that fits the training data very precisely, but at the expense of increased testing error and increased computational cost.
 
 \subsubsection{Empirical Data}
-In our empirical data study, SCAD and MCP also maintained the lowest testing mean squared error among the tested models. This can be seen in Figure \ref{fig:empirical_mse} and Table \ref{tab:emp_results} which showcase MCP as having the lowest average MSE and standard deviation.
+In our empirical data study, SCAD and MCP also maintained the lowest testing mean squared error among the tested models. This can be seen in Figure \ref{fig:empirical_mse} and Table \ref{tab:emp_results} which showcase MCP as having the lowest average MSE and standard deviation. This may be due in part to the fact that MCP consistently selected the fewest number of predictors compared to Lasso and Elastic Net as visible in Figure \ref{fig:venn}. Because this empirical data most likely contains multicollinearity, the fact that MCP selects fewer predictors may have helped to reduce overfitting. This is consistent with results from the Monte Carlo simulations which indicate that MCP performed better than its counterparts in multicollinear environments.
+
+An interesting results was how few predictors were selected between all four models. It would be expected that the most important predictors would be chosen by all four models, but only three to six predictors were selected in common by all the models. Between MCP, Lasso, and Elastic Net, there were slightly more selected predictors in common, but these still were much less than expected. This is most likely because MCP is very different from the other regression techniques in that it uses non-convex optimization and thus selected many predictors that were different from all the other models. Since MCP had a much lower false negative rate compared to the other models as determined in the Monte Carlo simulations, it can be assumed that many of these predictors solely selected by MCP were significant predictors that were missed by the other models. This could have been another reason why MCP performed the best out of all the fitted models on the empirical data. 
+
 
 \subsection{Contributions}
 % what are our contributions, why is what we did important?
