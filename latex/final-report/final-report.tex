@@ -117,8 +117,8 @@ Intuitively, if the residual sum of squares is low, then the differences between
 
 \begin{figure}[!h]
 	\centering
-	\includegraphics[width = 4in]{images/ols.eps}
-	\captionsetup{width=4in}
+	\includegraphics[width = 0.8\textwidth]{images/ols.png}
+	\captionsetup{width = 0.8\textwidth}
 	\caption{Ordinary least squares fitting with one predictor using simulated data. The blue line represents the line found by ordinary least squares, and the red line segments are the residuals.}
 	\label{fig:ols}
 \end{figure}
@@ -198,20 +198,22 @@ Unlike ridge regression, lasso regression can perform variable selection by sett
 
 Figure \ref{fig:ridge-lasso-diagram} provides a visual explanation for why ridge regression cannot perform variable selection while lasso regression can. Suppose that there are $p = 2$ predictors. The red circle in Figure \ref{fig:ridge-diagram} represents the circle $\beta_1^2 + \beta_2^2 \leq 1$, which is the penalty boundary for ridge regression in the form given in Equation \ref{eqn:penalized-regression-t} when $t = 1$. The red square in Figure \ref{fig:lasso-diagram} represents the boundary $\vert \beta_1 \vert + \vert \beta_2 \vert \leq 1$ for lasso regression. The point in the center of the blue ellipses represents the values of $\beta_1$ and $\beta_2$ that ordinary least squares would produce. Because this point is not within either of the red regions, ridge regression and lasso regression will give different coefficient estimates. The blue ellipses around this point represent contour curves for the residual sum of squares function, which is a quadratic function of $\beta_1$ and $\beta_2$. The first interception of these ellipses with the red regions represents the coefficient values selected by ridge and lasso regression, since it represents the point within the red region with the lowest residual sum of squares. Because of the round boundary for ridge regression, the intersection in Figure \ref{fig:ridge-diagram} occurs when $\beta_1$ and $\beta_2$ are both positive. For lasso regression in Figure \ref{fig:lasso-diagram}, the intersection occurs at a corner where $\beta_1=0$. Thus, lasso regression has set $\beta_1$ to zero, while $\beta_1$ is non-zero for ridge regression.
 
-\begin{figure}[!h]
+\begin{figure}[!b]
 	\centering
 	\begin{subfigure}[b]{0.45\textwidth}
+		\includegraphics[width=\textwidth]{images/ridge-diagram.png}
+		\captionsetup{width = 0.8\textwidth}
 		\caption{RSS contours and the ridge penalty boundary.}
 		\label{fig:ridge-diagram}
-		\includegraphics[width=\textwidth]{images/ridge-diagram.png}
 	\end{subfigure}
 	\hspace{30pt}
 	\begin{subfigure}[b]{0.45\textwidth}
+		\includegraphics[width=\textwidth]{images/lasso-diagram.png}
+		\captionsetup{width = 0.8\textwidth}
 		\caption{RSS contours and the lasso penalty boundary.}
 		\label{fig:lasso-diagram}
-		\includegraphics[width=\textwidth]{images/lasso-diagram.png}
 	\end{subfigure}
-	\captionsetup{width = 5in}
+	\captionsetup{width = 0.9\textwidth}
 	\caption{RSS contours and penalty bounds for the ridge and lasso models when $p=2$ and $t = 1$. The red regions represent the coefficient values allowed by ridge and lasso regression, respectively. The blue ellipses represent contours of the residual sum of squares, with $\hat{\beta}^{\text{OLS}}$ being the point where the residual sum of squares is minimized. The intersection of the ellipse with the red region represents the point selected by lasso and ridge.}
 	\label{fig:ridge-lasso-diagram}
 \end{figure}
@@ -268,18 +270,20 @@ Figure \ref{fig:lasso-scad-mcp} below shows the penalty functions (and their der
 
 \begin{figure}[!h]
 	\centering
-	\begin{subfigure}[b]{0.4\textwidth}
-		\caption{Penalty functions for lasso, SCAD, and MCP}
-		\label{fig:penalty}
+	\begin{subfigure}[b]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{images/lasso-scad-mcp-penalty.png}
+		\captionsetup{width = 0.8\textwidth}
+		\caption{Penalty functions for lasso, SCAD, and MCP.}
+		\label{fig:penalty}
 	\end{subfigure}
 	\hspace{30pt}
-	\begin{subfigure}[b]{0.4\textwidth}
-		\caption{Derivatives of the penalty functions for lasso, SCAD, and MCP}
-		\label{fig:derivative}
+	\begin{subfigure}[b]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{images/lasso-scad-mcp-derivative.png}
+		\captionsetup{width = 0.8\textwidth}
+		\caption{Derivatives of the penalty functions for lasso, SCAD, and MCP.}
+		\label{fig:derivative}
 	\end{subfigure}
-	\captionsetup{width = 5in}
+	\captionsetup{width = 0.9\textwidth}
 	\caption{Penalty functions for lasso, SCAD, and MCP, as well as their derivatives. These plots use $\lambda = 1$ and $a = 3$. The dashed vertical lines are the knots for SCAD and MCP.}
 	\label{fig:lasso-scad-mcp}
 \end{figure}
@@ -293,12 +297,10 @@ Let $\mathbf{X}$ be a $n\times p$ matrix where each row contains the predictor v
 
 To compute the coefficient estimates for lasso, SCAD, and MCP in an orthonormal design, we first compute the vector $\mathbf{z} = \mathbf{X}^\top \mathbf{y}$ \cite{fan2001variable}. Each entry of $\mathbf{z}$ corresponds to one predictor. We then apply a \textbf{thresholding function} to each entry of $\mathbf{z}$ to get the coefficient estimate for that predictor. For lasso, elastic-net, SCAD, and MCP, a closed-form for this thresholding function exists \cite{tibshirani1996regression, fan2001variable, zou2005regularization, zhang2010nearly}. The input to the thresholding function is the actual coefficient value, and the output is the estimated value for that coefficient in an orthonormal design. Figure \ref{fig:prediction} shows the threshold functions for lasso, SCAD and MCP when $\lambda = 1$. For SCAD and MCP, we used the value $a = 3$. For reference, the identity line is included, which can be considered as the threshold function for ordinary least squares.
 
-Another feature of SCAD and MCP is that they
-
 \begin{figure}[!h]
 	\centering
-	\includegraphics[width = 0.4\textwidth]{images/lasso-scad-mcp-solution.png}
-	\captionsetup{width = 4in}
+	\includegraphics[width = 0.8\textwidth]{images/lasso-scad-mcp-solution.png}
+	\captionsetup{width = 0.8\textwidth}
 	\caption{Thresholding function for LASSO, SCAD, and MCP when $\lambda = 1$ and $a = 3$ in an orthonormal design. The input (z) represents an entry from the vector $\mathbf{z}=\mathbf{X}^\top \mathbf{y}$; the output ($\hat{\beta}$) is the coefficient estimate. The dashed vertical lines are the knots for SCAD and MCP.}
 	\label{fig:prediction}
 \end{figure}
@@ -478,8 +480,9 @@ For empirical data, we used the Breast Cancer database from The Cancer Genome At
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width = 0.7\linewidth]{images/empirical_histogram.eps}
-	\caption{Distribution of BRCA1 gene expression levels. The mean gene expression is -1.459.}
+	\includegraphics[width = 0.8\textwidth]{images/empirical_histogram.eps}
+	\captionsetup{width = 0.8\textwidth}
+	\caption{Distribution of BRCA1 gene expression levels. This is the variable that we used as the response. The mean gene expression is -1.459.}
 	\label{fig:BRCA1-distribution}
 \end{figure}
 
@@ -507,12 +510,14 @@ We will first consider the case where $n = 1000$ and $p = 10$. Figures \ref{fig:
 \begin{figure}[p!]
 	\centering
 	\includegraphics[width = \textwidth]{images/facet-train-mse/facet_train_mse_1000_10.eps}
+	\captionsetup{width = 0.8\textwidth}
 	\caption{Average mean squared error using the training data for all simulated models when $n = 1000$ and $p = 10$.}
 	\label{fig:train-mse-1000-10}
 	
 	\bigskip
 	
 	\includegraphics[width = \textwidth]{images/facet-test-mse/facet_test_mse_1000_10.eps}
+	\captionsetup{width = 0.8\textwidth}
 	\caption{Average mean squared error using the test data for all simulated models when $n = 1000$ and $p = 10$.}
 	\label{fig:test-mse-1000-10}
 \end{figure}
@@ -526,6 +531,7 @@ Recall that in our simulation study, five of the predictors are truly related to
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width = \textwidth]{images/facet-tp/facet_tp_1000_10.eps}
+	\captionsetup{width = 0.8\textwidth}
 	\caption{Average number of non-zero coefficients that were correctly estimated as non-zero when $n = 1000$ and $p = 10$.}
 	\label{fig:tp-1000-10}
 \end{figure}
@@ -535,6 +541,7 @@ Figure \ref{fig:fp-1000-10} shows the average number of coefficients that were a
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width = \textwidth]{images/facet-fp/facet_fp_1000_10.eps}
+	\captionsetup{width = 0.8\textwidth}
 	\caption{Average number of zero coefficients that were incorrectly estimated as non-zero when $n = 1000$ and $p = 10$.}
 	\label{fig:fp-1000-10}
 \end{figure}
@@ -544,12 +551,14 @@ Now, we will consider the opposite extreme where $n = 50$ and $p = 2000$. Figure
 \begin{figure}[p!]
 	\centering
 	\includegraphics[width = \textwidth]{images/facet-train-mse/facet_train_mse_50_2000.eps}
+	\captionsetup{width = 0.8\textwidth}
 	\caption{Average mean square error using training data for Monte Carlo models when $n = 50$ and $p = 2000$.}
 	\label{fig:train-mse-50-2000}
 	
 	\bigskip
 	
 	\includegraphics[width = \textwidth]{images/facet-test-mse/facet_test_mse_50_2000.eps}
+	\captionsetup{width = 0.8\textwidth}
 	\caption{Average mean square error using testing data for Monte Carlo models when $n = 50$ and $p = 2000$.}
 	\label{fig:test-mse-50-2000}
 \end{figure}
@@ -561,6 +570,7 @@ Figure \ref{fig:tp-50-2000} measures the average number of predictors that were 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width = \textwidth]{images/facet-tp/facet_tp_50_2000.eps}
+	\captionsetup{width = 0.8\textwidth}
 	\caption{Average number of non-zero coefficients that were correctly estimated as non-zero when $n = 50$ and $p = 2000$.}
 	\label{fig:tp-50-2000}
 \end{figure}
@@ -570,6 +580,7 @@ Figure \ref{fig:fp-50-2000} shows the average number of coefficients that were e
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width = \textwidth]{images/facet-fp/facet_fp_50_2000.eps}
+	\captionsetup{width = 0.8\textwidth}
 	\caption{Average number of zero coefficients that were incorrectly estimated as non-zero when $n = 50$ and $p = 2000$.}
 	\label{fig:fp-50-2000}
 \end{figure}
@@ -580,8 +591,8 @@ Recall that we used nested cross-validation when fitting models on the bcTCGA da
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width = 0.9\linewidth]{images/empirical_mse.eps}
-	\captionsetup{width = 4in}
+	\includegraphics[width = 0.8\linewidth]{images/empirical_mse.eps}
+	\captionsetup{width = 0.8\textwidth}
 	\caption{Mean squared error of the models fit on the bcTCGA data set. Each point represents the mean squared error for one fold, while the bars represent the average for the five folds.}
 	\label{fig:empirical_mse}
 \end{figure}
@@ -638,7 +649,7 @@ The models can also be compared to each other by comparing the most important pr
 		\label{fig:venn5}
 	\end{subfigure}
 	\captionsetup{width = 5in}
-	\caption{Venn diagrams with number of common predictors selected by each regression model.}
+	\caption{Venn diagrams of the predictors selected by lasso, elastic-net, MCP, and random forest models for each of the five folds. Each number represents the number of important predictors chosen by the models that overlap the number.}
 	\label{fig:venn}
 \end{figure}
 
