@@ -82,7 +82,9 @@ In these situations where there are more predictors, $p$, than observations, $n$
 
 %To resolve this ``large $p$, little $n$'' problem, many algorithms have been introduced to address situations where there are more predictors than observations. Many, but not all, of these techniques use \textbf{variable selection}, meaning that they select the predictors that are most correlated with the response. By ignoring predictors that are not strongly related to the response, the negative consequences of overfitting can be greatly reduced.
 
-This paper investigates various methods used to handle the large $p$, small $n$ problem. We considered subset selection methods such as forward selection, backward selection, stepwise forward selection and stepwise backward selection using both Akaike information criterion (AIC) and Bayesian information criterion (BIC) as the stopping criteria for the models. In addition, we studied penalized regression models such as ridge regression, LASSO, elastic-net, SCAD, and MCP. These models were compared to random forest, gradient boosting in the form of XGBoost, and support vector machine models. In order to compare these models, models were trained and evaluated using both generated Monte Carlo simulations data and empirical genomic data.
+[Citations below]
+
+This paper investigates various methods used to handle the large $p$, small $n$ problem. We considered subset selection methods such as forward selection, backward selection, stepwise forward selection and stepwise backward selection using both Akaike information criterion (AIC) and Bayesian information criterion (BIC) as the stopping criteria for the models. In addition, we studied penalized regression models such as ridge regression \cite{hoerl1970ridge}, LASSO, elastic-net, SCAD, and MCP. These models were compared to random forest, gradient boosting in the form of XGBoost, and support vector machine models. In order to compare these models, models were trained and evaluated using both generated Monte Carlo simulations data and empirical genomic data.
 
 \subsection{Modeling Background}
 % We can talk about the necessary background information
@@ -167,6 +169,9 @@ up to a constant, where $\hat{\sigma}^2$ is the estimated value of the variance 
 \begin{equation}
 	\text{BIC} = \frac{1}{n\hat{\sigma}^2}(\RSS + \ln(n)p\hat{\sigma}^2)
 \end{equation}
+\begin{equation}
+	\text{BIC} = -2l + \log(n)p
+\end{equation}
 up to a constant. These metrics work by using the residual sum of squares plus some additional penalty that increases when $p$ is large. As a result, models that minimize AIC or BIC will have fewer predictors than models chosen just by minimizing the residual sum of squares. This can result in a model that has both a good training error and test error. If $n>7$, then $\ln(n)>2$ and so the penalty for BIC is larger than the penalty for AIC. Hence, a model selected using BIC will typically have fewer parameters than a model selected by AIC.
 
 In addition to AIC and BIC, there are several other metrics that modify training error to estimate test error, such as $C_p$ and adjusted $R^2$ \cite{james2017islr}. However, this paper will focus on AIC and BIC.
@@ -228,7 +233,7 @@ An important limitation to note is that elastic net performs best when it close 
 
 One major flaw of the lasso method is that the penalty punishes large coefficients, even if those coefficients should be large. One way to modify the lasso method is to use the \textbf{smoothly clipped absolute deviation} (SCAD) penalty \cite{fan2001variable}. The goal of this method is to punish large coefficients less severely, which can help mitigate some of the bias introduced by the lasso method. The penalty function $P(\beta)$ for SCAD satisfies
 \begin{equation}\label{eqn:scad-derivative-indicator}
-	\frac{dP}{d\beta} = \cdot\sign(\beta)\left[ I(\vert \beta \vert<\lambda) + \frac{\max(a\lambda - \vert \beta\vert, 0)}{(a - 1)\lambda}I(\vert \beta \vert > \lambda) \right]
+	\frac{dP}{d\beta} = \sign(\beta)\left[ I(\vert \beta \vert<\lambda) + \frac{\max(a\lambda - \vert \beta\vert, 0)}{(a - 1)\lambda}I(\vert \beta \vert > \lambda) \right]
 \end{equation}
 where $a\geq 2$ is a new hyperparameter and $I$ is the indicator function ($I(Q)$ equals 1 if a statement $Q$ is true, and equals 0 if $Q$ is false). If the hyperparameter $a$ is large, then SCAD behaves like lasso for larger coefficient values. Also, notice that $\lambda$ is an argument for the penalty function $P$.
 
@@ -301,7 +306,7 @@ To compute the coefficient estimates for lasso, SCAD, and MCP in an orthonormal 
 	\centering
 	\includegraphics[width = 0.8\textwidth]{images/lasso-scad-mcp-solution.png}
 	\captionsetup{width = 0.8\textwidth}
-	\caption{Thresholding function for LASSO, SCAD, and MCP when $\lambda = 1$ and $a = 3$ in an orthonormal design. The input (z) represents an entry from the vector $\mathbf{z}=\mathbf{X}^\top \mathbf{y}$; the output ($\hat{\beta}$) is the coefficient estimate. The dashed vertical lines are the knots for SCAD and MCP.}
+	\caption{Thresholding function for lasso, SCAD, and MCP when $\lambda = 1$ and $a = 3$ in an orthonormal design. The input (z) represents an entry from the vector $\mathbf{z}=\mathbf{X}^\top \mathbf{y}$; the output ($\hat{\beta}$) is the coefficient estimate. The dashed vertical lines are the knots for SCAD and MCP.}
 	\label{fig:prediction}
 \end{figure}
 
@@ -309,9 +314,9 @@ We see that when $\vert \beta \vert$ is small, the thresholding function for las
 
 In this figure, we also see that the threshold function for lasso is parallel to the identity line for large values of $\beta$. This means that even if a predictor is very influential on the response, lasso will predict a coefficient estimate that is less than the true coefficient value. This makes lasso a very biased model. This issue was one of the main motivations for SCAD and MCP. Unlike lasso, SCAD and MCP converge to the identity line as $\beta$ increases, which makes these methods less likely to decrease large coefficient estimates.
 
-Another feature of SCAD and MCP is their \textbf{oracle-like properties}. In this context, the term \textbf{oracle} comes from a paper by Donohe and Johnstone about spatially variable estimators \cite{donoho1994ideal}. They consider an ideal situation where a model could be fitted with the aid of an oracle. This oracle could give information about the underlying behavior of the function $f$ relating a response variable to the predictors without giving the function $f$ itself.
+Another feature of SCAD and MCP is their \textbf{oracle-like properties}. Donohe and Johnstone \cite{donoho1994ideal} coined the term \textbf{oracle}  about spatially variable estimators . They consider an ideal situation where a model could be fitted with the aid of an oracle. This oracle could give information about the underlying behavior of the function $f$ relating a response variable to the predictors without giving the function $f$ itself.
 
-In the context of linear regression, an oracle estimator would know which predictors are truly correlated with the response. With the aid of an oracle, one could then fit an ordinary least squares model using only the coefficients that are actually non-zero and ignoring the predictors that are actually zero. Fan and Li in \cite{fan2001variable} and Zhang in \cite{zhang2010nearly} prove that SCAD and MCP both have oracle-like properties. Under certain conditions, SCAD and MCP can perform as well as the oracle estimator as $n$ approaches $\infty$. On the other hand, lasso does not have oracle-like properties, meaning that its predictions cannot perform as well as a model found with the aid of an oracle.
+In the context of linear regression, an oracle estimator would know which predictors are truly correlated with the response. With the aid of an oracle, one could then fit an ordinary least squares model using only the coefficients that are actually non-zero and ignoring the predictors that are actually zero. Fan and Li \cite{fan2001variable} and Zhang in \cite{zhang2010nearly} prove that SCAD and MCP both have oracle-like properties. Under certain conditions, SCAD and MCP can perform as well as the oracle estimator as $n$ approaches $\infty$. On the other hand, lasso does not have oracle-like properties, meaning that its predictions cannot perform as well as a model found with the aid of an oracle.
 
 \subsection{Non-linear models}
 We next discuss several non-linear methods for regression: random forests, gradient boosting, and support vector machines.
@@ -391,7 +396,7 @@ For the three non-linear models (gradient boosting, random forests, and support 
 
 For gradient boosting with \lstinline!xgboost!, we used different values for the learning rate (0.1, 0.3, and 0.5) and maximum tree depth (1, 3, and 7). A maximum of 1000 trees were generated, with an early stopping condition if the model failed to improve for several iterations in a row. We used five folds in the cross-validation.
 
-For random forests, we used \lstinline!ranger! for the simulated data and \lstinline!randomForest! for the empirical data. \textbf{Why did we use randomforest for empirical again?}. For both \lstinline!ranger! and \lstinline!randomForest!, we tuned the number of predictors used per decision tree ($\lfloor \sqrt{p}\rfloor$, $\lfloor p / 3 \rfloor$, and $\lfloor p / 2 \rfloor$) and the number of trees (300, 400, 500 and 600). The best model was selected based on the out-of-bag error, which represents the average error for each observation using only the trees that did not include that observation.
+For random forests, we used \lstinline!ranger! for the simulated data and \lstinline!randomForest! for the empirical data. We did not use \lstinline!ranger! for the empirical data because it could not handle the large number of predictors, resulting in stack overflow errors. For both \lstinline!ranger! and \lstinline!randomForest!, we tuned the number of predictors used per decision tree ($\lfloor \sqrt{p}\rfloor$, $\lfloor p / 3 \rfloor$, and $\lfloor p / 2 \rfloor$) and the number of trees (300, 400, 500 and 600). The best model was selected based on the out-of-bag error, which represents the average error for each observation using only the trees that did not include that observation.
 
 Finally, for support vector machines using \lstinline!e1071!, we varied $\epsilon$ (0.1, 0.5, 2), which affects the model's sensitivity to small errors. We also controlled the cost value $C$ (0.5, 1, 2), which affects how much the model punishes wrong predictions.
 
@@ -749,7 +754,9 @@ There is a severe lack of comprehensive testing comparing traditional machine le
 }
 \setlength{\tabcolsep}{6pt}
 
-
+% Add:
+% R library citations
+% Random forest, SVM, GBM
 
 \newpage
 \bibliographystyle{plain-lf}

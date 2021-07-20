@@ -17,6 +17,7 @@
 \providecommand\HyField@AuxAddToFields[1]{}
 \providecommand\HyField@AuxAddToCoFields[2]{}
 \providecommand \oddpage@label [2]{}
+\citation{hoerl1970ridge}
 \@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{2}{section.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.1}Modeling Background}{2}{subsection.1.1}\protected@file@percent }
 \newlabel{eqn:relationship}{{1}{2}{Modeling Background}{equation.1.1}{}}
@@ -24,24 +25,22 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.2}Linear Regression and Ordinary Least Squares}{3}{subsection.1.2}\protected@file@percent }
 \newlabel{eqn:linear-model}{{2}{3}{Linear Regression and Ordinary Least Squares}{equation.1.2}{}}
 \newlabel{eqn:RSS}{{4}{3}{Linear Regression and Ordinary Least Squares}{equation.1.4}{}}
-\newlabel{eqn:ols-solution}{{6}{3}{Linear Regression and Ordinary Least Squares}{equation.1.6}{}}
-\citation{liu2020logsum}
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Ordinary least squares fitting with one predictor using simulated data. The blue line represents the line found by ordinary least squares, and the red line segments are the residuals.\relax }}{4}{figure.caption.1}\protected@file@percent }
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
 \newlabel{fig:ols}{{1}{4}{Ordinary least squares fitting with one predictor using simulated data. The blue line represents the line found by ordinary least squares, and the red line segments are the residuals.\relax }{figure.caption.1}{}}
+\newlabel{eqn:ols-solution}{{6}{4}{Linear Regression and Ordinary Least Squares}{equation.1.6}{}}
+\citation{liu2020logsum}
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.3}Subset Selection Methods}{5}{subsection.1.3}\protected@file@percent }
 \citation{james2017islr}
 \citation{james2017islr}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.4}Penalized Regression}{6}{subsection.1.4}\protected@file@percent }
 \citation{james2017islr}
 \citation{hoerl1970ridge}
 \citation{tibshirani1996regression}
 \citation{james2017islr}
 \citation{james2013introduction}
-\newlabel{eqn:penalized-regression-lambda}{{9}{7}{Penalized Regression}{equation.1.9}{}}
-\newlabel{eqn:penalized-regression-t}{{10}{7}{Penalized Regression}{equation.1.10}{}}
-\citation{zou2005regularization}
-\citation{zou2005regularization}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.4}Penalized Regression}{7}{subsection.1.4}\protected@file@percent }
+\newlabel{eqn:penalized-regression-lambda}{{10}{7}{Penalized Regression}{equation.1.10}{}}
+\newlabel{eqn:penalized-regression-t}{{11}{7}{Penalized Regression}{equation.1.11}{}}
 \citation{zou2005regularization}
 \newlabel{fig:ridge-diagram}{{2a}{8}{RSS contours and the ridge penalty boundary.\relax }{figure.caption.2}{}}
 \newlabel{sub@fig:ridge-diagram}{{a}{8}{RSS contours and the ridge penalty boundary.\relax }{figure.caption.2}{}}
@@ -49,12 +48,14 @@
 \newlabel{sub@fig:lasso-diagram}{{b}{8}{RSS contours and the lasso penalty boundary.\relax }{figure.caption.2}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces RSS contours and penalty bounds for the ridge and lasso models when $p=2$ and $t = 1$. The red regions represent the coefficient values allowed by ridge and lasso regression, respectively. The blue ellipses represent contours of the residual sum of squares, with $\hat  {\beta }^{\text  {OLS}}$ being the point where the residual sum of squares is minimized. The intersection of the ellipse with the red region represents the point selected by lasso and ridge.\relax }}{8}{figure.caption.2}\protected@file@percent }
 \newlabel{fig:ridge-lasso-diagram}{{2}{8}{RSS contours and penalty bounds for the ridge and lasso models when $p=2$ and $t = 1$. The red regions represent the coefficient values allowed by ridge and lasso regression, respectively. The blue ellipses represent contours of the residual sum of squares, with $\hat {\beta }^{\text {OLS}}$ being the point where the residual sum of squares is minimized. The intersection of the ellipse with the red region represents the point selected by lasso and ridge.\relax }{figure.caption.2}{}}
+\citation{zou2005regularization}
+\citation{zou2005regularization}
 \citation{fan2001variable}
 \citation{breheny2016lasso}
 \citation{zhang2010nearly}
 \citation{breheny2016lasso}
 \citation{breheny2016lasso}
-\newlabel{eqn:scad-derivative-indicator}{{12}{9}{Penalized Regression}{equation.1.12}{}}
+\newlabel{eqn:scad-derivative-indicator}{{13}{9}{Penalized Regression}{equation.1.13}{}}
 \citation{fan2001variable}
 \citation{tibshirani1996regression}
 \citation{fan2001variable}
@@ -66,12 +67,12 @@
 \newlabel{sub@fig:derivative}{{b}{10}{Derivatives of the penalty functions for lasso, SCAD, and MCP.\relax }{figure.caption.3}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Penalty functions for lasso, SCAD, and MCP, as well as their derivatives. These plots use $\lambda = 1$ and $a = 3$. The dashed vertical lines are the knots for SCAD and MCP.\relax }}{10}{figure.caption.3}\protected@file@percent }
 \newlabel{fig:lasso-scad-mcp}{{3}{10}{Penalty functions for lasso, SCAD, and MCP, as well as their derivatives. These plots use $\lambda = 1$ and $a = 3$. The dashed vertical lines are the knots for SCAD and MCP.\relax }{figure.caption.3}{}}
-\newlabel{ols-orthonormal-solution}{{17}{10}{Penalized Regression}{equation.1.17}{}}
+\newlabel{ols-orthonormal-solution}{{18}{10}{Penalized Regression}{equation.1.18}{}}
 \citation{donoho1994ideal}
 \citation{fan2001variable}
 \citation{zhang2010nearly}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Thresholding function for LASSO, SCAD, and MCP when $\lambda = 1$ and $a = 3$ in an orthonormal design. The input (z) represents an entry from the vector $\mathbf  {z}=\mathbf  {X}^\top \mathbf  {y}$; the output ($\hat  {\beta }$) is the coefficient estimate. The dashed vertical lines are the knots for SCAD and MCP.\relax }}{11}{figure.caption.4}\protected@file@percent }
-\newlabel{fig:prediction}{{4}{11}{Thresholding function for LASSO, SCAD, and MCP when $\lambda = 1$ and $a = 3$ in an orthonormal design. The input (z) represents an entry from the vector $\mathbf {z}=\mathbf {X}^\top \mathbf {y}$; the output ($\hat {\beta }$) is the coefficient estimate. The dashed vertical lines are the knots for SCAD and MCP.\relax }{figure.caption.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Thresholding function for lasso, SCAD, and MCP when $\lambda = 1$ and $a = 3$ in an orthonormal design. The input (z) represents an entry from the vector $\mathbf  {z}=\mathbf  {X}^\top \mathbf  {y}$; the output ($\hat  {\beta }$) is the coefficient estimate. The dashed vertical lines are the knots for SCAD and MCP.\relax }}{11}{figure.caption.4}\protected@file@percent }
+\newlabel{fig:prediction}{{4}{11}{Thresholding function for lasso, SCAD, and MCP when $\lambda = 1$ and $a = 3$ in an orthonormal design. The input (z) represents an entry from the vector $\mathbf {z}=\mathbf {X}^\top \mathbf {y}$; the output ($\hat {\beta }$) is the coefficient estimate. The dashed vertical lines are the knots for SCAD and MCP.\relax }{figure.caption.4}{}}
 \citation{james2013introduction}
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.5}Non-linear models}{12}{subsection.1.5}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Example of a decision tree. This tree was generated using the \lstinline !iris! data set and attempts to predict the species of a flower based on its petal length and petal width. The decision tree was fitted and plotted with the \lstinline !rpart! and \lstinline !rpart.plot! libraries in \lstinline !R!.\relax }}{12}{figure.caption.5}\protected@file@percent }
@@ -81,7 +82,7 @@
 \@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces \lstinline !R! Libraries used and the models used from each library\relax }}{14}{table.caption.6}\protected@file@percent }
 \newlabel{tab:model-libraries}{{1}{14}{\lstinline !R! Libraries used and the models used from each library\relax }{table.caption.6}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Monte Carlo Simulations}{16}{subsection.2.2}\protected@file@percent }
-\newlabel{eqn:symmetric-compound-matrix}{{21}{17}{Monte Carlo Simulations}{equation.2.21}{}}
+\newlabel{eqn:symmetric-compound-matrix}{{22}{17}{Monte Carlo Simulations}{equation.2.22}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Empirical Data}{18}{subsection.2.3}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Distribution of BRCA1 gene expression levels. This is the variable that we used as the response. The mean gene expression is -1.459.\relax }}{19}{figure.caption.7}\protected@file@percent }
 \newlabel{fig:BRCA1-distribution}{{6}{19}{Distribution of BRCA1 gene expression levels. This is the variable that we used as the response. The mean gene expression is -1.459.\relax }{figure.caption.7}{}}
