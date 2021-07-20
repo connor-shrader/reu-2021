@@ -8,57 +8,57 @@ Breheny.
   2016.
 
 \bibitem{donoho1994ideal}
-David~L Donoho and Jain~M Johnstone.
+Donoho, D.~L. and Johnstone, J.~M.
 \newblock Ideal spatial adaptation by wavelet shrinkage.
 \newblock {\em biometrika}, 81(3):425--455, 1994.
 
 \bibitem{fan2001variable}
-Jianqing Fan and Runze Li.
+Fan, J. and Li, R.
 \newblock Variable selection via nonconcave penalized likelihood and its oracle
   properties.
 \newblock {\em Journal of the American statistical Association},
   96(456):1348--1360, 2001.
 
 \bibitem{friedman2001elements}
-Jerome Friedman, Trevor Hastie, Robert Tibshirani, et~al.
+Friedman, J., Hastie, T., Tibshirani, R., et~al.
 \newblock {\em The elements of statistical learning}, volume~1.
 \newblock Springer series in statistics New York, 2001.
 
 \bibitem{hoerl1970ridge}
-Arthur~E Hoerl and Robert~W Kennard.
+Hoerl, A.~E. and Kennard, R.~W.
 \newblock Ridge regression: Biased estimation for nonorthogonal problems.
 \newblock {\em Technometrics}, 12(1):55--67, 1970.
 
+\bibitem{james2017islr}
+James, G., Witten, D., Hastie, T., and Tibshirani, R.
+\newblock Islr: Data for an introduction to statistical learning with
+  applications in r.
+\newblock {\em R package version}, 1, 2017.
+
 \bibitem{james2013introduction}
-Gareth James, Daniela Witten, Trevor Hastie, and Robert Tibshirani.
+James, G., Witten, D., Hastie, T., and Tibshirani, R.
 \newblock {\em An introduction to statistical learning}, volume 112.
 \newblock Springer, 2013.
 
-\bibitem{james2017islr}
-Witten D. Hastie T. Tibshirani~R. James, G.
-\newblock {\em ISLR: Data for an Introduction to Statistical Learning with
-  Applications in R}, 2017.
-\newblock R package version 1.2.
-
 \bibitem{liu2020logsum}
-Xiao-Ying Liu, Sheng-Bing Wu, Wen-Quan Zeng, Zhan-Jiang Yuan, and Hong-Bo Xu.
+Liu, X.-Y., Wu, S.-B., Zeng, W.-Q., Yuan, Z.-J., and Xu, H.-B.
 \newblock Logsum+ l 2 penalized logistic regression model for biomarker
   selection and cancer classification.
 \newblock {\em Scientific Reports}, 10(1):1--16, 2020.
 
 \bibitem{tibshirani1996regression}
-Robert Tibshirani.
+Tibshirani, R.
 \newblock Regression shrinkage and selection via the lasso.
 \newblock {\em Journal of the Royal Statistical Society: Series B
   (Methodological)}, 58(1):267--288, 1996.
 
 \bibitem{zhang2010nearly}
-Cun-Hui Zhang et~al.
+Zhang, C.-H. et~al.
 \newblock Nearly unbiased variable selection under minimax concave penalty.
 \newblock {\em The Annals of statistics}, 38(2):894--942, 2010.
 
 \bibitem{zou2005regularization}
-Hui Zou and Trevor Hastie.
+Zou, H. and Hastie, T.
 \newblock Regularization and variable selection via the elastic net.
 \newblock {\em Journal of the royal statistical society: series B (statistical
   methodology)}, 67(2):301--320, 2005.
