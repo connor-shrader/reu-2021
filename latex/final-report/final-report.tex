@@ -86,7 +86,7 @@ In these situations where there are more predictors, $p$, than observations, $n$
 
 This paper investigates various methods used to handle the large $p$, small $n$ problem. We considered subset selection methods such as forward selection, backward selection, stepwise forward selection and stepwise backward selection using both Akaike information criterion (AIC) and Bayesian information criterion (BIC) as the stopping criteria for the models. In addition, we studied penalized regression models such as ridge regression \cite{hoerl1970ridge}, LASSO, elastic-net, SCAD, and MCP. These models were compared to random forest, gradient boosting in the form of XGBoost, and support vector machine models. In order to compare these models, models were trained and evaluated using both generated Monte Carlo simulations data and empirical genomic data.
 
-\subsection{Modeling Background}
+\section{Modeling Background}
 % We can talk about the necessary background information
 % what is linear regression?
 
@@ -99,7 +99,7 @@ where $f$ is a function and $\epsilon$ is an independent random error with mean 
 
 There are two broad types of supervised models. \textbf{Regression modeling} is used when the response variable $Y$ takes numerical values on a continuous interval. For example, a model that predicts the value of a home is a regression model. On the other hand, if $Y$ can only take discrete values, then \textbf{classification modeling} is used. For instance, a model used to predict whether or not a patient has a disease is classification problem. This paper focuses on regression modeling.
 
-\subsection{Linear Regression and Ordinary Least Squares}
+\section{Linear Regression and Ordinary Least Squares}
 
 In practice, the function $f$ that relates the predictors to the response is complex. Most statistical models assume that $f$ takes some particular form and estimates a function $\hat{f}$ of that form. For example, many regression models assume that $f$ is a linear function of the predictors; that is, linear models assume that
 \begin{equation}\label{eqn:linear-model}
@@ -142,7 +142,7 @@ In the extreme case where $p$ exceeds $n$, the matrix $\mathbf{X}^\top \mathbf{X
 
 By using models that have a small amount of bias, the high variance of ordinary least squares can be mitigated. Liu et. al. in \cite{liu2020logsum} describe three types of variable selection algorithms. \textbf{Filter methods} work by evaluating the ability for each individual predictors to predict the response; then, a model is fit using the predictors selected \cite{sanchez2007filter, ding2005minimum}. \textbf{Wrapper methods} fit models using different subsets of predictors and choose the model that has the best performance. Finally, \textbf{embedded methods} perform variable selection during the model training process. This paper focuses on wrapper methods and embedded methods. In addition, we also used several non-linear machine learning methods to draw a comparison between linear regression models and non-linear models.
 
-\subsection{Subset Selection Methods}
+\section{Subset Selection Methods}
 % We can review some relevant literature such as Tibshrani et. al. lasso methods, ridge regression, enet, SCAD, or whatever else we want to do.
 
 \textbf{Subset selection methods} are wrapper methods that attempt to find a subset of the predictors $X_1, X_2, \dotsc, X_p$ that are most correlated with the response variable $Y$. These algorithms usually fit models for many different subsets and choose the subset of predictors that results in the best model. Although subset selection techniques can be applied to many types of models, we will focus on subset selection with linear regression.
@@ -175,7 +175,7 @@ up to a constant, where $\hat{\sigma}^2$ is the estimated value of the variance 
 up to a constant. These metrics work by using the residual sum of squares plus some additional penalty that increases when $p$ is large. As a result, models that minimize AIC or BIC will have fewer predictors than models chosen just by minimizing the residual sum of squares. This can result in a model that has both a good training error and test error. If $n>7$, then $\ln(n)>2$ and so the penalty for BIC is larger than the penalty for AIC. Hence, a model selected using BIC will typically have fewer parameters than a model selected by AIC.
 
 In addition to AIC and BIC, there are several other metrics that modify training error to estimate test error, such as $C_p$ and adjusted $R^2$ \cite{james2013introduction}. However, this paper will focus on AIC and BIC.
-\subsection{Penalized Regression}
+\section{Penalized Regression}
 
 In general, \textbf{penalized regression} works by fitting a model that punishes large coefficient estimates. By forcing coefficient values to shrink, the resulting model will have relatively low variance. Most, but not all, of these methods can perform variable selection. For the remainder of this section, let $\beta$ represent a single arbitrary coefficient value, rather than a vector of coefficient values.
 
@@ -324,7 +324,7 @@ where $\hat{\beta}_\mathcal{A}$ are the coefficient estimates for the non-zero p
 
 Both SCAD and MCP have oracle-like properties under certain conditions \cite{fan2001variable, zhang2010nearly}. Hence, SCAD and MCP can perform as well as the oracle estimator as $n$ approaches $\infty$. On the other hand, lasso does not have oracle-like properties, meaning that its predictions cannot perform as well as a model found with the aid of an oracle.
 
-\subsection{Non-linear models}
+\section{Non-linear models}
 We next discuss several non-linear methods for regression: random forests, gradient boosting, and support vector machines.
 
 Both random forest and gradient boosting models use \textbf{decision trees} to make predictions. A decision tree is a binary tree where each non-leaf node represents a condition and each leaf node represents a prediction value. To make a prediction, start at the root node and check whether the condition at that node is true or false. If true, move down to the node's first child; if false, move to the second child. This process is repeated until a leaf node is reached. This node will give a value that the decision tree predicts.
@@ -364,10 +364,10 @@ Although support vector machines are usually used for classification, they can b
 Like the other non-linear methods, there are many hyperparameters that can be tuned. The two hyperparameters that we considered are $\epsilon$ and the cost function. $\epsilon$ defines how tolerant the algorithm is of small errors. If $\epsilon$ is large, then the support vector machine will tolerate larger errors; if $\epsilon$ is small, then even small errors will be punished. The cost hyperparameter $C$ determines how strongly the model punishes incorrect predictions. If $C$ is large, then the model punishes incorrect predictions more, making it fit more tightly to the training set. If $C$ is smaller, then the model is likely to allow more incorrect predictions in the training data.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Methods}
+%\section{Methods}
 %To test and evaluate each of the models discussed above, we considered both Monte Carlo simulations and empirical data. Monte Carlo simulations allow us to test the models under different environments to get a comprehensive idea of how each model performs. Furthermore, by repeating each simulation many times, our results will be more consistent than if we just relied on one data set to test each model.
 
-\subsection{Models}
+\section{Methods}
 % lists and describes every tested model. Can include equations for models, but should not go into such great depth about each model: that can be reserved for literature review portion of the paper.
 
 This section gives the specific details how we fit each model for either the simulated data or the empirical data. For a conceptual overview of each of the models, refer back to the previous section.
@@ -411,7 +411,7 @@ Finally, for support vector machines using \lstinline!e1071!, we varied $\epsilo
 Some of the models used could only be used for certain values of $n$ and $p$. This is because either the runtime becomes unreasonable when $n$ or $p$ are large, or the model simply cannot be used when $p$ is too large. Ordinary least squares was used when $p\leq n$, since it cannot be used at all when $p>n$. For the same reason, the forward subset selection algorithms were also used when $p\leq n$. However, the backward subset selection algorithms were only used when $p\leq 40$. When $p>40$, the runtime was very long, so we chose to discard backward selection when $p$ was too large. Ridge regression was used when $p\leq n$ as well as it is not designed for variable selection or for $p \geq n$ scenarios.
 
 Lasso, SCAD, MCP, GBM, and Random Forest models were used for all data sets. Support vector machine models were made for all of the simulated data but was not used for the empirical data. The empirical data has too many predictors which leads to unmitigable stack overflow errors. Simply put, the support vector machine model has trouble converging upon a local minimum and due to the need to store very large kernel matrices, support vector machines are not feasible for large datasets.
-\subsection{Monte Carlo Simulations}
+\section{Monte Carlo Simulations}
 % outline data generation process and factorial design process
 
 \textbf{Monte Carlo simulations} use randomly generated data to fit and test our regression and classification models. There are several benefits to using simulated data rather than experimental data. For one, the true relationship between the predictor variables and the response is known. Simulations can also be iterated many times, giving sturdier results about the effectiveness of each model. Finally, Monte Carlo simulations give us full control over how our data is distributed. This enables us to evaluate the models under various conditions.
@@ -486,7 +486,7 @@ Finally, a blockwise correlation matrix has the block-diagonal form
 \end{equation}
 where $0$ represents a block containing all zeroes, and each block $\mathbf{B}_i$ has a form identical to the symmetric compound matrix in Equation \ref{eqn:symmetric-compound-matrix}. This implies that predictors within the same block have correlation $\rho\in [0, 1]$, whereas predictors in different blocks have zero correlation. This type of correlation is more realistic than independent or symmetric compound correlation, since only certain groups of predictors are correlated with one another. One important consideration when using blockwise correlation is the size of each block. For our simulations, we used a block size of 5 when $p = 10$, a block size of 25 when $p = 100$, and a block size of 100 when $p = 2000$.
 
-\subsection{Empirical Data}
+\section{Empirical Data}
 % outline empirical data sources and what each database is about / what we try to predict about it
 
 For empirical data, we used the Breast Cancer database from The Cancer Genome Atlas (bcTCGA). This contains the gene expression data of 17323 genes from 536 patients. One of these genes is the BRCA1 gene which is among the first genes discovered that can increase the risk of breast cancer. Because the BRCA1 gene interacts with other genes, it is useful to find genes that interact with BRCA1 to test in further studies. The distribution of the BRCA1 gene expression levels in the bcTCGA database can be seen in Figure \ref{fig:BRCA1-distribution}. The BRCA1 gene expression level will act as the output value in our regression analysis and the other 17322 genes will serve as predictor values.
@@ -509,11 +509,10 @@ We chose to use nested cross validation because it produces five models that wer
 
 The hyperparameters tuned in each of the models were the same as those tuned in the Monte Carlo simulations. For ridge, lasso, elastic-net, SCAD, and MCP, we tuned the penalty strength $\lambda$; for elastic-net, we used the hyperparameter $\alpha = 0.5$, meaning that the penalty is in between that of lasso and ridge. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Results}
 
 
 
-\subsection{Monte Carlo Simulations}
+\section{Monte Carlo Simulation Results}
 % stick the results from classification models here
 
 We used four metrics to evaluate the performance of each model: \textbf{train mean squared error}, \textbf{test mean squared error}, \textbf{$\beta$-sensitivity} and \textbf{$\beta$-specificity}. The mean squared error is computed by
@@ -619,7 +618,7 @@ Figure \ref{fig:specificity-50-2000} shows the average $\beta$-specificity $n = 
 	\label{fig:specificity-50-2000}
 \end{figure}
 
-\subsection{Empirical Data}
+\section{Empirical Data Results}
 % Stick all the results from the linear regression models here
 Recall that we used nested cross-validation when fitting models on the bcTCGA data set. This means that we fitted five models using different subsets of the data for training and testing. Figure \ref{fig:empirical_mse} below shows a plot with the training and test mean squared error for every fold of every model. The bars show the average mean squared error for the five folds. In addition, Table \ref{tab:emp_results} show the aggregated results for the train and test mean squared error.
 
@@ -707,14 +706,8 @@ Table \ref{tab:emp_runtimes} shows the average runtime to fit each of the models
 \end{table}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Discussion}
+\section{Discussion of Monte Carlo Results}
 % discussion of findings, future work, and contributions
-
-
-\subsection{Findings}
-% overall ideas that we found out after all these results. Which type of model is best in which environment, etc?
-% Might need to break it into sub sub sections for classification vs regression or monte carlo vs empirical???
-\subsubsection{Monte Carlo Simulations}
 Looking at the simulations, we see that the wrapper methods minimize the test mean squared error, along with SCAD and MCP. In addition to having low test error, these models are also fairly resilient to large correlation values.
 
 % One interesting observation is that many of the models did better at avoiding estimating coefficients as non-zero that were actually zero when the correlation was large. This is most evident in Figure \ref{fig:fp-50-2000}, which shows that the number of false predictions typically decreased as the correlation increases in the case where $n = 50$ and $p = 2000$. One possible explanation for this comes from the fact that the predictors chosen to be non-zero are close to each other ($\beta_0$, $\beta_1$, $\beta_2$, $\beta_5$ and $\beta_6$ were chosen to be non-zero). As a result, having a strong correlation means that these predictors are more closely related to one another, so the regression algorithms are more likely to identify one or more of these predictors as significant. However, this correlation makes it harder for the model to identify which particular predictors are related to the response; figure \ref{fig:tp-50-2000} shows that as the correlation increases, the penalized models recognize less of the non-zero coefficients as being non-zero.
@@ -733,7 +726,7 @@ Although wrapper methods and penalized regression models were the clear winners 
 
 Another disadvantage for the non-linear models is that they can be controlled by many different hyperparameters, but we only considered a couple for each model. This was out of necessity; it would have been infeasible to fit models using more hyperparameters given the number of simulations that had to be run. If more hyperparameters could be included, then the performance of the non-linear models may have been more comparable to the linear models. At the same time, the more comprehensive tuning of several hyperparameters could act as a double edged sword in that it could increase the overfitting of these models. More hyperparameter tuning could lead a model to pick hyperparameters that fits the training data very precisely, but at the expense of increased testing error and increased computational cost.
 
-\subsubsection{Empirical Data}
+\section{Discussion of Empirical Data Results}
 In our empirical data study, SCAD and MCP also maintained the lowest testing mean squared error among the tested models. This can be seen in Figure \ref{fig:empirical_mse} and Table \ref{tab:emp_results} which showcase MCP as having the lowest average MSE and standard deviation. This may be due in part to the fact that MCP consistently selected the fewest number of predictors compared to Lasso and Elastic Net as visible in Figure \ref{fig:venn}. Because this empirical data most likely contains multicollinearity, the fact that MCP selects fewer predictors may have helped to reduce overfitting. This is consistent with results from the Monte Carlo simulations which indicate that MCP performed better than its counterparts in multicollinear environments.
 
 An interesting result was how few predictors were selected between all four models. It would be expected that the most important predictors would be chosen by all four models, but only three to six predictors were selected in common by all the models. Between MCP, Lasso, and Elastic Net, there were slightly more selected predictors in common, but these still were much less than expected. This is most likely because MCP is very different from the other regression techniques in that it uses non-convex optimization and thus selected many predictors that were different from all the other models. Since MCP had a much lower false negative rate compared to the other models as determined in the Monte Carlo simulations, it can be assumed that many of these predictors solely selected by MCP were significant predictors that were missed by the other models. This could have been another reason why MCP performed the best out of all the fitted models on the empirical data. 
@@ -742,13 +735,13 @@ MCP also maintained the lowest testing MSE standard deviation for the empirical 
 
 The penalized regression models performed exceptionally faster than random forest and XGBoost as documented in Table \ref{tab:emp_runtimes}. On average, Lasso and Elastic Net ran approximately 56x faster than XGBoost and 510x faster than random forest. MCP and SCAD ran approximately 30x faster than XGBoost and 290x faster than random forest. This provides a significant advantage to the penalized regression techniques, especially given that MCP and other penalized techniques performed better than random forest and XGBoost. 
 
-\subsection{Contributions}
+\section{Contributions}
 % what are our contributions, why is what we did important?
 % we have a comprehensive analysis of 21 models in 270 different environments. Allows for comprehensive comparison and gives guidance to data scientists as to which model they should use for their research
 % empirical data methods show the important uses of penalized regression in environmental, biological, and etc. data
 
 There is a severe lack of comprehensive testing comparing traditional machine learning methods such as random forest, gradient boosting, and support vector machines with penalized selection. Our paper bridges the divide between the machine learning and statistical fields in which these two types of models exist in. Testing using Monte Carlo simulations and empirical data has not been tested by other researchers with as many different environments and models. 
-\subsection{Future Work}
+\section{Future Work}
 % maybe talk about the penalty method we came up with? Talk about how it might be able to solve issues of Logsum method?
 
 \newpage
