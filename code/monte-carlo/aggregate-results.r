@@ -103,6 +103,9 @@ all_results <- do.call(rbind.fill, all_results)
 all_results <- all_results[all_results$model_name != "nm" & 
                              all_results$model_name != "soln" , ]
 
+all_results$sensitivity <- all_results$tp / (all_results$tp + all_results$fn)
+all_results$specificity <- all_results$tn / (all_results$tn + all_results$fp)
+
 # Set several of the columns into factors (instead of numeric)
 all_results$row_index <- factor(all_results$row_index)
 all_results$n <- factor(all_results$n)
@@ -127,7 +130,9 @@ mean_results <- aggregate(list(mean_test_mse = all_results$test_mse,
                                mean_tn = all_results$tn,
                                mean_fn = all_results$fn,
                                mean_fp = all_results$fp,
-                               mean_tp = all_results$tp),
+                               mean_tp = all_results$tp,
+                               mean_sensitivity = all_results$sensitivity,
+                               mean_specificity = all_results$specificity),
                           by = list(row_index = all_results$row_index,
                                     n = all_results$n,
                                     p = all_results$p,
@@ -144,7 +149,9 @@ sd_results <- aggregate(list(sd_test_mse = all_results$test_mse,
                              sd_tn = all_results$tn,
                              sd_fn = all_results$fn,
                              sd_fp = all_results$fp,
-                             sd_tp = all_results$tp),
+                             sd_tp = all_results$tp,
+                             sd_sensitivity = all_results$sensitivity,
+                             sd_specificity = all_results$specificity),
                         by = list(row_index = all_results$row_index,
                                   n = all_results$n,
                                   p = all_results$p,

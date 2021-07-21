@@ -291,6 +291,33 @@ apply(X = dimensions, MARGIN = 1, FUN = function(row) {
   return(plt)
 })
 
+apply(X = dimensions, MARGIN = 1, FUN = function(row) {
+  n <- row[["n"]]
+  p <- row[["p"]]
+  
+  plt <- plot_metric(accuracy_results, "sensitivity", facet = c("type", "st_dev"),
+                     color = "corr", ylabel = expression(paste("Mean ", beta, "-sensitivity")),
+                     fixy = TRUE, n = n, p = p)
+  save_plot(plot = plt,
+            filename = paste("facet_sensitivity_", n, "_", p, sep = ""),
+            path = "./images/facet-sensitivity")
+  
+  return(plt)
+})
+
+apply(X = dimensions, MARGIN = 1, FUN = function(row) {
+  n <- row[["n"]]
+  p <- row[["p"]]
+  
+  plt <- plot_metric(accuracy_results, "specificity", facet = c("type", "st_dev"),
+                     color = "corr", ylabel = expression(paste("Mean ", beta, "-specificity")),
+                     fixy = TRUE, n = n, p = p)
+  save_plot(plot = plt,
+            filename = paste("facet_specificity_", n, "_", p, sep = ""),
+            path = "./images/facet-specificity")
+  
+  return(plt)
+})
 # plot_metric(accuracy_results, "fn", facet = c("type", "st_dev"), color = "corr", n = 50, p = 100)
 
 
