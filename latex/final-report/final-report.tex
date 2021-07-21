@@ -339,13 +339,15 @@ Both random forest and gradient boosting models use \textbf{decision trees} to m
 
 Although decision trees can be used as machine learning models on their own, it is more common to use decision trees in \textbf{ensemble methods}, which combine many different decision trees into a single model. A single decision tree will usually have high variance since a small change in the training set can lead to a completely different decision tree \cite{james2013introduction}.
 
-\textbf{Random Forests} solve the issue of high variance by aggregating the predictions of many independent decision trees \cite{breiman2001random}. Each tree is fit using a subset of the observations and a subset of the predictors, so that the trees are relatively independent from one another.
+\textbf{Random Forests} (RF) solve the issue of high variance by aggregating the predictions of many independent decision trees \cite{breiman2001random}. Each tree is fit using a subset of the observations and a subset of the predictors, so that the trees are relatively independent from one another.
 
-To generate a tree within a random forest model, first select a random sample of the $n$ observations with replacement. This is a process called \textbf{bootstrapping} \cite{efron1994introduction}. The number of observations chosen for each tree is a hyperparameter that can be changed. After selecting a set of observations, a random sample of predictors are chosen out of the $p$ predictors without replacement. Again, this helps decorrelate the trees. This whole process of ``bootstrap aggregating'' is called \textbf{bagging} \cite{breiman1996bagging}. The number of predictors used in each tree is also a hyperparameter that can be changed. Then, a decision tree is generated using the available observations and predictors. The number of trees generated is another hyperparameter; usually, a random forest model will contain at least several hundred trees.
+To fit each decision tree within a random forest model, first select a random sample of the $n$ observations with replacement, in a process called \textbf{bootstrapping} \cite{efron1994introduction}. The number of observations chosen for each tree is a hyperparameter that can be changed. After selecting a set of observations, a random sample of predictors are chosen out of the $p$ predictors without replacement. Again, this helps decorrelate the trees. The number of predictors used in each tree is also a hyperparameter that can be changed. Then, a decision tree is generated using the available observations and predictors.
 
-To make predictions with a random forest, a test observation is passed into each decision tree and the predictions from each tree are aggregated. For regression, the results are normally aggregated using the mean; for classification, the prediction chosen most often by the trees is usually used as the final prediction.
+A random forest model aggregates all of the individual decision trees into a single model. The number of trees generated is a hyperparameter that can be changed; usually, a random forest model will contain at least several hundred trees. To make predictions with a random forest, a test observation is passed into each decision tree and the predictions from each tree are aggregated. For regression, the results are normally aggregated using the mean; for classification, the prediction chosen most often by the trees is usually used as the final prediction. 
 
-\textbf{Boosting} is the technique of sequentially improving a weak learner until it becomes a strong learner \cite{schapire1990strength}. A \textbf{gradient boosting model} (GBM) is a boosting technique that uses gradient descent to minimize error in a model and correct the shortcomings of the previous weak learner model \cite{friedman2001greedy}. This is done through fitting a model, whether that is a linear regression or decision tree model, to a set of data points. From there, the residual of each data point is calculated and another linear regression or decision tree model is fitted to those residuals. A new model is fitted to the residual data of the residual data fitted model, and so on. These models are then all added together to result in a strong GBM model.
+This idea of fitting multiple models with bootstrapping and aggregating the results can be used with other models besides decision trees. In general, this process is called \textbf{bagging} (a combination of the words ``bootstrap'' and ``aggregating'') \cite{breiman1996bagging}. 
+
+\textbf{Boosting} is the technique of sequentially improving a weak learner until it becomes a strong learner \cite{schapire1990strength}. A \textbf{gradient boosting machine} (GBM) is a boosting technique that uses gradient descent to minimize error in a model and correct the shortcomings of the previous weak learner model \cite{friedman2001greedy}. This is done through fitting a model, whether that is a linear regression or decision tree model, to a set of data points. From there, the residual of each data point is calculated and another linear regression or decision tree model is fitted to those residuals. A new model is fitted to the residual data of the residual data fitted model, and so on. These models are then all added together to result in a strong GBM model.
 
 Gradient boosting can be used for both regression and classification if they use decision trees, or if they use linear regression models, they can only perform regression. When using a gradient boosting model with decision trees, relative variable importance and pruning can be used as a sort of pseudo-variable selection method to lower complexity and prevent over-fitting. However, this does not yield the same interpretability or bias trade off benefits that true variable selection yields. When using a gradient boosting model with linear regression, there is the ability to use lasso, ridge, and elastic net penalized regression as the weak learner and perform variable selection, although this is much less commonly used than decision trees in XGBoost.
 
@@ -514,9 +516,30 @@ The hyperparameters tuned in each of the models were the same as those tuned in 
 \subsection{Monte Carlo Simulations}
 % stick the results from classification models here
 
-Because we ran simulations using 270 different combinations of factors, we will just highlight the results for the two extremes: when $n = 1000$ and $p = 10$, and when $n = 50$ and $p = 2000$.
+We used four metrics to evaluate the performance of each model: \textbf{train mean squared error}, \textbf{test mean squared error}, \textbf{$\beta$-sensitivity} and \textbf{$\beta$-specificity}. The mean squared error is computed by
+\begin{equation}
+	\text{MSE} = \frac{1}{n}\sum\limits_{i = 1}^n (y_i - \hat{y}_i)^2
+\end{equation}
+where $y_i$ is the value of the response and $\hat{y}_i$ is the predicted response value for observation $i$. In other words, the mean squared error is the average of the squared errors. The mean squared error was computed on both the $n$ observations used to train the models and the $n$ observations that were not used for training, giving us both a training error and a test error.
 
-We will first consider the case where $n = 1000$ and $p = 10$. Figures \ref{fig:train-mse-1000-10} and \ref{fig:test-mse-1000-10} show the average mean squared error for each model for the training set and test set, respectively. Different rows of the figure represent different values for $\sigma$, the standard deviation of the random error (either 1, 3, or 6). Columns represent the type of correlation (independent, symmetric compound, autoregressive or blockwise). The different types of points represent the strength of the correlation. For an independent correlation structure, the correlation is 0; for the other correlation structures, we used the values 0.2, 0.5, and 0.9. Each point represents the average mean squared error for one specific combination of factors across 100 iterations. Tables \ref{tab:train-mse-1000-10} and \ref{tab:test-mse-1000-10} in Appendix \ref{app:full-results} contain all of the values in these figures, as well as the standard deviation for each point.
+Because we are using simulated data, where the true coefficient values are known, we can measure the $\beta$-sensitivity and $\beta$-specificity for each model \cite{liu2020logsum}. For each of the models that performs variable selection, we first measured the number of true positive, true negatives, false positives, and false negatives for the coefficient estimates. For any model, a coefficient estimate is a \textbf{true positive} the coefficient is predicted to be non-zero when it is actually non-zero. The estimate is a \textbf{true negative}if the coefficient was correctly predicted to be zero. A \textbf{false positive} happens when the coefficient is predicted to be non-zero but is actually zero. Finally, a coefficient estimate is a \textbf{false negative} if it was estimated to be zero but is actually non-zero.
+
+For a particular model, let TP be the number of true positives, TN the number of true negatives, FP the number of false positives, and FN the number of false negatives. Then the $\beta$-sensitivity model the model can be computed by
+\begin{equation}
+	\beta\text{-sensitivity} = \frac{\text{TP}}{\text{TP} + \text{FN}}
+\end{equation}
+The $\beta$-sensitivity is a measure of a model's ability to correctly identify non-zero coefficients. If the $\beta$-sensitivity is close to 1, then the model recognizes almost all of the non-zero coefficients; if the $\beta$-sensitivity is close to 0, then the model cannot identify non-zero coefficients well. Similarly, the $\beta$-specificity can be computed by
+\begin{equation}
+	\beta\text{-specificity} = \frac{\text{TN}}{\text{TN} + \text{FP}}
+\end{equation}
+The $\beta$-specificity measures a model's ability to recognize coefficients that are actually zero.
+
+
+Because we ran simulations using 270 different combinations of factors, we will just highlight the results for the two extremes: when $n = 1000$ and $p = 10$, and when $n = 50$ and $p = 2000$. All of the plots in this section use facet plots to convey as much information as possible. Each plot measures the average value for one of the four metrics discussed above over 100 simulations. Each row represents a different value of $\sigma$, the standard deviation of the random error. Each column represents a correlation structure. The different shapes and colors for each points represent the strength of the correlation between predictors.
+
+To save space in the plots, each model is given a shortened label. Many of these labels have been used throughout this paper; for example, ordinary least squares is labelled as OLS. The labels for the wrapper methods start with AIC or BIC, followed by either B for backward, SB for stepwise backward, F for forward or SF for stepwise forward. As an example, the stepwise forward model evaluated with BIC is labelled as ``AIC SF.``
+
+We will first consider the case where $n = 1000$ and $p = 10$. Figures \ref{fig:train-mse-1000-10} and \ref{fig:test-mse-1000-10} show the average mean squared error for each model for the training set and test set, respectively. Tables \ref{tab:train-mse-1000-10} and \ref{tab:test-mse-1000-10} in Appendix \ref{app:full-results} contain all of the data shown in these figures as well as the standard deviation for each point.
 
 \begin{figure}[p!]
 	\centering
@@ -529,7 +552,7 @@ We will first consider the case where $n = 1000$ and $p = 10$. Figures \ref{fig:
 	
 	\includegraphics[width = \textwidth]{images/facet-test-mse/facet_test_mse_1000_10.eps}
 	\captionsetup{width = 0.8\textwidth}
-	\caption{Average mean squared error using the test data for all simulated models when $n = 1000$ and $p = 10$.}
+	\caption{Average mean squared error using the test data for simulated models when $n = 1000$ and $p = 10$.}
 	\label{fig:test-mse-1000-10}
 \end{figure}
 
@@ -537,24 +560,24 @@ We see that the linear models have very similar train and test mean squared erro
 
 The non-linear models all have lower training mean squared errors compared to the linear models. However, they also have higher test mean squared errors. We see that gradient boosting is not affected too strongly by the amount of correlation; on the other hand, we see that random forest and support vector machine models have better test performance when there is a strong correlation between predictors.
 
-Recall that in our simulation study, five of the predictors are truly related to the response (including the intercept) while the other predictors have no relation. Figure \ref{fig:tp-1000-10} displays the average number of non-zero coefficients that each model correctly identified as non-zero. Because ordinary least squares, ridge regression, and the non-linear models do not perform variable selection, we do not consider them in this plot. We see that almost all the models were able to correctly identify all of the non-zero coefficients when $n = 1000$ and $p = 10$. The only exceptions were lasso and elastic-net models when the correlation structure was blockwise and the strength of the correlation was 0.9.
+Figure \ref{fig:sensitivity-1000-10} displays the average $\beta$-sensitivity for each model that performs variable selection when $n = 1000$ and $p = 10$. We see that almost all the models were able to correctly identify all of the non-zero coefficients when $n = 1000$ and $p = 10$. The only exceptions were lasso and elastic-net models when the correlation structure was blockwise and the strength of the correlation was 0.9.
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width = \textwidth]{images/facet-sensitivity/facet_sensitivity_1000_10.eps}
 	\captionsetup{width = 0.8\textwidth}
-	\caption{Average number of non-zero coefficients that were correctly estimated as non-zero when $n = 1000$ and $p = 10$.}
-	\label{fig:tp-1000-10}
+	\caption{Average $\beta$-sensitivity for simulated models when $n = 1000$ and $p = 10$.}
+	\label{fig:sensitivity-1000-10}
 \end{figure}
 
-Figure \ref{fig:fp-1000-10} shows the average number of coefficients that were actually zero that each model incorrectly estimated to be non-zero. We see that the subset selection models that used BIC made almost zero mistakes when identifying non-zero predictors. In comparison, wrapper models fitted using AIC made more mistakes. We see that lasso and elastic-net made almost no mistakes when the correlation was low; in fact, when the correlation structure was independent, lasso made the fewest incorrect estimates out of all the models. As the correlation increases, lasso and elastic-net made more incorrect predictions. SCAD and MCP made more incorrect predictions than lasso and elastic-net in general. However, SCAD and MCP were also somewhat more resilient to an increase in correlation.
+Figure \ref{fig:specificity-1000-10} shows the average $\beta$-specificity for each model. We see that the subset selection models that used BIC made almost zero mistakes when identifying predictors as zero. In comparison, wrapper models fitted using AIC made more mistakes. We see that lasso and elastic-net made almost no mistakes when the correlation was low; in fact, when the correlation structure was independent, lasso made the fewest incorrect estimates out of all the models. As the correlation increases, lasso and elastic-net made more incorrect predictions. SCAD and MCP made more incorrect predictions than lasso and elastic-net in general. However, SCAD and MCP were also somewhat more resilient to an increase in correlation.
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width = \textwidth]{images/facet-specificity/facet_specificity_1000_10.eps}
 	\captionsetup{width = 0.8\textwidth}
-	\caption{Average number of zero coefficients that were incorrectly estimated as non-zero when $n = 1000$ and $p = 10$.}
-	\label{fig:fp-1000-10}
+	\caption{Average $\beta$-specificity for simulated models when $n = 1000$ and $p = 10$.}
+	\label{fig:specificity-1000-10}
 \end{figure}
 
 Now, we will consider the opposite extreme where $n = 50$ and $p = 2000$. Figures \ref{fig:train-mse-50-2000} and \ref{fig:test-mse-50-2000} display the average mean squared error for simulations where $n = 50$ and $p = 2000$. Because less models were fitted for this combination of $n$ and $p$, less models are shown in this figure. See table \ref{tab:train-mse-50-2000} and table \ref{tab:test-mse-50-2000} for a table of these results, including the standard deviations for each point.
@@ -563,37 +586,37 @@ Now, we will consider the opposite extreme where $n = 50$ and $p = 2000$. Figure
 	\centering
 	\includegraphics[width = \textwidth]{images/facet-train-mse/facet_train_mse_50_2000.eps}
 	\captionsetup{width = 0.8\textwidth}
-	\caption{Average mean square error using training data for Monte Carlo models when $n = 50$ and $p = 2000$.}
+	\caption{Average mean square error using training data for simulated models when $n = 50$ and $p = 2000$.}
 	\label{fig:train-mse-50-2000}
 	
 	\bigskip
 	
 	\includegraphics[width = \textwidth]{images/facet-test-mse/facet_test_mse_50_2000.eps}
 	\captionsetup{width = 0.8\textwidth}
-	\caption{Average mean square error using testing data for Monte Carlo models when $n = 50$ and $p = 2000$.}
+	\caption{Average mean square error using testing data for simulated models when $n = 50$ and $p = 2000$.}
 	\label{fig:test-mse-50-2000}
 \end{figure}
 
 We see that the mean squared error for lasso and elastic-net are generally larger than SCAD and MCP for both the training data and test data. Gradient boosting has almost zero training mean squared error under all conditions, but has a relatively large test error. Random forest and support vector machine models have a moderate training error but a large test error. Interestingly, we see that the non-linear models all perform better when there is a strong correlation between predictors. On the other hand, the linear models are somewhat less affected by the correlation.
 
-Figure \ref{fig:tp-50-2000} measures the average number of predictors that were predicted by the penalized regression models to be non-zero zero that were actually non-zero. Recall that the subset selection methods were not considered here because $p < n$. We see that all of the models predict most of the non-zero coefficients when the correlation is low. When the correlation is high, all of the models struggle to identify the correct predictors. SCAD and MCP perform the best when the correlation is low but perform the worst when the correlation is high. Elastic-net performs particularly well compared to the other models when the correlation is high, especially when the correlation structure is autoregressive.
+Figure \ref{fig:sensitivity-50-2000} measures the average $\beta$-sensitivity for each model. Recall that the subset selection methods were not considered here because $p < n$. We see that all of the models predict most of the non-zero coefficients when the correlation is low. When the correlation is high, all of the models struggle to identify the correct predictors. SCAD and MCP perform the best when the correlation is low but perform the worst when the correlation is high. Elastic-net performs particularly well compared to the other models when the correlation is high, especially when the correlation structure is autoregressive.
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width = \textwidth]{images/facet-sensitivity/facet_sensitivity_50_2000.eps}
 	\captionsetup{width = 0.8\textwidth}
-	\caption{Average number of non-zero coefficients that were correctly estimated as non-zero when $n = 50$ and $p = 2000$.}
-	\label{fig:tp-50-2000}
+	\caption{Average $\beta$-sensitivity for simulated models when $n = 50$ and $p = 2000$}
+	\label{fig:sensitivity-50-2000}
 \end{figure}
 
-Figure \ref{fig:fp-50-2000} shows the average number of coefficients that were estimated to be non-zero but were actually zero when $n = 50$ and $p = 2000$. MCP appears to make the fewest mistakes when choosing non-zero predictors. The performance of the other models depends heavily on the type of correlation and the correlation strength. Lasso and elastic-net perform the worst when the correlation structure is symmetric compound, whereas SCAD performs poorly when the correlation structure is autoregressive or blockwise. We also see that the models generally made less mistakes as the correlation increases.
+Figure \ref{fig:specificity-50-2000} shows the average $\beta$-specificity $n = 50$ and $p = 2000$. MCP appears to make the fewest mistakes when choosing zero coefficients. The performance of the other models depends heavily on the type of correlation and the correlation strength. Lasso and elastic-net perform the worst when the correlation structure is symmetric compound, whereas SCAD performs poorly when the correlation structure is autoregressive or blockwise. We also see that the models generally made less mistakes as the correlation increases.
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width = \textwidth]{images/facet-specificity/facet_specificity_50_2000.eps}
 	\captionsetup{width = 0.8\textwidth}
-	\caption{Average number of zero coefficients that were incorrectly estimated as non-zero when $n = 50$ and $p = 2000$.}
-	\label{fig:fp-50-2000}
+	\caption{Average $\beta$-specificity for simulated models when $n = 50$ and $p = 2000$.}
+	\label{fig:specificity-50-2000}
 \end{figure}
 
 \subsection{Empirical Data}
@@ -692,11 +715,11 @@ Table \ref{tab:emp_runtimes} shows the average runtime to fit each of the models
 % overall ideas that we found out after all these results. Which type of model is best in which environment, etc?
 % Might need to break it into sub sub sections for classification vs regression or monte carlo vs empirical???
 \subsubsection{Monte Carlo Simulations}
-Looking at the simulations, we see that the wrapper methods minimize the test mean squared error, along with SCAD and MCP. In addition to having low test error, these models are also fairly resilient to large correlation values. However, despite having good prediction error, SCAD and MCP were not the most effective at choosing the most important predictors when the correlation between predictors was high. Instead, lasso and elastic-net were better able to identify the most important predictors.
+Looking at the simulations, we see that the wrapper methods minimize the test mean squared error, along with SCAD and MCP. In addition to having low test error, these models are also fairly resilient to large correlation values.
 
-One interesting observation is that many of the models did better at avoiding estimating coefficients as non-zero that were actually zero when the correlation was large. This is most evident in Figure \ref{fig:fp-50-2000}, which shows that the number of false predictions typically decreased as the correlation increases in the case where $n = 50$ and $p = 2000$. One possible explanation for this comes from the fact that the predictors chosen to be non-zero are close to each other ($\beta_0$, $\beta_1$, $\beta_2$, $\beta_5$ and $\beta_6$ were chosen to be non-zero). As a result, having a strong correlation means that these predictors are more closely related to one another, so the regression algorithms are more likely to identify one or more of these predictors as significant. However, this correlation makes it harder for the model to identify which particular predictors are related to the response; figure \ref{fig:tp-50-2000} shows that as the correlation increases, the penalized models recognize less of the non-zero coefficients as being non-zero.
+% One interesting observation is that many of the models did better at avoiding estimating coefficients as non-zero that were actually zero when the correlation was large. This is most evident in Figure \ref{fig:fp-50-2000}, which shows that the number of false predictions typically decreased as the correlation increases in the case where $n = 50$ and $p = 2000$. One possible explanation for this comes from the fact that the predictors chosen to be non-zero are close to each other ($\beta_0$, $\beta_1$, $\beta_2$, $\beta_5$ and $\beta_6$ were chosen to be non-zero). As a result, having a strong correlation means that these predictors are more closely related to one another, so the regression algorithms are more likely to identify one or more of these predictors as significant. However, this correlation makes it harder for the model to identify which particular predictors are related to the response; figure \ref{fig:tp-50-2000} shows that as the correlation increases, the penalized models recognize less of the non-zero coefficients as being non-zero.
 
-To further support this idea, notice in figure \ref{fig:fp-50-2000} that the number of false predictions decreases as the correlation increases mainly when the correlation structure is autoregressive or blockwise; when the correlation structure is symmetric compound, lasso and elastic-net do not improve as the correlation increases. This could be because symmetric compound correlation makes all of the predictors correlated with one another, whereas autoregressive and blockwise correlation make nearby predictors correlated with one another. By increasing the correlation with a symmetric compound structure, lasso and elastic-net are more likely to estimate more unimportant predictors as having non-zero coefficients because all of the predictors are correlated with the important predictors. On the other hand, with autoregressive and blockwise correlation, less of the unimportant predictors are correlated with the important predictors but the correlation between the important predictors stays the same. As a result, the models are less likely to incorrectly assume that unimportant predictors are important when the correlation structure is autoregressive or blockwise.
+% To further support this idea, notice in figure \ref{fig:fp-50-2000} that the number of false predictions decreases as the correlation increases mainly when the correlation structure is autoregressive or blockwise; when the correlation structure is symmetric compound, lasso and elastic-net do not improve as the correlation increases. This could be because symmetric compound correlation makes all of the predictors correlated with one another, whereas autoregressive and blockwise correlation make nearby predictors correlated with one another. By increasing the correlation with a symmetric compound structure, lasso and elastic-net are more likely to estimate more unimportant predictors as having non-zero coefficients because all of the predictors are correlated with the important predictors. On the other hand, with autoregressive and blockwise correlation, less of the unimportant predictors are correlated with the important predictors but the correlation between the important predictors stays the same. As a result, the models are less likely to incorrectly assume that unimportant predictors are important when the correlation structure is autoregressive or blockwise.
 
 Ridge regression performed far worse than the other linear models when $n=1000$ and $p=10$. Furthermore, the strength of correlation had a more significant effect on ridge than the other linear models. This increase in error is likely because ridge regression cannot set any coefficients to zero; as a result, the predictors that are related to the response are given smaller coefficient values. Recall that four out of the five true coefficient values are larger than 1. Because the ridge penalty function squares each coefficient, it will heavily punish coefficient estimates close to those true coefficient values.
 
