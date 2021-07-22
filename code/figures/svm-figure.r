@@ -31,7 +31,7 @@ dat$stroke <- ifelse(dat$support, 1.5, 0)
 sv_plot <- ggplot(data = dat, mapping = aes(x = x, y = y, color = class)) +
   geom_function(fun = function(x) 4/3 * x + 1/3, xlim = c(0, 23/16), linetype = "dashed", color = "black") +
   geom_function(fun = function(x) 4/3 * x - 1, xlim = c(3/4, 2), linetype = "dashed", color = "black") +
-  geom_function(fun = function(x) 4/3 * x - 1/3, xlim = c(1/4, 59/32), color = "black", size = 2) +
+  geom_function(fun = function(x) 4/3 * x - 1/3, xlim = c(1/4, 59/32), color = "black") +
   geom_vline(xintercept = 0) +
   geom_hline(yintercept = 0) +
   geom_point(mapping = aes(x = x, y = y, fill = class, color = support, stroke = stroke), shape = 21, size = 3) +
