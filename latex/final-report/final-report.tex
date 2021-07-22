@@ -494,7 +494,7 @@ where $0$ represents a block containing all zeroes, and each block $\mathbf{B}_i
 \section{Empirical Data}
 % outline empirical data sources and what each database is about / what we try to predict about it
 
-For empirical data, we used the Breast Cancer database from The Cancer Genome Atlas (bcTCGA). This contains the gene expression data of 17323 genes from 536 patients. One of these genes is the BRCA1 gene which is among the first genes discovered that can increase the risk of breast cancer. Because the BRCA1 gene interacts with other genes, it is useful to find genes that interact with BRCA1 to test in further studies. The distribution of the BRCA1 gene expression levels in the bcTCGA database can be seen in Figure \ref{fig:BRCA1-distribution}. The BRCA1 gene expression level will act as the output value in our regression analysis and the other 17322 genes will serve as predictor values.
+For empirical data, we used the Breast Cancer database from The Cancer Genome Atlas (bcTCGA). A cleaned version of the data is provided by the \lstinline!biglasso! \lstinline!R! package \cite{zeng2017biglasso}. This data set contains the gene expression data of 17322 genes from 536 patients. One of these genes is the BRCA1 gene which is among the first genes discovered that can increase the risk of breast cancer. Because the BRCA1 gene interacts with other genes, it is useful to find genes that interact with BRCA1 to test in further studies. The distribution of the BRCA1 gene expression levels in the bcTCGA database can be seen in Figure \ref{fig:BRCA1-distribution}. The BRCA1 gene expression level will act as the output value in our regression analysis and the other 17322 genes will serve as predictor values.
 
 \begin{figure}[h!]
 	\centering

@@ -165,6 +165,12 @@ Wright, M.~N. and Ziegler, A.
   dimensional data in {C++} and {R}.
 \newblock {\em Journal of Statistical Software}, 77(1):1--17, 2017.
 
+\bibitem{zeng2017biglasso}
+Zeng, Y. and Breheny, P.
+\newblock The biglasso package: A memory- and computation-efficient solver for
+  lasso model fitting with big data in r.
+\newblock {\em ArXiv e-prints}, 2017.
+
 \bibitem{zhang2010nearly}
 Zhang, C.-H.
 \newblock Nearly unbiased variable selection under minimax concave penalty.

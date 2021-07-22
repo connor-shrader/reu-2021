@@ -5,69 +5,44 @@ Reallocating 'name_of_file' (item size: 1) to 9 items.
 The style file: plain-lf.bst
 Reallocating 'name_of_file' (item size: 1) to 11 items.
 Database file #1: references.bib
-You've used 32 entries,
+You've used 33 entries,
             2118 wiz_defined-function locations,
-<<<<<<< HEAD
-            691 strings with 9042 characters,
-and the built_in function-call counts, 10624 in all, are:
-= -- 1069
-> -- 482
+            702 strings with 9434 characters,
+and the built_in function-call counts, 11230 in all, are:
+= -- 1129
+> -- 513
 < -- 7
-+ -- 196
-- -- 160
-* -- 754
-:= -- 1755
-add.period$ -- 96
-call.type$ -- 31
-change.case$ -- 165
++ -- 209
+- -- 170
+* -- 797
+:= -- 1861
+add.period$ -- 102
+call.type$ -- 33
+change.case$ -- 176
 chr.to.int$ -- 0
-cite$ -- 31
-duplicate$ -- 392
-empty$ -- 825
-format.name$ -- 160
-if$ -- 2209
-=======
-            698 strings with 9278 characters,
-and the built_in function-call counts, 11021 in all, are:
-= -- 1109
-> -- 506
-< -- 7
-+ -- 205
-- -- 168
-* -- 788
-:= -- 1822
-add.period$ -- 99
-call.type$ -- 32
-change.case$ -- 171
-chr.to.int$ -- 0
-cite$ -- 32
-duplicate$ -- 403
-empty$ -- 852
-format.name$ -- 168
-if$ -- 2289
->>>>>>> c238e12b2c81abf30c9047c176053cfebd7be697
+cite$ -- 33
+duplicate$ -- 413
+empty$ -- 869
+format.name$ -- 170
+if$ -- 2330
 int.to.chr$ -- 0
-int.to.str$ -- 32
-missing$ -- 32
-newline$ -- 164
-num.names$ -- 64
-pop$ -- 163
+int.to.str$ -- 33
+missing$ -- 33
+newline$ -- 169
+num.names$ -- 66
+pop$ -- 168
 preamble$ -- 1
-purify$ -- 145
+purify$ -- 149
 quote$ -- 0
-<<<<<<< HEAD
-skip$ -- 288
-=======
-skip$ -- 297
->>>>>>> c238e12b2c81abf30c9047c176053cfebd7be697
+skip$ -- 303
 stack$ -- 0
-substring$ -- 755
-swap$ -- 86
+substring$ -- 761
+swap$ -- 87
 text.length$ -- 7
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 120
+type$ -- 124
 warning$ -- 0
-while$ -- 115
-width$ -- 34
-write$ -- 355
+while$ -- 117
+width$ -- 35
+write$ -- 365
