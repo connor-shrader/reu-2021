@@ -1,0 +1,17 @@
+\contentsline {section}{\numberline {1}Introduction}{3}{section.1}%
+\contentsline {section}{\numberline {2}Methodology}{4}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Modeling Background}{4}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Linear Regression and Ordinary Least Squares}{4}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Subset Selection Methods}{7}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Penalized Regression}{8}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}Non-linear models}{14}{subsection.2.5}%
+\contentsline {section}{\numberline {3}Methods}{16}{section.3}%
+\contentsline {section}{\numberline {4}Monte Carlo Simulations}{18}{section.4}%
+\contentsline {section}{\numberline {5}Empirical Data}{20}{section.5}%
+\contentsline {section}{\numberline {6}Monte Carlo Simulation Results}{22}{section.6}%
+\contentsline {section}{\numberline {7}Empirical Data Results}{26}{section.7}%
+\contentsline {section}{\numberline {8}Discussion of Monte Carlo Results}{30}{section.8}%
+\contentsline {section}{\numberline {9}Discussion of Empirical Data Results}{32}{section.9}%
+\contentsline {section}{\numberline {10}Contributions}{32}{section.10}%
+\contentsline {section}{\numberline {11}Future Work}{32}{section.11}%
+\contentsline {section}{\numberline {A}Full Results}{33}{appendix.A}%

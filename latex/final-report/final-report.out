@@ -1,16 +1,17 @@
 \BOOKMARK [1][-]{section.1}{Introduction}{}% 1
-\BOOKMARK [1][-]{section.2}{Modeling Background}{}% 2
-\BOOKMARK [1][-]{section.3}{Linear Regression and Ordinary Least Squares}{}% 3
-\BOOKMARK [1][-]{section.4}{Subset Selection Methods}{}% 4
-\BOOKMARK [1][-]{section.5}{Penalized Regression}{}% 5
-\BOOKMARK [1][-]{section.6}{Non-linear models}{}% 6
-\BOOKMARK [1][-]{section.7}{Methods}{}% 7
-\BOOKMARK [1][-]{section.8}{Monte Carlo Simulations}{}% 8
-\BOOKMARK [1][-]{section.9}{Empirical Data}{}% 9
-\BOOKMARK [1][-]{section.10}{Monte Carlo Simulation Results}{}% 10
-\BOOKMARK [1][-]{section.11}{Empirical Data Results}{}% 11
-\BOOKMARK [1][-]{section.12}{Discussion of Monte Carlo Results}{}% 12
-\BOOKMARK [1][-]{section.13}{Discussion of Empirical Data Results}{}% 13
-\BOOKMARK [1][-]{section.14}{Contributions}{}% 14
-\BOOKMARK [1][-]{section.15}{Future Work}{}% 15
-\BOOKMARK [1][-]{appendix.A}{Full Results}{}% 16
+\BOOKMARK [1][-]{section.2}{Methodology}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{Modeling Background}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{Linear Regression and Ordinary Least Squares}{section.2}% 4
+\BOOKMARK [2][-]{subsection.2.3}{Subset Selection Methods}{section.2}% 5
+\BOOKMARK [2][-]{subsection.2.4}{Penalized Regression}{section.2}% 6
+\BOOKMARK [2][-]{subsection.2.5}{Non-linear models}{section.2}% 7
+\BOOKMARK [1][-]{section.3}{Methods}{}% 8
+\BOOKMARK [1][-]{section.4}{Monte Carlo Simulations}{}% 9
+\BOOKMARK [1][-]{section.5}{Empirical Data}{}% 10
+\BOOKMARK [1][-]{section.6}{Monte Carlo Simulation Results}{}% 11
+\BOOKMARK [1][-]{section.7}{Empirical Data Results}{}% 12
+\BOOKMARK [1][-]{section.8}{Discussion of Monte Carlo Results}{}% 13
+\BOOKMARK [1][-]{section.9}{Discussion of Empirical Data Results}{}% 14
+\BOOKMARK [1][-]{section.10}{Contributions}{}% 15
+\BOOKMARK [1][-]{section.11}{Future Work}{}% 16
+\BOOKMARK [1][-]{appendix.A}{Full Results}{}% 17
