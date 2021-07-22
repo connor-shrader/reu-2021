@@ -230,9 +230,9 @@ Figure \ref{fig:ridge-lasso-diagram} provides a visual explanation for why ridge
 
 \textbf{Elastic-net} regression uses both the ridge penalty and the lasso penalty at the same time \cite{zou2005regularization}. Elastic-net solves the optimization problem
 \begin{equation}
-	\hat{\beta}^{\text{E-net}}=\argmin{\beta}{\sum\limits_{i = 1}^n \left( y_i - \beta_0 - \sum\limits_{i = 1}^p \beta_j x_{ij} \right)^2 + \lambda_2\sum\limits_{j = 1}^p \beta_j^2 + \lambda_1\sum\limits_{j = 1}^p \vert \beta_j \vert}
+	\hat{\beta}^{\text{E-net}}=\argmin{\beta}{\sum\limits_{i = 1}^n [y_i - (\beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \cdots + \beta_p x_{ip})]^2 + \lambda_2\sum\limits_{j = 1}^p \beta_j^2 + \lambda_1\sum\limits_{j = 1}^p \vert \beta_j \vert}
 \end{equation}
-where $\lambda_1$ and $\lambda_2$ are both tuning parameters to be determined later.
+where $\lambda_1$ and $\lambda_2$ are both tuning parameters.
 
 An important limitation to note is that elastic net performs best when it close to either ridge or lasso regression, meaning that either $\lambda_1$ greatly exceeds $\lambda_2$ or $\lambda_2$ greatly exceeds $\lambda_1$ \cite{zou2005regularization}. Additionally, because elastic net requires two tuning parameters, this makes it much more difficult to determine the best combination of tuning parameters to minimize error in the regression. However, this problem has been largely solved through by the LARS-EN algorithm developed by Zou et. al. which efficiently solves for the tuning parameters \cite{zou2005regularization}.
 
