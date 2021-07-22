@@ -184,7 +184,7 @@ old_names <- c("fm", "ab", "bb", "asb", "bsb", "af", "bf", "asf",
 new_names <- c("OLS", "AIC B", "BIC B", "AIC SB",
                "BIC SB", "AIC F", "BIC F",
                "AIC SF", "BIC SF", "Ridge", "Lasso",
-               "E-net", "SCAD", "MCP", "GBM", "RF", "SVM")
+               "E-net", "SCAD", "MCP", "XGBoost", "RF", "SVM")
 
 # Replace model names with more readable names.
 aggregate_results$model_name <- mapvalues(aggregate_results$model_name,
