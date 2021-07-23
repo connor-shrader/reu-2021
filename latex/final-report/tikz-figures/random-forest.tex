@@ -1,0 +1,90 @@
+\begin{forest}
+	[Test observation,inner sep = 0.2cm, rounded corners, minimum height = 0.6cm, draw = black, fill = cyan!20
+		%Tree 1
+		[,circle,draw,fill=cyan,edge={->},label=Tree 1
+			[,circle,draw,fill=cyan
+				[,circle,draw
+					[,circle,draw]
+					[,circle,draw]
+				]
+				[,circle,draw,fill=cyan
+					[,circle,draw]
+					[,circle,draw,fill=cyan
+						[Prediction 1,edge={->},inner sep = 0.2cm, rounded corners, minimum height = 0.6cm, draw = black, fill = green!20] {
+							\draw[->] () to (agg);
+						}
+					]
+				]
+			]
+			[,circle,draw
+				[,circle,draw
+					[,circle,draw]
+					[,circle,draw]
+			]
+				[,circle,draw
+					[,circle,draw]
+					[,circle,draw]
+				]
+			]
+		]
+		% Tree 2
+		[,circle,draw,fill=cyan,edge={->},label={[xshift=-2em,font=\small]Tree 2}
+			[,circle,draw
+				[,circle,draw
+					[,circle,draw]
+					[,circle,draw]
+				]
+				[,circle,draw
+					[,circle,draw]
+					[,circle,draw]
+				]
+			]
+			[,circle,draw,fill=cyan
+				[,circle,draw,fill=cyan
+					[,circle,draw]
+					[,circle,draw,fill=cyan
+						[Prediction 2,edge={->},inner sep = 0.2cm, rounded corners, minimum height = 0.6cm, draw = black, fill = green!20
+							[Aggregate result,edge={->},inner sep = 0.2cm, rounded corners, minimum height = 0.6cm, draw = black, fill = cyan!20,name=agg]
+						]
+					]
+				]
+				[,circle,draw
+					[,circle,draw]
+					[,circle,draw]
+				]
+			]
+		]
+		[..., l*=2,edge={->},inner sep = 0.2cm, rounded corners, minimum height = 0.6cm, draw = black, fill = cyan!20
+			[...,l*=3,edge={->},inner sep = 0.2cm, rounded corners, minimum height = 0.6cm, draw = black, fill = green!20] {
+			\draw[->] () to (agg);
+			}
+		]
+		% Tree 3
+		[,circle,draw,fill=cyan,edge={->},label=Tree $B$
+			[,circle,draw
+				[,circle,draw
+					[,circle,draw]
+					[,circle,draw]
+				]
+				[,circle,draw
+					[,circle,draw]
+					[,circle,draw]
+				]
+			]
+			[,circle,draw,fill=cyan
+				[,circle,draw
+					[,circle,draw]
+					[,circle,draw]
+				]
+				[,circle,draw,fill=cyan
+					[,circle,draw]
+					[,circle,draw,fill=cyan
+						[Prediction $B$,edge={->},inner sep = 0.2cm, rounded corners, minimum height = 0.6cm, draw = black, fill = green!20] {
+							\draw[->] () to (agg);
+						}
+					]
+				]
+			]
+		]
+	]
+\end{forest}
