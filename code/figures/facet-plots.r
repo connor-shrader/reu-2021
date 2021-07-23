@@ -102,18 +102,32 @@ plot_metric <- function(data, metric, facet, color, ylabel = "Mean test MSE", fi
   return(plt)
 }
 
-Mean <- function(x) {
+Mean2 <- function(x) {
   if(length(x) == 0) {
     return(-1)
   }
   return(round(mean(x), 2))
 }
 
-SD <- function(x) {
+SD2 <- function(x) {
   if(length(x) == 0) {
     return(-1)
   }
   return(round(sd(x), 2))
+}
+
+Mean4 <- function(x) {
+  if(length(x) == 0) {
+    return(-1)
+  }
+  return(round(mean(x), 4))
+}
+
+SD4 <- function(x) {
+  if(length(x) == 0) {
+    return(-1)
+  }
+  return(round(sd(x), 4))
 }
 
 # generate_table(all_results, metric = "train_mse", n = 1000, p = 10)
@@ -131,27 +145,38 @@ generate_table <- function(data, metric, ...) {
   # of the metric are computed.
   if (metric == "train_mse") {
     names(table_results) <- c("st.dev", "type", "corr", "model.name", "train.mse")
-    tab <- tabular((st.dev * model.name) ~ (type * corr * train.mse) * (Mean + SD), data = table_results)
+    tab <- tabular((st.dev * model.name) ~ (type * corr * train.mse) * (Mean2 + SD2), data = table_results)
   }
   else if (metric == "test_mse") {
     names(table_results) <- c("st.dev", "type", "corr", "model.name", "test.mse")
-    tab <- tabular((st.dev * model.name) ~ (type * corr * test.mse) * (Mean + SD), data = table_results)
+    tab <- tabular((st.dev * model.name) ~ (type * corr * test.mse) * (Mean2 + SD2), data = table_results)
   }
   else if (metric == "tn") {
     names(table_results) <- c("st.dev", "type", "corr", "model.name", "tn")
-    tab <- tabular((st.dev * model.name) ~ (type * corr * tn) * (Mean + SD), data = table_results)
+    tab <- tabular((st.dev * model.name) ~ (type * corr * tn) * (Mean2 + SD2), data = table_results)
   }
   else if (metric == "fn") {
     names(table_results) <- c("st.dev", "type", "corr", "model.name", "fn")
-    tab <- tabular((st.dev * model.name) ~ (type * corr * fn) * (Mean + SD), data = table_results)
+    tab <- tabular((st.dev * model.name) ~ (type * corr * fn) * (Mean2 + SD2), data = table_results)
   }
   else if (metric == "fp") {
     names(table_results) <- c("st.dev", "type", "corr", "model.name", "fp")
-    tab <- tabular((st.dev * model.name) ~ (type * corr * fp) * (Mean + SD), data = table_results)
+    tab <- tabular((st.dev * model.name) ~ (type * corr * fp) * (Mean2 + SD2), data = table_results)
   }
   else if (metric == "tp") {
     names(table_results) <- c("st.dev", "type", "corr", "model.name", "tp")
-    tab <- tabular((st.dev * model.name) ~ (type * corr * tp) * (Mean + SD), data = table_results)
+    tab <- tabular((st.dev * model.name) ~ (type * corr * tp) * (Mean2 + SD2), data = table_results)
+  }
+  else if (metric == "sensitivity") {
+    names(table_results) <- c("st.dev", "type", "corr", "model.name", "sensitivity")
+    tab <- tabular((st.dev * model.name) ~ (type * corr * sensitivity) * (Mean4 + SD4), data = table_results)
+  }
+  else if (metric == "specificity") {
+    names(table_results) <- c("st.dev", "type", "corr", "model.name", "specificity")
+    tab <- tabular((st.dev * model.name) ~ (type * corr * specificity) * (Mean4 + SD4), data = table_results)
+  }
+  else {
+    stop(paste("Did not recognize the metric ", metric, "."))
   }
   
   # The following two lines remove rows and columns that have a 0 as the first entry.
@@ -207,7 +232,10 @@ plot_results <- aggregate_results
 plot_results$st_dev <- mapvalues(plot_results$st_dev,
                                  from = c("1", "3", "6"),
                                  to = c("sigma == 1", "sigma == 3", "sigma == 6"))
+
 plot_results <- arrange(plot_results, corr)
+accuracy_results <- plot_results[!plot_results$model_name %in% c("OLS",
+                                 "Ridge", "Adap. ridge", "XGBoost", "RF", "SVM"), ]
 
 dimensions <- expand.grid(n = c(50, 200, 1000), p = c(10, 100, 2000))
 
@@ -237,7 +265,6 @@ apply(X = dimensions, MARGIN = 1, FUN = function(row) {
   return(plt)
 })
 
-accuracy_results <- plot_results[!plot_results$model_name %in% c("OLS", "Ridge", "Adap. ridge", "GBM", "RF", "SVM"), ]
 
 apply(X = dimensions, MARGIN = 1, FUN = function(row) {
   n <- row[["n"]]
