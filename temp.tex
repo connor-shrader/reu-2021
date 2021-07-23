@@ -15,7 +15,7 @@
 
 \begin{document}
 \[
-	\text{RSS} = \sum\limits_{i = 1}^n \Big( y_i - (\beta_0 + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_p x_p)\Big)^2
+	\text{RSS} = \sum\limits_{i = 1}^n \Big[ y_i - (\beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \cdots + \beta_p x_{ip})\Big]^2
 \]
 
 \[
@@ -29,7 +29,7 @@
 
 
 \[
-\text{minimize}\quad \underbrace{\sum\limits_{i = 1}^n \Big( y_i - (\beta_0 + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_p x_p)\Big)^2}_{\text{residual sum of squares}} + \underbrace{\sum\limits_{j = 1}^p P(\beta_j)}_{\text{penalty}}
+\text{minimize}\quad \underbrace{\sum\limits_{i = 1}^n \Big[ y_i - (\beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \cdots + \beta_p x_{ip})\Big]^2}_{\text{residual sum of squares}} + \underbrace{\lambda\sum\limits_{j = 1}^p P(\beta_j)}_{\text{penalty}}
 \]
 
 \[
@@ -42,6 +42,10 @@
 
 \[
 	Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \cdots + \beta_p X_p + \epsilon
+\]
+
+\[
+	\hat{f}(X_1, X_2, \dotsc, X_p) = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \cdots + \beta_p X_p
 \]
 
 \newpage
