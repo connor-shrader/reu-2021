@@ -17,87 +17,96 @@
 \providecommand\HyField@AuxAddToFields[1]{}
 \providecommand\HyField@AuxAddToCoFields[2]{}
 \providecommand \oddpage@label [2]{}
-\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{3}{section.1}\protected@file@percent }
+\citation{akaike1998information}
+\citation{schwarz1978estimating}
 \citation{hoerl1970ridge}
-\@writefile{toc}{\contentsline {section}{\numberline {2}Methodology}{4}{section.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Modeling Background}{4}{subsection.2.1}\protected@file@percent }
-\newlabel{eqn:relationship}{{1}{4}{Modeling Background}{equation.2.1}{}}
+\citation{tibshirani1996regression}
+\citation{zou2005regularization}
+\citation{fan2001variable}
+\citation{zhang2010nearly}
+\citation{breiman2001random}
+\citation{chen2021xgboost}
+\citation{cortes1995support}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{3}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Methodology}{3}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Modeling Background}{3}{subsection.2.1}\protected@file@percent }
+\newlabel{eqn:relationship}{{1}{3}{Modeling Background}{equation.2.1}{}}
+\citation{friedman2001elements}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Linear Regression and Ordinary Least Squares}{4}{subsection.2.2}\protected@file@percent }
 \newlabel{eqn:linear-model}{{2}{4}{Linear Regression and Ordinary Least Squares}{equation.2.2}{}}
-\newlabel{eqn:RSS}{{4}{5}{Linear Regression and Ordinary Least Squares}{equation.2.4}{}}
+\newlabel{eqn:RSS}{{4}{4}{Linear Regression and Ordinary Least Squares}{equation.2.4}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Ordinary least squares fitting with one predictor using simulated data. The blue line represents the line found by ordinary least squares, and the red line segments are the residuals.\relax }}{5}{figure.caption.2}\protected@file@percent }
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
 \newlabel{fig:ols}{{1}{5}{Ordinary least squares fitting with one predictor using simulated data. The blue line represents the line found by ordinary least squares, and the red line segments are the residuals.\relax }{figure.caption.2}{}}
-\citation{friedman2001elements}
+\newlabel{eqn:ols-solution}{{6}{5}{Linear Regression and Ordinary Least Squares}{equation.2.6}{}}
 \citation{liu2020logsum}
 \citation{sanchez2007filter}
 \citation{ding2005minimum}
-\newlabel{eqn:ols-solution}{{6}{6}{Linear Regression and Ordinary Least Squares}{equation.2.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Subset Selection Methods}{7}{subsection.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Subset Selection Methods}{6}{subsection.2.3}\protected@file@percent }
 \citation{akaike1998information}
 \citation{schwarz1978estimating}
 \citation{james2013introduction}
 \citation{james2013introduction}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Penalized Regression}{8}{subsection.2.4}\protected@file@percent }
 \citation{james2013introduction}
 \citation{hoerl1970ridge}
 \citation{tibshirani1996regression}
 \citation{james2013introduction}
-\newlabel{eqn:penalized-regression-lambda}{{10}{9}{Penalized Regression}{equation.2.10}{}}
-\newlabel{eqn:penalized-regression-t}{{11}{9}{Penalized Regression}{equation.2.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Penalized Regression}{8}{subsection.2.4}\protected@file@percent }
+\newlabel{eqn:penalized-regression-lambda}{{10}{8}{Penalized Regression}{equation.2.10}{}}
+\newlabel{eqn:penalized-regression-t}{{11}{8}{Penalized Regression}{equation.2.11}{}}
+\citation{zou2005regularization}
+\newlabel{fig:ridge-diagram}{{2a}{9}{RSS contours and the ridge penalty boundary.\relax }{figure.caption.3}{}}
+\newlabel{sub@fig:ridge-diagram}{{a}{9}{RSS contours and the ridge penalty boundary.\relax }{figure.caption.3}{}}
+\newlabel{fig:lasso-diagram}{{2b}{9}{RSS contours and the lasso penalty boundary.\relax }{figure.caption.3}{}}
+\newlabel{sub@fig:lasso-diagram}{{b}{9}{RSS contours and the lasso penalty boundary.\relax }{figure.caption.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces RSS contours and penalty bounds for the ridge and lasso models when $p=2$ and $t = 1$. The red regions represent the coefficient values allowed by ridge and lasso regression, respectively. The blue ellipses represent contours of the residual sum of squares, with $\hat  {\beta }^{\text  {OLS}}$ being the point where the residual sum of squares is minimized. The intersection of the ellipse with the red region represents the point selected by lasso and ridge.\relax }}{9}{figure.caption.3}\protected@file@percent }
+\newlabel{fig:ridge-lasso-diagram}{{2}{9}{RSS contours and penalty bounds for the ridge and lasso models when $p=2$ and $t = 1$. The red regions represent the coefficient values allowed by ridge and lasso regression, respectively. The blue ellipses represent contours of the residual sum of squares, with $\hat {\beta }^{\text {OLS}}$ being the point where the residual sum of squares is minimized. The intersection of the ellipse with the red region represents the point selected by lasso and ridge.\relax }{figure.caption.3}{}}
 \citation{zou2005regularization}
 \citation{zou2005regularization}
-\citation{zou2005regularization}
-\newlabel{fig:ridge-diagram}{{2a}{10}{RSS contours and the ridge penalty boundary.\relax }{figure.caption.3}{}}
-\newlabel{sub@fig:ridge-diagram}{{a}{10}{RSS contours and the ridge penalty boundary.\relax }{figure.caption.3}{}}
-\newlabel{fig:lasso-diagram}{{2b}{10}{RSS contours and the lasso penalty boundary.\relax }{figure.caption.3}{}}
-\newlabel{sub@fig:lasso-diagram}{{b}{10}{RSS contours and the lasso penalty boundary.\relax }{figure.caption.3}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces RSS contours and penalty bounds for the ridge and lasso models when $p=2$ and $t = 1$. The red regions represent the coefficient values allowed by ridge and lasso regression, respectively. The blue ellipses represent contours of the residual sum of squares, with $\hat  {\beta }^{\text  {OLS}}$ being the point where the residual sum of squares is minimized. The intersection of the ellipse with the red region represents the point selected by lasso and ridge.\relax }}{10}{figure.caption.3}\protected@file@percent }
-\newlabel{fig:ridge-lasso-diagram}{{2}{10}{RSS contours and penalty bounds for the ridge and lasso models when $p=2$ and $t = 1$. The red regions represent the coefficient values allowed by ridge and lasso regression, respectively. The blue ellipses represent contours of the residual sum of squares, with $\hat {\beta }^{\text {OLS}}$ being the point where the residual sum of squares is minimized. The intersection of the ellipse with the red region represents the point selected by lasso and ridge.\relax }{figure.caption.3}{}}
 \citation{fan2001variable}
 \citation{breheny2016lasso}
 \citation{zhang2010nearly}
 \citation{breheny2016lasso}
-\newlabel{eqn:scad-derivative-indicator}{{13}{11}{Penalized Regression}{equation.2.13}{}}
+\newlabel{eqn:scad-derivative-indicator}{{13}{10}{Penalized Regression}{equation.2.13}{}}
 \citation{fan2001variable}
 \citation{tibshirani1996regression}
 \citation{fan2001variable}
 \citation{zou2005regularization}
 \citation{zhang2010nearly}
-\newlabel{fig:penalty}{{3a}{12}{Penalty functions for lasso, SCAD, and MCP.\relax }{figure.caption.4}{}}
-\newlabel{sub@fig:penalty}{{a}{12}{Penalty functions for lasso, SCAD, and MCP.\relax }{figure.caption.4}{}}
-\newlabel{fig:derivative}{{3b}{12}{Derivatives of the penalty functions for lasso, SCAD, and MCP.\relax }{figure.caption.4}{}}
-\newlabel{sub@fig:derivative}{{b}{12}{Derivatives of the penalty functions for lasso, SCAD, and MCP.\relax }{figure.caption.4}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Penalty functions for lasso, SCAD, and MCP, as well as their derivatives. These plots use $\lambda = 1$ and $a = 3$. The dashed vertical lines are the knots for SCAD and MCP.\relax }}{12}{figure.caption.4}\protected@file@percent }
-\newlabel{fig:lasso-scad-mcp}{{3}{12}{Penalty functions for lasso, SCAD, and MCP, as well as their derivatives. These plots use $\lambda = 1$ and $a = 3$. The dashed vertical lines are the knots for SCAD and MCP.\relax }{figure.caption.4}{}}
-\newlabel{ols-orthonormal-solution}{{18}{12}{Penalized Regression}{equation.2.18}{}}
+\newlabel{fig:penalty}{{3a}{11}{Penalty functions for lasso, SCAD, and MCP.\relax }{figure.caption.4}{}}
+\newlabel{sub@fig:penalty}{{a}{11}{Penalty functions for lasso, SCAD, and MCP.\relax }{figure.caption.4}{}}
+\newlabel{fig:derivative}{{3b}{11}{Derivatives of the penalty functions for lasso, SCAD, and MCP.\relax }{figure.caption.4}{}}
+\newlabel{sub@fig:derivative}{{b}{11}{Derivatives of the penalty functions for lasso, SCAD, and MCP.\relax }{figure.caption.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Penalty functions for lasso, SCAD, and MCP, as well as their derivatives. These plots use $\lambda = 1$ and $a = 3$. The dashed vertical lines are the knots for SCAD and MCP.\relax }}{11}{figure.caption.4}\protected@file@percent }
+\newlabel{fig:lasso-scad-mcp}{{3}{11}{Penalty functions for lasso, SCAD, and MCP, as well as their derivatives. These plots use $\lambda = 1$ and $a = 3$. The dashed vertical lines are the knots for SCAD and MCP.\relax }{figure.caption.4}{}}
+\newlabel{ols-orthonormal-solution}{{18}{11}{Penalized Regression}{equation.2.18}{}}
 \citation{fan2001variable}
 \citation{zhang2010nearly}
 \citation{donoho1994ideal}
 \citation{zou2006adaptive}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Thresholding function for lasso, SCAD, and MCP when $\lambda = 1$ and $a = 3$ in an orthonormal design. The input (z) represents an entry from the vector $\mathbf  {z}=\mathbf  {X}^\top \mathbf  {y}$; the output ($\hat  {\beta }$) is the coefficient estimate. The dashed vertical lines are the knots for SCAD and MCP.\relax }}{13}{figure.caption.5}\protected@file@percent }
-\newlabel{fig:prediction}{{4}{13}{Thresholding function for lasso, SCAD, and MCP when $\lambda = 1$ and $a = 3$ in an orthonormal design. The input (z) represents an entry from the vector $\mathbf {z}=\mathbf {X}^\top \mathbf {y}$; the output ($\hat {\beta }$) is the coefficient estimate. The dashed vertical lines are the knots for SCAD and MCP.\relax }{figure.caption.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Thresholding function for lasso, SCAD, and MCP when $\lambda = 1$ and $a = 3$ in an orthonormal design. The input (z) represents an entry from the vector $\mathbf  {z}=\mathbf  {X}^\top \mathbf  {y}$; the output ($\hat  {\beta }$) is the coefficient estimate. The dashed vertical lines are the knots for SCAD and MCP.\relax }}{12}{figure.caption.5}\protected@file@percent }
+\newlabel{fig:prediction}{{4}{12}{Thresholding function for lasso, SCAD, and MCP when $\lambda = 1$ and $a = 3$ in an orthonormal design. The input (z) represents an entry from the vector $\mathbf {z}=\mathbf {X}^\top \mathbf {y}$; the output ($\hat {\beta }$) is the coefficient estimate. The dashed vertical lines are the knots for SCAD and MCP.\relax }{figure.caption.5}{}}
 \citation{fan2001variable}
 \citation{zhang2010nearly}
 \citation{james2013introduction}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5}Non-linear models}{13}{subsection.2.5}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Example of a decision tree. This tree was generated using the \lstinline !iris! data set and attempts to predict the species of a flower based on its petal length and petal width. The decision tree was fitted and plotted with the \lstinline !rpart! and \lstinline !rpart.plot! libraries in \lstinline !R!.\relax }}{13}{figure.caption.6}\protected@file@percent }
+\newlabel{fig:decision-tree}{{5}{13}{Example of a decision tree. This tree was generated using the \lstinline !iris! data set and attempts to predict the species of a flower based on its petal length and petal width. The decision tree was fitted and plotted with the \lstinline !rpart! and \lstinline !rpart.plot! libraries in \lstinline !R!.\relax }{figure.caption.6}{}}
 \citation{breiman2001random}
 \citation{efron1994introduction}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.5}Non-linear models}{14}{subsection.2.5}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Example of a decision tree. This tree was generated using the \lstinline !iris! data set and attempts to predict the species of a flower based on its petal length and petal width. The decision tree was fitted and plotted with the \lstinline !rpart! and \lstinline !rpart.plot! libraries in \lstinline !R!.\relax }}{14}{figure.caption.6}\protected@file@percent }
-\newlabel{fig:decision-tree}{{5}{14}{Example of a decision tree. This tree was generated using the \lstinline !iris! data set and attempts to predict the species of a flower based on its petal length and petal width. The decision tree was fitted and plotted with the \lstinline !rpart! and \lstinline !rpart.plot! libraries in \lstinline !R!.\relax }{figure.caption.6}{}}
 \citation{breiman1996bagging}
 \citation{schapire1990strength}
 \citation{friedman2001greedy}
 \citation{james2013introduction}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Visualization of how predictions are made using a random forest model. An observation is input into each decision tree. Predictions from each tree are then aggregated into a single result that is used as the final prediction.\relax }}{15}{figure.caption.7}\protected@file@percent }
-\newlabel{fig:random-forest}{{6}{15}{Visualization of how predictions are made using a random forest model. An observation is input into each decision tree. Predictions from each tree are then aggregated into a single result that is used as the final prediction.\relax }{figure.caption.7}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Visualization of how predictions are made using a random forest model. An observation is input into each decision tree. Predictions from each tree are then aggregated into a single result that is used as the final prediction.\relax }}{14}{figure.caption.7}\protected@file@percent }
+\newlabel{fig:random-forest}{{6}{14}{Visualization of how predictions are made using a random forest model. An observation is input into each decision tree. Predictions from each tree are then aggregated into a single result that is used as the final prediction.\relax }{figure.caption.7}{}}
 \citation{chen2016xgboost}
 \citation{cortes1995support}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces How a boosting model with decision trees is fitted. Each tree is fitted to correct the errors of the previous tree. Predictions are made by combining the results from each decision tree.\relax }}{16}{figure.caption.8}\protected@file@percent }
-\newlabel{fig:boosting}{{7}{16}{How a boosting model with decision trees is fitted. Each tree is fitted to correct the errors of the previous tree. Predictions are made by combining the results from each decision tree.\relax }{figure.caption.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces How a boosting model with decision trees is fitted. Each tree is fitted to correct the errors of the previous tree. Predictions are made by combining the results from each decision tree.\relax }}{15}{figure.caption.8}\protected@file@percent }
+\newlabel{fig:boosting}{{7}{15}{How a boosting model with decision trees is fitted. Each tree is fitted to correct the errors of the previous tree. Predictions are made by combining the results from each decision tree.\relax }{figure.caption.8}{}}
 \citation{drucker1997support}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Visualization of a simple support vector machine for binary classification. The solid black line is the hyperplane that maximizes the margin between the two classes. The points with a black outline are the support vectors. They are the points that define the hyperplane.\relax }}{17}{figure.caption.9}\protected@file@percent }
-\newlabel{fig:svm}{{8}{17}{Visualization of a simple support vector machine for binary classification. The solid black line is the hyperplane that maximizes the margin between the two classes. The points with a black outline are the support vectors. They are the points that define the hyperplane.\relax }{figure.caption.9}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Visualization of a simple support vector machine for binary classification. The solid black line is the hyperplane that maximizes the margin between the two classes. The points with a black outline are the support vectors. They are the points that define the hyperplane.\relax }}{16}{figure.caption.9}\protected@file@percent }
+\newlabel{fig:svm}{{8}{16}{Visualization of a simple support vector machine for binary classification. The solid black line is the hyperplane that maximizes the margin between the two classes. The points with a black outline are the support vectors. They are the points that define the hyperplane.\relax }{figure.caption.9}{}}
 \citation{r}
 \citation{venables2002mass}
 \citation{friedman2010regularization}
@@ -106,24 +115,26 @@
 \citation{wright2017ranger}
 \citation{liaw2002rf}
 \citation{meyer2021e1071}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.6}Implementation}{18}{subsection.2.6}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces \lstinline !R! Libraries used and the models used from each library\relax }}{18}{table.caption.10}\protected@file@percent }
-\newlabel{tab:model-libraries}{{1}{18}{\lstinline !R! Libraries used and the models used from each library\relax }{table.caption.10}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3}Monte Carlo Simulations}{19}{section.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Simulation Design}{20}{subsection.3.1}\protected@file@percent }
-\newlabel{eqn:symmetric-compound-matrix}{{23}{21}{Simulation Design}{equation.3.23}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.6}Implementation}{17}{subsection.2.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces \lstinline !R! Libraries used and the models used from each library\relax }}{17}{table.caption.10}\protected@file@percent }
+\newlabel{tab:model-libraries}{{1}{17}{\lstinline !R! Libraries used and the models used from each library\relax }{table.caption.10}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Monte Carlo Simulations}{18}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Simulation Design}{19}{subsection.3.1}\protected@file@percent }
+\newlabel{eqn:symmetric-compound-matrix}{{23}{20}{Simulation Design}{equation.3.23}{}}
 \citation{liu2020logsum}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Simulation Results}{22}{subsection.3.2}\protected@file@percent }
-\newlabel{sec:simulation-results}{{3.2}{22}{Simulation Results}{subsection.3.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Average mean squared error using the training data for all simulated models when $n = 1000$ and $p = 10$.\relax }}{23}{figure.caption.11}\protected@file@percent }
-\newlabel{fig:train-mse-1000-10}{{9}{23}{Average mean squared error using the training data for all simulated models when $n = 1000$ and $p = 10$.\relax }{figure.caption.11}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Average mean squared error using the test data for simulated models when $n = 1000$ and $p = 10$.\relax }}{24}{figure.caption.12}\protected@file@percent }
-\newlabel{fig:test-mse-1000-10}{{10}{24}{Average mean squared error using the test data for simulated models when $n = 1000$ and $p = 10$.\relax }{figure.caption.12}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Simulation Results}{21}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:simulation-results}{{3.2}{21}{Simulation Results}{subsection.3.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Average mean squared error using the training data for all simulated models when $n = 1000$ and $p = 10$.\relax }}{22}{figure.caption.11}\protected@file@percent }
+\newlabel{fig:train-mse-1000-10}{{9}{22}{Average mean squared error using the training data for all simulated models when $n = 1000$ and $p = 10$.\relax }{figure.caption.11}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Average mean squared error using the test data for simulated models when $n = 1000$ and $p = 10$.\relax }}{23}{figure.caption.12}\protected@file@percent }
+\newlabel{fig:test-mse-1000-10}{{10}{23}{Average mean squared error using the test data for simulated models when $n = 1000$ and $p = 10$.\relax }{figure.caption.12}{}}
+\citation{zeng2017biglasso}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Empirical Data Analysis}{24}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Details of Empirical Data}{24}{subsection.4.1}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Average $\beta $-sensitivity for simulated models when $n = 1000$ and $p = 10$.\relax }}{25}{figure.caption.13}\protected@file@percent }
 \newlabel{fig:sensitivity-1000-10}{{11}{25}{Average $\beta $-sensitivity for simulated models when $n = 1000$ and $p = 10$.\relax }{figure.caption.13}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Average $\beta $-specificity for simulated models when $n = 1000$ and $p = 10$.\relax }}{25}{figure.caption.13}\protected@file@percent }
 \newlabel{fig:specificity-1000-10}{{12}{25}{Average $\beta $-specificity for simulated models when $n = 1000$ and $p = 10$.\relax }{figure.caption.13}{}}
-\citation{zeng2017biglasso}
 \@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Average mean square error using training data for simulated models when $n = 50$ and $p = 2000$.\relax }}{26}{figure.caption.14}\protected@file@percent }
 \newlabel{fig:train-mse-50-2000}{{13}{26}{Average mean square error using training data for simulated models when $n = 50$ and $p = 2000$.\relax }{figure.caption.14}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Average mean square error using testing data for simulated models when $n = 50$ and $p = 2000$.\relax }}{27}{figure.caption.15}\protected@file@percent }
@@ -132,15 +143,17 @@
 \newlabel{fig:sensitivity-50-2000}{{15}{27}{Average $\beta $-sensitivity for simulated models when $n = 50$ and $p = 2000$\relax }{figure.caption.15}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces Average $\beta $-specificity for simulated models when $n = 50$ and $p = 2000$.\relax }}{28}{figure.caption.16}\protected@file@percent }
 \newlabel{fig:specificity-50-2000}{{16}{28}{Average $\beta $-specificity for simulated models when $n = 50$ and $p = 2000$.\relax }{figure.caption.16}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Empirical Data Analysis}{28}{section.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Details of Empirical Data}{28}{subsection.4.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces Distribution of BRCA1 gene expression levels. This is the variable that we used as the response. The mean gene expression is -1.459.\relax }}{29}{figure.caption.17}\protected@file@percent }
-\newlabel{fig:BRCA1-distribution}{{17}{29}{Distribution of BRCA1 gene expression levels. This is the variable that we used as the response. The mean gene expression is -1.459.\relax }{figure.caption.17}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Empirical Data Results}{30}{subsection.4.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces Mean squared error of the models fit on the bcTCGA data set. Each point represents the mean squared error for one fold, while the bars represent the average for the five folds.\relax }}{30}{figure.caption.18}\protected@file@percent }
-\newlabel{fig:empirical_mse}{{18}{30}{Mean squared error of the models fit on the bcTCGA data set. Each point represents the mean squared error for one fold, while the bars represent the average for the five folds.\relax }{figure.caption.18}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces Distribution of BRCA1 gene expression levels. This is the variable that we used as the response. The mean gene expression is -1.459.\relax }}{28}{figure.caption.17}\protected@file@percent }
+\newlabel{fig:BRCA1-distribution}{{17}{28}{Distribution of BRCA1 gene expression levels. This is the variable that we used as the response. The mean gene expression is -1.459.\relax }{figure.caption.17}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Empirical Data Results}{29}{subsection.4.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces Mean squared error of the models fit on the bcTCGA data set. Each point represents the mean squared error for one fold, while the bars represent the average for the five folds.\relax }}{29}{figure.caption.18}\protected@file@percent }
+\newlabel{fig:empirical_mse}{{18}{29}{Mean squared error of the models fit on the bcTCGA data set. Each point represents the mean squared error for one fold, while the bars represent the average for the five folds.\relax }{figure.caption.18}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{30}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Discussion of Monte Carlo Results}{30}{subsection.5.1}\protected@file@percent }
 \@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Average and standard deviation of the mean squared error of the models fit on the bcTCGA data set.\relax }}{30}{table.caption.19}\protected@file@percent }
 \newlabel{tab:emp_results}{{2}{30}{Average and standard deviation of the mean squared error of the models fit on the bcTCGA data set.\relax }{table.caption.19}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Average Runtimes for Empirical Data Models\relax }}{31}{table.caption.21}\protected@file@percent }
+\newlabel{tab:emp_runtimes}{{3}{31}{Average Runtimes for Empirical Data Models\relax }{table.caption.21}{}}
 \newlabel{fig:venn1}{{19a}{31}{First fold\relax }{figure.caption.20}{}}
 \newlabel{sub@fig:venn1}{{a}{31}{First fold\relax }{figure.caption.20}{}}
 \newlabel{fig:venn2}{{19b}{31}{Second fold\relax }{figure.caption.20}{}}
@@ -153,14 +166,10 @@
 \newlabel{sub@fig:venn5}{{e}{31}{Fifth Fold\relax }{figure.caption.20}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {19}{\ignorespaces Venn diagrams of the predictors selected by lasso, elastic-net, MCP, and random forest models for each of the five folds. Each number represents the number of important predictors chosen by the models that overlap the number.\relax }}{31}{figure.caption.20}\protected@file@percent }
 \newlabel{fig:venn}{{19}{31}{Venn diagrams of the predictors selected by lasso, elastic-net, MCP, and random forest models for each of the five folds. Each number represents the number of important predictors chosen by the models that overlap the number.\relax }{figure.caption.20}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Average Runtimes for Empirical Data Models\relax }}{32}{table.caption.21}\protected@file@percent }
-\newlabel{tab:emp_runtimes}{{3}{32}{Average Runtimes for Empirical Data Models\relax }{table.caption.21}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{32}{section.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Discussion of Monte Carlo Results}{32}{subsection.5.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Discussion of Empirical Data Results}{33}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Discussion of Empirical Data Results}{32}{subsection.5.2}\protected@file@percent }
 \citation{capitaine2021random}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Contributions}{34}{subsection.5.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Future Work}{34}{subsection.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Contributions}{33}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Future Work}{33}{subsection.5.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{34}{section.6}\protected@file@percent }
 \bibstyle{plain-lf}
 \bibdata{references}
