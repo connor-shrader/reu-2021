@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.3.27)  23 JUL 2021 11:50
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.3.27)  23 JUL 2021 12:04
 entering extended mode
 **./final-report.tex
 (final-report.tex
@@ -1235,7 +1235,7 @@ Package epstopdf Info: Source file: <images/facet-test-mse/facet_test_mse_1000_
 (epstopdf)             Command: <miktex-epstopdf --outfile=images/facet-test-ms
 e/facet_test_mse_1000_10-eps-converted-to.pdf images/facet-test-mse/facet_test_
 mse_1000_10.eps>
-(epstopdf)             \includegraphics on input line 571.
+(epstopdf)             \includegraphics on input line 572.
 Package epstopdf Info: Output file is already uptodate.
 
 
@@ -1248,8 +1248,9 @@ File: images/facet-test-mse/facet_test_mse_1000_10-eps-converted-to.pdf Graphic
  file (type pdf)
 <use images/facet-test-mse/facet_test_mse_1000_10-eps-converted-to.pdf>
 Package pdftex.def Info: images/facet-test-mse/facet_test_mse_1000_10-eps-conve
-rted-to.pdf  used on input line 571.
+rted-to.pdf  used on input line 572.
 (pdftex.def)             Requested size: 397.485pt x 238.49173pt.
+[23 <./images/facet-train-mse/facet_train_mse_1000_10-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <images/facet-sensitivity/facet_sensitivity
 _1000_10.eps>
 (epstopdf)                    date: 2021-07-23 09:53:48
@@ -1261,24 +1262,21 @@ _1000_10-eps-converted-to.pdf>
 (epstopdf)             Command: <miktex-epstopdf --outfile=images/facet-sensiti
 vity/facet_sensitivity_1000_10-eps-converted-to.pdf images/facet-sensitivity/fa
 cet_sensitivity_1000_10.eps>
-(epstopdf)             \includegraphics on input line 585.
+(epstopdf)             \includegraphics on input line 588.
 Package epstopdf Info: Output file is already uptodate.
 
 
 pdfTeX warning: pdflatex.exe (file ./images/facet-sensitivity/facet_sensitivity
 _1000_10-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, but at 
 most version <1.5> allowed
-<images/facet-sensitivity/facet_sensitivity_1000_10-eps-converted-to.pdf, id=40
-3, 722.7pt x 433.62pt>
+<images/facet-sensitivity/facet_sensitivity_1000_10-eps-converted-to.pdf, id=42
+2, 722.7pt x 433.62pt>
 File: images/facet-sensitivity/facet_sensitivity_1000_10-eps-converted-to.pdf G
 raphic file (type pdf)
 <use images/facet-sensitivity/facet_sensitivity_1000_10-eps-converted-to.pdf>
 Package pdftex.def Info: images/facet-sensitivity/facet_sensitivity_1000_10-eps
--converted-to.pdf  used on input line 585.
+-converted-to.pdf  used on input line 588.
 (pdftex.def)             Requested size: 397.485pt x 238.49173pt.
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
 Package epstopdf Info: Source file: <images/facet-specificity/facet_specificity
 _1000_10.eps>
 (epstopdf)                    date: 2021-07-23 09:54:07
@@ -1297,17 +1295,17 @@ Package epstopdf Info: Output file is already uptodate.
 pdfTeX warning: pdflatex.exe (file ./images/facet-specificity/facet_specificity
 _1000_10-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, but at 
 most version <1.5> allowed
-<images/facet-specificity/facet_specificity_1000_10-eps-converted-to.pdf, id=40
-5, 722.7pt x 433.62pt>
+<images/facet-specificity/facet_specificity_1000_10-eps-converted-to.pdf, id=42
+3, 722.7pt x 433.62pt>
 File: images/facet-specificity/facet_specificity_1000_10-eps-converted-to.pdf G
 raphic file (type pdf)
 <use images/facet-specificity/facet_specificity_1000_10-eps-converted-to.pdf>
 Package pdftex.def Info: images/facet-specificity/facet_specificity_1000_10-eps
 -converted-to.pdf  used on input line 595.
 (pdftex.def)             Requested size: 397.485pt x 238.49173pt.
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
+[24 <./images/facet-test-mse/facet_test_mse_1000_10-eps-converted-to.pdf>]
+[25 <./images/facet-sensitivity/facet_sensitivity_1000_10-eps-converted-to.pdf>
+ <./images/facet-specificity/facet_specificity_1000_10-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <images/facet-train-mse/facet_train_mse_50_
 2000.eps>
 (epstopdf)                    date: 2021-07-23 09:08:16
@@ -1326,7 +1324,7 @@ Package epstopdf Info: Output file is already uptodate.
 pdfTeX warning: pdflatex.exe (file ./images/facet-train-mse/facet_train_mse_50_
 2000-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, but at most
  version <1.5> allowed
-<images/facet-train-mse/facet_train_mse_50_2000-eps-converted-to.pdf, id=410, 7
+<images/facet-train-mse/facet_train_mse_50_2000-eps-converted-to.pdf, id=470, 7
 22.7pt x 433.62pt>
 File: images/facet-train-mse/facet_train_mse_50_2000-eps-converted-to.pdf Graph
 ic file (type pdf)
@@ -1345,28 +1343,21 @@ Package epstopdf Info: Source file: <images/facet-test-mse/facet_test_mse_50_20
 (epstopdf)             Command: <miktex-epstopdf --outfile=images/facet-test-ms
 e/facet_test_mse_50_2000-eps-converted-to.pdf images/facet-test-mse/facet_test_
 mse_50_2000.eps>
-(epstopdf)             \includegraphics on input line 612.
+(epstopdf)             \includegraphics on input line 617.
 Package epstopdf Info: Output file is already uptodate.
 
 
 pdfTeX warning: pdflatex.exe (file ./images/facet-test-mse/facet_test_mse_50_20
 00-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, but at most v
 ersion <1.5> allowed
-<images/facet-test-mse/facet_test_mse_50_2000-eps-converted-to.pdf, id=411, 722
+<images/facet-test-mse/facet_test_mse_50_2000-eps-converted-to.pdf, id=472, 722
 .7pt x 433.62pt>
 File: images/facet-test-mse/facet_test_mse_50_2000-eps-converted-to.pdf Graphic
  file (type pdf)
 <use images/facet-test-mse/facet_test_mse_50_2000-eps-converted-to.pdf>
 Package pdftex.def Info: images/facet-test-mse/facet_test_mse_50_2000-eps-conve
-rted-to.pdf  used on input line 612.
+rted-to.pdf  used on input line 617.
 (pdftex.def)             Requested size: 397.485pt x 238.49173pt.
-[23] [24 <./images/facet-train-mse/facet_train_mse_1000_10-eps-converted-to.pdf
-> <./images/facet-test-mse/facet_test_mse_1000_10-eps-converted-to.pdf>]
-
-LaTeX Warning: Text page 25 contains only floats.
-
-[25 <./images/facet-sensitivity/facet_sensitivity_1000_10-eps-converted-to.pdf>
- <./images/facet-specificity/facet_specificity_1000_10-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <images/facet-sensitivity/facet_sensitivity
 _50_2000.eps>
 (epstopdf)                    date: 2021-07-23 09:53:53
@@ -1386,16 +1377,13 @@ pdfTeX warning: pdflatex.exe (file ./images/facet-sensitivity/facet_sensitivity
 _50_2000-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, but at 
 most version <1.5> allowed
 <images/facet-sensitivity/facet_sensitivity_50_2000-eps-converted-to.pdf, id=47
-4, 722.7pt x 433.62pt>
+3, 722.7pt x 433.62pt>
 File: images/facet-sensitivity/facet_sensitivity_50_2000-eps-converted-to.pdf G
 raphic file (type pdf)
 <use images/facet-sensitivity/facet_sensitivity_50_2000-eps-converted-to.pdf>
 Package pdftex.def Info: images/facet-sensitivity/facet_sensitivity_50_2000-eps
 -converted-to.pdf  used on input line 624.
 (pdftex.def)             Requested size: 397.485pt x 238.49173pt.
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
 Package epstopdf Info: Source file: <images/facet-specificity/facet_specificity
 _50_2000.eps>
 (epstopdf)                    date: 2021-07-23 09:54:11
@@ -1415,16 +1403,23 @@ pdfTeX warning: pdflatex.exe (file ./images/facet-specificity/facet_specificity
 _50_2000-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, but at 
 most version <1.5> allowed
 <images/facet-specificity/facet_specificity_50_2000-eps-converted-to.pdf, id=47
-6, 722.7pt x 433.62pt>
+5, 722.7pt x 433.62pt>
 File: images/facet-specificity/facet_specificity_50_2000-eps-converted-to.pdf G
 raphic file (type pdf)
 <use images/facet-specificity/facet_specificity_50_2000-eps-converted-to.pdf>
 Package pdftex.def Info: images/facet-specificity/facet_specificity_50_2000-eps
 -converted-to.pdf  used on input line 634.
 (pdftex.def)             Requested size: 397.485pt x 238.49173pt.
+[26 <./images/facet-train-mse/facet_train_mse_50_2000-eps-converted-to.pdf>]
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
+LaTeX Warning: Text page 27 contains only floats.
 
+
+Overfull \vbox (1.82347pt too high) has occurred while \output is active []
+
+
+[27 <./images/facet-test-mse/facet_test_mse_50_2000-eps-converted-to.pdf> <./im
+ages/facet-sensitivity/facet_sensitivity_50_2000-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <images/empirical_histogram.eps>
 (epstopdf)                    date: 2021-07-15 10:45:18
 (epstopdf)                    size: 56518 bytes
@@ -1441,7 +1436,7 @@ Package epstopdf Info: Output file is already uptodate.
 pdfTeX warning: pdflatex.exe (file ./images/empirical_histogram-eps-converted-t
 o.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allow
 ed
-<images/empirical_histogram-eps-converted-to.pdf, id=479, 722.7pt x 433.62pt>
+<images/empirical_histogram-eps-converted-to.pdf, id=519, 722.7pt x 433.62pt>
 File: images/empirical_histogram-eps-converted-to.pdf Graphic file (type pdf)
 <use images/empirical_histogram-eps-converted-to.pdf>
 Package pdftex.def Info: images/empirical_histogram-eps-converted-to.pdf  used 
@@ -1450,14 +1445,8 @@ on input line 648.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[26] [27 <./images/facet-train-mse/facet_train_mse_50_2000-eps-converted-to.pdf
-> <./images/facet-test-mse/facet_test_mse_50_2000-eps-converted-to.pdf>]
-
-LaTeX Warning: Text page 28 contains only floats.
-
-[28 <./images/facet-sensitivity/facet_sensitivity_50_2000-eps-converted-to.pdf>
- <./images/facet-specificity/facet_specificity_50_2000-eps-converted-to.pdf>]
-[29 <./images/empirical_histogram-eps-converted-to.pdf>]
+[28 <./images/facet-specificity/facet_specificity_50_2000-eps-converted-to.pdf>
+] [29 <./images/empirical_histogram-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <images/empirical_mse.eps>
 (epstopdf)                    date: 2021-07-16 14:34:14
 (epstopdf)                    size: 85695 bytes
@@ -1579,14 +1568,11 @@ File: images/venn/venn5-eps-converted-to.pdf Graphic file (type pdf)
 Package pdftex.def Info: images/venn/venn5-eps-converted-to.pdf  used on input 
 line 724.
 (pdftex.def)             Requested size: 178.86703pt x 107.31963pt.
-[30 <./images/empirical_mse-eps-converted-to.pdf>]
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[31 <./images/venn/venn1-eps-converted-to.pdf> <./images/venn/venn2-eps-convert
-ed-to.pdf> <./images/venn/venn3-eps-converted-to.pdf> <./images/venn/venn4-eps-
-converted-to.pdf> <./images/venn/venn5-eps-converted-to.pdf>] [32] [33]
-[34] (final-report.bbl [35]) [36] [37]
+[30 <./images/empirical_mse-eps-converted-to.pdf>] [31 <./images/venn/venn1-eps
+-converted-to.pdf> <./images/venn/venn2-eps-converted-to.pdf> <./images/venn/ve
+nn3-eps-converted-to.pdf> <./images/venn/venn4-eps-converted-to.pdf> <./images/
+venn/venn5-eps-converted-to.pdf>] [32] [33] [34] (final-report.bbl [35])
+[36] [37]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 811.
@@ -1643,7 +1629,7 @@ Package rerunfilecheck Info: File `final-report.out' has not changed.
 Here is how much of TeX's memory you used:
  41585 strings out of 479287
  864928 string characters out of 2852552
- 1326793 words of memory out of 3000000
+ 1325793 words of memory out of 3000000
  58332 multiletter control sequences out of 15000+600000
  413160 words of font info for 61 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1679,7 +1665,7 @@ or/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti9.pfb><
 C:/Users/Connor/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/c
 m/cmtt10.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pub
 lic/amsfonts/cm/cmtt9.pfb>
-Output written on final-report.pdf (44 pages, 2916293 bytes).
+Output written on final-report.pdf (44 pages, 2917178 bytes).
 PDF statistics:
  825 PDF objects out of 1000 (max. 8388607)
  157 named destinations out of 1000 (max. 500000)

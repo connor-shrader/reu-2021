@@ -559,15 +559,16 @@ To save space in the plots, each model is given a shortened label. Many of these
 
 We will first consider the case where $n = 1000$ and $p = 10$. Figures \ref{fig:train-mse-1000-10} and \ref{fig:test-mse-1000-10} show the average mean squared error for each model for the training set and test set, respectively. Tables \ref{tab:train-mse-1000-10} and \ref{tab:test-mse-1000-10} in Appendix \ref{app:full-results} contain all of the data shown in these figures as well as the standard deviation for each point.
 
-\begin{figure}[p!]
+\begin{figure}[b!]
 	\centering
 	\includegraphics[width = \textwidth]{images/facet-train-mse/facet_train_mse_1000_10.eps}
 	\captionsetup{width = 0.8\textwidth}
 	\caption{Average mean squared error using the training data for all simulated models when $n = 1000$ and $p = 10$.}
 	\label{fig:train-mse-1000-10}
-	
-	\bigskip
-	
+\end{figure}
+
+\begin{figure}[t!]
+	\centering
 	\includegraphics[width = \textwidth]{images/facet-test-mse/facet_test_mse_1000_10.eps}
 	\captionsetup{width = 0.8\textwidth}
 	\caption{Average mean squared error using the test data for simulated models when $n = 1000$ and $p = 10$.}
@@ -580,18 +581,17 @@ The non-linear models all have lower training mean squared errors compared to th
 
 Figure \ref{fig:sensitivity-1000-10} displays the average $\beta$-sensitivity for each model that performs variable selection when $n = 1000$ and $p = 10$. We see that almost all the models were able to correctly identify all of the non-zero coefficients when $n = 1000$ and $p = 10$. The only exceptions were lasso and elastic-net models when the correlation structure was blockwise and the strength of the correlation was 0.9.
 
-\begin{figure}[h!]
+Figure \ref{fig:specificity-1000-10} shows the average $\beta$-specificity for each model. We see that the subset selection models that used BIC made almost zero mistakes when identifying predictors as zero. In comparison, wrapper models fitted using AIC made more mistakes. We see that lasso and elastic-net made almost no mistakes when the correlation was low; in fact, when the correlation structure was independent, lasso made the fewest incorrect estimates out of all the models. As the correlation increases, lasso and elastic-net made more incorrect predictions. SCAD and MCP made more incorrect predictions than lasso and elastic-net in general. However, SCAD and MCP were also somewhat more resilient to an increase in correlation.
+
+\begin{figure}[p!]
 	\centering
 	\includegraphics[width = \textwidth]{images/facet-sensitivity/facet_sensitivity_1000_10.eps}
 	\captionsetup{width = 0.8\textwidth}
 	\caption{Average $\beta$-sensitivity for simulated models when $n = 1000$ and $p = 10$.}
 	\label{fig:sensitivity-1000-10}
-\end{figure}
-
-Figure \ref{fig:specificity-1000-10} shows the average $\beta$-specificity for each model. We see that the subset selection models that used BIC made almost zero mistakes when identifying predictors as zero. In comparison, wrapper models fitted using AIC made more mistakes. We see that lasso and elastic-net made almost no mistakes when the correlation was low; in fact, when the correlation structure was independent, lasso made the fewest incorrect estimates out of all the models. As the correlation increases, lasso and elastic-net made more incorrect predictions. SCAD and MCP made more incorrect predictions than lasso and elastic-net in general. However, SCAD and MCP were also somewhat more resilient to an increase in correlation.
-
-\begin{figure}[h!]
-	\centering
+	
+	\bigskip
+	
 	\includegraphics[width = \textwidth]{images/facet-specificity/facet_specificity_1000_10.eps}
 	\captionsetup{width = 0.8\textwidth}
 	\caption{Average $\beta$-specificity for simulated models when $n = 1000$ and $p = 10$.}
@@ -600,27 +600,27 @@ Figure \ref{fig:specificity-1000-10} shows the average $\beta$-specificity for e
 
 Now, we will consider the opposite extreme where $n = 50$ and $p = 2000$. Figures \ref{fig:train-mse-50-2000} and \ref{fig:test-mse-50-2000} display the average mean squared error for simulations where $n = 50$ and $p = 2000$. Because less models were fitted for this combination of $n$ and $p$, less models are shown in this figure. See table \ref{tab:train-mse-50-2000} and table \ref{tab:test-mse-50-2000} for a table of these results, including the standard deviations for each point.
 
-\begin{figure}[p!]
+\begin{figure}[b!]
 	\centering
 	\includegraphics[width = \textwidth]{images/facet-train-mse/facet_train_mse_50_2000.eps}
 	\captionsetup{width = 0.8\textwidth}
 	\caption{Average mean square error using training data for simulated models when $n = 50$ and $p = 2000$.}
 	\label{fig:train-mse-50-2000}
-	
-	\bigskip
-	
-	\includegraphics[width = \textwidth]{images/facet-test-mse/facet_test_mse_50_2000.eps}
-	\captionsetup{width = 0.8\textwidth}
-	\caption{Average mean square error using testing data for simulated models when $n = 50$ and $p = 2000$.}
-	\label{fig:test-mse-50-2000}
 \end{figure}
 
 We see that the mean squared error for lasso and elastic-net are generally larger than SCAD and MCP for both the training data and test data. Gradient boosting has almost zero training mean squared error under all conditions, but has a relatively large test error. Random forest and support vector machine models have a moderate training error but a large test error. Interestingly, we see that the non-linear models all perform better when there is a strong correlation between predictors. On the other hand, the linear models are somewhat less affected by the correlation.
 
 Figure \ref{fig:sensitivity-50-2000} measures the average $\beta$-sensitivity for each model. Recall that the subset selection methods were not considered here because $p < n$. We see that all of the models predict most of the non-zero coefficients when the correlation is low. When the correlation is high, all of the models struggle to identify the correct predictors. SCAD and MCP perform the best when the correlation is low but perform the worst when the correlation is high. Elastic-net performs particularly well compared to the other models when the correlation is high, especially when the correlation structure is autoregressive.
 
-\begin{figure}[h!]
+\begin{figure}[t!]
 	\centering
+	\includegraphics[width = \textwidth]{images/facet-test-mse/facet_test_mse_50_2000.eps}
+	\captionsetup{width = 0.8\textwidth}
+	\caption{Average mean square error using testing data for simulated models when $n = 50$ and $p = 2000$.}
+	\label{fig:test-mse-50-2000}
+	
+	\bigskip
+	
 	\includegraphics[width = \textwidth]{images/facet-sensitivity/facet_sensitivity_50_2000.eps}
 	\captionsetup{width = 0.8\textwidth}
 	\caption{Average $\beta$-sensitivity for simulated models when $n = 50$ and $p = 2000$}
@@ -629,7 +629,7 @@ Figure \ref{fig:sensitivity-50-2000} measures the average $\beta$-sensitivity fo
 
 Figure \ref{fig:specificity-50-2000} shows the average $\beta$-specificity $n = 50$ and $p = 2000$. MCP appears to make the fewest mistakes when choosing zero coefficients. The performance of the other models depends heavily on the type of correlation and the correlation strength. Lasso and elastic-net perform the worst when the correlation structure is symmetric compound, whereas SCAD performs poorly when the correlation structure is autoregressive or blockwise. We also see that the models generally made less mistakes as the correlation increases.
 
-\begin{figure}[h!]
+\begin{figure}[t!]
 	\centering
 	\includegraphics[width = \textwidth]{images/facet-specificity/facet_specificity_50_2000.eps}
 	\captionsetup{width = 0.8\textwidth}
@@ -674,7 +674,7 @@ Recall that we used nested cross-validation when fitting models on the bcTCGA da
 	\label{fig:empirical_mse}
 \end{figure}
 
-\begin{table}[h!]
+\begin{table}[b!]
 \centering
 \captionsetup{width = 5in}
 \caption{Average and standard deviation of the mean squared error of the models fit on the bcTCGA data set.}
@@ -696,7 +696,7 @@ Recall that we used nested cross-validation when fitting models on the bcTCGA da
 \end{table}
 
 The models can also be compared to each other by comparing the most important predictors selected by each model. Figure \ref{fig:venn} shows five Venn diagrams. Each diagram shows the number of variables selected by lasso, elastic-net, MCP, and random forest as the most important for each of the folds. Figure \ref{fig:venn1}, for example, shows that four of the predictors were chosen by all four models as important. For lasso, elastic-net, and MCP, a predictor is considered important if its coefficient is non-zero. For random forest, we used the 50 predictors with the highest importance score (as computed by \lstinline!randomForest!). We see that the predictors chosen by each model varies slightly among different folds, however, there still are common trends that are upheld between the different folds. The second fold in \ref{fig:venn2} had six predictors common to all four models, whereas the models tested in the third fold in \ref{fig:venn3} only had three.
-\begin{figure}[h!]
+\begin{figure}[b!]
 	\centering
 	\begin{subfigure}[b]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{images/venn/venn1.eps}
