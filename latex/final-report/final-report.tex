@@ -337,13 +337,13 @@ Both SCAD and MCP have oracle-like properties under certain conditions \cite{fan
 \subsection{Non-linear models}
 We next discuss several non-linear methods for regression: random forests, gradient boosting, and support vector machines.
 
-Both random forest and gradient boosting models use \textbf{decision trees} to make predictions. A decision tree is a binary tree where each non-leaf node represents a condition and each leaf node represents a prediction value. To make a prediction, start at the root node and check whether the condition at that node is true or false. If true, move down to the node's first child; if false, move to the second child. This process is repeated until a leaf node is reached. This node will give a value that the decision tree predicts.
+Both random forest and gradient boosting models use \textbf{decision trees} to make predictions. A decision tree is a binary tree where each non-leaf node represents a condition and each leaf node represents a prediction value. To make a prediction, start at the root node and check whether the condition at that node is true or false. If true, move down to the node's first child; if false, move to the second child. This process is repeated until a leaf node is reached. This node will give a value that the decision tree predicts. Figure \ref{fig:decision-tree} gives an example of a decision tree with regression.
 
-\begin{figure}[h!]
+\begin{figure}[b!]
 	\centering
-	\includegraphics[width = 0.4\linewidth]{images/decision-tree.eps}
-	\captionsetup{width = 4in}
-	\caption{Example of a decision tree. This tree was generated using the \lstinline!iris! data set and attempts to predict the species of a flower based on its petal length and petal width. The decision tree was fitted and plotted with the \lstinline!rpart! and \lstinline!rpart.plot! libraries in \lstinline!R!.}
+	\includegraphics[width = 0.4\textwidth]{images/decision-tree.eps}
+	\captionsetup{width = 0.8\textwidth}
+	\caption{Example of a decision tree. This tree was generated using a \lstinline!brTCGA! data set \cite{zeng2017biglasso}. It attempts to predict the gene expression of the BRCA1 gene based on the expression of other genes. The decision tree was fitted and plotted with the \lstinline!rpart! and \lstinline!rpart.plot! libraries in \lstinline!R!.}
 	\label{fig:decision-tree}
 \end{figure}
 
