@@ -372,7 +372,7 @@ Like the other non-linear methods, there are many hyperparameters that can be tu
 %\section{Methods}
 %To test and evaluate each of the models discussed above, we considered both Monte Carlo simulations and empirical data. Monte Carlo simulations allow us to test the models under different environments to get a comprehensive idea of how each model performs. Furthermore, by repeating each simulation many times, our results will be more consistent than if we just relied on one data set to test each model.
 
-\section{Methods}
+\subsection{Implementation}
 % lists and describes every tested model. Can include equations for models, but should not go into such great depth about each model: that can be reserved for literature review portion of the paper.
 
 This section gives the specific details how we fit each model for either the simulated data or the empirical data. For a conceptual overview of each of the models, refer back to the previous section.
@@ -416,10 +416,14 @@ Finally, for support vector machines using \lstinline!e1071!, we varied $\epsilo
 Some of the models used could only be used for certain values of $n$ and $p$. This is because either the runtime becomes unreasonable when $n$ or $p$ are large, or the model simply cannot be used when $p$ is too large. Ordinary least squares was used when $p\leq n$, since it cannot be used at all when $p>n$. For the same reason, the forward subset selection algorithms were also used when $p\leq n$. However, the backward subset selection algorithms were only used when $p\leq 40$. When $p>40$, the runtime was very long, so we chose to discard backward selection when $p$ was too large. Ridge regression was used when $p\leq n$ as well as it is not designed for variable selection or for $p \geq n$ scenarios.
 
 Lasso, SCAD, MCP, GBM, and Random Forest models were used for all data sets. Support vector machine models were made for all of the simulated data but was not used for the empirical data. The empirical data has too many predictors which leads to unmitigable stack overflow errors. Simply put, the support vector machine model has trouble converging upon a local minimum and due to the need to store very large kernel matrices, support vector machines are not feasible for large datasets.
+
 \section{Monte Carlo Simulations}
 % outline data generation process and factorial design process
 
-\textbf{Monte Carlo simulations} use randomly generated data to fit and test our regression and classification models. There are several benefits to using simulated data rather than experimental data. For one, the true relationship between the predictor variables and the response is known. Simulations can also be iterated many times, giving sturdier results about the effectiveness of each model. Finally, Monte Carlo simulations give us full control over how our data is distributed. This enables us to evaluate the models under various conditions.
+\textbf{Monte Carlo simulations} use randomly generated data to fit and test our regression  models. There are several benefits to using simulated data rather than experimental data. For one, the true relationship between the predictor variables and the response is known. Simulations can also be iterated many times, giving sturdier results about the effectiveness of each model. Finally, Monte Carlo simulations give us full control over how our data is distributed. This enables us to evaluate the models under various conditions.
+
+
+\subsection{Simulation Design}
 
 For the simulated data, we assumed that the relationship between the response variable $Y$ and the predictors $X_1, X_2, \dotsc, X_p$ was linear. That is, we assumed that
 \begin{equation}
@@ -491,33 +495,7 @@ Finally, a blockwise correlation matrix has the block-diagonal form
 \end{equation}
 where $0$ represents a block containing all zeroes, and each block $\mathbf{B}_i$ has a form identical to the symmetric compound matrix in Equation \ref{eqn:symmetric-compound-matrix}. This implies that predictors within the same block have correlation $\rho\in [0, 1]$, whereas predictors in different blocks have zero correlation. This type of correlation is more realistic than independent or symmetric compound correlation, since only certain groups of predictors are correlated with one another. One important consideration when using blockwise correlation is the size of each block. For our simulations, we used a block size of 5 when $p = 10$, a block size of 25 when $p = 100$, and a block size of 100 when $p = 2000$.
 
-\section{Empirical Data}
-% outline empirical data sources and what each database is about / what we try to predict about it
-
-For empirical data, we used the Breast Cancer database from The Cancer Genome Atlas (bcTCGA). A cleaned version of the data is provided by the \lstinline!biglasso! \lstinline!R! package \cite{zeng2017biglasso}. This data set contains the gene expression data of 17322 genes from 536 patients. One of these genes is the BRCA1 gene which is among the first genes discovered that can increase the risk of breast cancer. Because the BRCA1 gene interacts with other genes, it is useful to find genes that interact with BRCA1 to test in further studies. The distribution of the BRCA1 gene expression levels in the bcTCGA database can be seen in Figure \ref{fig:BRCA1-distribution}. The BRCA1 gene expression level will act as the output value in our regression analysis and the other 17322 genes will serve as predictor values.
-
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width = 0.8\textwidth]{images/empirical_histogram.eps}
-	\captionsetup{width = 0.8\textwidth}
-	\caption{Distribution of BRCA1 gene expression levels. This is the variable that we used as the response. The mean gene expression is -1.459.}
-	\label{fig:BRCA1-distribution}
-\end{figure}
-
-This data is a prime example of the $p>>n$ problem where there are many more predictors than data samples. Because of this, only penalized regression and machine learning techniques can be utilized. This is because there are more predictors than samples which makes least squares linear regression impossible and due to the high number of predictors, subset and stepwise regression becomes too computationally expensive to be feasible. Additionally, support vector machines struggle at such a high number of predictors and resulted in stack overflow errors which made fitting support vector machines on this data infeasible.
-
-For analyzing the error of models fitted using this empirical data, we performed nested cross validation. Many of the models fitted used cross validation for tuning purposes to find the best input parameters. Examples of these parameters include $\lambda$ for penalized regression techniques, the number of trees and number of predictors for random forest, as well as max depth and learning rate for XGBoost. However, we also perform 5-fold cross validation before we even allow the models to tune their parameters. By doing nested cross validation, testing data is not used for training the model \textbf{or} tuning model parameters. This results in a more accurate error calculation. If nested cross validation was not used, models could tune their parameters in a way that overfits the model to the testing data which would lead to artificially decreased error and invalid results.
-
-Proposed alternative to the above paragraph: To evaluate the models, we used \textbf{nested cross validation}. This means that we first split the data into five folds. For each of these folds, we used the selected fold as a test set while the other four folds were used as a training set. We then fitted the models using cross-validation on this training set, where one interior fold was used as a validation set while the other folds were used to train a model. The role of the validation set in the interior cross validation is different from the test set used in the exterior cross validation. In the interior cross validation, the validation set is used to tune hyperparameters; the model that performs best against the validation set is then chosen. On the other hand, the test set in the exterior cross validation is not used to tune hyperparameters; its only purpose is to evaluate the performance of the models chosen in the inner cross validation. Because the test set is not used in the model fitting or selection process, it gives an unbiased evaluation of each model's performance.
-
-We chose to use nested cross validation because it produces five models that were fitted using different subsets of the data for training and testing. If we had only fit one model, the subset of the data we choose for training and testing can have a huge impact on our findings. By using five models that are fit with different subsets of the data, we get a more accurate view of how each model performs in general. Cross validation also allows us to get an idea of how much variance each of these models has by comparing the results between different folds.
-
-The hyperparameters tuned in each of the models were the same as those tuned in the Monte Carlo simulations. For ridge, lasso, elastic-net, SCAD, and MCP, we tuned the penalty strength $\lambda$; for elastic-net, we used the hyperparameter $\alpha = 0.5$, meaning that the penalty is in between that of lasso and ridge. 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
-\section{Monte Carlo Simulation Results}
+\subsection{Simulation Results}\label{sec:simulation-results}
 % stick the results from classification models here
 
 We used four metrics to evaluate the performance of each model: \textbf{train mean squared error}, \textbf{test mean squared error}, \textbf{$\beta$-sensitivity} and \textbf{$\beta$-specificity}. The mean squared error is computed by
@@ -623,7 +601,32 @@ Figure \ref{fig:specificity-50-2000} shows the average $\beta$-specificity $n = 
 	\label{fig:specificity-50-2000}
 \end{figure}
 
-\section{Empirical Data Results}
+\section{Empirical Data Analysis}
+\subsection{Details of Empirical Data}
+% outline empirical data sources and what each database is about / what we try to predict about it
+
+For empirical data, we used the Breast Cancer database from The Cancer Genome Atlas (bcTCGA). A cleaned version of the data is provided by the \lstinline!biglasso! \lstinline!R! package \cite{zeng2017biglasso}. This data set contains the gene expression data of 17322 genes from 536 patients. One of these genes is the BRCA1 gene which is among the first genes discovered that can increase the risk of breast cancer. Because the BRCA1 gene interacts with other genes, it is useful to find genes that interact with BRCA1 to test in further studies. The distribution of the BRCA1 gene expression levels in the bcTCGA database can be seen in Figure \ref{fig:BRCA1-distribution}. The BRCA1 gene expression level will act as the output value in our regression analysis and the other 17322 genes will serve as predictor values.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width = 0.8\textwidth]{images/empirical_histogram.eps}
+	\captionsetup{width = 0.8\textwidth}
+	\caption{Distribution of BRCA1 gene expression levels. This is the variable that we used as the response. The mean gene expression is -1.459.}
+	\label{fig:BRCA1-distribution}
+\end{figure}
+
+This data is a prime example of the $p>>n$ problem where there are many more predictors than data samples. Because of this, only penalized regression and machine learning techniques can be utilized. This is because there are more predictors than samples which makes least squares linear regression impossible and due to the high number of predictors, subset and stepwise regression becomes too computationally expensive to be feasible. Additionally, support vector machines struggle at such a high number of predictors and resulted in stack overflow errors which made fitting support vector machines on this data infeasible.
+
+For analyzing the error of models fitted using this empirical data, we performed nested cross validation. Many of the models fitted used cross validation for tuning purposes to find the best input parameters. Examples of these parameters include $\lambda$ for penalized regression techniques, the number of trees and number of predictors for random forest, as well as max depth and learning rate for XGBoost. However, we also perform 5-fold cross validation before we even allow the models to tune their parameters. By doing nested cross validation, testing data is not used for training the model \textbf{or} tuning model parameters. This results in a more accurate error calculation. If nested cross validation was not used, models could tune their parameters in a way that overfits the model to the testing data which would lead to artificially decreased error and invalid results.
+
+Proposed alternative to the above paragraph: To evaluate the models, we used \textbf{nested cross validation}. This means that we first split the data into five folds. For each of these folds, we used the selected fold as a test set while the other four folds were used as a training set. We then fitted the models using cross-validation on this training set, where one interior fold was used as a validation set while the other folds were used to train a model. The role of the validation set in the interior cross validation is different from the test set used in the exterior cross validation. In the interior cross validation, the validation set is used to tune hyperparameters; the model that performs best against the validation set is then chosen. On the other hand, the test set in the exterior cross validation is not used to tune hyperparameters; its only purpose is to evaluate the performance of the models chosen in the inner cross validation. Because the test set is not used in the model fitting or selection process, it gives an unbiased evaluation of each model's performance.
+
+We chose to use nested cross validation because it produces five models that were fitted using different subsets of the data for training and testing. If we had only fit one model, the subset of the data we choose for training and testing can have a huge impact on our findings. By using five models that are fit with different subsets of the data, we get a more accurate view of how each model performs in general. Cross validation also allows us to get an idea of how much variance each of these models has by comparing the results between different folds.
+
+The hyperparameters tuned in each of the models were the same as those tuned in the Monte Carlo simulations. For ridge, lasso, elastic-net, SCAD, and MCP, we tuned the penalty strength $\lambda$; for elastic-net, we used the hyperparameter $\alpha = 0.5$, meaning that the penalty is in between that of lasso and ridge. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Empirical Data Results}
 % Stick all the results from the linear regression models here
 Recall that we used nested cross-validation when fitting models on the bcTCGA data set. This means that we fitted five models using different subsets of the data for training and testing. Figure \ref{fig:empirical_mse} below shows a plot with the training and test mean squared error for every fold of every model. The bars show the average mean squared error for the five folds. In addition, Table \ref{tab:emp_results} show the aggregated results for the train and test mean squared error.
 
@@ -711,7 +714,8 @@ Table \ref{tab:emp_runtimes} shows the average runtime to fit each of the models
 \end{table}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Discussion of Monte Carlo Results}
+\section{Discussion}
+\subsection{Discussion of Monte Carlo Results}
 % discussion of findings, future work, and contributions
 Looking at the simulations, we see that the wrapper methods minimize the test mean squared error, along with SCAD and MCP. In addition to having low test error, these models are also fairly resilient to large correlation values.
 
@@ -731,7 +735,7 @@ Although wrapper methods and penalized regression models were the clear winners 
 
 Another disadvantage for the non-linear models is that they can be controlled by many different hyperparameters, but we only considered a couple for each model. This was out of necessity; it would have been infeasible to fit models using more hyperparameters given the number of simulations that had to be run. If more hyperparameters could be included, then the performance of the non-linear models may have been more comparable to the linear models. At the same time, the more comprehensive tuning of several hyperparameters could act as a double edged sword in that it could increase the overfitting of these models. More hyperparameter tuning could lead a model to pick hyperparameters that fits the training data very precisely, but at the expense of increased testing error and increased computational cost.
 
-\section{Discussion of Empirical Data Results}
+\subsection{Discussion of Empirical Data Results}
 In our empirical data study, SCAD and MCP also maintained the lowest testing mean squared error among the tested models. This can be seen in Figure \ref{fig:empirical_mse} and Table \ref{tab:emp_results} which showcase MCP as having the lowest average MSE and standard deviation. This may be due in part to the fact that MCP consistently selected the fewest number of predictors compared to Lasso and Elastic Net as visible in Figure \ref{fig:venn}. Because this empirical data most likely contains multicollinearity, the fact that MCP selects fewer predictors may have helped to reduce overfitting. This is consistent with results from the Monte Carlo simulations which indicate that MCP performed better than its counterparts in multicollinear environments.
 
 An interesting result was how few predictors were selected between all four models. It would be expected that the most important predictors would be chosen by all four models, but only three to six predictors were selected in common by all the models. Between MCP, Lasso, and Elastic Net, there were slightly more selected predictors in common, but these still were much less than expected. This is most likely because MCP is very different from the other regression techniques in that it uses non-convex optimization and thus selected many predictors that were different from all the other models. Since MCP had a much lower false negative rate compared to the other models as determined in the Monte Carlo simulations, it can be assumed that many of these predictors solely selected by MCP were significant predictors that were missed by the other models. This could have been another reason why MCP performed the best out of all the fitted models on the empirical data. 
@@ -740,20 +744,27 @@ MCP also maintained the lowest testing MSE standard deviation for the empirical 
 
 The penalized regression models performed exceptionally faster than random forest and XGBoost as documented in Table \ref{tab:emp_runtimes}. On average, Lasso and Elastic Net ran approximately 56x faster than XGBoost and 510x faster than random forest. MCP and SCAD ran approximately 30x faster than XGBoost and 290x faster than random forest. This provides a significant advantage to the penalized regression techniques, especially given that MCP and other penalized techniques performed better than random forest and XGBoost. 
 
-\section{Contributions}
+\subsection{Contributions}
 % what are our contributions, why is what we did important?
 % we have a comprehensive analysis of 21 models in 270 different environments. Allows for comprehensive comparison and gives guidance to data scientists as to which model they should use for their research
 % empirical data methods show the important uses of penalized regression in environmental, biological, and etc. data
 
 There is a severe lack of comprehensive testing comparing traditional machine learning methods such as random forest, gradient boosting, and support vector machines with penalized selection. Our paper bridges the divide between the machine learning and statistical fields in which these two types of models exist in. Testing using Monte Carlo simulations and empirical data has not been tested by other researchers with as many different environments and models. 
-\section{Future Work}
+\subsection{Future Work}
 % maybe talk about the penalty method we came up with? Talk about how it might be able to solve issues of Logsum method?
 We are working on developing a hybrid technique between random forest and penalized regression. This method would harness the power of ensemble learning, while still being able to perform variable selection. This would hopefully perform better than either random forest of penalized regression methods individually. There are some models such as SREEMforest \cite{capitaine2021random} which conduct variable selection, however, these models use wrapper methods and variable importance which can be computationally expensive and do not inherently eliminate insignificant variables the same way penalized regression does. Given that random forest models are already very slow, performing additional stepwise selection may result in an exponentially slower runtime. Thus, it is important that inherent variable selection methods such as penalized regression methods are developed.
 
+\section{Conclusion}
+Write a conclusion here.
+
+\newpage
+\bibliographystyle{plain-lf}
+\bibliography{references}
+
 \newpage
 \appendix
-\section{Full Results}
-\label{app:full-results}
+\section{Full Result Tables}\label{app:full-results}
+The following pages contain the full table of Monte Carlo simulation results. Each table corresponds to one of the figures in Section \ref{sec:simulation-results}.
 
 \setlength{\tabcolsep}{3pt}
 
@@ -800,12 +811,4 @@ We are working on developing a hybrid technique between random forest and penali
 \end{landscape}
 }
 \setlength{\tabcolsep}{6pt}
-
-% Add:
-% R library citations
-% Random forest, SVM, GBM
-
-\newpage
-\bibliographystyle{plain-lf}
-\bibliography{references}
 \end{document}

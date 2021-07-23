@@ -5,13 +5,17 @@
 \contentsline {subsection}{\numberline {2.3}Subset Selection Methods}{7}{subsection.2.3}%
 \contentsline {subsection}{\numberline {2.4}Penalized Regression}{8}{subsection.2.4}%
 \contentsline {subsection}{\numberline {2.5}Non-linear models}{14}{subsection.2.5}%
-\contentsline {section}{\numberline {3}Methods}{16}{section.3}%
-\contentsline {section}{\numberline {4}Monte Carlo Simulations}{18}{section.4}%
-\contentsline {section}{\numberline {5}Empirical Data}{20}{section.5}%
-\contentsline {section}{\numberline {6}Monte Carlo Simulation Results}{22}{section.6}%
-\contentsline {section}{\numberline {7}Empirical Data Results}{26}{section.7}%
-\contentsline {section}{\numberline {8}Discussion of Monte Carlo Results}{30}{section.8}%
-\contentsline {section}{\numberline {9}Discussion of Empirical Data Results}{32}{section.9}%
-\contentsline {section}{\numberline {10}Contributions}{32}{section.10}%
-\contentsline {section}{\numberline {11}Future Work}{33}{section.11}%
-\contentsline {section}{\numberline {A}Full Results}{34}{appendix.A}%
+\contentsline {subsection}{\numberline {2.6}Implementation}{16}{subsection.2.6}%
+\contentsline {section}{\numberline {3}Monte Carlo Simulations}{18}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Simulation Design}{18}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Simulation Results}{20}{subsection.3.2}%
+\contentsline {section}{\numberline {4}Empirical Data Analysis}{27}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Details of Empirical Data}{27}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Empirical Data Results}{28}{subsection.4.2}%
+\contentsline {section}{\numberline {5}Discussion}{30}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Discussion of Monte Carlo Results}{30}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Discussion of Empirical Data Results}{32}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Contributions}{32}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Future Work}{33}{subsection.5.4}%
+\contentsline {section}{\numberline {6}Conclusion}{33}{section.6}%
+\contentsline {section}{\numberline {A}Full Result Tables}{36}{appendix.A}%
