@@ -21,9 +21,9 @@ fit <- rpart(y ~ ., data = cancer_df_mini, method = "anova", maxdepth = 4)
 
 setEPS()
 postscript("images/decision-tree.eps")
-rpart.plot(fit, type = 0, extra = 1, legend.y = -1, cex = 1.4, digits = 3)
+rpart.plot(fit, type = 0, extra = 1, legend.y = -1, cex = 1.4, digits = 3, gap = 2)
 dev.off()
 
 png(file = "images/decision-tree.png")
-rpart.plot(fit, type = 0, extra = 1, legend.y = -1, cex = 1.4, digits = 3)
+rpart.plot(fit, type = 0, extra = 1, legend.y = -1, cex = 1, digits = 3, ygap = 0.1)
 dev.off()

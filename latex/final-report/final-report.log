@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.3.27)  23 JUL 2021 15:13
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.3.27)  24 JUL 2021 14:41
 entering extended mode
 **./final-report.tex
 (final-report.tex
@@ -1580,64 +1580,64 @@ LaTeX Warning: Text page 31 contains only floats.
 [31 <./images/venn/venn1-eps-converted-to.pdf> <./images/venn/venn2-eps-convert
 ed-to.pdf> <./images/venn/venn3-eps-converted-to.pdf> <./images/venn/venn4-eps-
 converted-to.pdf> <./images/venn/venn5-eps-converted-to.pdf>] [32] [33]
-[34] (final-report.bbl [35]) [36] [37]
+[34] [35] (final-report.bbl [36]) [37] [38]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 817.
+(caption)                particular \caption on input line 829.
 See the caption package documentation for explanation.
 
-(tables/train_mse_1000_10.tex) [38
+(tables/train_mse_1000_10.tex) [39
 
 ]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 822.
+(caption)                particular \caption on input line 834.
 See the caption package documentation for explanation.
 
-(tables/test_mse_1000_10.tex) [39]
+(tables/test_mse_1000_10.tex) [40]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 826.
+(caption)                particular \caption on input line 838.
 See the caption package documentation for explanation.
 
-(tables/sensitivity_1000_10.tex) [40]
+(tables/sensitivity_1000_10.tex) [41]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 831.
+(caption)                particular \caption on input line 843.
 See the caption package documentation for explanation.
 
-(tables/specificity_1000_10.tex) [41]
+(tables/specificity_1000_10.tex) [42]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 836.
+(caption)                particular \caption on input line 848.
 See the caption package documentation for explanation.
 
-(tables/train_mse_50_2000.tex) [42]
+(tables/train_mse_50_2000.tex) [43]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 841.
+(caption)                particular \caption on input line 853.
 See the caption package documentation for explanation.
 
-(tables/test_mse_50_2000.tex) [43]
+(tables/test_mse_50_2000.tex) [44]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 846.
+(caption)                particular \caption on input line 858.
 See the caption package documentation for explanation.
 
 (tables/sensitivity_50_2000.tex)
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 851.
+(caption)                particular \caption on input line 863.
 See the caption package documentation for explanation.
 
-(tables/specificity_50_2000.tex) [44] (final-report.aux)
+(tables/specificity_50_2000.tex) [45] (final-report.aux)
 Package rerunfilecheck Info: File `final-report.out' has not changed.
 (rerunfilecheck)             Checksum: 533239E854952009E6CB4502E054DBCF;3069.
  ) 
 Here is how much of TeX's memory you used:
- 41582 strings out of 479287
- 864883 string characters out of 2852552
- 1326793 words of memory out of 3000000
+ 41583 strings out of 479287
+ 864890 string characters out of 2852552
+ 1325793 words of memory out of 3000000
  58330 multiletter control sequences out of 15000+600000
  413160 words of font info for 61 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1673,9 +1673,9 @@ or/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti9.pfb><
 C:/Users/Connor/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/c
 m/cmtt10.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pub
 lic/amsfonts/cm/cmtt9.pfb>
-Output written on final-report.pdf (44 pages, 2922500 bytes).
+Output written on final-report.pdf (45 pages, 2927975 bytes).
 PDF statistics:
- 832 PDF objects out of 1000 (max. 8388607)
- 156 named destinations out of 1000 (max. 500000)
+ 847 PDF objects out of 1000 (max. 8388607)
+ 157 named destinations out of 1000 (max. 500000)
  280 words of extra memory for PDF output out of 10000 (max. 10000000)
 
