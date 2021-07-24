@@ -1,11 +1,8 @@
-\begin{tabular}{llllllllllllllllllllll}
+\begin{tabular}{ll|ll|llllll|llllll|llllll}
 	\hline
-	& & \multicolumn{20}{l}{type} \\ 
-	& & \multicolumn{2}{l}{independent} & \multicolumn{6}{l}{symmetric} & \multicolumn{6}{l}{autoregressive} & \multicolumn{6}{l}{blockwise} \\ 
-	& & \multicolumn{2}{l}{corr} & \multicolumn{6}{l}{corr} & \multicolumn{6}{l}{corr} & \multicolumn{6}{l}{corr} \\ 
-	& & \multicolumn{2}{l}{0} & \multicolumn{2}{l}{0.2} & \multicolumn{2}{l}{0.5} & \multicolumn{2}{l}{0.9} & \multicolumn{2}{l}{0.2} & \multicolumn{2}{l}{0.5} & \multicolumn{2}{l}{0.9} & \multicolumn{2}{l}{0.2} & \multicolumn{2}{l}{0.5} & \multicolumn{2}{l}{0.9} \\ 
-	& & \multicolumn{2}{l}{test.mse} & \multicolumn{2}{l}{test.mse} & \multicolumn{2}{l}{test.mse} & \multicolumn{2}{l}{test.mse} & \multicolumn{2}{l}{test.mse} & \multicolumn{2}{l}{test.mse} & \multicolumn{2}{l}{test.mse} & \multicolumn{2}{l}{test.mse} & \multicolumn{2}{l}{test.mse} & \multicolumn{2}{l}{test.mse} \\ 
-	st.dev & model.name & Mean & SD & Mean & SD & Mean & SD & Mean & SD & Mean & SD & Mean & SD & Mean & SD & Mean & SD & Mean & SD & Mean & \multicolumn{1}{l}{SD} \\ 
+	& Type& \multicolumn{2}{l|}{Independent} & \multicolumn{6}{l|}{Symmetric} & \multicolumn{6}{l|}{Autoregressive} & \multicolumn{6}{l}{Blockwise} \\ 
+	& Corr.& \multicolumn{2}{l|}{0} & \multicolumn{2}{l}{0.2} & \multicolumn{2}{l}{0.5} & \multicolumn{2}{l|}{0.9} & \multicolumn{2}{l}{0.2} & \multicolumn{2}{l}{0.5} & \multicolumn{2}{l|}{0.9} & \multicolumn{2}{l}{0.2} & \multicolumn{2}{l}{0.5} & \multicolumn{2}{l}{0.9} \\  
+	$\sigma$ & Model & Mean & SD & Mean & SD & Mean & SD & Mean & SD & Mean & SD & Mean & SD & Mean & SD & Mean & SD & Mean & SD & Mean & SD \\ 
 	\hline
 	1 & OLS  & $\phantom{0}1.01$ & $0.04$ & $\phantom{0}1.01$ & $0.04$ & $\phantom{0}1.01$ & $0.04$ & $\phantom{0}1.01$ & $0.04$ & $\phantom{0}1.01$ & $0.04$ & $\phantom{0}1.01$ & $0.04$ & $\phantom{0}1.01$ & $0.04$ & $\phantom{0}1.01$ & $0.04$ & $\phantom{0}1.01$ & $0.04$ & $\phantom{0}1.01$ & $0.04$ \\
 	& AIC B  & $\phantom{0}1.01$ & $0.04$ & $\phantom{0}1.01$ & $0.04$ & $\phantom{0}1.01$ & $0.04$ & $\phantom{0}1.01$ & $0.04$ & $\phantom{0}1.01$ & $0.04$ & $\phantom{0}1.01$ & $0.04$ & $\phantom{0}1.01$ & $0.04$ & $\phantom{0}1.01$ & $0.04$ & $\phantom{0}1.01$ & $0.04$ & $\phantom{0}1.01$ & $0.04$ \\
@@ -23,7 +20,7 @@
 	& MCP  & $\phantom{0}1.01$ & $0.05$ & $\phantom{0}1.01$ & $0.04$ & $\phantom{0}1.01$ & $0.04$ & $\phantom{0}1.01$ & $0.05$ & $\phantom{0}1.01$ & $0.04$ & $\phantom{0}1.01$ & $0.04$ & $\phantom{0}1.01$ & $0.04$ & $\phantom{0}1.01$ & $0.04$ & $\phantom{0}1.01$ & $0.04$ & $\phantom{0}1.01$ & $0.05$ \\
 	& XGBoost  & $\phantom{0}1.22$ & $0.07$ & $\phantom{0}1.22$ & $0.06$ & $\phantom{0}1.22$ & $0.06$ & $\phantom{0}1.24$ & $0.10$ & $\phantom{0}1.22$ & $0.06$ & $\phantom{0}1.22$ & $0.06$ & $\phantom{0}1.24$ & $0.08$ & $\phantom{0}1.22$ & $0.06$ & $\phantom{0}1.21$ & $0.06$ & $\phantom{0}1.22$ & $0.07$ \\
 	& RF  & $\phantom{0}2.04$ & $0.15$ & $\phantom{0}2.05$ & $0.15$ & $\phantom{0}1.94$ & $0.12$ & $\phantom{0}1.37$ & $0.06$ & $\phantom{0}2.05$ & $0.16$ & $\phantom{0}2.19$ & $0.14$ & $\phantom{0}1.62$ & $0.08$ & $\phantom{0}2.03$ & $0.13$ & $\phantom{0}2.18$ & $0.12$ & $\phantom{0}1.69$ & $0.08$ \\
-	& SVM  & $\phantom{0}1.85$ & $0.14$ & $\phantom{0}1.78$ & $0.12$ & $\phantom{0}1.56$ & $0.11$ & $\phantom{0}1.16$ & $0.08$ & $\phantom{0}1.80$ & $0.12$ & $\phantom{0}1.66$ & $0.12$ & $\phantom{0}1.25$ & $0.09$ & $\phantom{0}1.77$ & $0.12$ & $\phantom{0}1.62$ & $0.10$ & $\phantom{0}1.23$ & $0.08$ \\
+	& SVM  & $\phantom{0}1.85$ & $0.14$ & $\phantom{0}1.78$ & $0.12$ & $\phantom{0}1.56$ & $0.11$ & $\phantom{0}1.16$ & $0.08$ & $\phantom{0}1.80$ & $0.12$ & $\phantom{0}1.66$ & $0.12$ & $\phantom{0}1.25$ & $0.09$ & $\phantom{0}1.77$ & $0.12$ & $\phantom{0}1.62$ & $0.10$ & $\phantom{0}1.23$ & $0.08$ \\\hline
 	3 & OLS  & $\phantom{0}9.13$ & $0.40$ & $\phantom{0}9.13$ & $0.40$ & $\phantom{0}9.13$ & $0.40$ & $\phantom{0}9.13$ & $0.40$ & $\phantom{0}9.13$ & $0.40$ & $\phantom{0}9.13$ & $0.40$ & $\phantom{0}9.13$ & $0.40$ & $\phantom{0}9.13$ & $0.40$ & $\phantom{0}9.13$ & $0.40$ & $\phantom{0}9.13$ & $0.40$ \\
 	& AIC B  & $\phantom{0}9.10$ & $0.40$ & $\phantom{0}9.10$ & $0.40$ & $\phantom{0}9.10$ & $0.40$ & $\phantom{0}9.10$ & $0.40$ & $\phantom{0}9.10$ & $0.40$ & $\phantom{0}9.10$ & $0.40$ & $\phantom{0}9.10$ & $0.40$ & $\phantom{0}9.10$ & $0.40$ & $\phantom{0}9.10$ & $0.40$ & $\phantom{0}9.10$ & $0.40$ \\
 	& BIC B  & $\phantom{0}9.07$ & $0.40$ & $\phantom{0}9.07$ & $0.40$ & $\phantom{0}9.07$ & $0.40$ & $\phantom{0}9.07$ & $0.40$ & $\phantom{0}9.08$ & $0.40$ & $\phantom{0}9.07$ & $0.40$ & $\phantom{0}9.07$ & $0.40$ & $\phantom{0}9.07$ & $0.40$ & $\phantom{0}9.07$ & $0.40$ & $\phantom{0}9.07$ & $0.40$ \\
@@ -40,7 +37,7 @@
 	& MCP  & $\phantom{0}9.08$ & $0.41$ & $\phantom{0}9.08$ & $0.40$ & $\phantom{0}9.08$ & $0.40$ & $\phantom{0}9.08$ & $0.41$ & $\phantom{0}9.08$ & $0.39$ & $\phantom{0}9.08$ & $0.39$ & $\phantom{0}9.08$ & $0.40$ & $\phantom{0}9.08$ & $0.40$ & $\phantom{0}9.08$ & $0.40$ & $\phantom{0}9.09$ & $0.40$ \\
 	& XGBoost  & $11.01$ & $0.60$ & $10.98$ & $0.53$ & $10.89$ & $0.54$ & $11.16$ & $0.78$ & $11.00$ & $0.54$ & $10.97$ & $0.53$ & $11.16$ & $0.77$ & $10.96$ & $0.59$ & $10.98$ & $0.57$ & $11.08$ & $0.83$ \\
 	& RF  & $18.32$ & $1.33$ & $18.35$ & $1.12$ & $17.22$ & $0.99$ & $12.38$ & $0.58$ & $18.25$ & $1.43$ & $19.68$ & $1.31$ & $14.60$ & $0.69$ & $18.40$ & $1.40$ & $19.47$ & $1.18$ & $15.10$ & $0.68$ \\
-	& SVM  & $16.69$ & $1.28$ & $15.84$ & $0.99$ & $13.96$ & $0.93$ & $10.46$ & $0.77$ & $16.21$ & $1.12$ & $14.96$ & $1.09$ & $11.24$ & $0.77$ & $16.03$ & $1.20$ & $14.40$ & $0.91$ & $11.09$ & $0.67$ \\
+	& SVM  & $16.69$ & $1.28$ & $15.84$ & $0.99$ & $13.96$ & $0.93$ & $10.46$ & $0.77$ & $16.21$ & $1.12$ & $14.96$ & $1.09$ & $11.24$ & $0.77$ & $16.03$ & $1.20$ & $14.40$ & $0.91$ & $11.09$ & $0.67$ \\\hline
 	6 & OLS  & $36.50$ & $1.59$ & $36.50$ & $1.59$ & $36.50$ & $1.59$ & $36.50$ & $1.59$ & $36.50$ & $1.59$ & $36.50$ & $1.59$ & $36.50$ & $1.59$ & $36.50$ & $1.59$ & $36.50$ & $1.59$ & $36.50$ & $1.59$ \\
 	& AIC B  & $36.41$ & $1.60$ & $36.41$ & $1.61$ & $36.41$ & $1.60$ & $36.39$ & $1.61$ & $36.41$ & $1.60$ & $36.42$ & $1.59$ & $36.39$ & $1.62$ & $36.39$ & $1.59$ & $36.41$ & $1.61$ & $36.40$ & $1.60$ \\
 	& BIC B  & $36.28$ & $1.60$ & $36.26$ & $1.62$ & $36.28$ & $1.59$ & $36.26$ & $1.59$ & $36.30$ & $1.58$ & $36.29$ & $1.58$ & $36.29$ & $1.61$ & $36.29$ & $1.60$ & $36.28$ & $1.60$ & $36.28$ & $1.61$ \\
