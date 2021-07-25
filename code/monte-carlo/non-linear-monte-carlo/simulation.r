@@ -171,8 +171,8 @@ generate_data <- function(n, p, beta = NULL, type = "independent", corr = 0,
   ))
   
   # Generate corresponding y values for our data. Uses indicator, exponential, polynomial, and linear function
-  # y = 1_(x1 > 0.5) + e^x2 + 0.5*x5 + x6^3 + sigma
-  y <- ifelse(x[,2] > 0.5, 1, 0) + exp(x[,3]) + beta[6]*x[,6] + x[,7]^3 + rnorm(n, sd = st_dev)
+  # y = 1_(x1 > 0.5) + e^x2 + 0.5*x5 + x6^3 + 2 * 1_(x7>0.5 and x8>0.5) + sigma
+  y <- ifelse(x[,2] > 0.5, 1, 0) + exp(x[,3]) + beta[6]*x[,6] + x[,7]^3 + 2 * ifelse(x[,8] > 0.5 & x[,9] > 0.5, 1, 0)+ rnorm(n, sd = st_dev)
  
   
   # Create return data frame. We removed the column of 1's that we used as
