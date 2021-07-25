@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.3.27)  23 JUL 2021 13:12
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.3.27)  25 JUL 2021 09:12
 entering extended mode
 **./temp.tex
 (temp.tex
@@ -698,15 +698,15 @@ Overfull \hbox (3.2539pt too wide) detected at line 27
 [1
 
 {C:/Users/Connor/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2]
-Overfull \hbox (38.70692pt too wide) in paragraph at lines 164--165
+Overfull \hbox (38.70692pt too wide) in paragraph at lines 168--169
  [][] 
  []
 
 [3] (temp.aux) ) 
 Here is how much of TeX's memory you used:
  30021 strings out of 479287
- 680461 string characters out of 2852552
- 961710 words of memory out of 3000000
+ 680505 string characters out of 2852552
+ 960710 words of memory out of 3000000
  47188 multiletter control sequences out of 15000+600000
  411929 words of font info for 60 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -725,7 +725,7 @@ rams/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Connor/AppD
 ata/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/User
 s/Connor/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/
 msbm10.pfb>
-Output written on temp.pdf (3 pages, 117227 bytes).
+Output written on temp.pdf (3 pages, 117273 bytes).
 PDF statistics:
  59 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
