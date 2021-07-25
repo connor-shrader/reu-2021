@@ -108,8 +108,8 @@ generate_coefficients <- function(beta, p) {
 #   block_size (default NULL): The size of each block if using blockwise correlation.
 #     block_size should divide the number of predictors.
 #   seed (default NULL): Random seed to generate the data. If NULL, no seed it set.
-generate_data <- function(n, p, beta = NULL, type = "independent", corr = 0,
-                          st_dev = 1, block_size = NULL) {
+generate_data <- function(n, p, response, beta = NULL, type = "independent",
+                          corr = 0, st_dev = 1, block_size = NULL) {
   # Generate the coefficient values if beta is NULL or does not have the right
   # length.
   beta <- generate_coefficients(beta, p)
@@ -170,10 +170,21 @@ generate_data <- function(n, p, beta = NULL, type = "independent", corr = 0,
     as.matrix = TRUE
   ))
   
-  # Generate corresponding y values for our data. Uses indicator, exponential, polynomial, and linear function
-  # y = 1_(x1 > 0.5) + e^x2 + 0.5*x5 + x6^3 + 2 * 1_(x7>0.5 and x8>0.5) + sigma
-  y <- ifelse(x[,2] > 0.5, 1, 0) + exp(x[,3]) + beta[6]*x[,6] + x[,7]^3 + 2 * ifelse(x[,8] > 0.5 & x[,9] > 0.5, 1, 0)+ rnorm(n, sd = st_dev)
- 
+  if (response == 1) {
+    y <- x %*% beta + rnorm(n, sd = st_dev)
+  }
+  else if (response == 2) {
+    # Generate corresponding y values for our data. Uses indicator, exponential, 
+    # polynomial, and linear function:
+    # y = 1_(x1 > 0.5) + e^x2 + 0.5*x5 + x6^3 + 2 * 1_(x7>0.5 and x8>0.5) + N(0, sigma^2)
+    y <- ifelse(x[,2] > 0.5, 1, 0) + exp(x[,3]) + beta[6]*x[,6] + x[,7]^3 + 2 * ifelse(
+      x[,8] > 0.5 & x[,9] > 0.5, 1, 0) + rnorm(n, sd = st_dev)
+    print(beta[6])
+  }
+  else {
+    stop("Invalid response given: Use 1 for a linear relationship or 2 for 
+          a non-linear relationship")
+  }
   
   # Create return data frame. We removed the column of 1's that we used as
   # an intercept for generating the data.
@@ -181,6 +192,7 @@ generate_data <- function(n, p, beta = NULL, type = "independent", corr = 0,
   
   # Set the column names to "y, x1, x2, ..., xp"
   colnames(dat) <- c("y", paste("x", 1:p, sep=""))
+  
   return(dat)
 }
 
@@ -190,6 +202,7 @@ generate_data <- function(n, p, beta = NULL, type = "independent", corr = 0,
 # and fits various regression models. This function then returns a list of the
 # models.
 fit_models <- function(dat, n, p) {
+  set.seed(1)
   models <- list()
   runtimes <- list()
   
@@ -261,24 +274,23 @@ fit_models <- function(dat, n, p) {
     runtimes[["bsf"]] <- bsf_time
     
   }
-  else {
-    models[["ridge"]] <- NA
-    runtimes[["ridge"]] <- NA
-  }
   
   # Ridge model for dealing with multicollinearity
+  set.seed(1)
   ridge_time <- system.time(ridge <- cv.glmnet(x = as.matrix(dat[,-1]),
                                                y = dat$y, alpha = 0))
   models[["ridge"]] <- ridge
   runtimes[["ridge"]] <- ridge_time
   
   # Lasso model for variable selection
+  set.seed(1)
   lasso_time <- system.time(lasso <- cv.glmnet(x = as.matrix(dat[,-1]),
                                                y = dat$y, alpha = 1))
   models[["lasso"]] <- lasso
   runtimes[["lasso"]] <- lasso_time
   
   # Elastic Net model for multicollinearity and variable selection
+  set.seed(1)
   enet_time <- system.time(enet <- cv.glmnet(x = as.matrix(dat[,-1]), 
                                              y = dat$y, alpha = 0.8)) #small alpha is not needed since small multicollinearity
   models[["enet"]] <- enet
@@ -306,12 +318,14 @@ fit_models <- function(dat, n, p) {
   # runtimes[["adap_enet"]] <- adap_enet_time
   
   # SCAD
-  scad_time <- system.time(scad <- cv.ncvreg(X = dat[, -1], y = dat$y, penalty = "SCAD"))
+  scad_time <- system.time(scad <- cv.ncvreg(X = dat[, -1], y = dat$y,
+                                             penalty = "SCAD", seed = 1))
   models[["scad"]] <- scad
   runtimes[["scad"]] <- scad_time
   
   # MCP
-  mcp_time <-  system.time(mcp <- cv.ncvreg(X = dat[, -1], y = dat$y))
+  mcp_time <-  system.time(mcp <- cv.ncvreg(X = dat[, -1], y = dat$y,
+                                            penalty = "MCP", seed = 1))
   models[["mcp"]] <- mcp
   runtimes[["mcp"]] <- mcp_time
   
@@ -365,6 +379,9 @@ fit_models <- function(dat, n, p) {
     )
 
     # train model
+    #View(train_x_data)
+    #View(train_y_data)
+    set.seed(1)
     xgb.tune <- xgb.cv(
       params = params,
       min_child_weight = 1, # default
@@ -396,6 +413,7 @@ fit_models <- function(dat, n, p) {
   train_set <- xgb.DMatrix(data = as.matrix(dat[, -1]), label = as.matrix(dat[, 1]))
   
   # train best model
+  set.seed(1)
   xgb.best <- xgboost(
     params = xgb_best_params,
     data = train_set,
@@ -438,12 +456,12 @@ fit_models <- function(dat, n, p) {
 
     # train model
     rf_model <- ranger(
-    formula         = y ~ .,
+      formula         = y ~ .,
       data            = dat,
       num.trees       = rf_hyper_grid$n.trees[i],
       mtry            = rf_hyper_grid$mtry[i],
       min.node.size   = 5,
-      seed            = 123
+      seed            = 1
     )
 
     # add OOB error to grid
@@ -460,7 +478,7 @@ fit_models <- function(dat, n, p) {
     num.trees       = rf_best_grid$n.trees[1],
     mtry            = rf_best_grid$mtry[1],
     min.node.size   = 5,
-    seed            = 123
+    seed            = 1
   )
   })
   models[["rf"]] <- best_rf_model
@@ -478,15 +496,6 @@ fit_models <- function(dat, n, p) {
   
   models[["svm"]] <- svm_model
   runtimes[["svm"]] <- svm_time
-  
-  if (2 * p > n) {
-    # Ridge model for dealing with multicollinearity
-    set.seed(123)
-    ridge_time <- system.time(ridge <- cv.glmnet(x = as.matrix(dat[,-1]),
-                                                 y = dat$y, alpha = 0))
-    models[["ridge"]] <- ridge
-    runtimes[["ridge"]] <- ridge_time
-  }
   
   return(list(models, runtimes))
 }
@@ -550,18 +559,15 @@ results_table <- function(models, beta, p) {
 # results_table(). This function takes in any inputs that go into generate_data(),
 # and this function outputs a list containing the outputs of fit_models()
 # and results_table().
-full_simulation <- function(seed, n, p, beta = NULL, ...) {
-  set.seed(seed)
-  
+full_simulation <- function(seed, n, p, response, beta = NULL, ...) {
   # Set coefficient values. If beta is NULL, default values are used. Otherwise,
   # beta is extended/shortened to have length (p + 1).
   beta <- generate_coefficients(beta, p)
   
   # Generate training and test data.
-  train_data <- generate_data(n = n, p = p, ...)
-  test_data <- generate_data(n = n, p = p, ...)
-  
-  print(list(...))
+  set.seed(seed)
+  train_data <- generate_data(n = n, p = p, response = response, ...)
+  test_data <- generate_data(n = n, p = p, response = response, ...)
   
   # Fit the models using the training data.
   models_list <- fit_models(train_data, n = n, p = p)
@@ -592,12 +598,13 @@ full_simulation <- function(seed, n, p, beta = NULL, ...) {
 # This helper function repeats a full simulation until it successfully runs without
 # any errors. This is used by monte_carlo() to ensure that the given number
 # of iterations are run.
-repeat_simulation_until_successful <- function(seed, n, p, beta = NULL, ...) {
+repeat_simulation_until_successful <- function(seed, n, p, response, beta = NULL, ...) {
   finished_simulation <- FALSE
   while (!finished_simulation) {
     tryCatch(
       {
-        simulation_result <- full_simulation(seed = seed, n = n, p = p, beta = beta, ...)
+        simulation_result <- full_simulation(seed = seed, n = n, p = p, 
+                                             response = response, beta = beta, ...)
         finished_simulation <- TRUE
       },
       error = function(error_message) {
@@ -624,9 +631,8 @@ repeat_simulation_until_successful <- function(seed, n, p, beta = NULL, ...) {
 #     to run simulations.
 #   ...: Extra parameters used to generate data (see comments above
 #     generate_data() for a list of optional parameters).
-monte_carlo <- function(n, p, iterations,
+monte_carlo <- function(n, p, response, iterations,
                         num_cores = floor(detectCores() / 2), ...) {
-  
   # Create the clusters using the parallel package.
   cl <- makeCluster(num_cores)
   
@@ -637,7 +643,6 @@ monte_carlo <- function(n, p, iterations,
     library(faux) # v1.0.0
     library(ncvreg) # v3.13.0
     library(glmnet) # v4.1-1
-    library(gcdnet) #v1.0.5
     library(MASS) # v7.3-54
     library(caret) # v6.0-88
     library(xgboost) # v1.4.1.1
@@ -649,15 +654,17 @@ monte_carlo <- function(n, p, iterations,
   # an error stops the execution of this function.
   tryCatch({
     # Export all of the needed variables and functions to each cluster.
-    clusterExport(cl, list("n", "p", "iterations", "...", "generate_coefficients",
-           
-                           
-                                           "generate_data", "fit_models", "model_data_frame",
+    clusterExport(cl, list("n", "p", "response", "iterations", "generate_coefficients",
+                           "generate_data", "fit_models", "model_data_frame",
                            "results_table", "full_simulation",
                            "repeat_simulation_until_successful",
                            "mean_squared_error", "individual_confusion_matrix",
                            "confusion_matrices"),
                            envir = environment())
+    
+    if (length(list(...)) != 0) {
+      clusterExport(cl, "...", envir = environment())
+    }
     
     # Run the simulations
     results <- parLapply(cl,
@@ -665,6 +672,7 @@ monte_carlo <- function(n, p, iterations,
                          repeat_simulation_until_successful,
                          n = n,
                          p = p,
+                         response = response,
                          ...)
     },
     finally = {

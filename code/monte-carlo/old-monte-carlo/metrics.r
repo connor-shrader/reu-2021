@@ -71,10 +71,10 @@ mean_squared_error <- function(model, dat) {
 
 # This function inputs a result table (from calling results_table())
 # and the name of a column and computes the Euclidean distance between
-# results$soln and results$col. This gives an estimate for the bias for the
+# results$solution and results$col. This gives an estimate for the bias for the
 # coefficients of a model.
 coefficient_bias <- function(results, col) {
-  return(sqrt(sum((results$soln - results[[col]])^2)))
+  return(sqrt(sum((results$solution - results[[col]])^2)))
 }
 
 
@@ -97,7 +97,7 @@ individual_confusion_matrix <- function(actual, prediction) {
 # guessed if each coefficient is non-zero or zero.
 confusion_matrices <- function(coefs) {
   coef_is_nonzero <- as.data.frame(ifelse(coefs != 0, 1, 0))
-  apply(X = coef_is_nonzero, FUN = individual_confusion_matrix, MARGIN = 2, actual = coef_is_nonzero$soln)
+  apply(X = coef_is_nonzero, FUN = individual_confusion_matrix, MARGIN = 2, actual = coef_is_nonzero$solution)
 }
 
 
@@ -105,7 +105,7 @@ confusion_matrices <- function(coefs) {
 # Calculate sample variance of the coefficients
 x_dif_2 <- function(coef_df, model){
   x_hat <- coef_df[["coefficients"]][model]
-  betas <- coef_df[["coefficients"]]["soln"]
+  betas <- coef_df[["coefficients"]]["solution"]
   x_difference <- betas - x_hat
   return(x_difference^2)
 }

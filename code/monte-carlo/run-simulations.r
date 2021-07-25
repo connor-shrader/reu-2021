@@ -11,11 +11,11 @@ rm(list = ls())
 library(rstudioapi) # v0.13
 
 setwd(dirname(getActiveDocumentContext()$path))
-source("simulation.r")
+source("simulation-functions.r")
 source("metrics.r")
 
 # Load table of parameters from file.
-parameters <- readRDS("../../../data/monte-carlo/factorial-design.rds")
+parameters <- readRDS("../../data/monte-carlo/factorial-design.rds")
 
 # This function takes in a vector of indices and the number of iterations.
 # Then, this function iterates over the rows of the parameter table corresponding
@@ -31,8 +31,9 @@ parameters <- readRDS("../../../data/monte-carlo/factorial-design.rds")
 #
 # Note that there are 270 parameter combinations, so indices should be a subset
 # of 1:270.
-run_simulations <- function(indices, iterations = 1, ...) {
-  results <- lapply(indices, function(i) {
+run_simulations <- function(indices, response, iterations = 1, ...) {
+  # print(list(...))
+  all_results <- lapply(indices, function(i) {
     message("Beginning to run row ", i, ".")
     row <- parameters[i, ]
     n <- row$n
@@ -43,7 +44,19 @@ run_simulations <- function(indices, iterations = 1, ...) {
     type <- as.character(row$type)
     corr <- row$corr
     
-    filename <- paste("../../results/monte-carlo/sim_results_",
+    if (response == 1) {
+      folder <- "monte-carlo-linear"
+    }
+    else if (response == 2) {
+      folder <- "monte-carlo-nonlinear"
+    }
+    else {
+      stop("Invalid response given: Use 1 for a linear relationship or 2 for 
+            a non-linear relationship")
+    }
+    
+    filename <- paste("../../results/", folder, "/sim_results_",
+                      response, "_",
                       n, "_", 
                       p, "_", 
                       st_dev, "_", 
@@ -66,6 +79,7 @@ run_simulations <- function(indices, iterations = 1, ...) {
       
       time_taken <- system.time(results <- monte_carlo(n = n,
                                                        p = p,
+                                                       response = response,
                                                        iterations = iterations,
                                                        st_dev = st_dev,
                                                        type = type,
@@ -76,15 +90,17 @@ run_simulations <- function(indices, iterations = 1, ...) {
       message("Finished running row ", i, " at ", Sys.time(), ". Time taken: ")
       print(time_taken)
       
-      #saveRDS(results, file = filename)
-      res <<- results
+      saveRDS(results, file = filename)
+      return(results)
     }
     else {
       message("Results file already exists for row ", i, ".")
     }
   })
   
-  return(results)
+  return(all_results)
 }
 
-# res <- run_simulations(indices = 99, iterations = 100)
+# res <- run_simulations(indices = 99, response = 1, iterations = 100)
+
+r <- monte_carlo(n = 30, p = 100, response = 2, iterations = 10)
