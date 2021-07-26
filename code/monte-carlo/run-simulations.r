@@ -101,6 +101,8 @@ run_simulations <- function(indices, response, iterations = 1, ...) {
   return(all_results)
 }
 
+# Run a line like the following to run simulations:
+#
 # res <- run_simulations(indices = 99, response = 1, iterations = 100)
 
-r <- monte_carlo(n = 30, p = 100, response = 2, iterations = 10)
+r <- monte_carlo(n = 30, p = 100, response = 1, iterations = 10)

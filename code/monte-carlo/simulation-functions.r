@@ -60,9 +60,22 @@ library(parallel) # v4.1.0
 # This function is used to create a valid coefficient vector which is used to
 # generate simulated data in generate_data(). This function is also needed
 # to create a results table using results_table().
-generate_coefficients <- function(beta, p) {
+generate_coefficients <- function(beta, p, response) {
   if (is.null(beta)) {
-    beta <- c(1, 2, -2, 0, 0, 0.5, 3)
+    if (response == 1) {
+      beta <- c(1, 2, -2, 0, 0, 0.5, 3)
+    }
+    else if (response == 2) {
+      # Because response == 2 corresponds to a non-linear model, the coefficient
+      # values are meaningless. Here, we just use 0 and 1 to indicate whether
+      # each predictor was used or not. For example, predictors 0 and 1 were unused,
+      # but predictors 2 and 3 were.
+      beta <- c(0, 0, 1, 1, 0, 0, 1, 1, 1, 1)
+    }
+    else {
+      stop("Invalid response given: Use 1 for a linear relationship or 2 for 
+            a non-linear relationship")
+    }
   }
   
   # Extend or shrink the coefficient list to have length (p + 1). If beta
@@ -112,7 +125,7 @@ generate_data <- function(n, p, response, beta = NULL, type = "independent",
                           corr = 0, st_dev = 1, block_size = NULL) {
   # Generate the coefficient values if beta is NULL or does not have the right
   # length.
-  beta <- generate_coefficients(beta, p)
+  beta <- generate_coefficients(beta, p, response)
   
   # The following if-else chain will calculate r, which is used as the correlation
   # parameter for rnorm_multi().
@@ -179,7 +192,6 @@ generate_data <- function(n, p, response, beta = NULL, type = "independent",
     # y = 1_(x1 > 0.5) + e^x2 + 0.5*x5 + x6^3 + 2 * 1_(x7>0.5 and x8>0.5) + N(0, sigma^2)
     y <- ifelse(x[,2] > 0.5, 1, 0) + exp(x[,3]) + beta[6]*x[,6] + x[,7]^3 + 2 * ifelse(
       x[,8] > 0.5 & x[,9] > 0.5, 1, 0) + rnorm(n, sd = st_dev)
-    print(beta[6])
   }
   else {
     stop("Invalid response given: Use 1 for a linear relationship or 2 for 
@@ -524,13 +536,13 @@ model_data_frame <- function(model, model_name) {
 
 # This function takes in a named list of models and the number of predictors.
 # It returns a data frame containing the coefficient estimates for each model.
-results_table <- function(models, beta, p) {
+results_table <- function(models, beta, p, response) {
   row_names <- c("(Intercept)", paste("x", 1:p, sep = ""))
   
   # Create a dataframe with two columns. The first column are the variable names
   # ((Intercept), x1, x2, ..., xp). The second column contains the actual
   # coefficient values.
-  results <- data.frame(row_names = row_names, soln = generate_coefficients(beta, p))
+  results <- data.frame(row_names = row_names, soln = generate_coefficients(beta, p, response))
   
   # This loop iterates through each model and creates a dataframe containing the
   # coefficient estimates for that model. Then, this dataframe is joined with df.
@@ -562,7 +574,7 @@ results_table <- function(models, beta, p) {
 full_simulation <- function(seed, n, p, response, beta = NULL, ...) {
   # Set coefficient values. If beta is NULL, default values are used. Otherwise,
   # beta is extended/shortened to have length (p + 1).
-  beta <- generate_coefficients(beta, p)
+  beta <- generate_coefficients(beta, p, response)
   
   # Generate training and test data.
   set.seed(seed)
@@ -576,7 +588,7 @@ full_simulation <- function(seed, n, p, response, beta = NULL, ...) {
   
   # Generate the coefficient table and compute the mean squared error
   # for each model.
-  coefficients_table <- results_table(models, beta = beta, p = p)
+  coefficients_table <- results_table(models, beta = beta, p = p, response = response)
   
   # Compute training and test MSE.
   train_mse <- lapply(models, mean_squared_error, dat = train_data)
