@@ -1,3 +1,6 @@
+# This is used to generate a diagram of ridge and lasso regression penalty shapes.
+# This figure is deprecated, and was replaced by lasso-ridge.R in .../reu-2021/code/figures
+
 par(mfrow = c(1, 2))
 
 distance <- function(v1, v2)

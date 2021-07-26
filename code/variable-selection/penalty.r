@@ -1,6 +1,7 @@
 # PENALTY.R
 
 # This script file generates three of the plots shown in variable-selection.tex.
+#### WARNING: This file is depricated and replaced by .../reu-2021/code/figures/lasso-scad-mcp-penalty.R ####
 
 # This function returns -1 if x is negative and 1 if x is positive.
 sign <- function(x)

@@ -1,4 +1,5 @@
-
+# This file is used to experiment with various penalized regression models
+# This file is not used in the study
 
 
 #setup

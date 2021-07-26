@@ -26,7 +26,7 @@ cancer_df <- as.data.frame(cbind(cancer[["y"]], cancer[["X"]])) #turn matrix int
 
 colnames(cancer_df)[1] <- "y" #rename y column to "y"
 
-k_folds <- 5
+k_folds <- 5 # 5 fold cross validation of models
 cv_folds <- createFolds(cancer_df[,1], k = k_folds)
 
 
@@ -71,7 +71,7 @@ calc_mse <- function(model, dat) {
   return(mse)
 }
 
-
+# creates empty list to fill out as CV models are fit
 models <-  list()
 runtimes <- list()
 cv.mse <- list()
@@ -84,7 +84,8 @@ for (fold in seq(cv_folds)) {
   runtimes[[fold]] <- list()
   cv.mse[[fold]] <- list()
   
-  # run glmnet penalized regression techniques (lasso, ridge, and elastic net)
+  ## run glmnet penalized regression techniques (lasso, ridge, and elastic net)##
+  ## saves runtimes, model objects, and mse values##
   # Lasso
   lasso_time <- system.time(lasso <- cv.glmnet(x = as.matrix(train_dat[,-1]), y = as.matrix(train_dat[,1]), alpha = 1))
   models[[fold]][["lasso"]] <- lasso
@@ -152,32 +153,6 @@ for (fold in seq(cv_folds)) {
       min_RMSE = 0                     # a place to dump results
     )
     
-    # lapply(1:nrow(xgb_hyper_grid), function(i) {
-    #   # create parameter list
-    #   params <- list(
-    #     eta = xgb_hyper_grid$eta[i],
-    #     max_depth = xgb_hyper_grid$max_depth[i],
-    #     min_child_weight = xgb_hyper_grid$min_child_weight[i],
-    #     subsample = xgb_hyper_grid$subsample[i],
-    #     colsample_bytree = xgb_hyper_grid$colsample_bytree[i]
-    #   )
-    # 
-    #   # train model
-    #   xgb.tune <- xgb.cv(
-    #     params = params,
-    #     data = train_x_data,
-    #     label = train_y_data,
-    #     nrounds = 1000,
-    #     nfold = 5,
-    #     objective = "reg:squarederror",  # for regression models
-    #     verbose = 0,               # silent,
-    #     early_stopping_rounds = 10, # stop if no improvement for 10 consecutive trees
-    #   )
-    # 
-    #   # add min training error and trees to grid
-    #   xgb_hyper_grid$optimal_trees[i] <- which.min(xgb.tune$evaluation_log$test_rmse_mean)
-    #   xgb_hyper_grid$min_RMSE[i] <- min(xgb.tune$evaluation_log$test_rmse_mean)
-    # })
     
     # grid search
     for(i in 1:nrow(xgb_hyper_grid)) {
@@ -196,8 +171,8 @@ for (fold in seq(cv_folds)) {
         colsample_bytree = 1,
         data = train_x_data,
         label = train_y_data,
-        nrounds = 1000,
-        nfold = 5,
+        nrounds = 1000,    #number of trees to fit
+        nfold = 5,         #5-fold cv
         objective = "reg:squarederror",  # for regression models
         verbose = 0,               # silent,
         early_stopping_rounds = 10 # stop if no improvement for 10 consecutive trees
@@ -225,7 +200,7 @@ for (fold in seq(cv_folds)) {
       nrounds = 1000,
       objective = "reg:squarederror",  # for regression models
       verbose = 0,               # silent,
-      early_stopping_rounds = 10 # stop if no improvement for 10 consecutive trees
+      early_stopping_rounds = 10 # stop if no improvement for 10 consecutive trees, speeds up model runtime
     )
   })
   models[[fold]][["gbm"]] <- xgb.best
@@ -238,25 +213,10 @@ for (fold in seq(cv_folds)) {
     
     rf_hyper_grid <- expand.grid(
       mtry       = c(floor(sqrt(p)), floor(p / 3), floor(p/2)),  # Predictors per tree
-      n.trees    = c(300, 500, 700),
-      OOB_RMSE   = 0
+      n.trees    = c(300, 500, 700),   # number of trees to use in rf
+      OOB_RMSE   = 0    # a place to dump results
     )
     
-    # lapply(1:nrow(rf_hyper_grid), function(i) {
-    #   # train model
-    #   rf_model <- ranger(
-    #     formula         = y ~ ., 
-    #     data            = dat, 
-    #     num.trees       = rf_hyper_grid$n.trees[i],
-    #     mtry            = rf_hyper_grid$mtry[i],
-    #     min.node.size   = rf_hyper_grid$node_size[i],
-    #     sample.fraction = rf_hyper_grid$sampe_size[i],
-    #     seed            = 123
-    #   )
-    #   
-    #   # add OOB error to grid
-    #   rf_hyper_grid$OOB_RMSE[i] <- sqrt(rf_model$prediction.error)
-    # })
     
     for(i in 1:nrow(rf_hyper_grid)) {
       
@@ -266,7 +226,7 @@ for (fold in seq(cv_folds)) {
         y               = train_dat[,1],
         ntree           = rf_hyper_grid$n.trees[i],
         mtry            = rf_hyper_grid$mtry[i],
-        nodesize        = 5
+        nodesize        = 5    #depth of the decision tree
       )
       
       # add OOB error to grid
@@ -282,13 +242,15 @@ for (fold in seq(cv_folds)) {
       y               = train_dat[,1], 
       ntree           = rf_best_grid$n.trees[1],
       mtry            = rf_best_grid$mtry[1],
-      nodesize        = 5
+      nodesize        = 5    #depth of the decision tree
     )
   })
   models[[fold]][["rf"]] <- best_rf_model
   runtimes[[fold]][["rf"]] <- rf_time
   cv.mse[[fold]][["rf"]] <- calc_mse(best_rf_model, test_dat)
   
+  
+  ## Support vector Machines are unstable with so much data and so are not run on empirical data##
   # # Support Vector Machine
   # svm_time <- system.time({
   #   svm_tune <- tune.svm(y ~ ., data = train_dat,
@@ -308,15 +270,15 @@ for (fold in seq(cv_folds)) {
 mse_df <- data.frame(t(matrix(unlist(cv.mse), nrow=length(cv.mse), byrow=TRUE)))
 avg_mse <- rowMeans(mse_df)
 mse_df <- cbind(mse_df, avg_mse)
-row.names(mse_df) <- c("lasso", "ridge", "enet", "adap lasso", "adap ridge", "adap enet", "scad", "mcp", "xgboost", "rf")
+row.names(mse_df) <- c("lasso", "ridge", "enet", "adap lasso", "adap ridge", "adap enet", "scad", "mcp", "xgboost", "rf") #model labels
 
 # create dataframe of runtimes values
 runtimes_df <- as.data.frame(matrix(nrow = length(runtimes[[1]]), ncol = 2))
-runtimes_df[,1] <- c("lasso", "ridge", "enet", "adap lasso", "adap ridge", "adap enet", "scad", "mcp", "xgboost", "rf")
+runtimes_df[,1] <- c("lasso", "ridge", "enet", "adap lasso", "adap ridge", "adap enet", "scad", "mcp", "xgboost", "rf") #model labels
 runtimes_df[,2] <- 0
 for (i in 1:length(runtimes)) {
   for (model in 1:length(runtimes[[i]])) {
     runtimes_df[model,2] <- runtimes_df[model,2] + runtimes[[i]][[model]][3]
   }
 }
-runtimes_df[,2] <- runtimes_df[,2] / 5
+runtimes_df[,2] <- runtimes_df[,2] / 5  #finds the average runtime for each model

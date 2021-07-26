@@ -5,7 +5,7 @@
 rm(list = ls())
 library(rstudioapi) # v0.13
 
-setwd(dirname(getActiveDocumentContext()$path))
+setwd(dirname(getActiveDocumentContext()$path)) # set environment context
 
 # Needed for rbind.fill when combining rows in the aggregate results dataframe.
 library(plyr) # v1.8.6

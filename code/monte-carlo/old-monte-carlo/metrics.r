@@ -5,6 +5,8 @@
 # models. To generate data and fit the models, see the functions in
 # simulation.r.
 
+#### WARNING: This file is deprecated and replaced by .../reu-2021/code/monte-carlo/metrics.R ####
+
 # FUNCTIONS
 #   mean_squared_error()
 #   coefficient_bias()

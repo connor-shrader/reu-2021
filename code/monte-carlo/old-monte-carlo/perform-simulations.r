@@ -5,6 +5,8 @@
 # Monte Carlo simulations using the functions contained in metrics.r
 # and simulation.r.
 
+#### WARNING: This file is deprecated and replaced by .../reu-2021/code/monte-carlo/run-simulations.R ####
+
 rm(list = ls())
 
 # Used to set current working directory to the location of this file.

@@ -21,12 +21,12 @@ sign <- function(x)
 # The following three functions compute the penalty for some coefficient value
 # beta using the parameters lambda and a.
 
-lasso <- function(beta, lambda)
+lasso <- function(beta, lambda) #penalty function for lasso
 {
   abs(beta)
 }
 
-scad <- function(beta, lambda, a)
+scad <- function(beta, lambda, a) #penalty function for SCAD
 {
   beta <- abs(beta)
   output <- ifelse (beta < lambda,  beta, 0)
@@ -37,7 +37,7 @@ scad <- function(beta, lambda, a)
   return(output)
 }
 
-mcp <- function(beta, lambda, a)
+mcp <- function(beta, lambda, a) #penalty function for MCP
 {
   beta <- abs(beta)
   output <- ifelse(beta < a * lambda, beta - (beta^2) / (2 * a), 0)
@@ -45,6 +45,7 @@ mcp <- function(beta, lambda, a)
   return(output)
 }
 
+# plot penalty shape
 penalty <- ggplot() +
   geom_vline(
     data = data.frame(xint = c(-3, -1, 1, 3)),
@@ -53,6 +54,7 @@ penalty <- ggplot() +
     color = "gray"
   ) +
   
+  # plot Lasso shape
   geom_function(
     mapping = aes(color = "Lasso"),
     fun = lasso,
@@ -60,6 +62,7 @@ penalty <- ggplot() +
     xlim = c(-4, 4)
   ) +
   
+   # plot SCAD shape
   geom_function(
     mapping = aes(color = "SCAD"),
     fun = scad,
@@ -67,6 +70,7 @@ penalty <- ggplot() +
     xlim = c(-4, 4)
   ) +
   
+   # plot MCP shape
   geom_function(
     mapping = aes(color = "MCP"),
     fun = mcp,
@@ -81,7 +85,7 @@ penalty <- ggplot() +
   
   reu_border
 
-
+# save images
 ggsave(
   filename = "lasso-scad-mcp-penalty.png",
   path = "./images",
@@ -136,6 +140,7 @@ derivative <- ggplot() +
     color = "gray"
   ) +
   
+  # plot lasso derivative
   geom_function(
     mapping = aes(color = "Lasso"),
     fun = d.lasso,
@@ -143,6 +148,7 @@ derivative <- ggplot() +
     xlim = c(0, 4)
   ) +
   
+  # plot SCAD derivative
   geom_function(
     mapping = aes(color = "SCAD"),
     fun = d.scad,
@@ -150,6 +156,7 @@ derivative <- ggplot() +
     xlim = c(0, 4)
   ) +
   
+  # plot MCP derivative
   geom_function(
     mapping = aes(color = "MCP"),
     fun = d.mcp,
@@ -164,7 +171,7 @@ derivative <- ggplot() +
   
   reu_border
 
-
+# save images
 ggsave(
   filename = "lasso-scad-mcp-derivative.png",
   path = "./images",
@@ -193,12 +200,12 @@ ggsave(
 # Formulas for SCAD and MCP came from (Fan and Li, 2001) and (Zhang, 2010),
 # respectively.
 
-lasso.s <- function(x, lambda)
+lasso.s <- function(x, lambda) #finds the predicted coefficient for lasso
 {
   return(ifelse(abs(x) < lambda, 0, sign(x) * (abs(x) - lambda)))
 }
 
-scad.s <- function(x, lambda, a)
+scad.s <- function(x, lambda, a) #finds the predicted coefficient for SCAD
 {
   output <- ifelse(abs(x) < lambda, 0, 0)
   output <- ifelse(abs(x) >= lambda & abs(x) < 2 * lambda,
@@ -211,7 +218,7 @@ scad.s <- function(x, lambda, a)
   return(output)
 }
 
-mcp.s <- function(x, lambda, a)
+mcp.s <- function(x, lambda, a) #finds the predicted coefficient for MCP
 {
   output <- ifelse(abs(x) < lambda, 0, 0)
   output <- ifelse(abs(x) >= lambda & abs(x) < a * lambda,
@@ -231,6 +238,7 @@ solution <- ggplot(data = models) +
     color = "gray"
   ) +
   
+  # plot unbiased coefficient values (OLS)
   geom_function(
     mapping = aes(color = "4OLS"),
     fun = function(x) {x},
@@ -238,6 +246,7 @@ solution <- ggplot(data = models) +
     linetype = 2
   ) +
   
+  # plot predicted lasso coefficients
   geom_function(
     mapping = aes(color = "1Lasso"),
     fun = lasso.s,
@@ -245,6 +254,7 @@ solution <- ggplot(data = models) +
     xlim = c(-4, 4)
   ) +
   
+  # plot scad predicted coefficients
   geom_function(
     mapping = aes(color = "2SCAD"),
     fun = scad.s,
@@ -252,6 +262,7 @@ solution <- ggplot(data = models) +
     xlim = c(-4, 4)
   ) +
   
+  # plot MCP predicted coefficients
   geom_function(
     mapping = aes(color = "3MCP"),
     fun = mcp.s,
@@ -269,6 +280,7 @@ solution <- ggplot(data = models) +
   scale_color_manual(values=c("#F8766D", "#00BA38", "#619CFF", "gray35"), labels = c("Lasso", "SCAD", "MCP", "OLS"))
 
 
+# save files
 ggsave(
   filename = "lasso-scad-mcp-solution.png",
   path = "./images",

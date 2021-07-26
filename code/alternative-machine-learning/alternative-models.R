@@ -3,6 +3,7 @@
 #     - Gradient Boosting Model
 #     - XGBoost
 #     - Support Vector Machine
+# Mostly used for experimenting with different machine learning techniques, various optimization methods, and grid search
 
 # import required packages
 library(MASS) #includes databases
@@ -18,7 +19,7 @@ library(tidyverse)
 set.seed(23122) #set seed to keep consistent results
 
 nrows <- nrow(Boston)
-train <- sample(1:nrow(Boston),size=round(nrows*.75))  #seperate 75% into training data
+train <- sample(1:nrow(Boston),size=round(nrows*.75))  #separate 75% into training data
 
 ######Separating data#####
 train_x_data <-  as.matrix(Boston[train, 1:length(Boston)-1])  #training x data

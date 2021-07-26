@@ -1,6 +1,7 @@
 # Goal of script is to explore classification methods.
 #   - Examine logistic regression (classification) methods and models
 #   - Examine alternative classification methods and models
+# This did not end up being used in the study
 
 
 #setup
