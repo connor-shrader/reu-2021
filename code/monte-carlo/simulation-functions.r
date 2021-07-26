@@ -3,7 +3,7 @@
 
 # This file contains functions for generating data and fitting regression models
 # using Monte Carlo simulations for non linear data. The file perform-simulations.r
-#contains the run_simulation function, which uses this file to run the simulations.
+# contains the run_simulation function, which uses this file to run the simulations.
 
 # FUNCTIONS:
 #   generate_coefficients() (Helper function)

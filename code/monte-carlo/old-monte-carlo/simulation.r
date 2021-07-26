@@ -5,6 +5,8 @@
 # using Monte Carlo simulations. The file perform-simulations.r contains the
 # run_simulation function, which uses this file to run the simulations.
 
+#### WARNING: This file is deprecated and replaced by .../reu-2021/code/monte-carlo/simulation-functions.R ####
+
 # FUNCTIONS:
 #   generate_coefficients() (Helper function)
 #   generate_data()
