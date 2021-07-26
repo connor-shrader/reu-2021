@@ -31,10 +31,10 @@
 \@writefile{toc}{\contentsline {section}{\numberline {2}Methodology}{3}{section.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Modeling Background}{3}{subsection.2.1}\protected@file@percent }
 \newlabel{eqn:relationship}{{1}{3}{Modeling Background}{equation.2.1}{}}
-\citation{friedman2001elements}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Linear Regression and Ordinary Least Squares}{4}{subsection.2.2}\protected@file@percent }
 \newlabel{eqn:linear-model}{{2}{4}{Linear Regression and Ordinary Least Squares}{equation.2.2}{}}
 \newlabel{eqn:RSS}{{4}{4}{Linear Regression and Ordinary Least Squares}{equation.2.4}{}}
+\citation{friedman2001elements}
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Ordinary least squares fitting with one predictor using simulated data. The blue line represents the line found by ordinary least squares, and the red line segments are the residuals.\relax }}{5}{figure.caption.2}\protected@file@percent }
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
 \newlabel{fig:ols}{{1}{5}{Ordinary least squares fitting with one predictor using simulated data. The blue line represents the line found by ordinary least squares, and the red line segments are the residuals.\relax }{figure.caption.2}{}}
@@ -48,26 +48,30 @@
 \citation{james2013introduction}
 \citation{james2013introduction}
 \citation{james2013introduction}
-\citation{hoerl1970ridge}
-\citation{tibshirani1996regression}
+\citation{friedman2001elements}
 \citation{james2013introduction}
+\citation{hoerl1970ridge}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Penalized Regression}{8}{subsection.2.4}\protected@file@percent }
 \newlabel{eqn:penalized-regression-lambda}{{10}{8}{Penalized Regression}{equation.2.10}{}}
 \newlabel{eqn:penalized-regression-t}{{11}{8}{Penalized Regression}{equation.2.11}{}}
+\citation{tibshirani1996regression}
+\citation{james2013introduction}
 \citation{zou2005regularization}
-\newlabel{fig:ridge-diagram}{{2a}{9}{RSS contours and the ridge penalty boundary.\relax }{figure.caption.3}{}}
-\newlabel{sub@fig:ridge-diagram}{{a}{9}{RSS contours and the ridge penalty boundary.\relax }{figure.caption.3}{}}
-\newlabel{fig:lasso-diagram}{{2b}{9}{RSS contours and the lasso penalty boundary.\relax }{figure.caption.3}{}}
-\newlabel{sub@fig:lasso-diagram}{{b}{9}{RSS contours and the lasso penalty boundary.\relax }{figure.caption.3}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces RSS contours and penalty bounds for the ridge and lasso models when $p=2$ and $t = 1$. The red regions represent the coefficient values allowed by ridge and lasso regression, respectively. The blue ellipses represent contours of the residual sum of squares, with $\hat  {\beta }^{\text  {OLS}}$ being the point where the residual sum of squares is minimized. The intersection of the ellipse with the red region in each plot represents the coefficient values selected by lasso and ridge.\relax }}{9}{figure.caption.3}\protected@file@percent }
-\newlabel{fig:ridge-lasso-diagram}{{2}{9}{RSS contours and penalty bounds for the ridge and lasso models when $p=2$ and $t = 1$. The red regions represent the coefficient values allowed by ridge and lasso regression, respectively. The blue ellipses represent contours of the residual sum of squares, with $\hat {\beta }^{\text {OLS}}$ being the point where the residual sum of squares is minimized. The intersection of the ellipse with the red region in each plot represents the coefficient values selected by lasso and ridge.\relax }{figure.caption.3}{}}
 \citation{zou2005regularization}
 \citation{zou2005regularization}
 \citation{fan2001variable}
 \citation{breheny2016lasso}
 \citation{zhang2010nearly}
-\citation{breheny2016lasso}
 \newlabel{eqn:scad-derivative-indicator}{{13}{10}{Penalized Regression}{equation.2.13}{}}
+\newlabel{fig:ridge-diagram}{{2a}{10}{RSS contours and the ridge penalty boundary.\relax }{figure.caption.3}{}}
+\newlabel{sub@fig:ridge-diagram}{{a}{10}{RSS contours and the ridge penalty boundary.\relax }{figure.caption.3}{}}
+\newlabel{fig:lasso-diagram}{{2b}{10}{RSS contours and the lasso penalty boundary.\relax }{figure.caption.3}{}}
+\newlabel{sub@fig:lasso-diagram}{{b}{10}{RSS contours and the lasso penalty boundary.\relax }{figure.caption.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces RSS contours and penalty bounds for the ridge and lasso models when $p=2$ and $t = 1$. The red regions represent the coefficient values allowed by ridge and lasso regression, respectively. The blue ellipses represent contours of the residual sum of squares, with $\hat  {\beta }^{\text  {OLS}}$ being the point where the residual sum of squares is minimized. The intersection of the ellipse with the red region in each plot represents the coefficient values selected by lasso and ridge.\relax }}{10}{figure.caption.3}\protected@file@percent }
+\newlabel{fig:ridge-lasso-diagram}{{2}{10}{RSS contours and penalty bounds for the ridge and lasso models when $p=2$ and $t = 1$. The red regions represent the coefficient values allowed by ridge and lasso regression, respectively. The blue ellipses represent contours of the residual sum of squares, with $\hat {\beta }^{\text {OLS}}$ being the point where the residual sum of squares is minimized. The intersection of the ellipse with the red region in each plot represents the coefficient values selected by lasso and ridge.\relax }{figure.caption.3}{}}
+\citation{breheny2016lasso}
+\citation{friedman2010regularization}
+\citation{breheny2011ncvreg}
 \citation{fan2001variable}
 \citation{tibshirani1996regression}
 \citation{fan2001variable}
@@ -91,15 +95,15 @@
 \citation{zeng2017biglasso}
 \citation{zeng2017biglasso}
 \citation{james2013introduction}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.5}Non-linear models}{13}{subsection.2.5}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Example of a decision tree. This tree was generated using a \lstinline !brTCGA! data set \cite  {zeng2017biglasso}. It attempts to predict the gene expression of the BRCA1 gene based on the expression of other genes. The decision tree was fitted and plotted with the \lstinline !rpart! and \lstinline !rpart.plot! libraries in \lstinline !R!.\relax }}{13}{figure.caption.6}\protected@file@percent }
-\newlabel{fig:decision-tree}{{5}{13}{Example of a decision tree. This tree was generated using a \lstinline !brTCGA! data set \cite {zeng2017biglasso}. It attempts to predict the gene expression of the BRCA1 gene based on the expression of other genes. The decision tree was fitted and plotted with the \lstinline !rpart! and \lstinline !rpart.plot! libraries in \lstinline !R!.\relax }{figure.caption.6}{}}
 \citation{breiman2001random}
 \citation{efron1994introduction}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5}Non-linear models}{13}{subsection.2.5}\protected@file@percent }
 \citation{breiman1996bagging}
 \citation{schapire1990strength}
 \citation{friedman2001greedy}
 \citation{james2013introduction}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Example of a decision tree. This tree was generated using a \lstinline !brTCGA! data set \cite  {zeng2017biglasso}. It attempts to predict the gene expression of the BRCA1 gene based on the expression of other genes. The decision tree was fitted and plotted with the \lstinline !rpart! and \lstinline !rpart.plot! libraries in \lstinline !R!.\relax }}{14}{figure.caption.6}\protected@file@percent }
+\newlabel{fig:decision-tree}{{5}{14}{Example of a decision tree. This tree was generated using a \lstinline !brTCGA! data set \cite {zeng2017biglasso}. It attempts to predict the gene expression of the BRCA1 gene based on the expression of other genes. The decision tree was fitted and plotted with the \lstinline !rpart! and \lstinline !rpart.plot! libraries in \lstinline !R!.\relax }{figure.caption.6}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Visualization of how predictions are made using a random forest model. An observation is input into each decision tree. Predictions from each tree are then aggregated into a single result that is used as the final prediction.\relax }}{14}{figure.caption.7}\protected@file@percent }
 \newlabel{fig:random-forest}{{6}{14}{Visualization of how predictions are made using a random forest model. An observation is input into each decision tree. Predictions from each tree are then aggregated into a single result that is used as the final prediction.\relax }{figure.caption.7}{}}
 \citation{chen2016xgboost}
