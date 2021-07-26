@@ -80,11 +80,11 @@ metrics_by_fold <- lapply(1:5, function(fold) {
   test_mse <- as.numeric(lapply(models, calc_mse, dat = test_dat))
   
   test_metrics <- data.frame(model_name = model_name,
-                             type = "Avg. Test MSE",
+                             type = "Mean Test MSE",
                              mse = test_mse)
   
   train_metrics <- data.frame(model_name = model_name,
-                              type = "Avg. Train MSE",
+                              type = "Mean Train MSE",
                               mse = train_mse)
   
   all_metrics <- rbind(test_metrics, train_metrics)
@@ -93,7 +93,7 @@ metrics_by_fold <- lapply(1:5, function(fold) {
 })
 
 all_results <- do.call(rbind, metrics_by_fold)
-all_results$type <- factor(all_results$type, levels = c("Avg. Train MSE", "Avg. Test MSE"))
+all_results$type <- factor(all_results$type, levels = c("Mean Train MSE", "Mean Test MSE"))
 
 aggregate <- aggregate(mse ~ model_name + type, data = all_results, mean)
 
