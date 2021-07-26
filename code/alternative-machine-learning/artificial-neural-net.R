@@ -1,6 +1,7 @@
 # Details and trains Artificial Neural Network models
 #    -Changes ANN model structures
 #    -Compares MSE to Random Forest MSE
+# Mostly a place to experiment with artificial neural network techniques. ANNs did not end up being used in our study
 
 # import required packages
 library(MASS) #includes databases

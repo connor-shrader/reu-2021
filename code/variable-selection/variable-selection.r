@@ -1,3 +1,7 @@
+# This file creates a figure illustrating the process of wrapper methods
+# This file is not used in the study
+
+
 # Contains the College dataset.
 library(ISLR)
 

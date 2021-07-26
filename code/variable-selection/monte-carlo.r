@@ -1,8 +1,8 @@
 # monte-carlo.r
 # Gabe Ackall, Seongtae Kim, Connor Shrader
 
-# This file contains functions for generating data and fitting regression models
-# using Monte Carlo simulations.
+# This file contains functions for generating data and fitting regression models using Monte Carlo simulations.
+##### WARNING: This file is deprecated and was replaced by .../reu-2021/code/monte-carlo/simulation-functions.R ####
 
 # R version: 4.1.0
 library(tidyverse) # v1.3.1
