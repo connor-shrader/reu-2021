@@ -171,18 +171,19 @@ The models produced by forward and backward selection can be improved by allowin
 
 When fitting a model using any of the subset selection methods, the performance metric used when selecting the best model is very important. At first, it may seem reasonable to choose a metric such as the residual sum of squares from Equation \ref{eqn:RSS}. However, many metrics, including the residual sum of squares, only describe a model's performance on training data. This is problematic because including more predictors will always decrease the residual sum of squares on the training data. If $p\leq n$, then the model fitted with all $p$ predictors is exactly the same model produced by ordinary least squares, which by definition minimizes the residual sum of squares! If $p>n$, then a model with the maximum possible number of predictors would be selected.
 
-If we wish to produce a model that makes reliable predictions on test data, we must use a different performance metric. Two of the most common metrics used for this purpose are the \textbf{Akaike Information Criterion} (AIC) and the \textbf{Bayesian Information Criterion} (BIC) \cite{akaike1998information, schwarz1978estimating}. These metrics can be expressed in terms of the log-likelihood function. In the special cases where we have a linear model where the random error $\epsilon$ is Gaussian, the Akaike Information Criterion can instead be expressed as
+If we wish to produce a model that makes reliable predictions on test data, we must use a different performance metric. Two of the most common metrics used for this purpose are the \textbf{Akaike information criterion} (AIC) and the \textbf{Bayesian information criterion} (BIC) \cite{akaike1998information, schwarz1978estimating}. For a given model, the Akaike information criterion can be computed by
 \begin{equation}
-	\text{AIC} = \frac{1}{n\hat{\sigma}^2}(\RSS + 2p\hat{\sigma}^2)
+	\text{AIC} = 2p - 2\ln(L)
 \end{equation}
-up to a constant, where $\hat{\sigma}^2$ is the estimated value of the variance of $\epsilon$ and RSS is the residual sum of squares from Equation \ref{eqn:RSS} \cite{james2013introduction}. The Bayesian Information Criterion is
+where $L$ is the likelihood of the model. This likelihood represents how well a model fits to the training data. The purpose of the term $2p$ is to punish models with a large number of coefficients. The model with the lowest AIC is the one selected by the wrapper methods.
+
+The Bayesian information criterion very similar to the Akaike information criterion; it is given by
 \begin{equation}
-	\text{BIC} = \frac{1}{n\hat{\sigma}^2}(\RSS + \ln(n)p\hat{\sigma}^2)
+	\text{BIC} = p\ln(n) - 2\ln(L)
 \end{equation}
-\begin{equation}
-	\text{BIC} = -2l + \log(n)p
-\end{equation}
-up to a constant. These metrics work by using the residual sum of squares plus some additional penalty that increases when $p$ is large. As a result, models that minimize AIC or BIC will have fewer predictors than models chosen just by minimizing the residual sum of squares. This can result in a model that has both a good training error and test error. If $n>7$, then $\ln(n)>2$ and so the penalty for BIC is larger than the penalty for AIC. Hence, a model selected using BIC will typically have fewer parameters than a model selected by AIC.
+where $L$ is again the likelihood of the model.
+
+Note that if $n>7$, then $\ln(n)>2$ and so the penalty for BIC is larger than the penalty for AIC. Hence, a model selected using BIC will typically have fewer parameters than a model selected by AIC.
 
 In addition to AIC and BIC, there are several other metrics that modify training error to estimate test error, such as $C_p$ and adjusted $R^2$ \cite{james2013introduction}. However, this paper will focus on AIC and BIC.
 \subsection{Penalized Regression}
