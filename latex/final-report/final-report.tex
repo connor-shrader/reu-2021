@@ -558,7 +558,7 @@ Because we ran simulations using 270 different combinations of factors, we will 
 
 To save space in the plots, each model is given a shortened label. Many of these labels have been used throughout this paper; for example, ordinary least squares is labeled as OLS. The labels for the wrapper methods start with AIC or BIC, followed by either B for backward, SB for stepwise backward, F for forward or SF for stepwise forward. As an example, the stepwise forward model evaluated with AIC is labeled as ``AIC SF.''
 
-We will first consider the case where $n = 1000$ and $p = 10$. Figures \ref{fig:train-mse-1000-10} and \ref{fig:test-mse-1000-10} show the average mean squared error for each model for the training set and test set, respectively. Tables \ref{tab:train-mse-1000-10} and \ref{tab:test-mse-1000-10} in Appendix \ref{app:full-results} contain all of the data shown in these figures as well as the standard deviation for each point.
+We will first consider the case where $n = 1000$ and $p = 10$. Figures \ref{fig:train-mse-1000-10} and \ref{fig:test-mse-1000-10} show the average mean squared error of each model for the training set and test set, respectively. Tables \ref{tab:train-mse-1000-10} and \ref{tab:test-mse-1000-10} in Appendix \ref{app:full-results} contain all of the data shown in these figures as well as the standard deviation for each point.
 
 \begin{figure}[h!]
 	\centering
@@ -595,9 +595,9 @@ We see that the linear models have very similar train and test mean squared erro
 
 The non-linear models all have lower training mean squared errors compared to the linear models. However, they also have higher test mean squared errors. We see that gradient boosting is not affected too strongly by the amount of correlation; on the other hand, we see that random forest and support vector machine models have better test performance when there is a strong correlation between predictors.
 
-Figure \ref{fig:sensitivity-1000-10} displays the average $\beta$-sensitivity for each model that performs variable selection when $n = 1000$ and $p = 10$. We see that almost all the models were able to correctly identify all of the non-zero coefficients when $n = 1000$ and $p = 10$. The only exceptions were lasso and elastic-net models when the correlation structure was blockwise and the strength of the correlation was 0.9.
+Figure \ref{fig:sensitivity-1000-10} displays the average $\beta$-sensitivity for each model that performs variable selection when $n = 1000$ and $p = 10$. See Table \ref{tab:sensitivity-1000-10} for a table of these results. We see that almost all the models were able to correctly identify all of the non-zero coefficients when $n = 1000$ and $p = 10$. The only exceptions were lasso and elastic-net models when the correlation structure was blockwise and the strength of the correlation was 0.9.
 
-Figure \ref{fig:specificity-1000-10} shows the average $\beta$-specificity for each model. We see that the subset selection models that used BIC made almost zero mistakes when identifying predictors as zero. In contrast, wrapper models fitted using AIC made more mistakes. We see that lasso and elastic-net made almost no mistakes when the correlation was low; in fact, when the correlation structure was independent, lasso made the fewest incorrect estimates out of all the models. As the correlation increases, lasso and elastic-net made more incorrect predictions. SCAD and MCP made more incorrect predictions than lasso and elastic-net in general. However, SCAD and MCP were also somewhat more resilient to an increase in correlation.
+Figure \ref{fig:specificity-1000-10} shows the average $\beta$-specificity for each model. Exact numerical values are given in Table \ref{tab:specificity-1000-10}. We see that the subset selection models that used BIC made almost zero mistakes when identifying predictors as zero. In contrast, wrapper models fitted using AIC made more mistakes. We see that lasso and elastic-net made almost no mistakes when the correlation was low; in fact, when the correlation structure was independent, lasso made the fewest incorrect estimates out of all the models. As the correlation increases, lasso and elastic-net made more incorrect predictions. SCAD and MCP made more incorrect predictions than lasso and elastic-net in general. However, SCAD and MCP were also somewhat more resilient to an increase in correlation.
 
 Now, we will consider the opposite extreme where $n = 50$ and $p = 2000$. Figures \ref{fig:train-mse-50-2000} and \ref{fig:test-mse-50-2000} display the average mean squared error for simulations where $n = 50$ and $p = 2000$. Because less models were fitted for this combination of $n$ and $p$, less models are shown in this figure. See Table \ref{tab:train-mse-50-2000} and Table \ref{tab:test-mse-50-2000} for a table of these results, including the standard deviations for each point.
 
@@ -634,15 +634,15 @@ Now, we will consider the opposite extreme where $n = 50$ and $p = 2000$. Figure
 
 We see that the mean squared error for lasso and elastic-net are generally larger than SCAD and MCP for both the training data and test data. Gradient boosting has almost zero training mean squared error under all conditions, but has a relatively large test error. Random forest and support vector machine models have a moderate training error but a large test error. Interestingly, we see that the non-linear models all perform better when there is a strong correlation between predictors. On the other hand, the linear models are somewhat less affected by the correlation.
 
-Figure \ref{fig:sensitivity-50-2000} measures the average $\beta$-sensitivity for each model. We see that all of the models predict most of the non-zero coefficients when the correlation is low. When the correlation is high, all of the models struggle to identify the correct predictors. SCAD and MCP perform the best when the correlation is low but perform the worst when the correlation is high. Elastic-net performs particularly well compared to the other models when the correlation is high, especially when the correlation structure is autoregressive.
+Figure \ref{fig:sensitivity-50-2000} shows the mean $\beta$-sensitivity for each model, with results shown in Table \ref{tab:sensitivity-50-2000}. We see that all of the models predict most of the non-zero coefficients when the correlation is low. When the correlation is high, all of the models struggle to identify the correct predictors. SCAD and MCP perform the best when the correlation is low but perform the worst when the correlation is high. Elastic-net performs particularly well compared to the other models when the correlation is high, especially when the correlation structure is autoregressive.
 
-Figure \ref{fig:specificity-50-2000} shows the average $\beta$-specificity $n = 50$ and $p = 2000$. MCP appears to make the fewest mistakes when choosing zero coefficients. The performance of the other models depends heavily on the type of correlation and the correlation strength. Lasso and elastic-net perform the worst when the correlation structure is symmetric compound, whereas SCAD performs poorly when the correlation structure is autoregressive or blockwise. We also see that the models generally made less mistakes as the correlation increases.
+Figure \ref{fig:specificity-50-2000} shows the average $\beta$-specificity $n = 50$ and $p = 2000$. See Table \ref{tab:specificity-50-2000} for the corresponding results table. MCP appears to make the fewest mistakes when choosing zero coefficients. The performance of the other models depends heavily on the type of correlation and the correlation strength. Lasso and elastic-net perform the worst when the correlation structure is symmetric compound, whereas SCAD performs poorly when the correlation structure is autoregressive or blockwise. We also see that the models generally made less mistakes as the correlation increases.
 
 \section{Empirical Data Analysis}
 \subsection{Details of Empirical Data}
 % outline empirical data sources and what each database is about / what we try to predict about it
 
-For empirical data, we used the Breast Cancer database from The Cancer Genome Atlas (bcTCGA). A cleaned version of the data is provided by the \lstinline!biglasso! \lstinline!R! package \cite{zeng2017biglasso}. This data set contains the gene expression data of 17322 genes from 536 patients. One of these genes is the BRCA1 gene which is among the first genes discovered that can increase the risk of breast cancer. Because the BRCA1 gene interacts with other genes, it is useful to find genes that interact with BRCA1 to test in further studies. The distribution of the BRCA1 gene expression levels in the bcTCGA database can be seen in Figure \ref{fig:BRCA1-distribution}. The BRCA1 gene expression level will act as the output value in our regression analysis and the other 17322 genes will serve as predictor values.
+For empirical data, we used the Breast Cancer database from The Cancer Genome Atlas (bcTCGA). A cleaned version of the data is provided by the \lstinline!biglasso! \lstinline!R! package \cite{zeng2017biglasso}. This data set contains the gene expression data of 17323 genes from 536 patients. One of these genes is the BRCA1 gene which is among the first genes discovered that can increase the risk of breast cancer. Because the BRCA1 gene interacts with other genes, it is useful to find genes that interact with BRCA1 to test in further studies. The distribution of the BRCA1 gene expression levels in the bcTCGA database can be seen in Figure \ref{fig:BRCA1-distribution}. The BRCA1 gene expression level will act as the output value in our regression analysis and the other 17322 genes will serve as predictor values.
 
 \begin{figure}[h!]
 	\centering
@@ -756,9 +756,9 @@ Table \ref{tab:emp_runtimes} shows the average runtime to fit each of the models
 % discussion of findings, future work, and contributions
 First, we will discuss the mean squared error results from the simulations. Figures \ref{fig:test-mse-1000-10} and \ref{fig:test-mse-50-2000} shows that the best-performing models on test data were SCAD and MCP. The wrapper methods that used BIC performed better than SCAD and MCP when $n = 1000$ and $p = 10$, but could not be used in the high dimensional case where $n = 50$ and $p = 2000$. Lasso, elastic-net, and the wrapper methods with AIC all had low test mean-squared errors as well. Ridge performed the worst out of all the linear models. The non-linear models also performed very badly on test data.
 
-Looking at the training mean squared error results from Figures \ref{fig:train-mse-1000-10} \ref{fig:train-mse-50-2000}, we see that all of the linear models had the same error as they had on the test data. This indicates that these models did not overfit to the training data. On the other hand, the non-linear models have far lower training mean squared errors than test errors. In particular, random forest models almost perfectly fit to the training data when $n = 1000$ and $p = 10$, while gradient boosting made an almost perfect fit when $n = 50$ and $p = 2000$.
+Looking at the training mean squared error results from Figures \ref{fig:train-mse-1000-10} and \ref{fig:train-mse-50-2000}, we see that all of the linear models had the same error as they had on the test data. This indicates that these models did not overfit to the training data. On the other hand, the non-linear models have far lower training mean squared errors than test errors. In particular, random forest models almost perfectly fit to the training data when $n = 1000$ and $p = 10$, while gradient boosting made an almost perfect fit when $n = 50$ and $p = 2000$.
 
-Ridge regression, which performed badly on both training data and test data, was likely restricted by its penalty function and its inability to perform variable selection. Recall that three out of the five non-zero coefficient values chosen were greater than one. Because the penalty function for ridge squares coefficients, ridge was very strongly discouraged from selecting coefficient estimates close to the true non-zero coefficient values. Furthermore, because ridge regression cannot set coefficients to zero, its coefficient estimates for the true non-zero coefficients was likely even smaller. As a result, ridge regression was unable to predict the true coefficient values as well as the other linear models.
+Ridge regression, which performed badly on both training data and test data, was likely restricted by its penalty function and its inability to perform variable selection. Recall that three out of the five non-zero coefficient values chosen were greater than one. Because the penalty function for ridge squares coefficients, ridge was very strongly discouraged from selecting coefficient estimates close to the true non-zero coefficient values. Furthermore, because ridge regression cannot set coefficients to zero, its coefficient estimates for the true non-zero coefficients was likely even smaller because unimportant predictors were given non-zero coefficient estimates. As a result, ridge regression was unable to predict the true coefficient values as well as the other linear models.
 
 Another note about ridge regression is that it was more strongly affected by correlation between predictors when $n = 1000$ and $p = 10$, as seen in Figure \ref{fig:test-mse-1000-10}. The other linear models, which could set coefficients to zero, were likely able to eliminate unimportant predictors even though they were correlated with the important predictors. Ridge regression, unable to eliminate these unimportant predictors, may have instead given larger coefficient estimates to the incorrect predictors.
 
@@ -785,11 +785,11 @@ Although wrapper methods and penalized regression models were the evident winner
 Another disadvantage for the non-linear models is that they can be controlled by many different hyperparameters, but we only considered a couple for each model. This was out of necessity; it would have been infeasible to fit models using more hyperparameters given the number of simulations that had to be run. If more hyperparameters could be included, then the performance of the non-linear models may have been more comparable to the linear models. At the same time, the more comprehensive tuning of several hyperparameters could act as a double edged sword in that it could increase the overfitting of these models. More hyperparameter tuning could lead a model to pick hyperparameters that fits the training data very precisely, but at the expense of increased testing error and increased computational cost.
 
 \subsection{Discussion of Empirical Data Results}
-In our empirical data study, SCAD and MCP also maintained the lowest testing mean squared error among the tested models. This can be seen in Figure \ref{fig:empirical_mse} and Table \ref{tab:emp_results} which showcase MCP as having the lowest average MSE and standard deviation. This may be due in part to the fact that MCP consistently selected the fewest number of predictors compared to Lasso and Elastic Net as visible in Figure \ref{fig:venn}. Because this empirical data most likely contains multicollinearity, the fact that MCP selects fewer predictors may have helped to reduce overfitting. This is consistent with results from the Monte Carlo simulations which indicate that MCP performed better than its counterparts in multicollinear environments.
+In our empirical data study, SCAD and MCP also maintained the lowest testing mean squared error among the tested models. This can be seen in Figure \ref{fig:empirical_mse} and Table \ref{tab:emp_results}. Furthermore, the mean squared error MCP had a relatively low standard deviation across the five folds. This may be due in part to the fact that MCP consistently selected the fewest number of predictors compared to Lasso and Elastic Net as shown by the Venn diagrams in Figure \ref{fig:venn}. Because this empirical data most likely contains multicollinearity, the fact that MCP selects fewer predictors may have helped to reduce overfitting. This is consistent with results from the Monte Carlo simulations which indicate that MCP performed better than its counterparts in multicollinear environments.
 
 An interesting result was how few predictors were selected between all four models. It would be expected that the most important predictors would be chosen by all four models, but only three to six predictors were selected in common by all the models. Between MCP, Lasso, and Elastic Net, there were slightly more selected predictors in common, but these still were much less than expected. This is most likely because MCP is very different from the other regression techniques in that it uses non-convex optimization and thus selected many predictors that were different from all the other models. Since MCP had a much lower false negative rate compared to the other models as determined in the Monte Carlo simulations, it can be assumed that many of these predictors solely selected by MCP were significant predictors that were missed by the other models. This could have been another reason why MCP performed the best out of all the fitted models on the empirical data. 
 
-MCP also maintained the lowest testing MSE standard deviation for the empirical data as seen in Figure \ref{tab:emp_results}. This is to be expected given the bias/variance tradeoff. Because MCP selects fewer predictors than the other models, it incurs greater bias but while also lessening variance. By definition, this means that MSP is less sensitive to changes in training data, such as changes in training data due to 5-fold cross validation. 
+MCP also maintained the lowest testing MSE standard deviation for the empirical data as seen in Figure \ref{tab:emp_results}. This is to be expected given the bias/variance tradeoff. Because MCP selects fewer predictors than the other models, it incurs greater bias but while also lessening variance. By definition, this means that MCP is less sensitive to changes in training data, such as changes in training data due to 5-fold cross validation. 
 
 The penalized regression models performed exceptionally faster than random forest and XGBoost as documented in Table \ref{tab:emp_runtimes}. On average, Lasso and Elastic Net ran approximately 56x faster than XGBoost and 510x faster than random forest. MCP and SCAD ran approximately 30x faster than XGBoost and 290x faster than random forest. This provides a significant advantage to the penalized regression techniques, especially given that MCP and other penalized techniques performed better than random forest and XGBoost. 
 
@@ -824,41 +824,49 @@ The following pages contain the full table of Monte Carlo simulation results. Ea
 \begin{landscape}
 	\centering
 	\captionsetup{width = 6in}
-	\captionof{table}{Mean and standard deviation of the mean squared error on training data when $n = 1000$ and $p = 10$. See Figure \ref{fig:train-mse-50-2000} for the corresponding plot.}\label{tab:train-mse-1000-10}
+	\captionof{table}{Mean and standard deviation of the mean squared error on training data when $n = 1000$ and $p = 10$. See Figure \ref{fig:train-mse-50-2000} for the corresponding plot.}
+	\label{tab:train-mse-1000-10}
 	\input{./tables/train_mse_1000_10.tex}
 	
 	\newpage
 	
-	\captionof{table}{Mean and standard deviation of the mean squared error on test data when $n = 1000$ and $p = 10$. See Figure \ref{fig:test-mse-50-2000} for the corresponding plot.}\label{tab:test-mse-1000-10}
+	\captionof{table}{Mean and standard deviation of the mean squared error on test data when $n = 1000$ and $p = 10$. See Figure \ref{fig:test-mse-50-2000} for the corresponding plot.}
+	\label{tab:test-mse-1000-10}
 	\input{./tables/test_mse_1000_10.tex}
 	
 	\newpage
-	\captionof{table}{Mean and standard deviation of the $\beta$-sensitivity when $n = 1000$ and $p = 10$. See Figure \ref{fig:sensitivity-1000-10} for the corresponding plot.}\label{tab:sensitivity-1000-10}
+	\captionof{table}{Mean and standard deviation of the $\beta$-sensitivity when $n = 1000$ and $p = 10$. See Figure \ref{fig:sensitivity-1000-10} for the corresponding plot.}
+	\label{tab:sensitivity-1000-10}
 	\input{./tables/sensitivity_1000_10.tex}
 	
 	\newpage
 	
-	\captionof{table}{Mean and standard deviation of the $\beta$-specificity when $n = 1000$ and $p = 10$. See Figure \ref{fig:specificity-1000-10} for the corresponding plot.}\label{tab:specificity-1000-10}
+	\captionof{table}{Mean and standard deviation of the $\beta$-specificity when $n = 1000$ and $p = 10$. See Figure \ref{fig:specificity-1000-10} for the corresponding plot.}
+	\label{tab:specificity-1000-10}
 	\input{./tables/specificity_1000_10.tex}
 	
 	\newpage
 	
-	\captionof{table}{Mean and standard deviation of the mean squared error on training data when $n = 50$ and $p = 2000$. See Figure \ref{fig:train-mse-50-2000} for the corresponding plot.}\label{tab:train-mse-50-2000}
+	\captionof{table}{Mean and standard deviation of the mean squared error on training data when $n = 50$ and $p = 2000$. See Figure \ref{fig:train-mse-50-2000} for the corresponding plot.}
+	\label{tab:train-mse-50-2000}
 	\input{./tables/train_mse_50_2000.tex}
 	
 	\newpage
 	
-	\captionof{table}{Mean and standard deviation of the mean squared error on training data when $n = 50$ and $p = 2000$. See Figure \ref{fig:test-mse-50-2000} for the corresponding plot.}\label{tab:test-mse-50-2000}
+	\captionof{table}{Mean and standard deviation of the mean squared error on training data when $n = 50$ and $p = 2000$. See Figure \ref{fig:test-mse-50-2000} for the corresponding plot.}
+	\label{tab:test-mse-50-2000}
 	\input{./tables/test_mse_50_2000.tex}
 	
 	\newpage
 	
-	\captionof{table}{Mean and standard deviation of the $\beta$-sensitivity when $n = 50$ and $p = 2000$. See Figure \ref{fig:sensitivity-50-2000} for the corresponding plot.}\label{tab:sensitivity-50-2000}
+	\captionof{table}{Mean and standard deviation of the $\beta$-sensitivity when $n = 50$ and $p = 2000$. See Figure \ref{fig:sensitivity-50-2000} for the corresponding plot.}
+	\label{tab:sensitivity-50-2000}
 	\input{./tables/sensitivity_50_2000.tex}
 	
 	\bigskip
 	
 	\captionof{table}{Mean and standard deviation of the $\beta$-specificity when $n = 50$ and $p = 2000$. See Figure \ref{fig:specificity-50-2000} for the corresponding plot.}
+	\label{tab:specificity-50-2000}
 	\input{./tables/specificity_50_2000.tex}
 \end{landscape}
 }
