@@ -1,19 +1,19 @@
-\BOOKMARK [1][-]{section.1}{\376\377\000I\000n\000t\000r\000o\000d\000u\000c\000t\000i\000o\000n}{}% 1
-\BOOKMARK [1][-]{section.2}{\376\377\000M\000e\000t\000h\000o\000d\000o\000l\000o\000g\000y}{}% 2
-\BOOKMARK [2][-]{subsection.2.1}{\376\377\000M\000o\000d\000e\000l\000i\000n\000g\000\040\000B\000a\000c\000k\000g\000r\000o\000u\000n\000d}{section.2}% 3
-\BOOKMARK [2][-]{subsection.2.2}{\376\377\000L\000i\000n\000e\000a\000r\000\040\000R\000e\000g\000r\000e\000s\000s\000i\000o\000n\000\040\000a\000n\000d\000\040\000O\000r\000d\000i\000n\000a\000r\000y\000\040\000L\000e\000a\000s\000t\000\040\000S\000q\000u\000a\000r\000e\000s}{section.2}% 4
-\BOOKMARK [2][-]{subsection.2.3}{\376\377\000S\000u\000b\000s\000e\000t\000\040\000S\000e\000l\000e\000c\000t\000i\000o\000n\000\040\000M\000e\000t\000h\000o\000d\000s}{section.2}% 5
-\BOOKMARK [2][-]{subsection.2.4}{\376\377\000P\000e\000n\000a\000l\000i\000z\000e\000d\000\040\000R\000e\000g\000r\000e\000s\000s\000i\000o\000n}{section.2}% 6
-\BOOKMARK [2][-]{subsection.2.5}{\376\377\000N\000o\000n\000-\000l\000i\000n\000e\000a\000r\000\040\000m\000o\000d\000e\000l\000s}{section.2}% 7
-\BOOKMARK [2][-]{subsection.2.6}{\376\377\000I\000m\000p\000l\000e\000m\000e\000n\000t\000a\000t\000i\000o\000n}{section.2}% 8
-\BOOKMARK [1][-]{section.3}{\376\377\000M\000o\000n\000t\000e\000\040\000C\000a\000r\000l\000o\000\040\000S\000i\000m\000u\000l\000a\000t\000i\000o\000n\000s}{}% 9
-\BOOKMARK [2][-]{subsection.3.1}{\376\377\000S\000i\000m\000u\000l\000a\000t\000i\000o\000n\000\040\000D\000e\000s\000i\000g\000n}{section.3}% 10
-\BOOKMARK [2][-]{subsection.3.2}{\376\377\000S\000i\000m\000u\000l\000a\000t\000i\000o\000n\000\040\000R\000e\000s\000u\000l\000t\000s}{section.3}% 11
-\BOOKMARK [1][-]{section.4}{\376\377\000E\000m\000p\000i\000r\000i\000c\000a\000l\000\040\000D\000a\000t\000a\000\040\000A\000n\000a\000l\000y\000s\000i\000s}{}% 12
-\BOOKMARK [2][-]{subsection.4.1}{\376\377\000D\000e\000t\000a\000i\000l\000s\000\040\000o\000f\000\040\000E\000m\000p\000i\000r\000i\000c\000a\000l\000\040\000D\000a\000t\000a}{section.4}% 13
-\BOOKMARK [2][-]{subsection.4.2}{\376\377\000E\000m\000p\000i\000r\000i\000c\000a\000l\000\040\000D\000a\000t\000a\000\040\000R\000e\000s\000u\000l\000t\000s}{section.4}% 14
-\BOOKMARK [1][-]{section.5}{\376\377\000D\000i\000s\000c\000u\000s\000s\000i\000o\000n}{}% 15
-\BOOKMARK [2][-]{subsection.5.1}{\376\377\000D\000i\000s\000c\000u\000s\000s\000i\000o\000n\000\040\000o\000f\000\040\000M\000o\000n\000t\000e\000\040\000C\000a\000r\000l\000o\000\040\000R\000e\000s\000u\000l\000t\000s}{section.5}% 16
-\BOOKMARK [2][-]{subsection.5.2}{\376\377\000D\000i\000s\000c\000u\000s\000s\000i\000o\000n\000\040\000o\000f\000\040\000E\000m\000p\000i\000r\000i\000c\000a\000l\000\040\000D\000a\000t\000a\000\040\000R\000e\000s\000u\000l\000t\000s}{section.5}% 17
-\BOOKMARK [1][-]{section.6}{\376\377\000C\000o\000n\000c\000l\000u\000s\000i\000o\000n}{}% 18
-\BOOKMARK [1][-]{appendix.A}{\376\377\000F\000u\000l\000l\000\040\000R\000e\000s\000u\000l\000t\000\040\000T\000a\000b\000l\000e\000s}{}% 19
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{Methodology}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{Modeling Background}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{Linear Regression and Ordinary Least Squares}{section.2}% 4
+\BOOKMARK [2][-]{subsection.2.3}{Subset Selection Methods}{section.2}% 5
+\BOOKMARK [2][-]{subsection.2.4}{Penalized Regression}{section.2}% 6
+\BOOKMARK [2][-]{subsection.2.5}{Non-linear models}{section.2}% 7
+\BOOKMARK [2][-]{subsection.2.6}{Implementation}{section.2}% 8
+\BOOKMARK [1][-]{section.3}{Monte Carlo Simulations}{}% 9
+\BOOKMARK [2][-]{subsection.3.1}{Simulation Design}{section.3}% 10
+\BOOKMARK [2][-]{subsection.3.2}{Simulation Results}{section.3}% 11
+\BOOKMARK [1][-]{section.4}{Empirical Data Analysis}{}% 12
+\BOOKMARK [2][-]{subsection.4.1}{Details of Empirical Data}{section.4}% 13
+\BOOKMARK [2][-]{subsection.4.2}{Empirical Data Results}{section.4}% 14
+\BOOKMARK [1][-]{section.5}{Discussion}{}% 15
+\BOOKMARK [2][-]{subsection.5.1}{Discussion of Monte Carlo Results}{section.5}% 16
+\BOOKMARK [2][-]{subsection.5.2}{Discussion of Empirical Data Results}{section.5}% 17
+\BOOKMARK [1][-]{section.6}{Conclusion}{}% 18
+\BOOKMARK [1][-]{appendix.A}{Full Result Tables}{}% 19

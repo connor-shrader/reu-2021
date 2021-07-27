@@ -7,6 +7,14 @@ Akaike, H.
 \newblock In {\em Selected papers of hirotugu akaike}, pages 199--213.
   Springer, 1998.
 
+\bibitem{antoniou2003average}
+Antoniou, A., Pharoah, P.~D., Narod, S., Risch, H.~A., Eyfjord, J.~E., Hopper,
+  J.~L., Loman, N., Olsson, H., Johannsson, O., Borg, {\AA}., et~al.
+\newblock Average risks of breast and ovarian cancer associated with brca1 or
+  brca2 mutations detected in case series unselected for family history: a
+  combined analysis of 22 studies.
+\newblock {\em The American Journal of Human Genetics}, 72(5):1117--1130, 2003.
+
 \bibitem{breheny2016lasso}
 Breheny.
 \newblock Adaptive lasso, mcp, and scad.
@@ -99,6 +107,11 @@ Friedman, J.~H.
 \newblock Greedy function approximation: a gradient boosting machine.
 \newblock {\em Annals of statistics}, pages 1189--1232, 2001.
 
+\bibitem{greene2003econometric}
+Greene, W.~H.
+\newblock {\em Econometric analysis}.
+\newblock Pearson Education India, 2003.
+
 \bibitem{hoerl1970ridge}
 Hoerl, A.~E. and Kennard, R.~W.
 \newblock Ridge regression: Biased estimation for nonorthogonal problems.
@@ -108,6 +121,14 @@ Hoerl, A.~E. and Kennard, R.~W.
 James, G., Witten, D., Hastie, T., and Tibshirani, R.
 \newblock {\em An introduction to statistical learning}, volume 112.
 \newblock Springer, 2013.
+
+\bibitem{kuchenbaecker2017risks}
+Kuchenbaecker, K.~B., Hopper, J.~L., Barnes, D.~R., Phillips, K.-A., Mooij,
+  T.~M., Roos-Blom, M.-J., Jervis, S., Van~Leeuwen, F.~E., Milne, R.~L.,
+  Andrieu, N., et~al.
+\newblock Risks of breast, ovarian, and contralateral breast cancer for brca1
+  and brca2 mutation carriers.
+\newblock {\em Jama}, 317(23):2402--2416, 2017.
 
 \bibitem{liaw2002rf}
 Liaw, A. and Wiener, M.

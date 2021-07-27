@@ -1,9 +1,9 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
 
-\title{Penalized Regression in the Age of Big Data} %just a filler title, we can change it to whatever we want
+\title{An Analysis of Penalized Regression in High Dimensional Scenarios} %just a filler title, we can change it to whatever we want
 \author{Gabriel Ackall$^1$*, Connor Shrader$^2$* \\
-		Mentor: Dr. Ty Kim$^3$ \\	
+		Mentor: Dr. Seongtae Kim$^3$ \\	
 		{\footnotesize $^1$Georgia Tech, Civil and Environmental Engineering} \\
 		{\footnotesize $^2$University of Central  Florida, Mathematics} \\
 		{\footnotesize $^3$NCA\&T University, Mathematics and Statistics} \\
@@ -28,6 +28,7 @@
 \usepackage{hyperref} % Clickable ref's
 \usepackage{lscape}
 \usepackage{multirow}
+\usepackage{bm}
 
 % Tikz stuff
 \usepackage{tikz}
@@ -72,7 +73,7 @@
 \begin{abstract}
 	With the prevalence of big data in recent years, the importance of modeling high dimensional data and selecting influential features has increased greatly. High dimensional data is common in many fields such as genome decoding, rare disease identification, economic modeling, and environmental modeling. However, most traditional regression machine learning models are not designed to handle high dimensional data or conduct variable selection. In this paper, we investigate the use of penalized regression methods instead of, or in conjunction with, traditional machine learning methods. We focus on ridge, least absolute shrinkage and selection operation (lasso), elastic net (E-net), smoothly clipped absolute deviation (SCAD), and minimax concav penalty (MCP). For traditional machine learning models, we focus on random forest models, gradient boosting models in the form of XGBoost, and support vector machines. We evaluate these models using factorial design methods for Monte Carlo simulations under various data environments. We ran simulations in 270 environments, with factors being the number of predictors, number of samples, signal to noise ratio, covariance matrix, and correlation strength. This process serves to identify the strengths and weaknesses of different penalization techniques in different environments. We also compare different models using empirical data to evaluate their viability in real-world scenarios. Since our models are regression models, we evaluate the models using the test mean squared error and variable selection accuracy. We also evaluated the simulated models using $\beta$-sensitivit and $\beta$-specificity. From our investigation, our findings indicate that penalized regression models outperform more traditional machine learning algorithms in most high-dimensional situations or in situations with a low number of data observations. Machine learning models are not often compared to penalized regression methods and so our analysis helps to expand the scope of how penalized regression is used to help model data. Additionally, the analysis helps to create a greater understanding of the strengths and weaknesses of each model type and provide a reference for other researchers on which machine learning techniques they should use, depending on a range of factors and data environments. \\
 	
-	\textit{Keywords:} penalized regression, variable selection, classification, machine learning, large $p$ little $n$ problem, Monte Carlo simulations
+	\textit{Keywords:} penalized regression, variable selection, classification, machine learning, large $p$ small $n$ problem, Monte Carlo simulations
 \end{abstract}
 
 \newpage
@@ -93,21 +94,22 @@ In these situations where there are more predictors, $p$, than observations, $n$
 
 %To resolve this ``large $p$, little $n$'' problem, many algorithms have been introduced to address situations where there are more predictors than observations. Many, but not all, of these techniques use \textbf{variable selection}, meaning that they select the predictors that are most correlated with the response. By ignoring predictors that are not strongly related to the response, the negative consequences of overfitting can be greatly reduced.
 
-This paper investigates various methods used to handle the large $p$, small $n$ problem. We considered subset selection methods such as forward selection, backward selection, stepwise forward selection and stepwise backward selection using both Akaike information criterion (AIC) and Bayesian information criterion (BIC) as the stopping criteria for the models \cite{akaike1998information, schwarz1978estimating}. In addition, we studied penalized regression models such as ridge regression \cite{hoerl1970ridge}, least absolute shrinkage and selection operation (lasso) \cite{tibshirani1996regression}, elastic-net \cite{zou2005regularization}, smoothly clipped absolute deviation (SCAD) \cite{fan2001variable}, and minimax concave penalty (MCP) \cite{zhang2010nearly}. These models were compared to random forest (RF) \cite{breiman2001random}, gradient boosting in the form of XGBoost \cite{chen2021xgboost}, and support vector machine (SVM) models \cite{cortes1995support}. In order to compare these different techniques, models were trained and evaluated using both Monte Carlo simulations and empirical genomic data.
+This paper investigates several methods to handle the large $p$, small $n$ problem. First, We considered wrapper methods such as forward selection, backward selection, stepwise forward selection and stepwise backward selection using both Akaike information criterion (AIC) and Bayesian information criterion (BIC) as the stopping criteria for the models \cite{akaike1998information, schwarz1978estimating}. These models fit several linear models using different subsets of predictors and selects the model that optimizes a specific metric. In addition, we studied penalized regression models such as ridge regression \cite{hoerl1970ridge}, least absolute shrinkage and selection operation (lasso) \cite{tibshirani1996regression}, elastic-net \cite{zou2005regularization}, smoothly clipped absolute deviation (SCAD) \cite{fan2001variable}, and minimax concave penalty (MCP) \cite{zhang2010nearly}. These models simultaneously select important predictors and fit a linear model. Finally, we considered a few machine learning models: random forests (RF) \cite{breiman2001random}, gradient boosting in the form of XGBoost \cite{chen2021xgboost}, and support vector machine (SVM) models \cite{cortes1995support}. These models do not assume a linear relationship between a response and its predictors. To compare these different techniques, models were trained and evaluated using both Monte Carlo simulations and empirical genomic data.
 
-\section{Methodology}
+Section \ref{sec:methodology} contains details about each model and details the implementation of these models for our study. Section \ref{sec:simulations} describes our simulation study design and results, while section \ref{sec:empirical} explains our empirical data analysis and results. Section \ref{sec:discussion} is a discussion of our results and Section \ref{sec:conclusion} is the conclusion.
+
+\section{Methodology}\label{sec:methodology}
 \subsection{Modeling Background}
 % We can talk about the necessary background information
 % what is linear regression?
-
 
 Suppose that we have $p$ predictor variables $X_1, X_2, \dotsc, X_p$ and one response variable $Y$ that depends on some (or all) of the predictors. We assume that $Y$ can be expressed as
 \begin{equation}\label{eqn:relationship}
 	Y = f(X_1, X_2, \dotsc, X_p) + \epsilon
 \end{equation}
-where $f$ is a function and $\epsilon$ is an independent random error with mean zero. The goal of supervised modeling is to find a function $\hat{f}$ that is a suitable approximation for $f$. To compute $\hat{f}$, we use a \textbf{training set}, a set of observations where the response variable $Y$ is already known. Then, using the fitted model, we can predict the value of the response variable $\hat{Y}$ for new observations, even if $Y$ is unknown. Model performance can be evaluated using a \textbf{test set}, which is a set of observations with known response values that were not used to train the model.
+where $f$ is a function and $\epsilon$ is an independent random error with mean zero. The goal of supervised modeling is to find a function $\hat{f}$ that is a suitable approximation for $f$. To compute $\hat{f}$, we use a \textbf{training set}, a set of observations where the response variable $Y$ is already known. Then, using the fitted model, we can predict the value of the response variable $\hat{Y}$ for new observations, even if $Y$ is unknown. Model performance is evaluated using a \textbf{test set}, which is a set of observations with known response values that were not used to train the model.
 
-There are two broad types of supervised models. \textbf{Regression modeling} is used when the response variable $Y$ takes numerical values on a continuous interval. For example, a model that predicts the value of a home is a regression model. On the other hand, if $Y$ can only take discrete values, then \textbf{classification modeling} is used. For instance, a model used to predict whether or not a patient has a disease is classification problem. This paper focuses on regression modeling.
+There are two broad types of supervised models. \textbf{Regression modeling} is used when the response variable $Y$ consists of numerical values on a continuous interval. For example, a model that predicts the value of a home is a regression model. On the other hand, if $Y$ can only take discrete values, then \textbf{classification modeling} is used. For instance, a model used to predict whether or not a patient has a disease is classification problem. This paper focuses on regression modeling.
 
 \subsection{Linear Regression and Ordinary Least Squares}
 
@@ -117,13 +119,13 @@ In practice, the function $f$ that relates the predictors to the response is com
 \end{equation}
 where $\beta_0, \beta_1, \beta_2, \dotsc, \beta_p$ are coefficients. Notice that the coefficient $\beta_0$ is not multiplied with any predictor; it represents an intercept value. Fitting a linear model will give estimates for these coefficient values.
 
-The most common method to approximate the coefficients in a linear model is by \textbf{ordinary least squares}. Suppose that we have $n$ observations in our training set. Let $x_{ij}$ represent the value of predictor $j$ for observation $i$, and let $y_i$ be the response for observation $i$. For some coefficient estimates $\beta_0, \beta_1, \beta_2, \dotsc, \beta_p$, the expression
+The most common method to approximate the coefficients in a linear model is by \textbf{ordinary least squares}. Suppose that we have $n$ observations in our training set. Let $x_{ij}$ represent the value of predictor $j$ for observation $i$, and let $y_i$ be the response for observation $i$. For some coefficient estimates $\hat{\beta}_0, \hat{\beta}_1, \hat{\beta}_2, \dotsc, \hat{\beta}_p$, the expression
 \begin{equation}
-	y_i - (\beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \cdots + \beta_p x_{ip})
+	y_i - (\hat{\beta}_0 + \hat{\beta}_1 x_{i1} + \hat{\beta}_2 x_{i2} + \cdots + \hat{\beta}_p x_{ip})
 \end{equation}
-is called the \textbf{residual} for observation $i$; it is the difference between the true response value and the predicted response variable using the given coefficient values. Ordinary least squares chooses the coefficients $\beta_0, \beta_1, \beta_2, \dotsc, \beta_p$ that minimize the \textbf{residual sum of squares}
+is called the \textbf{residual} for observation $i$; it is the difference between the true response value and the predicted response variable using the given coefficient values. Ordinary least squares chooses the coefficient estimates that minimize the \textbf{residual sum of squares}
 \begin{equation}\label{eqn:RSS}
-	\text{RSS} = \sum\limits_{i = 1}^n \Big[y_i - (\beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \cdots + \beta_p x_{ip})\Big]^2
+	\text{RSS} = \sum\limits_{i = 1}^n \Big[y_i - (\hat{\beta}_0 + \hat{\beta}_1 x_{i1} + \hat{\beta}_2 x_{i2} + \cdots + \hat{\beta}_p x_{ip})\Big]^2
 \end{equation}
 Intuitively, if the residual sum of squares is low, then the differences between the response variable and its estimates is low. Thus, by minimizing the residual sum of squares, the function obtained from ordinary least squares is a relatively good approximation for $f$. Figure \ref{fig:ols} demonstrates a model fitted with ordinary least squares when there is a single predictor variable.
 
@@ -135,13 +137,13 @@ Intuitively, if the residual sum of squares is low, then the differences between
 	\label{fig:ols}
 \end{figure}
 
-One reason that ordinary least squares is popular is because it is very easy to compute. Let $\beta = [\beta_0, \beta_1, \beta_2, \dotsc, \beta_p]^\top$ be a $(p + 1) \times 1$ vector of coefficient values and let $\mathbf{X}$ be a $n\times (p + 1)$ matrix where each row contains the predictor values for one observation, with an additional value of 1 in the first entry (this extra value corresponds to the intercept coefficient $\beta_0$). Then $\mathbf{X}\beta$ is a vector of the estimated response values for our choice of $\beta$. Let $\mathbf{y}$ represent the true response values. Then $\mathbf{y} - \mathbf{X}\beta$ is a vector of residuals. To choose coefficient estimates that minimize the residual sum of squares, we compute
+One reason that ordinary least squares is popular is because it is very easy to compute. Let $\bm{\beta} = [\beta_0, \beta_1, \beta_2, \dotsc, \beta_p]^\top$ be a $(p + 1) \times 1$ vector of coefficient values and let $\mathbf{X}$ be a $n\times (p + 1)$ matrix where each row contains the predictor values for one observation, with an additional value of 1 in the first entry (this extra value corresponds to the intercept coefficient $\beta_0$). Then $\mathbf{X}\bm{\beta}$ is a vector of the estimated response values for our choice of $\beta$. Let $\mathbf{y}$ represent the true response values. Thus, $\mathbf{y} - \mathbf{X}\bm{\beta}$ is a vector of residuals. To choose coefficient estimates that minimize the residual sum of squares, we compute
 \begin{equation}
-	\hat{\beta}^{\text{OLS}} = \argmin{\beta}{(\mathbf{y} - \mathbf{X}\beta)^\top (\mathbf{y} - \mathbf{X}\beta)}
+	\hat{\bm{\beta}}^{\text{OLS}} = \argmin{\bm{\beta}}{(\mathbf{y} - \mathbf{X}\bm{\beta})^\top (\mathbf{y} - \mathbf{X}\bm{\beta})}
 \end{equation}
-where $(\mathbf{y} - \mathbf{X}\beta)^\top (\mathbf{y} - \mathbf{X}\beta)$ is the same residual sum of squares seen in Equation \ref{eqn:RSS}. From \cite{friedman2001elements}, this gives us the solution
+where $(\mathbf{y} - \mathbf{X}\bm{\beta})^\top (\mathbf{y} - \mathbf{X}\bm{\beta})$ is the same residual sum of squares seen in Equation \ref{eqn:RSS}. From \cite{friedman2001elements}, this gives us the solution
 \begin{equation}\label{eqn:ols-solution}
-	\hat{\beta}^{\text{OLS}} = (\mathbf{X}^\top \mathbf{X})^{-1} \mathbf{X}^\top \mathbf{y}
+	\hat{\bm{\beta}}^{\text{OLS}} = (\mathbf{X}^\top \mathbf{X})^{-1} \mathbf{X}^\top \mathbf{y}
 \end{equation}
 
 Another advantage of ordinary least squares is that it is an unbiased linear model. This means that if the relationship between the response variable and the predictors is actually linear (as given in Equation \ref{eqn:linear-model}), then the expected value of the coefficient vector $\hat{\beta}^\text{OLS}$ is equal to the actual coefficient vector $\beta$. Furthermore, the \textbf{Gauss-Markov theorem} states that if the random error $\epsilon$ is independent and has constant variance, then ordinary least squares has the lowest variance among all linear unbiased estimators. In other words, the coefficient estimates given by ordinary least squares are relatively close to the actual coefficient values when compared to other unbiased linear estimators. This makes ordinary least squares a relatively consistent model.
@@ -159,13 +161,13 @@ By using models that have a small amount of bias, the high variance of ordinary 
 
 There are two main benefits to using subset selection methods. By reducing the set of available predictors to just those that are strongly related to the response, overfitting can be mitigated. Another benefit of subset selection is that it creates a more interpretable model. If a data set includes thousands of predictors but only a few are related to the response, a model found using subset selection will be easier to understand than a model that relies on all of the parameters. 
 
-\textbf{Best subset selection} is a subset selection method that considers every possible combination of predictors. For every possible value of $k$ between 0 and $p$, best subset selection will fit the ${p\choose k}$ possible models using $k$ predictors. Then, the best model for each value of $k$ is chosen based on some performance metric. Finally, a final model can be selected from the $(p + 1)$ remaining models, ranging from an empty model with no predictors to a full model with all of the predictors. If $p$ is larger than $n$, then models are only fit for subsets with $n$ or less predictors since ordinary least squares cannot be used when there are more predictors than observations.
+\textbf{Best subset selection} is a subset selection method that considers every possible combination of predictors. For every possible value of $k$ between 0 and $p$, best subset selection will fit the ${p\choose k}$ possible models using $k$ predictors. Then, the best model for each value of $k$ is chosen based on some performance metric. A final model can be selected from the $(p + 1)$ remaining models, ranging from an empty model with no predictors to a full model with all of the predictors. If $p$ is larger than $n$, then models are only fit for subsets with $n$ or less predictors since ordinary least squares cannot be used when there are more predictors than observations.
 
-Although best subset selection is guaranteed to find the subset of predictors that optimize the chosen metric, this method is computationally expensive. For a data set with $p$ predictors, $2^p$ possible combinations must be considered. This makes best subset selection infeasible when the number of predictors is too large.
+Although best subset selection is guaranteed to find the subset of predictors that optimize the chosen metric, this method is computationally expensive. For a data set with $p$ predictors, $2^p$ possible combinations must be considered. This makes best subset selection infeasible when the number of predictors is above 40.
 
 Two alternative methods to best subset selection are \textbf{forward selection} and \textbf{backward selection}. Forward selection begins by fitting a model with no predictors (only the intercept is non-zero) and iteratively adds predictors into the model. The predictor added at each step is chosen to best increase the model fit. Conversely, backward selection starts from the full (ordinary least squares) model with all $p$ predictors and repeatedly removes predictors. Then, like best subset selection, the final model is chosen from the candidate models fitted at each step. Note that backward selection can only be used when $p\leq n$ since ordinary least squares cannot be used when $p>n$. Forward selection can always be used.
 
-Although forward and backward selection will not always encounter the best possible model, these methods avoid the exponential runtime of best subset selection. Consequently, forward and backward selection can be used for larger values of $p$.
+Although forward and backward selection will not always encounter the best possible model, these methods help optimize best subset selection and are quicker than best subset selection. Consequently, forward and backward selection can be used for larger values of $p$. However, despite these optimization, forward and backwards selection are still plagued by the fact that the number of combinations of predictors increases exponentially and thus they cannot be used for very large values of $p$.
 
 The models produced by forward and backward selection can be improved by allowing predictors to be added and removed in the same algorithm. \textbf{Forward stepwise selection} begins with an empty model and iteratively improves the model by either adding a new predictor or removing an obsolete one. \textbf{Backward stepwise selection} works in the same way but starts with the full model. Like backward selection, backward stepwise selection can only be used when $p\geq n$. These techniques take longer to run than ordinary forward and backward selection, but they are more likely to find the best possible model.
 
@@ -192,17 +194,17 @@ In general, \textbf{penalized regression} works by fitting a model that punishes
 
 Almost all of the penalized regression methods in this paper solve an optimization problem of the form
 \begin{equation}\label{eqn:penalized-regression-lambda}
-	\hat{\beta}=\argmin{\beta}{\sum\limits_{i = 1}^N \Big[y_i - (\beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \cdots + \beta_p x_{ip})\Big]^2 + \lambda\sum\limits_{j = 1}^p P(\beta_j)}
+	\hat{\bm{\beta}}=\argmin{\bm{\beta}}{\sum\limits_{i = 1}^N \Big[y_i - (\beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \cdots + \beta_p x_{ip})\Big]^2 + \lambda\sum\limits_{j = 1}^p P(\beta_j)}
 \end{equation}
 where the first summation is the usual residual sum of squares, $\lambda\geq 0$ is a hyperparameter that controls the strength of the penalty, and $P(\beta)$ is a penalty function applied to each of the coefficients. The penalty is not applied to the intercept $\beta_0$. In general, $P(\beta)$ is an even function that is non-decreasing as $\vert \beta \vert$ increases. If $\lambda = 0$, then we have the usual ordinary least squares estimator. As $\lambda$ increases, a stronger penalty is applied which will decrease the coefficient values. As $\lambda$ approaches $\infty$, the model becomes an empty model where only the intercept term is non-zero.
 
 A similar way to express penalized regression is with the form
 \begin{equation}\label{eqn:penalized-regression-t}
-	\hat{\beta} = \argmin{\beta}{\sum\limits_{i = 1}^N \Big[y_i - (\beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \cdots + \beta_p x_{ip})\Big]^2} \quad \text{subject to} \quad \sum\limits_{j = 1}^p P(\beta_j)\leq t
+	\hat{\bm{\beta}} = \argmin{\bm{\beta}}{\sum\limits_{i = 1}^N \Big[y_i - (\beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \cdots + \beta_p x_{ip})\Big]^2} \quad \text{subject to} \quad \sum\limits_{j = 1}^p P(\beta_j)\leq t
 \end{equation}
 where $t$ is a hyperparameter \cite{james2013introduction, friedman2001elements}. In this form, penalized regression fits the ordinary least squares under the condition that the sum of the penalties of the coefficients is kept below some threshold. It can be shown that for every value of $\lambda$ from Equation \ref{eqn:penalized-regression-lambda}, there is a value of $t$ from Equation \ref{eqn:penalized-regression-t} that gives equivalent coefficient estimates \cite{james2013introduction}. Most algorithms to fit penalized regression models use the form given in Equation \ref{eqn:penalized-regression-lambda}, but the form in Equation \ref{eqn:penalized-regression-t} may be considered more intuitive.
 
-When fitting penalized regression models, the choice of $\lambda$ is very important. If $\lambda$ is too small, then models may be overfit just like ordinary least squares; on the other hand, if $\lambda$ is large, then the resulting models are highly biased and the resulting models may be underfit. In practice, the best value of $\lambda$ can be selected using \textbf{cross-validation}. This process involves splitting the training set into $k$ disjoint subsets of equal size called \textbf{folds}. Then, $k$ models are fitted for different values of $\lambda$, where one fold is used as a testing set and the other $(k - 1)$ folds are used for training. The value of $\lambda$ that results in the lowest test error can then be selected.
+When fitting penalized regression models, the choice of $\lambda$ is very important. If $\lambda$ is too small, then models may be overfit just like ordinary least squares; on the other hand, if $\lambda$ is large, then the resulting models are highly biased and the resulting models may be underfit. In practice, the best value of $\lambda$ can be selected using \textbf{cross-validation} and \textbf{grid search}. This process involves splitting the training set into $k$ disjoint subsets of equal size called \textbf{folds}. Then, $k$ models are fitted for different values of $\lambda$, where one fold is used as a testing set and the other $(k - 1)$ folds are used for training. The value of $\lambda$ that results in the lowest test error can then be selected.
 
 \textbf{Ridge regression} is a penalized regression model that uses the penalty function $P(\beta) = \beta^2$ \cite{hoerl1970ridge}. One advantage of ridge regression is that it can handle highly correlated data better than ordinary least squares. When predictors are correlated with each other, some algorithms have a hard time distinguishing which predictors are actually related to the response.
 
@@ -308,7 +310,7 @@ Note that of the penalized regression methods discussed above, only ridge regres
 
 Let $\mathbf{X}$ be a $n\times p$ matrix where each row contains the predictor values for one observation. To simplify things, we will assume that our data is centralized so that the coefficient $\beta_0$ is 0; that way, we do not need to include an extra entry of 1 in each row of $\mathbf{X}$. In an \textbf{orthonormal design}, we assume that $\mathbf{X}$ is orthonormal, meaning that the magnitude of each column of $\mathbf{X}$ is one and every pair of columns of $\mathbf{X}$ is orthogonal. In this special case, the matrix $(\mathbf{X}^\top \mathbf{X})^{-1}$ is the $p\times p$ identity matrix. As a result, each coefficient is independent of the other coefficients; in other words, we can compute the coefficient estimate for each predictor without needing to use the values for the other predictors. For example, in an orthonormal design, the general solution to ordinary least squares regression given in Equation \ref{eqn:ols-solution} simplifies to
 \begin{equation}\label{ols-orthonormal-solution}
-	\hat{\beta}^{\text{OLS}} = \mathbf{X}^\top \mathbf{y}
+	\hat{\bm{\beta}}^{\text{OLS}} = \mathbf{X}^\top \mathbf{y}
 \end{equation}
 
 To compute the coefficient estimates for lasso, SCAD, and MCP in an orthonormal design, we first compute the vector $\mathbf{z} = \mathbf{X}^\top \mathbf{y}$ \cite{fan2001variable}. Each entry of $\mathbf{z}$ corresponds to one predictor. We then apply a \textbf{thresholding function} to each entry of $\mathbf{z}$ to get the coefficient estimate for that predictor. For lasso, elastic-net, SCAD, and MCP, a closed-form for this thresholding function exists \cite{tibshirani1996regression, fan2001variable, zou2005regularization, zhang2010nearly}. The input to the thresholding function is the actual coefficient value, and the output is the estimated value for that coefficient in an orthonormal design. Figure \ref{fig:prediction} shows the threshold functions for lasso, SCAD and MCP when $\lambda = 1$. For SCAD and MCP, we used the value $a = 3$. For reference, the identity line is included, which can be considered as the threshold function for ordinary least squares.
@@ -317,11 +319,11 @@ To compute the coefficient estimates for lasso, SCAD, and MCP in an orthonormal 
 	\centering
 	\includegraphics[width = 0.8\textwidth]{images/lasso-scad-mcp-solution.png}
 	\captionsetup{width = 0.8\textwidth}
-	\caption{Thresholding function for lasso, SCAD, and MCP when $\lambda = 1$ and $a = 3$ in an orthonormal design. The input (z) represents an entry from the vector $\mathbf{z}=\mathbf{X}^\top \mathbf{y}$; the output ($\hat{\beta}$) is the coefficient estimate. The dashed vertical lines are the knots for SCAD and MCP.}
+	\caption{Thresholding function for lasso, SCAD, and MCP when $\lambda = 1$ and $a = 3$ in an orthonormal design. The input ($z$) represents an entry from the vector $\mathbf{z}=\mathbf{X}^\top \mathbf{y}$; the output ($\hat{\beta}$) is the coefficient estimate. The dashed vertical lines are the knots for SCAD and MCP.}
 	\label{fig:prediction}
 \end{figure}
 
-We see that when $\vert \beta \vert$ is small, the thresholding function for lasso, SCAD, and MCP are all zero. This matches with the assumption that these methods should set small coefficient estimates to zero. As $\vert \beta \vert$ increases, the estimated value for that coefficient gets larger. Notice that ordinary least squares doesn't decrease the estimated coefficient value for any choice of $\beta$; this is because of the fact that ordinary least squares is unbiased, whereas the other methods are biased.
+We see that when $\vert z \vert$ is small, the thresholding function for lasso, SCAD, and MCP are all zero. This matches with the assumption that these methods should set small coefficient estimates to zero. As $\vert z \vert$ increases, the estimated value for that coefficient gets larger. Notice that ordinary least squares doesn't decrease the estimated coefficient value for any choice of $z$; this is because of the fact that ordinary least squares is unbiased, whereas the other methods are biased.
 
 In this figure, we also see that the threshold function for lasso is parallel to the identity line for large values of $\beta$. This means that even if a predictor is very influential on the response, lasso will predict a coefficient estimate that is less than the true coefficient value. This makes lasso a very biased model. This issue was one of the main motivations for SCAD and MCP. Unlike lasso, SCAD and MCP converge to the identity line as $\beta$ increases, which makes these methods less likely to decrease large coefficient estimates.
 
@@ -329,9 +331,9 @@ Another feature of SCAD and MCP is their oracle-like properties \cite{fan2001var
 
 A linear model is said to have \textbf{oracle-like properties} if two asymptotic conditions hold \cite{zou2006adaptive}. Let $p^\ast$ be the number of predictors that have non-zero coefficients. First, as $n\to \infty$, the model must be able to correctly identify the correct subset of non-zero predictors, which we will denote by $\mathcal{A}$. The second condition is that as $n\to\infty$, we must have
 \begin{equation}
-	\sqrt{n}(\hat{\beta}_\mathcal{A} - \beta_\mathcal{A})\to_d \mathcal{N}_p^{\ast}(\mathbf{0}, \mathbf{\Sigma}^\ast)
+	\sqrt{n}(\hat{\bm{\beta}}_\mathcal{A} - \bm{\beta}\mathcal{A})\to_d \mathcal{N}_p^{\ast}(\mathbf{0}, \mathbf{\Sigma}^\ast)
 \end{equation}
-where $\hat{\beta}_\mathcal{A}$ are the coefficient estimates for the non-zero predictors, $\beta_\mathcal{A}$ are the true coefficient values for the non-zero predictors, and $\mathcal{N}_p^\ast(\mathbf{0}, \mathbf{\Sigma}^\ast)$ is the multivariate normal distribution of the $p^\ast$ non-zero predictors with mean zero and covariance matrix $\mathbf{\Sigma}^\ast$. In other words, as $n\to\infty$, the coefficient estimates for the non-zero predictors is normally distributed around the true coefficient values. Importantly, this means that the expected value for the coefficient estimates are the true coefficient values.
+where $\hat{\bm{\beta}}_\mathcal{A}$ are the coefficient estimates for the non-zero predictors, $\bm{\beta}_\mathcal{A}$ are the true coefficient values for the non-zero predictors, and $\mathcal{N}_p^\ast(\mathbf{0}, \mathbf{\Sigma}^\ast)$ is the multivariate normal distribution of the $p^\ast$ non-zero predictors with mean zero and covariance matrix $\mathbf{\Sigma}^\ast$. In other words, as $n\to\infty$, the coefficient estimates for the non-zero predictors is normally distributed around the true coefficient values. Importantly, this means that the expected value for the coefficient estimates are the true coefficient values.
 
 Both SCAD and MCP have oracle-like properties under certain conditions \cite{fan2001variable, zhang2010nearly}. Hence, SCAD and MCP can perform as well as the oracle estimator as $n$ approaches $\infty$. On the other hand, lasso does not have oracle-like properties, meaning that its predictions cannot perform as well as a model found with the aid of an oracle.
 
@@ -348,11 +350,11 @@ Both random forest and gradient boosting models use \textbf{decision trees} to m
 	\label{fig:decision-tree}
 \end{figure}
 
-Although decision trees can be used as machine learning models on their own, it is more common to use decision trees in \textbf{ensemble methods}, which combine many different decision trees into a single model. A single decision tree will usually have high variance since a small change in the training set can lead to a completely different decision tree \cite{james2013introduction}.
+Although decision trees can be used as machine learning models on their own, it is more common to use decision trees in \textbf{ensemble methods}, which combine many different decision trees into a single model. This is because a single decision tree will usually have high variance since a small change in the training set can lead to a completely different decision tree \cite{james2013introduction}.
 
 \textbf{Random Forests} (RF) solve the issue of high variance by aggregating the predictions of many independent decision trees \cite{breiman2001random}. Each tree is fit using a subset of the observations and a subset of the predictors so that the trees are relatively independent from one another.
 
-To fit each decision tree within a random forest model, first select a random sample of the $n$ observations with replacement, in a process called \textbf{bootstrapping} \cite{efron1994introduction}. The number of observations chosen for each tree is a hyperparameter that can be changed. After selecting a set of observations, a random sample of predictors are chosen out of the $p$ predictors without replacement. Again, this helps decorrelate the trees. The number of predictors used in each tree is also a hyperparameter that can be changed. A decision tree is then generated using the available observations and predictors.
+To fit each decision tree within a random forest model, we first select a random sample of the $n$ observations with replacement, in a process called \textbf{bootstrapping} \cite{efron1994introduction}. The number of observations chosen for each tree is a hyperparameter that can be changed. After selecting a set of observations, a random sample of predictors are chosen out of the $p$ predictors without replacement. Again, this helps decorrelate the trees. The number of predictors used in each tree is also a hyperparameter that can be changed. A decision tree is then generated using the available observations and predictors.
 
 A random forest model aggregates all of the individual decision trees into a single model. The number of trees generated, $B$, is a hyperparameter that can be changed; usually, a random forest model will contain at least several hundred trees. To make predictions with a random forest, a test observation is passed into each decision tree and the predictions from each tree are aggregated. Figure \ref{fig:random-forest} demonstrates how a prediction is made using a random forest. For regression, the results are normally aggregated using the mean; for classification, the prediction chosen most often by the trees is usually used as the final prediction. 
 
@@ -378,11 +380,11 @@ This idea of fitting multiple models with bootstrapping and aggregating the resu
 	\label{fig:boosting}
 \end{figure}
 
-Gradient boosting machines that use decision trees can be used for both regression and classification. When using a gradient boosting model with decision trees, \textbf{relative variable importance} and \textbf{pruning} can be used as a sort of pseudo-variable selection method to lower complexity and prevent over-fitting. However, this does not yield the same interpretability or bias trade off benefits that true variable selection yields. When using a gradient boosting model with linear regression, there is the ability to use lasso, ridge, and elastic net penalized regression as the weak learner and perform variable selection, although this is much less commonly used than decision trees in XGBoost.
+Gradient boosting machines that use decision trees can be used for both regression and classification. When using a gradient boosting model with decision trees, \textbf{relative variable importance} and \textbf{pruning} can be used as a sort of pseudo-variable selection method to lower complexity and prevent over-fitting. However, this does not yield the same interpretability or bias trade off benefits that true variable selection yields. When using a gradient boosting model with linear regression, there is the ability to use lasso, ridge, and elastic net penalized regression as the weak learner and perform variable selection, although this is much less commonly used than decision trees in gradient boosting.
 
 Gradient boosting models often suffer from slow computation speeds due to the large number of sequential models that need to be trained. \textbf{Extreme Gradient Boosting} (XGBoost) is a faster version of gradient boosting that utilizes parallel computing as well as different optimization techniques to speed up computation \cite{chen2016xgboost}. For these reasons, XGBoost is often preferred over standard gradient boosting models and is very commonly used in many machine learning applications. In this study, we will use the XGBoost algorithm for gradient boosting.
 
-For our study, we considered a few different hyperparameters. The learning rate controls how quickly the gradient boosting model learns. If this learning rate is high, then the model learns quickly, but it may not learn as efficiently. If the learning rate is low, then the model takes longer but typically makes better predictions. The maximum tree depth determines how high each tree can be. Using smaller tree sizes may oversimplify the model, but it could also mitigate overfitting.
+There are a few different hyperparameters that can control how an XGBoost model is fit. The learning rate controls how quickly the gradient boosting model learns. If this learning rate is high, then the model learns quickly, but it may not learn as efficiently. If the learning rate is low, then the model takes longer but typically makes better predictions. The maximum tree depth determines how high each tree can be. Using smaller tree sizes may oversimplify the model, but it could also mitigate overfitting.
 
 The final non-linear model that we considered is the \textbf{support vector machine} (SVM) \cite{cortes1995support}. In an ideal situation, a support vector machine is a binary classier whose decision boundary is a $(p-1)$-dimensional hyperplane in $p$-dimensional space that perfectly separates all of the observations for one class on one side and the observations for the other class lie on the opposite side. Moreover, the hyperplane chosen by a support vector machine will maximize the distance between this hyperplane and any of the observation points. The observations closest to this separating hyperplane are called \textbf{support vectors}. Predictions are made by determining which side of the hyperplane an observation lies on. Observations that lie above the hyperplane are assigned to one class, and observations on the other side are predicted to be the other class. Figure \ref{fig:svm} demonstrates a simple support vector machine for classification.
 
@@ -430,7 +432,7 @@ All of our simulations were run using version 4.1.0 of \lstinline!R!. Several di
 
 Ordinary least squares models were fitted using the \lstinline!lm! function from the \lstinline!stats! package in base \lstinline!R!.
 
-Subset selection models using forward, backward, stepwise forward, and stepwise backward selections were fitted using the \lstinline!MASS! library. For each of these four algorithms, we fit models using both AIC and BIC, giving up to eight models total.
+Subset selection models using forward, backward, stepwise forward, and stepwise backward selections were fitted using the \lstinline!MASS! library. For each of these four algorithms, we fit models using both AIC and BIC, totaling to eight models.
 
 For ridge, lasso, and elastic-net regression using \lstinline!glmnet!, we used the \lstinline!cv.glmnet! function. This function uses cross-validation grid search to determine the value of $\lambda$ that minimizes the cross-validation error. Using cross-validation can help generate a model that performs well on both training and testing data. We used the default value of 10 folds to fit models using \lstinline!glmnet!. For elastic-net regression, we used the hyperparameter $\alpha = 0.8$ in our simulation study. This means that the elastic-net model is more similar to lasso (where $\alpha = 1$) than ridge (where $\alpha = 0$). This value of $\alpha$ was chosen so that the elastic-net model could emphasize the variable selection provided by lasso while also allowing it to handle multicollinearity from ridge. For the empirical data analysis, we used $\alpha = 0.5$. The remaining hyperparameters were given their default values.
 
@@ -445,11 +447,11 @@ For random forests, we used \lstinline!ranger! for the simulated data and \lstin
 
 Finally, for support vector machines using \lstinline!e1071!, we varied $\epsilon$ (0.1, 0.5, 2), which affects the model's sensitivity to small errors. We also controlled the cost value $C$ (0.5, 1, 2), which affects how much the model punishes wrong predictions.
 
-Some of the models used could only be used for certain values of $n$ and $p$. This is because either the runtime becomes unreasonable when $n$ or $p$ are large, or the model simply cannot be used when $p$ is too large. Ordinary least squares was used when $p\leq n$, since it cannot be used at all when $p>n$. For the same reason, the forward subset selection algorithms were also used when $p\leq n$. The backward subset selection algorithms were only used when $p\leq n$ and $p\leq 40$. When $p>40$, the runtimes for backward selection and backward stepwise selection were very long, so we chose to discard backward selection when $p$ was too large. Ridge regression was used when $p\leq n$ as well as it is not designed for variable selection or for $p \geq n$ scenarios.
+Some of the models used could only be used for certain values of $n$ and $p$. This is because either the runtime becomes unreasonable when $n$ or $p$ are large, or the model simply cannot be used when $p$ is too large. Ordinary least squares was used when $p\leq n$, since it cannot be used at all when $p>n$. For the same reason, the backward subset selection algorithms were also used when $p\leq n$. The forward subset selection algorithms were only used when $p\leq n$ and $p\leq 40$. When $p>40$, the runtimes for forward selection and forward stepwise selection become unreasonably long due to problem of exponentially increasing combinations, so we chose to discard backward selection when $p$ was too large. Ridge regression was used when $p\leq n$ as well as it is not designed for variable selection or for $p \geq n$ scenarios. Ridge was included in the empirical data study simply to further demonstrate its ineffectiveness in high dimensional settings.
 
 Lasso, SCAD, MCP, GBM, and random forest models were used for all data sets. Support vector machine models were made for all of the simulated data but was not used for the empirical data. The empirical data has too many predictors which leads to unmitigable stack overflow errors. Simply put, the support vector machine model has trouble converging upon a local minimum and due to the need to store very large kernel matrices.
 
-\section{Monte Carlo Simulations}
+\section{Monte Carlo Simulations}\label{sec:simulations}
 % outline data generation process and factorial design process
 
 \textbf{Monte Carlo simulations} use randomly generated data to fit and test regression  models. There are several benefits to using simulated data rather than experimental data. For one, the true relationship between the predictor variables and the response is known. Simulations can also be iterated many times, giving sturdier results about the effectiveness of each model. Finally, Monte Carlo simulations give us full control over how our data is distributed. This enables us to evaluate the models under various conditions.
@@ -463,11 +465,11 @@ For the simulated data, we assumed that the relationship between the response va
 \end{equation}
 where $\beta_0$ is some intercept, $\beta_1, \dotsc, \beta_p$ are coefficient values and $\epsilon\sim \mathcal{N}(0, \sigma^2)$ is a normally distributed random error with mean 0 and variance $\sigma^2$. We chose the values $\beta_0 = 1$, $\beta_1 = 2$, $\beta_2 = -2$, $\beta_5=0.5$ and $\beta_6 = 3$, while the remaining coefficient values were set to 0.
 
-To generate the data, we first defined $\beta = [\beta_0, \beta_1, \dotsc, \beta_p]^\top$, a $(p + 1)\times 1$ vector of coefficient values. Next, we generated $\mathbf{X}$, a $n\times (p + 1)$ matrix where each row contains the predictor values for one observation with an extra value of 1 in the first entry. The entries for the remaining columns of $\mathbf{X}$ were generated using the $p$-dimensional multivariate normal distribution $\mathcal{N}_p(0, \mathbf{\Sigma})$ with mean zero and covariance matrix $\mathbf{\Sigma}$. We assumed that every predictor had a standard deviation of 1, making the covariance matrix equivalent to a correlation matrix. Four different correlation matrix structures were considered in our study, which are discussed later.
+To generate the data, we first defined $\bm{\beta} = [\beta_0, \beta_1, \dotsc, \beta_p]^\top$, a $(p + 1)\times 1$ vector of coefficient values. Next, we generated $\mathbf{X}$, a $n\times (p + 1)$ matrix where each row contains the predictor values for one observation with an extra value of 1 in the first entry. The entries for the remaining columns of $\mathbf{X}$ were generated using the $p$-dimensional multivariate normal distribution $\mathcal{N}_p(0, \mathbf{\Sigma})$ with mean zero and covariance matrix $\mathbf{\Sigma}$. We assumed that every predictor had a standard deviation of 1, making the covariance matrix equivalent to a correlation matrix. Four different correlation matrix structures were considered in our study, which are discussed later.
 
 We then generated an $n\times 1$ error vector $\mathbf{e}\sim \mathcal{N}(0, \sigma^2)$ with mean zero and variance $\sigma^2$. The response $\mathbf{y}$ can then be computed by
 \begin{equation}
-	\mathbf{y} = \mathbf{X}\beta + \mathbf{e}
+	\mathbf{y} = \mathbf{X}\bm{\beta} + \mathbf{e}
 \end{equation}
 
 Given the chosen coefficient values, the response $\mathbf{y}$ becomes
@@ -557,11 +559,11 @@ The $\beta$-specificity measures a model's ability to recognize coefficients tha
 
 Because we ran simulations using 270 different combinations of factors, we will just highlight the results for the two extremes: when $n = 1000$ and $p = 10$, and when $n = 50$ and $p = 2000$. All of the plots in this section use facet plots to convey as much information as possible. Each plot measures the average value for one of the four metrics discussed above over 100 simulations. Each row represents a different value of $\sigma$, the standard deviation of the random error. Each column represents a correlation structure. The different shapes and colors for each point represent the strength of the correlation between predictors.
 
-To save space in the plots, each model is given a shortened label. Many of these labels have been used throughout this paper; for example, ordinary least squares is labelled as OLS. The labels for the wrapper methods start with AIC or BIC, followed by either B for backward, SB for stepwise backward, F for forward or SF for stepwise forward. As an example, the stepwise forward model evaluated with BIC is labelled as ``AIC SF.''
+To save space in the plots, each model is given a shortened label. Many of these labels have been used throughout this paper; for example, ordinary least squares is labeled as OLS. The labels for the wrapper methods start with AIC or BIC, followed by either B for backward, SB for stepwise backward, F for forward or SF for stepwise forward. As an example, the stepwise forward model evaluated with AIC is labeled as ``AIC SF.''
 
-We will first consider the case where $n = 1000$ and $p = 10$. Figures \ref{fig:train-mse-1000-10} and \ref{fig:test-mse-1000-10} show the average mean squared error for each model for the training set and test set, respectively. Tables \ref{tab:train-mse-1000-10} and \ref{tab:test-mse-1000-10} in Appendix \ref{app:full-results} contain all of the data shown in these figures as well as the standard deviation for each point.
+We will first consider the case where $n = 1000$ and $p = 10$. Figures \ref{fig:train-mse-1000-10} and \ref{fig:test-mse-1000-10} show the average mean squared error of each model for the training set and test set, respectively. Tables \ref{tab:train-mse-1000-10} and \ref{tab:test-mse-1000-10} in Appendix \ref{app:full-results} contain all of the data shown in these figures as well as the standard deviation for each point.
 
-\begin{figure}[b!]
+\begin{figure}[h!]
 	\centering
 	\includegraphics[width = \textwidth]{images/facet-train-mse/facet_train_mse_1000_10.eps}
 	\captionsetup{width = 0.8\textwidth}
@@ -569,7 +571,7 @@ We will first consider the case where $n = 1000$ and $p = 10$. Figures \ref{fig:
 	\label{fig:train-mse-1000-10}
 \end{figure}
 
-\begin{figure}[t!]
+\begin{figure}[h!]
 	\centering
 	\includegraphics[width = \textwidth]{images/facet-test-mse/facet_test_mse_1000_10.eps}
 	\captionsetup{width = 0.8\textwidth}
@@ -577,15 +579,7 @@ We will first consider the case where $n = 1000$ and $p = 10$. Figures \ref{fig:
 	\label{fig:test-mse-1000-10}
 \end{figure}
 
-We see that the linear models have very similar train and test mean squared errors. For these models, the mean squared error is approximately equal to $\sigma^2$, the square of the random error. We also see that for all of the linear models except for ridge regression, the type and strength of correlation has little effect on model performance. However, ridge regression performs worse when the correlation is high.
-
-The non-linear models all have lower training mean squared errors compared to the linear models. However, they also have higher test mean squared errors. We see that gradient boosting is not affected too strongly by the amount of correlation; on the other hand, we see that random forest and support vector machine models have better test performance when there is a strong correlation between predictors.
-
-Figure \ref{fig:sensitivity-1000-10} displays the average $\beta$-sensitivity for each model that performs variable selection when $n = 1000$ and $p = 10$. We see that almost all the models were able to correctly identify all of the non-zero coefficients when $n = 1000$ and $p = 10$. The only exceptions were lasso and elastic-net models when the correlation structure was blockwise and the strength of the correlation was 0.9.
-
-Figure \ref{fig:specificity-1000-10} shows the average $\beta$-specificity for each model. We see that the subset selection models that used BIC made almost zero mistakes when identifying predictors as zero. In contrast, wrapper models fitted using AIC made more mistakes. We see that lasso and elastic-net made almost no mistakes when the correlation was low; in fact, when the correlation structure was independent, lasso made the fewest incorrect estimates out of all the models. As the correlation increases, lasso and elastic-net made more incorrect predictions. SCAD and MCP made more incorrect predictions than lasso and elastic-net in general. However, SCAD and MCP were also somewhat more resilient to an increase in correlation.
-
-\begin{figure}[p!]
+\begin{figure}[h!]
 	\centering
 	\includegraphics[width = \textwidth]{images/facet-sensitivity/facet_sensitivity_1000_10.eps}
 	\captionsetup{width = 0.8\textwidth}
@@ -600,9 +594,17 @@ Figure \ref{fig:specificity-1000-10} shows the average $\beta$-specificity for e
 	\label{fig:specificity-1000-10}
 \end{figure}
 
+We see that the linear models have very similar train and test mean squared errors. For these models, the mean squared error is approximately equal to $\sigma^2$, the square of the random error. We also see that for all of the linear models except for ridge regression, the type and strength of correlation has little effect on model performance. However, ridge regression performs worse when the correlation is high.
+
+The non-linear models all have lower training mean squared errors compared to the linear models. However, they also have higher test mean squared errors. We see that gradient boosting is not affected too strongly by the amount of correlation; on the other hand, we see that random forest and support vector machine models have better test performance when there is a strong correlation between predictors.
+
+Figure \ref{fig:sensitivity-1000-10} displays the average $\beta$-sensitivity for each model that performs variable selection when $n = 1000$ and $p = 10$. See Table \ref{tab:sensitivity-1000-10} for a table of these results. We see that almost all the models were able to correctly identify all of the non-zero coefficients when $n = 1000$ and $p = 10$. The only exceptions were lasso and elastic-net models when the correlation structure was blockwise and the strength of the correlation was 0.9.
+
+Figure \ref{fig:specificity-1000-10} shows the average $\beta$-specificity for each model. Exact numerical values are given in Table \ref{tab:specificity-1000-10}. We see that the subset selection models that used BIC made almost zero mistakes when identifying predictors as zero. In contrast, wrapper models fitted using AIC made more mistakes. We see that lasso and elastic-net made almost no mistakes when the correlation was low; in fact, when the correlation structure was independent, lasso made the fewest incorrect estimates out of all the models. As the correlation increases, lasso and elastic-net made more incorrect predictions. SCAD and MCP made more incorrect predictions than lasso and elastic-net in general. However, SCAD and MCP were also somewhat more resilient to an increase in correlation.
+
 Now, we will consider the opposite extreme where $n = 50$ and $p = 2000$. Figures \ref{fig:train-mse-50-2000} and \ref{fig:test-mse-50-2000} display the average mean squared error for simulations where $n = 50$ and $p = 2000$. Because less models were fitted for this combination of $n$ and $p$, less models are shown in this figure. See Table \ref{tab:train-mse-50-2000} and Table \ref{tab:test-mse-50-2000} for a table of these results, including the standard deviations for each point.
 
-\begin{figure}[b!]
+\begin{figure}[h!]
 	\centering
 	\includegraphics[width = \textwidth]{images/facet-train-mse/facet_train_mse_50_2000.eps}
 	\captionsetup{width = 0.8\textwidth}
@@ -610,11 +612,7 @@ Now, we will consider the opposite extreme where $n = 50$ and $p = 2000$. Figure
 	\label{fig:train-mse-50-2000}
 \end{figure}
 
-We see that the mean squared error for lasso and elastic-net are generally larger than SCAD and MCP for both the training data and test data. Gradient boosting has almost zero training mean squared error under all conditions, but has a relatively large test error. Random forest and support vector machine models have a moderate training error but a large test error. Interestingly, we see that the non-linear models all perform better when there is a strong correlation between predictors. On the other hand, the linear models are somewhat less affected by the correlation.
-
-Figure \ref{fig:sensitivity-50-2000} measures the average $\beta$-sensitivity for each model. We see that all of the models predict most of the non-zero coefficients when the correlation is low. When the correlation is high, all of the models struggle to identify the correct predictors. SCAD and MCP perform the best when the correlation is low but perform the worst when the correlation is high. Elastic-net performs particularly well compared to the other models when the correlation is high, especially when the correlation structure is autoregressive.
-
-\begin{figure}[t!]
+\begin{figure}[h!]
 	\centering
 	\includegraphics[width = \textwidth]{images/facet-test-mse/facet_test_mse_50_2000.eps}
 	\captionsetup{width = 0.8\textwidth}
@@ -629,9 +627,7 @@ Figure \ref{fig:sensitivity-50-2000} measures the average $\beta$-sensitivity fo
 	\label{fig:sensitivity-50-2000}
 \end{figure}
 
-Figure \ref{fig:specificity-50-2000} shows the average $\beta$-specificity $n = 50$ and $p = 2000$. MCP appears to make the fewest mistakes when choosing zero coefficients. The performance of the other models depends heavily on the type of correlation and the correlation strength. Lasso and elastic-net perform the worst when the correlation structure is symmetric compound, whereas SCAD performs poorly when the correlation structure is autoregressive or blockwise. We also see that the models generally made less mistakes as the correlation increases.
-
-\begin{figure}[t!]
+\begin{figure}[h!]
 	\centering
 	\includegraphics[width = \textwidth]{images/facet-specificity/facet_specificity_50_2000.eps}
 	\captionsetup{width = 0.8\textwidth}
@@ -639,11 +635,17 @@ Figure \ref{fig:specificity-50-2000} shows the average $\beta$-specificity $n = 
 	\label{fig:specificity-50-2000}
 \end{figure}
 
-\section{Empirical Data Analysis}
+We see that the mean squared error for lasso and elastic-net are generally larger than SCAD and MCP for both the training data and test data. Gradient boosting has almost zero training mean squared error under all conditions, but has a relatively large test error. Random forest and support vector machine models have a moderate training error but a large test error. Interestingly, we see that the non-linear models all perform better when there is a strong correlation between predictors. On the other hand, the linear models are somewhat less affected by the correlation.
+
+Figure \ref{fig:sensitivity-50-2000} shows the mean $\beta$-sensitivity for each model, with results shown in Table \ref{tab:sensitivity-50-2000}. We see that all of the models predict most of the non-zero coefficients when the correlation is low. When the correlation is high, all of the models struggle to identify the correct predictors. SCAD and MCP perform the best when the correlation is low but perform the worst when the correlation is high. Elastic-net performs particularly well compared to the other models when the correlation is high, especially when the correlation structure is autoregressive.
+
+Figure \ref{fig:specificity-50-2000} shows the average $\beta$-specificity $n = 50$ and $p = 2000$. See Table \ref{tab:specificity-50-2000} for the corresponding results table. MCP appears to make the fewest mistakes when choosing zero coefficients. The performance of the other models depends heavily on the type of correlation and the correlation strength. Lasso and elastic-net perform the worst when the correlation structure is symmetric compound, whereas SCAD performs poorly when the correlation structure is autoregressive or blockwise. We also see that the models generally made less mistakes as the correlation increases.
+
+\section{Empirical Data Analysis}\label{sec:empirical}
 \subsection{Details of Empirical Data}
 % outline empirical data sources and what each database is about / what we try to predict about it
 
-For empirical data, we used the Breast Cancer database from The Cancer Genome Atlas (bcTCGA). A cleaned version of the data is provided by the \lstinline!biglasso! \lstinline!R! package \cite{zeng2017biglasso}. This data set contains the gene expression data of 17322 genes from 536 patients. One of these genes is the BRCA1 gene which is among the first genes discovered that can increase the risk of breast cancer. Because the BRCA1 gene interacts with other genes, it is useful to find genes that interact with BRCA1 to test in further studies. The distribution of the BRCA1 gene expression levels in the bcTCGA database can be seen in Figure \ref{fig:BRCA1-distribution}. The BRCA1 gene expression level will act as the output value in our regression analysis and the other 17322 genes will serve as predictor values.
+For empirical data, we used the Breast Cancer database from The Cancer Genome Atlas (bcTCGA). A cleaned version of the data is provided by the \lstinline!biglasso! \lstinline!R! package \cite{zeng2017biglasso}. This data set contains the gene expression data of 17323 genes from 536 patients. One of these genes is the BRCA1 gene which is among the first genes discovered that can increase the risk of breast cancer. Because the BRCA1 gene interacts with other genes, it is useful to find genes that interact with BRCA1 to test in further studies. The distribution of the BRCA1 gene expression levels in the bcTCGA database can be seen in Figure \ref{fig:BRCA1-distribution}. The BRCA1 gene expression level will act as the output value in our regression analysis and the other 17322 genes will serve as predictor values.
 
 \begin{figure}[h!]
 	\centering
@@ -752,14 +754,14 @@ Table \ref{tab:emp_runtimes} shows the average runtime to fit each of the models
 \end{table}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Discussion}
+\section{Discussion}\label{sec:discussion}
 \subsection{Discussion of Monte Carlo Results}
 % discussion of findings, future work, and contributions
 First, we will discuss the mean squared error results from the simulations. Figures \ref{fig:test-mse-1000-10} and \ref{fig:test-mse-50-2000} shows that the best-performing models on test data were SCAD and MCP. The wrapper methods that used BIC performed better than SCAD and MCP when $n = 1000$ and $p = 10$, but could not be used in the high dimensional case where $n = 50$ and $p = 2000$. Lasso, elastic-net, and the wrapper methods with AIC all had low test mean-squared errors as well. Ridge performed the worst out of all the linear models. The non-linear models also performed very badly on test data.
 
-Looking at the training mean squared error results from Figures \ref{fig:train-mse-1000-10} \ref{fig:train-mse-50-2000}, we see that all of the linear models had the same error as they had on the test data. This indicates that these models did not overfit to the training data. On the other hand, the non-linear models have far lower training mean squared errors than test errors. In particular, random forest models almost perfectly fit to the training data when $n = 1000$ and $p = 10$, while gradient boosting made an almost perfect fit when $n = 50$ and $p = 2000$.
+Looking at the training mean squared error results from Figures \ref{fig:train-mse-1000-10} and \ref{fig:train-mse-50-2000}, we see that all of the linear models had the same error as they had on the test data. This indicates that these models did not overfit to the training data. On the other hand, the non-linear models have far lower training mean squared errors than test errors. In particular, random forest models almost perfectly fit to the training data when $n = 1000$ and $p = 10$, while gradient boosting made an almost perfect fit when $n = 50$ and $p = 2000$.
 
-Ridge regression, which performed badly on both training data and test data, was likely restricted by its penalty function and its inability to perform variable selection. Recall that three out of the five non-zero coefficient values chosen were greater than one. Because the penalty function for ridge squares coefficients, ridge was very strongly discouraged from selecting coefficient estimates close to the true non-zero coefficient values. Furthermore, because ridge regression cannot set coefficients to zero, its coefficient estimates for the true non-zero coefficients was likely even smaller. As a result, ridge regression was unable to predict the true coefficient values as well as the other linear models.
+Ridge regression, which performed badly on both training data and test data, was likely restricted by its penalty function and its inability to perform variable selection. Recall that three out of the five non-zero coefficient values chosen were greater than one. Because the penalty function for ridge squares coefficients, ridge was very strongly discouraged from selecting coefficient estimates close to the true non-zero coefficient values. Furthermore, because ridge regression cannot set coefficients to zero, its coefficient estimates for the true non-zero coefficients was likely even smaller because unimportant predictors were given non-zero coefficient estimates. As a result, ridge regression was unable to predict the true coefficient values as well as the other linear models.
 
 Another note about ridge regression is that it was more strongly affected by correlation between predictors when $n = 1000$ and $p = 10$, as seen in Figure \ref{fig:test-mse-1000-10}. The other linear models, which could set coefficients to zero, were likely able to eliminate unimportant predictors even though they were correlated with the important predictors. Ridge regression, unable to eliminate these unimportant predictors, may have instead given larger coefficient estimates to the incorrect predictors.
 
@@ -786,16 +788,16 @@ Although wrapper methods and penalized regression models were the evident winner
 Another disadvantage for the non-linear models is that they can be controlled by many different hyperparameters, but we only considered a couple for each model. This was out of necessity; it would have been infeasible to fit models using more hyperparameters given the number of simulations that had to be run. If more hyperparameters could be included, then the performance of the non-linear models may have been more comparable to the linear models. At the same time, the more comprehensive tuning of several hyperparameters could act as a double edged sword in that it could increase the overfitting of these models. More hyperparameter tuning could lead a model to pick hyperparameters that fits the training data very precisely, but at the expense of increased testing error and increased computational cost.
 
 \subsection{Discussion of Empirical Data Results}
-In our empirical data study, SCAD and MCP also maintained the lowest testing mean squared error among the tested models. This can be seen in Figure \ref{fig:empirical_mse} and Table \ref{tab:emp_results} which showcase MCP as having the lowest average MSE and standard deviation. This may be due in part to the fact that MCP consistently selected the fewest number of predictors compared to Lasso and Elastic Net as visible in Figure \ref{fig:venn}. Because this empirical data most likely contains multicollinearity, the fact that MCP selects fewer predictors may have helped to reduce overfitting. This is consistent with results from the Monte Carlo simulations which indicate that MCP performed better than its counterparts in multicollinear environments.
+In our empirical data study, SCAD and MCP also maintained the lowest testing mean squared error among the tested models. This can be seen in Figure \ref{fig:empirical_mse} and Table \ref{tab:emp_results}. Furthermore, the mean squared error MCP had a relatively low standard deviation across the five folds. This may be due in part to the fact that MCP consistently selected the fewest number of predictors compared to Lasso and Elastic Net as shown by the Venn diagrams in Figure \ref{fig:venn}. Because this empirical data most likely contains multicollinearity, the fact that MCP selects fewer predictors may have helped to reduce overfitting. This is consistent with results from the Monte Carlo simulations which indicate that MCP performed better than its counterparts in multicollinear environments.
 
 An interesting result was how few predictors were selected between all four models. It would be expected that the most important predictors would be chosen by all four models, but only three to six predictors were selected in common by all the models. Between MCP, Lasso, and Elastic Net, there were slightly more selected predictors in common, but these still were much less than expected. This is most likely because MCP is very different from the other regression techniques in that it uses non-convex optimization and thus selected many predictors that were different from all the other models. Since MCP had a much lower false negative rate compared to the other models as determined in the Monte Carlo simulations, it can be assumed that many of these predictors solely selected by MCP were significant predictors that were missed by the other models. This could have been another reason why MCP performed the best out of all the fitted models on the empirical data. 
 
-MCP also maintained the lowest testing MSE standard deviation for the empirical data as seen in Figure \ref{tab:emp_results}. This is to be expected given the bias/variance tradeoff. Because MCP selects fewer predictors than the other models, it incurs greater bias but while also lessening variance. By definition, this means that MSP is less sensitive to changes in training data, such as changes in training data due to 5-fold cross validation. 
+MCP also maintained the lowest testing MSE standard deviation for the empirical data as seen in Figure \ref{tab:emp_results}. This is to be expected given the bias/variance tradeoff. Because MCP selects fewer predictors than the other models, it incurs greater bias but while also lessening variance. By definition, this means that MCP is less sensitive to changes in training data, such as changes in training data due to 5-fold cross validation. 
 
 The penalized regression models performed exceptionally faster than random forest and XGBoost as documented in Table \ref{tab:emp_runtimes}. On average, Lasso and Elastic Net ran approximately 56x faster than XGBoost and 510x faster than random forest. MCP and SCAD ran approximately 30x faster than XGBoost and 290x faster than random forest. This provides a significant advantage to the penalized regression techniques, especially given that MCP and other penalized techniques performed better than random forest and XGBoost. 
 
 
-\section{Conclusion}
+\section{Conclusion}\label{sec:conclusion}
 
 % what are our contributions, why is what we did important?
 % we have a comprehensive analysis of 21 models in 270 different environments. Allows for comprehensive comparison and gives guidance to data scientists as to which model they should use for their research
@@ -825,41 +827,49 @@ The following pages contain the full table of Monte Carlo simulation results. Ea
 \begin{landscape}
 	\centering
 	\captionsetup{width = 6in}
-	\captionof{table}{Mean and standard deviation of the mean squared error on training data when $n = 1000$ and $p = 10$. See Figure \ref{fig:train-mse-50-2000} for the corresponding plot.}\label{tab:train-mse-1000-10}
+	\captionof{table}{Mean and standard deviation of the mean squared error on training data when $n = 1000$ and $p = 10$. See Figure \ref{fig:train-mse-50-2000} for the corresponding plot.}
+	\label{tab:train-mse-1000-10}
 	\input{./tables/train_mse_1000_10.tex}
 	
 	\newpage
 	
-	\captionof{table}{Mean and standard deviation of the mean squared error on test data when $n = 1000$ and $p = 10$. See Figure \ref{fig:test-mse-50-2000} for the corresponding plot.}\label{tab:test-mse-1000-10}
+	\captionof{table}{Mean and standard deviation of the mean squared error on test data when $n = 1000$ and $p = 10$. See Figure \ref{fig:test-mse-50-2000} for the corresponding plot.}
+	\label{tab:test-mse-1000-10}
 	\input{./tables/test_mse_1000_10.tex}
 	
 	\newpage
-	\captionof{table}{Mean and standard deviation of the $\beta$-sensitivity when $n = 1000$ and $p = 10$. See Figure \ref{fig:sensitivity-1000-10} for the corresponding plot.}\label{tab:sensitivity-1000-10}
+	\captionof{table}{Mean and standard deviation of the $\beta$-sensitivity when $n = 1000$ and $p = 10$. See Figure \ref{fig:sensitivity-1000-10} for the corresponding plot.}
+	\label{tab:sensitivity-1000-10}
 	\input{./tables/sensitivity_1000_10.tex}
 	
 	\newpage
 	
-	\captionof{table}{Mean and standard deviation of the $\beta$-specificity when $n = 1000$ and $p = 10$. See Figure \ref{fig:specificity-1000-10} for the corresponding plot.}\label{tab:specificity-1000-10}
+	\captionof{table}{Mean and standard deviation of the $\beta$-specificity when $n = 1000$ and $p = 10$. See Figure \ref{fig:specificity-1000-10} for the corresponding plot.}
+	\label{tab:specificity-1000-10}
 	\input{./tables/specificity_1000_10.tex}
 	
 	\newpage
 	
-	\captionof{table}{Mean and standard deviation of the mean squared error on training data when $n = 50$ and $p = 2000$. See Figure \ref{fig:train-mse-50-2000} for the corresponding plot.}\label{tab:train-mse-50-2000}
+	\captionof{table}{Mean and standard deviation of the mean squared error on training data when $n = 50$ and $p = 2000$. See Figure \ref{fig:train-mse-50-2000} for the corresponding plot.}
+	\label{tab:train-mse-50-2000}
 	\input{./tables/train_mse_50_2000.tex}
 	
 	\newpage
 	
-	\captionof{table}{Mean and standard deviation of the mean squared error on training data when $n = 50$ and $p = 2000$. See Figure \ref{fig:test-mse-50-2000} for the corresponding plot.}\label{tab:test-mse-50-2000}
+	\captionof{table}{Mean and standard deviation of the mean squared error on training data when $n = 50$ and $p = 2000$. See Figure \ref{fig:test-mse-50-2000} for the corresponding plot.}
+	\label{tab:test-mse-50-2000}
 	\input{./tables/test_mse_50_2000.tex}
 	
 	\newpage
 	
-	\captionof{table}{Mean and standard deviation of the $\beta$-sensitivity when $n = 50$ and $p = 2000$. See Figure \ref{fig:sensitivity-50-2000} for the corresponding plot.}\label{tab:sensitivity-50-2000}
+	\captionof{table}{Mean and standard deviation of the $\beta$-sensitivity when $n = 50$ and $p = 2000$. See Figure \ref{fig:sensitivity-50-2000} for the corresponding plot.}
+	\label{tab:sensitivity-50-2000}
 	\input{./tables/sensitivity_50_2000.tex}
 	
 	\bigskip
 	
 	\captionof{table}{Mean and standard deviation of the $\beta$-specificity when $n = 50$ and $p = 2000$. See Figure \ref{fig:specificity-50-2000} for the corresponding plot.}
+	\label{tab:specificity-50-2000}
 	\input{./tables/specificity_50_2000.tex}
 \end{landscape}
 }
