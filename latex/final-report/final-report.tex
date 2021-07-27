@@ -347,11 +347,11 @@ Both random forest and gradient boosting models use \textbf{decision trees} to m
 	\label{fig:decision-tree}
 \end{figure}
 
-Although decision trees can be used as machine learning models on their own, it is more common to use decision trees in \textbf{ensemble methods}, which combine many different decision trees into a single model. A single decision tree will usually have high variance since a small change in the training set can lead to a completely different decision tree \cite{james2013introduction}.
+Although decision trees can be used as machine learning models on their own, it is more common to use decision trees in \textbf{ensemble methods}, which combine many different decision trees into a single model. This is because a single decision tree will usually have high variance since a small change in the training set can lead to a completely different decision tree \cite{james2013introduction}.
 
 \textbf{Random Forests} (RF) solve the issue of high variance by aggregating the predictions of many independent decision trees \cite{breiman2001random}. Each tree is fit using a subset of the observations and a subset of the predictors so that the trees are relatively independent from one another.
 
-To fit each decision tree within a random forest model, first select a random sample of the $n$ observations with replacement, in a process called \textbf{bootstrapping} \cite{efron1994introduction}. The number of observations chosen for each tree is a hyperparameter that can be changed. After selecting a set of observations, a random sample of predictors are chosen out of the $p$ predictors without replacement. Again, this helps decorrelate the trees. The number of predictors used in each tree is also a hyperparameter that can be changed. A decision tree is then generated using the available observations and predictors.
+To fit each decision tree within a random forest model, we first select a random sample of the $n$ observations with replacement, in a process called \textbf{bootstrapping} \cite{efron1994introduction}. The number of observations chosen for each tree is a hyperparameter that can be changed. After selecting a set of observations, a random sample of predictors are chosen out of the $p$ predictors without replacement. Again, this helps decorrelate the trees. The number of predictors used in each tree is also a hyperparameter that can be changed. A decision tree is then generated using the available observations and predictors.
 
 A random forest model aggregates all of the individual decision trees into a single model. The number of trees generated, $B$, is a hyperparameter that can be changed; usually, a random forest model will contain at least several hundred trees. To make predictions with a random forest, a test observation is passed into each decision tree and the predictions from each tree are aggregated. Figure \ref{fig:random-forest} demonstrates how a prediction is made using a random forest. For regression, the results are normally aggregated using the mean; for classification, the prediction chosen most often by the trees is usually used as the final prediction. 
 
@@ -377,11 +377,11 @@ This idea of fitting multiple models with bootstrapping and aggregating the resu
 	\label{fig:boosting}
 \end{figure}
 
-Gradient boosting machines that use decision trees can be used for both regression and classification. When using a gradient boosting model with decision trees, \textbf{relative variable importance} and \textbf{pruning} can be used as a sort of pseudo-variable selection method to lower complexity and prevent over-fitting. However, this does not yield the same interpretability or bias trade off benefits that true variable selection yields. When using a gradient boosting model with linear regression, there is the ability to use lasso, ridge, and elastic net penalized regression as the weak learner and perform variable selection, although this is much less commonly used than decision trees in XGBoost.
+Gradient boosting machines that use decision trees can be used for both regression and classification. When using a gradient boosting model with decision trees, \textbf{relative variable importance} and \textbf{pruning} can be used as a sort of pseudo-variable selection method to lower complexity and prevent over-fitting. However, this does not yield the same interpretability or bias trade off benefits that true variable selection yields. When using a gradient boosting model with linear regression, there is the ability to use lasso, ridge, and elastic net penalized regression as the weak learner and perform variable selection, although this is much less commonly used than decision trees in gradient boosting.
 
 Gradient boosting models often suffer from slow computation speeds due to the large number of sequential models that need to be trained. \textbf{Extreme Gradient Boosting} (XGBoost) is a faster version of gradient boosting that utilizes parallel computing as well as different optimization techniques to speed up computation \cite{chen2016xgboost}. For these reasons, XGBoost is often preferred over standard gradient boosting models and is very commonly used in many machine learning applications. In this study, we will use the XGBoost algorithm for gradient boosting.
 
-For our study, we considered a few different hyperparameters. The learning rate controls how quickly the gradient boosting model learns. If this learning rate is high, then the model learns quickly, but it may not learn as efficiently. If the learning rate is low, then the model takes longer but typically makes better predictions. The maximum tree depth determines how high each tree can be. Using smaller tree sizes may oversimplify the model, but it could also mitigate overfitting.
+There are a few different hyperparameters that can control how an XGBoost model is fit. The learning rate controls how quickly the gradient boosting model learns. If this learning rate is high, then the model learns quickly, but it may not learn as efficiently. If the learning rate is low, then the model takes longer but typically makes better predictions. The maximum tree depth determines how high each tree can be. Using smaller tree sizes may oversimplify the model, but it could also mitigate overfitting.
 
 The final non-linear model that we considered is the \textbf{support vector machine} (SVM) \cite{cortes1995support}. In an ideal situation, a support vector machine is a binary classier whose decision boundary is a $(p-1)$-dimensional hyperplane in $p$-dimensional space that perfectly separates all of the observations for one class on one side and the observations for the other class lie on the opposite side. Moreover, the hyperplane chosen by a support vector machine will maximize the distance between this hyperplane and any of the observation points. The observations closest to this separating hyperplane are called \textbf{support vectors}. Predictions are made by determining which side of the hyperplane an observation lies on. Observations that lie above the hyperplane are assigned to one class, and observations on the other side are predicted to be the other class. Figure \ref{fig:svm} demonstrates a simple support vector machine for classification.
 
@@ -429,7 +429,7 @@ All of our simulations were run using version 4.1.0 of \lstinline!R!. Several di
 
 Ordinary least squares models were fitted using the \lstinline!lm! function from the \lstinline!stats! package in base \lstinline!R!.
 
-Subset selection models using forward, backward, stepwise forward, and stepwise backward selections were fitted using the \lstinline!MASS! library. For each of these four algorithms, we fit models using both AIC and BIC, giving up to eight models total.
+Subset selection models using forward, backward, stepwise forward, and stepwise backward selections were fitted using the \lstinline!MASS! library. For each of these four algorithms, we fit models using both AIC and BIC, totaling to eight models.
 
 For ridge, lasso, and elastic-net regression using \lstinline!glmnet!, we used the \lstinline!cv.glmnet! function. This function uses cross-validation grid search to determine the value of $\lambda$ that minimizes the cross-validation error. Using cross-validation can help generate a model that performs well on both training and testing data. We used the default value of 10 folds to fit models using \lstinline!glmnet!. For elastic-net regression, we used the hyperparameter $\alpha = 0.8$ in our simulation study. This means that the elastic-net model is more similar to lasso (where $\alpha = 1$) than ridge (where $\alpha = 0$). This value of $\alpha$ was chosen so that the elastic-net model could emphasize the variable selection provided by lasso while also allowing it to handle multicollinearity from ridge. For the empirical data analysis, we used $\alpha = 0.5$. The remaining hyperparameters were given their default values.
 
@@ -444,7 +444,7 @@ For random forests, we used \lstinline!ranger! for the simulated data and \lstin
 
 Finally, for support vector machines using \lstinline!e1071!, we varied $\epsilon$ (0.1, 0.5, 2), which affects the model's sensitivity to small errors. We also controlled the cost value $C$ (0.5, 1, 2), which affects how much the model punishes wrong predictions.
 
-Some of the models used could only be used for certain values of $n$ and $p$. This is because either the runtime becomes unreasonable when $n$ or $p$ are large, or the model simply cannot be used when $p$ is too large. Ordinary least squares was used when $p\leq n$, since it cannot be used at all when $p>n$. For the same reason, the forward subset selection algorithms were also used when $p\leq n$. The backward subset selection algorithms were only used when $p\leq n$ and $p\leq 40$. When $p>40$, the runtimes for backward selection and backward stepwise selection were very long, so we chose to discard backward selection when $p$ was too large. Ridge regression was used when $p\leq n$ as well as it is not designed for variable selection or for $p \geq n$ scenarios.
+Some of the models used could only be used for certain values of $n$ and $p$. This is because either the runtime becomes unreasonable when $n$ or $p$ are large, or the model simply cannot be used when $p$ is too large. Ordinary least squares was used when $p\leq n$, since it cannot be used at all when $p>n$. For the same reason, the backward subset selection algorithms were also used when $p\leq n$. The forward subset selection algorithms were only used when $p\leq n$ and $p\leq 40$. When $p>40$, the runtimes for forward selection and forward stepwise selection become unreasonably long due to problem of exponentially increasing combinations, so we chose to discard backward selection when $p$ was too large. Ridge regression was used when $p\leq n$ as well as it is not designed for variable selection or for $p \geq n$ scenarios. Ridge was included in the empirical data study simply to further demonstrate its ineffectiveness in high dimensional settings.
 
 Lasso, SCAD, MCP, GBM, and random forest models were used for all data sets. Support vector machine models were made for all of the simulated data but was not used for the empirical data. The empirical data has too many predictors which leads to unmitigable stack overflow errors. Simply put, the support vector machine model has trouble converging upon a local minimum and due to the need to store very large kernel matrices.
 
@@ -556,11 +556,11 @@ The $\beta$-specificity measures a model's ability to recognize coefficients tha
 
 Because we ran simulations using 270 different combinations of factors, we will just highlight the results for the two extremes: when $n = 1000$ and $p = 10$, and when $n = 50$ and $p = 2000$. All of the plots in this section use facet plots to convey as much information as possible. Each plot measures the average value for one of the four metrics discussed above over 100 simulations. Each row represents a different value of $\sigma$, the standard deviation of the random error. Each column represents a correlation structure. The different shapes and colors for each point represent the strength of the correlation between predictors.
 
-To save space in the plots, each model is given a shortened label. Many of these labels have been used throughout this paper; for example, ordinary least squares is labelled as OLS. The labels for the wrapper methods start with AIC or BIC, followed by either B for backward, SB for stepwise backward, F for forward or SF for stepwise forward. As an example, the stepwise forward model evaluated with BIC is labelled as ``AIC SF.''
+To save space in the plots, each model is given a shortened label. Many of these labels have been used throughout this paper; for example, ordinary least squares is labeled as OLS. The labels for the wrapper methods start with AIC or BIC, followed by either B for backward, SB for stepwise backward, F for forward or SF for stepwise forward. As an example, the stepwise forward model evaluated with AIC is labeled as ``AIC SF.''
 
 We will first consider the case where $n = 1000$ and $p = 10$. Figures \ref{fig:train-mse-1000-10} and \ref{fig:test-mse-1000-10} show the average mean squared error for each model for the training set and test set, respectively. Tables \ref{tab:train-mse-1000-10} and \ref{tab:test-mse-1000-10} in Appendix \ref{app:full-results} contain all of the data shown in these figures as well as the standard deviation for each point.
 
-\begin{figure}[b!]
+\begin{figure}[h!]
 	\centering
 	\includegraphics[width = \textwidth]{images/facet-train-mse/facet_train_mse_1000_10.eps}
 	\captionsetup{width = 0.8\textwidth}
@@ -568,7 +568,7 @@ We will first consider the case where $n = 1000$ and $p = 10$. Figures \ref{fig:
 	\label{fig:train-mse-1000-10}
 \end{figure}
 
-\begin{figure}[t!]
+\begin{figure}[h!]
 	\centering
 	\includegraphics[width = \textwidth]{images/facet-test-mse/facet_test_mse_1000_10.eps}
 	\captionsetup{width = 0.8\textwidth}
@@ -576,15 +576,7 @@ We will first consider the case where $n = 1000$ and $p = 10$. Figures \ref{fig:
 	\label{fig:test-mse-1000-10}
 \end{figure}
 
-We see that the linear models have very similar train and test mean squared errors. For these models, the mean squared error is approximately equal to $\sigma^2$, the square of the random error. We also see that for all of the linear models except for ridge regression, the type and strength of correlation has little effect on model performance. However, ridge regression performs worse when the correlation is high.
-
-The non-linear models all have lower training mean squared errors compared to the linear models. However, they also have higher test mean squared errors. We see that gradient boosting is not affected too strongly by the amount of correlation; on the other hand, we see that random forest and support vector machine models have better test performance when there is a strong correlation between predictors.
-
-Figure \ref{fig:sensitivity-1000-10} displays the average $\beta$-sensitivity for each model that performs variable selection when $n = 1000$ and $p = 10$. We see that almost all the models were able to correctly identify all of the non-zero coefficients when $n = 1000$ and $p = 10$. The only exceptions were lasso and elastic-net models when the correlation structure was blockwise and the strength of the correlation was 0.9.
-
-Figure \ref{fig:specificity-1000-10} shows the average $\beta$-specificity for each model. We see that the subset selection models that used BIC made almost zero mistakes when identifying predictors as zero. In contrast, wrapper models fitted using AIC made more mistakes. We see that lasso and elastic-net made almost no mistakes when the correlation was low; in fact, when the correlation structure was independent, lasso made the fewest incorrect estimates out of all the models. As the correlation increases, lasso and elastic-net made more incorrect predictions. SCAD and MCP made more incorrect predictions than lasso and elastic-net in general. However, SCAD and MCP were also somewhat more resilient to an increase in correlation.
-
-\begin{figure}[p!]
+\begin{figure}[h!]
 	\centering
 	\includegraphics[width = \textwidth]{images/facet-sensitivity/facet_sensitivity_1000_10.eps}
 	\captionsetup{width = 0.8\textwidth}
@@ -599,9 +591,17 @@ Figure \ref{fig:specificity-1000-10} shows the average $\beta$-specificity for e
 	\label{fig:specificity-1000-10}
 \end{figure}
 
+We see that the linear models have very similar train and test mean squared errors. For these models, the mean squared error is approximately equal to $\sigma^2$, the square of the random error. We also see that for all of the linear models except for ridge regression, the type and strength of correlation has little effect on model performance. However, ridge regression performs worse when the correlation is high.
+
+The non-linear models all have lower training mean squared errors compared to the linear models. However, they also have higher test mean squared errors. We see that gradient boosting is not affected too strongly by the amount of correlation; on the other hand, we see that random forest and support vector machine models have better test performance when there is a strong correlation between predictors.
+
+Figure \ref{fig:sensitivity-1000-10} displays the average $\beta$-sensitivity for each model that performs variable selection when $n = 1000$ and $p = 10$. We see that almost all the models were able to correctly identify all of the non-zero coefficients when $n = 1000$ and $p = 10$. The only exceptions were lasso and elastic-net models when the correlation structure was blockwise and the strength of the correlation was 0.9.
+
+Figure \ref{fig:specificity-1000-10} shows the average $\beta$-specificity for each model. We see that the subset selection models that used BIC made almost zero mistakes when identifying predictors as zero. In contrast, wrapper models fitted using AIC made more mistakes. We see that lasso and elastic-net made almost no mistakes when the correlation was low; in fact, when the correlation structure was independent, lasso made the fewest incorrect estimates out of all the models. As the correlation increases, lasso and elastic-net made more incorrect predictions. SCAD and MCP made more incorrect predictions than lasso and elastic-net in general. However, SCAD and MCP were also somewhat more resilient to an increase in correlation.
+
 Now, we will consider the opposite extreme where $n = 50$ and $p = 2000$. Figures \ref{fig:train-mse-50-2000} and \ref{fig:test-mse-50-2000} display the average mean squared error for simulations where $n = 50$ and $p = 2000$. Because less models were fitted for this combination of $n$ and $p$, less models are shown in this figure. See Table \ref{tab:train-mse-50-2000} and Table \ref{tab:test-mse-50-2000} for a table of these results, including the standard deviations for each point.
 
-\begin{figure}[b!]
+\begin{figure}[h!]
 	\centering
 	\includegraphics[width = \textwidth]{images/facet-train-mse/facet_train_mse_50_2000.eps}
 	\captionsetup{width = 0.8\textwidth}
@@ -609,11 +609,7 @@ Now, we will consider the opposite extreme where $n = 50$ and $p = 2000$. Figure
 	\label{fig:train-mse-50-2000}
 \end{figure}
 
-We see that the mean squared error for lasso and elastic-net are generally larger than SCAD and MCP for both the training data and test data. Gradient boosting has almost zero training mean squared error under all conditions, but has a relatively large test error. Random forest and support vector machine models have a moderate training error but a large test error. Interestingly, we see that the non-linear models all perform better when there is a strong correlation between predictors. On the other hand, the linear models are somewhat less affected by the correlation.
-
-Figure \ref{fig:sensitivity-50-2000} measures the average $\beta$-sensitivity for each model. We see that all of the models predict most of the non-zero coefficients when the correlation is low. When the correlation is high, all of the models struggle to identify the correct predictors. SCAD and MCP perform the best when the correlation is low but perform the worst when the correlation is high. Elastic-net performs particularly well compared to the other models when the correlation is high, especially when the correlation structure is autoregressive.
-
-\begin{figure}[t!]
+\begin{figure}[h!]
 	\centering
 	\includegraphics[width = \textwidth]{images/facet-test-mse/facet_test_mse_50_2000.eps}
 	\captionsetup{width = 0.8\textwidth}
@@ -628,15 +624,19 @@ Figure \ref{fig:sensitivity-50-2000} measures the average $\beta$-sensitivity fo
 	\label{fig:sensitivity-50-2000}
 \end{figure}
 
-Figure \ref{fig:specificity-50-2000} shows the average $\beta$-specificity $n = 50$ and $p = 2000$. MCP appears to make the fewest mistakes when choosing zero coefficients. The performance of the other models depends heavily on the type of correlation and the correlation strength. Lasso and elastic-net perform the worst when the correlation structure is symmetric compound, whereas SCAD performs poorly when the correlation structure is autoregressive or blockwise. We also see that the models generally made less mistakes as the correlation increases.
-
-\begin{figure}[t!]
+\begin{figure}[h!]
 	\centering
 	\includegraphics[width = \textwidth]{images/facet-specificity/facet_specificity_50_2000.eps}
 	\captionsetup{width = 0.8\textwidth}
 	\caption{Average $\beta$-specificity for simulated models when $n = 50$ and $p = 2000$.}
 	\label{fig:specificity-50-2000}
 \end{figure}
+
+We see that the mean squared error for lasso and elastic-net are generally larger than SCAD and MCP for both the training data and test data. Gradient boosting has almost zero training mean squared error under all conditions, but has a relatively large test error. Random forest and support vector machine models have a moderate training error but a large test error. Interestingly, we see that the non-linear models all perform better when there is a strong correlation between predictors. On the other hand, the linear models are somewhat less affected by the correlation.
+
+Figure \ref{fig:sensitivity-50-2000} measures the average $\beta$-sensitivity for each model. We see that all of the models predict most of the non-zero coefficients when the correlation is low. When the correlation is high, all of the models struggle to identify the correct predictors. SCAD and MCP perform the best when the correlation is low but perform the worst when the correlation is high. Elastic-net performs particularly well compared to the other models when the correlation is high, especially when the correlation structure is autoregressive.
+
+Figure \ref{fig:specificity-50-2000} shows the average $\beta$-specificity $n = 50$ and $p = 2000$. MCP appears to make the fewest mistakes when choosing zero coefficients. The performance of the other models depends heavily on the type of correlation and the correlation strength. Lasso and elastic-net perform the worst when the correlation structure is symmetric compound, whereas SCAD performs poorly when the correlation structure is autoregressive or blockwise. We also see that the models generally made less mistakes as the correlation increases.
 
 \section{Empirical Data Analysis}
 \subsection{Details of Empirical Data}
