@@ -146,7 +146,7 @@ where $(\mathbf{y} - \mathbf{X}\bm{\beta})^\top (\mathbf{y} - \mathbf{X}\bm{\bet
 	\hat{\bm{\beta}}^{\text{OLS}} = (\mathbf{X}^\top \mathbf{X})^{-1} \mathbf{X}^\top \mathbf{y}
 \end{equation}
 
-Another advantage of ordinary least squares is that it is an unbiased linear model. This means that if the relationship between the response variable and the predictors is actually linear (as given in Equation \ref{eqn:linear-model}), then the expected value of the coefficient vector $\hat{\beta}^\text{OLS}$ is equal to the actual coefficient vector $\beta$. Furthermore, the \textbf{Gauss-Markov theorem} states that if the random error $\epsilon$ is independent and has constant variance, then ordinary least squares has the lowest variance among all linear unbiased estimators. In other words, the coefficient estimates given by ordinary least squares are relatively close to the actual coefficient values when compared to other unbiased linear estimators. This makes ordinary least squares a relatively consistent model.
+Another advantage of ordinary least squares is that it is an unbiased linear model. This means that if the relationship between the response variable and the predictors is actually linear (as given in Equation \ref{eqn:linear-model}), then the expected value of the coefficient vector $\hat{\beta}^\text{OLS}$ is equal to the actual coefficient vector $\beta$. Furthermore, the \textbf{Gauss-Markov theorem} states that if the random error $\epsilon$ is independent and has constant variance, then ordinary least squares has the lowest variance among all linear unbiased estimators \cite{greene2003econometric}. In other words, the coefficient estimates given by ordinary least squares are relatively close to the actual coefficient values when compared to other unbiased linear estimators. This makes ordinary least squares a relatively consistent model.
 
 If ordinary least squares is unbiased and has the lowest variance among all unbiased models, why should we use any other type of linear model? Despite having a lower variance than other unbiased models, ordinary least squares can still have a high variance. This is especially an issue when the number of predictors $p$ is large compared to the number of observations $n$. As $p$ gets closer to $n$, a model fitted with ordinary least squares will typically \textbf{overfit} to the training set. This means that the fitted model makes very good predictions with the training data, but performs poorly when given test data that wasn't used to fit the model. Overfitting occurs because of the random error from Equation \ref{eqn:relationship}. Ordinary least squares is unable to distinguish between signal and noise, so it will tend to assume predictors are more strongly related to the response than they actually are.
 
@@ -177,13 +177,13 @@ If we wish to produce a model that makes reliable predictions on test data, we m
 \begin{equation}
 	\text{AIC} = 2p - 2\ln(L)
 \end{equation}
-where $L$ is the likelihood of the model. This likelihood represents how well a model fits to the training data. The purpose of the term $2p$ is to punish models with a large number of coefficients. The model with the lowest AIC is the one selected by the wrapper methods.
+where $p$ is the number of predictors for the model and $L$ is the likelihood of the model. This likelihood represents how well a model fits to the training data. The purpose of the term $2p$ is to punish models with a large number of coefficients. The model with the lowest AIC is the one selected by the wrapper methods.
 
 The Bayesian information criterion very similar to the Akaike information criterion; it is given by
 \begin{equation}
 	\text{BIC} = p\ln(n) - 2\ln(L)
 \end{equation}
-where $L$ is again the likelihood of the model.
+where again $p$ is the number of predictors for the model and $L$ is the likelihood of the model.
 
 Note that if $n>7$, then $\ln(n)>2$ and so the penalty for BIC is larger than the penalty for AIC. Hence, a model selected using BIC will typically have fewer parameters than a model selected by AIC.
 
@@ -194,13 +194,13 @@ In general, \textbf{penalized regression} works by fitting a model that punishes
 
 Almost all of the penalized regression methods in this paper solve an optimization problem of the form
 \begin{equation}\label{eqn:penalized-regression-lambda}
-	\hat{\bm{\beta}}=\argmin{\bm{\beta}}{\sum\limits_{i = 1}^N \Big[y_i - (\beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \cdots + \beta_p x_{ip})\Big]^2 + \lambda\sum\limits_{j = 1}^p P(\beta_j)}
+	\hat{\bm{\beta}}=\argmin{\bm{\beta}}{\sum\limits_{i = 1}^n \Big[y_i - (\beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \cdots + \beta_p x_{ip})\Big]^2 + \lambda\sum\limits_{j = 1}^p P(\beta_j)}
 \end{equation}
 where the first summation is the usual residual sum of squares, $\lambda\geq 0$ is a hyperparameter that controls the strength of the penalty, and $P(\beta)$ is a penalty function applied to each of the coefficients. The penalty is not applied to the intercept $\beta_0$. In general, $P(\beta)$ is an even function that is non-decreasing as $\vert \beta \vert$ increases. If $\lambda = 0$, then we have the usual ordinary least squares estimator. As $\lambda$ increases, a stronger penalty is applied which will decrease the coefficient values. As $\lambda$ approaches $\infty$, the model becomes an empty model where only the intercept term is non-zero.
 
 A similar way to express penalized regression is with the form
 \begin{equation}\label{eqn:penalized-regression-t}
-	\hat{\bm{\beta}} = \argmin{\bm{\beta}}{\sum\limits_{i = 1}^N \Big[y_i - (\beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \cdots + \beta_p x_{ip})\Big]^2} \quad \text{subject to} \quad \sum\limits_{j = 1}^p P(\beta_j)\leq t
+	\hat{\bm{\beta}} = \argmin{\bm{\beta}}{\sum\limits_{i = 1}^n \Big[y_i - (\beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \cdots + \beta_p x_{ip})\Big]^2} \quad \text{subject to} \quad \sum\limits_{j = 1}^p P(\beta_j)\leq t
 \end{equation}
 where $t$ is a hyperparameter \cite{james2013introduction, friedman2001elements}. In this form, penalized regression fits the ordinary least squares under the condition that the sum of the penalties of the coefficients is kept below some threshold. It can be shown that for every value of $\lambda$ from Equation \ref{eqn:penalized-regression-lambda}, there is a value of $t$ from Equation \ref{eqn:penalized-regression-t} that gives equivalent coefficient estimates \cite{james2013introduction}. Most algorithms to fit penalized regression models use the form given in Equation \ref{eqn:penalized-regression-lambda}, but the form in Equation \ref{eqn:penalized-regression-t} may be considered more intuitive.
 
@@ -645,7 +645,7 @@ Figure \ref{fig:specificity-50-2000} shows the average $\beta$-specificity $n = 
 \subsection{Details of Empirical Data}
 % outline empirical data sources and what each database is about / what we try to predict about it
 
-For empirical data, we used the Breast Cancer database from The Cancer Genome Atlas (bcTCGA). A cleaned version of the data is provided by the \lstinline!biglasso! \lstinline!R! package \cite{zeng2017biglasso}. This data set contains the gene expression data of 17323 genes from 536 patients. One of these genes is the BRCA1 gene which is among the first genes discovered that can increase the risk of breast cancer. Because the BRCA1 gene interacts with other genes, it is useful to find genes that interact with BRCA1 to test in further studies. The distribution of the BRCA1 gene expression levels in the bcTCGA database can be seen in Figure \ref{fig:BRCA1-distribution}. The BRCA1 gene expression level will act as the output value in our regression analysis and the other 17322 genes will serve as predictor values.
+For empirical data, we used the Breast Cancer database from The Cancer Genome Atlas (bcTCGA). A cleaned version of the data is provided by the \lstinline!biglasso! \lstinline!R! package \cite{zeng2017biglasso}. This data set contains the gene expression data of 17323 genes from 536 patients. One of these genes is the BRCA1 gene which is among the first genes discovered that can increase the risk of breast cancer \cite{kuchenbaecker2017risks, antoniou2003average}. Because the BRCA1 gene interacts with other genes, it is useful to find genes that interact with BRCA1 to test in further studies. The distribution of the BRCA1 gene expression levels in the bcTCGA database can be seen in Figure \ref{fig:BRCA1-distribution}. The BRCA1 gene expression level will act as the output value in our regression analysis and the other 17322 genes will serve as predictor values.
 
 \begin{figure}[h!]
 	\centering
