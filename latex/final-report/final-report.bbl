@@ -147,6 +147,12 @@ Meyer, D., Dimitriadou, E., Hornik, K., Weingessel, A., and Leisch, F.
   Probability Theory Group (Formerly: E1071), TU Wien}, 2021.
 \newblock R package version 1.7-7.
 
+\bibitem{nielsen2016tree}
+Nielsen, D.
+\newblock Tree boosting with xgboost-why does xgboost win ``every" machine
+  learning competition?
+\newblock 2016.
+
 \bibitem{r}
 {R Core Team}.
 \newblock {\em R: A Language and Environment for Statistical Computing}.
