@@ -61,6 +61,11 @@ Cortes, C. and Vapnik, V.
 \newblock Support-vector networks.
 \newblock {\em Machine learning}, 20(3):273--297, 1995.
 
+\bibitem{deng2000roles}
+Deng, C.-X. and Brodie, S.~G.
+\newblock Roles of brca1 and its interacting proteins.
+\newblock {\em Bioessays}, 22(8):728--737, 2000.
+
 \bibitem{ding2005minimum}
 Ding, C. and Peng, H.
 \newblock Minimum redundancy feature selection from microarray gene expression

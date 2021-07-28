@@ -6,45 +6,45 @@ The style file: plain-lf.bst
 Reallocating 'name_of_file' (item size: 1) to 11 items.
 Database file #1: references.bib
 Warning--empty journal in nielsen2016tree
-You've used 37 entries,
+You've used 38 entries,
             2118 wiz_defined-function locations,
-            726 strings with 10487 characters,
-and the built_in function-call counts, 12902 in all, are:
-= -- 1277
-> -- 643
+            734 strings with 10601 characters,
+and the built_in function-call counts, 13235 in all, are:
+= -- 1312
+> -- 656
 < -- 7
-+ -- 261
-- -- 218
-* -- 941
-:= -- 2159
-add.period$ -- 114
-call.type$ -- 37
-change.case$ -- 209
++ -- 266
+- -- 222
+* -- 967
+:= -- 2214
+add.period$ -- 117
+call.type$ -- 38
+change.case$ -- 214
 chr.to.int$ -- 0
-cite$ -- 38
-duplicate$ -- 457
-empty$ -- 966
-format.name$ -- 218
-if$ -- 2650
+cite$ -- 39
+duplicate$ -- 468
+empty$ -- 993
+format.name$ -- 222
+if$ -- 2718
 int.to.chr$ -- 0
-int.to.str$ -- 37
-missing$ -- 38
-newline$ -- 189
-num.names$ -- 74
-pop$ -- 204
+int.to.str$ -- 38
+missing$ -- 39
+newline$ -- 194
+num.names$ -- 76
+pop$ -- 207
 preamble$ -- 1
-purify$ -- 179
+purify$ -- 183
 quote$ -- 0
-skip$ -- 332
+skip$ -- 340
 stack$ -- 0
-substring$ -- 843
-swap$ -- 90
+substring$ -- 873
+swap$ -- 91
 text.length$ -- 7
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 138
+type$ -- 142
 warning$ -- 1
-while$ -- 129
-width$ -- 39
-write$ -- 406
+while$ -- 133
+width$ -- 40
+write$ -- 417
 (There was 1 warning)
