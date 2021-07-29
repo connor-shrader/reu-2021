@@ -98,6 +98,7 @@ This paper investigates several methods to handle the large $p$, small $n$ probl
 
 Section \ref{sec:methodology} contains details about each model and details the implementation of these models for our study. Section \ref{sec:simulations} describes our simulation study design and results, while section \ref{sec:empirical} explains our empirical data analysis and results. Section \ref{sec:discussion} is a discussion of our results and Section \ref{sec:conclusion} is the conclusion.
 
+\newpage
 \section{Methodology}\label{sec:methodology}
 \subsection{Modeling Background}
 % We can talk about the necessary background information
@@ -342,7 +343,7 @@ We next discuss several non-linear methods for regression: random forests, gradi
 
 Both random forest and gradient boosting models use \textbf{decision trees} to make predictions. A decision tree is a binary tree where each non-leaf node represents a condition and each leaf node represents a prediction value. To make a prediction, start at the root node and check whether the condition at that node is true or false. If true, move down to the node's first child; if false, move to the second child. This process is repeated until a leaf node is reached. This node will give a value that the decision tree predicts. Figure \ref{fig:decision-tree} gives an example of a decision tree with regression.
 
-\begin{figure}[b!]
+\begin{figure}[h!]
 	\centering
 	\includegraphics[width = 0.4\textwidth]{images/decision-tree.eps}
 	\captionsetup{width = 0.8\textwidth}
@@ -358,7 +359,7 @@ To fit each decision tree within a random forest model, we first select a random
 
 A random forest model aggregates all of the individual decision trees into a single model. The number of trees generated, $B$, is a hyperparameter that can be changed; usually, a random forest model will contain at least several hundred trees. To make predictions with a random forest, a test observation is passed into each decision tree and the predictions from each tree are aggregated. Figure \ref{fig:random-forest} demonstrates how a prediction is made using a random forest. For regression, the results are normally aggregated using the mean; for classification, the prediction chosen most often by the trees is usually used as the final prediction. 
 
-\begin{figure}[b!]
+\begin{figure}[h!]
 	\footnotesize
 	\centering
 	\input{tikz-figures/random-forest.tex}
@@ -371,7 +372,7 @@ This idea of fitting multiple models with bootstrapping and aggregating the resu
 
 \textbf{Boosting} is the technique of sequentially improving a weak learner until it becomes a strong learner \cite{schapire1990strength}. A \textbf{gradient boosting machine} (GBM) is a boosting technique that uses gradient descent to minimize error in a model and correct the shortcomings of the previous model \cite{friedman2001greedy}. Boosting can be used on different types of models, but decision trees are the most common to use. Unlike random forest models, where each tree is independent of one another, the trees in a boosting model are grown sequentially. Each tree is fitted to correct the mistakes made by the previous tree. The details of how errors are corrected depends on the algorithm selected. With regression, each tree can be fitted by using the residuals from the previous tree as the training data \cite{james2013introduction}. Like random forest models, predictions are made by aggregating the results from each individual tree. See figure \ref{fig:boosting} for a diagram of how a boosting model is fitted.
 
-\begin{figure}[t!]
+\begin{figure}[b!]
 	\footnotesize
 	\centering
 	\input{tikz-figures/boosting.tex}
@@ -388,7 +389,7 @@ There are a few different hyperparameters that can control how an XGBoost model 
 
 The final non-linear model that we considered is the \textbf{support vector machine} (SVM) \cite{cortes1995support}. Support vector machines are versatile models that can be used for both classification and regression. Originally, a support vector machine was designed as a binary classifier that separates the two response classes with a hyperplane in $(p - 1)$-dimensional space. The hyperplane chosen by a support vector machine is chosen to maximize the distance between the hyperplane and any of the observation points. The observations closest to this separating hyperplane are called \textbf{support vectors}. Predictions are made by determining which side of the hyperplane an observation lies on. Observations that lie above the hyperplane are assigned to one class, and observations on the other side are predicted to be the other class. Figure \ref{fig:svm} demonstrates a simple support vector machine for classification.
 
-\begin{figure}[t!]
+\begin{figure}[h!]
 	\centering
 	\includegraphics[width = 0.8\textwidth]{images/svm.eps}
 	\captionsetup{width = 0.8\textwidth}
@@ -610,25 +611,24 @@ Now, we will consider the opposite extreme where $n = 50$ and $p = 2000$. Figure
 	\captionsetup{width = 0.8\textwidth}
 	\caption{Average mean square error using training data for simulated models when $n = 50$ and $p = 2000$.}
 	\label{fig:train-mse-50-2000}
-\end{figure}
-
-\begin{figure}[h!]
-	\centering
+	
+	\bigskip
+	
 	\includegraphics[width = \textwidth]{images/facet-test-mse/facet_test_mse_50_2000.eps}
 	\captionsetup{width = 0.8\textwidth}
 	\caption{Average mean square error using testing data for simulated models when $n = 50$ and $p = 2000$.}
 	\label{fig:test-mse-50-2000}
-	
-	\bigskip
-	
+\end{figure}
+
+\begin{figure}[h!]
+	\centering	
 	\includegraphics[width = \textwidth]{images/facet-sensitivity/facet_sensitivity_50_2000.eps}
 	\captionsetup{width = 0.8\textwidth}
 	\caption{Average $\beta$-sensitivity for simulated models when $n = 50$ and $p = 2000$}
 	\label{fig:sensitivity-50-2000}
-\end{figure}
-
-\begin{figure}[h!]
-	\centering
+	
+	\bigskip
+	
 	\includegraphics[width = \textwidth]{images/facet-specificity/facet_specificity_50_2000.eps}
 	\captionsetup{width = 0.8\textwidth}
 	\caption{Average $\beta$-specificity for simulated models when $n = 50$ and $p = 2000$.}
@@ -678,7 +678,7 @@ Recall that we used nested cross validation when fitting models on the bcTCGA da
 	\label{fig:empirical_mse}
 \end{figure}
 
-\begin{table}[b!]
+\begin{table}[h!]
 \centering
 \captionsetup{width = 5in}
 \caption{Average and standard deviation of the mean squared error of the models fit on the bcTCGA data set.}
@@ -701,7 +701,7 @@ Recall that we used nested cross validation when fitting models on the bcTCGA da
 
 The models can also be compared to each other by comparing the most important predictors selected by each model. Figure \ref{fig:venn} shows five Venn diagrams. Each diagram shows the number of variables selected by lasso, elastic-net, MCP, and random forest as the most important for each of the folds. Figure \ref{fig:venn1}, for example, shows that four of the predictors were chosen by all four models as important. For lasso, elastic-net, and MCP, a predictor is considered important if its coefficient is non-zero. For random forest, we used the 50 predictors with the highest importance score (as computed by \lstinline!randomForest!). We see that the number of predictors chosen by each model varies slightly among different folds, however, there still are common trends that are upheld between the different folds. The second fold in \ref{fig:venn2} had six predictors common to all four models, whereas the models tested in the third fold in \ref{fig:venn3} only had three.
 
-\begin{figure}[b!]
+\begin{figure}[h!]
 	\centering
 	\begin{subfigure}[b]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{images/venn/venn1.eps}
@@ -757,6 +757,7 @@ Table \ref{tab:emp_runtimes} shows the average runtime to fit each of the models
 \end{table}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 \section{Discussion}\label{sec:discussion}
 \subsection{Discussion of Monte Carlo Results}
 % discussion of findings, future work, and contributions
@@ -811,12 +812,23 @@ There is a severe lack of comprehensive testing comparing traditional machine le
 
 These comparisons have shown that penalized regression should be added to the toolbox of any data scientist. In addition to performing better with less error than traditional machine learning techniques, penalized regression is much less computationally expensive.
 
-However, there is still room for further comparison between these models. Our Monte Carlo simulation data was generated linearly, but we hope to also analyze non-linear Monte Carlo simulations and consider variable interaction. This would allow for comprehensive analysis of penalized regression even in unfavorable conditions that provide a clear advantage to non-linear machine learning techniques. 
+However, there is still room for further comparison between these models. Our Monte Carlo simulation data was generated linearly, but we hope to also analyze non-linear Monte Carlo simulations and consider variable interaction. This would allow for comprehensive analysis of penalized regression even in unfavorable conditions that provide a clear advantage to non-linear machine learning techniques.
+
+We could also run Monte Carlo simulations where the response is categorical rather than numerical. This could be used to study how penalized regression performs when used for classification instead of regression.
 
 % maybe talk about the penalty method we came up with? Talk about how it might be able to solve issues of Logsum method?
 We are working on developing a hybrid technique between random forest and penalized regression. This method would harness the power of ensemble learning, while still being able to perform variable selection. This would hopefully perform better than either random forest or penalized regression methods individually. There are some models such as SREEMforest \cite{capitaine2021random} which conduct variable selection, however, these models use wrapper methods and variable importance which can be computationally expensive and do not inherently eliminate insignificant variables the same way penalized regression does. Given that random forest models are already very slow, performing additional stepwise selection may result in an exponentially slower runtime. Thus, it is important that inherent variable selection methods such as penalized regression methods are utilized in ensemble methods.
 
 Lastly, we have developed a penalty function that has the potential to conduct variable selection while also handling multicollinearity well. We are interested in implementing this penalty function and analyzing its results. Given the power of penalized regression techniques seen in this study, it is important to develop new penalized regression techniques that improve on the drawbacks of previous designs.
+
+\newpage
+\section{Acknowledgments}
+
+This research was conducted as a part of the North Carolina A\&T State University and Elon University Joint Summer REU Program in Mathematical Biology and was funded by the National Science Foundation DMS\# 1851957/1851981.
+
+The results here are in part based upon data generated by the TCGA Research Network: \href{https://www.cancer.gov/tcga}{https://www.cancer.gov/tcga}.
+
+We would also like to thank Dr. Luke and Dr. Yokley and Yang Xue for their guidance throughout the research process.
 
 \newpage
 \bibliographystyle{plain-lf}
