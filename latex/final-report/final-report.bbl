@@ -127,6 +127,13 @@ James, G., Witten, D., Hastie, T., and Tibshirani, R.
 \newblock {\em An introduction to statistical learning}, volume 112.
 \newblock Springer, 2013.
 
+\bibitem{kobayashi2015overexpression}
+Kobayashi, H., Komatsu, S., Ichikawa, D., Kawaguchi, T., Hirajima, S., Miyamae,
+  M., Okajima, W., Ohashi, T., Kosuga, T., Konishi, H., et~al.
+\newblock Overexpression of denticleless e3 ubiquitin protein ligase homolog
+  (dtl) is related to poor outcome in gastric carcinoma.
+\newblock {\em Oncotarget}, 6(34):36615, 2015.
+
 \bibitem{kuchenbaecker2017risks}
 Kuchenbaecker, K.~B., Hopper, J.~L., Barnes, D.~R., Phillips, K.-A., Mooij,
   T.~M., Roos-Blom, M.-J., Jervis, S., Van~Leeuwen, F.~E., Milne, R.~L.,
@@ -179,11 +186,24 @@ Schwarz, G.
 \newblock Estimating the dimension of a model.
 \newblock {\em The annals of statistics}, pages 461--464, 1978.
 
+\bibitem{shao2007cmtm5}
+Shao, L., Cui, Y., Li, H., Liu, Y., Zhao, H., Wang, Y., Zhang, Y., Ng, K.~M.,
+  Han, W., Ma, D., et~al.
+\newblock Cmtm5 exhibits tumor suppressor activities and is frequently silenced
+  by methylation in carcinoma cell lines.
+\newblock {\em Clinical cancer research}, 13(19):5756--5762, 2007.
+
 \bibitem{tibshirani1996regression}
 Tibshirani, R.
 \newblock Regression shrinkage and selection via the lasso.
 \newblock {\em Journal of the Royal Statistical Society: Series B
   (Methodological)}, 58(1):267--288, 1996.
+
+\bibitem{vaccari2005drosophila}
+Vaccari, T. and Bilder, D.
+\newblock The drosophila tumor suppressor vps25 prevents nonautonomous
+  overproliferation by regulating notch trafficking.
+\newblock {\em Developmental cell}, 9(5):687--698, 2005.
 
 \bibitem{venables2002mass}
 Venables, W.~N. and Ripley, B.~D.
@@ -196,6 +216,12 @@ Wright, M.~N. and Ziegler, A.
 \newblock {ranger}: A fast implementation of random forests for high
   dimensional data in {C++} and {R}.
 \newblock {\em Journal of Statistical Software}, 77(1):1--17, 2017.
+
+\bibitem{xiao2016nbr2}
+Xiao, Z.-D., Liu, X., Zhuang, L., and Gan, B.
+\newblock Nbr2: a former junk gene emerges as a key player in tumor
+  suppression.
+\newblock {\em Molecular \& cellular oncology}, 3(4):e1187322, 2016.
 
 \bibitem{zeng2017biglasso}
 Zeng, Y. and Breheny, P.

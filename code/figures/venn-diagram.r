@@ -44,6 +44,8 @@ for (i in 1:5) {
     merge(mcp_coef, by = "predictor") %>%
     merge(rf_important, by = "predictor")
   
+  print(gdat[gdat$L != 0 & gdat$E & gdat$M & gdat$R, ])
+  
   gdat[, -1] <- ifelse(gdat[, -1] != 0, 1, 0)
   
   count0 <- gdat %>%
@@ -98,8 +100,8 @@ for (i in 1:5) {
     height = 6,
     unit = "in"
   )
-  
-  save_plot(plot = venn.plot.glm, 
+
+  save_plot(plot = venn.plot.glm,
             filename = paste("venn", i, sep = ""),
             path = "./images/venn",
             png_only = TRUE)
