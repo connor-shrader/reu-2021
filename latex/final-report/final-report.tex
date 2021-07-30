@@ -775,13 +775,13 @@ Interestingly, the test mean squared error for random forest and support vector 
 
 One possible explanation for this phenomenon is that the random forest models and support vector machines are less influenced by the random error when the correlation is large. For example, consider random forest models when $n = 50$ and $p = 2000$. When the correlation is zero, only a fraction of the decision trees generated in each model will contain any of the important predictors; many of the trees will instead be fit using only predictors that are unrelated to the response. This means that the random forest model is fitting with a large amount of noise. On the other hand, when the correlation is high, all of the trees will contain predictors that are correlated with the  predictors with non-zero coefficients. As a result, none of the trees will truly be fitting on just random error. Similarly, for support vector machine models, the strong correlation may make it more difficult to fit using just the random noise.
 
-We will also note that changing the standard deviation of the random error seems to affect the mean squared errors of all the models equally. In addition, the correlation structure appears to have little influence on the training or test mean squared error.
+Also note that changing the standard deviation of the random error seems to affect the mean squared errors of all the models equally. In addition, the correlation structure appears to have little influence on the training or test mean squared error.
 
 Now, we will consider the $\beta$-sensitivity results for the linear models that could perform variable selection. These results are shown in Figures \ref{fig:sensitivity-1000-10} and \ref{fig:sensitivity-50-2000}. The $\beta$-sensitivity results when $n = 1000$ and $p = 10$ are rather uninteresting; all of the models correctly identified all of the non-zero coefficients except for a few cases where one coefficient was missed. The results for $n = 50$ and $p = 2000$ tell a richer story: SCAD and MCP tended to correctly identify more of the non-zero coefficients when the correlation between coefficients was low; however, when the correlation is high, SCAD and MCP found less than half of the non-zero coefficients, on average. Lasso and elastic-net performed slightly better when the correlation was high.
 
 Looking at the $\beta$-specificity results from Figures \ref{fig:specificity-1000-10} and \ref{fig:specificity-50-2000}, we see that lasso, elastic-net, and the BIC wrapper methods had the highest $\beta$-specificity when $n = 1000$ and $p = 10$. When $n = 50$ and $p = 2000$, lasso and elastic-net had must lower $\beta$-specificity values compared to SCAD and MCP.
 
-Another interesting result to note is that for both low-dimensional and high-dimensional settings, when the correlation between predictors increased, the $\beta$-specificity for SCAD and MCP typically increased. For lasso and elastic-net, a higher correlation caused the $\beta$-specificity to decrease when $n = 1000$ and $p = 10$; however, when $n = 50$ and $p = 2000$, the $\beta$-specificity of elastic-net depends heavily on the correlation structure. For a symmetric compound correlation structure, elastic-net had a much lower $\beta$-specificity as correlation increased. For an autoregressive or blockwise correlation structure, a higher correlation increased the $\beta$-specificity for elastic-net. This means that lasso and elastic-net have trouble identifying non-zero coefficients when all $p = 2000$ predictors are correlated to each other, while SCAD and MCP could handle this situation well.
+Another interesting result to note is that for both low-dimensional and high-dimensional settings, when the correlation between predictors increased, the $\beta$-specificity for SCAD and MCP typically increased. For elastic-net, a higher correlation caused the $\beta$-specificity to decrease when $n = 1000$ and $p = 10$; however, when $n = 50$ and $p = 2000$, the $\beta$-specificity of elastic-net depends heavily on the correlation structure. For a symmetric compound correlation structure, elastic-net had a much lower $\beta$-specificity as correlation increased. For an autoregressive or blockwise correlation structure, a higher correlation increased the $\beta$-specificity for elastic-net. This means that lasso and elastic-net have trouble identifying non-zero coefficients when all $p = 2000$ predictors are correlated to each other, while SCAD and MCP could handle this situation well.
 
 Overall, we see that the ability for the penalized models to correctly identify whether coefficients are non-zero depends on how predictors are correlated with one another. However, the standard deviation of the random error does not appear to be too impactful on $\beta$-sensitivity or $\beta$-specificity.
 
@@ -810,16 +810,22 @@ The penalized regression models performed exceptionally faster than random fores
 % empirical data methods show the important uses of penalized regression in environmental, biological, and etc. data
 There is a severe lack of comprehensive testing comparing traditional machine learning methods such as random forest, gradient boosting, and support vector machines with penalized regression. Our paper bridges the divide between the machine learning and statistical fields in which these two types of models exist in. Testing using Monte Carlo simulations and empirical data has not been tested by other researchers with as many different environments and models.
 
-These comparisons have shown that penalized regression should be added to the toolbox of any data scientist. In addition to performing better with less error than traditional machine learning techniques, penalized regression is much less computationally expensive.
+These comparisons have shown that penalized regression should be added to the toolbox of any data scientist. In addition to performing better with less error than traditional machine learning techniques, penalized regression is much less computationally expensive. Additionally, in scenarios such as the empirical data study outlined earlier, penalized regression techniques can help determine the relationship between predictors and a response value. In such cases, the ability to determine these relationship can be more important than the predictive performance of a model.
 
 However, there is still room for further comparison between these models. Our Monte Carlo simulation data was generated linearly, but we hope to also analyze non-linear Monte Carlo simulations and consider variable interaction. This would allow for comprehensive analysis of penalized regression even in unfavorable conditions that provide a clear advantage to non-linear machine learning techniques.
 
-We could also run Monte Carlo simulations where the response is categorical rather than numerical. This could be used to study how penalized regression performs when used for classification instead of regression.
+We could also run Monte Carlo simulations where the response is categorical rather than numerical. This could be used to study how penalized regression performs when used for classification data, which is the most common case for high dimensional data sets.
 
 % maybe talk about the penalty method we came up with? Talk about how it might be able to solve issues of Logsum method?
 We are working on developing a hybrid technique between random forest and penalized regression. This method would harness the power of ensemble learning, while still being able to perform variable selection. This would hopefully perform better than either random forest or penalized regression methods individually. There are some models such as SREEMforest \cite{capitaine2021random} which conduct variable selection, however, these models use wrapper methods and variable importance which can be computationally expensive and do not inherently eliminate insignificant variables the same way penalized regression does. Given that random forest models are already very slow, performing additional stepwise selection may result in an exponentially slower runtime. Thus, it is important that inherent variable selection methods such as penalized regression methods are utilized in ensemble methods.
 
-Lastly, we have developed a penalty function that has the potential to conduct variable selection while also handling multicollinearity well. We are interested in implementing this penalty function and analyzing its results. Given the power of penalized regression techniques seen in this study, it is important to develop new penalized regression techniques that improve on the drawbacks of previous designs.
+Lastly, we have developed a penalty function that has the potential to conduct variable selection while also handling multicollinearity well. The penalty function follows the L1/4 + L2 regularization and can be seen in Equation \ref{eqn:proposed}. We are interested in implementing this penalty function and analyzing its results. Given the power of penalized regression techniques seen in this study, it is important to develop new penalized regression techniques that improve on the drawbacks of previous designs.
+
+\begin{equation}
+	\label{eqn:proposed}
+	\small
+	\hat{\beta}^{\text{proposed}} = \argmin{\beta}{\sum\limits_{i = 1}^n \Big[y_i - (\beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \cdots + \beta_p x_{ip})\Big]^2  + \lambda_1\sum\limits_{j = 1}^p \vert \beta_j \vert^{\frac{1}{4}} + \lambda_2\sum\limits_{j = 1}^p \beta_j^2}
+\end{equation}
 
 \newpage
 \section{Acknowledgments}
@@ -837,7 +843,7 @@ We would also like to thank Dr. Luke and Dr. Yokley and Yang Xue for their guida
 \newpage
 \appendix
 \section{Full Result Tables}\label{app:full-results}
-The following pages contain the full table of Monte Carlo simulation results. Each table corresponds to one of the figures in Section \ref{sec:simulation-results}.
+The following pages contain the full table of Monte Carlo simulation results. Each table corresponds to one of the figures in Section \ref{sec:simulation-results}. The full results as well as relevant R code can be accessed through our \href{https://github.com/connor-shrader/reu-2021}{Github repository}.
 
 \setlength{\tabcolsep}{3pt}
 
@@ -845,13 +851,13 @@ The following pages contain the full table of Monte Carlo simulation results. Ea
 \begin{landscape}
 	\centering
 	\captionsetup{width = 6in}
-	\captionof{table}{Mean and standard deviation of the mean squared error on training data when $n = 1000$ and $p = 10$. See Figure \ref{fig:train-mse-50-2000} for the corresponding plot.}
+	\captionof{table}{Mean and standard deviation of the mean squared error on training data when $n = 1000$ and $p = 10$. See Figure \ref{fig:train-mse-1000-10} for the corresponding plot.}
 	\label{tab:train-mse-1000-10}
 	\input{./tables/train_mse_1000_10.tex}
 	
 	\newpage
 	
-	\captionof{table}{Mean and standard deviation of the mean squared error on test data when $n = 1000$ and $p = 10$. See Figure \ref{fig:test-mse-50-2000} for the corresponding plot.}
+	\captionof{table}{Mean and standard deviation of the mean squared error on test data when $n = 1000$ and $p = 10$. See Figure \ref{fig:test-mse-1000-10} for the corresponding plot.}
 	\label{tab:test-mse-1000-10}
 	\input{./tables/test_mse_1000_10.tex}
 	
