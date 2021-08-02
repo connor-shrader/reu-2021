@@ -19,7 +19,7 @@
 
 # Used for data cleaning
 library(tidyverse) # v1.3.1
-library(dplyr) # v1.0.6
+library(dplyr) # v1.0.7
 
 # Used for multi-normal distribution.
 library(faux) # v1.0.0
@@ -28,10 +28,7 @@ library(faux) # v1.0.0
 library(ncvreg) # v3.13.0
 
 # Used for LASSO, ridge
-library(glmnet) # v4.1-1
-
-# Used for adaptive elastic net regression
-library(gcdnet) #v1.0.5
+library(glmnet) # v4.1-2
 
 # Used for stepwise selection.
 library(MASS) # v7.3-54
@@ -43,7 +40,7 @@ library(caret) # v6.0-88
 library(xgboost) # v1.4.1.1
 
 # Used for random forest models.
-library(ranger) # v0.12.1
+library(ranger) # v0.13.1
 
 # Support vector machine model
 library(e1071) # v1.7-7
