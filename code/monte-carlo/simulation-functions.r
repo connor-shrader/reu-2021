@@ -290,21 +290,24 @@ fit_models <- function(dat, n, p) {
   # Ridge model for dealing with multicollinearity
   set.seed(1)
   ridge_time <- system.time(ridge <- cv.glmnet(x = as.matrix(dat[,-1]),
-                                               y = dat$y, alpha = 0))
+                                               y = dat$y, alpha = 0,
+                                               nfolds = 5))
   models[["ridge"]] <- ridge
   runtimes[["ridge"]] <- ridge_time
   
   # Lasso model for variable selection
   set.seed(1)
   lasso_time <- system.time(lasso <- cv.glmnet(x = as.matrix(dat[,-1]),
-                                               y = dat$y, alpha = 1))
+                                               y = dat$y, alpha = 1,
+                                               nfolds = 5))
   models[["lasso"]] <- lasso
   runtimes[["lasso"]] <- lasso_time
   
   # Elastic Net model for multicollinearity and variable selection
   set.seed(1)
   enet_time <- system.time(enet <- cv.glmnet(x = as.matrix(dat[,-1]), 
-                                             y = dat$y, alpha = 0.8)) #small alpha is not needed since small multicollinearity
+                                             y = dat$y, alpha = 0.8,
+                                             nfolds = 5)) #small alpha is not needed since small multicollinearity
   models[["enet"]] <- enet
   runtimes[["enet"]] <- enet_time
   
@@ -331,13 +334,15 @@ fit_models <- function(dat, n, p) {
   
   # SCAD
   scad_time <- system.time(scad <- cv.ncvreg(X = dat[, -1], y = dat$y,
-                                             penalty = "SCAD", seed = 1))
+                                             penalty = "SCAD", seed = 1,
+                                             nfolds = 5))
   models[["scad"]] <- scad
   runtimes[["scad"]] <- scad_time
   
   # MCP
   mcp_time <-  system.time(mcp <- cv.ncvreg(X = dat[, -1], y = dat$y,
-                                            penalty = "MCP", seed = 1))
+                                            penalty = "MCP", seed = 1,
+                                            nfolds = 5))
   models[["mcp"]] <- mcp
   runtimes[["mcp"]] <- mcp_time
   
@@ -500,7 +505,8 @@ fit_models <- function(dat, n, p) {
   svm_time <- system.time({
   svm_tune <- tune.svm(y ~ ., data = dat,
                         epsilon = seq(0.1, 0.5, 0.2),
-                        cost = c(0.5, 1, 2)
+                        cost = c(0.5, 1, 2),
+                       tunecontrol = tune.control(cross = 5)
   )
   
   svm_model <- svm_tune$best.model
