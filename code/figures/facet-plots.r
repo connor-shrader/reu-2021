@@ -190,162 +190,118 @@ generate_table <- function(data, metric, ...) {
   return(tab)
 }
 
-aggregate_results <- readRDS("../../results/monte-carlo/aggregate_results.rds")
-all_results <- readRDS("../../results/monte-carlo/all_results.rds")
-
-aggregate_results <- aggregate_results[
-  !aggregate_results$model_name %in% c("adap_ridge", "adap_lasso", "adap_enet"), ]
-
-all_results <- all_results[
-  !all_results$model_name %in% c("adap_ridge", "adap_lasso", "adap_enet"), ]
-
-# aggregate_results <- aggregate_results[aggregate_results$model_name != "gbm" &
-#                                       aggregate_results$model_name != "rf" &
-#                                       aggregate_results$model_name != "svm", ]
-
-old_names <- c("fm", "ab", "bb", "asb", "bsb", "af", "bf", "asf",
-               "bsf", "ridge", "lasso", "enet", "scad", "mcp", "gbm",
-               "rf", "svm")
-new_names <- c("OLS", "AIC B", "BIC B", "AIC SB",
-               "BIC SB", "AIC F", "BIC F",
-               "AIC SF", "BIC SF", "Ridge", "Lasso",
-               "E-net", "SCAD", "MCP", "XGBoost", "RF", "SVM")
-
-# Replace model names with more readable names.
-aggregate_results$model_name <- mapvalues(aggregate_results$model_name,
-                                          from = old_names, to = new_names)
-
-all_results$model_name <- mapvalues(all_results$model_name,
-                                    from = old_names, to = new_names)
-
-# Below is some old code used to generate a table to put into the final report.
-# I ended up deciding to use the tabular() function from the tables library
-# instead.
-
-# sub_results <- subset_data(aggregate_results, p = 100, n = 200)[c("st_dev", "type", "corr", "model_name", "mean_test_mse", "sd_test_mse")]
-# x <- melt(sub_results, id = c("type", "corr", "model_name", "st_dev"), measured = c("mean_test_mse", "sd_test_mse"))
-# y <- cast(x, st_dev + model_name ~ type + corr)
-
-plot_results <- aggregate_results
-
-# Rename the st_dev column so that the plot has better facet labels.
-plot_results$st_dev <- mapvalues(plot_results$st_dev,
-                                 from = c("1", "3", "6"),
-                                 to = c("sigma == 1", "sigma == 3", "sigma == 6"))
-
-plot_results <- arrange(plot_results, corr)
-accuracy_results <- plot_results[!plot_results$model_name %in% c("OLS",
-                                 "Ridge", "Adap. ridge", "XGBoost", "RF", "SVM"), ]
-
-dimensions <- expand.grid(n = c(50, 200, 1000), p = c(10, 100, 2000))
-
-apply(X = dimensions, MARGIN = 1, FUN = function(row) {
-  n <- row[["n"]]
-  p <- row[["p"]]
+for (response in 2) {
+  if (response == 1) {
+    aggregate_results <- readRDS("../../results/monte-carlo/aggregate_results.rds")
+    all_results <- readRDS("../../results/monte-carlo/all_results.rds")
+    directory <- "./images/linear-facet/"
+  }
+  if (response == 2) {
+    aggregate_results <- readRDS("../../results/monte-carlo-nonlinear/aggregate_nonlinear_results.rds")
+    all_results <- readRDS("../../results/monte-carlo-nonlinear/all_nonlinear_results.rds")
+    directory <- "./images/nonlinear-facet/"
+  }
   
-  plt <- plot_metric(plot_results, "train_mse", facet = c("type", "st_dev"),
-              color = "corr", ylabel = "Mean Train MSE", fixy = FALSE, n = n, p = p)
-  save_plot(plot = plt,
-            filename = paste("facet_train_mse_", n, "_", p, sep = ""),
-            path = "./images/facet-train-mse")
+  aggregate_results <- aggregate_results[
+    !aggregate_results$model_name %in% c("adap_ridge", "adap_lasso", "adap_enet"), ]
   
-  return(plt)
-})
-
-apply(X = dimensions, MARGIN = 1, FUN = function(row) {
-  n <- row[["n"]]
-  p <- row[["p"]]
+  all_results <- all_results[
+    !all_results$model_name %in% c("adap_ridge", "adap_lasso", "adap_enet"), ]
   
-  plt <- plot_metric(plot_results, "test_mse", facet = c("type", "st_dev"),
-                     color = "corr", ylabel = "Mean Test MSE", fixy = FALSE, n = n, p = p)
-  save_plot(plot = plt,
-            filename = paste("facet_test_mse_", n, "_", p, sep = ""),
-            path = "./images/facet-test-mse")
+  # aggregate_results <- aggregate_results[aggregate_results$model_name != "gbm" &
+  #                                       aggregate_results$model_name != "rf" &
+  #                                       aggregate_results$model_name != "svm", ]
   
-  return(plt)
-})
-
-
-apply(X = dimensions, MARGIN = 1, FUN = function(row) {
-  n <- row[["n"]]
-  p <- row[["p"]]
+  old_names <- c("fm", "ab", "bb", "asb", "bsb", "af", "bf", "asf",
+                 "bsf", "ridge", "lasso", "enet", "scad", "mcp", "gbm",
+                 "rf", "svm")
+  new_names <- c("OLS", "AIC B", "BIC B", "AIC SB",
+                 "BIC SB", "AIC F", "BIC F",
+                 "AIC SF", "BIC SF", "Ridge", "Lasso",
+                 "E-net", "SCAD", "MCP", "XGBoost", "RF", "SVM")
   
-  plt <- plot_metric(accuracy_results, "tn", facet = c("type", "st_dev"),
-                     color = "corr", ylabel = "Mean True Negatives", fixy = TRUE, n = n, p = p)
-  save_plot(plot = plt,
-            filename = paste("facet_tn_", n, "_", p, sep = ""),
-            path = "./images/facet-tn")
+  # Replace model names with more readable names.
+  aggregate_results$model_name <- mapvalues(aggregate_results$model_name,
+                                            from = old_names, to = new_names)
   
-  return(plt)
-})
-
-apply(X = dimensions, MARGIN = 1, FUN = function(row) {
-  n <- row[["n"]]
-  p <- row[["p"]]
+  all_results$model_name <- mapvalues(all_results$model_name,
+                                      from = old_names, to = new_names)
   
-  plt <- plot_metric(accuracy_results, "fn", facet = c("type", "st_dev"),
-                     color = "corr", ylabel = "Mean False Negatives", fixy = TRUE, n = n, p = p)
-  save_plot(plot = plt,
-            filename = paste("facet_fn_", n, "_", p, sep = ""),
-            path = "./images/facet-fn")
+  # Below is some old code used to generate a table to put into the final report.
+  # I ended up deciding to use the tabular() function from the tables library
+  # instead.
   
-  return(plt)
-})
-
-apply(X = dimensions, MARGIN = 1, FUN = function(row) {
-  n <- row[["n"]]
-  p <- row[["p"]]
+  # sub_results <- subset_data(aggregate_results, p = 100, n = 200)[c("st_dev", "type", "corr", "model_name", "mean_test_mse", "sd_test_mse")]
+  # x <- melt(sub_results, id = c("type", "corr", "model_name", "st_dev"), measured = c("mean_test_mse", "sd_test_mse"))
+  # y <- cast(x, st_dev + model_name ~ type + corr)
   
-  plt <- plot_metric(accuracy_results, "fp", facet = c("type", "st_dev"),
-                     color = "corr", ylabel = "Mean False Positives", fixy = TRUE, n = n, p = p)
-  save_plot(plot = plt,
-            filename = paste("facet_fp_", n, "_", p, sep = ""),
-            path = "./images/facet-fp")
+  plot_results <- aggregate_results
   
-  return(plt)
-})
-
-apply(X = dimensions, MARGIN = 1, FUN = function(row) {
-  n <- row[["n"]]
-  p <- row[["p"]]
+  # Rename the st_dev column so that the plot has better facet labels.
+  plot_results$st_dev <- mapvalues(plot_results$st_dev,
+                                   from = c("1", "3", "6"),
+                                   to = c("sigma == 1", "sigma == 3", "sigma == 6"))
   
-  plt <- plot_metric(accuracy_results, "tp", facet = c("type", "st_dev"),
-                     color = "corr", ylabel = "Mean True Positives", fixy = TRUE, n = n, p = p)
-  save_plot(plot = plt,
-            filename = paste("facet_tp_", n, "_", p, sep = ""),
-            path = "./images/facet-tp")
+  plot_results <- arrange(plot_results, corr)
+  accuracy_results <- plot_results[!plot_results$model_name %in% c("OLS",
+                                   "Ridge", "Adap. ridge", "XGBoost", "RF", "SVM"), ]
   
-  return(plt)
-})
-
-apply(X = dimensions, MARGIN = 1, FUN = function(row) {
-  n <- row[["n"]]
-  p <- row[["p"]]
+  dimensions <- expand.grid(n = c(50, 200, 1000), p = c(10, 100, 2000))
   
-  plt <- plot_metric(accuracy_results, "sensitivity", facet = c("type", "st_dev"),
-                     color = "corr", ylabel = expression(paste("Mean ", beta, "-sensitivity")),
-                     fixy = TRUE, n = n, p = p)
-  save_plot(plot = plt,
-            filename = paste("facet_sensitivity_", n, "_", p, sep = ""),
-            path = "./images/facet-sensitivity")
+  apply(X = dimensions, MARGIN = 1, FUN = function(row) {
+    n <- row[["n"]]
+    p <- row[["p"]]
+    
+    plt <- plot_metric(plot_results, "train_mse", facet = c("type", "st_dev"),
+                color = "corr", ylabel = "Mean Train MSE", fixy = FALSE, n = n, p = p)
+    save_plot(plot = plt,
+              filename = paste("facet_train_mse_", response, "_", n, "_", p, sep = ""),
+              path = paste(directory, "train-mse", sep = ""))
+    
+    return(plt)
+  })
   
-  return(plt)
-})
-
-apply(X = dimensions, MARGIN = 1, FUN = function(row) {
-  n <- row[["n"]]
-  p <- row[["p"]]
+  apply(X = dimensions, MARGIN = 1, FUN = function(row) {
+    n <- row[["n"]]
+    p <- row[["p"]]
+    
+    plt <- plot_metric(plot_results, "test_mse", facet = c("type", "st_dev"),
+                       color = "corr", ylabel = "Mean Test MSE", fixy = FALSE, n = n, p = p)
+    save_plot(plot = plt,
+              filename = paste("facet_test_mse_", response, "_", n, "_", p, sep = ""),
+              path = paste(directory, "test-mse", sep = ""))
+    
+    return(plt)
+  })
   
-  plt <- plot_metric(accuracy_results, "specificity", facet = c("type", "st_dev"),
-                     color = "corr", ylabel = expression(paste("Mean ", beta, "-specificity")),
-                     fixy = TRUE, n = n, p = p)
-  save_plot(plot = plt,
-            filename = paste("facet_specificity_", n, "_", p, sep = ""),
-            path = "./images/facet-specificity")
+  apply(X = dimensions, MARGIN = 1, FUN = function(row) {
+    n <- row[["n"]]
+    p <- row[["p"]]
+    
+    plt <- plot_metric(accuracy_results, "sensitivity", facet = c("type", "st_dev"),
+                       color = "corr", ylabel = expression(paste("Mean ", beta, "-sensitivity")),
+                       fixy = TRUE, n = n, p = p)
+    save_plot(plot = plt,
+              filename = paste("facet_sensitivity_", response, "_", n, "_", p, sep = ""),
+              path = paste(directory, "sensitivity", sep = ""))
+    
+    return(plt)
+  })
   
-  return(plt)
-})
-# plot_metric(accuracy_results, "fn", facet = c("type", "st_dev"), color = "corr", n = 50, p = 100)
+  apply(X = dimensions, MARGIN = 1, FUN = function(row) {
+    n <- row[["n"]]
+    p <- row[["p"]]
+    
+    plt <- plot_metric(accuracy_results, "specificity", facet = c("type", "st_dev"),
+                       color = "corr", ylabel = expression(paste("Mean ", beta, "-specificity")),
+                       fixy = TRUE, n = n, p = p)
+    save_plot(plot = plt,
+              filename = paste("facet_specificity_", response, "_", n, "_", p, sep = ""),
+              path = paste(directory, "specificity", sep = ""))
+    
+    return(plt)
+  })
+}
 
 
 
