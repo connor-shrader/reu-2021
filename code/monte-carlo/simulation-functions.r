@@ -186,8 +186,8 @@ generate_data <- function(n, p, response, beta = NULL, type = "independent",
   else if (response == 2) {
     # Generate corresponding y values for our data. Uses indicator, exponential, 
     # polynomial, and linear function:
-    # y = 1_(x1 > 0) + x2^2 + 0.5*x5 + x6^3 + 2 * 1_(x7>0 and x8>0) + N(0, sigma^2)
-    y <- ifelse(x[,2] > 0, 1, 0) + x[,3]^2 + beta[6]*x[,6] + x[,7]^3 + 2 * ifelse(
+    # y = 6 * 1_(x1 > 0) + x2^2 + 0.5*x5 + 3 * x6 + 2 * 1_(x7>0 and x8>0) + N(0, sigma^2)
+    y <- 6 * ifelse(x[,2] > 0, 1, 0) + x[,3]^2 + 0.5*x[,6] + 3 * x[,7] + 2 * ifelse(
       x[,8] > 0 & x[,9] > 0, 1, 0) + rnorm(n, sd = st_dev)
   }
   else {
