@@ -59,6 +59,10 @@ for (response in 2) {
     
     results <- get_results(response, n, p, st_dev, type, corr)
     
+    if (is.null(results)) {
+      return(data.frame())
+    }
+    
     # This lapply iterates through all 100 simulations for one parameter combination
     # (i.e. one row) and collects all of the metrics into a list of data frames.
     metrics_for_one_row <- lapply(1:100, function(iteration) {

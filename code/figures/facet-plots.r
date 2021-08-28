@@ -246,7 +246,7 @@ for (response in 2) {
   accuracy_results <- plot_results[!plot_results$model_name %in% c("OLS",
                                    "Ridge", "Adap. ridge", "XGBoost", "RF", "SVM"), ]
   
-  dimensions <- expand.grid(n = c(50, 200, 1000), p = c(10, 100, 2000))
+  dimensions <- expand.grid(n = c(50), p = c(10))
   
   apply(X = dimensions, MARGIN = 1, FUN = function(row) {
     n <- row[["n"]]
