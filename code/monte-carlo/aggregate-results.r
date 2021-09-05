@@ -46,7 +46,7 @@ get_results <- function(response, n, p, st_dev, type, corr) {
 # This lapply iterates through all possible parameter combinations and returns
 # a list of data frames. Each data frame contains results for the 100 simulations
 # for a single parameter combination.
-for (response in 2) {
+for (response in 1:2) {
   all_results <- lapply(1:270, function(i) {
     #print(i)
     row <- parameters[i, ]
