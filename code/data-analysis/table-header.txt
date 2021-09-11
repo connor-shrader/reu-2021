@@ -1,0 +1,5 @@
+\begin{tabular}{ll|ll|llllll|llllll|llllll}
+\hline
+& Type& \multicolumn{2}{l|}{Independent} & \multicolumn{6}{l|}{Symmetric} & \multicolumn{6}{l|}{Autoregressive} & \multicolumn{6}{l}{Blockwise} \\ 
+& Corr.& \multicolumn{2}{l|}{0} & \multicolumn{2}{l}{0.2} & \multicolumn{2}{l}{0.5} & \multicolumn{2}{l|}{0.9} & \multicolumn{2}{l}{0.2} & \multicolumn{2}{l}{0.5} & \multicolumn{2}{l|}{0.9} & \multicolumn{2}{l}{0.2} & \multicolumn{2}{l}{0.5} & \multicolumn{2}{l}{0.9} \\  
+$\sigma$ & Model & Mean & SD & Mean & SD & Mean & SD & Mean & SD & Mean & SD & Mean & SD & Mean & SD & Mean & SD & Mean & SD & Mean & SD \\\hline

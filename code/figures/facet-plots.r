@@ -21,9 +21,6 @@ library(plyr) # v1.8.6
 # Used to get the default color/fill scales for ggplot2.
 library(scales) # v1.1.1
 
-# Used to generate LaTeX tables of results.
-library(tables) # v0.9.6
-
 library(caret)
 
 # This function takes in a data frame, a string representing a metric, and

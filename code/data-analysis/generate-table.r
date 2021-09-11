@@ -1,7 +1,7 @@
 # test-plots.r
 # Gabe Ackall, Connor Shrader
 
-# This file is used to experiment with plotting results
+# This file is used to generate result tables to be included in tex files.
 
 rm(list = ls())
 library(rstudioapi) # v0.13
@@ -11,6 +11,13 @@ source("./subset-data.r")
 
 # Used to melt and cast data frames into a format appropriate for LaTeX tables.
 library(reshape) # v0.8.8
+
+# Used to generate LaTeX tables of results.
+library(tables) # v0.9.6
+
+# plyr is used to map the values of the model_names column to more readable
+# values.
+library(plyr) # v1.8.6
 
 Mean2 <- function(x) {
   if(length(x) == 0) {
@@ -40,8 +47,7 @@ SD4 <- function(x) {
   return(round(sd(x), 4))
 }
 
-# generate_table(all_results, metric = "train_mse", n = 1000, p = 10)
-generate_table <- function(data, metric, ...) {
+generate_raw_table <- function(data, metric, ...) {
   data <- subset_data(data, ...)
   data <- data[!is.na(data[[metric]]), ]
   
@@ -96,12 +102,53 @@ generate_table <- function(data, metric, ...) {
   
   # Call the following line to print out the LaTeX table. I could not get it to
   # save correctly to a file, so the output must be copy/pasted.
-  print(toLatex(tab, options = list(justification = "l")))
+  return(toLatex(tab, options = list(justification = "l"))$text)
   return(tab)
+}
+
+repair_table <- function(table_string) {
+  old_header_index <- regexpr(pattern = "\n1", table_string)
+  file_name <- "./table-header.txt"
+  header <- readChar(file_name, nchars = 1000)
+  new_string <- paste(header, substring(table_string, old_header_index + 1))
+  
+  new_string <- sub(pattern = "\\\\\n3", replacement = "\\\\\\\\hline\n3", new_string)
+  new_string <- sub(pattern = "\\\\\n6", replacement = "\\\\\\\\hline\n6", new_string)
+  return(new_string)
+}
+
+generate_table <- function(data, metric, filename, path, ...) {
+  raw_table <- generate_raw_table(data, metric, ...)
+  repaired_table <- repair_table(raw_table)
+  
+  last_char <- substr(path, nchar(path), nchar(path))
+  if (last_char != "/") {
+    path <- paste(path, "/", sep = "")
+  }
+  
+  directory <- paste(path, filename, ".tex", sep = "")
+  write(repaired_table, file = directory)
 }
 
 all_linear_results <- readRDS("../../results/monte-carlo-linear/all_linear_results.rds")
 all_nonlinear_results <- readRDS("../../results/monte-carlo-nonlinear/all_nonlinear_results.rds")
 
+
+
+old_names <- c("fm", "ab", "bb", "asb", "bsb", "af", "bf", "asf",
+               "bsf", "ridge", "lasso", "enet", "scad", "mcp", "gbm",
+               "rf", "svm")
+new_names <- c("OLS", "AIC B", "BIC B", "AIC SB",
+               "BIC SB", "AIC F", "BIC F",
+               "AIC SF", "BIC SF", "Ridge", "Lasso",
+               "E-net", "SCAD", "MCP", "XGBoost", "RF", "SVM")
+
+# Replace model names with more readable names.
+all_linear_results$model_name <- mapvalues(all_linear_results$model_name,
+                                           from = old_names, to = new_names)
+
+all_nonlinear_results$model_name <- mapvalues(all_nonlinear_results$model_name,
+                                              from = old_names, to = new_names)
+
 # Run a line like the following to generate a table:
-# generate_table(all_results, metric = "train_mse", n = 1000, p = 10)
+# table_string <- generate_table(all_linear_results, metric = "train_mse", n = 1000, p = 10)
