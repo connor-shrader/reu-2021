@@ -39,7 +39,7 @@ bias_variance <- ggplot(data = dat, mapping = aes(x = x, y = y)) +
 
 ggsave(
   filename = "bias-variance.png",
-  path = "./images",
+  path = "../../figures",
   plot = bias_variance,
   type = "cairo-png",
   width = 10,
@@ -49,7 +49,7 @@ ggsave(
 
 ggsave(
   filename = "bias-variance.eps",
-  path = "./images",
+  path = "../../figures",
   plot = bias_variance,
   width = 10,
   height = 6,
