@@ -178,7 +178,7 @@ lasso <- ggplot(
 # Save files
 ggsave(
   filename = "lasso-diagram.png",
-  path = "./images",
+  path = "../../figures",
   plot = lasso,
   type = "cairo-png",
   width = 10,
@@ -188,7 +188,7 @@ ggsave(
 
 ggsave(
   filename = "lasso-diagram.eps",
-  path = "./images",
+  path = "../../figures",
   plot = lasso,
   width = 10,
   height = 6,
@@ -197,7 +197,7 @@ ggsave(
 
 ggsave(
   filename = "ridge-diagram.png",
-  path = "./images",
+  path = "../../figures",
   plot = ridge,
   type = "cairo-png",
   width = 10,
@@ -207,7 +207,7 @@ ggsave(
 
 ggsave(
   filename = "ridge-diagram.eps",
-  path = "./images",
+  path = "../../figures",
   plot = ridge,
   width = 10,
   height = 6,

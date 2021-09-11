@@ -112,7 +112,7 @@ mse_plot <- ggplot(data = all_results, mapping = aes(x = model_name, y = mse, la
 
 save_plot(plot = mse_plot,
           filename = "empirical_mse",
-          path = "./images")
+          path = "../../figures")
 
 tab <- tabular(model_name ~ (type * mse) * (mean + sd), data = all_results)
 print(toLatex(tab, options = list(justification = "l")))

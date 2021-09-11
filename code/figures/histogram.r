@@ -34,4 +34,4 @@ print(mean(cancer_y$y))
 
 save_plot(plot = y_hist,
           filename = "empirical_histogram",
-          path = "./images")
+          path = "../../figures")

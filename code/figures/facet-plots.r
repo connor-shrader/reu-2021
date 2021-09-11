@@ -84,12 +84,12 @@ for (response in 1:2) {
   if (response == 1) {
     aggregate_results <- readRDS("../../results/monte-carlo-linear/aggregate_linear_results.rds")
     all_results <- readRDS("../../results/monte-carlo-linear/all_linear_results.rds")
-    directory <- "./images/linear-facet/"
+    directory <- "../../figures/linear-facet/"
   }
   if (response == 2) {
     aggregate_results <- readRDS("../../results/monte-carlo-nonlinear/aggregate_nonlinear_results.rds")
     all_results <- readRDS("../../results/monte-carlo-nonlinear/all_nonlinear_results.rds")
-    directory <- "./images/nonlinear-facet/"
+    directory <- "../../figures/nonlinear-facet/"
   }
   
   aggregate_results <- aggregate_results[

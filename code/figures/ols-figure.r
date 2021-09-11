@@ -26,7 +26,7 @@ ols <- ggplot(data = dat, mapping = aes(x = x, y = y)) +
 
 ggsave(
   filename = "ols.png",
-  path = "./images",
+  path = "../../figures",
   plot = ols,
   type = "cairo-png",
   width = 10,
@@ -36,7 +36,7 @@ ggsave(
 
 ggsave(
   filename = "ols.eps",
-  path = "./images",
+  path = "../../figures",
   plot = ols,
   width = 10,
   height = 6,

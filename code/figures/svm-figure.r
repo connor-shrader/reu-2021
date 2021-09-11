@@ -60,6 +60,6 @@ sv_plot <- ggplot(data = dat, mapping = aes(x = x, y = y, color = class)) +
 
 save_plot(plot = sv_plot,
           filename = "svm",
-          path = "./images")
+          path = "../../figures")
 
               

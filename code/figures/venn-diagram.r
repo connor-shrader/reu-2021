@@ -93,7 +93,7 @@ for (i in 1:5) {
 
   ggsave(
     filename = paste("venn", i, ".eps", sep = ""),
-    path = "./images/venn",
+    path = "../../figures/venn",
     plot = venn.plot.glm,
     device = cairo_ps,
     width = 10,
@@ -103,7 +103,7 @@ for (i in 1:5) {
 
   save_plot(plot = venn.plot.glm,
             filename = paste("venn", i, sep = ""),
-            path = "./images/venn",
+            path = "../../figures/venn",
             png_only = TRUE)
 }
  

@@ -88,7 +88,7 @@ penalty <- ggplot() +
 # save images
 ggsave(
   filename = "lasso-scad-mcp-penalty.png",
-  path = "./images",
+  path = "../../figures",
   plot = penalty,
   type = "cairo-png",
   width = 10,
@@ -98,7 +98,7 @@ ggsave(
 
 ggsave(
   filename = "lasso-scad-mcp-penalty.eps",
-  path = "./images",
+  path = "../../figures",
   plot = penalty,
   width = 10,
   height = 6,
@@ -174,7 +174,7 @@ derivative <- ggplot() +
 # save images
 ggsave(
   filename = "lasso-scad-mcp-derivative.png",
-  path = "./images",
+  path = "../../figures",
   plot = derivative,
   type = "cairo-png",
   width = 10,
@@ -184,7 +184,7 @@ ggsave(
 
 ggsave(
   filename = "lasso-scad-mcp-derivative.eps",
-  path = "./images",
+  path = "../../figures",
   plot = derivative,
   width = 10,
   height = 6,
@@ -283,7 +283,7 @@ solution <- ggplot(data = models) +
 # save files
 ggsave(
   filename = "lasso-scad-mcp-solution.png",
-  path = "./images",
+  path = "../../figures",
   plot = solution,
   type = "cairo-png",
   width = 10,
@@ -293,7 +293,7 @@ ggsave(
 
 ggsave(
   filename = "lasso-scad-mcp-solution.eps",
-  path = "./images",
+  path = "../../figures",
   plot = solution,
   width = 10,
   height = 6,
