@@ -460,7 +460,7 @@ Lasso, SCAD, MCP, GBM, and random forest models were used for all data sets. Sup
 
 \subsection{Simulation Design}
 
-For the simulated data, we assumed that the relationship between the response variable $Y$ and the predictors $X_1, X_2, \dotsc, X_p$ was linear. That is, we assumed that
+Our simulation study considered two different functions for the response variable $Y$. First, we assumed that the relationship between the response variable $Y$ and the predictors $X_1, X_2, \dotsc, X_p$ was linear. That is, we assumed that
 \begin{equation}
 	Y = \beta_0 + \beta_1 X_1 + \cdots + \beta_p X_p + \epsilon
 \end{equation}
@@ -474,12 +474,24 @@ We then generated an $n\times 1$ error vector $\mathbf{e}\sim \mathcal{N}(0, \si
 \end{equation}
 
 Given the chosen coefficient values, the response $\mathbf{y}$ becomes
-\begin{equation}
-	\mathbf{y} = 1 + 2\mathbf{X}_1 + (-2)\mathbf{X}_2 + 0.5\mathbf{X}_5 + 3\mathbf{X}_6 + \mathbf{e}
+\begin{equation}\label{eqn:linear-response}
+	\mathbf{y} = 1 + 2\mathbf{X}_1 - 2\mathbf{X}_2 + 0.5\mathbf{X}_5 + 3\mathbf{X}_6 + \mathbf{e}
 \end{equation}
 where $\mathbf{X}_i$ is the $i$-th column of $\mathbf{X}$.
 
-We used a \textbf{factorial design} for our simulations. This means that we considered several factors that affect the simulated data in $\mathbf{X}$, each having multiple possible values. We then generated data using every possible combination of factor values, giving us a comprehensive assessment of model performance under various conditions. The factors that we controlled in our simulation are:
+Our second response function was not entirely linear. Instead, we calculated $\mathbf{y}$ as
+\begin{equation}\label{eqn:nonlinear-response}
+	\mathbf{y} = 6\times 1_{\mathbf{X}_1>0} + \mathbf{X}_2^2 + 0.5\mathbf{X}_6 + 3\mathbf{X}_7 + 2\times 1_{\mathbf{X}_8>0}\times 1_{\mathbf{X}_9>0} + \mathbf{e}
+\end{equation}
+where $1_{\mathbf{X}_i>0}$ is the index function defined by
+\begin{equation}
+	1_{\mathbf{X}_i>0} = \left\{\begin{array}{ll}
+			0, &\mathbf{X}_i \leq 0 \\
+			1, &\mathbf{X}_i > 0
+		\end{array}\right.
+\end{equation}
+
+For both response functions, we used a \textbf{factorial design}. This means that we considered several factors that affect the simulated data in $\mathbf{X}$, each having multiple possible values. We then generated data using every possible combination of factor values, giving us a comprehensive assessment of model performance under various conditions. The factors that we controlled in our simulation are:
 \begin{itemize}
 	\item $n$, the number of observations (50, 200, and 1000),
 	\item $p$, the number of predictors (10, 100, and 2000),
@@ -642,6 +654,7 @@ Figure \ref{fig:linear-linear-sensitivity-50-2000} shows the mean $\beta$-sensit
 Figure \ref{fig:linear-linear-specificity-50-2000} shows the average $\beta$-specificity $n = 50$ and $p = 2000$. See Table \ref{tab:specificity-50-2000} for the corresponding results table. MCP appears to make the fewest mistakes when choosing zero coefficients. The performance of the other models depends heavily on the type of correlation and the correlation strength. Lasso and elastic-net perform the worst when the correlation structure is symmetric compound, whereas SCAD performs poorly when the correlation structure is autoregressive or blockwise. We also see that the models generally made less mistakes as the correlation increases.
 
 \subsection{Nonlinear Simulation Results}
+Now, we will highlight some results from the simulations that used the nonlinear response function given by Equation \ref{eqn:nonlinear-response}.
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width = \textwidth]{images/nonlinear-facet/train-mse/facet_train_mse_2_50_2000.eps}
