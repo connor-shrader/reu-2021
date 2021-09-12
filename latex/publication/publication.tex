@@ -562,84 +562,117 @@ Because we ran simulations using 270 different combinations of factors, we will 
 
 To save space in the plots, each model is given a shortened label. Many of these labels have been used throughout this paper; for example, ordinary least squares is labeled as OLS. The labels for the wrapper methods start with AIC or BIC, followed by either B for backward, SB for stepwise backward, F for forward or SF for stepwise forward. As an example, the stepwise forward model evaluated with AIC is labeled as ``AIC SF.''
 
-We will first consider the case where $n = 1000$ and $p = 10$. Figures \ref{fig:train-mse-1000-10} and \ref{fig:test-mse-1000-10} show the average mean squared error of each model for the training set and test set, respectively. Tables \ref{tab:train-mse-1000-10} and \ref{tab:test-mse-1000-10} in Appendix \ref{app:full-results} contain all of the data shown in these figures as well as the standard deviation for each point.
+We will first consider the case where $n = 1000$ and $p = 10$. Figures \ref{fig:linear-train-mse-1000-10} and \ref{fig:linear-test-mse-1000-10} show the average mean squared error of each model for the training set and test set, respectively. Tables \ref{tab:train-mse-1000-10} and \ref{tab:test-mse-1000-10} in Appendix \ref{app:full-results} contain all of the data shown in these figures as well as the standard deviation for each point.
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width = \textwidth]{images/facet-train-mse/facet_train_mse_1000_10.eps}
+	\includegraphics[width = \textwidth]{images/linear-facet/train-mse/facet_train_mse_1_1000_10.eps}
 	\captionsetup{width = 0.8\textwidth}
-	\caption{Average mean squared error using the training data for all simulated models when $n = 1000$ and $p = 10$.}
-	\label{fig:train-mse-1000-10}
+	\caption{Average mean squared error using the training data for all linear simulations when $n = 1000$ and $p = 10$.}
+	\label{fig:linear-train-mse-1000-10}
 \end{figure}
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width = \textwidth]{images/facet-test-mse/facet_test_mse_1000_10.eps}
+	\includegraphics[width = \textwidth]{images/linear-facet/test-mse/facet_test_mse_1_1000_10.eps}
 	\captionsetup{width = 0.8\textwidth}
-	\caption{Average mean squared error using the test data for simulated models when $n = 1000$ and $p = 10$.}
-	\label{fig:test-mse-1000-10}
+	\caption{Average mean squared error using the test data for linear simulations when $n = 1000$ and $p = 10$.}
+	\label{fig:linear-test-mse-1000-10}
 \end{figure}
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width = \textwidth]{images/facet-sensitivity/facet_sensitivity_1000_10.eps}
+	\includegraphics[width = \textwidth]{images/linear-facet/sensitivity/facet_sensitivity_1_1000_10.eps}
 	\captionsetup{width = 0.8\textwidth}
-	\caption{Average $\beta$-sensitivity for simulated models when $n = 1000$ and $p = 10$.}
-	\label{fig:sensitivity-1000-10}
+	\caption{Average $\beta$-sensitivity for linear simulations when $n = 1000$ and $p = 10$.}
+	\label{fig:linear-sensitivity-1000-10}
 	
 	\bigskip
 	
-	\includegraphics[width = \textwidth]{images/facet-specificity/facet_specificity_1000_10.eps}
+	\includegraphics[width = \textwidth]{images/linear-facet/specificity/facet_specificity_1_1000_10.eps}
 	\captionsetup{width = 0.8\textwidth}
-	\caption{Average $\beta$-specificity for simulated models when $n = 1000$ and $p = 10$.}
-	\label{fig:specificity-1000-10}
+	\caption{Average $\beta$-specificity for linear simulations when $n = 1000$ and $p = 10$.}
+	\label{fig:linear-specificity-1000-10}
 \end{figure}
 
 We see that the linear models have very similar train and test mean squared errors. For these models, the mean squared error is approximately equal to $\sigma^2$, the square of the random error. We also see that for all of the linear models except for ridge regression, the type and strength of correlation has little effect on model performance. However, ridge regression performs worse when the correlation is high.
 
 The non-linear models all have lower training mean squared errors compared to the linear models. However, they also have higher test mean squared errors. We see that gradient boosting is not affected too strongly by the amount of correlation; on the other hand, we see that random forest and support vector machine models have better test performance when there is a strong correlation between predictors.
 
-Figure \ref{fig:sensitivity-1000-10} displays the average $\beta$-sensitivity for each model that performs variable selection when $n = 1000$ and $p = 10$. See Table \ref{tab:sensitivity-1000-10} for a table of these results. We see that almost all the models were able to correctly identify all of the non-zero coefficients when $n = 1000$ and $p = 10$. The only exceptions were lasso and elastic-net models when the correlation structure was blockwise and the strength of the correlation was 0.9.
+Figure \ref{fig:linear-sensitivity-1000-10} displays the average $\beta$-sensitivity for each model that performs variable selection when $n = 1000$ and $p = 10$. See Table \ref{tab:sensitivity-1000-10} for a table of these results. We see that almost all the models were able to correctly identify all of the non-zero coefficients when $n = 1000$ and $p = 10$. The only exceptions were lasso and elastic-net models when the correlation structure was blockwise and the strength of the correlation was 0.9.
 
-Figure \ref{fig:specificity-1000-10} shows the average $\beta$-specificity for each model. Exact numerical values are given in Table \ref{tab:specificity-1000-10}. We see that the subset selection models that used BIC made almost zero mistakes when identifying predictors as zero. In contrast, wrapper models fitted using AIC made more mistakes. We see that lasso and elastic-net made almost no mistakes when the correlation was low; in fact, when the correlation structure was independent, lasso made the fewest incorrect estimates out of all the models. As the correlation increases, lasso and elastic-net made more incorrect predictions. SCAD and MCP made more incorrect predictions than lasso and elastic-net in general. However, SCAD and MCP were also somewhat more resilient to an increase in correlation.
+Figure \ref{fig:linear-specificity-1000-10} shows the average $\beta$-specificity for each model. Exact numerical values are given in Table \ref{tab:specificity-1000-10}. We see that the subset selection models that used BIC made almost zero mistakes when identifying predictors as zero. In contrast, wrapper models fitted using AIC made more mistakes. We see that lasso and elastic-net made almost no mistakes when the correlation was low; in fact, when the correlation structure was independent, lasso made the fewest incorrect estimates out of all the models. As the correlation increases, lasso and elastic-net made more incorrect predictions. SCAD and MCP made more incorrect predictions than lasso and elastic-net in general. However, SCAD and MCP were also somewhat more resilient to an increase in correlation.
 
-Now, we will consider the opposite extreme where $n = 50$ and $p = 2000$. Figures \ref{fig:train-mse-50-2000} and \ref{fig:test-mse-50-2000} display the average mean squared error for simulations where $n = 50$ and $p = 2000$. Because less models were fitted for this combination of $n$ and $p$, less models are shown in this figure. See Table \ref{tab:train-mse-50-2000} and Table \ref{tab:test-mse-50-2000} for a table of these results, including the standard deviations for each point.
+Now, we will consider the opposite extreme where $n = 50$ and $p = 2000$. Figures \ref{fig:linear-train-mse-50-2000} and \ref{fig:linear-test-mse-50-2000} display the average mean squared error for simulations where $n = 50$ and $p = 2000$. Because less models were fitted for this combination of $n$ and $p$, less models are shown in this figure. See Table \ref{tab:train-mse-50-2000} and Table \ref{tab:test-mse-50-2000} for a table of these results, including the standard deviations for each point.
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width = \textwidth]{images/facet-train-mse/facet_train_mse_50_2000.eps}
+	\includegraphics[width = \textwidth]{images/linear-facet/train-mse/facet_train_mse_1_50_2000.eps}
 	\captionsetup{width = 0.8\textwidth}
-	\caption{Average mean square error using training data for simulated models when $n = 50$ and $p = 2000$.}
-	\label{fig:train-mse-50-2000}
+	\caption{Average mean square error using training data for linear simulations when $n = 50$ and $p = 2000$.}
+	\label{fig:linear-linear-train-mse-50-2000}
 	
 	\bigskip
 	
-	\includegraphics[width = \textwidth]{images/facet-test-mse/facet_test_mse_50_2000.eps}
+	\includegraphics[width = \textwidth]{images/linear-facet/test-mse/facet_test_mse_1_50_2000.eps}
 	\captionsetup{width = 0.8\textwidth}
-	\caption{Average mean square error using testing data for simulated models when $n = 50$ and $p = 2000$.}
-	\label{fig:test-mse-50-2000}
+	\caption{Average mean square error using testing data for linear simulations when $n = 50$ and $p = 2000$.}
+	\label{fig:linear-linear-test-mse-50-2000}
 \end{figure}
 
 \begin{figure}[h!]
 	\centering	
-	\includegraphics[width = \textwidth]{images/facet-sensitivity/facet_sensitivity_50_2000.eps}
+	\includegraphics[width = \textwidth]{images/linear-facet/sensitivity/facet_sensitivity_1_50_2000.eps}
 	\captionsetup{width = 0.8\textwidth}
-	\caption{Average $\beta$-sensitivity for simulated models when $n = 50$ and $p = 2000$}
-	\label{fig:sensitivity-50-2000}
+	\caption{Average $\beta$-sensitivity for linear simulations when $n = 50$ and $p = 2000$}
+	\label{fig:linear-linear-sensitivity-50-2000}
 	
 	\bigskip
 	
-	\includegraphics[width = \textwidth]{images/facet-specificity/facet_specificity_50_2000.eps}
+	\includegraphics[width = \textwidth]{images/linear-facet/specificity/facet_specificity_1_50_2000.eps}
 	\captionsetup{width = 0.8\textwidth}
-	\caption{Average $\beta$-specificity for simulated models when $n = 50$ and $p = 2000$.}
-	\label{fig:specificity-50-2000}
+	\caption{Average $\beta$-specificity for linear simulations when $n = 50$ and $p = 2000$.}
+	\label{fig:linear-linear-specificity-50-2000}
 \end{figure}
 
 We see that the mean squared error for lasso and elastic-net are generally larger than SCAD and MCP for both the training data and test data. Gradient boosting has almost zero training mean squared error under all conditions, but has a relatively large test error. Random forest and support vector machine models have a moderate training error but a large test error. Interestingly, we see that the non-linear models all perform better when there is a strong correlation between predictors. On the other hand, the linear models are somewhat less affected by the correlation.
 
-Figure \ref{fig:sensitivity-50-2000} shows the mean $\beta$-sensitivity for each model, with results shown in Table \ref{tab:sensitivity-50-2000}. We see that all of the models predict most of the non-zero coefficients when the correlation is low. When the correlation is high, all of the models struggle to identify the correct predictors. SCAD and MCP perform the best when the correlation is low but perform the worst when the correlation is high. Elastic-net performs particularly well compared to the other models when the correlation is high, especially when the correlation structure is autoregressive.
+Figure \ref{fig:linear-linear-sensitivity-50-2000} shows the mean $\beta$-sensitivity for each model, with results shown in Table \ref{tab:linear-sensitivity-50-2000}. We see that all of the models predict most of the non-zero coefficients when the correlation is low. When the correlation is high, all of the models struggle to identify the correct predictors. SCAD and MCP perform the best when the correlation is low but perform the worst when the correlation is high. Elastic-net performs particularly well compared to the other models when the correlation is high, especially when the correlation structure is autoregressive.
 
-Figure \ref{fig:specificity-50-2000} shows the average $\beta$-specificity $n = 50$ and $p = 2000$. See Table \ref{tab:specificity-50-2000} for the corresponding results table. MCP appears to make the fewest mistakes when choosing zero coefficients. The performance of the other models depends heavily on the type of correlation and the correlation strength. Lasso and elastic-net perform the worst when the correlation structure is symmetric compound, whereas SCAD performs poorly when the correlation structure is autoregressive or blockwise. We also see that the models generally made less mistakes as the correlation increases.
+Figure \ref{fig:linear-linear-specificity-50-2000} shows the average $\beta$-specificity $n = 50$ and $p = 2000$. See Table \ref{tab:specificity-50-2000} for the corresponding results table. MCP appears to make the fewest mistakes when choosing zero coefficients. The performance of the other models depends heavily on the type of correlation and the correlation strength. Lasso and elastic-net perform the worst when the correlation structure is symmetric compound, whereas SCAD performs poorly when the correlation structure is autoregressive or blockwise. We also see that the models generally made less mistakes as the correlation increases.
+
+\subsection{Nonlinear Simulation Results}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width = \textwidth]{images/nonlinear-facet/train-mse/facet_train_mse_2_50_2000.eps}
+	\captionsetup{width = 0.8\textwidth}
+	\caption{Average mean square error using training data for nonlinear simulations when $n = 1000$ and $p = 10$.}
+	\label{fig:nonlinear-train-mse-1000-10}
+\end{figure}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width = \textwidth]{images/nonlinear-facet/test-mse/facet_test_mse_2_50_2000.eps}
+	\captionsetup{width = 0.8\textwidth}
+	\caption{Average mean square error using training data for nonlinear simulations when $n = 1000$ and $p = 10$.}
+	\label{fig:nonlinear-test-mse-1000-10}
+\end{figure}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width = \textwidth]{images/nonlinear-facet/train-mse/facet_train_mse_2_50_2000.eps}
+	\captionsetup{width = 0.8\textwidth}
+	\caption{Average mean square error using training data for nonlinear simulations when $n = 50$ and $p = 2000$.}
+	\label{fig:nonlinear-train-mse-50-2000}
+\end{figure}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width = \textwidth]{images/nonlinear-facet/test-mse/facet_test_mse_2_50_2000.eps}
+	\captionsetup{width = 0.8\textwidth}
+	\caption{Average mean square error using training data for nonlinear simulations when $n = 50$ and $p = 2000$.}
+	\label{fig:nonlinear-test-mse-50-2000}
+\end{figure}
 
 \section{Empirical Data Analysis}\label{sec:empirical}
 \subsection{Details of Empirical Data}
@@ -851,48 +884,48 @@ The following pages contain the full table of Monte Carlo simulation results. Ea
 \begin{landscape}
 	\centering
 	\captionsetup{width = 6in}
-	\captionof{table}{Mean and standard deviation of the mean squared error on training data when $n = 1000$ and $p = 10$. See Figure \ref{fig:train-mse-1000-10} for the corresponding plot.}
+	\captionof{table}{Mean and standard deviation of the mean squared error on training data when $n = 1000$ and $p = 10$. See Figure \ref{fig:linear-train-mse-1000-10} for the corresponding plot.}
 	\label{tab:train-mse-1000-10}
 	\input{./tables/train_mse_1000_10.tex}
 	
 	\newpage
 	
-	\captionof{table}{Mean and standard deviation of the mean squared error on test data when $n = 1000$ and $p = 10$. See Figure \ref{fig:test-mse-1000-10} for the corresponding plot.}
+	\captionof{table}{Mean and standard deviation of the mean squared error on test data when $n = 1000$ and $p = 10$. See Figure \ref{fig:linear-test-mse-1000-10} for the corresponding plot.}
 	\label{tab:test-mse-1000-10}
 	\input{./tables/test_mse_1000_10.tex}
 	
 	\newpage
-	\captionof{table}{Mean and standard deviation of the $\beta$-sensitivity when $n = 1000$ and $p = 10$. See Figure \ref{fig:sensitivity-1000-10} for the corresponding plot.}
+	\captionof{table}{Mean and standard deviation of the $\beta$-sensitivity when $n = 1000$ and $p = 10$. See Figure \ref{fig:linear-sensitivity-1000-10} for the corresponding plot.}
 	\label{tab:sensitivity-1000-10}
 	\input{./tables/sensitivity_1000_10.tex}
 	
 	\newpage
 	
-	\captionof{table}{Mean and standard deviation of the $\beta$-specificity when $n = 1000$ and $p = 10$. See Figure \ref{fig:specificity-1000-10} for the corresponding plot.}
+	\captionof{table}{Mean and standard deviation of the $\beta$-specificity when $n = 1000$ and $p = 10$. See Figure \ref{fig:linear-specificity-1000-10} for the corresponding plot.}
 	\label{tab:specificity-1000-10}
 	\input{./tables/specificity_1000_10.tex}
 	
 	\newpage
 	
-	\captionof{table}{Mean and standard deviation of the mean squared error on training data when $n = 50$ and $p = 2000$. See Figure \ref{fig:train-mse-50-2000} for the corresponding plot.}
+	\captionof{table}{Mean and standard deviation of the mean squared error on training data when $n = 50$ and $p = 2000$. See Figure \ref{fig:linear-train-mse-50-2000} for the corresponding plot.}
 	\label{tab:train-mse-50-2000}
 	\input{./tables/train_mse_50_2000.tex}
 	
 	\newpage
 	
-	\captionof{table}{Mean and standard deviation of the mean squared error on training data when $n = 50$ and $p = 2000$. See Figure \ref{fig:test-mse-50-2000} for the corresponding plot.}
+	\captionof{table}{Mean and standard deviation of the mean squared error on training data when $n = 50$ and $p = 2000$. See Figure \ref{fig:linear-test-mse-50-2000} for the corresponding plot.}
 	\label{tab:test-mse-50-2000}
 	\input{./tables/test_mse_50_2000.tex}
 	
 	\newpage
 	
-	\captionof{table}{Mean and standard deviation of the $\beta$-sensitivity when $n = 50$ and $p = 2000$. See Figure \ref{fig:sensitivity-50-2000} for the corresponding plot.}
+	\captionof{table}{Mean and standard deviation of the $\beta$-sensitivity when $n = 50$ and $p = 2000$. See Figure \ref{fig:linear-sensitivity-50-2000} for the corresponding plot.}
 	\label{tab:sensitivity-50-2000}
 	\input{./tables/sensitivity_50_2000.tex}
 	
 	\bigskip
 	
-	\captionof{table}{Mean and standard deviation of the $\beta$-specificity when $n = 50$ and $p = 2000$. See Figure \ref{fig:specificity-50-2000} for the corresponding plot.}
+	\captionof{table}{Mean and standard deviation of the $\beta$-specificity when $n = 50$ and $p = 2000$. See Figure \ref{fig:linear-specificity-50-2000} for the corresponding plot.}
 	\label{tab:specificity-50-2000}
 	\input{./tables/specificity_50_2000.tex}
 \end{landscape}
