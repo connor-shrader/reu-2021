@@ -664,10 +664,12 @@ Figure \ref{fig:linear-specificity-50-2000} shows the average $\beta$-specificit
 \subsection{Non-linear Simulation Results}
 Now, we will highlight some results from the simulations that used the non-linear response function given by Equation \ref{eqn:nonlinear-response}.
 
-First, we will consider the extreme where $n = 1000$ and $p = 10$. Figures \ref{fig:nonlinear-train-mse-1000-10} and \ref{fig:nonlinear-test-mse-1000-10} show the average train MSE and test MSE, respectively. We see that all of the linear models have high training mean squared errors while the machine learning models have small mean squared errors.
+First, we will consider the extreme where $n = 1000$ and $p = 10$. Figures \ref{fig:nonlinear-train-mse-1000-10} and \ref{fig:nonlinear-test-mse-1000-10} show the average train MSE and test MSE, respectively. We see that all of the linear models have a high mean squared error on both training and test data. Ridge, lasso, and elastic-net had slightly higher mean squared errors than the other linear models. The correlation structure and correlation strength appear to have little effect on the performance of the linear models. Although increasing $\sigma$ (the standard deviation of the random error) significantly increases the mean squared errors, it seems to affect all of the models equally.
+
+On the other hand, the machine learning models have low mean squared errors on both training and test data. Gradient boosting has the best performance out of these three models, while support vector machines perform the worst. However, all three models greatly outperform any of the linear models. We also note that XGBoost and random forest models seem unaffected by the correlation strength, correlation value, and random error. Support vector machines appear to perform worse relative to the other machine learning models when $\sigma$ is small.
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width = \textwidth]{images/nonlinear-facet/train-mse/facet_train_mse_2_50_2000.eps}
+	\includegraphics[width = \textwidth]{images/nonlinear-facet/train-mse/facet_train_mse_2_1000_10.eps}
 	\captionsetup{width = 0.8\textwidth}
 	\caption{Average mean square error using training data for non-linear simulations when $n = 1000$ and $p = 10$.}
 	\label{fig:nonlinear-train-mse-1000-10}
@@ -675,12 +677,30 @@ First, we will consider the extreme where $n = 1000$ and $p = 10$. Figures \ref{
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width = \textwidth]{images/nonlinear-facet/test-mse/facet_test_mse_2_50_2000.eps}
+	\includegraphics[width = \textwidth]{images/nonlinear-facet/test-mse/facet_test_mse_2_1000_10.eps}
 	\captionsetup{width = 0.8\textwidth}
-	\caption{Average mean square error using training data for non-linear simulations when $n = 1000$ and $p = 10$.}
+	\caption{Average mean square error using test data for non-linear simulations when $n = 1000$ and $p = 10$.}
 	\label{fig:nonlinear-test-mse-1000-10}
 \end{figure}
 
+Figures \ref{fig:nonlinear-sensitivity-1000-10} and \ref{fig:nonlinear-specificity-1000-10} show the average $\beta$-sensitivity and $\beta$-specificity for every model from the non-linear simulations when $n = 1000$ and $p  =10$. We see that lasso and elastic-net are the most picky models, having the lowest $\beta$-sensitivity and highest $\beta$-specificity. This means that lasso and elastic-net estimated more of the coefficients as zero compared to the other models. Another observation is that for lasso and elastic-net, an increase in the correlation led to more coefficients being estimated as non-zero (since the $\beta$-sensitivity increases and the $\beta$-specificity decreases). All of the other models exhibit the opposite behavior, estimating more predictors as having coefficients equal to zero as the correlation increases.
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width = \textwidth]{images/nonlinear-facet/sensitivity/facet_sensitivity_2_1000_10.eps}
+	\captionsetup{width = 0.8\textwidth}
+	\caption{Average $\beta$-sensitivity for non-linear simulations when $n = 1000$ and $p = 10$.}
+	\label{fig:nonlinear-sensitivity-1000-10}
+\end{figure}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width = \textwidth]{images/nonlinear-facet/specificity/facet_specificity_2_1000_10.eps}
+	\captionsetup{width = 0.8\textwidth}
+	\caption{Average $\beta$-specificity for non-linear simulations when $n = 1000$ and $p = 10$.}
+	\label{fig:nonlinear-specificity-1000-10}
+\end{figure}
+
+t
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width = \textwidth]{images/nonlinear-facet/train-mse/facet_train_mse_2_50_2000.eps}
@@ -693,8 +713,25 @@ First, we will consider the extreme where $n = 1000$ and $p = 10$. Figures \ref{
 	\centering
 	\includegraphics[width = \textwidth]{images/nonlinear-facet/test-mse/facet_test_mse_2_50_2000.eps}
 	\captionsetup{width = 0.8\textwidth}
-	\caption{Average mean square error using training data for non-linear simulations when $n = 50$ and $p = 2000$.}
+	\caption{Average mean square error using test data for non-linear simulations when $n = 50$ and $p = 2000$.}
 	\label{fig:nonlinear-test-mse-50-2000}
+\end{figure}
+
+Beta sensitivity and specificity
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width = \textwidth]{images/nonlinear-facet/sensitivity/facet_sensitivity_2_50_2000.eps}
+	\captionsetup{width = 0.8\textwidth}
+	\caption{Average $\beta$-sensitivity for non-linear simulations when $n = 50$ and $p = 2000$.}
+	\label{fig:nonlinear-sensitivity-50-2000}
+\end{figure}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width = \textwidth]{images/nonlinear-facet/specificity/facet_specificity_2_50_2000.eps}
+	\captionsetup{width = 0.8\textwidth}
+	\caption{Average $\beta$-specificity for non-linear simulations when $n = 50$ and $p = 2000$.}
+	\label{fig:nonlinear-specificity-50-2000}
 \end{figure}
 
 \section{Empirical Data Analysis}\label{sec:empirical}
@@ -817,11 +854,11 @@ Table \ref{tab:emp_runtimes} shows the average runtime to fit each of the models
 \section{Discussion}\label{sec:discussion}
 \subsection{Discussion of Monte Carlo Results}
 % discussion of findings, future work, and contributions
-Figures \ref{fig:test-mse-1000-10} and \ref{fig:test-mse-50-2000} shows that the best-performing models on test data were SCAD and MCP. The wrapper methods that used BIC performed better than SCAD and MCP when $n = 1000$ and $p = 10$, but could not be used in the high dimensional case where $n = 50$ and $p = 2000$. Lasso, elastic-net, and the wrapper methods with AIC all had low test mean squared errors as well. Ridge performed the worst out of all the linear models. The non-linear models also performed very badly on test data.
+Figures \ref{fig:linear-test-mse-1000-10} and \ref{fig:linear-test-mse-50-2000} shows that the best-performing models on test data were SCAD and MCP. The wrapper methods that used BIC performed better than SCAD and MCP when $n = 1000$ and $p = 10$, but could not be used in the high dimensional case where $n = 50$ and $p = 2000$. Lasso, elastic-net, and the wrapper methods with AIC all had low test mean squared errors as well. Ridge performed the worst out of all the linear models. The non-linear models also performed very badly on test data.
 
 Notice that all the linear models except for ridge had a test mean squared error that was approximately equal to $\sigma^2$, the square of the random error. This indicates that these models had low bias and low variance, since most of their error was due to the random noise. On the other hand, ridge regression and the machine learning models had a test mean squared error that was much higher than $\sigma^2$, indicating that these models either had high bias or high variance.
 
-Now, consider the training mean squared error results from Figures \ref{fig:train-mse-1000-10} and \ref{fig:train-mse-50-2000}. We see that training error for the linear models was roughly equal to the test error. This indicates that these models did not overfit to the training data. On the other hand, the non-linear models have far lower training mean squared errors than test errors. In particular, random forest models almost perfectly fit to the training data when $n = 1000$ and $p = 10$, while gradient boosting made an almost perfect fit when $n = 50$ and $p = 2000$.
+Now, consider the training mean squared error results from Figures \ref{fig:linear-train-mse-1000-10} and \ref{fig:linear-train-mse-50-2000}. We see that training error for the linear models was roughly equal to the test error. This indicates that these models did not overfit to the training data. On the other hand, the non-linear models have far lower training mean squared errors than test errors. In particular, random forest models almost perfectly fit to the training data when $n = 1000$ and $p = 10$, while gradient boosting made an almost perfect fit when $n = 50$ and $p = 2000$.
 
 Ridge regression, which performed badly on both training data and test data, was likely restricted by its penalty function and its inability to perform variable selection. Recall that three out of the five non-zero coefficient values chosen were greater than one. Because the penalty function for ridge squares each coefficient, ridge was very strongly discouraged from selecting coefficient estimates close to the true non-zero coefficient values. Furthermore, because ridge regression cannot set coefficients to zero and conduct variable selection, its coefficient estimates for the true non-zero coefficients were likely even smaller because unimportant predictors were given non-zero coefficient estimates. As a result, ridge regression was unable to predict the true coefficient values as well as the other linear models.
 
@@ -835,7 +872,7 @@ Also note that changing the standard deviation of the random error seems to affe
 
 Now, we will consider the $\beta$-sensitivity results for the linear models that could perform variable selection. These results are shown in Figures \ref{fig:sensitivity-1000-10} and \ref{fig:sensitivity-50-2000}. The $\beta$-sensitivity results when $n = 1000$ and $p = 10$ are rather uninteresting; all of the models correctly identified all of the non-zero coefficients except for a few cases where one coefficient was missed. The results for $n = 50$ and $p = 2000$ tell a richer story: SCAD and MCP tended to correctly identify more of the non-zero coefficients when the correlation between coefficients was low; however, when the correlation is high, SCAD and MCP found less than half of the non-zero coefficients, on average. Lasso and elastic-net performed slightly better when the correlation was high.
 
-Looking at the $\beta$-specificity results from Figures \ref{fig:specificity-1000-10} and \ref{fig:specificity-50-2000}, we see that lasso, elastic-net, and the BIC wrapper methods had the highest $\beta$-specificity when $n = 1000$ and $p = 10$. When $n = 50$ and $p = 2000$, lasso and elastic-net had must lower $\beta$-specificity values compared to SCAD and MCP.
+Looking at the $\beta$-specificity results from Figures \ref{fig:linear-specificity-1000-10} and \ref{fig:linear-specificity-50-2000}, we see that lasso, elastic-net, and the BIC wrapper methods had the highest $\beta$-specificity when $n = 1000$ and $p = 10$. When $n = 50$ and $p = 2000$, lasso and elastic-net had must lower $\beta$-specificity values compared to SCAD and MCP.
 
 Another interesting result to note is that for both low-dimensional and high-dimensional settings, when the correlation between predictors increased, the $\beta$-specificity for SCAD and MCP typically increased. For elastic-net, a higher correlation caused the $\beta$-specificity to decrease when $n = 1000$ and $p = 10$; however, when $n = 50$ and $p = 2000$, the $\beta$-specificity of elastic-net depends heavily on the correlation structure. For a symmetric compound correlation structure, elastic-net had a much lower $\beta$-specificity as correlation increased. For an autoregressive or blockwise correlation structure, a higher correlation increased the $\beta$-specificity for elastic-net. This means that lasso and elastic-net have trouble identifying non-zero coefficients when all $p = 2000$ predictors are correlated to each other, while SCAD and MCP could handle this situation well.
 
