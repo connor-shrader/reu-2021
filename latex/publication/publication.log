@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.3.27)  19 SEP 2021 16:32
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.3.27)  19 SEP 2021 16:39
 entering extended mode
 **./publication.tex
 (publication.tex
@@ -1229,7 +1229,7 @@ mse_1_1000_10-eps-converted-to.pdf>
 (epstopdf)             Command: <miktex-epstopdf --outfile=images/linear-facet/
 train-mse/facet_train_mse_1_1000_10-eps-converted-to.pdf images/linear-facet/tr
 ain-mse/facet_train_mse_1_1000_10.eps>
-(epstopdf)             \includegraphics on input line 589.
+(epstopdf)             \includegraphics on input line 588.
 Package epstopdf Info: Output file is already uptodate.
 
 
@@ -1243,7 +1243,7 @@ pdf Graphic file (type pdf)
 <use images/linear-facet/train-mse/facet_train_mse_1_1000_10-eps-converted-to.p
 df>
 Package pdftex.def Info: images/linear-facet/train-mse/facet_train_mse_1_1000_1
-0-eps-converted-to.pdf  used on input line 589.
+0-eps-converted-to.pdf  used on input line 588.
 (pdftex.def)             Requested size: 397.485pt x 238.49173pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -1259,7 +1259,7 @@ e_1_1000_10-eps-converted-to.pdf>
 (epstopdf)             Command: <miktex-epstopdf --outfile=images/linear-facet/
 test-mse/facet_test_mse_1_1000_10-eps-converted-to.pdf images/linear-facet/test
 -mse/facet_test_mse_1_1000_10.eps>
-(epstopdf)             \includegraphics on input line 597.
+(epstopdf)             \includegraphics on input line 596.
 Package epstopdf Info: Output file is already uptodate.
 
 
@@ -1273,7 +1273,7 @@ f Graphic file (type pdf)
 <use images/linear-facet/test-mse/facet_test_mse_1_1000_10-eps-converted-to.pdf
 >
 Package pdftex.def Info: images/linear-facet/test-mse/facet_test_mse_1_1000_10-
-eps-converted-to.pdf  used on input line 597.
+eps-converted-to.pdf  used on input line 596.
 (pdftex.def)             Requested size: 397.485pt x 238.49173pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -1289,7 +1289,7 @@ itivity_1_1000_10-eps-converted-to.pdf>
 (epstopdf)             Command: <miktex-epstopdf --outfile=images/linear-facet/
 sensitivity/facet_sensitivity_1_1000_10-eps-converted-to.pdf images/linear-face
 t/sensitivity/facet_sensitivity_1_1000_10.eps>
-(epstopdf)             \includegraphics on input line 605.
+(epstopdf)             \includegraphics on input line 604.
 Package epstopdf Info: Output file is already uptodate.
 
 
@@ -1303,7 +1303,7 @@ File: images/linear-facet/sensitivity/facet_sensitivity_1_1000_10-eps-converted
 <use images/linear-facet/sensitivity/facet_sensitivity_1_1000_10-eps-converted-
 to.pdf>
 Package pdftex.def Info: images/linear-facet/sensitivity/facet_sensitivity_1_10
-00_10-eps-converted-to.pdf  used on input line 605.
+00_10-eps-converted-to.pdf  used on input line 604.
 (pdftex.def)             Requested size: 397.485pt x 238.49173pt.
 Package epstopdf Info: Source file: <images/linear-facet/specificity/facet_spec
 ificity_1_1000_10.eps>
@@ -1316,7 +1316,7 @@ ificity_1_1000_10-eps-converted-to.pdf>
 (epstopdf)             Command: <miktex-epstopdf --outfile=images/linear-facet/
 specificity/facet_specificity_1_1000_10-eps-converted-to.pdf images/linear-face
 t/specificity/facet_specificity_1_1000_10.eps>
-(epstopdf)             \includegraphics on input line 612.
+(epstopdf)             \includegraphics on input line 611.
 Package epstopdf Info: Output file is already uptodate.
 
 
@@ -1330,7 +1330,7 @@ File: images/linear-facet/specificity/facet_specificity_1_1000_10-eps-converted
 <use images/linear-facet/specificity/facet_specificity_1_1000_10-eps-converted-
 to.pdf>
 Package pdftex.def Info: images/linear-facet/specificity/facet_specificity_1_10
-00_10-eps-converted-to.pdf  used on input line 612.
+00_10-eps-converted-to.pdf  used on input line 611.
 (pdftex.def)             Requested size: 397.485pt x 238.49173pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -1363,7 +1363,7 @@ mse_1_50_2000-eps-converted-to.pdf>
 (epstopdf)             Command: <miktex-epstopdf --outfile=images/linear-facet/
 train-mse/facet_train_mse_1_50_2000-eps-converted-to.pdf images/linear-facet/tr
 ain-mse/facet_train_mse_1_50_2000.eps>
-(epstopdf)             \includegraphics on input line 630.
+(epstopdf)             \includegraphics on input line 629.
 Package epstopdf Info: Output file is already uptodate.
 
 
@@ -1371,13 +1371,13 @@ pdfTeX warning: pdflatex.exe (file ./images/linear-facet/train-mse/facet_train_
 mse_1_50_2000-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, bu
 t at most version <1.5> allowed
 <images/linear-facet/train-mse/facet_train_mse_1_50_2000-eps-converted-to.pdf, 
-id=520, 722.7pt x 433.62pt>
+id=519, 722.7pt x 433.62pt>
 File: images/linear-facet/train-mse/facet_train_mse_1_50_2000-eps-converted-to.
 pdf Graphic file (type pdf)
 <use images/linear-facet/train-mse/facet_train_mse_1_50_2000-eps-converted-to.p
 df>
 Package pdftex.def Info: images/linear-facet/train-mse/facet_train_mse_1_50_200
-0-eps-converted-to.pdf  used on input line 630.
+0-eps-converted-to.pdf  used on input line 629.
 (pdftex.def)             Requested size: 397.485pt x 238.49173pt.
 Package epstopdf Info: Source file: <images/linear-facet/test-mse/facet_test_ms
 e_1_50_2000.eps>
@@ -1390,7 +1390,7 @@ e_1_50_2000-eps-converted-to.pdf>
 (epstopdf)             Command: <miktex-epstopdf --outfile=images/linear-facet/
 test-mse/facet_test_mse_1_50_2000-eps-converted-to.pdf images/linear-facet/test
 -mse/facet_test_mse_1_50_2000.eps>
-(epstopdf)             \includegraphics on input line 637.
+(epstopdf)             \includegraphics on input line 636.
 Package epstopdf Info: Output file is already uptodate.
 
 
@@ -1398,13 +1398,13 @@ pdfTeX warning: pdflatex.exe (file ./images/linear-facet/test-mse/facet_test_ms
 e_1_50_2000-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, but 
 at most version <1.5> allowed
 <images/linear-facet/test-mse/facet_test_mse_1_50_2000-eps-converted-to.pdf, id
-=521, 722.7pt x 433.62pt>
+=520, 722.7pt x 433.62pt>
 File: images/linear-facet/test-mse/facet_test_mse_1_50_2000-eps-converted-to.pd
 f Graphic file (type pdf)
 <use images/linear-facet/test-mse/facet_test_mse_1_50_2000-eps-converted-to.pdf
 >
 Package pdftex.def Info: images/linear-facet/test-mse/facet_test_mse_1_50_2000-
-eps-converted-to.pdf  used on input line 637.
+eps-converted-to.pdf  used on input line 636.
 (pdftex.def)             Requested size: 397.485pt x 238.49173pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -1420,7 +1420,7 @@ itivity_1_50_2000-eps-converted-to.pdf>
 (epstopdf)             Command: <miktex-epstopdf --outfile=images/linear-facet/
 sensitivity/facet_sensitivity_1_50_2000-eps-converted-to.pdf images/linear-face
 t/sensitivity/facet_sensitivity_1_50_2000.eps>
-(epstopdf)             \includegraphics on input line 645.
+(epstopdf)             \includegraphics on input line 644.
 Package epstopdf Info: Output file is already uptodate.
 
 
@@ -1428,13 +1428,13 @@ pdfTeX warning: pdflatex.exe (file ./images/linear-facet/sensitivity/facet_sens
 itivity_1_50_2000-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>
 , but at most version <1.5> allowed
 <images/linear-facet/sensitivity/facet_sensitivity_1_50_2000-eps-converted-to.p
-df, id=522, 722.7pt x 433.62pt>
+df, id=521, 722.7pt x 433.62pt>
 File: images/linear-facet/sensitivity/facet_sensitivity_1_50_2000-eps-converted
 -to.pdf Graphic file (type pdf)
 <use images/linear-facet/sensitivity/facet_sensitivity_1_50_2000-eps-converted-
 to.pdf>
 Package pdftex.def Info: images/linear-facet/sensitivity/facet_sensitivity_1_50
-_2000-eps-converted-to.pdf  used on input line 645.
+_2000-eps-converted-to.pdf  used on input line 644.
 (pdftex.def)             Requested size: 397.485pt x 238.49173pt.
 Package epstopdf Info: Source file: <images/linear-facet/specificity/facet_spec
 ificity_1_50_2000.eps>
@@ -1447,7 +1447,7 @@ ificity_1_50_2000-eps-converted-to.pdf>
 (epstopdf)             Command: <miktex-epstopdf --outfile=images/linear-facet/
 specificity/facet_specificity_1_50_2000-eps-converted-to.pdf images/linear-face
 t/specificity/facet_specificity_1_50_2000.eps>
-(epstopdf)             \includegraphics on input line 652.
+(epstopdf)             \includegraphics on input line 651.
 Package epstopdf Info: Output file is already uptodate.
 
 
@@ -1455,44 +1455,17 @@ pdfTeX warning: pdflatex.exe (file ./images/linear-facet/specificity/facet_spec
 ificity_1_50_2000-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>
 , but at most version <1.5> allowed
 <images/linear-facet/specificity/facet_specificity_1_50_2000-eps-converted-to.p
-df, id=523, 722.7pt x 433.62pt>
+df, id=522, 722.7pt x 433.62pt>
 File: images/linear-facet/specificity/facet_specificity_1_50_2000-eps-converted
 -to.pdf Graphic file (type pdf)
 <use images/linear-facet/specificity/facet_specificity_1_50_2000-eps-converted-
 to.pdf>
 Package pdftex.def Info: images/linear-facet/specificity/facet_specificity_1_50
-_2000-eps-converted-to.pdf  used on input line 652.
+_2000-eps-converted-to.pdf  used on input line 651.
 (pdftex.def)             Requested size: 397.485pt x 238.49173pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-Package epstopdf Info: Source file: <images/nonlinear-facet/train-mse/facet_tra
-in_mse_2_1000_10.eps>
-(epstopdf)                    date: 2021-09-12 12:43:48
-(epstopdf)                    size: 214144 bytes
-(epstopdf)             Output file: <images/nonlinear-facet/train-mse/facet_tra
-in_mse_2_1000_10-eps-converted-to.pdf>
-(epstopdf)                    date: 2021-09-19 10:07:20
-(epstopdf)                    size: 49678 bytes
-(epstopdf)             Command: <miktex-epstopdf --outfile=images/nonlinear-fac
-et/train-mse/facet_train_mse_2_1000_10-eps-converted-to.pdf images/nonlinear-fa
-cet/train-mse/facet_train_mse_2_1000_10.eps>
-(epstopdf)             \includegraphics on input line 672.
-Package epstopdf Info: Output file is already uptodate.
-
-
-pdfTeX warning: pdflatex.exe (file ./images/nonlinear-facet/train-mse/facet_tra
-in_mse_2_1000_10-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>,
- but at most version <1.5> allowed
-<images/nonlinear-facet/train-mse/facet_train_mse_2_1000_10-eps-converted-to.pd
-f, id=531, 722.7pt x 433.62pt>
-File: images/nonlinear-facet/train-mse/facet_train_mse_2_1000_10-eps-converted-
-to.pdf Graphic file (type pdf)
-<use images/nonlinear-facet/train-mse/facet_train_mse_2_1000_10-eps-converted-t
-o.pdf>
-Package pdftex.def Info: images/nonlinear-facet/train-mse/facet_train_mse_2_100
-0_10-eps-converted-to.pdf  used on input line 672.
-(pdftex.def)             Requested size: 397.485pt x 238.49173pt.
 [26]
 
 LaTeX Warning: Text page 27 contains only floats.
@@ -1514,6 +1487,33 @@ Overfull \vbox (1.82347pt too high) has occurred while \output is active []
 [28 <./images/linear-facet/sensitivity/facet_sensitivity_1_50_2000-eps-converte
 d-to.pdf> <./images/linear-facet/specificity/facet_specificity_1_50_2000-eps-co
 nverted-to.pdf>]
+Package epstopdf Info: Source file: <images/nonlinear-facet/train-mse/facet_tra
+in_mse_2_1000_10.eps>
+(epstopdf)                    date: 2021-09-12 12:43:48
+(epstopdf)                    size: 214144 bytes
+(epstopdf)             Output file: <images/nonlinear-facet/train-mse/facet_tra
+in_mse_2_1000_10-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-09-19 10:07:20
+(epstopdf)                    size: 49678 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=images/nonlinear-fac
+et/train-mse/facet_train_mse_2_1000_10-eps-converted-to.pdf images/nonlinear-fa
+cet/train-mse/facet_train_mse_2_1000_10.eps>
+(epstopdf)             \includegraphics on input line 671.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./images/nonlinear-facet/train-mse/facet_tra
+in_mse_2_1000_10-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>,
+ but at most version <1.5> allowed
+<images/nonlinear-facet/train-mse/facet_train_mse_2_1000_10-eps-converted-to.pd
+f, id=591, 722.7pt x 433.62pt>
+File: images/nonlinear-facet/train-mse/facet_train_mse_2_1000_10-eps-converted-
+to.pdf Graphic file (type pdf)
+<use images/nonlinear-facet/train-mse/facet_train_mse_2_1000_10-eps-converted-t
+o.pdf>
+Package pdftex.def Info: images/nonlinear-facet/train-mse/facet_train_mse_2_100
+0_10-eps-converted-to.pdf  used on input line 671.
+(pdftex.def)             Requested size: 397.485pt x 238.49173pt.
 Package epstopdf Info: Source file: <images/nonlinear-facet/test-mse/facet_test
 _mse_2_1000_10.eps>
 (epstopdf)                    date: 2021-09-12 12:43:48
@@ -1525,7 +1525,7 @@ _mse_2_1000_10-eps-converted-to.pdf>
 (epstopdf)             Command: <miktex-epstopdf --outfile=images/nonlinear-fac
 et/test-mse/facet_test_mse_2_1000_10-eps-converted-to.pdf images/nonlinear-face
 t/test-mse/facet_test_mse_2_1000_10.eps>
-(epstopdf)             \includegraphics on input line 680.
+(epstopdf)             \includegraphics on input line 679.
 Package epstopdf Info: Output file is already uptodate.
 
 
@@ -1539,7 +1539,7 @@ File: images/nonlinear-facet/test-mse/facet_test_mse_2_1000_10-eps-converted-to
 <use images/nonlinear-facet/test-mse/facet_test_mse_2_1000_10-eps-converted-to.
 pdf>
 Package pdftex.def Info: images/nonlinear-facet/test-mse/facet_test_mse_2_1000_
-10-eps-converted-to.pdf  used on input line 680.
+10-eps-converted-to.pdf  used on input line 679.
 (pdftex.def)             Requested size: 397.485pt x 238.49173pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -1555,7 +1555,7 @@ ensitivity_2_1000_10-eps-converted-to.pdf>
 (epstopdf)             Command: <miktex-epstopdf --outfile=images/nonlinear-fac
 et/sensitivity/facet_sensitivity_2_1000_10-eps-converted-to.pdf images/nonlinea
 r-facet/sensitivity/facet_sensitivity_2_1000_10.eps>
-(epstopdf)             \includegraphics on input line 689.
+(epstopdf)             \includegraphics on input line 688.
 Package epstopdf Info: Output file is already uptodate.
 
 
@@ -1569,7 +1569,7 @@ ted-to.pdf Graphic file (type pdf)
 <use images/nonlinear-facet/sensitivity/facet_sensitivity_2_1000_10-eps-convert
 ed-to.pdf>
 Package pdftex.def Info: images/nonlinear-facet/sensitivity/facet_sensitivity_2
-_1000_10-eps-converted-to.pdf  used on input line 689.
+_1000_10-eps-converted-to.pdf  used on input line 688.
 (pdftex.def)             Requested size: 397.485pt x 238.49173pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -1585,7 +1585,7 @@ pecificity_2_1000_10-eps-converted-to.pdf>
 (epstopdf)             Command: <miktex-epstopdf --outfile=images/nonlinear-fac
 et/specificity/facet_specificity_2_1000_10-eps-converted-to.pdf images/nonlinea
 r-facet/specificity/facet_specificity_2_1000_10.eps>
-(epstopdf)             \includegraphics on input line 697.
+(epstopdf)             \includegraphics on input line 696.
 Package epstopdf Info: Output file is already uptodate.
 
 
@@ -1599,7 +1599,7 @@ ted-to.pdf Graphic file (type pdf)
 <use images/nonlinear-facet/specificity/facet_specificity_2_1000_10-eps-convert
 ed-to.pdf>
 Package pdftex.def Info: images/nonlinear-facet/specificity/facet_specificity_2
-_1000_10-eps-converted-to.pdf  used on input line 697.
+_1000_10-eps-converted-to.pdf  used on input line 696.
 (pdftex.def)             Requested size: 397.485pt x 238.49173pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -1615,7 +1615,7 @@ in_mse_2_50_2000-eps-converted-to.pdf>
 (epstopdf)             Command: <miktex-epstopdf --outfile=images/nonlinear-fac
 et/train-mse/facet_train_mse_2_50_2000-eps-converted-to.pdf images/nonlinear-fa
 cet/train-mse/facet_train_mse_2_50_2000.eps>
-(epstopdf)             \includegraphics on input line 706.
+(epstopdf)             \includegraphics on input line 705.
 Package epstopdf Info: Output file is already uptodate.
 
 
@@ -1629,8 +1629,16 @@ to.pdf Graphic file (type pdf)
 <use images/nonlinear-facet/train-mse/facet_train_mse_2_50_2000-eps-converted-t
 o.pdf>
 Package pdftex.def Info: images/nonlinear-facet/train-mse/facet_train_mse_2_50_
-2000-eps-converted-to.pdf  used on input line 706.
+2000-eps-converted-to.pdf  used on input line 705.
 (pdftex.def)             Requested size: 397.485pt x 238.49173pt.
+[29 <./images/nonlinear-facet/train-mse/facet_train_mse_2_1000_10-eps-converted
+-to.pdf>]
+
+LaTeX Warning: Text page 30 contains only floats.
+
+[30 <./images/nonlinear-facet/test-mse/facet_test_mse_2_1000_10-eps-converted-t
+o.pdf> <./images/nonlinear-facet/sensitivity/facet_sensitivity_2_1000_10-eps-co
+nverted-to.pdf>]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
@@ -1645,7 +1653,7 @@ _mse_2_50_2000-eps-converted-to.pdf>
 (epstopdf)             Command: <miktex-epstopdf --outfile=images/nonlinear-fac
 et/test-mse/facet_test_mse_2_50_2000-eps-converted-to.pdf images/nonlinear-face
 t/test-mse/facet_test_mse_2_50_2000.eps>
-(epstopdf)             \includegraphics on input line 714.
+(epstopdf)             \includegraphics on input line 713.
 Package epstopdf Info: Output file is already uptodate.
 
 
@@ -1653,13 +1661,13 @@ pdfTeX warning: pdflatex.exe (file ./images/nonlinear-facet/test-mse/facet_test
 _mse_2_50_2000-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, b
 ut at most version <1.5> allowed
 <images/nonlinear-facet/test-mse/facet_test_mse_2_50_2000-eps-converted-to.pdf,
- id=601, 722.7pt x 433.62pt>
+ id=643, 722.7pt x 433.62pt>
 File: images/nonlinear-facet/test-mse/facet_test_mse_2_50_2000-eps-converted-to
 .pdf Graphic file (type pdf)
 <use images/nonlinear-facet/test-mse/facet_test_mse_2_50_2000-eps-converted-to.
 pdf>
 Package pdftex.def Info: images/nonlinear-facet/test-mse/facet_test_mse_2_50_20
-00-eps-converted-to.pdf  used on input line 714.
+00-eps-converted-to.pdf  used on input line 713.
 (pdftex.def)             Requested size: 397.485pt x 238.49173pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -1675,7 +1683,7 @@ ensitivity_2_50_2000-eps-converted-to.pdf>
 (epstopdf)             Command: <miktex-epstopdf --outfile=images/nonlinear-fac
 et/sensitivity/facet_sensitivity_2_50_2000-eps-converted-to.pdf images/nonlinea
 r-facet/sensitivity/facet_sensitivity_2_50_2000.eps>
-(epstopdf)             \includegraphics on input line 723.
+(epstopdf)             \includegraphics on input line 722.
 Package epstopdf Info: Output file is already uptodate.
 
 
@@ -1683,28 +1691,14 @@ pdfTeX warning: pdflatex.exe (file ./images/nonlinear-facet/sensitivity/facet_s
 ensitivity_2_50_2000-eps-converted-to.pdf): PDF inclusion: found PDF version <1
 .7>, but at most version <1.5> allowed
 <images/nonlinear-facet/sensitivity/facet_sensitivity_2_50_2000-eps-converted-t
-o.pdf, id=604, 722.7pt x 433.62pt>
+o.pdf, id=646, 722.7pt x 433.62pt>
 File: images/nonlinear-facet/sensitivity/facet_sensitivity_2_50_2000-eps-conver
 ted-to.pdf Graphic file (type pdf)
 <use images/nonlinear-facet/sensitivity/facet_sensitivity_2_50_2000-eps-convert
 ed-to.pdf>
 Package pdftex.def Info: images/nonlinear-facet/sensitivity/facet_sensitivity_2
-_50_2000-eps-converted-to.pdf  used on input line 723.
+_50_2000-eps-converted-to.pdf  used on input line 722.
 (pdftex.def)             Requested size: 397.485pt x 238.49173pt.
-[29 <./images/nonlinear-facet/train-mse/facet_train_mse_2_1000_10-eps-converted
--to.pdf>]
-
-LaTeX Warning: Text page 30 contains only floats.
-
-[30 <./images/nonlinear-facet/test-mse/facet_test_mse_2_1000_10-eps-converted-t
-o.pdf> <./images/nonlinear-facet/sensitivity/facet_sensitivity_2_1000_10-eps-co
-nverted-to.pdf>]
-
-LaTeX Warning: Text page 31 contains only floats.
-
-[31 <./images/nonlinear-facet/specificity/facet_specificity_2_1000_10-eps-conve
-rted-to.pdf> <./images/nonlinear-facet/train-mse/facet_train_mse_2_50_2000-eps-
-converted-to.pdf>]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
@@ -1719,7 +1713,7 @@ pecificity_2_50_2000-eps-converted-to.pdf>
 (epstopdf)             Command: <miktex-epstopdf --outfile=images/nonlinear-fac
 et/specificity/facet_specificity_2_50_2000-eps-converted-to.pdf images/nonlinea
 r-facet/specificity/facet_specificity_2_50_2000.eps>
-(epstopdf)             \includegraphics on input line 731.
+(epstopdf)             \includegraphics on input line 730.
 Package epstopdf Info: Output file is already uptodate.
 
 
@@ -1727,17 +1721,31 @@ pdfTeX warning: pdflatex.exe (file ./images/nonlinear-facet/specificity/facet_s
 pecificity_2_50_2000-eps-converted-to.pdf): PDF inclusion: found PDF version <1
 .7>, but at most version <1.5> allowed
 <images/nonlinear-facet/specificity/facet_specificity_2_50_2000-eps-converted-t
-o.pdf, id=672, 722.7pt x 433.62pt>
+o.pdf, id=647, 722.7pt x 433.62pt>
 File: images/nonlinear-facet/specificity/facet_specificity_2_50_2000-eps-conver
 ted-to.pdf Graphic file (type pdf)
 <use images/nonlinear-facet/specificity/facet_specificity_2_50_2000-eps-convert
 ed-to.pdf>
 Package pdftex.def Info: images/nonlinear-facet/specificity/facet_specificity_2
-_50_2000-eps-converted-to.pdf  used on input line 731.
+_50_2000-eps-converted-to.pdf  used on input line 730.
 (pdftex.def)             Requested size: 397.485pt x 238.49173pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
+[31 <./images/nonlinear-facet/specificity/facet_specificity_2_1000_10-eps-conve
+rted-to.pdf>]
+
+LaTeX Warning: Text page 32 contains only floats.
+
+[32 <./images/nonlinear-facet/train-mse/facet_train_mse_2_50_2000-eps-converted
+-to.pdf> <./images/nonlinear-facet/test-mse/facet_test_mse_2_50_2000-eps-conver
+ted-to.pdf>]
+
+LaTeX Warning: Text page 33 contains only floats.
+
+[33 <./images/nonlinear-facet/sensitivity/facet_sensitivity_2_50_2000-eps-conve
+rted-to.pdf> <./images/nonlinear-facet/specificity/facet_specificity_2_50_2000-
+eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <images/empirical_histogram.eps>
 (epstopdf)                    date: 2021-07-15 10:45:18
 (epstopdf)                    size: 56518 bytes
@@ -1747,30 +1755,20 @@ o.pdf>
 (epstopdf)                    size: 19547 bytes
 (epstopdf)             Command: <miktex-epstopdf --outfile=images/empirical_his
 togram-eps-converted-to.pdf images/empirical_histogram.eps>
-(epstopdf)             \includegraphics on input line 745.
+(epstopdf)             \includegraphics on input line 744.
 Package epstopdf Info: Output file is already uptodate.
 
 
 pdfTeX warning: pdflatex.exe (file ./images/empirical_histogram-eps-converted-t
 o.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allow
 ed
-<images/empirical_histogram-eps-converted-to.pdf, id=679, 722.7pt x 433.62pt>
+<images/empirical_histogram-eps-converted-to.pdf, id=721, 722.7pt x 433.62pt>
 File: images/empirical_histogram-eps-converted-to.pdf Graphic file (type pdf)
 <use images/empirical_histogram-eps-converted-to.pdf>
 Package pdftex.def Info: images/empirical_histogram-eps-converted-to.pdf  used 
-on input line 745.
+on input line 744.
 (pdftex.def)             Requested size: 317.98921pt x 190.79338pt.
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[32 <./images/nonlinear-facet/test-mse/facet_test_mse_2_50_2000-eps-converted-t
-o.pdf>]
-
-LaTeX Warning: Text page 33 contains only floats.
-
-[33 <./images/nonlinear-facet/sensitivity/facet_sensitivity_2_50_2000-eps-conve
-rted-to.pdf> <./images/nonlinear-facet/specificity/facet_specificity_2_50_2000-
-eps-converted-to.pdf>] [34 <./images/empirical_histogram-eps-converted-to.pdf>]
+[34 <./images/empirical_histogram-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <images/empirical_mse.eps>
 (epstopdf)                    date: 2021-07-26 15:12:02
 (epstopdf)                    size: 86163 bytes
@@ -1780,7 +1778,7 @@ Package epstopdf Info: Source file: <images/empirical_mse.eps>
 (epstopdf)                    size: 25480 bytes
 (epstopdf)             Command: <miktex-epstopdf --outfile=images/empirical_mse
 -eps-converted-to.pdf images/empirical_mse.eps>
-(epstopdf)             \includegraphics on input line 768.
+(epstopdf)             \includegraphics on input line 767.
 Package epstopdf Info: Output file is already uptodate.
 
 
@@ -1790,8 +1788,11 @@ pdfTeX warning: pdflatex.exe (file ./images/empirical_mse-eps-converted-to.pdf)
 File: images/empirical_mse-eps-converted-to.pdf Graphic file (type pdf)
 <use images/empirical_mse-eps-converted-to.pdf>
 Package pdftex.def Info: images/empirical_mse-eps-converted-to.pdf  used on inp
-ut line 768.
+ut line 767.
 (pdftex.def)             Requested size: 317.98921pt x 190.79338pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
 [35 <./images/empirical_mse-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <images/venn/venn1.eps>
 (epstopdf)                    date: 2021-07-16 14:34:14
@@ -1801,17 +1802,17 @@ Package epstopdf Info: Source file: <images/venn/venn1.eps>
 (epstopdf)                    size: 281727 bytes
 (epstopdf)             Command: <miktex-epstopdf --outfile=images/venn/venn1-ep
 s-converted-to.pdf images/venn/venn1.eps>
-(epstopdf)             \includegraphics on input line 800.
+(epstopdf)             \includegraphics on input line 799.
 Package epstopdf Info: Output file is already uptodate.
 
 
 pdfTeX warning: pdflatex.exe (file ./images/venn/venn1-eps-converted-to.pdf): P
 DF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<images/venn/venn1-eps-converted-to.pdf, id=753, 722.7pt x 433.62pt>
+<images/venn/venn1-eps-converted-to.pdf, id=754, 722.7pt x 433.62pt>
 File: images/venn/venn1-eps-converted-to.pdf Graphic file (type pdf)
 <use images/venn/venn1-eps-converted-to.pdf>
 Package pdftex.def Info: images/venn/venn1-eps-converted-to.pdf  used on input 
-line 800.
+line 799.
 (pdftex.def)             Requested size: 178.86703pt x 107.31963pt.
 Package epstopdf Info: Source file: <images/venn/venn2.eps>
 (epstopdf)                    date: 2021-07-16 14:34:14
@@ -1821,17 +1822,17 @@ Package epstopdf Info: Source file: <images/venn/venn2.eps>
 (epstopdf)                    size: 285687 bytes
 (epstopdf)             Command: <miktex-epstopdf --outfile=images/venn/venn2-ep
 s-converted-to.pdf images/venn/venn2.eps>
-(epstopdf)             \includegraphics on input line 806.
+(epstopdf)             \includegraphics on input line 805.
 Package epstopdf Info: Output file is already uptodate.
 
 
 pdfTeX warning: pdflatex.exe (file ./images/venn/venn2-eps-converted-to.pdf): P
 DF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<images/venn/venn2-eps-converted-to.pdf, id=754, 722.7pt x 433.62pt>
+<images/venn/venn2-eps-converted-to.pdf, id=755, 722.7pt x 433.62pt>
 File: images/venn/venn2-eps-converted-to.pdf Graphic file (type pdf)
 <use images/venn/venn2-eps-converted-to.pdf>
 Package pdftex.def Info: images/venn/venn2-eps-converted-to.pdf  used on input 
-line 806.
+line 805.
 (pdftex.def)             Requested size: 178.86703pt x 107.31963pt.
 Package epstopdf Info: Source file: <images/venn/venn3.eps>
 (epstopdf)                    date: 2021-07-16 14:34:14
@@ -1841,17 +1842,17 @@ Package epstopdf Info: Source file: <images/venn/venn3.eps>
 (epstopdf)                    size: 285241 bytes
 (epstopdf)             Command: <miktex-epstopdf --outfile=images/venn/venn3-ep
 s-converted-to.pdf images/venn/venn3.eps>
-(epstopdf)             \includegraphics on input line 811.
+(epstopdf)             \includegraphics on input line 810.
 Package epstopdf Info: Output file is already uptodate.
 
 
 pdfTeX warning: pdflatex.exe (file ./images/venn/venn3-eps-converted-to.pdf): P
 DF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<images/venn/venn3-eps-converted-to.pdf, id=755, 722.7pt x 433.62pt>
+<images/venn/venn3-eps-converted-to.pdf, id=756, 722.7pt x 433.62pt>
 File: images/venn/venn3-eps-converted-to.pdf Graphic file (type pdf)
 <use images/venn/venn3-eps-converted-to.pdf>
 Package pdftex.def Info: images/venn/venn3-eps-converted-to.pdf  used on input 
-line 811.
+line 810.
 (pdftex.def)             Requested size: 178.86703pt x 107.31963pt.
 Package epstopdf Info: Source file: <images/venn/venn4.eps>
 (epstopdf)                    date: 2021-07-16 14:34:14
@@ -1861,17 +1862,17 @@ Package epstopdf Info: Source file: <images/venn/venn4.eps>
 (epstopdf)                    size: 283693 bytes
 (epstopdf)             Command: <miktex-epstopdf --outfile=images/venn/venn4-ep
 s-converted-to.pdf images/venn/venn4.eps>
-(epstopdf)             \includegraphics on input line 816.
+(epstopdf)             \includegraphics on input line 815.
 Package epstopdf Info: Output file is already uptodate.
 
 
 pdfTeX warning: pdflatex.exe (file ./images/venn/venn4-eps-converted-to.pdf): P
 DF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<images/venn/venn4-eps-converted-to.pdf, id=756, 722.7pt x 433.62pt>
+<images/venn/venn4-eps-converted-to.pdf, id=757, 722.7pt x 433.62pt>
 File: images/venn/venn4-eps-converted-to.pdf Graphic file (type pdf)
 <use images/venn/venn4-eps-converted-to.pdf>
 Package pdftex.def Info: images/venn/venn4-eps-converted-to.pdf  used on input 
-line 816.
+line 815.
 (pdftex.def)             Requested size: 178.86703pt x 107.31963pt.
 Package epstopdf Info: Source file: <images/venn/venn5.eps>
 (epstopdf)                    date: 2021-07-16 14:34:14
@@ -1881,118 +1882,120 @@ Package epstopdf Info: Source file: <images/venn/venn5.eps>
 (epstopdf)                    size: 285756 bytes
 (epstopdf)             Command: <miktex-epstopdf --outfile=images/venn/venn5-ep
 s-converted-to.pdf images/venn/venn5.eps>
-(epstopdf)             \includegraphics on input line 822.
+(epstopdf)             \includegraphics on input line 821.
 Package epstopdf Info: Output file is already uptodate.
 
 
 pdfTeX warning: pdflatex.exe (file ./images/venn/venn5-eps-converted-to.pdf): P
 DF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<images/venn/venn5-eps-converted-to.pdf, id=757, 722.7pt x 433.62pt>
+<images/venn/venn5-eps-converted-to.pdf, id=758, 722.7pt x 433.62pt>
 File: images/venn/venn5-eps-converted-to.pdf Graphic file (type pdf)
 <use images/venn/venn5-eps-converted-to.pdf>
 Package pdftex.def Info: images/venn/venn5-eps-converted-to.pdf  used on input 
-line 822.
+line 821.
 (pdftex.def)             Requested size: 178.86703pt x 107.31963pt.
-[36 <./images/venn/venn1-eps-converted-to.pdf> <./images/venn/venn2-eps-convert
-ed-to.pdf> <./images/venn/venn3-eps-converted-to.pdf> <./images/venn/venn4-eps-
-converted-to.pdf> <./images/venn/venn5-eps-converted-to.pdf>] [37]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[36] [37 <./images/venn/venn1-eps-converted-to.pdf> <./images/venn/venn2-eps-co
+nverted-to.pdf> <./images/venn/venn3-eps-converted-to.pdf> <./images/venn/venn4
+-eps-converted-to.pdf> <./images/venn/venn5-eps-converted-to.pdf>]
 
 LaTeX Warning: Reference `fig:test-mse-1000-10' on page 38 undefined on input l
-ine 865.
+ine 864.
 
 
 LaTeX Warning: Reference `fig:test-mse-1000-10' on page 38 undefined on input l
-ine 867.
+ine 866.
 
 
 LaTeX Warning: Reference `fig:test-mse-50-2000' on page 38 undefined on input l
-ine 867.
-
-[38]
-
-LaTeX Warning: Reference `fig:sensitivity-1000-10' on page 39 undefined on inpu
-t line 873.
+ine 866.
 
 
-LaTeX Warning: Reference `fig:sensitivity-50-2000' on page 39 undefined on inpu
-t line 873.
+LaTeX Warning: Reference `fig:sensitivity-1000-10' on page 38 undefined on inpu
+t line 872.
 
-[39] [40]
 
-LaTeX Font Warning: Command \small invalid in math mode on input line 919.
+LaTeX Warning: Reference `fig:sensitivity-50-2000' on page 38 undefined on inpu
+t line 872.
 
-LaTeX Font Info:    Calculating math sizes for size <> on input line 921.
+[38] [39] [40]
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 918.
+
+LaTeX Font Info:    Calculating math sizes for size <> on input line 920.
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <> not available
-(Font)              size <5> substituted on input line 921.
+(Font)              size <5> substituted on input line 920.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <0.7> not available
-(Font)              size <5> substituted on input line 921.
+(Font)              size <5> substituted on input line 920.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <0.5> not available
-(Font)              size <5> substituted on input line 921.
+(Font)              size <5> substituted on input line 920.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <> not available
-(Font)              size <5> substituted on input line 921.
+(Font)              size <5> substituted on input line 920.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <0.7> not available
-(Font)              size <5> substituted on input line 921.
+(Font)              size <5> substituted on input line 920.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <0.5> not available
-(Font)              size <5> substituted on input line 921.
+(Font)              size <5> substituted on input line 920.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <> not available
-(Font)              size <5> substituted on input line 921.
+(Font)              size <5> substituted on input line 920.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <0.7> not available
-(Font)              size <5> substituted on input line 921.
+(Font)              size <5> substituted on input line 920.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <0.5> not available
-(Font)              size <5> substituted on input line 921.
+(Font)              size <5> substituted on input line 920.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <> not available
-(Font)              size <5> substituted on input line 921.
+(Font)              size <5> substituted on input line 920.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <0.7> not available
-(Font)              size <5> substituted on input line 921.
+(Font)              size <5> substituted on input line 920.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <0.5> not available
-(Font)              size <5> substituted on input line 921.
+(Font)              size <5> substituted on input line 920.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <> not available
-(Font)              size <5> substituted on input line 921.
+(Font)              size <5> substituted on input line 920.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <0.7> not available
-(Font)              size <5> substituted on input line 921.
+(Font)              size <5> substituted on input line 920.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <0.5> not available
-(Font)              size <5> substituted on input line 921.
+(Font)              size <5> substituted on input line 920.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <> not available
-(Font)              size <5> substituted on input line 921.
+(Font)              size <5> substituted on input line 920.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <0.7> not available
-(Font)              size <5> substituted on input line 921.
+(Font)              size <5> substituted on input line 920.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <0.5> not available
-(Font)              size <5> substituted on input line 921.
+(Font)              size <5> substituted on input line 920.
 
 [41] [42] (publication.bbl [43] [44]
 Underfull \hbox (badness 1028) in paragraph at lines 203--207
@@ -2003,12 +2006,12 @@ k-ing.  \OT1/cmr/m/it/10 De-vel-op-men-tal cell\OT1/cmr/m/n/10 ,
 ) [45]
 
 LaTeX Warning: Reference `sec:evaluating-model-results' on page 46 undefined on
- input line 939.
+ input line 938.
 
 [46]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 947.
+(caption)                particular \caption on input line 946.
 See the caption package documentation for explanation.
 
 (tables/train_mse_1000_10.tex) [47
@@ -2016,43 +2019,43 @@ See the caption package documentation for explanation.
 ]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 953.
+(caption)                particular \caption on input line 952.
 See the caption package documentation for explanation.
 
 (tables/test_mse_1000_10.tex) [48]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 958.
+(caption)                particular \caption on input line 957.
 See the caption package documentation for explanation.
 
 (tables/sensitivity_1000_10.tex) [49]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 964.
+(caption)                particular \caption on input line 963.
 See the caption package documentation for explanation.
 
 (tables/specificity_1000_10.tex) [50]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 970.
+(caption)                particular \caption on input line 969.
 See the caption package documentation for explanation.
 
 (tables/train_mse_50_2000.tex) [51]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 976.
+(caption)                particular \caption on input line 975.
 See the caption package documentation for explanation.
 
 (tables/test_mse_50_2000.tex) [52]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 982.
+(caption)                particular \caption on input line 981.
 See the caption package documentation for explanation.
 
 (tables/sensitivity_50_2000.tex)
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 988.
+(caption)                particular \caption on input line 987.
 See the caption package documentation for explanation.
 
 (tables/specificity_50_2000.tex) [53] (publication.aux)
@@ -2112,7 +2115,7 @@ l/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy9.pfb><C:/Users/Connor
 /cmti9.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publi
 c/amsfonts/cm/cmtt10.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX 2.9/fon
 ts/type1/public/amsfonts/cm/cmtt9.pfb>
-Output written on publication.pdf (53 pages, 3344316 bytes).
+Output written on publication.pdf (53 pages, 3344593 bytes).
 PDF statistics:
  1066 PDF objects out of 1200 (max. 8388607)
  186 named destinations out of 1000 (max. 500000)
