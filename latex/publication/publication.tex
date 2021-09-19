@@ -700,7 +700,7 @@ Figures \ref{fig:nonlinear-sensitivity-1000-10} and \ref{fig:nonlinear-specifici
 	\label{fig:nonlinear-specificity-1000-10}
 \end{figure}
 
-t
+Now, we will show the results for the non-linear simulations when $n = 50$ and $p = 2000$. Figures \ref{fig:nonlinear-train-mse-50-2000} and \ref{fig:nonlinear-test-mse-50-2000} show the average mean square errors on the training data and test data, respectively. We see that the linear and non-linear models have similar test mean squared errors. This differs from what we saw when $n = 1000$ and $p = 10$ (in Figure \ref{fig:nonlinear-test-mse-1000-10}) where the non-linear models significantly outperformed the linear models. Another interesting observation is that the non-linear models all have a noticeably lower test mean squared error when the correlation between predictors is high. The linear models still perform significantly worse on the training data compared to the test data. 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width = \textwidth]{images/nonlinear-facet/train-mse/facet_train_mse_2_50_2000.eps}
@@ -717,7 +717,7 @@ t
 	\label{fig:nonlinear-test-mse-50-2000}
 \end{figure}
 
-Beta sensitivity and specificity
+Figures \ref{fig:nonlinear-sensitivity-50-2000} and \ref{fig:nonlinear-specificity-50-2000} show the results for the $\beta$-sensitivity and $\beta$-specificity for the non-linear models when $n = 50$ and $p = 2000$. We see that all of the linear models estimate almost all of the coefficients as being equal to zero! SCAD and MCP were slightly more likely to correctly estimate non-zero coefficients as being non-zero, but they were also more likely to incorrectly identify unimportant predictors as having non-zero coefficients.
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width = \textwidth]{images/nonlinear-facet/sensitivity/facet_sensitivity_2_50_2000.eps}

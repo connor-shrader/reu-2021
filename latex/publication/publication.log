@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.3.27)  19 SEP 2021 16:15
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.3.27)  19 SEP 2021 16:32
 entering extended mode
 **./publication.tex
 (publication.tex
@@ -1623,7 +1623,7 @@ pdfTeX warning: pdflatex.exe (file ./images/nonlinear-facet/train-mse/facet_tra
 in_mse_2_50_2000-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>,
  but at most version <1.5> allowed
 <images/nonlinear-facet/train-mse/facet_train_mse_2_50_2000-eps-converted-to.pd
-f, id=597, 722.7pt x 433.62pt>
+f, id=600, 722.7pt x 433.62pt>
 File: images/nonlinear-facet/train-mse/facet_train_mse_2_50_2000-eps-converted-
 to.pdf Graphic file (type pdf)
 <use images/nonlinear-facet/train-mse/facet_train_mse_2_50_2000-eps-converted-t
@@ -1653,7 +1653,7 @@ pdfTeX warning: pdflatex.exe (file ./images/nonlinear-facet/test-mse/facet_test
 _mse_2_50_2000-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, b
 ut at most version <1.5> allowed
 <images/nonlinear-facet/test-mse/facet_test_mse_2_50_2000-eps-converted-to.pdf,
- id=598, 722.7pt x 433.62pt>
+ id=601, 722.7pt x 433.62pt>
 File: images/nonlinear-facet/test-mse/facet_test_mse_2_50_2000-eps-converted-to
 .pdf Graphic file (type pdf)
 <use images/nonlinear-facet/test-mse/facet_test_mse_2_50_2000-eps-converted-to.
@@ -1683,7 +1683,7 @@ pdfTeX warning: pdflatex.exe (file ./images/nonlinear-facet/sensitivity/facet_s
 ensitivity_2_50_2000-eps-converted-to.pdf): PDF inclusion: found PDF version <1
 .7>, but at most version <1.5> allowed
 <images/nonlinear-facet/sensitivity/facet_sensitivity_2_50_2000-eps-converted-t
-o.pdf, id=599, 722.7pt x 433.62pt>
+o.pdf, id=604, 722.7pt x 433.62pt>
 File: images/nonlinear-facet/sensitivity/facet_sensitivity_2_50_2000-eps-conver
 ted-to.pdf Graphic file (type pdf)
 <use images/nonlinear-facet/sensitivity/facet_sensitivity_2_50_2000-eps-convert
@@ -1691,6 +1691,20 @@ ed-to.pdf>
 Package pdftex.def Info: images/nonlinear-facet/sensitivity/facet_sensitivity_2
 _50_2000-eps-converted-to.pdf  used on input line 723.
 (pdftex.def)             Requested size: 397.485pt x 238.49173pt.
+[29 <./images/nonlinear-facet/train-mse/facet_train_mse_2_1000_10-eps-converted
+-to.pdf>]
+
+LaTeX Warning: Text page 30 contains only floats.
+
+[30 <./images/nonlinear-facet/test-mse/facet_test_mse_2_1000_10-eps-converted-t
+o.pdf> <./images/nonlinear-facet/sensitivity/facet_sensitivity_2_1000_10-eps-co
+nverted-to.pdf>]
+
+LaTeX Warning: Text page 31 contains only floats.
+
+[31 <./images/nonlinear-facet/specificity/facet_specificity_2_1000_10-eps-conve
+rted-to.pdf> <./images/nonlinear-facet/train-mse/facet_train_mse_2_50_2000-eps-
+converted-to.pdf>]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
@@ -1713,7 +1727,7 @@ pdfTeX warning: pdflatex.exe (file ./images/nonlinear-facet/specificity/facet_s
 pecificity_2_50_2000-eps-converted-to.pdf): PDF inclusion: found PDF version <1
 .7>, but at most version <1.5> allowed
 <images/nonlinear-facet/specificity/facet_specificity_2_50_2000-eps-converted-t
-o.pdf, id=600, 722.7pt x 433.62pt>
+o.pdf, id=672, 722.7pt x 433.62pt>
 File: images/nonlinear-facet/specificity/facet_specificity_2_50_2000-eps-conver
 ted-to.pdf Graphic file (type pdf)
 <use images/nonlinear-facet/specificity/facet_specificity_2_50_2000-eps-convert
@@ -1724,26 +1738,6 @@ _50_2000-eps-converted-to.pdf  used on input line 731.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[29 <./images/nonlinear-facet/train-mse/facet_train_mse_2_1000_10-eps-converted
--to.pdf>]
-
-LaTeX Warning: Text page 30 contains only floats.
-
-[30 <./images/nonlinear-facet/test-mse/facet_test_mse_2_1000_10-eps-converted-t
-o.pdf> <./images/nonlinear-facet/sensitivity/facet_sensitivity_2_1000_10-eps-co
-nverted-to.pdf>]
-
-LaTeX Warning: Text page 31 contains only floats.
-
-[31 <./images/nonlinear-facet/specificity/facet_specificity_2_1000_10-eps-conve
-rted-to.pdf> <./images/nonlinear-facet/train-mse/facet_train_mse_2_50_2000-eps-
-converted-to.pdf>]
-
-LaTeX Warning: Text page 32 contains only floats.
-
-[32 <./images/nonlinear-facet/test-mse/facet_test_mse_2_50_2000-eps-converted-t
-o.pdf> <./images/nonlinear-facet/sensitivity/facet_sensitivity_2_50_2000-eps-co
-nverted-to.pdf>]
 Package epstopdf Info: Source file: <images/empirical_histogram.eps>
 (epstopdf)                    date: 2021-07-15 10:45:18
 (epstopdf)                    size: 56518 bytes
@@ -1760,7 +1754,7 @@ Package epstopdf Info: Output file is already uptodate.
 pdfTeX warning: pdflatex.exe (file ./images/empirical_histogram-eps-converted-t
 o.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allow
 ed
-<images/empirical_histogram-eps-converted-to.pdf, id=699, 722.7pt x 433.62pt>
+<images/empirical_histogram-eps-converted-to.pdf, id=679, 722.7pt x 433.62pt>
 File: images/empirical_histogram-eps-converted-to.pdf Graphic file (type pdf)
 <use images/empirical_histogram-eps-converted-to.pdf>
 Package pdftex.def Info: images/empirical_histogram-eps-converted-to.pdf  used 
@@ -1769,8 +1763,14 @@ on input line 745.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[33 <./images/nonlinear-facet/specificity/facet_specificity_2_50_2000-eps-conve
-rted-to.pdf>] [34 <./images/empirical_histogram-eps-converted-to.pdf>]
+[32 <./images/nonlinear-facet/test-mse/facet_test_mse_2_50_2000-eps-converted-t
+o.pdf>]
+
+LaTeX Warning: Text page 33 contains only floats.
+
+[33 <./images/nonlinear-facet/sensitivity/facet_sensitivity_2_50_2000-eps-conve
+rted-to.pdf> <./images/nonlinear-facet/specificity/facet_specificity_2_50_2000-
+eps-converted-to.pdf>] [34 <./images/empirical_histogram-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <images/empirical_mse.eps>
 (epstopdf)                    date: 2021-07-26 15:12:02
 (epstopdf)                    size: 86163 bytes
@@ -1786,12 +1786,13 @@ Package epstopdf Info: Output file is already uptodate.
 
 pdfTeX warning: pdflatex.exe (file ./images/empirical_mse-eps-converted-to.pdf)
 : PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<images/empirical_mse-eps-converted-to.pdf, id=732, 722.7pt x 433.62pt>
+<images/empirical_mse-eps-converted-to.pdf, id=736, 722.7pt x 433.62pt>
 File: images/empirical_mse-eps-converted-to.pdf Graphic file (type pdf)
 <use images/empirical_mse-eps-converted-to.pdf>
 Package pdftex.def Info: images/empirical_mse-eps-converted-to.pdf  used on inp
 ut line 768.
 (pdftex.def)             Requested size: 317.98921pt x 190.79338pt.
+[35 <./images/empirical_mse-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <images/venn/venn1.eps>
 (epstopdf)                    date: 2021-07-16 14:34:14
 (epstopdf)                    size: 409898 bytes
@@ -1806,7 +1807,7 @@ Package epstopdf Info: Output file is already uptodate.
 
 pdfTeX warning: pdflatex.exe (file ./images/venn/venn1-eps-converted-to.pdf): P
 DF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<images/venn/venn1-eps-converted-to.pdf, id=737, 722.7pt x 433.62pt>
+<images/venn/venn1-eps-converted-to.pdf, id=753, 722.7pt x 433.62pt>
 File: images/venn/venn1-eps-converted-to.pdf Graphic file (type pdf)
 <use images/venn/venn1-eps-converted-to.pdf>
 Package pdftex.def Info: images/venn/venn1-eps-converted-to.pdf  used on input 
@@ -1826,7 +1827,7 @@ Package epstopdf Info: Output file is already uptodate.
 
 pdfTeX warning: pdflatex.exe (file ./images/venn/venn2-eps-converted-to.pdf): P
 DF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<images/venn/venn2-eps-converted-to.pdf, id=738, 722.7pt x 433.62pt>
+<images/venn/venn2-eps-converted-to.pdf, id=754, 722.7pt x 433.62pt>
 File: images/venn/venn2-eps-converted-to.pdf Graphic file (type pdf)
 <use images/venn/venn2-eps-converted-to.pdf>
 Package pdftex.def Info: images/venn/venn2-eps-converted-to.pdf  used on input 
@@ -1846,7 +1847,7 @@ Package epstopdf Info: Output file is already uptodate.
 
 pdfTeX warning: pdflatex.exe (file ./images/venn/venn3-eps-converted-to.pdf): P
 DF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<images/venn/venn3-eps-converted-to.pdf, id=739, 722.7pt x 433.62pt>
+<images/venn/venn3-eps-converted-to.pdf, id=755, 722.7pt x 433.62pt>
 File: images/venn/venn3-eps-converted-to.pdf Graphic file (type pdf)
 <use images/venn/venn3-eps-converted-to.pdf>
 Package pdftex.def Info: images/venn/venn3-eps-converted-to.pdf  used on input 
@@ -1866,7 +1867,7 @@ Package epstopdf Info: Output file is already uptodate.
 
 pdfTeX warning: pdflatex.exe (file ./images/venn/venn4-eps-converted-to.pdf): P
 DF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<images/venn/venn4-eps-converted-to.pdf, id=740, 722.7pt x 433.62pt>
+<images/venn/venn4-eps-converted-to.pdf, id=756, 722.7pt x 433.62pt>
 File: images/venn/venn4-eps-converted-to.pdf Graphic file (type pdf)
 <use images/venn/venn4-eps-converted-to.pdf>
 Package pdftex.def Info: images/venn/venn4-eps-converted-to.pdf  used on input 
@@ -1886,27 +1887,19 @@ Package epstopdf Info: Output file is already uptodate.
 
 pdfTeX warning: pdflatex.exe (file ./images/venn/venn5-eps-converted-to.pdf): P
 DF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<images/venn/venn5-eps-converted-to.pdf, id=741, 722.7pt x 433.62pt>
+<images/venn/venn5-eps-converted-to.pdf, id=757, 722.7pt x 433.62pt>
 File: images/venn/venn5-eps-converted-to.pdf Graphic file (type pdf)
 <use images/venn/venn5-eps-converted-to.pdf>
 Package pdftex.def Info: images/venn/venn5-eps-converted-to.pdf  used on input 
 line 822.
 (pdftex.def)             Requested size: 178.86703pt x 107.31963pt.
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[35 <./images/empirical_mse-eps-converted-to.pdf>]
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
 [36 <./images/venn/venn1-eps-converted-to.pdf> <./images/venn/venn2-eps-convert
 ed-to.pdf> <./images/venn/venn3-eps-converted-to.pdf> <./images/venn/venn4-eps-
-converted-to.pdf> <./images/venn/venn5-eps-converted-to.pdf>]
+converted-to.pdf> <./images/venn/venn5-eps-converted-to.pdf>] [37]
 
-LaTeX Warning: Reference `fig:test-mse-1000-10' on page 37 undefined on input l
+LaTeX Warning: Reference `fig:test-mse-1000-10' on page 38 undefined on input l
 ine 865.
 
-[37]
 
 LaTeX Warning: Reference `fig:test-mse-1000-10' on page 38 undefined on input l
 ine 867.
@@ -1915,15 +1908,16 @@ ine 867.
 LaTeX Warning: Reference `fig:test-mse-50-2000' on page 38 undefined on input l
 ine 867.
 
+[38]
 
-LaTeX Warning: Reference `fig:sensitivity-1000-10' on page 38 undefined on inpu
+LaTeX Warning: Reference `fig:sensitivity-1000-10' on page 39 undefined on inpu
 t line 873.
 
 
-LaTeX Warning: Reference `fig:sensitivity-50-2000' on page 38 undefined on inpu
+LaTeX Warning: Reference `fig:sensitivity-50-2000' on page 39 undefined on inpu
 t line 873.
 
-[38] [39] [40]
+[39] [40]
 
 LaTeX Font Warning: Command \small invalid in math mode on input line 919.
 
@@ -2118,9 +2112,9 @@ l/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy9.pfb><C:/Users/Connor
 /cmti9.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publi
 c/amsfonts/cm/cmtt10.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX 2.9/fon
 ts/type1/public/amsfonts/cm/cmtt9.pfb>
-Output written on publication.pdf (53 pages, 3342551 bytes).
+Output written on publication.pdf (53 pages, 3344316 bytes).
 PDF statistics:
- 1061 PDF objects out of 1200 (max. 8388607)
+ 1066 PDF objects out of 1200 (max. 8388607)
  186 named destinations out of 1000 (max. 500000)
  344 words of extra memory for PDF output out of 10000 (max. 10000000)
 
