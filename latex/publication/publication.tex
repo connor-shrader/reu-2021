@@ -460,7 +460,9 @@ Lasso, SCAD, MCP, GBM, and random forest models were used for all data sets. Sup
 
 \subsection{Simulation Design}
 
-Our simulation study considered two different functions for the response variable $Y$. First, we assumed that the relationship between the response variable $Y$ and the predictors $X_1, X_2, \dotsc, X_p$ was linear. That is, we assumed that
+Our simulation study used two different functions for the response variable $Y$. Our first function assumed a linear relationship between the response and its predictors $X_1, X_2, \dotsc, X_p$, while the second response used a non-linear relationship. By considering both linear and non-linear response functions, we obtain a more thorough understanding of how each model performs in different situations.
+
+With our linear response function, we assumed that
 \begin{equation}
 	Y = \beta_0 + \beta_1 X_1 + \cdots + \beta_p X_p + \epsilon
 \end{equation}
@@ -473,13 +475,13 @@ We then generated an $n\times 1$ error vector $\mathbf{e}\sim \mathcal{N}(0, \si
 	\mathbf{y} = \mathbf{X}\bm{\beta} + \mathbf{e}
 \end{equation}
 
-Given the chosen coefficient values, the response $\mathbf{y}$ becomes
+Given our chosen coefficient values, the response $\mathbf{y}$ becomes
 \begin{equation}\label{eqn:linear-response}
 	\mathbf{y} = 1 + 2\mathbf{X}_1 - 2\mathbf{X}_2 + 0.5\mathbf{X}_5 + 3\mathbf{X}_6 + \mathbf{e}
 \end{equation}
 where $\mathbf{X}_i$ is the $i$-th column of $\mathbf{X}$.
 
-Our second response function was not entirely linear. Instead, we calculated $\mathbf{y}$ as
+Our second response function calculated $\mathbf{y}$ as
 \begin{equation}\label{eqn:nonlinear-response}
 	\mathbf{y} = 6\times 1_{\mathbf{X}_1>0} + \mathbf{X}_2^2 + 0.5\mathbf{X}_6 + 3\mathbf{X}_7 + 2\times 1_{\mathbf{X}_8>0}\times 1_{\mathbf{X}_9>0} + \mathbf{e}
 \end{equation}
@@ -490,9 +492,11 @@ where $1_{\mathbf{X}_i>0}$ is the index function defined by
 			1, &\mathbf{X}_i > 0
 		\end{array}\right.
 \end{equation}
+Note that this response function does have linear terms, but the function as a whole is non-linear.
 
-For both response functions, we used a \textbf{factorial design}. This means that we considered several factors that affect the simulated data in $\mathbf{X}$, each having multiple possible values. We then generated data using every possible combination of factor values, giving us a comprehensive assessment of model performance under various conditions. The factors that we controlled in our simulation are:
+Our simulation study used a \textbf{factorial design}. This means that we considered several factors that affect the simulated data in $\mathbf{X}$, each having multiple possible values. We then generated data using every possible combination of factor values, giving us a comprehensive assessment of model performance under various conditions. The factors that we controlled in our simulation are:
 \begin{itemize}
+	\item The choice of response function (linear or non-linear)
 	\item $n$, the number of observations (50, 200, and 1000),
 	\item $p$, the number of predictors (10, 100, and 2000),
 	\item $\sigma$, the standard deviation of the random error (1, 3, and 6),
@@ -500,9 +504,9 @@ For both response functions, we used a \textbf{factorial design}. This means tha
 	\item $\rho$, the correlation between predictors (0.2, 0.5, and 0.9)
 \end{itemize}
 
-By taking every possible combination of these factors, we obtain $3\times 3\times 3\times 4\times 3 = 324$ different settings for the simulations. However, because an independent correlation matrix does not have any correlation between predictors, the value of $\rho$ is not used. Hence, we only needed to run 270 different settings. For each combination of factors, we ran 100 simulations. In each simulation, we generated two data sets: one to train the various models, and one to test the models and evaluate performance. Both data sets contained $n$ observations, meaning that a total of $2n$ observations were generated for each simulation.
+By taking every possible combination of these factors, we obtain $2\times 3\times 3\times 3\times 4\times 3 = 648$ different settings for the simulations. However, because an independent correlation matrix does not have any correlation between predictors, the value of $\rho$ is not used. Hence, we only needed to run 540 different settings. For each combination of factors, we ran 100 simulations. Each simulation randomly generated two data sets: one to train the various models, and one to test the models and evaluate performance. Both data sets contained $n$ observations, meaning that a total of $2n$ observations were generated for each simulation.
 
-As mentioned earlier, we considered four different covariance matrix structures. These structures determine the correlation between different predictors. If $\mathbf{\Sigma}$ is a correlation matrix, then $\mathbf{\Sigma}_{ij}$, the entry at the $i$-th row and $j$-th column, represents the correlation between predictors $i$ and $j$. If $\mathbf{\Sigma}_{ij}=0$, there is no correlation; but if $\mathbf{\Sigma}_{ij}=1$, then predictors $i$ and $j$ are perfectly correlated. Note that a correlation matrix is always symmetric, so $\mathbf{\Sigma}_{ij} = \mathbf{\Sigma}_{ji}$ for all indices $i$ and $j$. This correlation can severely impact the performance of statistical models; if several predictors are highly correlated, then we expect the models to be less able to determine which predictors are actually related to the response.
+As mentioned earlier, we considered four different covariance matrix structures. These structures determine the correlation between different predictors. If $\mathbf{\Sigma}$ is a correlation matrix, then $\mathbf{\Sigma}_{ij}$ (the entry at the $i$-th row and $j$-th column) represents the correlation between predictors $i$ and $j$. If $\mathbf{\Sigma}_{ij}=0$, there is no correlation; but if $\mathbf{\Sigma}_{ij}=1$, then predictors $i$ and $j$ are perfectly correlated. Note that a correlation matrix is always symmetric, so $\mathbf{\Sigma}_{ij} = \mathbf{\Sigma}_{ji}$ for all indices $i$ and $j$. This correlation can severely impact the performance of statistical models; if several predictors are highly correlated, then we expect the models to be less able to determine which predictors are actually related to the response.
 
 The first correlation structure we considered is \textbf{independent correlation}. This means that the correlation matrix $\mathbf{\Sigma}$ has the form
 \begin{equation}
@@ -548,7 +552,7 @@ Finally, a blockwise correlation matrix has the block-diagonal form
 \end{equation}
 where $0$ represents a block containing all zeroes, and each block $\mathbf{B}_i$ has a form identical to the symmetric compound matrix in Equation \ref{eqn:symmetric-compound-matrix}. This implies that predictors within the same block have correlation $\rho\in [0, 1]$, whereas predictors in different blocks have zero correlation. This type of correlation is more realistic than independent or symmetric compound correlation, since only certain groups of predictors are correlated with one another. One important consideration when using blockwise correlation is the size of each block. For our simulations, we used a block size of 5 when $p = 10$, a block size of 25 when $p = 100$, and a block size of 100 when $p = 2000$.
 
-\subsection{Simulation Results}\label{sec:simulation-results}
+\subsection{Evaluating Model Performance}\label{sec:evaluating-model-performance}
 % stick the results from classification models here
 
 We used four metrics to evaluate the performance of each model on the simulated data: \textbf{train mean squared error}, \textbf{test mean squared error}, \textbf{$\beta$-sensitivity} and \textbf{$\beta$-specificity}. The mean squared error (MSE) is computed by
@@ -557,7 +561,7 @@ We used four metrics to evaluate the performance of each model on the simulated 
 \end{equation}
 where $y_i$ is the value of the response and $\hat{y}_i$ is the predicted response value for observation $i$. In other words, the mean squared error is the average of the squared errors. The mean squared error was computed on both the $n$ observations used to train the models and the $n$ observations that were not used for training, giving us both a training error and a test error.
 
-Because we are using simulated data, where the true coefficient values are known, we can measure the $\beta$-sensitivity and $\beta$-specificity for each penalized regression model that performs variable selection \cite{liu2020logsum}. For these models, we first measured the number of true positive, true negatives, false positives, and false negatives for the coefficient estimates. For any model, a coefficient estimate is a \textbf{true positive} if the coefficient is predicted to be non-zero when it is actually non-zero. The estimate is a \textbf{true negative} if the coefficient was correctly predicted to be zero. A \textbf{false positive} happens when the coefficient is predicted to be non-zero but is actually zero. Finally, a coefficient estimate is a \textbf{false negative} if it was estimated to be zero but is actually non-zero.
+Because we are using simulated data, where the true coefficient values are known, we can measure the $\beta$-sensitivity and $\beta$-specificity for each penalized linear regression model that performs variable selection \cite{liu2020logsum}. For these models, we first measured the number of true positive, true negatives, false positives, and false negatives for the coefficient estimates. For any model, a coefficient estimate is a \textbf{true positive} if the coefficient is predicted to be non-zero when it is actually non-zero. The estimate is a \textbf{true negative} if the coefficient was correctly predicted to be zero. A \textbf{false positive} happens when the coefficient is predicted to be non-zero but is actually zero. Finally, a coefficient estimate is a \textbf{false negative} if it was estimated to be zero but is actually non-zero.
 
 For a particular model, let TP be the number of true positives, TN the number of true negatives, FP the number of false positives, and FN the number of false negatives. Then the $\beta$-sensitivity model the model can be computed by
 \begin{equation}
@@ -570,11 +574,15 @@ The $\beta$-sensitivity is a measure of a model's ability to correctly identify 
 The $\beta$-specificity measures a model's ability to recognize coefficients that are actually zero.
 
 
-Because we ran simulations using 270 different combinations of factors, we will just highlight the results for the two extremes: when $n = 1000$ and $p = 10$, and when $n = 50$ and $p = 2000$. All of the plots in this section use facet plots to convey as much information as possible. Each plot measures the average value for one of the four metrics discussed above over 100 simulations. Each row represents a different value of $\sigma$, the standard deviation of the random error. Each column represents a correlation structure. The different shapes and colors for each point represent the strength of the correlation between predictors.
+Because we ran simulations using 540 different combinations of factors, we will just highlight the results for the two extremes: when $n = 1000$ and $p = 10$, and when $n = 50$ and $p = 2000$. All of the plots in this section use facet plots to convey as much information as possible. Each plot measures the average value for one of the four metrics discussed above over 100 simulations. Each row represents a different value of $\sigma$, the standard deviation of the random error. Each column represents a correlation structure. The different shapes and colors for each point represent the strength of the correlation between predictors.
 
-To save space in the plots, each model is given a shortened label. Many of these labels have been used throughout this paper; for example, ordinary least squares is labeled as OLS. The labels for the wrapper methods start with AIC or BIC, followed by either B for backward, SB for stepwise backward, F for forward or SF for stepwise forward. As an example, the stepwise forward model evaluated with AIC is labeled as ``AIC SF.''
+To save space in the plots, each model is given a shortened label. Many of these labels have been used throughout this paper; for example, ordinary least squares is labeled as OLS. The labels for the wrapper methods start with AIC or BIC, followed by either B for backward, SB for stepwise backward, F for forward, or SF for stepwise forward. As an example, the stepwise forward model evaluated with AIC is labeled as ``AIC SF.''
 
-We will first consider the case where $n = 1000$ and $p = 10$. Figures \ref{fig:linear-train-mse-1000-10} and \ref{fig:linear-test-mse-1000-10} show the average mean squared error of each model for the training set and test set, respectively. Tables \ref{tab:train-mse-1000-10} and \ref{tab:test-mse-1000-10} in Appendix \ref{app:full-results} contain all of the data shown in these figures as well as the standard deviation for each point.
+We begin by presenting the results from our simulations that used the linear response function, followed by the results from the non-linear response function.
+
+\section{Linear Simulation Results}
+
+First, we consider the case where $n = 1000$ and $p = 10$. Figures \ref{fig:linear-train-mse-1000-10} and \ref{fig:linear-test-mse-1000-10} show the average mean squared error of each model for the training set and test set, respectively. Tables \ref{tab:linear-train-mse-1000-10} and \ref{tab:linear-test-mse-1000-10} in Appendix \ref{app:full-results} contain all of the data shown in these figures as well as the standard deviation for each point.
 
 \begin{figure}[h!]
 	\centering
@@ -611,25 +619,25 @@ We see that the linear models have very similar train and test mean squared erro
 
 The non-linear models all have lower training mean squared errors compared to the linear models. However, they also have higher test mean squared errors. We see that gradient boosting is not affected too strongly by the amount of correlation; on the other hand, we see that random forest and support vector machine models have better test performance when there is a strong correlation between predictors.
 
-Figure \ref{fig:linear-sensitivity-1000-10} displays the average $\beta$-sensitivity for each model that performs variable selection when $n = 1000$ and $p = 10$. See Table \ref{tab:sensitivity-1000-10} for a table of these results. We see that almost all the models were able to correctly identify all of the non-zero coefficients when $n = 1000$ and $p = 10$. The only exceptions were lasso and elastic-net models when the correlation structure was blockwise and the strength of the correlation was 0.9.
+Figure \ref{fig:linear-sensitivity-1000-10} displays the average $\beta$-sensitivity for each model that performs variable selection when $n = 1000$ and $p = 10$. See Table \ref{tab:linear-sensitivity-1000-10} for a table of these results. We see that almost all the models were able to correctly identify all of the non-zero coefficients when $n = 1000$ and $p = 10$. The only exceptions were lasso and elastic-net models when the correlation structure was blockwise and the strength of the correlation was 0.9.
 
-Figure \ref{fig:linear-specificity-1000-10} shows the average $\beta$-specificity for each model. Exact numerical values are given in Table \ref{tab:specificity-1000-10}. We see that the subset selection models that used BIC made almost zero mistakes when identifying predictors as zero. In contrast, wrapper models fitted using AIC made more mistakes. We see that lasso and elastic-net made almost no mistakes when the correlation was low; in fact, when the correlation structure was independent, lasso made the fewest incorrect estimates out of all the models. As the correlation increases, lasso and elastic-net made more incorrect predictions. SCAD and MCP made more incorrect predictions than lasso and elastic-net in general. However, SCAD and MCP were also somewhat more resilient to an increase in correlation.
+Figure \ref{fig:linear-specificity-1000-10} shows the average $\beta$-specificity for each model. Exact numerical values are given in Table \ref{tab:linear-specificity-1000-10}. We see that the subset selection models that used BIC made almost zero mistakes when identifying predictors as zero. In contrast, wrapper models fitted using AIC made more mistakes. We see that lasso and elastic-net made almost no mistakes when the correlation was low; in fact, when the correlation structure was independent, lasso made the fewest incorrect estimates out of all the models. As the correlation increases, lasso and elastic-net made more incorrect predictions. SCAD and MCP made more incorrect predictions than lasso and elastic-net in general. However, SCAD and MCP were also somewhat more resilient to an increase in correlation.
 
-Now, we will consider the opposite extreme where $n = 50$ and $p = 2000$. Figures \ref{fig:linear-train-mse-50-2000} and \ref{fig:linear-test-mse-50-2000} display the average mean squared error for simulations where $n = 50$ and $p = 2000$. Because less models were fitted for this combination of $n$ and $p$, less models are shown in this figure. See Table \ref{tab:train-mse-50-2000} and Table \ref{tab:test-mse-50-2000} for a table of these results, including the standard deviations for each point.
+Now, we will consider the opposite extreme where $n = 50$ and $p = 2000$. Figures \ref{fig:linear-train-mse-50-2000} and \ref{fig:linear-test-mse-50-2000} display the average mean squared error for simulations where $n = 50$ and $p = 2000$. Because less models were fitted for this combination of $n$ and $p$, less models are shown in this figure. See Table \ref{tab:linear-train-mse-50-2000} and Table \ref{tab:linear-test-mse-50-2000} for a table of these results, including the standard deviations for each point.
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width = \textwidth]{images/linear-facet/train-mse/facet_train_mse_1_50_2000.eps}
 	\captionsetup{width = 0.8\textwidth}
 	\caption{Average mean square error using training data for linear simulations when $n = 50$ and $p = 2000$.}
-	\label{fig:linear-linear-train-mse-50-2000}
+	\label{fig:linear-train-mse-50-2000}
 	
 	\bigskip
 	
 	\includegraphics[width = \textwidth]{images/linear-facet/test-mse/facet_test_mse_1_50_2000.eps}
 	\captionsetup{width = 0.8\textwidth}
 	\caption{Average mean square error using testing data for linear simulations when $n = 50$ and $p = 2000$.}
-	\label{fig:linear-linear-test-mse-50-2000}
+	\label{fig:linear-test-mse-50-2000}
 \end{figure}
 
 \begin{figure}[h!]
@@ -637,29 +645,31 @@ Now, we will consider the opposite extreme where $n = 50$ and $p = 2000$. Figure
 	\includegraphics[width = \textwidth]{images/linear-facet/sensitivity/facet_sensitivity_1_50_2000.eps}
 	\captionsetup{width = 0.8\textwidth}
 	\caption{Average $\beta$-sensitivity for linear simulations when $n = 50$ and $p = 2000$}
-	\label{fig:linear-linear-sensitivity-50-2000}
+	\label{fig:linear-sensitivity-50-2000}
 	
 	\bigskip
 	
 	\includegraphics[width = \textwidth]{images/linear-facet/specificity/facet_specificity_1_50_2000.eps}
 	\captionsetup{width = 0.8\textwidth}
 	\caption{Average $\beta$-specificity for linear simulations when $n = 50$ and $p = 2000$.}
-	\label{fig:linear-linear-specificity-50-2000}
+	\label{fig:linear-specificity-50-2000}
 \end{figure}
 
 We see that the mean squared error for lasso and elastic-net are generally larger than SCAD and MCP for both the training data and test data. Gradient boosting has almost zero training mean squared error under all conditions, but has a relatively large test error. Random forest and support vector machine models have a moderate training error but a large test error. Interestingly, we see that the non-linear models all perform better when there is a strong correlation between predictors. On the other hand, the linear models are somewhat less affected by the correlation.
 
-Figure \ref{fig:linear-linear-sensitivity-50-2000} shows the mean $\beta$-sensitivity for each model, with results shown in Table \ref{tab:linear-sensitivity-50-2000}. We see that all of the models predict most of the non-zero coefficients when the correlation is low. When the correlation is high, all of the models struggle to identify the correct predictors. SCAD and MCP perform the best when the correlation is low but perform the worst when the correlation is high. Elastic-net performs particularly well compared to the other models when the correlation is high, especially when the correlation structure is autoregressive.
+Figure \ref{fig:linear-sensitivity-50-2000} shows the mean $\beta$-sensitivity for each model, with results shown in Table \ref{tab:linear-sensitivity-50-2000}. We see that all of the models predict most of the non-zero coefficients when the correlation is low. When the correlation is high, all of the models struggle to identify the correct predictors. SCAD and MCP perform the best when the correlation is low but perform the worst when the correlation is high. Elastic-net performs particularly well compared to the other models when the correlation is high, especially when the correlation structure is autoregressive.
 
-Figure \ref{fig:linear-linear-specificity-50-2000} shows the average $\beta$-specificity $n = 50$ and $p = 2000$. See Table \ref{tab:specificity-50-2000} for the corresponding results table. MCP appears to make the fewest mistakes when choosing zero coefficients. The performance of the other models depends heavily on the type of correlation and the correlation strength. Lasso and elastic-net perform the worst when the correlation structure is symmetric compound, whereas SCAD performs poorly when the correlation structure is autoregressive or blockwise. We also see that the models generally made less mistakes as the correlation increases.
+Figure \ref{fig:linear-specificity-50-2000} shows the average $\beta$-specificity $n = 50$ and $p = 2000$. See Table \ref{tab:linear-specificity-50-2000} for the corresponding results table. MCP appears to make the fewest mistakes when choosing zero coefficients. The performance of the other models depends heavily on the type of correlation and the correlation strength. Lasso and elastic-net perform the worst when the correlation structure is symmetric compound, whereas SCAD performs poorly when the correlation structure is autoregressive or blockwise. We also see that the models generally made less mistakes as the correlation increases.
 
-\subsection{Nonlinear Simulation Results}
-Now, we will highlight some results from the simulations that used the nonlinear response function given by Equation \ref{eqn:nonlinear-response}.
+\subsection{Non-linear Simulation Results}
+Now, we will highlight some results from the simulations that used the non-linear response function given by Equation \ref{eqn:nonlinear-response}.
+
+First, we will consider the extreme where $n = 1000$ and $p = 10$. Figures \ref{fig:nonlinear-train-mse-1000-10} and \ref{fig:nonlinear-test-mse-1000-10} show the average train MSE and test MSE, respectively. We see that all of the linear models have high training mean squared errors while the machine learning models have small mean squared errors.
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width = \textwidth]{images/nonlinear-facet/train-mse/facet_train_mse_2_50_2000.eps}
 	\captionsetup{width = 0.8\textwidth}
-	\caption{Average mean square error using training data for nonlinear simulations when $n = 1000$ and $p = 10$.}
+	\caption{Average mean square error using training data for non-linear simulations when $n = 1000$ and $p = 10$.}
 	\label{fig:nonlinear-train-mse-1000-10}
 \end{figure}
 
@@ -667,7 +677,7 @@ Now, we will highlight some results from the simulations that used the nonlinear
 	\centering
 	\includegraphics[width = \textwidth]{images/nonlinear-facet/test-mse/facet_test_mse_2_50_2000.eps}
 	\captionsetup{width = 0.8\textwidth}
-	\caption{Average mean square error using training data for nonlinear simulations when $n = 1000$ and $p = 10$.}
+	\caption{Average mean square error using training data for non-linear simulations when $n = 1000$ and $p = 10$.}
 	\label{fig:nonlinear-test-mse-1000-10}
 \end{figure}
 
@@ -675,7 +685,7 @@ Now, we will highlight some results from the simulations that used the nonlinear
 	\centering
 	\includegraphics[width = \textwidth]{images/nonlinear-facet/train-mse/facet_train_mse_2_50_2000.eps}
 	\captionsetup{width = 0.8\textwidth}
-	\caption{Average mean square error using training data for nonlinear simulations when $n = 50$ and $p = 2000$.}
+	\caption{Average mean square error using training data for non-linear simulations when $n = 50$ and $p = 2000$.}
 	\label{fig:nonlinear-train-mse-50-2000}
 \end{figure}
 
@@ -683,7 +693,7 @@ Now, we will highlight some results from the simulations that used the nonlinear
 	\centering
 	\includegraphics[width = \textwidth]{images/nonlinear-facet/test-mse/facet_test_mse_2_50_2000.eps}
 	\captionsetup{width = 0.8\textwidth}
-	\caption{Average mean square error using training data for nonlinear simulations when $n = 50$ and $p = 2000$.}
+	\caption{Average mean square error using training data for non-linear simulations when $n = 50$ and $p = 2000$.}
 	\label{fig:nonlinear-test-mse-50-2000}
 \end{figure}
 
@@ -807,7 +817,7 @@ Table \ref{tab:emp_runtimes} shows the average runtime to fit each of the models
 \section{Discussion}\label{sec:discussion}
 \subsection{Discussion of Monte Carlo Results}
 % discussion of findings, future work, and contributions
-Figures \ref{fig:test-mse-1000-10} and \ref{fig:test-mse-50-2000} shows that the best-performing models on test data were SCAD and MCP. The wrapper methods that used BIC performed better than SCAD and MCP when $n = 1000$ and $p = 10$, but could not be used in the high dimensional case where $n = 50$ and $p = 2000$. Lasso, elastic-net, and the wrapper methods with AIC all had low test mean-squared errors as well. Ridge performed the worst out of all the linear models. The non-linear models also performed very badly on test data.
+Figures \ref{fig:test-mse-1000-10} and \ref{fig:test-mse-50-2000} shows that the best-performing models on test data were SCAD and MCP. The wrapper methods that used BIC performed better than SCAD and MCP when $n = 1000$ and $p = 10$, but could not be used in the high dimensional case where $n = 50$ and $p = 2000$. Lasso, elastic-net, and the wrapper methods with AIC all had low test mean squared errors as well. Ridge performed the worst out of all the linear models. The non-linear models also performed very badly on test data.
 
 Notice that all the linear models except for ridge had a test mean squared error that was approximately equal to $\sigma^2$, the square of the random error. This indicates that these models had low bias and low variance, since most of their error was due to the random noise. On the other hand, ridge regression and the machine learning models had a test mean squared error that was much higher than $\sigma^2$, indicating that these models either had high bias or high variance.
 
@@ -889,7 +899,7 @@ We would also like to thank Dr. Luke and Dr. Yokley and Yang Xue for their guida
 \newpage
 \appendix
 \section{Full Result Tables}\label{app:full-results}
-The following pages contain the full table of Monte Carlo simulation results. Each table corresponds to one of the figures in Section \ref{sec:simulation-results}. The full results as well as relevant R code can be accessed through our \href{https://github.com/connor-shrader/reu-2021}{Github repository}.
+The following pages contain the full table of Monte Carlo simulation results. Each table corresponds to one of the figures in Section \ref{sec:evaluating-model-results}. The full results as well as relevant R code can be accessed through our \href{https://github.com/connor-shrader/reu-2021}{Github repository}.
 
 \setlength{\tabcolsep}{3pt}
 
@@ -898,48 +908,48 @@ The following pages contain the full table of Monte Carlo simulation results. Ea
 	\centering
 	\captionsetup{width = 6in}
 	\captionof{table}{Mean and standard deviation of the mean squared error on training data when $n = 1000$ and $p = 10$. See Figure \ref{fig:linear-train-mse-1000-10} for the corresponding plot.}
-	\label{tab:train-mse-1000-10}
+	\label{tab:linear-train-mse-1000-10}
 	\input{./tables/train_mse_1000_10.tex}
 	
 	\newpage
 	
 	\captionof{table}{Mean and standard deviation of the mean squared error on test data when $n = 1000$ and $p = 10$. See Figure \ref{fig:linear-test-mse-1000-10} for the corresponding plot.}
-	\label{tab:test-mse-1000-10}
+	\label{tab:linear-test-mse-1000-10}
 	\input{./tables/test_mse_1000_10.tex}
 	
 	\newpage
 	\captionof{table}{Mean and standard deviation of the $\beta$-sensitivity when $n = 1000$ and $p = 10$. See Figure \ref{fig:linear-sensitivity-1000-10} for the corresponding plot.}
-	\label{tab:sensitivity-1000-10}
+	\label{tab:linear-sensitivity-1000-10}
 	\input{./tables/sensitivity_1000_10.tex}
 	
 	\newpage
 	
 	\captionof{table}{Mean and standard deviation of the $\beta$-specificity when $n = 1000$ and $p = 10$. See Figure \ref{fig:linear-specificity-1000-10} for the corresponding plot.}
-	\label{tab:specificity-1000-10}
+	\label{tab:linear-specificity-1000-10}
 	\input{./tables/specificity_1000_10.tex}
 	
 	\newpage
 	
 	\captionof{table}{Mean and standard deviation of the mean squared error on training data when $n = 50$ and $p = 2000$. See Figure \ref{fig:linear-train-mse-50-2000} for the corresponding plot.}
-	\label{tab:train-mse-50-2000}
+	\label{tab:linear-train-mse-50-2000}
 	\input{./tables/train_mse_50_2000.tex}
 	
 	\newpage
 	
 	\captionof{table}{Mean and standard deviation of the mean squared error on training data when $n = 50$ and $p = 2000$. See Figure \ref{fig:linear-test-mse-50-2000} for the corresponding plot.}
-	\label{tab:test-mse-50-2000}
+	\label{tab:linear-test-mse-50-2000}
 	\input{./tables/test_mse_50_2000.tex}
 	
 	\newpage
 	
 	\captionof{table}{Mean and standard deviation of the $\beta$-sensitivity when $n = 50$ and $p = 2000$. See Figure \ref{fig:linear-sensitivity-50-2000} for the corresponding plot.}
-	\label{tab:sensitivity-50-2000}
+	\label{tab:linear-sensitivity-50-2000}
 	\input{./tables/sensitivity_50_2000.tex}
 	
 	\bigskip
 	
 	\captionof{table}{Mean and standard deviation of the $\beta$-specificity when $n = 50$ and $p = 2000$. See Figure \ref{fig:linear-specificity-50-2000} for the corresponding plot.}
-	\label{tab:specificity-50-2000}
+	\label{tab:linear-specificity-50-2000}
 	\input{./tables/specificity_50_2000.tex}
 \end{landscape}
 }

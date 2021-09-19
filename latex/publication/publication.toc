@@ -8,14 +8,15 @@
 \contentsline {subsection}{\numberline {2.6}Implementation}{17}{subsection.2.6}%
 \contentsline {section}{\numberline {3}Monte Carlo Simulations}{19}{section.3}%
 \contentsline {subsection}{\numberline {3.1}Simulation Design}{19}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}Simulation Results}{22}{subsection.3.2}%
-\contentsline {subsection}{\numberline {3.3}Nonlinear Simulation Results}{28}{subsection.3.3}%
-\contentsline {section}{\numberline {4}Empirical Data Analysis}{28}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Details of Empirical Data}{28}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}Empirical Data Results}{32}{subsection.4.2}%
-\contentsline {section}{\numberline {5}Discussion}{35}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Discussion of Monte Carlo Results}{35}{subsection.5.1}%
-\contentsline {subsection}{\numberline {5.2}Discussion of Empirical Data Results}{37}{subsection.5.2}%
-\contentsline {section}{\numberline {6}Conclusion}{38}{section.6}%
-\contentsline {section}{\numberline {7}Acknowledgments}{39}{section.7}%
+\contentsline {subsection}{\numberline {3.2}Evaluating Model Performance}{22}{subsection.3.2}%
+\contentsline {section}{\numberline {4}Linear Simulation Results}{23}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Non-linear Simulation Results}{26}{subsection.4.1}%
+\contentsline {section}{\numberline {5}Empirical Data Analysis}{31}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Details of Empirical Data}{31}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Empirical Data Results}{32}{subsection.5.2}%
+\contentsline {section}{\numberline {6}Discussion}{34}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Discussion of Monte Carlo Results}{34}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Discussion of Empirical Data Results}{37}{subsection.6.2}%
+\contentsline {section}{\numberline {7}Conclusion}{37}{section.7}%
+\contentsline {section}{\numberline {8}Acknowledgments}{39}{section.8}%
 \contentsline {section}{\numberline {A}Full Result Tables}{43}{appendix.A}%
