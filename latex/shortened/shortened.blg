@@ -1,0 +1,50 @@
+This is BibTeX, Version 0.99d
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: shortened.aux
+Reallocating 'name_of_file' (item size: 1) to 9 items.
+The style file: plain-lf.bst
+Reallocating 'name_of_file' (item size: 1) to 11 items.
+Database file #1: references.bib
+Warning--empty journal in nielsen2016tree
+You've used 25 entries,
+            2118 wiz_defined-function locations,
+            651 strings with 7866 characters,
+and the built_in function-call counts, 8429 in all, are:
+= -- 846
+> -- 369
+< -- 6
++ -- 153
+- -- 122
+* -- 587
+:= -- 1395
+add.period$ -- 76
+call.type$ -- 25
+change.case$ -- 130
+chr.to.int$ -- 0
+cite$ -- 26
+duplicate$ -- 315
+empty$ -- 660
+format.name$ -- 122
+if$ -- 1748
+int.to.chr$ -- 0
+int.to.str$ -- 25
+missing$ -- 26
+newline$ -- 128
+num.names$ -- 50
+pop$ -- 128
+preamble$ -- 1
+purify$ -- 109
+quote$ -- 0
+skip$ -- 235
+stack$ -- 0
+substring$ -- 592
+swap$ -- 66
+text.length$ -- 6
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 94
+warning$ -- 1
+while$ -- 89
+width$ -- 27
+write$ -- 272
+(There was 1 warning)

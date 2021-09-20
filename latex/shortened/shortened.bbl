@@ -1,0 +1,145 @@
+\begin{thebibliography}{10}
+
+\bibitem{akaike1998information}
+Akaike, H.
+\newblock Information theory and an extension of the maximum likelihood
+  principle.
+\newblock In {\em Selected papers of hirotugu akaike}, pages 199--213.
+  Springer, 1998.
+
+\bibitem{breheny2016lasso}
+Breheny.
+\newblock Adaptive lasso, mcp, and scad.
+\newblock
+  \textsc{url:}~\url{https://myweb.uiowa.edu/pbreheny/7600/s16/notes/2-29.pdf},
+  2016.
+
+\bibitem{breheny2011ncvreg}
+Breheny, P. and Huang, J.
+\newblock Coordinate descent algorithms for nonconvex penalized regression,
+  with applications to biological feature selection.
+\newblock {\em Annals of Applied Statistics}, 5(1):232--253, 2011.
+
+\bibitem{breiman1996bagging}
+Breiman, L.
+\newblock Bagging predictors.
+\newblock {\em Machine learning}, 24(2):123--140, 1996.
+
+\bibitem{breiman2001random}
+Breiman, L.
+\newblock Random forests.
+\newblock {\em Machine learning}, 45(1):5--32, 2001.
+
+\bibitem{chen2016xgboost}
+Chen, T. and Guestrin, C.
+\newblock Xgboost: A scalable tree boosting system.
+\newblock In {\em Proceedings of the 22nd acm sigkdd international conference
+  on knowledge discovery and data mining}, pages 785--794, 2016.
+
+\bibitem{chen2021xgboost}
+Chen, T., He, T., Benesty, M., Khotilovich, V., Tang, Y., Cho, H., Chen, K.,
+  Mitchell, R., Cano, I., Zhou, T., Li, M., Xie, J., Lin, M., Geng, Y., and Li,
+  Y.
+\newblock {\em xgboost: Extreme Gradient Boosting}, 2021.
+\newblock R package version 1.4.1.1.
+
+\bibitem{cortes1995support}
+Cortes, C. and Vapnik, V.
+\newblock Support-vector networks.
+\newblock {\em Machine learning}, 20(3):273--297, 1995.
+
+\bibitem{donoho1994ideal}
+Donoho, D.~L. and Johnstone, J.~M.
+\newblock Ideal spatial adaptation by wavelet shrinkage.
+\newblock {\em biometrika}, 81(3):425--455, 1994.
+
+\bibitem{drucker1997support}
+Drucker, H., Burges, C.~J., Kaufman, L., Smola, A., Vapnik, V., et~al.
+\newblock Support vector regression machines.
+\newblock {\em Advances in neural information processing systems}, 9:155--161,
+  1997.
+
+\bibitem{efron1994introduction}
+Efron, B. and Tibshirani, R.~J.
+\newblock {\em An introduction to the bootstrap}.
+\newblock CRC press, 1994.
+
+\bibitem{fan2001variable}
+Fan, J. and Li, R.
+\newblock Variable selection via nonconcave penalized likelihood and its oracle
+  properties.
+\newblock {\em Journal of the American statistical Association},
+  96(456):1348--1360, 2001.
+
+\bibitem{friedman2010regularization}
+Friedman, J., Hastie, T., and Tibshirani, R.
+\newblock Regularization paths for generalized linear models via coordinate
+  descent.
+\newblock {\em Journal of statistical software}, 33(1):1, 2010.
+
+\bibitem{friedman2001elements}
+Friedman, J., Hastie, T., Tibshirani, R., et~al.
+\newblock {\em The elements of statistical learning}, volume~1.
+\newblock Springer series in statistics New York, 2001.
+
+\bibitem{friedman2001greedy}
+Friedman, J.~H.
+\newblock Greedy function approximation: a gradient boosting machine.
+\newblock {\em Annals of statistics}, pages 1189--1232, 2001.
+
+\bibitem{hoerl1970ridge}
+Hoerl, A.~E. and Kennard, R.~W.
+\newblock Ridge regression: Biased estimation for nonorthogonal problems.
+\newblock {\em Technometrics}, 12(1):55--67, 1970.
+
+\bibitem{james2013introduction}
+James, G., Witten, D., Hastie, T., and Tibshirani, R.
+\newblock {\em An introduction to statistical learning}, volume 112.
+\newblock Springer, 2013.
+
+\bibitem{nielsen2016tree}
+Nielsen, D.
+\newblock Tree boosting with xgboost-why does xgboost win ``every" machine
+  learning competition?
+\newblock 2016.
+
+\bibitem{schapire1990strength}
+Schapire, R.~E.
+\newblock The strength of weak learnability.
+\newblock {\em Machine learning}, 5(2):197--227, 1990.
+
+\bibitem{schwarz1978estimating}
+Schwarz, G.
+\newblock Estimating the dimension of a model.
+\newblock {\em The annals of statistics}, pages 461--464, 1978.
+
+\bibitem{tibshirani1996regression}
+Tibshirani, R.
+\newblock Regression shrinkage and selection via the lasso.
+\newblock {\em Journal of the Royal Statistical Society: Series B
+  (Methodological)}, 58(1):267--288, 1996.
+
+\bibitem{zeng2017biglasso}
+Zeng, Y. and Breheny, P.
+\newblock The biglasso package: A memory- and computation-efficient solver for
+  lasso model fitting with big data in r.
+\newblock {\em ArXiv e-prints}, 2017.
+
+\bibitem{zhang2010nearly}
+Zhang, C.-H.
+\newblock Nearly unbiased variable selection under minimax concave penalty.
+\newblock {\em The Annals of statistics}, 38(2):894--942, 2010.
+
+\bibitem{zou2006adaptive}
+Zou, H.
+\newblock The adaptive lasso and its oracle properties.
+\newblock {\em Journal of the American statistical association},
+  101(476):1418--1429, 2006.
+
+\bibitem{zou2005regularization}
+Zou, H. and Hastie, T.
+\newblock Regularization and variable selection via the elastic net.
+\newblock {\em Journal of the royal statistical society: series B (statistical
+  methodology)}, 67(2):301--320, 2005.
+
+\end{thebibliography}
