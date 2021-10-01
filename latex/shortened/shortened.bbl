@@ -7,6 +7,14 @@ Akaike, H.
 \newblock In {\em Selected papers of hirotugu akaike}, pages 199--213.
   Springer, 1998.
 
+\bibitem{antoniou2003average}
+Antoniou, A., Pharoah, P.~D., Narod, S., Risch, H.~A., Eyfjord, J.~E., Hopper,
+  J.~L., Loman, N., Olsson, H., Johannsson, O., Borg, {\AA}., et~al.
+\newblock Average risks of breast and ovarian cancer associated with brca1 or
+  brca2 mutations detected in case series unselected for family history: a
+  combined analysis of 22 studies.
+\newblock {\em The American Journal of Human Genetics}, 72(5):1117--1130, 2003.
+
 \bibitem{breheny2016lasso}
 Breheny.
 \newblock Adaptive lasso, mcp, and scad.
@@ -30,6 +38,11 @@ Breiman, L.
 \newblock Random forests.
 \newblock {\em Machine learning}, 45(1):5--32, 2001.
 
+\bibitem{capitaine2021random}
+Capitaine, L., Genuer, R., and Thi{\'e}baut, R.
+\newblock Random forests for high-dimensional longitudinal data.
+\newblock {\em Statistical Methods in Medical Research}, 30(1):166--184, 2021.
+
 \bibitem{chen2016xgboost}
 Chen, T. and Guestrin, C.
 \newblock Xgboost: A scalable tree boosting system.
@@ -47,6 +60,18 @@ Chen, T., He, T., Benesty, M., Khotilovich, V., Tang, Y., Cho, H., Chen, K.,
 Cortes, C. and Vapnik, V.
 \newblock Support-vector networks.
 \newblock {\em Machine learning}, 20(3):273--297, 1995.
+
+\bibitem{deng2000roles}
+Deng, C.-X. and Brodie, S.~G.
+\newblock Roles of brca1 and its interacting proteins.
+\newblock {\em Bioessays}, 22(8):728--737, 2000.
+
+\bibitem{ding2005minimum}
+Ding, C. and Peng, H.
+\newblock Minimum redundancy feature selection from microarray gene expression
+  data.
+\newblock {\em Journal of bioinformatics and computational biology},
+  3(02):185--205, 2005.
 
 \bibitem{donoho1994ideal}
 Donoho, D.~L. and Johnstone, J.~M.
@@ -87,6 +112,11 @@ Friedman, J.~H.
 \newblock Greedy function approximation: a gradient boosting machine.
 \newblock {\em Annals of statistics}, pages 1189--1232, 2001.
 
+\bibitem{greene2003econometric}
+Greene, W.~H.
+\newblock {\em Econometric analysis}.
+\newblock Pearson Education India, 2003.
+
 \bibitem{hoerl1970ridge}
 Hoerl, A.~E. and Kennard, R.~W.
 \newblock Ridge regression: Biased estimation for nonorthogonal problems.
@@ -97,11 +127,54 @@ James, G., Witten, D., Hastie, T., and Tibshirani, R.
 \newblock {\em An introduction to statistical learning}, volume 112.
 \newblock Springer, 2013.
 
+\bibitem{kobayashi2015overexpression}
+Kobayashi, H., Komatsu, S., Ichikawa, D., Kawaguchi, T., Hirajima, S., Miyamae,
+  M., Okajima, W., Ohashi, T., Kosuga, T., Konishi, H., et~al.
+\newblock Overexpression of denticleless e3 ubiquitin protein ligase homolog
+  (dtl) is related to poor outcome in gastric carcinoma.
+\newblock {\em Oncotarget}, 6(34):36615, 2015.
+
+\bibitem{kuchenbaecker2017risks}
+Kuchenbaecker, K.~B., Hopper, J.~L., Barnes, D.~R., Phillips, K.-A., Mooij,
+  T.~M., Roos-Blom, M.-J., Jervis, S., Van~Leeuwen, F.~E., Milne, R.~L.,
+  Andrieu, N., et~al.
+\newblock Risks of breast, ovarian, and contralateral breast cancer for brca1
+  and brca2 mutation carriers.
+\newblock {\em Jama}, 317(23):2402--2416, 2017.
+
+\bibitem{liaw2002rf}
+Liaw, A. and Wiener, M.
+\newblock Classification and regression by randomforest.
+\newblock {\em R News}, 2(3):18--22, 2002.
+
+\bibitem{liu2020logsum}
+Liu, X.-Y., Wu, S.-B., Zeng, W.-Q., Yuan, Z.-J., and Xu, H.-B.
+\newblock Logsum+ l 2 penalized logistic regression model for biomarker
+  selection and cancer classification.
+\newblock {\em Scientific Reports}, 10(1):1--16, 2020.
+
+\bibitem{meyer2021e1071}
+Meyer, D., Dimitriadou, E., Hornik, K., Weingessel, A., and Leisch, F.
+\newblock {\em e1071: Misc Functions of the Department of Statistics,
+  Probability Theory Group (Formerly: E1071), TU Wien}, 2021.
+\newblock R package version 1.7-7.
+
 \bibitem{nielsen2016tree}
 Nielsen, D.
 \newblock Tree boosting with xgboost-why does xgboost win ``every" machine
   learning competition?
 \newblock 2016.
+
+\bibitem{r}
+{R Core Team}.
+\newblock {\em R: A Language and Environment for Statistical Computing}.
+\newblock R Foundation for Statistical Computing, Vienna, Austria, 2021.
+
+\bibitem{sanchez2007filter}
+S{\'a}nchez-Maro{\~n}o, N., Alonso-Betanzos, A., and Tombilla-Sanrom{\'a}n, M.
+\newblock Filter methods for feature selection--a comparative study.
+\newblock In {\em International Conference on Intelligent Data Engineering and
+  Automated Learning}, pages 178--187. Springer, 2007.
 
 \bibitem{schapire1990strength}
 Schapire, R.~E.
@@ -113,11 +186,42 @@ Schwarz, G.
 \newblock Estimating the dimension of a model.
 \newblock {\em The annals of statistics}, pages 461--464, 1978.
 
+\bibitem{shao2007cmtm5}
+Shao, L., Cui, Y., Li, H., Liu, Y., Zhao, H., Wang, Y., Zhang, Y., Ng, K.~M.,
+  Han, W., Ma, D., et~al.
+\newblock Cmtm5 exhibits tumor suppressor activities and is frequently silenced
+  by methylation in carcinoma cell lines.
+\newblock {\em Clinical cancer research}, 13(19):5756--5762, 2007.
+
 \bibitem{tibshirani1996regression}
 Tibshirani, R.
 \newblock Regression shrinkage and selection via the lasso.
 \newblock {\em Journal of the Royal Statistical Society: Series B
   (Methodological)}, 58(1):267--288, 1996.
+
+\bibitem{vaccari2005drosophila}
+Vaccari, T. and Bilder, D.
+\newblock The drosophila tumor suppressor vps25 prevents nonautonomous
+  overproliferation by regulating notch trafficking.
+\newblock {\em Developmental cell}, 9(5):687--698, 2005.
+
+\bibitem{venables2002mass}
+Venables, W.~N. and Ripley, B.~D.
+\newblock {\em Modern Applied Statistics with S}.
+\newblock Springer, New York, fourth edition, 2002.
+\newblock ISBN 0-387-95457-0.
+
+\bibitem{wright2017ranger}
+Wright, M.~N. and Ziegler, A.
+\newblock {ranger}: A fast implementation of random forests for high
+  dimensional data in {C++} and {R}.
+\newblock {\em Journal of Statistical Software}, 77(1):1--17, 2017.
+
+\bibitem{xiao2016nbr2}
+Xiao, Z.-D., Liu, X., Zhuang, L., and Gan, B.
+\newblock Nbr2: a former junk gene emerges as a key player in tumor
+  suppression.
+\newblock {\em Molecular \& cellular oncology}, 3(4):e1187322, 2016.
 
 \bibitem{zeng2017biglasso}
 Zeng, Y. and Breheny, P.
