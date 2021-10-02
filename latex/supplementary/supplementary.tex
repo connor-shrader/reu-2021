@@ -7,6 +7,8 @@
 \usepackage{ifthen}
 \usepackage{graphicx}
 \usepackage{caption}
+\usepackage{pgffor}
+\usepackage[maxfloats=50]{morefloats}
 
 % Clickable link setup
 \hypersetup{
@@ -17,6 +19,8 @@
 	citecolor=blue
 }
 
+
+% https://tex.stackexchange.com/questions/192586/passing-command-output-as-a-parameter-to-the-other-command
 % NormalTeXSyntaxON
 \def\setcaseA#1 {\expandafter\def\csname a:#1\endcsname}
 \def\responseword#1{\expandafter\ifx\csname a:#1\endcsname\relax \adefault 
@@ -32,7 +36,7 @@
 
 \def\bdefault {black}    
 \setcaseB 1      {linear} 
-\setcaseB 2      {non\_linear} 
+\setcaseB 2      {nonlinear} 
 
 \def\setcaseC#1 {\expandafter\def\csname c:#1\endcsname}
 \def\typenodash#1{\expandafter\ifx\csname c:#1\endcsname\relax \cdefault 
@@ -54,12 +58,12 @@
 % #6: linear or nonlinear
 % #7: linear or non-linear
 \newcommand{\facetfigureinner}[7]{
-	(#1, #2, #3, #4, #5, #6, #7)
-	\begin{figure}[h!]
+	%(#1, #2, #3, #4, #5, #6, #7)
+	\begin{figure}
 		\centering
 		\includegraphics[width=\textwidth]{figures/#6-facet/#4/facet\_#3\_#5\_#1\_#2.eps}
 		\captionsetup{width=0.8\textwidth}
-		\caption{Average mean squared error using the training data for all #7 simulations when $n = #1$ and $p = #2$.}
+		\caption{#4, #7, $n = #1$, $p = #2$}
 		\label{fig:#6-#4-#1-#2}
 	\end{figure}
 }
@@ -100,5 +104,21 @@
 }
 
 \begin{document}
-	\facetfigure{1000}{10}{test-mse}{1}
+	%\facetfigure{1000}{10}{test-mse}{1}
+	\maxdeadcycles=500
+	\newcounter{figuresplaced}
+	
+	\foreach \response in {1, 2}{
+		\foreach \type in {train-mse, test-mse, sensitivity, specificity}{
+			\foreach \n in {50, 200, 1000}{
+				\foreach \p in {10, 100, 2000}{
+					\facetfigure{\n}{\p}{\type}{\response}
+					%\stepcounter{figuresplaced}
+					%\ifodd\value{figuresplaced}{\ }\else{\newpage}
+				}
+			}
+		}
+	}
+
+	See \ref{fig:linear-test-mse-1000-10}
 \end{document}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.8.26)  2 OCT 2021 12:57
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.8.26)  2 OCT 2021 19:46
 entering extended mode
 **./supplementary.tex
 (supplementary.tex
@@ -232,34 +232,137 @@ Package caption Info: Standard document class detected.
 \c@continuedfloat=\count270
 Package caption Info: hyperref package is loaded.
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 18.
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/pgf/utilities\pgffor.s
+ty
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/pgf/utilities\pgfrcs.s
+ty
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfuti
+l-common.tex
+\pgfutil@everybye=\toks18
+\pgfutil@tempdima=\dimen160
+\pgfutil@tempdimb=\dimen161
+
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfuti
+l-common-lists.tex))
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfuti
+l-latex.def
+\pgfutil@abb=\box50
+)
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfrcs
+.code.tex
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/generic/pgf\pgf.revision.tex
+)
+Package: pgfrcs 2021/05/15 v3.1.9a (3.1.9a)
+))
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/pgf/utilities\pgfkeys.
+sty
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfkey
+s.code.tex
+\pgfkeys@pathtoks=\toks19
+\pgfkeys@temptoks=\toks20
+
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfkey
+sfiltered.code.tex
+\pgfkeys@tmptoks=\toks21
+)))
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/pgf/math\pgfmath.sty
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmath.cod
+e.tex
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathcalc
+.code.tex
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathutil
+.code.tex
+\pgf@x=\dimen162
+\pgf@xa=\dimen163
+\pgf@xb=\dimen164
+\pgf@xc=\dimen165
+\pgf@y=\dimen166
+\pgf@ya=\dimen167
+\pgf@yb=\dimen168
+\pgf@yc=\dimen169
+\c@pgf@counta=\count271
+\c@pgf@countb=\count272
+\c@pgf@countc=\count273
+\c@pgf@countd=\count274
+)
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathpars
+er.code.tex
+\pgfmath@dimen=\dimen170
+\pgfmath@count=\count275
+\pgfmath@box=\box51
+\pgfmath@toks=\toks22
+\pgfmath@stack@operand=\toks23
+\pgfmath@stack@operation=\toks24
+)
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunc
+tions.code.tex
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunc
+tions.basic.code.tex)
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunc
+tions.trigonometric.code.tex)
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunc
+tions.random.code.tex)
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunc
+tions.comparison.code.tex)
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunc
+tions.base.code.tex)
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunc
+tions.round.code.tex)
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunc
+tions.misc.code.tex)
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunc
+tions.integerarithmetics.code.tex)))
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfloa
+t.code.tex
+\c@pgfmathroundto@lastzeros=\count276
+)))
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgffor
+.code.tex
+Package: pgffor 2021/05/15 v3.1.9a (3.1.9a)
+
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmath.cod
+e.tex)
+\pgffor@iter=\dimen171
+\pgffor@skip=\dimen172
+\pgffor@stack=\toks25
+\pgffor@toks=\toks26
+))
+(C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/morefloats\morefloats.
+sty
+Package: morefloats 2015/07/22 v1.0h Raise limit of unprocessed floats (HMM)
+Package morefloats Info: Maximum number of possible floats asked for: 50
+(morefloats)             (i.e. 32 more floats).
+(morefloats)             LaTeX might run out of memory before this
+(morefloats)             (in which case it will notify you).
+)
+Package hyperref Info: Option `colorlinks' set `true' on input line 20.
 
 (C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pd
 ftex.def
 File: l3backend-pdftex.def 2021-08-04 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count271
-\l__pdf_internal_box=\box50
+\l__color_backend_stack_int=\count277
+\l__pdf_internal_box=\box52
 ) (supplementary.aux)
 \openout1 = `supplementary.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 102.
-LaTeX Font Info:    ... okay on input line 102.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 102.
-LaTeX Font Info:    ... okay on input line 102.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 102.
-LaTeX Font Info:    ... okay on input line 102.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 102.
-LaTeX Font Info:    ... okay on input line 102.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 102.
-LaTeX Font Info:    ... okay on input line 102.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 102.
-LaTeX Font Info:    ... okay on input line 102.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 102.
-LaTeX Font Info:    ... okay on input line 102.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 102.
-LaTeX Font Info:    ... okay on input line 102.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 102.
-LaTeX Font Info:    ... okay on input line 102.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 106.
+LaTeX Font Info:    ... okay on input line 106.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 106.
+LaTeX Font Info:    ... okay on input line 106.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 106.
+LaTeX Font Info:    ... okay on input line 106.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 106.
+LaTeX Font Info:    ... okay on input line 106.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 106.
+LaTeX Font Info:    ... okay on input line 106.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 106.
+LaTeX Font Info:    ... okay on input line 106.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 106.
+LaTeX Font Info:    ... okay on input line 106.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 106.
+LaTeX Font Info:    ... okay on input line 106.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 106.
+LaTeX Font Info:    ... okay on input line 106.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -303,7 +406,7 @@ File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package color Info: Driver file: pdftex.def on input line 149.
 )
-Package hyperref Info: Link coloring ON on input line 102.
+Package hyperref Info: Link coloring ON on input line 106.
 
 (C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
@@ -315,11 +418,11 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 tlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count272
+\c@section@level=\count278
 )
-LaTeX Info: Redefining \ref on input line 102.
-LaTeX Info: Redefining \pageref on input line 102.
-LaTeX Info: Redefining \nameref on input line 102.
+LaTeX Info: Redefining \ref on input line 106.
+LaTeX Info: Redefining \pageref on input line 106.
+LaTeX Info: Redefining \nameref on input line 106.
  (supplementary.out) (supplementary.out)
 \@outlinefile=\write3
 \openout3 = `supplementary.out'.
@@ -328,17 +431,17 @@ LaTeX Info: Redefining \nameref on input line 102.
 (C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.m
 kii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count273
-\scratchdimen=\dimen160
-\scratchbox=\box51
-\nofMPsegments=\count274
-\nofMParguments=\count275
-\everyMPshowfont=\toks18
-\MPscratchCnt=\count276
-\MPscratchDim=\dimen161
-\MPnumerator=\count277
-\makeMPintoPDFobject=\count278
-\everyMPtoPDFconversion=\toks19
+\scratchcounter=\count279
+\scratchdimen=\dimen173
+\scratchbox=\box53
+\nofMPsegments=\count280
+\nofMParguments=\count281
+\everyMPshowfont=\toks27
+\MPscratchCnt=\count282
+\MPscratchDim=\dimen174
+\MPnumerator=\count283
+\makeMPintoPDFobject=\count284
+\everyMPtoPDFconversion=\toks28
 )
 (C:\Users\Connor\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-
 base.sty
@@ -352,6 +455,416 @@ File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
+\c@figuresplaced=\count285
+Package epstopdf Info: Source file: <figures/linear-facet/train-mse/facet_train
+_mse_1_50_10.eps>
+(epstopdf)                    date: 2021-10-02 09:35:31
+(epstopdf)                    size: 214664 bytes
+(epstopdf)             Output file: <figures/linear-facet/train-mse/facet_train
+_mse_1_50_10-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:29:11
+(epstopdf)                    size: 49431 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/linear-facet
+/train-mse/facet_train_mse_1_50_10-eps-converted-to.pdf figures/linear-facet/tr
+ain-mse/facet_train_mse_1_50_10.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/linear-facet/train-mse/facet_train
+_mse_1_50_10-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, but
+ at most version <1.5> allowed
+<figures/linear-facet/train-mse/facet_train_mse_1_50_10-eps-converted-to.pdf, i
+d=3, 722.7pt x 433.62pt>
+File: figures/linear-facet/train-mse/facet_train_mse_1_50_10-eps-converted-to.p
+df Graphic file (type pdf)
+<use figures/linear-facet/train-mse/facet_train_mse_1_50_10-eps-converted-to.pd
+f>
+Package pdftex.def Info: figures/linear-facet/train-mse/facet_train_mse_1_50_10
+-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 121.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 121.
+Package epstopdf Info: Source file: <figures/linear-facet/train-mse/facet_train
+_mse_1_50_100.eps>
+(epstopdf)                    date: 2021-10-02 09:35:34
+(epstopdf)                    size: 154240 bytes
+(epstopdf)             Output file: <figures/linear-facet/train-mse/facet_train
+_mse_1_50_100-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:29:11
+(epstopdf)                    size: 41074 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/linear-facet
+/train-mse/facet_train_mse_1_50_100-eps-converted-to.pdf figures/linear-facet/t
+rain-mse/facet_train_mse_1_50_100.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/linear-facet/train-mse/facet_train
+_mse_1_50_100-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, bu
+t at most version <1.5> allowed
+<figures/linear-facet/train-mse/facet_train_mse_1_50_100-eps-converted-to.pdf, 
+id=4, 722.7pt x 433.62pt>
+File: figures/linear-facet/train-mse/facet_train_mse_1_50_100-eps-converted-to.
+pdf Graphic file (type pdf)
+<use figures/linear-facet/train-mse/facet_train_mse_1_50_100-eps-converted-to.p
+df>
+Package pdftex.def Info: figures/linear-facet/train-mse/facet_train_mse_1_50_10
+0-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/linear-facet/train-mse/facet_train
+_mse_1_50_2000.eps>
+(epstopdf)                    date: 2021-10-02 09:35:36
+(epstopdf)                    size: 154293 bytes
+(epstopdf)             Output file: <figures/linear-facet/train-mse/facet_train
+_mse_1_50_2000-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:29:12
+(epstopdf)                    size: 41069 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/linear-facet
+/train-mse/facet_train_mse_1_50_2000-eps-converted-to.pdf figures/linear-facet/
+train-mse/facet_train_mse_1_50_2000.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/linear-facet/train-mse/facet_train
+_mse_1_50_2000-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, b
+ut at most version <1.5> allowed
+<figures/linear-facet/train-mse/facet_train_mse_1_50_2000-eps-converted-to.pdf,
+ id=5, 722.7pt x 433.62pt>
+File: figures/linear-facet/train-mse/facet_train_mse_1_50_2000-eps-converted-to
+.pdf Graphic file (type pdf)
+<use figures/linear-facet/train-mse/facet_train_mse_1_50_2000-eps-converted-to.
+pdf>
+Package pdftex.def Info: figures/linear-facet/train-mse/facet_train_mse_1_50_20
+00-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/linear-facet/train-mse/facet_train
+_mse_1_200_10.eps>
+(epstopdf)                    date: 2021-10-02 09:35:32
+(epstopdf)                    size: 213429 bytes
+(epstopdf)             Output file: <figures/linear-facet/train-mse/facet_train
+_mse_1_200_10-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:29:13
+(epstopdf)                    size: 48891 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/linear-facet
+/train-mse/facet_train_mse_1_200_10-eps-converted-to.pdf figures/linear-facet/t
+rain-mse/facet_train_mse_1_200_10.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/linear-facet/train-mse/facet_train
+_mse_1_200_10-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, bu
+t at most version <1.5> allowed
+<figures/linear-facet/train-mse/facet_train_mse_1_200_10-eps-converted-to.pdf, 
+id=6, 722.7pt x 433.62pt>
+File: figures/linear-facet/train-mse/facet_train_mse_1_200_10-eps-converted-to.
+pdf Graphic file (type pdf)
+<use figures/linear-facet/train-mse/facet_train_mse_1_200_10-eps-converted-to.p
+df>
+Package pdftex.def Info: figures/linear-facet/train-mse/facet_train_mse_1_200_1
+0-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/linear-facet/train-mse/facet_train
+_mse_1_200_100.eps>
+(epstopdf)                    date: 2021-10-02 09:35:35
+(epstopdf)                    size: 192557 bytes
+(epstopdf)             Output file: <figures/linear-facet/train-mse/facet_train
+_mse_1_200_100-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:29:14
+(epstopdf)                    size: 46757 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/linear-facet
+/train-mse/facet_train_mse_1_200_100-eps-converted-to.pdf figures/linear-facet/
+train-mse/facet_train_mse_1_200_100.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/linear-facet/train-mse/facet_train
+_mse_1_200_100-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, b
+ut at most version <1.5> allowed
+<figures/linear-facet/train-mse/facet_train_mse_1_200_100-eps-converted-to.pdf,
+ id=7, 722.7pt x 433.62pt>
+File: figures/linear-facet/train-mse/facet_train_mse_1_200_100-eps-converted-to
+.pdf Graphic file (type pdf)
+<use figures/linear-facet/train-mse/facet_train_mse_1_200_100-eps-converted-to.
+pdf>
+Package pdftex.def Info: figures/linear-facet/train-mse/facet_train_mse_1_200_1
+00-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/linear-facet/train-mse/facet_train
+_mse_1_200_2000.eps>
+(epstopdf)                    date: 2021-10-02 09:35:37
+(epstopdf)                    size: 153930 bytes
+(epstopdf)             Output file: <figures/linear-facet/train-mse/facet_train
+_mse_1_200_2000-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:29:15
+(epstopdf)                    size: 41044 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/linear-facet
+/train-mse/facet_train_mse_1_200_2000-eps-converted-to.pdf figures/linear-facet
+/train-mse/facet_train_mse_1_200_2000.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/linear-facet/train-mse/facet_train
+_mse_1_200_2000-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, 
+but at most version <1.5> allowed
+<figures/linear-facet/train-mse/facet_train_mse_1_200_2000-eps-converted-to.pdf
+, id=8, 722.7pt x 433.62pt>
+File: figures/linear-facet/train-mse/facet_train_mse_1_200_2000-eps-converted-t
+o.pdf Graphic file (type pdf)
+<use figures/linear-facet/train-mse/facet_train_mse_1_200_2000-eps-converted-to
+.pdf>
+Package pdftex.def Info: figures/linear-facet/train-mse/facet_train_mse_1_200_2
+000-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/linear-facet/train-mse/facet_train
+_mse_1_1000_10.eps>
+(epstopdf)                    date: 2021-10-02 09:35:33
+(epstopdf)                    size: 214921 bytes
+(epstopdf)             Output file: <figures/linear-facet/train-mse/facet_train
+_mse_1_1000_10-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 12:00:30
+(epstopdf)                    size: 49360 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/linear-facet
+/train-mse/facet_train_mse_1_1000_10-eps-converted-to.pdf figures/linear-facet/
+train-mse/facet_train_mse_1_1000_10.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/linear-facet/train-mse/facet_train
+_mse_1_1000_10-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, b
+ut at most version <1.5> allowed
+<figures/linear-facet/train-mse/facet_train_mse_1_1000_10-eps-converted-to.pdf,
+ id=9, 722.7pt x 433.62pt>
+File: figures/linear-facet/train-mse/facet_train_mse_1_1000_10-eps-converted-to
+.pdf Graphic file (type pdf)
+<use figures/linear-facet/train-mse/facet_train_mse_1_1000_10-eps-converted-to.
+pdf>
+Package pdftex.def Info: figures/linear-facet/train-mse/facet_train_mse_1_1000_
+10-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/linear-facet/train-mse/facet_train
+_mse_1_1000_100.eps>
+(epstopdf)                    date: 2021-10-02 09:35:36
+(epstopdf)                    size: 189038 bytes
+(epstopdf)             Output file: <figures/linear-facet/train-mse/facet_train
+_mse_1_1000_100-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:29:15
+(epstopdf)                    size: 46206 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/linear-facet
+/train-mse/facet_train_mse_1_1000_100-eps-converted-to.pdf figures/linear-facet
+/train-mse/facet_train_mse_1_1000_100.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/linear-facet/train-mse/facet_train
+_mse_1_1000_100-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, 
+but at most version <1.5> allowed
+<figures/linear-facet/train-mse/facet_train_mse_1_1000_100-eps-converted-to.pdf
+, id=10, 722.7pt x 433.62pt>
+File: figures/linear-facet/train-mse/facet_train_mse_1_1000_100-eps-converted-t
+o.pdf Graphic file (type pdf)
+<use figures/linear-facet/train-mse/facet_train_mse_1_1000_100-eps-converted-to
+.pdf>
+Package pdftex.def Info: figures/linear-facet/train-mse/facet_train_mse_1_1000_
+100-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/linear-facet/train-mse/facet_train
+_mse_1_1000_2000.eps>
+(epstopdf)                    date: 2021-10-02 09:35:38
+(epstopdf)                    size: 153954 bytes
+(epstopdf)             Output file: <figures/linear-facet/train-mse/facet_train
+_mse_1_1000_2000-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:29:16
+(epstopdf)                    size: 41295 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/linear-facet
+/train-mse/facet_train_mse_1_1000_2000-eps-converted-to.pdf figures/linear-face
+t/train-mse/facet_train_mse_1_1000_2000.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/linear-facet/train-mse/facet_train
+_mse_1_1000_2000-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>,
+ but at most version <1.5> allowed
+<figures/linear-facet/train-mse/facet_train_mse_1_1000_2000-eps-converted-to.pd
+f, id=11, 722.7pt x 433.62pt>
+File: figures/linear-facet/train-mse/facet_train_mse_1_1000_2000-eps-converted-
+to.pdf Graphic file (type pdf)
+<use figures/linear-facet/train-mse/facet_train_mse_1_1000_2000-eps-converted-t
+o.pdf>
+Package pdftex.def Info: figures/linear-facet/train-mse/facet_train_mse_1_1000_
+2000-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/linear-facet/test-mse/facet_test_m
+se_1_50_10.eps>
+(epstopdf)                    date: 2021-10-02 09:35:39
+(epstopdf)                    size: 229323 bytes
+(epstopdf)             Output file: <figures/linear-facet/test-mse/facet_test_m
+se_1_50_10-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:29:17
+(epstopdf)                    size: 50849 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/linear-facet
+/test-mse/facet_test_mse_1_50_10-eps-converted-to.pdf figures/linear-facet/test
+-mse/facet_test_mse_1_50_10.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/linear-facet/test-mse/facet_test_m
+se_1_50_10-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, but a
+t most version <1.5> allowed
+<figures/linear-facet/test-mse/facet_test_mse_1_50_10-eps-converted-to.pdf, id=
+12, 722.7pt x 433.62pt>
+File: figures/linear-facet/test-mse/facet_test_mse_1_50_10-eps-converted-to.pdf
+ Graphic file (type pdf)
+<use figures/linear-facet/test-mse/facet_test_mse_1_50_10-eps-converted-to.pdf>
+
+Package pdftex.def Info: figures/linear-facet/test-mse/facet_test_mse_1_50_10-e
+ps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/linear-facet/test-mse/facet_test_m
+se_1_50_100.eps>
+(epstopdf)                    date: 2021-10-02 09:35:42
+(epstopdf)                    size: 154887 bytes
+(epstopdf)             Output file: <figures/linear-facet/test-mse/facet_test_m
+se_1_50_100-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:29:18
+(epstopdf)                    size: 41045 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/linear-facet
+/test-mse/facet_test_mse_1_50_100-eps-converted-to.pdf figures/linear-facet/tes
+t-mse/facet_test_mse_1_50_100.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/linear-facet/test-mse/facet_test_m
+se_1_50_100-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, but 
+at most version <1.5> allowed
+<figures/linear-facet/test-mse/facet_test_mse_1_50_100-eps-converted-to.pdf, id
+=13, 722.7pt x 433.62pt>
+File: figures/linear-facet/test-mse/facet_test_mse_1_50_100-eps-converted-to.pd
+f Graphic file (type pdf)
+<use figures/linear-facet/test-mse/facet_test_mse_1_50_100-eps-converted-to.pdf
+>
+Package pdftex.def Info: figures/linear-facet/test-mse/facet_test_mse_1_50_100-
+eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/linear-facet/test-mse/facet_test_m
+se_1_50_2000.eps>
+(epstopdf)                    date: 2021-10-02 09:35:44
+(epstopdf)                    size: 155846 bytes
+(epstopdf)             Output file: <figures/linear-facet/test-mse/facet_test_m
+se_1_50_2000-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:29:19
+(epstopdf)                    size: 41646 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/linear-facet
+/test-mse/facet_test_mse_1_50_2000-eps-converted-to.pdf figures/linear-facet/te
+st-mse/facet_test_mse_1_50_2000.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/linear-facet/test-mse/facet_test_m
+se_1_50_2000-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, but
+ at most version <1.5> allowed
+<figures/linear-facet/test-mse/facet_test_mse_1_50_2000-eps-converted-to.pdf, i
+d=14, 722.7pt x 433.62pt>
+File: figures/linear-facet/test-mse/facet_test_mse_1_50_2000-eps-converted-to.p
+df Graphic file (type pdf)
+<use figures/linear-facet/test-mse/facet_test_mse_1_50_2000-eps-converted-to.pd
+f>
+Package pdftex.def Info: figures/linear-facet/test-mse/facet_test_mse_1_50_2000
+-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/linear-facet/test-mse/facet_test_m
+se_1_200_10.eps>
+(epstopdf)                    date: 2021-10-02 09:35:40
+(epstopdf)                    size: 236649 bytes
+(epstopdf)             Output file: <figures/linear-facet/test-mse/facet_test_m
+se_1_200_10-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:29:20
+(epstopdf)                    size: 51400 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/linear-facet
+/test-mse/facet_test_mse_1_200_10-eps-converted-to.pdf figures/linear-facet/tes
+t-mse/facet_test_mse_1_200_10.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/linear-facet/test-mse/facet_test_m
+se_1_200_10-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, but 
+at most version <1.5> allowed
+<figures/linear-facet/test-mse/facet_test_mse_1_200_10-eps-converted-to.pdf, id
+=15, 722.7pt x 433.62pt>
+File: figures/linear-facet/test-mse/facet_test_mse_1_200_10-eps-converted-to.pd
+f Graphic file (type pdf)
+<use figures/linear-facet/test-mse/facet_test_mse_1_200_10-eps-converted-to.pdf
+>
+Package pdftex.def Info: figures/linear-facet/test-mse/facet_test_mse_1_200_10-
+eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/linear-facet/test-mse/facet_test_m
+se_1_200_100.eps>
+(epstopdf)                    date: 2021-10-02 09:35:43
+(epstopdf)                    size: 196531 bytes
+(epstopdf)             Output file: <figures/linear-facet/test-mse/facet_test_m
+se_1_200_100-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:29:20
+(epstopdf)                    size: 46810 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/linear-facet
+/test-mse/facet_test_mse_1_200_100-eps-converted-to.pdf figures/linear-facet/te
+st-mse/facet_test_mse_1_200_100.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/linear-facet/test-mse/facet_test_m
+se_1_200_100-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, but
+ at most version <1.5> allowed
+<figures/linear-facet/test-mse/facet_test_mse_1_200_100-eps-converted-to.pdf, i
+d=16, 722.7pt x 433.62pt>
+File: figures/linear-facet/test-mse/facet_test_mse_1_200_100-eps-converted-to.p
+df Graphic file (type pdf)
+<use figures/linear-facet/test-mse/facet_test_mse_1_200_100-eps-converted-to.pd
+f>
+Package pdftex.def Info: figures/linear-facet/test-mse/facet_test_mse_1_200_100
+-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/linear-facet/test-mse/facet_test_m
+se_1_200_2000.eps>
+(epstopdf)                    date: 2021-10-02 09:35:45
+(epstopdf)                    size: 159322 bytes
+(epstopdf)             Output file: <figures/linear-facet/test-mse/facet_test_m
+se_1_200_2000-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:29:21
+(epstopdf)                    size: 41874 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/linear-facet
+/test-mse/facet_test_mse_1_200_2000-eps-converted-to.pdf figures/linear-facet/t
+est-mse/facet_test_mse_1_200_2000.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/linear-facet/test-mse/facet_test_m
+se_1_200_2000-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, bu
+t at most version <1.5> allowed
+<figures/linear-facet/test-mse/facet_test_mse_1_200_2000-eps-converted-to.pdf, 
+id=17, 722.7pt x 433.62pt>
+File: figures/linear-facet/test-mse/facet_test_mse_1_200_2000-eps-converted-to.
+pdf Graphic file (type pdf)
+<use figures/linear-facet/test-mse/facet_test_mse_1_200_2000-eps-converted-to.p
+df>
+Package pdftex.def Info: figures/linear-facet/test-mse/facet_test_mse_1_200_200
+0-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
 Package epstopdf Info: Source file: <figures/linear-facet/test-mse/facet_test_m
 se_1_1000_10.eps>
 (epstopdf)                    date: 2021-10-02 09:35:41
@@ -363,7 +876,7 @@ se_1_1000_10-eps-converted-to.pdf>
 (epstopdf)             Command: <miktex-epstopdf --outfile=figures/linear-facet
 /test-mse/facet_test_mse_1_1000_10-eps-converted-to.pdf figures/linear-facet/te
 st-mse/facet_test_mse_1_1000_10.eps>
-(epstopdf)             \includegraphics on input line 103.
+(epstopdf)             \includegraphics on input line 121.
 Package epstopdf Info: Output file is already uptodate.
 
 
@@ -371,40 +884,1626 @@ pdfTeX warning: pdflatex.exe (file ./figures/linear-facet/test-mse/facet_test_m
 se_1_1000_10-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, but
  at most version <1.5> allowed
 <figures/linear-facet/test-mse/facet_test_mse_1_1000_10-eps-converted-to.pdf, i
-d=3, 722.7pt x 433.62pt>
+d=18, 722.7pt x 433.62pt>
 File: figures/linear-facet/test-mse/facet_test_mse_1_1000_10-eps-converted-to.p
 df Graphic file (type pdf)
 <use figures/linear-facet/test-mse/facet_test_mse_1_1000_10-eps-converted-to.pd
 f>
 Package pdftex.def Info: figures/linear-facet/test-mse/facet_test_mse_1_1000_10
--eps-converted-to.pdf  used on input line 103.
+-eps-converted-to.pdf  used on input line 121.
 (pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 103.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 103.
-[1
+Package epstopdf Info: Source file: <figures/linear-facet/test-mse/facet_test_m
+se_1_1000_100.eps>
+(epstopdf)                    date: 2021-10-02 09:35:44
+(epstopdf)                    size: 198141 bytes
+(epstopdf)             Output file: <figures/linear-facet/test-mse/facet_test_m
+se_1_1000_100-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:29:22
+(epstopdf)                    size: 46300 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/linear-facet
+/test-mse/facet_test_mse_1_1000_100-eps-converted-to.pdf figures/linear-facet/t
+est-mse/facet_test_mse_1_1000_100.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
 
-{C:/Users/Connor/AppData/Local/MiKTeX/pdftex/config/pdftex.map} <./figures/line
-ar-facet/test-mse/facet_test_mse_1_1000_10-eps-converted-to.pdf>]
-(supplementary.aux)
+
+pdfTeX warning: pdflatex.exe (file ./figures/linear-facet/test-mse/facet_test_m
+se_1_1000_100-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, bu
+t at most version <1.5> allowed
+<figures/linear-facet/test-mse/facet_test_mse_1_1000_100-eps-converted-to.pdf, 
+id=19, 722.7pt x 433.62pt>
+File: figures/linear-facet/test-mse/facet_test_mse_1_1000_100-eps-converted-to.
+pdf Graphic file (type pdf)
+<use figures/linear-facet/test-mse/facet_test_mse_1_1000_100-eps-converted-to.p
+df>
+Package pdftex.def Info: figures/linear-facet/test-mse/facet_test_mse_1_1000_10
+0-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/linear-facet/test-mse/facet_test_m
+se_1_1000_2000.eps>
+(epstopdf)                    date: 2021-10-02 09:35:46
+(epstopdf)                    size: 163945 bytes
+(epstopdf)             Output file: <figures/linear-facet/test-mse/facet_test_m
+se_1_1000_2000-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:29:23
+(epstopdf)                    size: 42200 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/linear-facet
+/test-mse/facet_test_mse_1_1000_2000-eps-converted-to.pdf figures/linear-facet/
+test-mse/facet_test_mse_1_1000_2000.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/linear-facet/test-mse/facet_test_m
+se_1_1000_2000-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, b
+ut at most version <1.5> allowed
+<figures/linear-facet/test-mse/facet_test_mse_1_1000_2000-eps-converted-to.pdf,
+ id=20, 722.7pt x 433.62pt>
+File: figures/linear-facet/test-mse/facet_test_mse_1_1000_2000-eps-converted-to
+.pdf Graphic file (type pdf)
+<use figures/linear-facet/test-mse/facet_test_mse_1_1000_2000-eps-converted-to.
+pdf>
+Package pdftex.def Info: figures/linear-facet/test-mse/facet_test_mse_1_1000_20
+00-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/linear-facet/sensitivity/facet_sen
+sitivity_1_50_10.eps>
+(epstopdf)                    date: 2021-10-02 09:35:47
+(epstopdf)                    size: 171406 bytes
+(epstopdf)             Output file: <figures/linear-facet/sensitivity/facet_sen
+sitivity_1_50_10-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:29:24
+(epstopdf)                    size: 42183 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/linear-facet
+/sensitivity/facet_sensitivity_1_50_10-eps-converted-to.pdf figures/linear-face
+t/sensitivity/facet_sensitivity_1_50_10.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/linear-facet/sensitivity/facet_sen
+sitivity_1_50_10-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>,
+ but at most version <1.5> allowed
+<figures/linear-facet/sensitivity/facet_sensitivity_1_50_10-eps-converted-to.pd
+f, id=21, 722.7pt x 433.62pt>
+File: figures/linear-facet/sensitivity/facet_sensitivity_1_50_10-eps-converted-
+to.pdf Graphic file (type pdf)
+<use figures/linear-facet/sensitivity/facet_sensitivity_1_50_10-eps-converted-t
+o.pdf>
+Package pdftex.def Info: figures/linear-facet/sensitivity/facet_sensitivity_1_5
+0_10-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/linear-facet/sensitivity/facet_sen
+sitivity_1_50_100.eps>
+(epstopdf)                    date: 2021-10-02 09:35:50
+(epstopdf)                    size: 124936 bytes
+(epstopdf)             Output file: <figures/linear-facet/sensitivity/facet_sen
+sitivity_1_50_100-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:29:25
+(epstopdf)                    size: 36161 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/linear-facet
+/sensitivity/facet_sensitivity_1_50_100-eps-converted-to.pdf figures/linear-fac
+et/sensitivity/facet_sensitivity_1_50_100.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/linear-facet/sensitivity/facet_sen
+sitivity_1_50_100-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>
+, but at most version <1.5> allowed
+<figures/linear-facet/sensitivity/facet_sensitivity_1_50_100-eps-converted-to.p
+df, id=22, 722.7pt x 433.62pt>
+File: figures/linear-facet/sensitivity/facet_sensitivity_1_50_100-eps-converted
+-to.pdf Graphic file (type pdf)
+<use figures/linear-facet/sensitivity/facet_sensitivity_1_50_100-eps-converted-
+to.pdf>
+Package pdftex.def Info: figures/linear-facet/sensitivity/facet_sensitivity_1_5
+0_100-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/linear-facet/sensitivity/facet_sen
+sitivity_1_50_2000.eps>
+(epstopdf)                    date: 2021-10-02 09:35:52
+(epstopdf)                    size: 127449 bytes
+(epstopdf)             Output file: <figures/linear-facet/sensitivity/facet_sen
+sitivity_1_50_2000-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:29:25
+(epstopdf)                    size: 36661 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/linear-facet
+/sensitivity/facet_sensitivity_1_50_2000-eps-converted-to.pdf figures/linear-fa
+cet/sensitivity/facet_sensitivity_1_50_2000.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/linear-facet/sensitivity/facet_sen
+sitivity_1_50_2000-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7
+>, but at most version <1.5> allowed
+<figures/linear-facet/sensitivity/facet_sensitivity_1_50_2000-eps-converted-to.
+pdf, id=23, 722.7pt x 433.62pt>
+File: figures/linear-facet/sensitivity/facet_sensitivity_1_50_2000-eps-converte
+d-to.pdf Graphic file (type pdf)
+<use figures/linear-facet/sensitivity/facet_sensitivity_1_50_2000-eps-converted
+-to.pdf>
+Package pdftex.def Info: figures/linear-facet/sensitivity/facet_sensitivity_1_5
+0_2000-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/linear-facet/sensitivity/facet_sen
+sitivity_1_200_10.eps>
+(epstopdf)                    date: 2021-10-02 09:35:48
+(epstopdf)                    size: 202615 bytes
+(epstopdf)             Output file: <figures/linear-facet/sensitivity/facet_sen
+sitivity_1_200_10-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:29:26
+(epstopdf)                    size: 43419 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/linear-facet
+/sensitivity/facet_sensitivity_1_200_10-eps-converted-to.pdf figures/linear-fac
+et/sensitivity/facet_sensitivity_1_200_10.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/linear-facet/sensitivity/facet_sen
+sitivity_1_200_10-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>
+, but at most version <1.5> allowed
+<figures/linear-facet/sensitivity/facet_sensitivity_1_200_10-eps-converted-to.p
+df, id=24, 722.7pt x 433.62pt>
+File: figures/linear-facet/sensitivity/facet_sensitivity_1_200_10-eps-converted
+-to.pdf Graphic file (type pdf)
+<use figures/linear-facet/sensitivity/facet_sensitivity_1_200_10-eps-converted-
+to.pdf>
+Package pdftex.def Info: figures/linear-facet/sensitivity/facet_sensitivity_1_2
+00_10-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/linear-facet/sensitivity/facet_sen
+sitivity_1_200_100.eps>
+(epstopdf)                    date: 2021-10-02 09:35:50
+(epstopdf)                    size: 161924 bytes
+(epstopdf)             Output file: <figures/linear-facet/sensitivity/facet_sen
+sitivity_1_200_100-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:29:27
+(epstopdf)                    size: 39582 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/linear-facet
+/sensitivity/facet_sensitivity_1_200_100-eps-converted-to.pdf figures/linear-fa
+cet/sensitivity/facet_sensitivity_1_200_100.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/linear-facet/sensitivity/facet_sen
+sitivity_1_200_100-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7
+>, but at most version <1.5> allowed
+<figures/linear-facet/sensitivity/facet_sensitivity_1_200_100-eps-converted-to.
+pdf, id=25, 722.7pt x 433.62pt>
+File: figures/linear-facet/sensitivity/facet_sensitivity_1_200_100-eps-converte
+d-to.pdf Graphic file (type pdf)
+<use figures/linear-facet/sensitivity/facet_sensitivity_1_200_100-eps-converted
+-to.pdf>
+Package pdftex.def Info: figures/linear-facet/sensitivity/facet_sensitivity_1_2
+00_100-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/linear-facet/sensitivity/facet_sen
+sitivity_1_200_2000.eps>
+(epstopdf)                    date: 2021-10-02 09:35:53
+(epstopdf)                    size: 127819 bytes
+(epstopdf)             Output file: <figures/linear-facet/sensitivity/facet_sen
+sitivity_1_200_2000-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:29:28
+(epstopdf)                    size: 35997 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/linear-facet
+/sensitivity/facet_sensitivity_1_200_2000-eps-converted-to.pdf figures/linear-f
+acet/sensitivity/facet_sensitivity_1_200_2000.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/linear-facet/sensitivity/facet_sen
+sitivity_1_200_2000-eps-converted-to.pdf): PDF inclusion: found PDF version <1.
+7>, but at most version <1.5> allowed
+<figures/linear-facet/sensitivity/facet_sensitivity_1_200_2000-eps-converted-to
+.pdf, id=26, 722.7pt x 433.62pt>
+File: figures/linear-facet/sensitivity/facet_sensitivity_1_200_2000-eps-convert
+ed-to.pdf Graphic file (type pdf)
+<use figures/linear-facet/sensitivity/facet_sensitivity_1_200_2000-eps-converte
+d-to.pdf>
+Package pdftex.def Info: figures/linear-facet/sensitivity/facet_sensitivity_1_2
+00_2000-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/linear-facet/sensitivity/facet_sen
+sitivity_1_1000_10.eps>
+(epstopdf)                    date: 2021-10-02 09:35:49
+(epstopdf)                    size: 216679 bytes
+(epstopdf)             Output file: <figures/linear-facet/sensitivity/facet_sen
+sitivity_1_1000_10-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 12:01:10
+(epstopdf)                    size: 44384 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/linear-facet
+/sensitivity/facet_sensitivity_1_1000_10-eps-converted-to.pdf figures/linear-fa
+cet/sensitivity/facet_sensitivity_1_1000_10.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/linear-facet/sensitivity/facet_sen
+sitivity_1_1000_10-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7
+>, but at most version <1.5> allowed
+<figures/linear-facet/sensitivity/facet_sensitivity_1_1000_10-eps-converted-to.
+pdf, id=27, 722.7pt x 433.62pt>
+File: figures/linear-facet/sensitivity/facet_sensitivity_1_1000_10-eps-converte
+d-to.pdf Graphic file (type pdf)
+<use figures/linear-facet/sensitivity/facet_sensitivity_1_1000_10-eps-converted
+-to.pdf>
+Package pdftex.def Info: figures/linear-facet/sensitivity/facet_sensitivity_1_1
+000_10-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/linear-facet/sensitivity/facet_sen
+sitivity_1_1000_100.eps>
+(epstopdf)                    date: 2021-10-02 09:35:51
+(epstopdf)                    size: 171006 bytes
+(epstopdf)             Output file: <figures/linear-facet/sensitivity/facet_sen
+sitivity_1_1000_100-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:29:29
+(epstopdf)                    size: 40349 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/linear-facet
+/sensitivity/facet_sensitivity_1_1000_100-eps-converted-to.pdf figures/linear-f
+acet/sensitivity/facet_sensitivity_1_1000_100.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/linear-facet/sensitivity/facet_sen
+sitivity_1_1000_100-eps-converted-to.pdf): PDF inclusion: found PDF version <1.
+7>, but at most version <1.5> allowed
+<figures/linear-facet/sensitivity/facet_sensitivity_1_1000_100-eps-converted-to
+.pdf, id=28, 722.7pt x 433.62pt>
+File: figures/linear-facet/sensitivity/facet_sensitivity_1_1000_100-eps-convert
+ed-to.pdf Graphic file (type pdf)
+<use figures/linear-facet/sensitivity/facet_sensitivity_1_1000_100-eps-converte
+d-to.pdf>
+Package pdftex.def Info: figures/linear-facet/sensitivity/facet_sensitivity_1_1
+000_100-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/linear-facet/sensitivity/facet_sen
+sitivity_1_1000_2000.eps>
+(epstopdf)                    date: 2021-10-02 09:35:53
+(epstopdf)                    size: 135313 bytes
+(epstopdf)             Output file: <figures/linear-facet/sensitivity/facet_sen
+sitivity_1_1000_2000-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:29:29
+(epstopdf)                    size: 36066 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/linear-facet
+/sensitivity/facet_sensitivity_1_1000_2000-eps-converted-to.pdf figures/linear-
+facet/sensitivity/facet_sensitivity_1_1000_2000.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/linear-facet/sensitivity/facet_sen
+sitivity_1_1000_2000-eps-converted-to.pdf): PDF inclusion: found PDF version <1
+.7>, but at most version <1.5> allowed
+<figures/linear-facet/sensitivity/facet_sensitivity_1_1000_2000-eps-converted-t
+o.pdf, id=29, 722.7pt x 433.62pt>
+File: figures/linear-facet/sensitivity/facet_sensitivity_1_1000_2000-eps-conver
+ted-to.pdf Graphic file (type pdf)
+<use figures/linear-facet/sensitivity/facet_sensitivity_1_1000_2000-eps-convert
+ed-to.pdf>
+Package pdftex.def Info: figures/linear-facet/sensitivity/facet_sensitivity_1_1
+000_2000-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/linear-facet/specificity/facet_spe
+cificity_1_50_10.eps>
+(epstopdf)                    date: 2021-10-02 09:35:54
+(epstopdf)                    size: 173970 bytes
+(epstopdf)             Output file: <figures/linear-facet/specificity/facet_spe
+cificity_1_50_10-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:29:30
+(epstopdf)                    size: 43211 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/linear-facet
+/specificity/facet_specificity_1_50_10-eps-converted-to.pdf figures/linear-face
+t/specificity/facet_specificity_1_50_10.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/linear-facet/specificity/facet_spe
+cificity_1_50_10-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>,
+ but at most version <1.5> allowed
+<figures/linear-facet/specificity/facet_specificity_1_50_10-eps-converted-to.pd
+f, id=30, 722.7pt x 433.62pt>
+File: figures/linear-facet/specificity/facet_specificity_1_50_10-eps-converted-
+to.pdf Graphic file (type pdf)
+<use figures/linear-facet/specificity/facet_specificity_1_50_10-eps-converted-t
+o.pdf>
+Package pdftex.def Info: figures/linear-facet/specificity/facet_specificity_1_5
+0_10-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/linear-facet/specificity/facet_spe
+cificity_1_50_100.eps>
+(epstopdf)                    date: 2021-10-02 09:35:56
+(epstopdf)                    size: 124452 bytes
+(epstopdf)             Output file: <figures/linear-facet/specificity/facet_spe
+cificity_1_50_100-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:29:31
+(epstopdf)                    size: 36369 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/linear-facet
+/specificity/facet_specificity_1_50_100-eps-converted-to.pdf figures/linear-fac
+et/specificity/facet_specificity_1_50_100.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/linear-facet/specificity/facet_spe
+cificity_1_50_100-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>
+, but at most version <1.5> allowed
+<figures/linear-facet/specificity/facet_specificity_1_50_100-eps-converted-to.p
+df, id=31, 722.7pt x 433.62pt>
+File: figures/linear-facet/specificity/facet_specificity_1_50_100-eps-converted
+-to.pdf Graphic file (type pdf)
+<use figures/linear-facet/specificity/facet_specificity_1_50_100-eps-converted-
+to.pdf>
+Package pdftex.def Info: figures/linear-facet/specificity/facet_specificity_1_5
+0_100-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/linear-facet/specificity/facet_spe
+cificity_1_50_2000.eps>
+(epstopdf)                    date: 2021-10-02 09:35:59
+(epstopdf)                    size: 124066 bytes
+(epstopdf)             Output file: <figures/linear-facet/specificity/facet_spe
+cificity_1_50_2000-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:29:32
+(epstopdf)                    size: 36346 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/linear-facet
+/specificity/facet_specificity_1_50_2000-eps-converted-to.pdf figures/linear-fa
+cet/specificity/facet_specificity_1_50_2000.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/linear-facet/specificity/facet_spe
+cificity_1_50_2000-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7
+>, but at most version <1.5> allowed
+<figures/linear-facet/specificity/facet_specificity_1_50_2000-eps-converted-to.
+pdf, id=32, 722.7pt x 433.62pt>
+File: figures/linear-facet/specificity/facet_specificity_1_50_2000-eps-converte
+d-to.pdf Graphic file (type pdf)
+<use figures/linear-facet/specificity/facet_specificity_1_50_2000-eps-converted
+-to.pdf>
+Package pdftex.def Info: figures/linear-facet/specificity/facet_specificity_1_5
+0_2000-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/linear-facet/specificity/facet_spe
+cificity_1_200_10.eps>
+(epstopdf)                    date: 2021-10-02 09:35:55
+(epstopdf)                    size: 176012 bytes
+(epstopdf)             Output file: <figures/linear-facet/specificity/facet_spe
+cificity_1_200_10-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:29:33
+(epstopdf)                    size: 43038 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/linear-facet
+/specificity/facet_specificity_1_200_10-eps-converted-to.pdf figures/linear-fac
+et/specificity/facet_specificity_1_200_10.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/linear-facet/specificity/facet_spe
+cificity_1_200_10-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>
+, but at most version <1.5> allowed
+<figures/linear-facet/specificity/facet_specificity_1_200_10-eps-converted-to.p
+df, id=33, 722.7pt x 433.62pt>
+File: figures/linear-facet/specificity/facet_specificity_1_200_10-eps-converted
+-to.pdf Graphic file (type pdf)
+<use figures/linear-facet/specificity/facet_specificity_1_200_10-eps-converted-
+to.pdf>
+Package pdftex.def Info: figures/linear-facet/specificity/facet_specificity_1_2
+00_10-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/linear-facet/specificity/facet_spe
+cificity_1_200_100.eps>
+(epstopdf)                    date: 2021-10-02 09:35:57
+(epstopdf)                    size: 151838 bytes
+(epstopdf)             Output file: <figures/linear-facet/specificity/facet_spe
+cificity_1_200_100-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:29:34
+(epstopdf)                    size: 40130 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/linear-facet
+/specificity/facet_specificity_1_200_100-eps-converted-to.pdf figures/linear-fa
+cet/specificity/facet_specificity_1_200_100.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/linear-facet/specificity/facet_spe
+cificity_1_200_100-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7
+>, but at most version <1.5> allowed
+<figures/linear-facet/specificity/facet_specificity_1_200_100-eps-converted-to.
+pdf, id=34, 722.7pt x 433.62pt>
+File: figures/linear-facet/specificity/facet_specificity_1_200_100-eps-converte
+d-to.pdf Graphic file (type pdf)
+<use figures/linear-facet/specificity/facet_specificity_1_200_100-eps-converted
+-to.pdf>
+Package pdftex.def Info: figures/linear-facet/specificity/facet_specificity_1_2
+00_100-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/linear-facet/specificity/facet_spe
+cificity_1_200_2000.eps>
+(epstopdf)                    date: 2021-10-02 09:36:00
+(epstopdf)                    size: 125652 bytes
+(epstopdf)             Output file: <figures/linear-facet/specificity/facet_spe
+cificity_1_200_2000-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:29:34
+(epstopdf)                    size: 36508 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/linear-facet
+/specificity/facet_specificity_1_200_2000-eps-converted-to.pdf figures/linear-f
+acet/specificity/facet_specificity_1_200_2000.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/linear-facet/specificity/facet_spe
+cificity_1_200_2000-eps-converted-to.pdf): PDF inclusion: found PDF version <1.
+7>, but at most version <1.5> allowed
+<figures/linear-facet/specificity/facet_specificity_1_200_2000-eps-converted-to
+.pdf, id=35, 722.7pt x 433.62pt>
+File: figures/linear-facet/specificity/facet_specificity_1_200_2000-eps-convert
+ed-to.pdf Graphic file (type pdf)
+<use figures/linear-facet/specificity/facet_specificity_1_200_2000-eps-converte
+d-to.pdf>
+Package pdftex.def Info: figures/linear-facet/specificity/facet_specificity_1_2
+00_2000-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/linear-facet/specificity/facet_spe
+cificity_1_1000_10.eps>
+(epstopdf)                    date: 2021-10-02 09:35:56
+(epstopdf)                    size: 179891 bytes
+(epstopdf)             Output file: <figures/linear-facet/specificity/facet_spe
+cificity_1_1000_10-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:24:34
+(epstopdf)                    size: 43135 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/linear-facet
+/specificity/facet_specificity_1_1000_10-eps-converted-to.pdf figures/linear-fa
+cet/specificity/facet_specificity_1_1000_10.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/linear-facet/specificity/facet_spe
+cificity_1_1000_10-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7
+>, but at most version <1.5> allowed
+<figures/linear-facet/specificity/facet_specificity_1_1000_10-eps-converted-to.
+pdf, id=36, 722.7pt x 433.62pt>
+File: figures/linear-facet/specificity/facet_specificity_1_1000_10-eps-converte
+d-to.pdf Graphic file (type pdf)
+<use figures/linear-facet/specificity/facet_specificity_1_1000_10-eps-converted
+-to.pdf>
+Package pdftex.def Info: figures/linear-facet/specificity/facet_specificity_1_1
+000_10-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/linear-facet/specificity/facet_spe
+cificity_1_1000_100.eps>
+(epstopdf)                    date: 2021-10-02 09:35:58
+(epstopdf)                    size: 149513 bytes
+(epstopdf)             Output file: <figures/linear-facet/specificity/facet_spe
+cificity_1_1000_100-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:29:35
+(epstopdf)                    size: 39796 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/linear-facet
+/specificity/facet_specificity_1_1000_100-eps-converted-to.pdf figures/linear-f
+acet/specificity/facet_specificity_1_1000_100.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/linear-facet/specificity/facet_spe
+cificity_1_1000_100-eps-converted-to.pdf): PDF inclusion: found PDF version <1.
+7>, but at most version <1.5> allowed
+<figures/linear-facet/specificity/facet_specificity_1_1000_100-eps-converted-to
+.pdf, id=37, 722.7pt x 433.62pt>
+File: figures/linear-facet/specificity/facet_specificity_1_1000_100-eps-convert
+ed-to.pdf Graphic file (type pdf)
+<use figures/linear-facet/specificity/facet_specificity_1_1000_100-eps-converte
+d-to.pdf>
+Package pdftex.def Info: figures/linear-facet/specificity/facet_specificity_1_1
+000_100-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/linear-facet/specificity/facet_spe
+cificity_1_1000_2000.eps>
+(epstopdf)                    date: 2021-10-02 09:36:01
+(epstopdf)                    size: 126278 bytes
+(epstopdf)             Output file: <figures/linear-facet/specificity/facet_spe
+cificity_1_1000_2000-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:29:36
+(epstopdf)                    size: 35371 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/linear-facet
+/specificity/facet_specificity_1_1000_2000-eps-converted-to.pdf figures/linear-
+facet/specificity/facet_specificity_1_1000_2000.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/linear-facet/specificity/facet_spe
+cificity_1_1000_2000-eps-converted-to.pdf): PDF inclusion: found PDF version <1
+.7>, but at most version <1.5> allowed
+<figures/linear-facet/specificity/facet_specificity_1_1000_2000-eps-converted-t
+o.pdf, id=38, 722.7pt x 433.62pt>
+File: figures/linear-facet/specificity/facet_specificity_1_1000_2000-eps-conver
+ted-to.pdf Graphic file (type pdf)
+<use figures/linear-facet/specificity/facet_specificity_1_1000_2000-eps-convert
+ed-to.pdf>
+Package pdftex.def Info: figures/linear-facet/specificity/facet_specificity_1_1
+000_2000-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/nonlinear-facet/train-mse/facet_tr
+ain_mse_2_50_10.eps>
+(epstopdf)                    date: 2021-10-02 09:36:05
+(epstopdf)                    size: 216760 bytes
+(epstopdf)             Output file: <figures/nonlinear-facet/train-mse/facet_tr
+ain_mse_2_50_10-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:29:37
+(epstopdf)                    size: 50221 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/nonlinear-fa
+cet/train-mse/facet_train_mse_2_50_10-eps-converted-to.pdf figures/nonlinear-fa
+cet/train-mse/facet_train_mse_2_50_10.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/nonlinear-facet/train-mse/facet_tr
+ain_mse_2_50_10-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, 
+but at most version <1.5> allowed
+<figures/nonlinear-facet/train-mse/facet_train_mse_2_50_10-eps-converted-to.pdf
+, id=39, 722.7pt x 433.62pt>
+File: figures/nonlinear-facet/train-mse/facet_train_mse_2_50_10-eps-converted-t
+o.pdf Graphic file (type pdf)
+<use figures/nonlinear-facet/train-mse/facet_train_mse_2_50_10-eps-converted-to
+.pdf>
+Package pdftex.def Info: figures/nonlinear-facet/train-mse/facet_train_mse_2_50
+_10-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/nonlinear-facet/train-mse/facet_tr
+ain_mse_2_50_100.eps>
+(epstopdf)                    date: 2021-10-02 09:36:08
+(epstopdf)                    size: 153840 bytes
+(epstopdf)             Output file: <figures/nonlinear-facet/train-mse/facet_tr
+ain_mse_2_50_100-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:29:38
+(epstopdf)                    size: 40825 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/nonlinear-fa
+cet/train-mse/facet_train_mse_2_50_100-eps-converted-to.pdf figures/nonlinear-f
+acet/train-mse/facet_train_mse_2_50_100.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/nonlinear-facet/train-mse/facet_tr
+ain_mse_2_50_100-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>,
+ but at most version <1.5> allowed
+<figures/nonlinear-facet/train-mse/facet_train_mse_2_50_100-eps-converted-to.pd
+f, id=40, 722.7pt x 433.62pt>
+File: figures/nonlinear-facet/train-mse/facet_train_mse_2_50_100-eps-converted-
+to.pdf Graphic file (type pdf)
+<use figures/nonlinear-facet/train-mse/facet_train_mse_2_50_100-eps-converted-t
+o.pdf>
+Package pdftex.def Info: figures/nonlinear-facet/train-mse/facet_train_mse_2_50
+_100-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/nonlinear-facet/train-mse/facet_tr
+ain_mse_2_50_2000.eps>
+(epstopdf)                    date: 2021-10-02 09:36:10
+(epstopdf)                    size: 153201 bytes
+(epstopdf)             Output file: <figures/nonlinear-facet/train-mse/facet_tr
+ain_mse_2_50_2000-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:29:39
+(epstopdf)                    size: 40742 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/nonlinear-fa
+cet/train-mse/facet_train_mse_2_50_2000-eps-converted-to.pdf figures/nonlinear-
+facet/train-mse/facet_train_mse_2_50_2000.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/nonlinear-facet/train-mse/facet_tr
+ain_mse_2_50_2000-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>
+, but at most version <1.5> allowed
+<figures/nonlinear-facet/train-mse/facet_train_mse_2_50_2000-eps-converted-to.p
+df, id=41, 722.7pt x 433.62pt>
+File: figures/nonlinear-facet/train-mse/facet_train_mse_2_50_2000-eps-converted
+-to.pdf Graphic file (type pdf)
+<use figures/nonlinear-facet/train-mse/facet_train_mse_2_50_2000-eps-converted-
+to.pdf>
+Package pdftex.def Info: figures/nonlinear-facet/train-mse/facet_train_mse_2_50
+_2000-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/nonlinear-facet/train-mse/facet_tr
+ain_mse_2_200_10.eps>
+(epstopdf)                    date: 2021-10-02 09:36:06
+(epstopdf)                    size: 216876 bytes
+(epstopdf)             Output file: <figures/nonlinear-facet/train-mse/facet_tr
+ain_mse_2_200_10-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:29:39
+(epstopdf)                    size: 49966 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/nonlinear-fa
+cet/train-mse/facet_train_mse_2_200_10-eps-converted-to.pdf figures/nonlinear-f
+acet/train-mse/facet_train_mse_2_200_10.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/nonlinear-facet/train-mse/facet_tr
+ain_mse_2_200_10-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>,
+ but at most version <1.5> allowed
+<figures/nonlinear-facet/train-mse/facet_train_mse_2_200_10-eps-converted-to.pd
+f, id=42, 722.7pt x 433.62pt>
+File: figures/nonlinear-facet/train-mse/facet_train_mse_2_200_10-eps-converted-
+to.pdf Graphic file (type pdf)
+<use figures/nonlinear-facet/train-mse/facet_train_mse_2_200_10-eps-converted-t
+o.pdf>
+Package pdftex.def Info: figures/nonlinear-facet/train-mse/facet_train_mse_2_20
+0_10-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/nonlinear-facet/train-mse/facet_tr
+ain_mse_2_200_100.eps>
+(epstopdf)                    date: 2021-10-02 09:36:08
+(epstopdf)                    size: 191212 bytes
+(epstopdf)             Output file: <figures/nonlinear-facet/train-mse/facet_tr
+ain_mse_2_200_100-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:29:40
+(epstopdf)                    size: 46426 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/nonlinear-fa
+cet/train-mse/facet_train_mse_2_200_100-eps-converted-to.pdf figures/nonlinear-
+facet/train-mse/facet_train_mse_2_200_100.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/nonlinear-facet/train-mse/facet_tr
+ain_mse_2_200_100-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>
+, but at most version <1.5> allowed
+<figures/nonlinear-facet/train-mse/facet_train_mse_2_200_100-eps-converted-to.p
+df, id=43, 722.7pt x 433.62pt>
+File: figures/nonlinear-facet/train-mse/facet_train_mse_2_200_100-eps-converted
+-to.pdf Graphic file (type pdf)
+<use figures/nonlinear-facet/train-mse/facet_train_mse_2_200_100-eps-converted-
+to.pdf>
+Package pdftex.def Info: figures/nonlinear-facet/train-mse/facet_train_mse_2_20
+0_100-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/nonlinear-facet/train-mse/facet_tr
+ain_mse_2_200_2000.eps>
+(epstopdf)                    date: 2021-10-02 09:36:11
+(epstopdf)                    size: 153804 bytes
+(epstopdf)             Output file: <figures/nonlinear-facet/train-mse/facet_tr
+ain_mse_2_200_2000-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:29:41
+(epstopdf)                    size: 40811 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/nonlinear-fa
+cet/train-mse/facet_train_mse_2_200_2000-eps-converted-to.pdf figures/nonlinear
+-facet/train-mse/facet_train_mse_2_200_2000.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/nonlinear-facet/train-mse/facet_tr
+ain_mse_2_200_2000-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7
+>, but at most version <1.5> allowed
+<figures/nonlinear-facet/train-mse/facet_train_mse_2_200_2000-eps-converted-to.
+pdf, id=44, 722.7pt x 433.62pt>
+File: figures/nonlinear-facet/train-mse/facet_train_mse_2_200_2000-eps-converte
+d-to.pdf Graphic file (type pdf)
+<use figures/nonlinear-facet/train-mse/facet_train_mse_2_200_2000-eps-converted
+-to.pdf>
+Package pdftex.def Info: figures/nonlinear-facet/train-mse/facet_train_mse_2_20
+0_2000-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/nonlinear-facet/train-mse/facet_tr
+ain_mse_2_1000_10.eps>
+(epstopdf)                    date: 2021-10-02 09:36:07
+(epstopdf)                    size: 220635 bytes
+(epstopdf)             Output file: <figures/nonlinear-facet/train-mse/facet_tr
+ain_mse_2_1000_10-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:26:17
+(epstopdf)                    size: 50340 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/nonlinear-fa
+cet/train-mse/facet_train_mse_2_1000_10-eps-converted-to.pdf figures/nonlinear-
+facet/train-mse/facet_train_mse_2_1000_10.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/nonlinear-facet/train-mse/facet_tr
+ain_mse_2_1000_10-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>
+, but at most version <1.5> allowed
+<figures/nonlinear-facet/train-mse/facet_train_mse_2_1000_10-eps-converted-to.p
+df, id=45, 722.7pt x 433.62pt>
+File: figures/nonlinear-facet/train-mse/facet_train_mse_2_1000_10-eps-converted
+-to.pdf Graphic file (type pdf)
+<use figures/nonlinear-facet/train-mse/facet_train_mse_2_1000_10-eps-converted-
+to.pdf>
+Package pdftex.def Info: figures/nonlinear-facet/train-mse/facet_train_mse_2_10
+00_10-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/nonlinear-facet/train-mse/facet_tr
+ain_mse_2_1000_100.eps>
+(epstopdf)                    date: 2021-10-02 09:36:09
+(epstopdf)                    size: 192064 bytes
+(epstopdf)             Output file: <figures/nonlinear-facet/train-mse/facet_tr
+ain_mse_2_1000_100-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:29:42
+(epstopdf)                    size: 46707 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/nonlinear-fa
+cet/train-mse/facet_train_mse_2_1000_100-eps-converted-to.pdf figures/nonlinear
+-facet/train-mse/facet_train_mse_2_1000_100.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/nonlinear-facet/train-mse/facet_tr
+ain_mse_2_1000_100-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7
+>, but at most version <1.5> allowed
+<figures/nonlinear-facet/train-mse/facet_train_mse_2_1000_100-eps-converted-to.
+pdf, id=46, 722.7pt x 433.62pt>
+File: figures/nonlinear-facet/train-mse/facet_train_mse_2_1000_100-eps-converte
+d-to.pdf Graphic file (type pdf)
+<use figures/nonlinear-facet/train-mse/facet_train_mse_2_1000_100-eps-converted
+-to.pdf>
+Package pdftex.def Info: figures/nonlinear-facet/train-mse/facet_train_mse_2_10
+00_100-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/nonlinear-facet/train-mse/facet_tr
+ain_mse_2_1000_2000.eps>
+(epstopdf)                    date: 2021-10-02 09:36:11
+(epstopdf)                    size: 151143 bytes
+(epstopdf)             Output file: <figures/nonlinear-facet/train-mse/facet_tr
+ain_mse_2_1000_2000-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:29:43
+(epstopdf)                    size: 40622 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/nonlinear-fa
+cet/train-mse/facet_train_mse_2_1000_2000-eps-converted-to.pdf figures/nonlinea
+r-facet/train-mse/facet_train_mse_2_1000_2000.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/nonlinear-facet/train-mse/facet_tr
+ain_mse_2_1000_2000-eps-converted-to.pdf): PDF inclusion: found PDF version <1.
+7>, but at most version <1.5> allowed
+<figures/nonlinear-facet/train-mse/facet_train_mse_2_1000_2000-eps-converted-to
+.pdf, id=47, 722.7pt x 433.62pt>
+File: figures/nonlinear-facet/train-mse/facet_train_mse_2_1000_2000-eps-convert
+ed-to.pdf Graphic file (type pdf)
+<use figures/nonlinear-facet/train-mse/facet_train_mse_2_1000_2000-eps-converte
+d-to.pdf>
+Package pdftex.def Info: figures/nonlinear-facet/train-mse/facet_train_mse_2_10
+00_2000-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/nonlinear-facet/test-mse/facet_tes
+t_mse_2_50_10.eps>
+(epstopdf)                    date: 2021-10-02 09:36:12
+(epstopdf)                    size: 217141 bytes
+(epstopdf)             Output file: <figures/nonlinear-facet/test-mse/facet_tes
+t_mse_2_50_10-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:29:44
+(epstopdf)                    size: 50779 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/nonlinear-fa
+cet/test-mse/facet_test_mse_2_50_10-eps-converted-to.pdf figures/nonlinear-face
+t/test-mse/facet_test_mse_2_50_10.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/nonlinear-facet/test-mse/facet_tes
+t_mse_2_50_10-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, bu
+t at most version <1.5> allowed
+<figures/nonlinear-facet/test-mse/facet_test_mse_2_50_10-eps-converted-to.pdf, 
+id=48, 722.7pt x 433.62pt>
+File: figures/nonlinear-facet/test-mse/facet_test_mse_2_50_10-eps-converted-to.
+pdf Graphic file (type pdf)
+<use figures/nonlinear-facet/test-mse/facet_test_mse_2_50_10-eps-converted-to.p
+df>
+Package pdftex.def Info: figures/nonlinear-facet/test-mse/facet_test_mse_2_50_1
+0-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/nonlinear-facet/test-mse/facet_tes
+t_mse_2_50_100.eps>
+(epstopdf)                    date: 2021-10-02 09:36:15
+(epstopdf)                    size: 152261 bytes
+(epstopdf)             Output file: <figures/nonlinear-facet/test-mse/facet_tes
+t_mse_2_50_100-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:29:44
+(epstopdf)                    size: 40857 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/nonlinear-fa
+cet/test-mse/facet_test_mse_2_50_100-eps-converted-to.pdf figures/nonlinear-fac
+et/test-mse/facet_test_mse_2_50_100.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/nonlinear-facet/test-mse/facet_tes
+t_mse_2_50_100-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, b
+ut at most version <1.5> allowed
+<figures/nonlinear-facet/test-mse/facet_test_mse_2_50_100-eps-converted-to.pdf,
+ id=49, 722.7pt x 433.62pt>
+File: figures/nonlinear-facet/test-mse/facet_test_mse_2_50_100-eps-converted-to
+.pdf Graphic file (type pdf)
+<use figures/nonlinear-facet/test-mse/facet_test_mse_2_50_100-eps-converted-to.
+pdf>
+Package pdftex.def Info: figures/nonlinear-facet/test-mse/facet_test_mse_2_50_1
+00-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/nonlinear-facet/test-mse/facet_tes
+t_mse_2_50_2000.eps>
+(epstopdf)                    date: 2021-10-02 09:36:17
+(epstopdf)                    size: 151278 bytes
+(epstopdf)             Output file: <figures/nonlinear-facet/test-mse/facet_tes
+t_mse_2_50_2000-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:29:45
+(epstopdf)                    size: 40913 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/nonlinear-fa
+cet/test-mse/facet_test_mse_2_50_2000-eps-converted-to.pdf figures/nonlinear-fa
+cet/test-mse/facet_test_mse_2_50_2000.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/nonlinear-facet/test-mse/facet_tes
+t_mse_2_50_2000-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, 
+but at most version <1.5> allowed
+<figures/nonlinear-facet/test-mse/facet_test_mse_2_50_2000-eps-converted-to.pdf
+, id=50, 722.7pt x 433.62pt>
+File: figures/nonlinear-facet/test-mse/facet_test_mse_2_50_2000-eps-converted-t
+o.pdf Graphic file (type pdf)
+<use figures/nonlinear-facet/test-mse/facet_test_mse_2_50_2000-eps-converted-to
+.pdf>
+Package pdftex.def Info: figures/nonlinear-facet/test-mse/facet_test_mse_2_50_2
+000-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/nonlinear-facet/test-mse/facet_tes
+t_mse_2_200_10.eps>
+(epstopdf)                    date: 2021-10-02 09:36:13
+(epstopdf)                    size: 217969 bytes
+(epstopdf)             Output file: <figures/nonlinear-facet/test-mse/facet_tes
+t_mse_2_200_10-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:29:46
+(epstopdf)                    size: 50446 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/nonlinear-fa
+cet/test-mse/facet_test_mse_2_200_10-eps-converted-to.pdf figures/nonlinear-fac
+et/test-mse/facet_test_mse_2_200_10.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/nonlinear-facet/test-mse/facet_tes
+t_mse_2_200_10-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, b
+ut at most version <1.5> allowed
+<figures/nonlinear-facet/test-mse/facet_test_mse_2_200_10-eps-converted-to.pdf,
+ id=51, 722.7pt x 433.62pt>
+File: figures/nonlinear-facet/test-mse/facet_test_mse_2_200_10-eps-converted-to
+.pdf Graphic file (type pdf)
+<use figures/nonlinear-facet/test-mse/facet_test_mse_2_200_10-eps-converted-to.
+pdf>
+Package pdftex.def Info: figures/nonlinear-facet/test-mse/facet_test_mse_2_200_
+10-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/nonlinear-facet/test-mse/facet_tes
+t_mse_2_200_100.eps>
+(epstopdf)                    date: 2021-10-02 09:36:16
+(epstopdf)                    size: 191272 bytes
+(epstopdf)             Output file: <figures/nonlinear-facet/test-mse/facet_tes
+t_mse_2_200_100-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:29:47
+(epstopdf)                    size: 46917 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/nonlinear-fa
+cet/test-mse/facet_test_mse_2_200_100-eps-converted-to.pdf figures/nonlinear-fa
+cet/test-mse/facet_test_mse_2_200_100.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/nonlinear-facet/test-mse/facet_tes
+t_mse_2_200_100-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, 
+but at most version <1.5> allowed
+<figures/nonlinear-facet/test-mse/facet_test_mse_2_200_100-eps-converted-to.pdf
+, id=52, 722.7pt x 433.62pt>
+File: figures/nonlinear-facet/test-mse/facet_test_mse_2_200_100-eps-converted-t
+o.pdf Graphic file (type pdf)
+<use figures/nonlinear-facet/test-mse/facet_test_mse_2_200_100-eps-converted-to
+.pdf>
+Package pdftex.def Info: figures/nonlinear-facet/test-mse/facet_test_mse_2_200_
+100-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/nonlinear-facet/test-mse/facet_tes
+t_mse_2_200_2000.eps>
+(epstopdf)                    date: 2021-10-02 09:36:18
+(epstopdf)                    size: 147940 bytes
+(epstopdf)             Output file: <figures/nonlinear-facet/test-mse/facet_tes
+t_mse_2_200_2000-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:29:48
+(epstopdf)                    size: 40356 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/nonlinear-fa
+cet/test-mse/facet_test_mse_2_200_2000-eps-converted-to.pdf figures/nonlinear-f
+acet/test-mse/facet_test_mse_2_200_2000.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/nonlinear-facet/test-mse/facet_tes
+t_mse_2_200_2000-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>,
+ but at most version <1.5> allowed
+<figures/nonlinear-facet/test-mse/facet_test_mse_2_200_2000-eps-converted-to.pd
+f, id=53, 722.7pt x 433.62pt>
+File: figures/nonlinear-facet/test-mse/facet_test_mse_2_200_2000-eps-converted-
+to.pdf Graphic file (type pdf)
+<use figures/nonlinear-facet/test-mse/facet_test_mse_2_200_2000-eps-converted-t
+o.pdf>
+Package pdftex.def Info: figures/nonlinear-facet/test-mse/facet_test_mse_2_200_
+2000-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/nonlinear-facet/test-mse/facet_tes
+t_mse_2_1000_10.eps>
+(epstopdf)                    date: 2021-10-02 09:36:14
+(epstopdf)                    size: 220498 bytes
+(epstopdf)             Output file: <figures/nonlinear-facet/test-mse/facet_tes
+t_mse_2_1000_10-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:26:18
+(epstopdf)                    size: 50271 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/nonlinear-fa
+cet/test-mse/facet_test_mse_2_1000_10-eps-converted-to.pdf figures/nonlinear-fa
+cet/test-mse/facet_test_mse_2_1000_10.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/nonlinear-facet/test-mse/facet_tes
+t_mse_2_1000_10-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, 
+but at most version <1.5> allowed
+<figures/nonlinear-facet/test-mse/facet_test_mse_2_1000_10-eps-converted-to.pdf
+, id=54, 722.7pt x 433.62pt>
+File: figures/nonlinear-facet/test-mse/facet_test_mse_2_1000_10-eps-converted-t
+o.pdf Graphic file (type pdf)
+<use figures/nonlinear-facet/test-mse/facet_test_mse_2_1000_10-eps-converted-to
+.pdf>
+Package pdftex.def Info: figures/nonlinear-facet/test-mse/facet_test_mse_2_1000
+_10-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/nonlinear-facet/test-mse/facet_tes
+t_mse_2_1000_100.eps>
+(epstopdf)                    date: 2021-10-02 09:36:16
+(epstopdf)                    size: 189624 bytes
+(epstopdf)             Output file: <figures/nonlinear-facet/test-mse/facet_tes
+t_mse_2_1000_100-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:29:49
+(epstopdf)                    size: 45984 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/nonlinear-fa
+cet/test-mse/facet_test_mse_2_1000_100-eps-converted-to.pdf figures/nonlinear-f
+acet/test-mse/facet_test_mse_2_1000_100.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/nonlinear-facet/test-mse/facet_tes
+t_mse_2_1000_100-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>,
+ but at most version <1.5> allowed
+<figures/nonlinear-facet/test-mse/facet_test_mse_2_1000_100-eps-converted-to.pd
+f, id=55, 722.7pt x 433.62pt>
+File: figures/nonlinear-facet/test-mse/facet_test_mse_2_1000_100-eps-converted-
+to.pdf Graphic file (type pdf)
+<use figures/nonlinear-facet/test-mse/facet_test_mse_2_1000_100-eps-converted-t
+o.pdf>
+Package pdftex.def Info: figures/nonlinear-facet/test-mse/facet_test_mse_2_1000
+_100-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/nonlinear-facet/test-mse/facet_tes
+t_mse_2_1000_2000.eps>
+(epstopdf)                    date: 2021-10-02 09:36:19
+(epstopdf)                    size: 151214 bytes
+(epstopdf)             Output file: <figures/nonlinear-facet/test-mse/facet_tes
+t_mse_2_1000_2000-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:29:49
+(epstopdf)                    size: 40603 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/nonlinear-fa
+cet/test-mse/facet_test_mse_2_1000_2000-eps-converted-to.pdf figures/nonlinear-
+facet/test-mse/facet_test_mse_2_1000_2000.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/nonlinear-facet/test-mse/facet_tes
+t_mse_2_1000_2000-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>
+, but at most version <1.5> allowed
+<figures/nonlinear-facet/test-mse/facet_test_mse_2_1000_2000-eps-converted-to.p
+df, id=56, 722.7pt x 433.62pt>
+File: figures/nonlinear-facet/test-mse/facet_test_mse_2_1000_2000-eps-converted
+-to.pdf Graphic file (type pdf)
+<use figures/nonlinear-facet/test-mse/facet_test_mse_2_1000_2000-eps-converted-
+to.pdf>
+Package pdftex.def Info: figures/nonlinear-facet/test-mse/facet_test_mse_2_1000
+_2000-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/nonlinear-facet/sensitivity/facet_
+sensitivity_2_50_10.eps>
+(epstopdf)                    date: 2021-10-02 09:36:20
+(epstopdf)                    size: 176269 bytes
+(epstopdf)             Output file: <figures/nonlinear-facet/sensitivity/facet_
+sensitivity_2_50_10-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:29:50
+(epstopdf)                    size: 43255 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/nonlinear-fa
+cet/sensitivity/facet_sensitivity_2_50_10-eps-converted-to.pdf figures/nonlinea
+r-facet/sensitivity/facet_sensitivity_2_50_10.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/nonlinear-facet/sensitivity/facet_
+sensitivity_2_50_10-eps-converted-to.pdf): PDF inclusion: found PDF version <1.
+7>, but at most version <1.5> allowed
+<figures/nonlinear-facet/sensitivity/facet_sensitivity_2_50_10-eps-converted-to
+.pdf, id=57, 722.7pt x 433.62pt>
+File: figures/nonlinear-facet/sensitivity/facet_sensitivity_2_50_10-eps-convert
+ed-to.pdf Graphic file (type pdf)
+<use figures/nonlinear-facet/sensitivity/facet_sensitivity_2_50_10-eps-converte
+d-to.pdf>
+Package pdftex.def Info: figures/nonlinear-facet/sensitivity/facet_sensitivity_
+2_50_10-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/nonlinear-facet/sensitivity/facet_
+sensitivity_2_50_100.eps>
+(epstopdf)                    date: 2021-10-02 09:36:22
+(epstopdf)                    size: 118283 bytes
+(epstopdf)             Output file: <figures/nonlinear-facet/sensitivity/facet_
+sensitivity_2_50_100-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:29:51
+(epstopdf)                    size: 35185 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/nonlinear-fa
+cet/sensitivity/facet_sensitivity_2_50_100-eps-converted-to.pdf figures/nonline
+ar-facet/sensitivity/facet_sensitivity_2_50_100.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/nonlinear-facet/sensitivity/facet_
+sensitivity_2_50_100-eps-converted-to.pdf): PDF inclusion: found PDF version <1
+.7>, but at most version <1.5> allowed
+<figures/nonlinear-facet/sensitivity/facet_sensitivity_2_50_100-eps-converted-t
+o.pdf, id=58, 722.7pt x 433.62pt>
+File: figures/nonlinear-facet/sensitivity/facet_sensitivity_2_50_100-eps-conver
+ted-to.pdf Graphic file (type pdf)
+<use figures/nonlinear-facet/sensitivity/facet_sensitivity_2_50_100-eps-convert
+ed-to.pdf>
+Package pdftex.def Info: figures/nonlinear-facet/sensitivity/facet_sensitivity_
+2_50_100-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/nonlinear-facet/sensitivity/facet_
+sensitivity_2_50_2000.eps>
+(epstopdf)                    date: 2021-10-02 09:36:24
+(epstopdf)                    size: 124344 bytes
+(epstopdf)             Output file: <figures/nonlinear-facet/sensitivity/facet_
+sensitivity_2_50_2000-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:29:52
+(epstopdf)                    size: 35911 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/nonlinear-fa
+cet/sensitivity/facet_sensitivity_2_50_2000-eps-converted-to.pdf figures/nonlin
+ear-facet/sensitivity/facet_sensitivity_2_50_2000.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/nonlinear-facet/sensitivity/facet_
+sensitivity_2_50_2000-eps-converted-to.pdf): PDF inclusion: found PDF version <
+1.7>, but at most version <1.5> allowed
+<figures/nonlinear-facet/sensitivity/facet_sensitivity_2_50_2000-eps-converted-
+to.pdf, id=59, 722.7pt x 433.62pt>
+File: figures/nonlinear-facet/sensitivity/facet_sensitivity_2_50_2000-eps-conve
+rted-to.pdf Graphic file (type pdf)
+<use figures/nonlinear-facet/sensitivity/facet_sensitivity_2_50_2000-eps-conver
+ted-to.pdf>
+Package pdftex.def Info: figures/nonlinear-facet/sensitivity/facet_sensitivity_
+2_50_2000-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/nonlinear-facet/sensitivity/facet_
+sensitivity_2_200_10.eps>
+(epstopdf)                    date: 2021-10-02 09:36:20
+(epstopdf)                    size: 170897 bytes
+(epstopdf)             Output file: <figures/nonlinear-facet/sensitivity/facet_
+sensitivity_2_200_10-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:29:53
+(epstopdf)                    size: 42497 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/nonlinear-fa
+cet/sensitivity/facet_sensitivity_2_200_10-eps-converted-to.pdf figures/nonline
+ar-facet/sensitivity/facet_sensitivity_2_200_10.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/nonlinear-facet/sensitivity/facet_
+sensitivity_2_200_10-eps-converted-to.pdf): PDF inclusion: found PDF version <1
+.7>, but at most version <1.5> allowed
+<figures/nonlinear-facet/sensitivity/facet_sensitivity_2_200_10-eps-converted-t
+o.pdf, id=60, 722.7pt x 433.62pt>
+File: figures/nonlinear-facet/sensitivity/facet_sensitivity_2_200_10-eps-conver
+ted-to.pdf Graphic file (type pdf)
+<use figures/nonlinear-facet/sensitivity/facet_sensitivity_2_200_10-eps-convert
+ed-to.pdf>
+Package pdftex.def Info: figures/nonlinear-facet/sensitivity/facet_sensitivity_
+2_200_10-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/nonlinear-facet/sensitivity/facet_
+sensitivity_2_200_100.eps>
+(epstopdf)                    date: 2021-10-02 09:36:23
+(epstopdf)                    size: 143559 bytes
+(epstopdf)             Output file: <figures/nonlinear-facet/sensitivity/facet_
+sensitivity_2_200_100-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:29:54
+(epstopdf)                    size: 38954 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/nonlinear-fa
+cet/sensitivity/facet_sensitivity_2_200_100-eps-converted-to.pdf figures/nonlin
+ear-facet/sensitivity/facet_sensitivity_2_200_100.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/nonlinear-facet/sensitivity/facet_
+sensitivity_2_200_100-eps-converted-to.pdf): PDF inclusion: found PDF version <
+1.7>, but at most version <1.5> allowed
+<figures/nonlinear-facet/sensitivity/facet_sensitivity_2_200_100-eps-converted-
+to.pdf, id=61, 722.7pt x 433.62pt>
+File: figures/nonlinear-facet/sensitivity/facet_sensitivity_2_200_100-eps-conve
+rted-to.pdf Graphic file (type pdf)
+<use figures/nonlinear-facet/sensitivity/facet_sensitivity_2_200_100-eps-conver
+ted-to.pdf>
+Package pdftex.def Info: figures/nonlinear-facet/sensitivity/facet_sensitivity_
+2_200_100-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/nonlinear-facet/sensitivity/facet_
+sensitivity_2_200_2000.eps>
+(epstopdf)                    date: 2021-10-02 09:36:25
+(epstopdf)                    size: 119822 bytes
+(epstopdf)             Output file: <figures/nonlinear-facet/sensitivity/facet_
+sensitivity_2_200_2000-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:29:54
+(epstopdf)                    size: 35333 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/nonlinear-fa
+cet/sensitivity/facet_sensitivity_2_200_2000-eps-converted-to.pdf figures/nonli
+near-facet/sensitivity/facet_sensitivity_2_200_2000.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/nonlinear-facet/sensitivity/facet_
+sensitivity_2_200_2000-eps-converted-to.pdf): PDF inclusion: found PDF version 
+<1.7>, but at most version <1.5> allowed
+<figures/nonlinear-facet/sensitivity/facet_sensitivity_2_200_2000-eps-converted
+-to.pdf, id=62, 722.7pt x 433.62pt>
+File: figures/nonlinear-facet/sensitivity/facet_sensitivity_2_200_2000-eps-conv
+erted-to.pdf Graphic file (type pdf)
+<use figures/nonlinear-facet/sensitivity/facet_sensitivity_2_200_2000-eps-conve
+rted-to.pdf>
+Package pdftex.def Info: figures/nonlinear-facet/sensitivity/facet_sensitivity_
+2_200_2000-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/nonlinear-facet/sensitivity/facet_
+sensitivity_2_1000_10.eps>
+(epstopdf)                    date: 2021-10-02 09:36:21
+(epstopdf)                    size: 170491 bytes
+(epstopdf)             Output file: <figures/nonlinear-facet/sensitivity/facet_
+sensitivity_2_1000_10-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:26:19
+(epstopdf)                    size: 42180 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/nonlinear-fa
+cet/sensitivity/facet_sensitivity_2_1000_10-eps-converted-to.pdf figures/nonlin
+ear-facet/sensitivity/facet_sensitivity_2_1000_10.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/nonlinear-facet/sensitivity/facet_
+sensitivity_2_1000_10-eps-converted-to.pdf): PDF inclusion: found PDF version <
+1.7>, but at most version <1.5> allowed
+<figures/nonlinear-facet/sensitivity/facet_sensitivity_2_1000_10-eps-converted-
+to.pdf, id=63, 722.7pt x 433.62pt>
+File: figures/nonlinear-facet/sensitivity/facet_sensitivity_2_1000_10-eps-conve
+rted-to.pdf Graphic file (type pdf)
+<use figures/nonlinear-facet/sensitivity/facet_sensitivity_2_1000_10-eps-conver
+ted-to.pdf>
+Package pdftex.def Info: figures/nonlinear-facet/sensitivity/facet_sensitivity_
+2_1000_10-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/nonlinear-facet/sensitivity/facet_
+sensitivity_2_1000_100.eps>
+(epstopdf)                    date: 2021-10-02 09:36:23
+(epstopdf)                    size: 150580 bytes
+(epstopdf)             Output file: <figures/nonlinear-facet/sensitivity/facet_
+sensitivity_2_1000_100-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:29:55
+(epstopdf)                    size: 39660 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/nonlinear-fa
+cet/sensitivity/facet_sensitivity_2_1000_100-eps-converted-to.pdf figures/nonli
+near-facet/sensitivity/facet_sensitivity_2_1000_100.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/nonlinear-facet/sensitivity/facet_
+sensitivity_2_1000_100-eps-converted-to.pdf): PDF inclusion: found PDF version 
+<1.7>, but at most version <1.5> allowed
+<figures/nonlinear-facet/sensitivity/facet_sensitivity_2_1000_100-eps-converted
+-to.pdf, id=64, 722.7pt x 433.62pt>
+File: figures/nonlinear-facet/sensitivity/facet_sensitivity_2_1000_100-eps-conv
+erted-to.pdf Graphic file (type pdf)
+<use figures/nonlinear-facet/sensitivity/facet_sensitivity_2_1000_100-eps-conve
+rted-to.pdf>
+Package pdftex.def Info: figures/nonlinear-facet/sensitivity/facet_sensitivity_
+2_1000_100-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/nonlinear-facet/sensitivity/facet_
+sensitivity_2_1000_2000.eps>
+(epstopdf)                    date: 2021-10-02 09:36:26
+(epstopdf)                    size: 119703 bytes
+(epstopdf)             Output file: <figures/nonlinear-facet/sensitivity/facet_
+sensitivity_2_1000_2000-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:29:56
+(epstopdf)                    size: 35333 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/nonlinear-fa
+cet/sensitivity/facet_sensitivity_2_1000_2000-eps-converted-to.pdf figures/nonl
+inear-facet/sensitivity/facet_sensitivity_2_1000_2000.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/nonlinear-facet/sensitivity/facet_
+sensitivity_2_1000_2000-eps-converted-to.pdf): PDF inclusion: found PDF version
+ <1.7>, but at most version <1.5> allowed
+<figures/nonlinear-facet/sensitivity/facet_sensitivity_2_1000_2000-eps-converte
+d-to.pdf, id=65, 722.7pt x 433.62pt>
+File: figures/nonlinear-facet/sensitivity/facet_sensitivity_2_1000_2000-eps-con
+verted-to.pdf Graphic file (type pdf)
+<use figures/nonlinear-facet/sensitivity/facet_sensitivity_2_1000_2000-eps-conv
+erted-to.pdf>
+Package pdftex.def Info: figures/nonlinear-facet/sensitivity/facet_sensitivity_
+2_1000_2000-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/nonlinear-facet/specificity/facet_
+specificity_2_50_10.eps>
+(epstopdf)                    date: 2021-10-02 09:36:27
+(epstopdf)                    size: 180311 bytes
+(epstopdf)             Output file: <figures/nonlinear-facet/specificity/facet_
+specificity_2_50_10-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:29:57
+(epstopdf)                    size: 44228 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/nonlinear-fa
+cet/specificity/facet_specificity_2_50_10-eps-converted-to.pdf figures/nonlinea
+r-facet/specificity/facet_specificity_2_50_10.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/nonlinear-facet/specificity/facet_
+specificity_2_50_10-eps-converted-to.pdf): PDF inclusion: found PDF version <1.
+7>, but at most version <1.5> allowed
+<figures/nonlinear-facet/specificity/facet_specificity_2_50_10-eps-converted-to
+.pdf, id=66, 722.7pt x 433.62pt>
+File: figures/nonlinear-facet/specificity/facet_specificity_2_50_10-eps-convert
+ed-to.pdf Graphic file (type pdf)
+<use figures/nonlinear-facet/specificity/facet_specificity_2_50_10-eps-converte
+d-to.pdf>
+Package pdftex.def Info: figures/nonlinear-facet/specificity/facet_specificity_
+2_50_10-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/nonlinear-facet/specificity/facet_
+specificity_2_50_100.eps>
+(epstopdf)                    date: 2021-10-02 09:36:29
+(epstopdf)                    size: 120963 bytes
+(epstopdf)             Output file: <figures/nonlinear-facet/specificity/facet_
+specificity_2_50_100-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:29:58
+(epstopdf)                    size: 35461 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/nonlinear-fa
+cet/specificity/facet_specificity_2_50_100-eps-converted-to.pdf figures/nonline
+ar-facet/specificity/facet_specificity_2_50_100.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/nonlinear-facet/specificity/facet_
+specificity_2_50_100-eps-converted-to.pdf): PDF inclusion: found PDF version <1
+.7>, but at most version <1.5> allowed
+<figures/nonlinear-facet/specificity/facet_specificity_2_50_100-eps-converted-t
+o.pdf, id=67, 722.7pt x 433.62pt>
+File: figures/nonlinear-facet/specificity/facet_specificity_2_50_100-eps-conver
+ted-to.pdf Graphic file (type pdf)
+<use figures/nonlinear-facet/specificity/facet_specificity_2_50_100-eps-convert
+ed-to.pdf>
+Package pdftex.def Info: figures/nonlinear-facet/specificity/facet_specificity_
+2_50_100-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/nonlinear-facet/specificity/facet_
+specificity_2_50_2000.eps>
+(epstopdf)                    date: 2021-10-02 09:36:32
+(epstopdf)                    size: 122083 bytes
+(epstopdf)             Output file: <figures/nonlinear-facet/specificity/facet_
+specificity_2_50_2000-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:29:58
+(epstopdf)                    size: 35637 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/nonlinear-fa
+cet/specificity/facet_specificity_2_50_2000-eps-converted-to.pdf figures/nonlin
+ear-facet/specificity/facet_specificity_2_50_2000.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/nonlinear-facet/specificity/facet_
+specificity_2_50_2000-eps-converted-to.pdf): PDF inclusion: found PDF version <
+1.7>, but at most version <1.5> allowed
+<figures/nonlinear-facet/specificity/facet_specificity_2_50_2000-eps-converted-
+to.pdf, id=68, 722.7pt x 433.62pt>
+File: figures/nonlinear-facet/specificity/facet_specificity_2_50_2000-eps-conve
+rted-to.pdf Graphic file (type pdf)
+<use figures/nonlinear-facet/specificity/facet_specificity_2_50_2000-eps-conver
+ted-to.pdf>
+Package pdftex.def Info: figures/nonlinear-facet/specificity/facet_specificity_
+2_50_2000-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/nonlinear-facet/specificity/facet_
+specificity_2_200_10.eps>
+(epstopdf)                    date: 2021-10-02 09:36:27
+(epstopdf)                    size: 174990 bytes
+(epstopdf)             Output file: <figures/nonlinear-facet/specificity/facet_
+specificity_2_200_10-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:29:59
+(epstopdf)                    size: 43146 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/nonlinear-fa
+cet/specificity/facet_specificity_2_200_10-eps-converted-to.pdf figures/nonline
+ar-facet/specificity/facet_specificity_2_200_10.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/nonlinear-facet/specificity/facet_
+specificity_2_200_10-eps-converted-to.pdf): PDF inclusion: found PDF version <1
+.7>, but at most version <1.5> allowed
+<figures/nonlinear-facet/specificity/facet_specificity_2_200_10-eps-converted-t
+o.pdf, id=69, 722.7pt x 433.62pt>
+File: figures/nonlinear-facet/specificity/facet_specificity_2_200_10-eps-conver
+ted-to.pdf Graphic file (type pdf)
+<use figures/nonlinear-facet/specificity/facet_specificity_2_200_10-eps-convert
+ed-to.pdf>
+Package pdftex.def Info: figures/nonlinear-facet/specificity/facet_specificity_
+2_200_10-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/nonlinear-facet/specificity/facet_
+specificity_2_200_100.eps>
+(epstopdf)                    date: 2021-10-02 09:36:30
+(epstopdf)                    size: 153731 bytes
+(epstopdf)             Output file: <figures/nonlinear-facet/specificity/facet_
+specificity_2_200_100-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:30:00
+(epstopdf)                    size: 40500 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/nonlinear-fa
+cet/specificity/facet_specificity_2_200_100-eps-converted-to.pdf figures/nonlin
+ear-facet/specificity/facet_specificity_2_200_100.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/nonlinear-facet/specificity/facet_
+specificity_2_200_100-eps-converted-to.pdf): PDF inclusion: found PDF version <
+1.7>, but at most version <1.5> allowed
+<figures/nonlinear-facet/specificity/facet_specificity_2_200_100-eps-converted-
+to.pdf, id=70, 722.7pt x 433.62pt>
+File: figures/nonlinear-facet/specificity/facet_specificity_2_200_100-eps-conve
+rted-to.pdf Graphic file (type pdf)
+<use figures/nonlinear-facet/specificity/facet_specificity_2_200_100-eps-conver
+ted-to.pdf>
+Package pdftex.def Info: figures/nonlinear-facet/specificity/facet_specificity_
+2_200_100-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/nonlinear-facet/specificity/facet_
+specificity_2_200_2000.eps>
+(epstopdf)                    date: 2021-10-02 09:36:32
+(epstopdf)                    size: 120427 bytes
+(epstopdf)             Output file: <figures/nonlinear-facet/specificity/facet_
+specificity_2_200_2000-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:30:01
+(epstopdf)                    size: 35297 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/nonlinear-fa
+cet/specificity/facet_specificity_2_200_2000-eps-converted-to.pdf figures/nonli
+near-facet/specificity/facet_specificity_2_200_2000.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/nonlinear-facet/specificity/facet_
+specificity_2_200_2000-eps-converted-to.pdf): PDF inclusion: found PDF version 
+<1.7>, but at most version <1.5> allowed
+<figures/nonlinear-facet/specificity/facet_specificity_2_200_2000-eps-converted
+-to.pdf, id=71, 722.7pt x 433.62pt>
+File: figures/nonlinear-facet/specificity/facet_specificity_2_200_2000-eps-conv
+erted-to.pdf Graphic file (type pdf)
+<use figures/nonlinear-facet/specificity/facet_specificity_2_200_2000-eps-conve
+rted-to.pdf>
+Package pdftex.def Info: figures/nonlinear-facet/specificity/facet_specificity_
+2_200_2000-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/nonlinear-facet/specificity/facet_
+specificity_2_1000_10.eps>
+(epstopdf)                    date: 2021-10-02 09:36:28
+(epstopdf)                    size: 176575 bytes
+(epstopdf)             Output file: <figures/nonlinear-facet/specificity/facet_
+specificity_2_1000_10-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:26:20
+(epstopdf)                    size: 43146 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/nonlinear-fa
+cet/specificity/facet_specificity_2_1000_10-eps-converted-to.pdf figures/nonlin
+ear-facet/specificity/facet_specificity_2_1000_10.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/nonlinear-facet/specificity/facet_
+specificity_2_1000_10-eps-converted-to.pdf): PDF inclusion: found PDF version <
+1.7>, but at most version <1.5> allowed
+<figures/nonlinear-facet/specificity/facet_specificity_2_1000_10-eps-converted-
+to.pdf, id=72, 722.7pt x 433.62pt>
+File: figures/nonlinear-facet/specificity/facet_specificity_2_1000_10-eps-conve
+rted-to.pdf Graphic file (type pdf)
+<use figures/nonlinear-facet/specificity/facet_specificity_2_1000_10-eps-conver
+ted-to.pdf>
+Package pdftex.def Info: figures/nonlinear-facet/specificity/facet_specificity_
+2_1000_10-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/nonlinear-facet/specificity/facet_
+specificity_2_1000_100.eps>
+(epstopdf)                    date: 2021-10-02 09:36:31
+(epstopdf)                    size: 148275 bytes
+(epstopdf)             Output file: <figures/nonlinear-facet/specificity/facet_
+specificity_2_1000_100-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:30:02
+(epstopdf)                    size: 39656 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/nonlinear-fa
+cet/specificity/facet_specificity_2_1000_100-eps-converted-to.pdf figures/nonli
+near-facet/specificity/facet_specificity_2_1000_100.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/nonlinear-facet/specificity/facet_
+specificity_2_1000_100-eps-converted-to.pdf): PDF inclusion: found PDF version 
+<1.7>, but at most version <1.5> allowed
+<figures/nonlinear-facet/specificity/facet_specificity_2_1000_100-eps-converted
+-to.pdf, id=73, 722.7pt x 433.62pt>
+File: figures/nonlinear-facet/specificity/facet_specificity_2_1000_100-eps-conv
+erted-to.pdf Graphic file (type pdf)
+<use figures/nonlinear-facet/specificity/facet_specificity_2_1000_100-eps-conve
+rted-to.pdf>
+Package pdftex.def Info: figures/nonlinear-facet/specificity/facet_specificity_
+2_1000_100-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+Package epstopdf Info: Source file: <figures/nonlinear-facet/specificity/facet_
+specificity_2_1000_2000.eps>
+(epstopdf)                    date: 2021-10-02 09:36:33
+(epstopdf)                    size: 125664 bytes
+(epstopdf)             Output file: <figures/nonlinear-facet/specificity/facet_
+specificity_2_1000_2000-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-10-02 19:30:02
+(epstopdf)                    size: 36190 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=figures/nonlinear-fa
+cet/specificity/facet_specificity_2_1000_2000-eps-converted-to.pdf figures/nonl
+inear-facet/specificity/facet_specificity_2_1000_2000.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/nonlinear-facet/specificity/facet_
+specificity_2_1000_2000-eps-converted-to.pdf): PDF inclusion: found PDF version
+ <1.7>, but at most version <1.5> allowed
+<figures/nonlinear-facet/specificity/facet_specificity_2_1000_2000-eps-converte
+d-to.pdf, id=74, 722.7pt x 433.62pt>
+File: figures/nonlinear-facet/specificity/facet_specificity_2_1000_2000-eps-con
+verted-to.pdf Graphic file (type pdf)
+<use figures/nonlinear-facet/specificity/facet_specificity_2_1000_2000-eps-conv
+erted-to.pdf>
+Package pdftex.def Info: figures/nonlinear-facet/specificity/facet_specificity_
+2_1000_2000-eps-converted-to.pdf  used on input line 121.
+(pdftex.def)             Requested size: 469.75502pt x 281.85628pt.
+[1{C:/Users/Connor/AppData/Local/MiKTeX/pdftex/config/pdftex.map}
+
+ <./figures/linear-facet/train-mse/facet_train_mse_1_50_10-eps-converted-to.pdf
+>] [2 <./figures/linear-facet/train-mse/facet_train_mse_1_50_100-eps-converted-
+to.pdf> <./figures/linear-facet/train-mse/facet_train_mse_1_50_2000-eps-convert
+ed-to.pdf>]
+[3 <./figures/linear-facet/train-mse/facet_train_mse_1_200_10-eps-converted-to.
+pdf> <./figures/linear-facet/train-mse/facet_train_mse_1_200_100-eps-converted-
+to.pdf>] [4 <./figures/linear-facet/train-mse/facet_train_mse_1_200_2000-eps-co
+nverted-to.pdf> <./figures/linear-facet/train-mse/facet_train_mse_1_1000_10-eps
+-converted-to.pdf>] [5 <./figures/linear-facet/train-mse/facet_train_mse_1_1000
+_100-eps-converted-to.pdf> <./figures/linear-facet/train-mse/facet_train_mse_1_
+1000_2000-eps-converted-to.pdf>] [6 <./figures/linear-facet/test-mse/facet_test
+_mse_1_50_10-eps-converted-to.pdf> <./figures/linear-facet/test-mse/facet_test_
+mse_1_50_100-eps-converted-to.pdf>] [7 <./figures/linear-facet/test-mse/facet_t
+est_mse_1_50_2000-eps-converted-to.pdf> <./figures/linear-facet/test-mse/facet_
+test_mse_1_200_10-eps-converted-to.pdf>] [8 <./figures/linear-facet/test-mse/fa
+cet_test_mse_1_200_100-eps-converted-to.pdf> <./figures/linear-facet/test-mse/f
+acet_test_mse_1_200_2000-eps-converted-to.pdf>] [9 <./figures/linear-facet/test
+-mse/facet_test_mse_1_1000_10-eps-converted-to.pdf> <./figures/linear-facet/tes
+t-mse/facet_test_mse_1_1000_100-eps-converted-to.pdf>] [10 <./figures/linear-fa
+cet/test-mse/facet_test_mse_1_1000_2000-eps-converted-to.pdf> <./figures/linear
+-facet/sensitivity/facet_sensitivity_1_50_10-eps-converted-to.pdf>] [11 <./figu
+res/linear-facet/sensitivity/facet_sensitivity_1_50_100-eps-converted-to.pdf> <
+./figures/linear-facet/sensitivity/facet_sensitivity_1_50_2000-eps-converted-to
+.pdf>] [12 <./figures/linear-facet/sensitivity/facet_sensitivity_1_200_10-eps-c
+onverted-to.pdf> <./figures/linear-facet/sensitivity/facet_sensitivity_1_200_10
+0-eps-converted-to.pdf>] [13 <./figures/linear-facet/sensitivity/facet_sensitiv
+ity_1_200_2000-eps-converted-to.pdf> <./figures/linear-facet/sensitivity/facet_
+sensitivity_1_1000_10-eps-converted-to.pdf>] [14 <./figures/linear-facet/sensit
+ivity/facet_sensitivity_1_1000_100-eps-converted-to.pdf> <./figures/linear-face
+t/sensitivity/facet_sensitivity_1_1000_2000-eps-converted-to.pdf>] [15 <./figur
+es/linear-facet/specificity/facet_specificity_1_50_10-eps-converted-to.pdf> <./
+figures/linear-facet/specificity/facet_specificity_1_50_100-eps-converted-to.pd
+f>] [16 <./figures/linear-facet/specificity/facet_specificity_1_50_2000-eps-con
+verted-to.pdf> <./figures/linear-facet/specificity/facet_specificity_1_200_10-e
+ps-converted-to.pdf>] [17 <./figures/linear-facet/specificity/facet_specificity
+_1_200_100-eps-converted-to.pdf> <./figures/linear-facet/specificity/facet_spec
+ificity_1_200_2000-eps-converted-to.pdf>] [18 <./figures/linear-facet/specifici
+ty/facet_specificity_1_1000_10-eps-converted-to.pdf> <./figures/linear-facet/sp
+ecificity/facet_specificity_1_1000_100-eps-converted-to.pdf>] [19 <./figures/li
+near-facet/specificity/facet_specificity_1_1000_2000-eps-converted-to.pdf> <./f
+igures/nonlinear-facet/train-mse/facet_train_mse_2_50_10-eps-converted-to.pdf>]
+[20 <./figures/nonlinear-facet/train-mse/facet_train_mse_2_50_100-eps-converted
+-to.pdf> <./figures/nonlinear-facet/train-mse/facet_train_mse_2_50_2000-eps-con
+verted-to.pdf>] [21 <./figures/nonlinear-facet/train-mse/facet_train_mse_2_200_
+10-eps-converted-to.pdf> <./figures/nonlinear-facet/train-mse/facet_train_mse_2
+_200_100-eps-converted-to.pdf>] [22 <./figures/nonlinear-facet/train-mse/facet_
+train_mse_2_200_2000-eps-converted-to.pdf> <./figures/nonlinear-facet/train-mse
+/facet_train_mse_2_1000_10-eps-converted-to.pdf>] [23 <./figures/nonlinear-face
+t/train-mse/facet_train_mse_2_1000_100-eps-converted-to.pdf> <./figures/nonline
+ar-facet/train-mse/facet_train_mse_2_1000_2000-eps-converted-to.pdf>] [24 <./fi
+gures/nonlinear-facet/test-mse/facet_test_mse_2_50_10-eps-converted-to.pdf> <./
+figures/nonlinear-facet/test-mse/facet_test_mse_2_50_100-eps-converted-to.pdf>]
+[25 <./figures/nonlinear-facet/test-mse/facet_test_mse_2_50_2000-eps-converted-
+to.pdf> <./figures/nonlinear-facet/test-mse/facet_test_mse_2_200_10-eps-convert
+ed-to.pdf>] [26 <./figures/nonlinear-facet/test-mse/facet_test_mse_2_200_100-ep
+s-converted-to.pdf> <./figures/nonlinear-facet/test-mse/facet_test_mse_2_200_20
+00-eps-converted-to.pdf>] [27 <./figures/nonlinear-facet/test-mse/facet_test_ms
+e_2_1000_10-eps-converted-to.pdf> <./figures/nonlinear-facet/test-mse/facet_tes
+t_mse_2_1000_100-eps-converted-to.pdf>] [28 <./figures/nonlinear-facet/test-mse
+/facet_test_mse_2_1000_2000-eps-converted-to.pdf> <./figures/nonlinear-facet/se
+nsitivity/facet_sensitivity_2_50_10-eps-converted-to.pdf>] [29 <./figures/nonli
+near-facet/sensitivity/facet_sensitivity_2_50_100-eps-converted-to.pdf> <./figu
+res/nonlinear-facet/sensitivity/facet_sensitivity_2_50_2000-eps-converted-to.pd
+f>] [30 <./figures/nonlinear-facet/sensitivity/facet_sensitivity_2_200_10-eps-c
+onverted-to.pdf> <./figures/nonlinear-facet/sensitivity/facet_sensitivity_2_200
+_100-eps-converted-to.pdf>] [31 <./figures/nonlinear-facet/sensitivity/facet_se
+nsitivity_2_200_2000-eps-converted-to.pdf> <./figures/nonlinear-facet/sensitivi
+ty/facet_sensitivity_2_1000_10-eps-converted-to.pdf>] [32 <./figures/nonlinear-
+facet/sensitivity/facet_sensitivity_2_1000_100-eps-converted-to.pdf> <./figures
+/nonlinear-facet/sensitivity/facet_sensitivity_2_1000_2000-eps-converted-to.pdf
+>] [33 <./figures/nonlinear-facet/specificity/facet_specificity_2_50_10-eps-con
+verted-to.pdf> <./figures/nonlinear-facet/specificity/facet_specificity_2_50_10
+0-eps-converted-to.pdf>] [34 <./figures/nonlinear-facet/specificity/facet_speci
+ficity_2_50_2000-eps-converted-to.pdf> <./figures/nonlinear-facet/specificity/f
+acet_specificity_2_200_10-eps-converted-to.pdf>] [35 <./figures/nonlinear-facet
+/specificity/facet_specificity_2_200_100-eps-converted-to.pdf> <./figures/nonli
+near-facet/specificity/facet_specificity_2_200_2000-eps-converted-to.pdf>]
+[36 <./figures/nonlinear-facet/specificity/facet_specificity_2_1000_10-eps-conv
+erted-to.pdf> <./figures/nonlinear-facet/specificity/facet_specificity_2_1000_1
+00-eps-converted-to.pdf>] [37 <./figures/nonlinear-facet/specificity/facet_spec
+ificity_2_1000_2000-eps-converted-to.pdf>] (supplementary.aux)
 Package rerunfilecheck Info: File `supplementary.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 9612 strings out of 478868
- 151791 string characters out of 2848335
- 453655 words of memory out of 3000000
- 27438 multiletter control sequences out of 15000+600000
+ 15518 strings out of 478868
+ 302846 string characters out of 2848335
+ 575905 words of memory out of 3000000
+ 33070 multiletter control sequences out of 15000+600000
  403430 words of font info for 27 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 60i,7n,66p,276b,377s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,6n,66p,407b,506s stack positions out of 5000i,500n,10000p,200000b,80000s
 <C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm
 /cmmi10.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/public/a
 msfonts/cm/cmr10.pfb>
-Output written on supplementary.pdf (1 page, 76343 bytes).
+Output written on supplementary.pdf (37 pages, 2983496 bytes).
 PDF statistics:
- 33 PDF objects out of 1000 (max. 8388607)
- 3 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1062 PDF objects out of 1200 (max. 8388607)
+ 110 named destinations out of 1000 (max. 500000)
+ 361 words of extra memory for PDF output out of 10000 (max. 10000000)
 

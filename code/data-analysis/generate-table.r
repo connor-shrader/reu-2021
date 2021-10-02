@@ -178,6 +178,8 @@ dimensions <- expand.grid(n = c(50, 200, 1000),
                           type = c("train_mse", "test_mse", "sensitivity", "specificity"),
                           response = c(1, 2))
 
+dimensions <- dimensions[19:72, ]
+
 tables <- apply(X = dimensions, MARGIN = 1, FUN = function(row) {
   n <- strtoi(row[["n"]])
   p <- strtoi(row[["p"]])
@@ -187,10 +189,12 @@ tables <- apply(X = dimensions, MARGIN = 1, FUN = function(row) {
   if (type == "train_mse") {
     folder = "train-mse"
   }
-  
-  if (type == "test_mse") {
+  else if (type == "test_mse") {
     folder = "test-mse"
   } 
+  else {
+    folder = type
+  }
   
   filename <- paste("facet", type, response, n, p, sep = "_")
   path <- paste("../../tables", ifelse(response == 1, "linear-facet", "nonlinear-facet"),
