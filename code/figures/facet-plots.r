@@ -42,31 +42,46 @@ plot_metric_old <- function(data, metric, facet, ...) {
 }
 
 # This function is a more complete version of plot_metric.
-plot_metric <- function(data, metric, facet, color, ylabel = "Mean test MSE", fixy = FALSE, ...) {
+plot_metric <- function(data, metric, facet, color, ylabel = "Mean test MSE", 
+                        fixy = FALSE, large_text = FALSE, ...) {
   mean_metric <- paste("mean_", metric, sep = "")
   sd_metric <- paste("sd_", metric, sep = "")
   
   dat <- subset_data(data, ...)
   
   plt <- ggplot(data = dat) +
-    geom_point(mapping = aes_string(x = "model_name", y = mean_metric, color = color, shape = color, fill = color), size = 2) + 
+    geom_point(mapping = aes_string(x = "model_name", y = mean_metric, color = color, shape = color, fill = color), size = 4) + 
     # geom_errorbar(mapping = aes_string(x = "model_name", y = mean_metric, ymin = paste(mean_metric, "-", sd_metric), ymax = paste(mean_metric, "+", sd_metric))) +
     scale_shape_manual(values = 21:24, name = "Correlation") +
     scale_color_manual(values = hue_pal()(4), name = "Correlation") +
     scale_fill_manual(values = hue_pal()(4), name = "Correlation") +
-    labs(x = "Model name", y = ylabel, color = "Correlation", shape = "Correlation") +
+    labs(x = "Model", y = ylabel, color = "Correlation", shape = "Correlation") +
     theme(
       panel.background = element_rect(fill = "white"),
       panel.border = element_rect(color = "black", fill = NA, size = 0.2),
       panel.grid = element_line(color = "gray90"),
       strip.background = element_blank(),
-      axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5),
+      axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5, size = 12),
+      axis.text.y = element_text(size = 12),
       strip.text = element_text(size = 12),
       axis.title = element_text(size = 16),
       legend.key = element_rect(fill = "white"),
       legend.text = element_text(size = 12),
       legend.title = element_text(size = 16)
     )
+  
+  if(large_text == TRUE) {
+    plt <- plt + theme(
+      axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5, size = 18),
+      axis.text.y = element_text(size = 18),
+      strip.text = element_text(size = 18),
+      axis.title = element_text(size = 26),
+      legend.text = element_text(size = 18),
+      legend.title = element_text(size = 18),
+      legend.position="bottom",
+      legend.box = "horizontal"
+    )
+  }
   
   # If fixy is false, then let y vary for different values of sigma. Otherwise, keep
   # the y scale the same
@@ -132,6 +147,13 @@ for (response in 1:2) {
                                    from = c("1", "3", "6"),
                                    to = c("sigma == 1", "sigma == 3", "sigma == 6"))
   
+  # Capitalize the type column
+  plot_results$type <- mapvalues(plot_results$type,
+                                 from = c("independent", "symmetric",
+                                          "autoregressive", "blockwise"),
+                                 to = c("Independent", "Symmetric",
+                                        "Autoregressive", "Blockwise"))
+  
   plot_results <- arrange(plot_results, corr)
   accuracy_results <- plot_results[!plot_results$model_name %in% c("OLS",
                                    "Ridge", "Adap. ridge", "XGBoost", "RF", "SVM"), ]
@@ -143,7 +165,8 @@ for (response in 1:2) {
     p <- row[["p"]]
     
     plt <- plot_metric(plot_results, "train_mse", facet = c("type", "st_dev"),
-                color = "corr", ylabel = "Mean Train MSE", fixy = FALSE, n = n, p = p)
+                color = "corr", ylabel = "Mean Train MSE", fixy = FALSE,
+                large_text = FALSE, n = n, p = p)
     save_plot(plot = plt,
               filename = paste("facet_train_mse_", response, "_", n, "_", p, sep = ""),
               path = paste(directory, "train-mse", sep = ""))
@@ -156,7 +179,8 @@ for (response in 1:2) {
     p <- row[["p"]]
     
     plt <- plot_metric(plot_results, "test_mse", facet = c("type", "st_dev"),
-                       color = "corr", ylabel = "Mean Test MSE", fixy = FALSE, n = n, p = p)
+                       color = "corr", ylabel = "Mean Test MSE", fixy = FALSE,
+                       large_text = FALSE, n = n, p = p)
     save_plot(plot = plt,
               filename = paste("facet_test_mse_", response, "_", n, "_", p, sep = ""),
               path = paste(directory, "test-mse", sep = ""))
@@ -170,7 +194,7 @@ for (response in 1:2) {
     
     plt <- plot_metric(accuracy_results, "sensitivity", facet = c("type", "st_dev"),
                        color = "corr", ylabel = expression(paste("Mean ", beta, "-sensitivity")),
-                       fixy = TRUE, n = n, p = p)
+                       fixy = TRUE, large_text = FALSE, n = n, p = p)
     save_plot(plot = plt,
               filename = paste("facet_sensitivity_", response, "_", n, "_", p, sep = ""),
               path = paste(directory, "sensitivity", sep = ""))
@@ -184,14 +208,25 @@ for (response in 1:2) {
     
     plt <- plot_metric(accuracy_results, "specificity", facet = c("type", "st_dev"),
                        color = "corr", ylabel = expression(paste("Mean ", beta, "-specificity")),
-                       fixy = TRUE, n = n, p = p)
+                       fixy = TRUE, large_text = FALSE, n = n, p = p)
     save_plot(plot = plt,
               filename = paste("facet_specificity_", response, "_", n, "_", p, sep = ""),
               path = paste(directory, "specificity", sep = ""))
     
     return(plt)
   })
+  
+  # Create the publication plots
+  
+  publication_directory = "../../figures/publication-facet/"
+  
+  plt <- plot_metric(plot_results, "train_mse", facet = c("type", "st_dev"),
+                     color = "corr", ylabel = "Mean Train MSE",
+                     fixy = FALSE, large_text = TRUE, n = 50, p = 2000)
+  save_plot(plot = plt,
+            filename = paste("publication_facet_train-mse_", response, "_50_2000", sep = ""),
+            path = publication_directory,
+            width = 10, height = 10)
 }
-
 
 

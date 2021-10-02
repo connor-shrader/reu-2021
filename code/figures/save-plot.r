@@ -1,11 +1,11 @@
-save_plot <- function(plot, filename, path, png_only = FALSE) {
+save_plot <- function(plot, filename, path, png_only = FALSE, width = 10, height = 6) {
   ggsave(
     filename = paste(filename, ".png", sep = ""),
     path = path,
     plot = plot,
     type = "cairo-png",
-    width = 10,
-    height = 6,
+    width = width,
+    height = height,
     unit = "in"
   )
   
@@ -15,8 +15,8 @@ save_plot <- function(plot, filename, path, png_only = FALSE) {
       path = path,
       plot = plot,
       device = cairo_ps,
-      width = 10,
-      height = 6,
+      width = width,
+      height = height,
       unit = "in"
     )
   }
