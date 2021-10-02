@@ -72,12 +72,12 @@ plot_metric <- function(data, metric, facet, color, ylabel = "Mean test MSE",
   
   if(large_text == TRUE) {
     plt <- plt + theme(
-      axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5, size = 18),
-      axis.text.y = element_text(size = 18),
-      strip.text = element_text(size = 18),
-      axis.title = element_text(size = 26),
-      legend.text = element_text(size = 18),
-      legend.title = element_text(size = 18),
+      axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5, size = 20),
+      axis.text.y = element_text(size = 20),
+      strip.text = element_text(size = 20),
+      axis.title = element_text(size = 30),
+      legend.text = element_text(size = 20),
+      legend.title = element_text(size = 20),
       legend.position="bottom",
       legend.box = "horizontal"
     )
@@ -160,6 +160,7 @@ for (response in 1:2) {
   
   dimensions <- expand.grid(n = c(50, 200, 1000), p = c(10, 100, 2000))
   
+  # Train MSE
   apply(X = dimensions, MARGIN = 1, FUN = function(row) {
     n <- row[["n"]]
     p <- row[["p"]]
@@ -174,6 +175,7 @@ for (response in 1:2) {
     return(plt)
   })
   
+  # Test MSE
   apply(X = dimensions, MARGIN = 1, FUN = function(row) {
     n <- row[["n"]]
     p <- row[["p"]]
@@ -188,6 +190,7 @@ for (response in 1:2) {
     return(plt)
   })
   
+  # Sensitivity
   apply(X = dimensions, MARGIN = 1, FUN = function(row) {
     n <- row[["n"]]
     p <- row[["p"]]
@@ -202,6 +205,7 @@ for (response in 1:2) {
     return(plt)
   })
   
+  # Specificity
   apply(X = dimensions, MARGIN = 1, FUN = function(row) {
     n <- row[["n"]]
     p <- row[["p"]]
@@ -220,11 +224,39 @@ for (response in 1:2) {
   
   publication_directory = "../../figures/publication-facet/"
   
+  # Train MSE
   plt <- plot_metric(plot_results, "train_mse", facet = c("type", "st_dev"),
                      color = "corr", ylabel = "Mean Train MSE",
                      fixy = FALSE, large_text = TRUE, n = 50, p = 2000)
   save_plot(plot = plt,
-            filename = paste("publication_facet_train-mse_", response, "_50_2000", sep = ""),
+            filename = paste("publication_facet_train_mse_", response, "_50_2000", sep = ""),
+            path = publication_directory,
+            width = 10, height = 10)
+  
+  # Test MSE
+  plt <- plot_metric(plot_results, "test_mse", facet = c("type", "st_dev"),
+                     color = "corr", ylabel = "Mean Test MSE",
+                     fixy = FALSE, large_text = TRUE, n = 50, p = 2000)
+  save_plot(plot = plt,
+            filename = paste("publication_facet_test_mse_", response, "_50_2000", sep = ""),
+            path = publication_directory,
+            width = 10, height = 10)
+  
+  # Sensitivity
+  plt <- plot_metric(accuracy_results, "sensitivity", facet = c("type", "st_dev"),
+                     color = "corr", ylabel = expression(paste("Mean ", beta, "-sensitivity")),
+                     fixy = TRUE, large_text = TRUE, n = 50, p = 2000)
+  save_plot(plot = plt,
+            filename = paste("publication_facet_sensitivity_", response, "_50_2000", sep = ""),
+            path = publication_directory,
+            width = 10, height = 10)
+  
+  # Specificity
+  plt <- plot_metric(accuracy_results, "specificity", facet = c("type", "st_dev"),
+                     color = "corr", ylabel = expression(paste("Mean ", beta, "-specificity")),
+                     fixy = TRUE, large_text = TRUE, n = 50, p = 2000)
+  save_plot(plot = plt,
+            filename = paste("publication_facet_specificity_", response, "_50_2000", sep = ""),
             path = publication_directory,
             width = 10, height = 10)
 }
