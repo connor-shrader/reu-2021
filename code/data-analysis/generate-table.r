@@ -47,12 +47,13 @@ SD4 <- function(x) {
   return(round(sd(x), 4))
 }
 
-generate_raw_table <- function(data, metric, ...) {
-  data <- subset_data(data, ...)
-  data <- data[!is.na(data[[metric]]), ]
+generate_raw_table <- function(dat, metric, ...) {
+  print(metric)
+  dat <<- subset_data(dat, ...)
+  dat <<- dat[!is.na(dat[[metric]]), ]
   
   # table_results contains the data used to generate a LaTeX summary table.
-  table_results <- data[c("st_dev", "type", "corr", "model_name", metric)]
+  table_results <<- dat[c("st_dev", "type", "corr", "model_name", metric)]
   table_results[[metric]] <- as.numeric(table_results[[metric]])
   
   # Create a tabular object from the tables library. The rows are layered by the
@@ -97,6 +98,7 @@ generate_raw_table <- function(data, metric, ...) {
   
   # The following two lines remove rows and columns that have a 0 as the first entry.
   # This removes unncessary rows and columns that aren't used for our plot/table.
+  tab <<- tab
   tab <- tab[tab[, 1] > -1, ]
   tab <- tab[, tab[1, ] > -1]
   
@@ -117,8 +119,8 @@ repair_table <- function(table_string) {
   return(new_string)
 }
 
-generate_table <- function(data, metric, filename, path, ...) {
-  raw_table <- generate_raw_table(data, metric, ...)
+generate_table <- function(dat, metric, filename, path, ...) {
+  raw_table <- generate_raw_table(dat, metric, ...)
   repaired_table <- repair_table(raw_table)
   
   last_char <- substr(path, nchar(path), nchar(path))
@@ -127,7 +129,9 @@ generate_table <- function(data, metric, filename, path, ...) {
   }
   
   directory <- paste(path, filename, ".tex", sep = "")
+  print(directory)
   write(repaired_table, file = directory)
+  print("Saved a table")
 }
 
 all_linear_results <- readRDS("../../results/monte-carlo-linear/all_linear_results.rds")
@@ -150,5 +154,59 @@ all_linear_results$model_name <- mapvalues(all_linear_results$model_name,
 all_nonlinear_results$model_name <- mapvalues(all_nonlinear_results$model_name,
                                               from = old_names, to = new_names)
 
+old_type <- c("independent", "symmetric",
+              "autoregressive", "blockwise")
+
+new_type <- c("Independent", "Symmetric",
+              "Autoregressive", "Blockwise")
+
+all_linear_results$type <- mapvalues(all_linear_results$type,
+                               from = old_type, to = new_type)
+
+all_nonlinear_results$type <- mapvalues(all_linear_results$type,
+                                     from = old_type, to = new_type)
+
 # Run a line like the following to generate a table:
 # table_string <- generate_table(all_linear_results, metric = "train_mse", n = 1000, p = 10)
+
+# table_string <- generate_table(all_linear_results, metric = "train_mse", 
+#                                filename = "test", path = "./",
+#                                n = 1000, p = 10)
+
+dimensions <- expand.grid(n = c(50, 200, 1000),
+                          p = c(10, 100, 2000),
+                          type = c("train_mse", "test_mse", "sensitivity", "specificity"),
+                          response = c(1, 2))
+
+tables <- apply(X = dimensions, MARGIN = 1, FUN = function(row) {
+  n <- strtoi(row[["n"]])
+  p <- strtoi(row[["p"]])
+  type <- row[["type"]]
+  response <- row[["response"]]
+  
+  if (type == "train_mse") {
+    folder = "train-mse"
+  }
+  
+  if (type == "test_mse") {
+    folder = "test-mse"
+  } 
+  
+  filename <- paste("facet", type, response, n, p, sep = "_")
+  path <- paste("../../tables", ifelse(response == 1, "linear-facet", "nonlinear-facet"),
+                folder, sep = "/")
+  
+  print(filename)
+  print(path)
+  
+  if (response == 1) {
+    generate_table(all_linear_results, metric = type, 
+                   filename = filename, path = path,
+                   n = n, p = p)
+  }
+  else {
+    generate_table(all_nonlinear_results, metric = type, 
+                   filename = filename, path = path,
+                   n = n, p = p)
+  }
+})
