@@ -100,7 +100,7 @@ generate_raw_table <- function(dat, metric, ...) {
   # This removes unncessary rows and columns that aren't used for our plot/table.
   tab <- tab
   tab <- tab[tab[, 1] > -1, ]
-  tab <<- tab[, tab[1, ] > -1]
+  tab <- tab[, tab[1, ] > -1]
   
   # Call the following line to print out the LaTeX table. I could not get it to
   # save correctly to a file, so the output must be copy/pasted.

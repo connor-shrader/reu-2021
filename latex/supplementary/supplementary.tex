@@ -71,7 +71,7 @@
 	%(#1, #2, #3, #4, #5, #6, #7)
 	\begin{figure}[h!]
 		\centering
-		\includegraphics[width=\textwidth]{figures/#6-facet/#4/facet\_#3\_#5\_#1\_#2.eps}
+		\includegraphics[width=0.8\textwidth]{figures/#6-facet/#4/facet\_#3\_#5\_#1\_#2.eps}
 		\captionsetup{width=0.8\textwidth}
 		\caption{Average \typeword{#4} for the #7 simulations when $n = #1$ and $p = #2$. See Table \ref{tab:#6-#4-#1-#2} for the corresponding data.}
 		\label{fig:#6-#4-#1-#2}
@@ -106,6 +106,12 @@
 \maxdeadcycles=500
 \newcounter{figuresplaced}
 
+% Forces figures that are on their own page to be at the top of the page
+% (instead of being centered vertically).
+\makeatletter
+\setlength{\@fptop}{0pt}
+\makeatother
+
 \foreach \response in {1, 2}{
 	\section{Figures from the \responseword{\response} simulations}
 	\foreach \type in {train-mse, test-mse, sensitivity, specificity}{
@@ -113,13 +119,13 @@
 		\foreach \n in {50, 200, 1000}{
 			\foreach \p in {10, 100, 2000}{
 				\facetfigure{\n}{\p}{\type}{\response}
+				%\ifodd\value{figuresplaced}{\newpage}\fi
 				%\stepcounter{figuresplaced}
-				%\ifodd\value{figuresplaced}{\ }\else{\newpage}
 			}
 		}
-		\newpage
+		\clearpage
 	}
-	\newpage
+	\clearpage
 }
 
 See \ref{fig:linear-test-mse-1000-10}
