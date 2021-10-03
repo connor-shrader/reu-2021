@@ -48,6 +48,16 @@
 \setcaseC sensitivity      {sensitivity}  
 \setcaseC specificity      {specificity}  
 
+\def\setcaseD#1 {\expandafter\def\csname d:#1\endcsname}
+\def\typeword#1{\expandafter\ifx\csname d:#1\endcsname\relax \ddefault 
+	\else \csname d:#1\endcsname\fi}
+
+\def\ddefault {black}    
+\setcaseD test-mse      {testing MSE} 
+\setcaseD train-mse      {training MSE}  
+\setcaseD sensitivity      {$\beta$-sensitivity}  
+\setcaseD specificity      {$\beta$-specificity}  
+
 % NormalTeXSyntaxOff
 
 % #1: n
@@ -59,31 +69,14 @@
 % #7: linear or non-linear
 \newcommand{\facetfigureinner}[7]{
 	%(#1, #2, #3, #4, #5, #6, #7)
-	\begin{figure}
+	\begin{figure}[h!]
 		\centering
 		\includegraphics[width=\textwidth]{figures/#6-facet/#4/facet\_#3\_#5\_#1\_#2.eps}
 		\captionsetup{width=0.8\textwidth}
-		\caption{#4, #7, $n = #1$, $p = #2$}
+		\caption{Average \typeword{#4} for the #7 simulations when $n = #1$ and $p = #2$. See Table \ref{tab:#6-#4-#1-#2} for the corresponding data.}
 		\label{fig:#6-#4-#1-#2}
 	\end{figure}
 }
-
-%\newcommand{\typenodash}[1]{
-%	\ifthenelse{
-%		\equal{#1}{train-mse}}{train\_mse}{
-%	\ifthenelse{
-%		\equal{#1}{test-mse}}{test\_mse}{
-%	#1
-%	}}
-%}
-
-%\newcommand{\responseword}[1]{
-%	\ifthenelse{\equal{#1}{1}}{linear}{non-linear}
-%}
-
-%\newcommand{\responsewordnodash}[1]{
-%	\ifthenelse{\equal{#1}{1}}{linear}{nonlinear}
-%}
 
 % #1: n
 % #2: p
@@ -93,32 +86,64 @@
 	\facetfigureinner{#1}{#2}{\typenodash{#3}}{#3}{#4}{\responsewordnodash{#4}}{\responseword{#4}}
 }
 
-\newcommand{\facetfiguretest}[7]{
-	figures/#6-facet/#4/facet\_#3\_#5\_#1\_#2.eps
-	
-	fig:#6-#4-#1-#2
-	
-	Average mean squared error using the training data for all #7 simulations when $n = #1$ and $p = #2$.
-	
-	\includegraphics[width=\textwidth]{figures/#6-facet/#4/facet\_#3\_#5\_#1\_#2.eps}
+\newcommand{\facettableinner}[7]{
+	\begin{minipage}{\linewidth}
+	\centering
+	\captionof{table}{Mean and standard deviation of the \typeword{#4} for the #7 simulations when $n = #1$ and $p = #2$. See Figure \ref{fig:#6-#4-#1-#2} for the corresponding visualization.}
+	\label{tab:#6-#4-#1-#2}
+	\input{tables/#6-facet/#4/facet\_#3\_#5\_#1\_#2.tex}
+	\end{minipage}
+	%\newpage
+}
+
+
+\newcommand{\facettable}[4]{
+	\facettableinner{#1}{#2}{\typenodash{#3}}{#3}{#4}{\responsewordnodash{#4}}{\responseword{#4}}
 }
 
 \begin{document}
-	%\facetfigure{1000}{10}{test-mse}{1}
-	\maxdeadcycles=500
-	\newcounter{figuresplaced}
+%\facetfigure{1000}{10}{test-mse}{1}
+\maxdeadcycles=500
+\newcounter{figuresplaced}
+
+\foreach \response in {1, 2}{
+	\section{Figures from the \responseword{\response} simulations}
+	\foreach \type in {train-mse, test-mse, sensitivity, specificity}{
+		\subsection{Figures for the average \typeword{\type} of the \responseword{\response} simulations}
+		\foreach \n in {50, 200, 1000}{
+			\foreach \p in {10, 100, 2000}{
+				\facetfigure{\n}{\p}{\type}{\response}
+				%\stepcounter{figuresplaced}
+				%\ifodd\value{figuresplaced}{\ }\else{\newpage}
+			}
+		}
+		\newpage
+	}
+	\newpage
+}
+
+See \ref{fig:linear-test-mse-1000-10}
+
+{\tiny\begin{landscape}
+	\centering
+	\captionsetup{width = 6in}
+	
+	
+	%\facettable{1000}{10}{train-mse}{1}
 	
 	\foreach \response in {1, 2}{
+		\section{Tables from the \responseword{\response} simulations}
 		\foreach \type in {train-mse, test-mse, sensitivity, specificity}{
+			\subsection{Tables for the \typeword{\type} of the \responseword{\response} simulations}
 			\foreach \n in {50, 200, 1000}{
 				\foreach \p in {10, 100, 2000}{
-					\facetfigure{\n}{\p}{\type}{\response}
+					\facettable{\n}{\p}{\type}{\response}
+					%\newpage
 					%\stepcounter{figuresplaced}
 					%\ifodd\value{figuresplaced}{\ }\else{\newpage}
 				}
 			}
 		}
 	}
-
-	See \ref{fig:linear-test-mse-1000-10}
+\end{landscape}}
 \end{document}

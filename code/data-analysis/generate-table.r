@@ -49,11 +49,11 @@ SD4 <- function(x) {
 
 generate_raw_table <- function(dat, metric, ...) {
   print(metric)
-  dat <<- subset_data(dat, ...)
-  dat <<- dat[!is.na(dat[[metric]]), ]
+  dat <- subset_data(dat, ...)
+  dat <- dat[!is.na(dat[[metric]]), ]
   
   # table_results contains the data used to generate a LaTeX summary table.
-  table_results <<- dat[c("st_dev", "type", "corr", "model_name", metric)]
+  table_results <- dat[c("st_dev", "type", "corr", "model_name", metric)]
   table_results[[metric]] <- as.numeric(table_results[[metric]])
   
   # Create a tabular object from the tables library. The rows are layered by the
@@ -98,7 +98,7 @@ generate_raw_table <- function(dat, metric, ...) {
   
   # The following two lines remove rows and columns that have a 0 as the first entry.
   # This removes unncessary rows and columns that aren't used for our plot/table.
-  tab <<- tab
+  tab <- tab
   tab <- tab[tab[, 1] > -1, ]
   tab <- tab[, tab[1, ] > -1]
   
@@ -177,8 +177,6 @@ dimensions <- expand.grid(n = c(50, 200, 1000),
                           p = c(10, 100, 2000),
                           type = c("train_mse", "test_mse", "sensitivity", "specificity"),
                           response = c(1, 2))
-
-dimensions <- dimensions[19:72, ]
 
 tables <- apply(X = dimensions, MARGIN = 1, FUN = function(row) {
   n <- strtoi(row[["n"]])
