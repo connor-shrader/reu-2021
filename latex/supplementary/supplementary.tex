@@ -10,6 +10,8 @@
 \usepackage{pgffor}
 \usepackage[maxfloats=50]{morefloats}
 
+\setlength\parskip{8pt}
+
 % Clickable link setup
 \hypersetup{
 	colorlinks=true,
@@ -71,7 +73,7 @@
 	%(#1, #2, #3, #4, #5, #6, #7)
 	\begin{figure}[h!]
 		\centering
-		\includegraphics[width=0.8\textwidth]{figures/#6-facet/#4/facet\_#3\_#5\_#1\_#2.eps}
+		\includegraphics[width=0.85\textwidth]{figures/#6-facet/#4/facet\_#3\_#5\_#1\_#2.eps}
 		\captionsetup{width=0.8\textwidth}
 		\caption{Average \typeword{#4} for the #7 simulations when $n = #1$ and $p = #2$. See Table \ref{tab:#6-#4-#1-#2} for the corresponding data.}
 		\label{fig:#6-#4-#1-#2}
@@ -101,16 +103,53 @@
 	\facettableinner{#1}{#2}{\typenodash{#3}}{#3}{#4}{\responsewordnodash{#4}}{\responseword{#4}}
 }
 
-\begin{document}
-%\facetfigure{1000}{10}{test-mse}{1}
-\maxdeadcycles=500
-\newcounter{figuresplaced}
+\maxdeadcycles=500 % Stops latex from halting when trying to place figures
 
 % Forces figures that are on their own page to be at the top of the page
 % (instead of being centered vertically).
 \makeatletter
 \setlength{\@fptop}{0pt}
 \makeatother
+
+\begin{document}
+\tableofcontents
+
+\newpage
+\section{Introduction}
+
+This document contains all of the figures and tables of the results from our simulation study. Our simulation study used a factorial using the following features as factors:
+\begin{itemize}
+	\item The choice of response function (linear or non-linear)
+	\item $n$, the number of observations (50, 200, and 1000),
+	\item $p$, the number of predictors (10, 100, and 2000),
+	\item $\sigma$, the standard deviation of the random error (1, 3, and 6),
+	\item The correlation matrix structure (independent, symmetric compound, autoregressive, and blockwise), and
+	\item $\rho$, the correlation between predictors (0.2, 0.5, and 0.9)
+\end{itemize}
+The differences among the last three factors can be displayed in a single figure or table. However, each figure only uses a particular value for $n$ and $p$; furthermore, each figure only shows the results for one metric for either the linear or non-linear response function.
+
+The four metrics we computed were the \textbf{training mean squared error}, \textbf{test mean squared error}, \textbf{$\beta$-sensitivity} and \textbf{$\beta$-specificity}. The training mean squared error measures how well each model can make predictions using data that was used to train the model. The test mean squared error assesses how well each model makes predictions on data that was not used to train the model. $\beta$-sensitivity measures the ability for a model that performs variable selection to recognize predictors that are actually related to the response, while $\beta$-specificity measures how well models can recognize predictors that are not related to the response.
+
+The models that were fitted using a linear response used the function
+\begin{equation}\label{eqn:linear-response}
+	\mathbf{y} = 1 + 2\mathbf{X}_1 - 2\mathbf{X}_2 + 0.5\mathbf{X}_5 + 3\mathbf{X}_6 + \mathbf{e}
+\end{equation}
+where $\mathbf{e}$ is a random error with mean 0 and standard deviation $\sigma$ (recall that $\sigma$ is one of our factors).
+
+Our non-linear response function used
+\begin{equation}\label{eqn:nonlinear-response}
+	\mathbf{y} = 6\times 1_{\mathbf{X}_1>0} + \mathbf{X}_2^2 + 0.5\mathbf{X}_6 + 3\mathbf{X}_7 + 2\times 1_{\mathbf{X}_8>0}\times 1_{\mathbf{X}_9>0} + \mathbf{e}
+\end{equation}
+where $1_{\mathbf{X}_i>0}$ is the index function defined by
+\begin{equation}
+	1_{\mathbf{X}_i>0} = \left\{\begin{array}{ll}
+		0, &\mathbf{X}_i \leq 0 \\
+		1, &\mathbf{X}_i > 0
+	\end{array}\right.
+\end{equation}
+All of the figures appear in this document before any tables. Each section contains the figures or tables for one type of response function, while each subsection contains the figures or tables from one of the metrics we considered. The caption for each figure has a hyperlink to the corresponding table, while each table has a link back to the figure it refers to.
+
+\newpage
 
 \foreach \response in {1, 2}{
 	\section{Figures from the \responseword{\response} simulations}

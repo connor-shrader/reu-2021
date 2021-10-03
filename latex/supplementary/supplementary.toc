@@ -1,0 +1,21 @@
+\contentsline {section}{\numberline {1}Introduction}{2}{section.1}%
+\contentsline {section}{\numberline {2}Figures from the linear simulations}{3}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Figures for the average training MSE of the linear simulations}{3}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Figures for the average testing MSE of the linear simulations}{8}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Figures for the average $\beta $-sensitivity of the linear simulations}{13}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Figures for the average $\beta $-specificity of the linear simulations}{18}{subsection.2.4}%
+\contentsline {section}{\numberline {3}Figures from the non-linear simulations}{23}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Figures for the average training MSE of the non-linear simulations}{23}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Figures for the average testing MSE of the non-linear simulations}{28}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Figures for the average $\beta $-sensitivity of the non-linear simulations}{33}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Figures for the average $\beta $-specificity of the non-linear simulations}{38}{subsection.3.4}%
+\contentsline {section}{\numberline {4}Tables from the linear simulations}{44}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Tables for the training MSE of the linear simulations}{44}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Tables for the testing MSE of the linear simulations}{52}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Tables for the $\beta $-sensitivity of the linear simulations}{60}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Tables for the $\beta $-specificity of the linear simulations}{66}{subsection.4.4}%
+\contentsline {section}{\numberline {5}Tables from the non-linear simulations}{72}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Tables for the training MSE of the non-linear simulations}{72}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Tables for the testing MSE of the non-linear simulations}{80}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Tables for the $\beta $-sensitivity of the non-linear simulations}{88}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Tables for the $\beta $-specificity of the non-linear simulations}{94}{subsection.5.4}%

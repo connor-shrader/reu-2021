@@ -49,8 +49,30 @@ plot_metric <- function(data, metric, facet, color, ylabel = "Mean test MSE",
   
   dat <- subset_data(data, ...)
   
-  plt <- ggplot(data = dat) +
-    geom_point(mapping = aes_string(x = "model_name", y = mean_metric, color = color, shape = color, fill = color), size = 4) + 
+  
+  
+  plt <- ggplot(data = dat) 
+  
+  if (large_text == TRUE) {
+    plt <- plt + geom_point(
+      mapping = aes_string(x = "model_name",
+                           y = mean_metric, 
+                           color = color, 
+                           shape = color, 
+                           fill = color), 
+      size = 4)
+  }
+  else {
+    plt <- plt + geom_point(
+      mapping = aes_string(x = "model_name",
+                           y = mean_metric, 
+                           color = color, 
+                           shape = color, 
+                           fill = color), 
+      size = 2)
+  }
+  
+  plt <- plt +
     # geom_errorbar(mapping = aes_string(x = "model_name", y = mean_metric, ymin = paste(mean_metric, "-", sd_metric), ymax = paste(mean_metric, "+", sd_metric))) +
     scale_shape_manual(values = 21:24, name = "Correlation") +
     scale_color_manual(values = hue_pal()(4), name = "Correlation") +
@@ -61,8 +83,8 @@ plot_metric <- function(data, metric, facet, color, ylabel = "Mean test MSE",
       panel.border = element_rect(color = "black", fill = NA, size = 0.2),
       panel.grid = element_line(color = "gray90"),
       strip.background = element_blank(),
-      axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5, size = 12),
-      axis.text.y = element_text(size = 12),
+      axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5, size = 10),
+      axis.text.y = element_text(size = 10),
       strip.text = element_text(size = 12),
       axis.title = element_text(size = 16),
       legend.key = element_rect(fill = "white"),
