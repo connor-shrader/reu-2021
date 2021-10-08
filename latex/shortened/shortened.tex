@@ -109,18 +109,29 @@
 	\begin{equation}\label{eqn:relationship}
 		Y = f(X_1, X_2, \dotsc, X_p) + \epsilon
 	\end{equation}
-	where $f$ is a function and $\epsilon$ is an independent random error with mean zero. The goal of supervised modeling is to find a function $\hat{f}$ that is a suitable approximation for $f$. To compute $\hat{f}$, we use a \textbf{training set}, a set of observations where the response variable $Y$ is already known. Then, using the fitted model, we can predict the value of the response variable $\hat{Y}$ for new observations, even if $Y$ is unknown. Model performance is evaluated using a \textbf{test set}, which is a set of observations with known response values that were not used to train the model.
+	where $f$ is a function and $\epsilon$ is an independent random error with mean zero. The goal of supervised modeling is to find a function $\hat{f}$ that is a suitable approximation for $f$ 
+	\begin{comment}
+	To compute $\hat{f}$, we use a \textbf{training set}, a set of observations where the response variable $Y$ is already known. Then, using the fitted model, we can predict the value of the response variable $\hat{Y}$ for new observations, even if $Y$ is unknown. Model performance is evaluated using a \textbf{test set}, which is a set of observations with known response values that were not used to train the model.
+	\end{comment}
+	using a \textbf{training set}. This study focuses on \textbf{regression modeling}, where the response $Y$ is a number on a continuous interval.
 	
+	\begin{comment}
 	There are two broad types of supervised models. \textbf{Regression modeling} is used when the response variable $Y$ consists of numerical values on a continuous interval. For example, a model that predicts the value of a home is a regression model. On the other hand, if $Y$ can only take discrete values, then \textbf{classification modeling} is used. For instance, a model used to predict whether or not a patient has a disease is classification problem. This paper focuses on regression modeling.
 	
 	\subsection{Linear Regression and Ordinary Least Squares}
+	\end{comment}
 	
 	In practice, the function $f$ that relates the predictors to the response is complex. Most statistical models assume that $f$ takes some particular form and estimates a function $\hat{f}$ of that form. For example, many regression models assume that $f$ is a linear function of the predictors; that is, linear models assume that
 	\begin{equation}\label{eqn:linear-model}
 		f(X_1, X_2, \dotsc, X_p) = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \cdots + \beta_p X_p
 	\end{equation}
-	where $\beta_0, \beta_1, \beta_2, \dotsc, \beta_p$ are coefficients. Notice that the coefficient $\beta_0$ is not multiplied with any predictor; it represents an intercept value. Fitting a linear model will give estimates for these coefficient values.
+	where $\beta_0, \beta_1, \beta_2, \dotsc, \beta_p$ are 
+	\begin{comment}
+	coefficients. Notice that the coefficient $\beta_0$ is not multiplied with any predictor; it represents an intercept value. Fitting a linear model will give estimates for these coefficient values.
+	\end{comment}
+	coefficients that the models attempt to estimate.
 	
+	\begin{comment}
 	The most common method to approximate the coefficients in a linear model is by \textbf{ordinary least squares}. Suppose that we have $n$ observations in our training set. Let $x_{ij}$ represent the value of predictor $j$ for observation $i$, and let $y_i$ be the response for observation $i$. For some coefficient estimates $\hat{\beta}_0, \hat{\beta}_1, \hat{\beta}_2, \dotsc, \hat{\beta}_p$, the expression
 	\begin{equation}
 		y_i - (\hat{\beta}_0 + \hat{\beta}_1 x_{i1} + \hat{\beta}_2 x_{i2} + \cdots + \hat{\beta}_p x_{ip})
@@ -138,7 +149,14 @@
 		\caption{Ordinary least squares fitting with one predictor using simulated data. The blue line represents the line found by ordinary least squares, and the red line segments are the residuals.}
 		\label{fig:ols}
 	\end{figure}
+	\end{comment}
 	
+	The most common method to estimate the coefficients in a linear model is with \textbf{ordinary least squares} (OLS), which selects the values $\beta_0, \beta_1, \dotsc, \beta_p$ that minimize the residual sum of squares
+	\begin{equation}\label{eqn:RSS}
+		\text{RSS} = \sum\limits_{i = 1}^n \Big[y_i - (\hat{\beta}_0 + \hat{\beta}_1 x_{i1} + \hat{\beta}_2 x_{i2} + \cdots + \hat{\beta}_p x_{ip})\Big]^2
+	\end{equation}
+	
+	\begin{comment}
 	One reason that ordinary least squares is popular is because it is very easy to compute. Let $\bm{\beta} = [\beta_0, \beta_1, \beta_2, \dotsc, \beta_p]^\top$ be a $(p + 1) \times 1$ vector of coefficient values and let $\mathbf{X}$ be a $n\times (p + 1)$ matrix where each row contains the predictor values for one observation, with an additional value of 1 in the first entry (this extra value corresponds to the intercept coefficient $\beta_0$). Then $\mathbf{X}\bm{\beta}$ is a vector of the estimated response values for our choice of $\beta$. Let $\mathbf{y}$ represent the true response values. Thus, $\mathbf{y} - \mathbf{X}\bm{\beta}$ is a vector of residuals. To choose coefficient estimates that minimize the residual sum of squares, we compute
 	\begin{equation}
 		\hat{\bm{\beta}}^{\text{OLS}} = \argmin{\bm{\beta}}{(\mathbf{y} - \mathbf{X}\bm{\beta})^\top (\mathbf{y} - \mathbf{X}\bm{\beta})}
@@ -149,12 +167,17 @@
 	\end{equation}
 	
 	Another advantage of ordinary least squares is that it is an unbiased linear model. This means that if the relationship between the response variable and the predictors is actually linear (as given in Equation \ref{eqn:linear-model}), then the expected value of the coefficient vector $\hat{\bm{\beta}}^\text{OLS}$ is equal to the actual coefficient vector $\bm{\beta}$. Furthermore, the \textbf{Gauss-Markov theorem} states that if the random error $\epsilon$ is independent and has constant variance, then ordinary least squares has the lowest variance among all linear unbiased estimators \cite{greene2003econometric, friedman2001elements}. In other words, the coefficient estimates given by ordinary least squares are relatively close to the actual coefficient values when compared to other unbiased linear estimators. This makes ordinary least squares a relatively consistent model.
+	\end{comment}
 	
+	\begin{comment}
 	If ordinary least squares is unbiased and has the lowest variance among all unbiased models, why should we use any other type of linear model? Despite having a lower variance than other unbiased models, ordinary least squares can still have a high variance. This is especially an issue when the number of predictors $p$ is large compared to the number of observations $n$. As $p$ gets closer to $n$, a model fitted with ordinary least squares will typically \textbf{overfit} to the training set \cite{james2013introduction, friedman2001elements}. This means that the fitted model makes very good predictions with the training data, but performs poorly when given test data that wasn't used to fit the model. Overfitting occurs because of the random error from Equation \ref{eqn:relationship}. Ordinary least squares is unable to distinguish between signal and noise, so it will tend to assume predictors are more strongly related to the response than they actually are.
 	
 	In the extreme case where $p$ exceeds $n$, the matrix $\mathbf{X}^\top \mathbf{X}$ from Equation \ref{eqn:ols-solution} becomes non-invertible \cite{friedman2001elements}. This means that there are many coefficient estimates that minimize the residual sum of squares. In fact, any of these coefficient estimates creates a perfect fit to the training data, which will result in very bad predictions with test data \cite{james2013introduction}.
+	\end{comment}
 	
-	By using models that have a small amount of bias, the high variance of ordinary least squares can be mitigated. Liu et. al. in \cite{liu2020logsum} describe three types of variable selection algorithms. \textbf{Filter methods} work by evaluating the ability for each individual predictors to predict the response; then, a model is fit using the predictors selected \cite{sanchez2007filter, ding2005minimum}. \textbf{Wrapper methods} fit models using different subsets of predictors and choose the model that has the best performance. Finally, \textbf{embedded methods} perform variable selection during the model training process. This paper focuses on wrapper methods and embedded methods. In addition, we considered several non-linear machine learning methods to draw a comparison between linear regression models and machine learning models.
+	OLS is common because it is the best linear unbiased estimator; that is, OLS has a lower variance than any other linear unbiased estimator \cite{greene2003econometric, friedman2001elements}. However, if the number of predictors $p$ is large compared to the number of observations $n$, OLS will overfit to the training data. Furthermore, if $p$ exceeds $n$, then the OLS has infinitely many solutions that simply interpolate the training data. In these cases, OLS becomes unreliable for making predictions on test data.
+	
+	By using models that have a small amount of bias, the high variance of OLS can be mitigated. Liu et. al. in \cite{liu2020logsum} describe three types of variable selection algorithms. \textbf{Filter methods} work by evaluating the ability for each individual predictors to predict the response; then, a model is fit using the predictors selected \cite{sanchez2007filter, ding2005minimum}. \textbf{Wrapper methods} fit models using different subsets of predictors and choose the model that has the best performance. Finally, \textbf{embedded methods} perform variable selection during the model training process. This paper focuses on wrapper methods and embedded methods. In addition, we considered several non-linear machine learning methods to draw a comparison between linear regression models and machine learning models.
 	
 	\subsection{Subset Selection Methods}
 	% We can review some relevant literature such as Tibshrani et. al. lasso methods, ridge regression, enet, SCAD, or whatever else we want to do.
