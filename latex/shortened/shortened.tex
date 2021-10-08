@@ -186,10 +186,13 @@
 	
 	There are two main benefits to using subset selection methods. By reducing the set of available predictors to just those that are strongly related to the response, overfitting can be mitigated. Another benefit of subset selection is that it creates a more interpretable model. If a data set includes thousands of predictors but only a few are related to the response, a model found using subset selection will be easier to understand than a model that relies on all of the parameters. 
 	
+	\begin{comment}
 	\textbf{Best subset selection} is a subset selection method that considers every possible combination of predictors. For every possible value of $k$ between 0 and $p$, best subset selection will fit the ${p\choose k}$ possible models using $k$ predictors. Then, the best model for each value of $k$ is chosen based on some performance metric. A final model can be selected from the $(p + 1)$ remaining models, ranging from an empty model with no predictors to a full model with all of the predictors. If $p$ is larger than $n$, then models are only fit for subsets with $n$ or less predictors since ordinary least squares cannot be used when there are more predictors than observations.
 	
 	Although best subset selection is guaranteed to find the subset of predictors that optimize the chosen metric, this method is computationally expensive. For a data set with $p$ predictors, $2^p$ possible combinations must be considered. This makes best subset selection infeasible when the number of predictors is above 40.
+	\end{comment}
 	
+	\begin{comment}
 	Two alternative methods to best subset selection are \textbf{forward selection} and \textbf{backward selection}. Forward selection begins by fitting a model with no predictors (only the intercept is non-zero) and iteratively adds predictors into the model. The predictor added at each step is chosen to best increase the model fit. Conversely, backward selection starts from the full (ordinary least squares) model with all $p$ predictors and repeatedly removes predictors. Then, like best subset selection, the final model is chosen from the candidate models fitted at each step. Note that backward selection can only be used when $p\leq n$ since ordinary least squares cannot be used when $p>n$. Forward selection can always be used.
 	
 	Although forward and backward selection will not always encounter the best possible model, these methods help optimize best subset selection and are quicker than best subset selection. Consequently, forward and backward selection can be used for larger values of $p$. However, despite these optimization, forward and backwards selection are still plagued by the fact that the number of combinations of predictors increases exponentially and thus they cannot be used for very large values of $p$.
@@ -213,6 +216,10 @@
 	Note that if $n>7$, then $\ln(n)>2$ and so the penalty for BIC is larger than the penalty for AIC. Hence, a model selected using BIC will typically have fewer parameters than a model selected by AIC.
 	
 	In addition to AIC and BIC, there are several other metrics that modify training error to estimate test error, such as $C_p$ and adjusted $R^2$ \cite{james2013introduction}. However, this paper will focus on AIC and BIC.
+	\end{comment}
+	
+	\textbf{Forward stepwise selection} starts by fitting a model with none of the predictors (by simply estimating each observation to be the mean of the response). The algorithm then iteratively chooses the predictor that best increases the model fit until a stopping condition is met. \textbf{Backward stepwise selection} does the same thing, but starts with a full model and works backwards. In addition, \textbf{forward stepwise selection} and \textbf{backward stepwise selection} are hybrid techniques that can both add and remove predictors in each iteration. Note that backward selection and backward stepwise selection can only be used when $p < n$, since they rely on starting on a full OLS model.
+	
 	\subsection{Penalized Regression}
 	
 	In general, \textbf{penalized regression} works by fitting a model that punishes large coefficient estimates. By forcing coefficient values to shrink, the resulting model will have relatively low variance. All of the models discussed here can be used when there are more predictors than observations. Most, but not all, of these methods can also perform variable selection.
