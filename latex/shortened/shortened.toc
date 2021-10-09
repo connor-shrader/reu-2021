@@ -18,4 +18,3 @@
 \contentsline {subsection}{\numberline {5.2}Discussion of Empirical Data Results}{19}{subsection.5.2}%
 \contentsline {section}{\numberline {6}Conclusion}{20}{section.6}%
 \contentsline {section}{\numberline {7}Acknowledgments}{21}{section.7}%
-\contentsline {section}{\numberline {A}Full Result Tables}{24}{appendix.A}%
