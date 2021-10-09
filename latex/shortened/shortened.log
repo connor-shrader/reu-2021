@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.3.27)  8 OCT 2021 20:28
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.3.27)  8 OCT 2021 20:30
 entering extended mode
 **./shortened.tex
 (shortened.tex
@@ -1680,132 +1680,132 @@ LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <0.7> not available
 LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <0.5> not available
 (Font)              size <5> substituted on input line 1005.
 
-[23] [24] (shortened.bbl [25] [26]
+(shortened.bbl [23] [24]
 Underfull \hbox (badness 1028) in paragraph at lines 203--207
 \OT1/cmr/m/n/10 tonomous over-pro-lif-er-a-tion by reg-u-lat-ing notch traf-fic
 k-ing.  \OT1/cmr/m/it/10 De-vel-op-men-tal cell\OT1/cmr/m/n/10 ,
  []
 
-) [27]
+[25]) [26]
 
-LaTeX Warning: Reference `sec:evaluating-model-results' on page 28 undefined on
- input line 1023.
+LaTeX Warning: Reference `sec:evaluating-model-results' on page 27 undefined on
+ input line 1021.
 
-[28]
+[27]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1031.
+(caption)                particular \caption on input line 1029.
 See the caption package documentation for explanation.
 
 
-LaTeX Warning: Reference `fig:linear-train-mse-1000-10' on page 29 undefined on
- input line 1031.
+LaTeX Warning: Reference `fig:linear-train-mse-1000-10' on page 28 undefined on
+ input line 1029.
 
 
-LaTeX Warning: Reference `fig:linear-train-mse-1000-10' on page 29 undefined on
- input line 1031.
+LaTeX Warning: Reference `fig:linear-train-mse-1000-10' on page 28 undefined on
+ input line 1029.
 
-(tables/train_mse_1000_10.tex) [29
+(tables/train_mse_1000_10.tex) [28
 
 ]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1037.
+(caption)                particular \caption on input line 1035.
 See the caption package documentation for explanation.
 
 
-LaTeX Warning: Reference `fig:linear-test-mse-1000-10' on page 30 undefined on 
-input line 1037.
+LaTeX Warning: Reference `fig:linear-test-mse-1000-10' on page 29 undefined on 
+input line 1035.
 
 
-LaTeX Warning: Reference `fig:linear-test-mse-1000-10' on page 30 undefined on 
-input line 1037.
+LaTeX Warning: Reference `fig:linear-test-mse-1000-10' on page 29 undefined on 
+input line 1035.
 
-(tables/test_mse_1000_10.tex) [30]
+(tables/test_mse_1000_10.tex) [29]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1042.
+(caption)                particular \caption on input line 1040.
 See the caption package documentation for explanation.
 
 
-LaTeX Warning: Reference `fig:linear-sensitivity-1000-10' on page 31 undefined 
-on input line 1042.
+LaTeX Warning: Reference `fig:linear-sensitivity-1000-10' on page 30 undefined 
+on input line 1040.
 
 
-LaTeX Warning: Reference `fig:linear-sensitivity-1000-10' on page 31 undefined 
-on input line 1042.
+LaTeX Warning: Reference `fig:linear-sensitivity-1000-10' on page 30 undefined 
+on input line 1040.
 
-(tables/sensitivity_1000_10.tex) [31]
+(tables/sensitivity_1000_10.tex) [30]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1048.
+(caption)                particular \caption on input line 1046.
 See the caption package documentation for explanation.
 
 
-LaTeX Warning: Reference `fig:linear-specificity-1000-10' on page 32 undefined 
-on input line 1048.
+LaTeX Warning: Reference `fig:linear-specificity-1000-10' on page 31 undefined 
+on input line 1046.
 
 
-LaTeX Warning: Reference `fig:linear-specificity-1000-10' on page 32 undefined 
-on input line 1048.
+LaTeX Warning: Reference `fig:linear-specificity-1000-10' on page 31 undefined 
+on input line 1046.
 
-(tables/specificity_1000_10.tex) [32]
+(tables/specificity_1000_10.tex) [31]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1054.
+(caption)                particular \caption on input line 1052.
 See the caption package documentation for explanation.
 
 
-LaTeX Warning: Reference `fig:linear-train-mse-50-2000' on page 33 undefined on
- input line 1054.
+LaTeX Warning: Reference `fig:linear-train-mse-50-2000' on page 32 undefined on
+ input line 1052.
 
 
-LaTeX Warning: Reference `fig:linear-train-mse-50-2000' on page 33 undefined on
- input line 1054.
+LaTeX Warning: Reference `fig:linear-train-mse-50-2000' on page 32 undefined on
+ input line 1052.
 
-(tables/train_mse_50_2000.tex) [33]
+(tables/train_mse_50_2000.tex) [32]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1060.
+(caption)                particular \caption on input line 1058.
 See the caption package documentation for explanation.
 
 
-LaTeX Warning: Reference `fig:linear-test-mse-50-2000' on page 34 undefined on 
-input line 1060.
+LaTeX Warning: Reference `fig:linear-test-mse-50-2000' on page 33 undefined on 
+input line 1058.
 
 
-LaTeX Warning: Reference `fig:linear-test-mse-50-2000' on page 34 undefined on 
-input line 1060.
+LaTeX Warning: Reference `fig:linear-test-mse-50-2000' on page 33 undefined on 
+input line 1058.
 
-(tables/test_mse_50_2000.tex) [34]
+(tables/test_mse_50_2000.tex) [33]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1066.
+(caption)                particular \caption on input line 1064.
 See the caption package documentation for explanation.
 
 
-LaTeX Warning: Reference `fig:linear-sensitivity-50-2000' on page 35 undefined 
-on input line 1066.
+LaTeX Warning: Reference `fig:linear-sensitivity-50-2000' on page 34 undefined 
+on input line 1064.
 
 
-LaTeX Warning: Reference `fig:linear-sensitivity-50-2000' on page 35 undefined 
-on input line 1066.
+LaTeX Warning: Reference `fig:linear-sensitivity-50-2000' on page 34 undefined 
+on input line 1064.
 
 (tables/sensitivity_50_2000.tex)
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1072.
+(caption)                particular \caption on input line 1070.
 See the caption package documentation for explanation.
 
 
-LaTeX Warning: Reference `fig:linear-specificity-50-2000' on page 35 undefined 
-on input line 1072.
+LaTeX Warning: Reference `fig:linear-specificity-50-2000' on page 34 undefined 
+on input line 1070.
 
 
-LaTeX Warning: Reference `fig:linear-specificity-50-2000' on page 35 undefined 
-on input line 1072.
+LaTeX Warning: Reference `fig:linear-specificity-50-2000' on page 34 undefined 
+on input line 1070.
 
-(tables/specificity_50_2000.tex) [35] (shortened.aux)
+(tables/specificity_50_2000.tex) [34] (shortened.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 4.5pt have occurred.
@@ -1817,9 +1817,9 @@ Package rerunfilecheck Info: File `shortened.out' has not changed.
 (rerunfilecheck)             Checksum: 1872A885A2DE92E36F23DB86BAD6DF55;3332.
  ) 
 Here is how much of TeX's memory you used:
- 35208 strings out of 479287
- 752451 string characters out of 2852552
- 1335032 words of memory out of 3000000
+ 35207 strings out of 479287
+ 752444 string characters out of 2852552
+ 1334032 words of memory out of 3000000
  51977 multiletter control sequences out of 15000+600000
  417958 words of font info for 77 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1858,9 +1858,9 @@ s/type1/public/amsfonts/cm/cmsy9.pfb><C:/Users/Connor/AppData/Local/Programs/Mi
 KTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/Connor/AppData/Loc
 al/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti9.pfb><C:/Users/Conno
 r/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on shortened.pdf (35 pages, 2248425 bytes).
+Output written on shortened.pdf (34 pages, 2247729 bytes).
 PDF statistics:
- 716 PDF objects out of 1000 (max. 8388607)
- 136 named destinations out of 1000 (max. 500000)
+ 712 PDF objects out of 1000 (max. 8388607)
+ 135 named destinations out of 1000 (max. 500000)
  256 words of extra memory for PDF output out of 10000 (max. 10000000)
 

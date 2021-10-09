@@ -17,5 +17,5 @@
 \contentsline {subsection}{\numberline {6.1}Discussion of Monte Carlo Results}{19}{subsection.6.1}%
 \contentsline {subsection}{\numberline {6.2}Discussion of Empirical Data Results}{21}{subsection.6.2}%
 \contentsline {section}{\numberline {7}Conclusion}{22}{section.7}%
-\contentsline {section}{\numberline {8}Acknowledgments}{24}{section.8}%
-\contentsline {section}{\numberline {A}Full Result Tables}{28}{appendix.A}%
+\contentsline {section}{\numberline {8}Acknowledgments}{23}{section.8}%
+\contentsline {section}{\numberline {A}Full Result Tables}{27}{appendix.A}%
