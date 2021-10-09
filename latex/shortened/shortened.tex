@@ -483,9 +483,11 @@
 	% lists and describes every tested model. Can include equations for models, but should not go into such great depth about each model: that can be reserved for literature review portion of the paper.
 	
 	This section gives the specific details how we fit each model for both the simulated data and the empirical data.
-	
+	\begin{comment}
 	All of our simulations were run using version 4.1.0 of \lstinline!R!. Several different libraries were used to fit machine learning models using our simulated data. Table \ref{tab:model-libraries} summarizes the libraries used to fit models.
-	
+	\end{comment}
+	 Everything in our study was run on version 4.1.0 of \lstinline!R! \cite{r}. Table \ref{tab:model-libraries} summarizes the packages used for each model.
+	 
 	\begin{table}[h]
 		\centering
 		\caption{\lstinline!R! Libraries used and the models used from each library}
@@ -505,14 +507,14 @@
 	
 	Ordinary least squares models were fitted using the \lstinline!lm! function from the \lstinline!stats! package in base \lstinline!R!.
 	
-	Subset selection models using forward, backward, stepwise forward, and stepwise backward selections were fitted using the \lstinline!MASS! library. For each of these four algorithms, we fit models using both AIC and BIC, totaling to eight models.
+	Subset selection models using forward, backward, stepwise forward, and stepwise backward selections were fitted using the \lstinline!MASS! library. For each of these four algorithms, we fit models using two criteria that determine when to stop adding and removing predictors: Akaike Information Criterion (AIC) and Bayesian Information Criterion (BIC) \cite{akaike1998information, schwarz1978estimating}. In general, using the AIC will lead to more predictors getting non-zero coefficient estimates.
 	
-	For ridge, lasso, and elastic-net regression using \lstinline!glmnet!, we used the \lstinline!cv.glmnet! function. This function uses cross validation grid search to determine the value of $\lambda$ that minimizes the cross validation error. Using cross validation can help generate a model that performs well on both training and testing data. We used the default value of 10 folds to fit models using \lstinline!glmnet!. For elastic-net regression, we used the hyperparameter $\alpha = 0.8$ in our simulation study. This means that the elastic-net model is more similar to lasso (where $\alpha = 1$) than ridge (where $\alpha = 0$). This value of $\alpha$ was chosen so that the elastic-net model could emphasize the variable selection provided by lasso while also allowing it to handle multicollinearity from ridge. For the empirical data analysis, we used $\alpha = 0.5$. The remaining hyperparameters were given their default values.
+	Ridge, lasso, and elastic-net models were fitted using \lstinline!glmnet!. We used the \lstinline!cv.glmnet! function, which uses cross validation grid search to determine the value of $\lambda$ that minimizes the cross validation error. Using cross validation can help generate a model that performs well on both training and testing data. We used the default value of 10 folds to fit models using \lstinline!glmnet!. For elastic-net regression, we used the hyperparameter $\alpha = 0.8$ in our simulation study. This means that the elastic-net model has a stronger lasso penalty and a weaker ridge penalty. This value of $\alpha$ was chosen so that the elastic-net model could emphasize the variable selection provided by lasso while also allowing it to handle multicollinearity from ridge. For the empirical data analysis, we instead used $\alpha = 0.5$. The remaining hyperparameters were given their default values.
 	
 	For SCAD and MCP models, we used the \lstinline!cv.ncvreg! function from the \lstinline!ncvreg! library. Both SCAD and MCP depend on an additional hyperparameter $a$. We used the default values of $a$ for both models: 3 for MCP and 3.7 for SCAD (note that the \lstinline!ncvreg! documentation calls this hyperparameter $\gamma$ instead of $a$). All other arguments were given their default values. 
 	%%%%  Why did we use these values??
 	
-	For the three non-linear models (gradient boosting, random forests, and support vector machines), we used cross validation and grid search to find suitable hyperparameters, and then fit a model using the full training set using the hyperparameters selected. Because many of the data sets used had large values of $n$ and $p$, only the most important hyperparameters were tuned. This ensured that the models could be fit within a reasonable amount of time. All other hyperparameters were given their default values.
+	For the three non-linear models (gradient boosting, random forests, and support vector machines), we used cross validation and grid search to find suitable hyperparameters, and then fit a model using the full training set using the hyperparameters selected. Because many of the data sets used had large values of $n$ and $p$, only a few hyperparameters were tuned. This ensured that the models could be fit within a reasonable amount of time. All other hyperparameters were given their default values.
 	
 	For gradient boosting with \lstinline!xgboost!, we used different values for the learning rate (0.1, 0.3, and 0.5) and maximum tree depth (1, 3, and 7). A maximum of 1000 trees were generated, with an early stopping condition if the model failed to improve for 10 iterations in a row. We used five folds in the cross validation.
 	
@@ -520,9 +522,9 @@
 	
 	Finally, for support vector machines using \lstinline!e1071!, we varied $\epsilon$ (0.1, 0.5, 2), which affects the model's sensitivity to small errors. We also controlled the cost value $C$ (0.5, 1, 2), which affects how much the model punishes wrong predictions.
 	
-	Some of the models used could only be used for certain values of $n$ and $p$. This is because either the runtime becomes unreasonable when $n$ or $p$ are large, or the model simply cannot be used when $p$ is too large. Ordinary least squares was used when $p\leq n$, since it cannot be used at all when $p>n$. For the same reason, the backward subset selection algorithms were also used when $p\leq n$. The forward subset selection algorithms were only used when $p\leq n$ and $p\leq 40$. When $p>40$, the runtimes for forward selection and forward stepwise selection become unreasonably long due to problem of exponentially increasing combinations, so we chose to discard backward selection when $p$ was too large. Ridge regression was used when $p\leq n$ as well as it is not designed for variable selection or for $p \geq n$ scenarios. Ridge was included in the empirical data study simply to further demonstrate its ineffectiveness in high dimensional settings.
+	Some of the models used could only be used for certain values of $n$ and $p$. This is because either the runtime becomes unreasonable when $n$ or $p$ are large, or the model simply cannot be used when $p$ is too large. Ordinary least squares was only used when $p\leq n$, since it cannot be used at all when $p>n$. For the same reason, the backward subset selection algorithms were also used only when $p\leq n$. The forward subset selection algorithms were only used when $p\leq n$ and $p\leq 40$. When $p>40$, the runtimes for forward selection and forward stepwise selection become unreasonably long due to the exponentially increasing number of possible predictor combinations.
 	
-	Lasso, SCAD, MCP, GBM, and random forest models were used for all data sets. Support vector machine models were made for all of the simulated data but was not used for the empirical data. The empirical data has too many predictors which leads to unmitigable stack overflow errors. Simply put, the support vector machine model has trouble converging upon a local minimum and due to the need to store very large kernel matrices.
+	Lasso, SCAD, MCP, GBM, and random forest models were used for all data sets. Support vector machine models were made for all of the simulated data but was not used for the empirical data. Support vector machine models cannot handle the immense number of predictors in our empirical data.
 	
 	\section{Monte Carlo Simulations}\label{sec:simulations}
 	% outline data generation process and factorial design process

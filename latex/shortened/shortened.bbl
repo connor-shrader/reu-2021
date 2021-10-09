@@ -15,23 +15,11 @@ Antoniou, A., Pharoah, P.~D., Narod, S., Risch, H.~A., Eyfjord, J.~E., Hopper,
   combined analysis of 22 studies.
 \newblock {\em The American Journal of Human Genetics}, 72(5):1117--1130, 2003.
 
-\bibitem{breheny2016lasso}
-Breheny.
-\newblock Adaptive lasso, mcp, and scad.
-\newblock
-  \textsc{url:}~\url{https://myweb.uiowa.edu/pbreheny/7600/s16/notes/2-29.pdf},
-  2016.
-
 \bibitem{breheny2011ncvreg}
 Breheny, P. and Huang, J.
 \newblock Coordinate descent algorithms for nonconvex penalized regression,
   with applications to biological feature selection.
 \newblock {\em Annals of Applied Statistics}, 5(1):232--253, 2011.
-
-\bibitem{breiman1996bagging}
-Breiman, L.
-\newblock Bagging predictors.
-\newblock {\em Machine learning}, 24(2):123--140, 1996.
 
 \bibitem{breiman2001random}
 Breiman, L.
@@ -42,12 +30,6 @@ Breiman, L.
 Capitaine, L., Genuer, R., and Thi{\'e}baut, R.
 \newblock Random forests for high-dimensional longitudinal data.
 \newblock {\em Statistical Methods in Medical Research}, 30(1):166--184, 2021.
-
-\bibitem{chen2016xgboost}
-Chen, T. and Guestrin, C.
-\newblock Xgboost: A scalable tree boosting system.
-\newblock In {\em Proceedings of the 22nd acm sigkdd international conference
-  on knowledge discovery and data mining}, pages 785--794, 2016.
 
 \bibitem{chen2021xgboost}
 Chen, T., He, T., Benesty, M., Khotilovich, V., Tang, Y., Cho, H., Chen, K.,
@@ -72,11 +54,6 @@ Ding, C. and Peng, H.
   data.
 \newblock {\em Journal of bioinformatics and computational biology},
   3(02):185--205, 2005.
-
-\bibitem{donoho1994ideal}
-Donoho, D.~L. and Johnstone, J.~M.
-\newblock Ideal spatial adaptation by wavelet shrinkage.
-\newblock {\em biometrika}, 81(3):425--455, 1994.
 
 \bibitem{drucker1997support}
 Drucker, H., Burges, C.~J., Kaufman, L., Smola, A., Vapnik, V., et~al.

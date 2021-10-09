@@ -9,13 +9,13 @@
 \contentsline {subsection}{\numberline {3.1}Simulation Design}{8}{subsection.3.1}%
 \contentsline {subsection}{\numberline {3.2}Evaluating Model Performance}{11}{subsection.3.2}%
 \contentsline {section}{\numberline {4}Linear Simulation Results}{12}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Non-linear Simulation Results}{14}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.1}Non-linear Simulation Results}{13}{subsection.4.1}%
 \contentsline {section}{\numberline {5}Empirical Data Analysis}{14}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Details of Empirical Data}{15}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.1}Details of Empirical Data}{14}{subsection.5.1}%
 \contentsline {subsection}{\numberline {5.2}Empirical Data Results}{16}{subsection.5.2}%
 \contentsline {section}{\numberline {6}Discussion}{19}{section.6}%
 \contentsline {subsection}{\numberline {6.1}Discussion of Monte Carlo Results}{19}{subsection.6.1}%
 \contentsline {subsection}{\numberline {6.2}Discussion of Empirical Data Results}{21}{subsection.6.2}%
 \contentsline {section}{\numberline {7}Conclusion}{22}{section.7}%
 \contentsline {section}{\numberline {8}Acknowledgments}{23}{section.8}%
-\contentsline {section}{\numberline {A}Full Result Tables}{27}{appendix.A}%
+\contentsline {section}{\numberline {A}Full Result Tables}{26}{appendix.A}%
