@@ -536,6 +536,7 @@
 	
 	Our simulation study used two different functions for the response variable $Y$. Our first function assumed a linear relationship between the response and its predictors $X_1, X_2, \dotsc, X_p$, while the second response used a non-linear relationship. By considering both linear and non-linear response functions, we obtain a more thorough understanding of how each model performs in different situations.
 	
+	\begin{comment}
 	With our linear response function, we assumed that
 	\begin{equation}
 		Y = \beta_0 + \beta_1 X_1 + \cdots + \beta_p X_p + \epsilon
@@ -567,9 +568,43 @@
 		\end{array}\right.
 	\end{equation}
 	Note that this response function does have linear terms, but the function as a whole is non-linear.
+	\end{comment}
 	
+	The linear response function assumes that
+	\begin{equation}\label{eqn:linear-response}
+		Y = 1 + 2X_i - 2X_2 + 0.5X_5 + 3X_6 + \epsilon
+	\end{equation}
+	where $\epsilon$ is an independent random error with mean 0 and constant variance. Our non-linear response function uses
+	\begin{equation}\label{eqn:nonlinear-response}
+		Y = 6\times 1_{X_1 > 0} + X_2^2 + 0.5X_6 + 3X_7 + 2\times 1_{X_8 > 0}\times 1_{X_9>0} + \epsilon
+	\end{equation}
+	where $1_{X_i>0}$ is the index function given by
+	\begin{equation}
+		1_{X_i > 0} = \left\{\begin{array}{rl}
+			0, & X_i \leq 0 \\
+			1, & X_i > 0
+		\end{array}\right.
+	\end{equation}
+	Note that the non-linear response still includes linear terms.
+	
+	For each simulation, we generated a random $n\times (p + 1)$ matrix $\mathbf{X}\sim \mathcal{N}_p(0, \mathbf{\Sigma})$, where $\mathcal{N}_p(0, \mathbf{\Sigma})$ is the multivariate normal distribution with mean zero and covariance matrix $\Sigma$. The response $\mathbf{y}$ was then computed using one of the response functions. Finally, a normally distributed random error $\mathbf{e}\sim \mathcal{N}(0, \sigma^2)$ with mean 0 and standard deviation $\sigma$ was added to the response.
+	
+	We assumed that the variance for each predictor was 1, meaning that the covariance matrix $\mathbf{\Sigma}$ is actually a correlation matrix. For any $i \neq j$, the entry $\mathbf{\Sigma}_{ij}$ represents the correlation between predictors $i$ and $j$. Correlation between predictors can affect the ability for models to identify important predictors and make accurate predictions.
+	
+	We considered the following correlation structures for our simulation study:
+	\begin{itemize}\itemsep0pt
+		\item \textbf{Independent} correlation, where $\mathbf{\Sigma} = \mathbf{I}_p$, the $p\times p$ identity matrix;
+		\item \textbf{Symmetric compound} correlation, where $\mathbf{\Sigma}_{ij} = \rho \in (0, 1)$ for all $i \neq j$;
+		\item \textbf{Autoregressive correlation}, where $\mathbf{\Sigma}_{ij} = \rho^{\vert i - j \vert}$, where $\rho \in (0, 1)$; and
+		\item \textbf{Blockwise correlation}, where $\mathbf{\Sigma}$ is block diagonal with each block having symmetric compound structure (and a shared value of $\rho$)
+	\end{itemize}
+	
+	\begin{comment}
 	Our simulation study used a \textbf{factorial design}. This means that we considered several factors that affect the simulated data in $\mathbf{X}$, each having multiple possible values. We then generated data using every possible combination of factor values, giving us a comprehensive assessment of model performance under various conditions. The factors that we controlled in our simulation are:
-	\begin{itemize}
+	\end{comment}
+	
+	Our simulation study uses a \textbf{factorial design}, meaning that we ran simulations using every possible combination of different factors. The factors that we varied in our simulation study are
+	\begin{itemize}\itemsep0pt
 		\item The choice of response function (linear or non-linear)
 		\item $n$, the number of observations (50, 200, and 1000),
 		\item $p$, the number of predictors (10, 100, and 2000),
@@ -580,6 +615,7 @@
 	
 	By taking every possible combination of these factors, we obtain $2\times 3\times 3\times 3\times 4\times 3 = 648$ different settings for the simulations. However, because an independent correlation matrix does not have any correlation between predictors, the value of $\rho$ is not used. Hence, we only needed to run 540 different settings. For each combination of factors, we ran 100 simulations. Each simulation randomly generated two data sets: one to train the various models, and one to test the models and evaluate performance. Both data sets contained $n$ observations, meaning that a total of $2n$ observations were generated for each simulation.
 	
+	\begin{comment}
 	As mentioned earlier, we considered four different covariance matrix structures. These structures determine the correlation between different predictors. If $\mathbf{\Sigma}$ is a correlation matrix, then $\mathbf{\Sigma}_{ij}$ (the entry at the $i$-th row and $j$-th column) represents the correlation between predictors $i$ and $j$. If $\mathbf{\Sigma}_{ij}=0$, there is no correlation; but if $\mathbf{\Sigma}_{ij}=1$, then predictors $i$ and $j$ are perfectly correlated. Note that a correlation matrix is always symmetric, so $\mathbf{\Sigma}_{ij} = \mathbf{\Sigma}_{ji}$ for all indices $i$ and $j$. This correlation can severely impact the performance of statistical models; if several predictors are highly correlated, then we expect the models to be less able to determine which predictors are actually related to the response.
 	
 	The first correlation structure we considered is \textbf{independent correlation}. This means that the correlation matrix $\mathbf{\Sigma}$ has the form
@@ -625,6 +661,7 @@
 		\end{bmatrix}
 	\end{equation}
 	where $0$ represents a block containing all zeroes, and each block $\mathbf{B}_i$ has a form identical to the symmetric compound matrix in Equation \ref{eqn:symmetric-compound-matrix}. This implies that predictors within the same block have correlation $\rho\in [0, 1]$, whereas predictors in different blocks have zero correlation. This type of correlation is more realistic than independent or symmetric compound correlation, since only certain groups of predictors are correlated with one another. One important consideration when using blockwise correlation is the size of each block. For our simulations, we used a block size of 5 when $p = 10$, a block size of 25 when $p = 100$, and a block size of 100 when $p = 2000$.
+	\end{comment}
 	
 	\subsection{Evaluating Model Performance}\label{sec:evaluating-model-performance}
 	% stick the results from classification models here
@@ -653,7 +690,7 @@
 	
 	We begin by presenting the results from our simulations that used the linear response function, followed by the results from the non-linear response function.
 	
-	\section{Linear Simulation Results}
+	\subsection{Linear Simulation Results}
 	
 	\begin{comment}
 	First, we consider the case where $n = 1000$ and $p = 10$. Figures \ref{fig:linear-train-mse-1000-10} and \ref{fig:linear-test-mse-1000-10} show the average mean squared error of each model for the training set and test set, respectively. Tables \ref{tab:linear-train-mse-1000-10} and \ref{tab:linear-test-mse-1000-10} in Appendix \ref{app:full-results} contain all of the data shown in these figures as well as the standard deviation for each point.
