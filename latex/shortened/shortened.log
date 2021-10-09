@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.8.26)  9 OCT 2021 15:26
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.8.26)  9 OCT 2021 15:28
 entering extended mode
 **./shortened.tex
 (shortened.tex
@@ -1381,80 +1381,80 @@ LaTeX Warning: Reference `fig:venn' on page 18 undefined on input line 1035.
 
 [18]
 
-LaTeX Font Warning: Command \small invalid in math mode on input line 1064.
+LaTeX Font Warning: Command \small invalid in math mode on input line 1062.
 
-LaTeX Font Info:    Calculating math sizes for size <> on input line 1066.
+LaTeX Font Info:    Calculating math sizes for size <> on input line 1064.
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <> not available
-(Font)              size <5> substituted on input line 1066.
+(Font)              size <5> substituted on input line 1064.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <0.7> not available
-(Font)              size <5> substituted on input line 1066.
+(Font)              size <5> substituted on input line 1064.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <0.5> not available
-(Font)              size <5> substituted on input line 1066.
+(Font)              size <5> substituted on input line 1064.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <> not available
-(Font)              size <5> substituted on input line 1066.
+(Font)              size <5> substituted on input line 1064.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <0.7> not available
-(Font)              size <5> substituted on input line 1066.
+(Font)              size <5> substituted on input line 1064.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <0.5> not available
-(Font)              size <5> substituted on input line 1066.
+(Font)              size <5> substituted on input line 1064.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <> not available
-(Font)              size <5> substituted on input line 1066.
+(Font)              size <5> substituted on input line 1064.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <0.7> not available
-(Font)              size <5> substituted on input line 1066.
+(Font)              size <5> substituted on input line 1064.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <0.5> not available
-(Font)              size <5> substituted on input line 1066.
+(Font)              size <5> substituted on input line 1064.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <> not available
-(Font)              size <5> substituted on input line 1066.
+(Font)              size <5> substituted on input line 1064.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <0.7> not available
-(Font)              size <5> substituted on input line 1066.
+(Font)              size <5> substituted on input line 1064.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <0.5> not available
-(Font)              size <5> substituted on input line 1066.
+(Font)              size <5> substituted on input line 1064.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <> not available
-(Font)              size <5> substituted on input line 1066.
+(Font)              size <5> substituted on input line 1064.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <0.7> not available
-(Font)              size <5> substituted on input line 1066.
+(Font)              size <5> substituted on input line 1064.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <0.5> not available
-(Font)              size <5> substituted on input line 1066.
+(Font)              size <5> substituted on input line 1064.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <> not available
-(Font)              size <5> substituted on input line 1066.
+(Font)              size <5> substituted on input line 1064.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <0.7> not available
-(Font)              size <5> substituted on input line 1066.
+(Font)              size <5> substituted on input line 1064.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <0.5> not available
-(Font)              size <5> substituted on input line 1066.
+(Font)              size <5> substituted on input line 1064.
 
 [19] (shortened.bbl [20]) Excluding 'comment' comment. [21] (shortened.aux)
 
@@ -1470,7 +1470,7 @@ Package rerunfilecheck Info: File `shortened.out' has not changed.
 Here is how much of TeX's memory you used:
  35268 strings out of 478868
  751265 string characters out of 2848335
- 1231085 words of memory out of 3000000
+ 1232085 words of memory out of 3000000
  52547 multiletter control sequences out of 15000+600000
  418009 words of font info for 77 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1507,7 +1507,7 @@ b><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm
 /cmti8.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
 sfonts/cm/cmti9.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX/fonts/type1/
 public/amsfonts/cm/cmtt10.pfb>
-Output written on shortened.pdf (21 pages, 777185 bytes).
+Output written on shortened.pdf (21 pages, 776914 bytes).
 PDF statistics:
  590 PDF objects out of 1000 (max. 8388607)
  101 named destinations out of 1000 (max. 500000)
