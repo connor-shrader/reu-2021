@@ -790,7 +790,7 @@
 	
 	Figure \ref{fig:linear-sensitivity} shows the mean $\beta$-sensitivity for each model. We see that all of the models predict most of the non-zero coefficients when the correlation is low. When the correlation is high, all of the models struggle to identify the correct predictors. SCAD and MCP perform the best when the correlation is low but perform the worst when the correlation is high. Elastic-net performs particularly well compared to the other models when the correlation is high, especially when the correlation structure is autoregressive.
 	
-	Figure \ref{fig:linear-specificity-50-2000} shows the average $\beta$-specificity for the models. MCP appears to make the fewest mistakes when choosing zero coefficients. The performance of the other models depends heavily on the type of correlation and the correlation strength. Lasso and elastic-net perform the worst when the correlation structure is symmetric compound, whereas SCAD performs poorly when the correlation structure is autoregressive or blockwise. We also see that the models generally made less mistakes as the correlation increases.
+	Figure \ref{fig:linear-specificity} shows the average $\beta$-specificity for the models. MCP appears to make the fewest mistakes when choosing zero coefficients. The performance of the other models depends heavily on the type of correlation and the correlation strength. Lasso and elastic-net perform the worst when the correlation structure is symmetric compound, whereas SCAD performs poorly when the correlation structure is autoregressive or blockwise. We also see that the models generally made less mistakes as the correlation increases.
 	
 	\subsection{Non-linear Simulation Results}
 	Now, we will highlight some results from the simulations that used the non-linear response function given by Equation \ref{eqn:nonlinear-response}.
@@ -935,6 +935,7 @@
 		\end{tabular}
 	\end{table}
 	
+	\begin{comment}
 	The models can also be compared to each other by comparing the most important predictors selected by each model. Figure \ref{fig:venn} shows five Venn diagrams. Each diagram shows the number of variables selected by lasso, elastic-net, MCP, and random forest as the most important for each of the folds. Figure \ref{fig:venn1}, for example, shows that four of the predictors were chosen by all four models as important. For lasso, elastic-net, and MCP, a predictor is considered important if its coefficient is non-zero. For random forest, we used the 50 predictors with the highest importance score (as computed by \lstinline!randomForest!). We see that the number of predictors chosen by each model varies slightly among different folds, however, there still are common trends that are upheld between the different folds. The second fold in \ref{fig:venn2} had six predictors common to all four models, whereas the models tested in the third fold in \ref{fig:venn3} only had three.
 	
 	\begin{figure}[h!]
@@ -972,6 +973,7 @@
 	\end{figure}
 	
 	Several of the genes in the data set appeared in all four models for several folds, indicating that they are very strongly related to the BRCA1 gene. The most important predictor was NBR2, which appeared in all four models for all five cross validation folds. This gene is a neighbor of the BRCA1 gene and is acts as a principal tumor suppressant \cite{xiao2016nbr2}. Other significant genes that appeared in all four models for multiple folds include DTL (three folds), VPS25 (three folds), and CMTM5 (two folds). These three genes are also related to tumor suppression \cite{kobayashi2015overexpression, vaccari2005drosophila, shao2007cmtm5}.
+	\end{comment}
 	
 	Table \ref{tab:emp_runtimes} shows the average runtime to fit each of the models on the bcTCGA data set.
 	
