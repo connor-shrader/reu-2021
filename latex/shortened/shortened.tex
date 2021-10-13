@@ -999,15 +999,6 @@
 	\section{Discussion}\label{sec:discussion}
 	\subsection{Discussion of Simulation Results}
 	
-	
-	\begin{itemize}
-		\item When the response is linear, penalized linear models greatly outperform non-linear models when considering test MSE.
-		\item Non-linear models had a lower MSE on training data almost all the simulations. The performance of the linear models on training data was more varied.
-		\item When the response is non-linear, penalized linear models generally have a slightly higher test MSE when $p > n$, when compared to non-linear models. When $n > p$, then the non-linear models are significantly more effective than linear models.
-		\item Among the linear models, SCAD and MCP generally had the lowest test MSE. OLS and ridge regression usually had the highest.
-		\item SCAD and MCP tended to be more picky about the variables they selected compared to other linear models, especially when the correlation among predictors was high. This is due to these models having a lower $\beta$-sensitivity and higher $\beta$-specificity.
-	\end{itemize}
-	
 	We first discuss in detail our findings from the simulations where $n = 50$ and $p = 2000$ (i.e. the results that were shown in the results section). Then, we discuss some of the broader results that arose for other values of $n$ and $p$. We defer the reader to our supplementary document to see the figures and tables for the remaining simulations.
 	
 	% discussion of findings, future work, and contributions
@@ -1041,8 +1032,11 @@
 	
 	Note that changing the standard deviation of the random error seems to affect the mean squared errors of all the models equally. In addition, the correlation structure appears to have little influence on the training or test mean squared error.
 	
-	Now, we will consider the $\beta$-sensitivity and $\beta$-specificity results for the linear models that could perform variable selection. With the linear response, SCAD and MCP had the highest $\beta$-sensitivities for small correlation values but the lowest $\beta$-sensitivities when the correlation is high. This indicates that 
+	Now, we will consider the $\beta$-sensitivity and $\beta$-specificity results for the linear models that could perform variable selection. With the linear response, SCAD and MCP had the highest $\beta$-sensitivities for small correlation values but the lowest $\beta$-sensitivities when the correlation is high. This appears to indicate that SCAD and MCP are particularly weak at determining important predictors when variables are highly correlated. Looking at the $\beta$-specificity under the linear response, we see that MCP was by far the best model. It was able to identify nearly all of the predictors that needed coefficients of zero. The other linear models performed slightly worse than MCP.
 	
+	With the non-linear response function, we notice that none of the linear models showed any particular strengths when considering the $\beta$-sensitivity and $\beta$-specificity. The linear models appear to set almost all of the coefficients to zero, indicating that they all did a poor job of identifying important predictors.
+	
+	\begin{comment}
 	Looking at the $\beta$-specificity results from Figures \ref{fig:linear-specificity-1000-10} and \ref{fig:linear-specificity-50-2000}, we see that lasso, elastic-net, and the BIC wrapper methods had the highest $\beta$-specificity when $n = 1000$ and $p = 10$. When $n = 50$ and $p = 2000$, lasso and elastic-net had must lower $\beta$-specificity values compared to SCAD and MCP.
 	
 	Another interesting result to note is that for both low-dimensional and high-dimensional settings, when the correlation between predictors increased, the $\beta$-specificity for SCAD and MCP typically increased. For elastic-net, a higher correlation caused the $\beta$-specificity to decrease when $n = 1000$ and $p = 10$; however, when $n = 50$ and $p = 2000$, the $\beta$-specificity of elastic-net depends heavily on the correlation structure. For a symmetric compound correlation structure, elastic-net had a much lower $\beta$-specificity as correlation increased. For an autoregressive or blockwise correlation structure, a higher correlation increased the $\beta$-specificity for elastic-net. This means that lasso and elastic-net have trouble identifying non-zero coefficients when all $p = 2000$ predictors are correlated to each other, while SCAD and MCP could handle this situation well.
@@ -1053,9 +1047,31 @@
 	
 	% To further support this idea, notice in figure \ref{fig:fp-50-2000} that the number of false predictions decreases as the correlation increases mainly when the correlation structure is autoregressive or blockwise; when the correlation structure is symmetric compound, lasso and elastic-net do not improve as the correlation increases. This could be because symmetric compound correlation makes all of the predictors correlated with one another, whereas autoregressive and blockwise correlation make nearby predictors correlated with one another. By increasing the correlation with a symmetric compound structure, lasso and elastic-net are more likely to estimate more unimportant predictors as having non-zero coefficients because all of the predictors are correlated with the important predictors. On the other hand, with autoregressive and blockwise correlation, less of the unimportant predictors are correlated with the important predictors but the correlation between the important predictors stays the same. As a result, the models are less likely to incorrectly assume that unimportant predictors are important when the correlation structure is autoregressive or blockwise.
 	
-	Although wrapper methods and penalized regression models were the evident winners in this simulation study, it is worth noting that the non-linear models suffered from a few unfair disadvantages. For one, the simulated data assumed that there was a linear relationship between the predictors and response, which meant that the linear models were almost unbiased. The non-linear models were relatively more biased because they did not assume a linear relationship. 
+	Although wrapper methods and penalized regression models were the evident winners in this simulation study, it is worth noting that the non-linear models suffered from a few unfair disadvantages. For one, the simulated data assumed that there was a linear relationship between the predictors and response, which meant that the linear models were almost unbiased. The non-linear models were relatively more biased because they did not assume a linear relationship.
+	\end{comment}
 	
+	Now, we will discuss some results that broadly applied to our simulations, rather than just focusing on the $n = 50$ and $p = 2000$ case. Again, these results can be found at \href{https://github.com/connor-shrader/reu-2021}{github.com/connor-shrader/reu-2021}.
+	
+	The subset selection methods generally had a similar MSE on training and test data as SCAD and MCP. This makes them fairly well-performing linear models; however, these models are computationally infeasible to use with a large number of predictors. The subset selection methods that used BIC as a stopping condition typically had higher $\beta$-sensitivity and $\beta$-specificity values. This is somewhat expected because BIC will choose fewer non-zero coefficients than AIC.
+	
+	The linear models consistently had a lower MSE on test data than the non-linear models with the linear response function. With a non-linear response function, the linear models were competitive with non-linear models when $p$ was sufficiently large. In cases where $p$ was relatively small compared to $n$, the non-linear models dominated.
+	
+	The linear models consistently had difficulty identifying important predictors with the non-linear response function. This is somewhat expected, since many of the predictors in the non-linear response did not use linear terms. Nonetheless, this shows that the linear models can be rather unreliable when estimating coefficients as non-zero when the response is not linear.
+	
+	We conclude with the following summary of findings:
+	\begin{itemize}
+		\item When the response is linear, penalized linear models have a lower MSE on test data.
+		\item Non-linear models had a lower MSE on training data than linear models in almost all the simulations.
+		\item When the response is non-linear, penalized linear models generally have a slightly higher test MSE when $p > n$ when compared to non-linear models. When $n > p$, the linear models had a significantly higher test MSE.
+		\item Among the linear models, SCAD and MCP generally had the lowest test MSE. OLS and ridge regression usually had the highest.
+		\item SCAD and MCP tended to be more picky about the variables they selected compared to other linear models, especially when the correlation among predictors was high. This is due to these models having a lower $\beta$-sensitivity and higher $\beta$-specificity.
+		\item The linear models struggled to identify important predictors when the response was non-linear.
+		\item The standard deviation of the random error did not have any broad qualitative effects on the results, nor did the correlation structure.
+	\end{itemize}
+	
+	\begin{comment}
 	Another disadvantage for the non-linear models is that they can be controlled by many different hyperparameters, but we only considered a couple for each model. This was out of necessity; it would have been infeasible to fit models using more hyperparameters given the number of simulations that had to be run. If more hyperparameters could be included, then the performance of the non-linear models may have improved. At the same time, the more comprehensive tuning of several hyperparameters could act as a double edged sword in that it could increase the overfitting of these models. More hyperparameter tuning could lead a model to pick hyperparameters that fit the training data very precisely, but at the expense of increased testing error and computational cost.
+	\end{comment}
 	
 	\subsection{Discussion of Empirical Data Results}
 	In our empirical data study, SCAD and MCP also maintained the lowest testing mean squared error among the tested models. This can be seen in Figure \ref{fig:empirical_mse} and Table \ref{tab:emp_results}. Furthermore, the mean squared error MCP had a relatively low standard deviation across the five folds. 
