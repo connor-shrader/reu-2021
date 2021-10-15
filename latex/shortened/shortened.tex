@@ -228,7 +228,7 @@
 	\begin{equation}\label{eqn:penalized-regression-lambda}
 		\hat{\bm{\beta}}=\argmin{\bm{\beta}}{\sum\limits_{i = 1}^n \Big[y_i - (\beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \cdots + \beta_p x_{ip})\Big]^2 + \sum\limits_{j = 1}^p P(\beta_j)}
 	\end{equation}
-	where the first summation is the usual residual sum of squares, $\lambda\geq 0$ is a hyperparameter that controls the strength of the penalty, and $P(\beta)$ is a penalty function applied to each of the coefficients. The penalty is not applied to the intercept $\beta_0$.
+	where the first summation is the usual residual sum of squares and $P(\beta)$ is a penalty function that is applied to every coefficient (besides $\beta_0$). Usually, this penalty depends on at least one tuning parameter (usually denoted by $\lambda$) that controls how strong the penalty is. A suitable choice for the tuning parameter(s) will lead to a well-performing model.
 	\begin{comment}
 	In general, $P(\beta)$ is an even function that is non-decreasing as $\vert \beta \vert$ increases. If $\lambda = 0$, then we have the usual ordinary least squares estimator. As $\lambda$ increases, a stronger penalty is applied which will decrease the coefficient values. As $\lambda$ approaches $\infty$, the model becomes an empty model where only the intercept term is non-zero.
 	\end{comment}
@@ -243,7 +243,7 @@
 	When fitting penalized regression models, the choice of $\lambda$ is very important. If $\lambda$ is too small, then models may be overfit just like ordinary least squares; on the other hand, if $\lambda$ is large, then the resulting models are highly biased and the resulting models may be underfit. In practice, the best value of $\lambda$ can be selected using \textit{cross validation} and \textit{grid search}. This process involves splitting the training set into $k$ disjoint subsets of equal size called \textit{folds}. Then, $k$ models are fitted for different values of $\lambda$, where one fold is used as a testing set and the other $(k - 1)$ folds are used for training. The value of $\lambda$ that results in the lowest test error can then be selected.
 	\end{comment}
 	
-	\textit{Ridge regression} is a penalized regression model that uses the penalty function $P(\beta) = \beta^2$ \cite{hoerl1970ridge} in Equation \ref{eqn:penalized-regression-lambda}. 
+	\textit{Ridge regression} is a penalized linear regression model that uses the penalty function $P(\beta) = \lambda\beta^2$, where $\lambda$ is a tuning parameter \cite{hoerl1970ridge}.
 	\begin{comment}
 	One advantage of ridge regression is that it can handle highly correlated data better than ordinary least squares. When predictors are correlated with each other, some algorithms have a hard time distinguishing which predictors are actually related to the response.
 	\end{comment}
@@ -253,7 +253,7 @@
 	One drawback of ridge regression is that it cannot perform variable selection. It can shrink coefficients towards zero, but it cannot set coefficients to be exactly zero.
 	\end{comment}
 	
-	The \textit{least absolute shrinkage and selection operation}, commonly referred to as \textit{lasso}, is a shrinkage method with a very similar form to ridge regression \cite{tibshirani1996regression, james2013introduction}. The penalty function for lasso is $P(\beta) = \vert \beta \vert$. Unlike ridge regression, the lasso can perform variable selection.
+	The \textit{least absolute shrinkage and selection operation}, commonly referred to as \textit{lasso}, is a shrinkage method with a very similar form to ridge regression \cite{tibshirani1996regression, james2013introduction}. The penalty function for lasso is $P(\beta) = \lambda\vert \beta \vert$. Unlike ridge regression, the lasso can perform variable selection.
 	
 	\begin{comment}
 	Unlike ridge regression, lasso regression can perform variable selection by setting coefficients to zero. This makes lasso regression favorable when most predictors are not related to the response variable. On the other hand, if the response truly does depend on all of the predictors, then lasso regression may incorrectly set some coefficients to zero. In addition, lasso regression does not have a closed-form solution, but computing the coefficients is still efficient.
@@ -293,7 +293,7 @@
 	An important limitation to note is that elastic net performs best when it close to either ridge or lasso regression, meaning that either $\lambda_1$ greatly exceeds $\lambda_2$ or $\lambda_2$ greatly exceeds $\lambda_1$ \cite{zou2005regularization}. Additionally, because elastic net requires two tuning parameters, this makes it much more difficult to determine the best combination of tuning parameters to minimize error in the regression. However, this problem has been largely solved through by the LARS-EN algorithm developed by Zou et. al. which efficiently solves for the tuning parameters \cite{zou2005regularization}.
 	\end{comment}
 	
-	\textit{Elastic-net} (or E-net) regression uses both the ridge penalty and the lasso penalty at the same time by adding their two penalties (possibly with different tuning parameters $\lambda_1$ and $\lambda_2$) \cite{zou2005regularization}.
+	\textit{Elastic-net} (or E-net) regression uses both the ridge penalty and the lasso penalty at the same time by using the penalty function $P(\beta)=\lambda_1 \vert \beta \vert + \lambda_2 \beta^2$, where $\lambda_1$ and $\lambda_2$ are separate tuning parameters \cite{zou2005regularization}.
 	
 	\begin{comment}
 	One major flaw of the lasso method is that the penalty punishes large coefficients, even if those coefficients should be large. One way to modify the lasso method is to use the \textit{smoothly clipped absolute deviation} (SCAD) penalty \cite{fan2001variable}. The goal of this method is to punish large coefficients less severely, which can help mitigate some of the bias introduced by the lasso method. The penalty function $P(\beta)$ for SCAD satisfies

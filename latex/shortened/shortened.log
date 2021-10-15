@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.3.27)  15 OCT 2021 07:42
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.3.27)  15 OCT 2021 07:53
 entering extended mode
 **./shortened.tex
 (shortened.tex
@@ -1120,7 +1120,7 @@ LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
 (Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 489.
  [5] [6]
 Excluding 'comment' comment. [7] Excluding 'comment' comment.
-Excluding 'comment' comment. Excluding 'comment' comment. [8]
+Excluding 'comment' comment. [8] Excluding 'comment' comment.
 Excluding 'comment' comment. Excluding 'comment' comment.
 Excluding 'comment' comment.
 Package epstopdf Info: Source file: <images/facet/publication_facet_train_mse_1
@@ -1141,8 +1141,8 @@ Package epstopdf Info: Output file is already uptodate.
 pdfTeX warning: pdflatex.exe (file ./images/facet/publication_facet_train_mse_1
 _50_2000-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, but at 
 most version <1.5> allowed
-<images/facet/publication_facet_train_mse_1_50_2000-eps-converted-to.pdf, id=24
-0, 722.7pt x 722.7pt>
+<images/facet/publication_facet_train_mse_1_50_2000-eps-converted-to.pdf, id=23
+9, 722.7pt x 722.7pt>
 File: images/facet/publication_facet_train_mse_1_50_2000-eps-converted-to.pdf G
 raphic file (type pdf)
 <use images/facet/publication_facet_train_mse_1_50_2000-eps-converted-to.pdf>
@@ -1167,7 +1167,7 @@ Package epstopdf Info: Output file is already uptodate.
 pdfTeX warning: pdflatex.exe (file ./images/facet/publication_facet_test_mse_1_
 50_2000-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, but at m
 ost version <1.5> allowed
-<images/facet/publication_facet_test_mse_1_50_2000-eps-converted-to.pdf, id=241
+<images/facet/publication_facet_test_mse_1_50_2000-eps-converted-to.pdf, id=240
 , 722.7pt x 722.7pt>
 File: images/facet/publication_facet_test_mse_1_50_2000-eps-converted-to.pdf Gr
 aphic file (type pdf)
@@ -1194,7 +1194,7 @@ pdfTeX warning: pdflatex.exe (file ./images/facet/publication_facet_sensitivity
 _1_50_2000-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, but a
 t most version <1.5> allowed
 <images/facet/publication_facet_sensitivity_1_50_2000-eps-converted-to.pdf, id=
-242, 722.7pt x 722.7pt>
+241, 722.7pt x 722.7pt>
 File: images/facet/publication_facet_sensitivity_1_50_2000-eps-converted-to.pdf
  Graphic file (type pdf)
 <use images/facet/publication_facet_sensitivity_1_50_2000-eps-converted-to.pdf>
@@ -1221,7 +1221,7 @@ pdfTeX warning: pdflatex.exe (file ./images/facet/publication_facet_specificity
 _1_50_2000-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, but a
 t most version <1.5> allowed
 <images/facet/publication_facet_specificity_1_50_2000-eps-converted-to.pdf, id=
-243, 722.7pt x 722.7pt>
+242, 722.7pt x 722.7pt>
 File: images/facet/publication_facet_specificity_1_50_2000-eps-converted-to.pdf
  Graphic file (type pdf)
 <use images/facet/publication_facet_specificity_1_50_2000-eps-converted-to.pdf>
@@ -1252,8 +1252,8 @@ Package epstopdf Info: Output file is already uptodate.
 pdfTeX warning: pdflatex.exe (file ./images/facet/publication_facet_train_mse_2
 _50_2000-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, but at 
 most version <1.5> allowed
-<images/facet/publication_facet_train_mse_2_50_2000-eps-converted-to.pdf, id=30
-0, 722.7pt x 722.7pt>
+<images/facet/publication_facet_train_mse_2_50_2000-eps-converted-to.pdf, id=29
+9, 722.7pt x 722.7pt>
 File: images/facet/publication_facet_train_mse_2_50_2000-eps-converted-to.pdf G
 raphic file (type pdf)
 <use images/facet/publication_facet_train_mse_2_50_2000-eps-converted-to.pdf>
@@ -1278,7 +1278,7 @@ Package epstopdf Info: Output file is already uptodate.
 pdfTeX warning: pdflatex.exe (file ./images/facet/publication_facet_test_mse_2_
 50_2000-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, but at m
 ost version <1.5> allowed
-<images/facet/publication_facet_test_mse_2_50_2000-eps-converted-to.pdf, id=301
+<images/facet/publication_facet_test_mse_2_50_2000-eps-converted-to.pdf, id=300
 , 722.7pt x 722.7pt>
 File: images/facet/publication_facet_test_mse_2_50_2000-eps-converted-to.pdf Gr
 aphic file (type pdf)
@@ -1305,7 +1305,7 @@ pdfTeX warning: pdflatex.exe (file ./images/facet/publication_facet_sensitivity
 _2_50_2000-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, but a
 t most version <1.5> allowed
 <images/facet/publication_facet_sensitivity_2_50_2000-eps-converted-to.pdf, id=
-304, 722.7pt x 722.7pt>
+303, 722.7pt x 722.7pt>
 File: images/facet/publication_facet_sensitivity_2_50_2000-eps-converted-to.pdf
  Graphic file (type pdf)
 <use images/facet/publication_facet_sensitivity_2_50_2000-eps-converted-to.pdf>
@@ -1332,7 +1332,7 @@ pdfTeX warning: pdflatex.exe (file ./images/facet/publication_facet_specificity
 _2_50_2000-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, but a
 t most version <1.5> allowed
 <images/facet/publication_facet_specificity_2_50_2000-eps-converted-to.pdf, id=
-305, 722.7pt x 722.7pt>
+304, 722.7pt x 722.7pt>
 File: images/facet/publication_facet_specificity_2_50_2000-eps-converted-to.pdf
  Graphic file (type pdf)
 <use images/facet/publication_facet_specificity_2_50_2000-eps-converted-to.pdf>
@@ -1340,9 +1340,6 @@ File: images/facet/publication_facet_specificity_2_50_2000-eps-converted-to.pdf
 Package pdftex.def Info: images/facet/publication_facet_specificity_2_50_2000-e
 ps-converted-to.pdf  used on input line 867.
 (pdftex.def)             Requested size: 186.81842pt x 186.81686pt.
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
 [11 <./images/facet/publication_facet_train_mse_2_50_2000-eps-converted-to.pdf>
  <./images/facet/publication_facet_test_mse_2_50_2000-eps-converted-to.pdf>]
 Excluding 'comment' comment. Excluding 'comment' comment. [12 <./images/facet/p
@@ -1363,7 +1360,7 @@ Package epstopdf Info: Output file is already uptodate.
 
 pdfTeX warning: pdflatex.exe (file ./images/empirical_mse-eps-converted-to.pdf)
 : PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<images/empirical_mse-eps-converted-to.pdf, id=367, 722.7pt x 433.62pt>
+<images/empirical_mse-eps-converted-to.pdf, id=366, 722.7pt x 433.62pt>
 File: images/empirical_mse-eps-converted-to.pdf Graphic file (type pdf)
 <use images/empirical_mse-eps-converted-to.pdf>
 Package pdftex.def Info: images/empirical_mse-eps-converted-to.pdf  used on inp
@@ -1473,7 +1470,7 @@ Package rerunfilecheck Info: File `shortened.out' has not changed.
 Here is how much of TeX's memory you used:
  35031 strings out of 479287
  747715 string characters out of 2852552
- 1221099 words of memory out of 3000000
+ 1222099 words of memory out of 3000000
  51880 multiletter control sequences out of 15000+600000
  418009 words of font info for 77 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1511,9 +1508,9 @@ amsfonts/cm/cmti10.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX 2.9/fonts
 /type1/public/amsfonts/cm/cmti8.pfb><C:/Users/Connor/AppData/Local/Programs/MiK
 TeX 2.9/fonts/type1/public/amsfonts/cm/cmti9.pfb><C:/Users/Connor/AppData/Local
 /Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on shortened.pdf (19 pages, 745762 bytes).
+Output written on shortened.pdf (19 pages, 745609 bytes).
 PDF statistics:
- 530 PDF objects out of 1000 (max. 8388607)
+ 529 PDF objects out of 1000 (max. 8388607)
  92 named destinations out of 1000 (max. 500000)
  218 words of extra memory for PDF output out of 10000 (max. 10000000)
 
