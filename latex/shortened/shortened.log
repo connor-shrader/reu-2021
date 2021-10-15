@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.3.27)  15 OCT 2021 07:33
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.3.27)  15 OCT 2021 07:36
 entering extended mode
 **./shortened.tex
 (shortened.tex
@@ -1120,7 +1120,7 @@ LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
 (Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 489.
  [5] [6]
 Excluding 'comment' comment. [7] Excluding 'comment' comment.
-Excluding 'comment' comment. [8] Excluding 'comment' comment.
+Excluding 'comment' comment. Excluding 'comment' comment. [8]
 Excluding 'comment' comment. Excluding 'comment' comment.
 Excluding 'comment' comment.
 Package epstopdf Info: Source file: <images/facet/publication_facet_train_mse_1
@@ -1340,6 +1340,9 @@ File: images/facet/publication_facet_specificity_2_50_2000-eps-converted-to.pdf
 Package pdftex.def Info: images/facet/publication_facet_specificity_2_50_2000-e
 ps-converted-to.pdf  used on input line 867.
 (pdftex.def)             Requested size: 186.81842pt x 186.81686pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
 [11 <./images/facet/publication_facet_train_mse_2_50_2000-eps-converted-to.pdf>
  <./images/facet/publication_facet_test_mse_2_50_2000-eps-converted-to.pdf>]
 Excluding 'comment' comment. Excluding 'comment' comment. [12 <./images/facet/p
@@ -1465,7 +1468,7 @@ Package rerunfilecheck Info: File `shortened.out' has not changed.
 Here is how much of TeX's memory you used:
  35032 strings out of 479287
  747730 string characters out of 2852552
- 1223099 words of memory out of 3000000
+ 1222099 words of memory out of 3000000
  51880 multiletter control sequences out of 15000+600000
  418009 words of font info for 77 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1503,7 +1506,7 @@ amsfonts/cm/cmti10.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX 2.9/fonts
 /type1/public/amsfonts/cm/cmti8.pfb><C:/Users/Connor/AppData/Local/Programs/MiK
 TeX 2.9/fonts/type1/public/amsfonts/cm/cmti9.pfb><C:/Users/Connor/AppData/Local
 /Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on shortened.pdf (19 pages, 743098 bytes).
+Output written on shortened.pdf (19 pages, 745720 bytes).
 PDF statistics:
  533 PDF objects out of 1000 (max. 8388607)
  93 named destinations out of 1000 (max. 500000)
