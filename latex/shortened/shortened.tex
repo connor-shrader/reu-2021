@@ -917,20 +917,20 @@
 	\begin{table}[h!]
 		\centering
 		\captionsetup{width = 5in}
-		\caption{Average and standard deviation of the mean squared error of the models fit on the bcTCGA data set.}
+		\caption{Train MSE, test MSE, and runtime metrics for models fit using the bcTCGA data set.}
 		\label{tab:emp_results}
-		\begin{tabular}{l|ll|ll}
+		\begin{tabular}{l|ll|ll|l}
 			\hline
-			& \multicolumn{2}{c|}{\textbf{Train MSE}} & \multicolumn{2}{c}{\textbf{Test MSE}} \\ 
-			\textbf{Model } & \textbf{Average} & \textbf{SD} & \textbf{Average} & \textbf{SD} \\ 
+			& \multicolumn{2}{c|}{\textbf{Train MSE}} & \multicolumn{2}{c|}{\textbf{Test MSE}} &  \\ 
+			\textbf{Model } & \textbf{Average} & \textbf{SD} & \textbf{Average} & \textbf{SD} & \textbf{Average Runtime} (s) \\ 
 			\hline
-			Ridge  & $0.1391$ & $0.0266$ & $0.2858$ & $0.0610$ \\
-			Lasso  & $0.1842$ & $0.0159$ & $0.2304$ & $0.0337$ \\
-			E-net  & $0.1799$ & $0.0127$ & $0.2281$ & $0.0469$ \\
-			SCAD  & $0.1442$ & $0.0333$ & $0.2218$ & $0.0303$ \\
-			MCP  & $0.1566$ & $0.0129$ & $\mathbf{0.2202}$ & $\mathbf{0.0224}$ \\
-			GBM  & $\mathbf{0.0002}$ & $\mathbf{0.0004}$ & $0.2233$ & $0.0507$ \\
-			RF  & $0.0378$ & $0.0013$ & $0.2653$ & $0.0525$ \\
+			Ridge  & $0.1391$ & $0.0266$ & $0.2858$ & $0.0610$ & 29.29\\
+			Lasso  & $0.1842$ & $0.0159$ & $0.2304$ & $0.0337$ & 9.57\\
+			E-net  & $0.1799$ & $0.0127$ & $0.2281$ & $0.0469$ & \textbf{9.41}\\
+			SCAD  & $0.1442$ & $0.0333$ & $0.2218$ & $0.0303$ & 17.28\\
+			MCP  & $0.1566$ & $0.0129$ & $\mathbf{0.2202}$ & $\mathbf{0.0224}$ & 15.15\\
+			GBM  & $\mathbf{0.0002}$ & $\mathbf{0.0004}$ & $0.2233$ & $0.0507$ & 538.12\\
+			RF  & $0.0378$ & $0.0013$ & $0.2653$ & $0.0525$ & 4906.59\\
 			\hline 
 		\end{tabular}
 	\end{table}
@@ -975,6 +975,7 @@
 	Several of the genes in the data set appeared in all four models for several folds, indicating that they are very strongly related to the BRCA1 gene. The most important predictor was NBR2, which appeared in all four models for all five cross validation folds. This gene is a neighbor of the BRCA1 gene and is acts as a principal tumor suppressant \cite{xiao2016nbr2}. Other significant genes that appeared in all four models for multiple folds include DTL (three folds), VPS25 (three folds), and CMTM5 (two folds). These three genes are also related to tumor suppression \cite{kobayashi2015overexpression, vaccari2005drosophila, shao2007cmtm5}.
 	\end{comment}
 	
+	\begin{comment}
 	Table \ref{tab:emp_runtimes} shows the average runtime to fit each of the models on the bcTCGA data set.
 	
 	\begin{table}[h!]
@@ -993,6 +994,7 @@
 			RF 			  & 4906.59             \\ \hline
 		\end{tabular}
 	\end{table}
+	\end{comment}
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\newpage

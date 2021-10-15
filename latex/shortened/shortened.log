@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.3.27)  15 OCT 2021 07:36
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.3.27)  15 OCT 2021 07:42
 entering extended mode
 **./shortened.tex
 (shortened.tex
@@ -1372,103 +1372,108 @@ ut line 911.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-Excluding 'comment' comment.
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[13] Excluding 'comment' comment. [14 <./images/empirical_mse-eps-converted-to.
-pdf>] Excluding 'comment' comment. Excluding 'comment' comment.
+Excluding 'comment' comment. Excluding 'comment' comment. [13]
+Excluding 'comment' comment. [14 <./images/empirical_mse-eps-converted-to.pdf>]
+Excluding 'comment' comment. Excluding 'comment' comment.
 Excluding 'comment' comment. Excluding 'comment' comment. [15]
 Excluding 'comment' comment. Excluding 'comment' comment.
-Excluding 'comment' comment. [16] [17]
+Excluding 'comment' comment.
 
-LaTeX Font Warning: Command \small invalid in math mode on input line 1109.
+LaTeX Warning: Reference `tab:emp_runtimes' on page 16 undefined on input line 
+1090.
 
-LaTeX Font Info:    Calculating math sizes for size <> on input line 1111.
+[16]
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 1111.
+
+LaTeX Font Info:    Calculating math sizes for size <> on input line 1113.
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <> not available
-(Font)              size <5> substituted on input line 1111.
+(Font)              size <5> substituted on input line 1113.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <0.7> not available
-(Font)              size <5> substituted on input line 1111.
+(Font)              size <5> substituted on input line 1113.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <0.5> not available
-(Font)              size <5> substituted on input line 1111.
+(Font)              size <5> substituted on input line 1113.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <> not available
-(Font)              size <5> substituted on input line 1111.
+(Font)              size <5> substituted on input line 1113.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <0.7> not available
-(Font)              size <5> substituted on input line 1111.
+(Font)              size <5> substituted on input line 1113.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <0.5> not available
-(Font)              size <5> substituted on input line 1111.
+(Font)              size <5> substituted on input line 1113.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <> not available
-(Font)              size <5> substituted on input line 1111.
+(Font)              size <5> substituted on input line 1113.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <0.7> not available
-(Font)              size <5> substituted on input line 1111.
+(Font)              size <5> substituted on input line 1113.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <0.5> not available
-(Font)              size <5> substituted on input line 1111.
+(Font)              size <5> substituted on input line 1113.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <> not available
-(Font)              size <5> substituted on input line 1111.
+(Font)              size <5> substituted on input line 1113.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <0.7> not available
-(Font)              size <5> substituted on input line 1111.
+(Font)              size <5> substituted on input line 1113.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <0.5> not available
-(Font)              size <5> substituted on input line 1111.
+(Font)              size <5> substituted on input line 1113.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <> not available
-(Font)              size <5> substituted on input line 1111.
+(Font)              size <5> substituted on input line 1113.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <0.7> not available
-(Font)              size <5> substituted on input line 1111.
+(Font)              size <5> substituted on input line 1113.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <0.5> not available
-(Font)              size <5> substituted on input line 1111.
+(Font)              size <5> substituted on input line 1113.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <> not available
-(Font)              size <5> substituted on input line 1111.
+(Font)              size <5> substituted on input line 1113.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <0.7> not available
-(Font)              size <5> substituted on input line 1111.
+(Font)              size <5> substituted on input line 1113.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <0.5> not available
-(Font)              size <5> substituted on input line 1111.
+(Font)              size <5> substituted on input line 1113.
 
-(shortened.bbl [18]) Excluding 'comment' comment. [19] (shortened.aux)
+[17] (shortened.bbl [18]) Excluding 'comment' comment. [19] (shortened.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 4.5pt have occurred.
+
+
+LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `shortened.out' has not changed.
 (rerunfilecheck)             Checksum: E2D1A74789FFCF7EAF9BAA62FCB54F00;3197.
  ) 
 Here is how much of TeX's memory you used:
- 35032 strings out of 479287
- 747730 string characters out of 2852552
- 1222099 words of memory out of 3000000
+ 35031 strings out of 479287
+ 747715 string characters out of 2852552
+ 1221099 words of memory out of 3000000
  51880 multiletter control sequences out of 15000+600000
  418009 words of font info for 77 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1506,9 +1511,9 @@ amsfonts/cm/cmti10.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX 2.9/fonts
 /type1/public/amsfonts/cm/cmti8.pfb><C:/Users/Connor/AppData/Local/Programs/MiK
 TeX 2.9/fonts/type1/public/amsfonts/cm/cmti9.pfb><C:/Users/Connor/AppData/Local
 /Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on shortened.pdf (19 pages, 745720 bytes).
+Output written on shortened.pdf (19 pages, 745762 bytes).
 PDF statistics:
- 533 PDF objects out of 1000 (max. 8388607)
- 93 named destinations out of 1000 (max. 500000)
+ 530 PDF objects out of 1000 (max. 8388607)
+ 92 named destinations out of 1000 (max. 500000)
  218 words of extra memory for PDF output out of 10000 (max. 10000000)
 
