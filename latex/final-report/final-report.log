@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.7) (preloaded format=pdflatex 2021.7.23)  30 JUL 2021 17:25
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.7) (preloaded format=pdflatex 2021.7.23)  16 OCT 2021 10:15
 entering extended mode
 **./final-report.tex
 (final-report.tex
@@ -1793,8 +1793,8 @@ Package rerunfilecheck Info: File `final-report.out' has not changed.
  ) 
 Here is how much of TeX's memory you used:
  41957 strings out of 478870
- 874414 string characters out of 2844534
- 1343207 words of memory out of 3000000
+ 874274 string characters out of 2844534
+ 1342207 words of memory out of 3000000
  59117 multiletter control sequences out of 15000+600000
  418125 words of font info for 78 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1837,7 +1837,7 @@ nts/cm/cmti10.pfb><C:/Users/Gabriel Ackall/AppData/Local/Programs/MiKTeX/fonts/
 type1/public/amsfonts/cm/cmti9.pfb><C:/Users/Gabriel Ackall/AppData/Local/Progr
 ams/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/Gabriel Ackall/A
 ppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
-Output written on final-report.pdf (47 pages, 3022333 bytes).
+Output written on final-report.pdf (47 pages, 3021878 bytes).
 PDF statistics:
  951 PDF objects out of 1000 (max. 8388607)
  168 named destinations out of 1000 (max. 500000)
