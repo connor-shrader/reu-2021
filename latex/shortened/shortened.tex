@@ -581,7 +581,7 @@
 	\begin{equation}\label{eqn:linear-response}
 		Y = 1 + 2X_i - 2X_2 + 0.5X_5 + 3X_6 + \epsilon
 	\end{equation}
-	where $\epsilon$ is an independent random error with mean 0 and constant variance. Our non-linear response function uses
+	where $\epsilon$ is an independent random error with mean 0 and constant variance. We refer to this linear response function as Model 1. Our non-linear response function uses
 	\begin{equation}\label{eqn:nonlinear-response}
 		Y = 6\times 1_{X_1 > 0} + X_2^2 + 0.5X_6 + 3X_7 + 2\times 1_{X_8 > 0}\times 1_{X_9>0} + \epsilon
 	\end{equation}
@@ -592,7 +592,7 @@
 			1, & X_i > 0
 		\end{array}\right.
 	\end{equation}
-	Note that the non-linear response still includes linear terms.
+	Note that the non-linear response still includes linear terms. We refer to this non-linear response function as model 2.
 	
 	For each simulation, we generated a random $n\times (p + 1)$ matrix $\mathbf{X}\sim \mathcal{N}_p(0, \mathbf{\Sigma})$, where $\mathcal{N}_p(0, \mathbf{\Sigma})$ is the multivariate normal distribution with mean zero and covariance matrix $\Sigma$. The response $\mathbf{y}$ was then computed using one of the response functions. Finally, a normally distributed random error $\mathbf{e}\sim \mathcal{N}(0, \sigma^2)$ with mean 0 and standard deviation $\sigma$ was added to the response.
 	
@@ -713,7 +713,7 @@
 	Each model is given a shortened label to save space in the figure. Many of these labels have been used throughout this paper; for example, ordinary least squares is labeled as OLS. The labels for the wrapper methods start with AIC or BIC, followed by either B for backward, SB for stepwise backward, F for forward, or SF for stepwise forward. As an example, the stepwise forward model evaluated with AIC is labeled as ``AIC SF.''
 	\end{comment}
 	
-	We begin by presenting the results from our simulations that used the linear response function, followed by the results from the non-linear response function.
+	We begin by presenting the results from our simulations for Model 1 (linear function), followed by the results from Model 2 (non-linear function).
 	
 	\begin{comment}
 	First, we consider the case where $n = 1000$ and $p = 10$. Figures \ref{fig:linear-train-mse-1000-10} and \ref{fig:linear-test-mse-1000-10} show the average mean squared error of each model for the training set and test set, respectively. Tables \ref{tab:linear-train-mse-1000-10} and \ref{tab:linear-test-mse-1000-10} in Appendix \ref{app:full-results} contain all of the data shown in these figures as well as the standard deviation for each point.
@@ -800,7 +800,7 @@
 	Now, consider the results for $\beta$-specificity from Figure \ref{fig:linear-specificity}. MCP appears to make the fewest mistakes when choosing zero coefficients. The performance of the other models depends heavily on the type of correlation and the correlation strength. Lasso and elastic-net perform the worst when the correlation structure is symmetric compound, whereas SCAD performs poorly when the correlation structure is autoregressive or blockwise. We also see that the models correctly identify more coefficients as being zero as the correlation increases.
 	
 	\subsection{Non-linear Simulation Results}
-	Now, we will highlight some results from the simulations that used the non-linear response function given by Equation \ref{eqn:nonlinear-response}.
+	Now, we will highlight some results from the simulations for Model 2 given by Equation \ref{eqn:nonlinear-response}.
 	
 	\begin{comment}
 	
@@ -898,7 +898,7 @@
 	\end{figure}
 	\end{comment}
 	
-	This data is a prime example of the large $p$ small $n$ problem where there are many more predictors than data samples. Because of this, only penalized regression and machine learning techniques can be used. This is because there are more predictors than samples which makes least squares linear regression impossible and due to the high number of predictors, subset and stepwise regression becomes too computationally expensive to be feasible. Additionally, support vector machines struggle at such a high number of predictors and resulted in stack overflow errors which made fitting support vector machines on this data impossible.
+	This data is a prime example of the large $p$ small $n$ problem where there are many more predictors than data samples. Because of this, only penalized regression and machine learning techniques can be used. This is because there are more predictors than samples which makes least squares linear regression impossible and due to the high number of predictors, subset and stepwise regression becomes too computationally expensive to be feasible. Additionally, support vector machines struggle at such a high number of predictors and resulted in stack overflow errors which made fitting support vector machines on this data impossible. It is also important to note that we do not know whether the response variable is related linearly or non-linearly to the gene expression data. This is why it is important to analyze real, empirical data when comparing mahine learning techniques since we cannot know the functional form of the data.
 	
 	%For analyzing the error of models fitted using this empirical data, we performed nested cross validation. Many of the models fitted used cross validation for tuning purposes to find the best input parameters. Examples of these parameters include $\lambda$ for penalized regression techniques, the number of trees and number of predictors for random forest, as well as max depth and learning rate for XGBoost. However, we also perform 5-fold cross validation before we even allow the models to tune their parameters. By doing nested cross validation, testing data is not used for training the model \textit{or} tuning model parameters. This results in a more accurate error calculation. If nested cross validation was not used, models could tune their parameters in a way that overfits the model to the testing data which would lead to artificially decreased error and invalid results.
 	
@@ -1006,18 +1006,17 @@
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\newpage
 	\section{Discussion}\label{sec:discussion}
-	\subsection{Discussion of Simulation Results}
 	
-	We first discuss in detail our findings from the simulations where $n = 50$ and $p = 2000$. Then, we discuss some of the broader results that arose for other values of $n$ and $p$. We defer the reader to our supplementary document to see the figures and tables for the remaining simulations.
+	We first discuss in detail our findings from the simulations where $n = 50$ and $p = 2000$. Then, we discuss some of the broader results that arose for other values of $n$ and $p$. We defer the reader to our supplementary document to see the figures and tables for the remaining simulations. Lastly, we discuss findings from the empirical analysis.
 	
 	% discussion of findings, future work, and contributions
-	Figure \ref{fig:linear-test-mse} indicates that the best-performing models on test data from the linear simulations were SCAD and MCP. 
+	Figure \ref{fig:linear-test-mse} indicates that the best-performing algorithms on Model 1 were SCAD and MCP. 
 	\begin{comment}
 	The wrapper methods that used BIC performed better than SCAD and MCP when $n = 1000$ and $p = 10$, but could not be used in the high dimensional case where $n = 50$ and $p = 2000$. Lasso, elastic-net, and the wrapper methods with AIC all had low test mean squared errors as well. Ridge performed the worst out of all the linear models. The non-linear models also performed very badly on test data.
 	\end{comment}
 	Most other linear models considered performed relatively well, with ridge being an exception. The non-linear models all had high test MSEs, but performed much better when the correlation between predictors was large.
 	
-	With the non-linear response function, the linear models all performed similarly well on test data. Unlike with the linear response, the non-linear models outperformed the linear models with a non-linear response function. This is especially apparent when the correlation between predictors was 0.9, where XGBoost and random forest models performed incredibly well.
+	In Model 2, the linear models all performed similarly well on test data. Unlike with the linear response, the non-linear models outperformed the linear models with a non-linear response function. This is especially apparent when the correlation between predictors was 0.9, where XGBoost and random forest models performed incredibly well.
 	
 	One possible explanation for this phenomenon is that the XGBoost and random forest models are less influenced by the random error when the correlation is large. For example, when the correlation is zero, only a fraction of the decision trees generated in each random forest will contain any of the important predictors; many of the trees will instead be fit using only predictors that are unrelated to the response. This means that the random forest model is fitting with a large amount of noise. On the other hand, when the correlation is high, all of the trees will contain predictors that are correlated with the  predictors with non-zero coefficients. As a result, none of the trees will truly be fitting on just random error. Similarly, for XGBoost models, the strong correlation may make it more difficult to fit using just the random noise.
 	
@@ -1029,7 +1028,7 @@
 	Now, consider the training mean squared error results from Figures \ref{fig:linear-train-mse-1000-10} and \ref{fig:linear-train-mse-50-2000}. We see that training error for the linear models was roughly equal to the test error. This indicates that these models did not overfit to the training data. On the other hand, the non-linear models have far lower training mean squared errors than test errors. In particular, random forest models almost perfectly fit to the training data when $n = 1000$ and $p = 10$, while gradient boosting made an almost perfect fit when $n = 50$ and $p = 2000$.
 	\end{comment}
 	
-	If we compare the MSE between the training data and test data for both linear and non-linear simulations, we notice that the linear models had almost the same MSE in both cases. This demonstrates that these models have a very low variance; that is, the linear models are not very sensitive to the training data used. This is what makes penalized linear models useful in high-dimensional situations. On the other hand, the non-linear models had very low training MSEs (sometimes even lower than MCP and SCAD). This indicates that the non-linear models are overfitting, since their performance on test data is significantly worse.
+	If we compare the MSE between the training data and test data for both Model 1 and Model 2, we notice that the linear models had almost the same MSE in both cases. This demonstrates that these models have a very low variance; that is, the linear models are not very sensitive to the training data used. This is what makes penalized linear models useful in high-dimensional situations. On the other hand, the non-linear models had very low training MSEs (sometimes even lower than MCP and SCAD). This indicates that the non-linear models are overfitting, since their performance on test data is significantly worse.
 	
 	Ridge regression, which performed badly on both training data and test data, was likely restricted by its penalty function and its inability to perform variable selection. Recall that three out of the five non-zero coefficient values chosen in the linear response function were greater than one. Because the penalty function for ridge squares each coefficient, ridge was very strongly discouraged from selecting coefficient estimates close to the true non-zero coefficient values. Furthermore, because ridge regression cannot set coefficients to zero, its coefficient estimates for the true non-zero coefficients were likely even smaller because unimportant predictors were given non-zero coefficient estimates. As a result, ridge regression was unable to predict the true coefficient values as well as the other linear models.
 	
@@ -1067,22 +1066,10 @@
 	
 	The linear models consistently had difficulty identifying important predictors with the non-linear response function. This is somewhat expected, since many of the predictors in the non-linear response did not use linear terms. Nonetheless, this shows that the linear models can be rather unreliable when estimating coefficients as non-zero when the response is not linear.
 	
-	We conclude with the following summary of findings:
-	\begin{itemize}
-		\item When the response is linear, penalized linear models have a lower MSE on test data than non-linear models.
-		\item Non-linear models had a lower MSE on training data than linear models in almost all the simulations.
-		\item When the response is non-linear, penalized linear models generally have a slightly higher test MSE when $p > n$ when compared to non-linear models. When $n > p$, the linear models had a significantly higher test MSE.
-		\item Among the linear models, SCAD and MCP generally had the lowest test MSE. OLS and ridge regression usually had the highest.
-		\item SCAD and MCP tended to be more picky about the variables they selected compared to other linear models, especially when the correlation among predictors was high. This is evidenced by these models having a lower $\beta$-sensitivity and higher $\beta$-specificity.
-		\item The linear models struggled to identify important predictors when the response was non-linear.
-		\item The standard deviation of the random error did not have any broad qualitative effects on the results, nor did the correlation structure.
-	\end{itemize}
-	
 	\begin{comment}
 	Another disadvantage for the non-linear models is that they can be controlled by many different hyperparameters, but we only considered a couple for each model. This was out of necessity; it would have been infeasible to fit models using more hyperparameters given the number of simulations that had to be run. If more hyperparameters could be included, then the performance of the non-linear models may have improved. At the same time, the more comprehensive tuning of several hyperparameters could act as a double edged sword in that it could increase the overfitting of these models. More hyperparameter tuning could lead a model to pick hyperparameters that fit the training data very precisely, but at the expense of increased testing error and computational cost.
 	\end{comment}
 	
-	\subsection{Discussion of Empirical Data Results}
 	In our empirical data study, SCAD and MCP also maintained the lowest testing mean squared error among the tested models. This can be seen in Figure \ref{fig:empirical_mse} and Table \ref{tab:emp_results}. Furthermore, the mean squared error MCP had a relatively low standard deviation across the five folds. 
 	\begin{comment}
 	This may be due in part to the fact that MCP consistently selected the fewest number of predictors compared to Lasso and Elastic Net as shown by the Venn diagrams in Figure \ref{fig:venn}. Because this empirical data most likely contains multicollinearity, the fact that MCP selects fewer predictors may have helped to reduce overfitting. This is consistent with results from the Monte Carlo simulations which indicate that MCP performed better than its counterparts in multicollinear environments.
@@ -1096,6 +1083,19 @@
 	
 	The penalized regression models performed exceptionally faster than random forest and XGBoost as documented in Table \ref{tab:emp_runtimes}. On average, Lasso and Elastic Net ran approximately 56x faster than XGBoost and 510x faster than random forest. MCP and SCAD ran approximately 30x faster than XGBoost and 290x faster than random forest. This provides a significant advantage to the penalized regression techniques, especially given that MCP and other penalized techniques performed better than random forest and XGBoost. 
 	
+	We conclude with the following summary of findings:
+	\begin{itemize}
+		\item In Model 1, penalized linear models have a lower MSE on test data than non-linear models.
+		\item Non-linear models had a lower MSE on training data than linear models in almost all the simulations.
+		\item In Model 1, penalized linear models generally have a slightly higher test MSE when $p > n$ when compared to non-linear models. When $n > p$, the linear models had a significantly higher test MSE.
+		\item Among the linear models, SCAD and MCP generally had the lowest test MSE. OLS and ridge regression usually had the highest.
+		\item SCAD and MCP tended to be more picky about the variables they selected compared to other linear models, especially when the correlation among predictors was high. This is evidenced by these models having a lower $\beta$-sensitivity and higher $\beta$-specificity.
+		\item The linear models struggled to identify important predictors in Model 2.
+		\item The standard deviation of the random error did not have any broad qualitative effects on the results, nor did the correlation structure.
+		\item In the empirical analysis, SCAD and MCP performed the best and had the lowest testing MSE among tested models.
+		\item Penalized regression models ran substantially faster the than non-linear machine learning models in Model 1, Model 2, and the empirical data analysis.
+	\end{itemize}
+	
 	
 	\section{Conclusion}\label{sec:conclusion}
 	
@@ -1108,16 +1108,7 @@
 	
 	We could also run Monte Carlo simulations where the response is categorical rather than numerical. This could be used to study how penalized regression performs when used for classification data, which is the most common case for high dimensional data sets.
 	
-	% maybe talk about the penalty method we came up with? Talk about how it might be able to solve issues of Logsum method?
-	We are working on developing a hybrid technique between random forest and penalized regression. This method would harness the power of ensemble learning, while still being able to perform variable selection. This would hopefully perform better than either random forest or penalized regression methods individually. There are some models such as SREEMforest \cite{capitaine2021random} which conduct variable selection, however, these models use wrapper methods and variable importance which can be computationally expensive and do not inherently eliminate insignificant variables the same way penalized regression does. Given that random forest models are already very slow, performing additional stepwise selection may result in an exponentially slower runtime. Thus, it is important that inherent variable selection methods such as penalized regression methods are utilized in ensemble methods.
-	
-	Lastly, we have developed a penalty function that has the potential to conduct variable selection while also handling multicollinearity well. The penalty function follows the L1/4 + L2 regularization and can be seen in Equation \ref{eqn:proposed}. We are interested in implementing this penalty function and analyzing its results. Given the power of penalized regression techniques seen in this study, it is important to develop new penalized regression techniques that improve on the drawbacks of previous designs.
-	
-	\begin{equation}
-		\label{eqn:proposed}
-		\small
-		\hat{\beta}^{\text{proposed}} = \argmin{\beta}{\sum\limits_{i = 1}^n \Big[y_i - (\beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \cdots + \beta_p x_{ip})\Big]^2  + \lambda_1\sum\limits_{j = 1}^p \vert \beta_j \vert^{\frac{1}{4}} + \lambda_2\sum\limits_{j = 1}^p \beta_j^2}
-	\end{equation}
+	In the future, it may be useful to develop a hybrid technique between random forest and penalized regression. This method would harness the power of ensemble learning, while still being able to perform variable selection and would hopefully perform better than either random forest or penalized regression methods individually. There are some models such as SREEMforest \cite{capitaine2021random} which conduct variable selection, however, these models use wrapper methods and variable importance which can be computationally expensive and do not inherently eliminate insignificant variables the same way penalized regression does. Given that random forest models are already very slow, performing additional stepwise selection may result in an exponentially slower runtime. Thus, it is important that inherent variable selection methods such as penalized regression methods are utilized in ensemble methods.
 	
 	\section{Acknowledgments}
 	
