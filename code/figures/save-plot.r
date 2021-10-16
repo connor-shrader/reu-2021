@@ -1,4 +1,5 @@
-save_plot <- function(plot, filename, path, png_only = FALSE, width = 10, height = 6) {
+save_plot <- function(plot, filename, path, png_only = FALSE, 
+                      cairo = TRUE, width = 10, height = 6) {
   ggsave(
     filename = paste(filename, ".png", sep = ""),
     path = path,
@@ -10,14 +11,27 @@ save_plot <- function(plot, filename, path, png_only = FALSE, width = 10, height
   )
   
   if (!png_only) {
-    ggsave(
-      filename = paste(filename, ".eps", sep = ""),
-      path = path,
-      plot = plot,
-      device = cairo_ps,
-      width = width,
-      height = height,
-      unit = "in"
-    )
+    if (cairo) {
+      ggsave(
+        filename = paste(filename, ".eps", sep = ""),
+        path = path,
+        plot = plot,
+        device = cairo_ps,
+        width = width,
+        height = height,
+        unit = "in"
+      )
+    }
+    else {
+      ggsave(
+        filename = paste(filename, ".eps", sep = ""),
+        path = path,
+        plot = plot,
+        device = "eps",
+        width = width,
+        height = height,
+        unit = "in"
+      )
+    }
   }
 }

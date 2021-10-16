@@ -210,7 +210,7 @@ for (row in 1:nrow(dimensions)) {
     folder <- sub("_", "-", metric)
     save_plot(plot = plt,
               filename = paste(filename, response, n, p, sep = "_"),
-              path = paste(directory, folder, sep = ""))
+              path = paste(directory, folder, sep = ""), cairo = FALSE)
   }
 }
 
@@ -238,5 +238,6 @@ for (row in 1:nrow(dimensions)) {
   save_plot(plot = plt,
             filename = filename,
             path = publication_directory,
-            width = 10, height = 10)
+            width = 10, height = 10,
+            cairo = FALSE)
 }
