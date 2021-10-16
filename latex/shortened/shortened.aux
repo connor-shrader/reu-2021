@@ -28,22 +28,29 @@
 \citation{zou2005regularization}
 \citation{fan2001variable}
 \citation{zhang2010nearly}
+\citation{usai2009lasso}
+\citation{li2012overview}
 \citation{breiman2001random}
 \citation{chen2021xgboost}
 \citation{cortes1995support}
 \@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{2}{section.1}\protected@file@percent }
 \citation{greene2003econometric}
 \citation{friedman2001elements}
-\citation{liu2020logsum}
 \citation{sanchez2007filter}
 \citation{ding2005minimum}
+\citation{guyon2003introduction}
+\citation{liu2020logsum}
+\citation{guyon2003introduction}
+\citation{liu2020logsum}
 \@writefile{toc}{\contentsline {section}{\numberline {2}Methodology}{3}{section.2}\protected@file@percent }
 \newlabel{sec:methodology}{{2}{3}{Methodology}{section.2}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Modeling Background}{3}{subsection.2.1}\protected@file@percent }
 \newlabel{eqn:relationship}{{1}{3}{Modeling Background}{equation.2.1}{}}
 \newlabel{eqn:linear-model}{{2}{3}{Modeling Background}{equation.2.2}{}}
 \newlabel{eqn:RSS}{{3}{3}{Modeling Background}{equation.2.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Subset Selection Methods}{3}{subsection.2.2}\protected@file@percent }
+\citation{miller2002subset}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Subset Selection Methods}{4}{subsection.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Penalized Regression}{4}{subsection.2.3}\protected@file@percent }
 \citation{hoerl1970ridge}
 \citation{tibshirani1996regression}
 \citation{james2013introduction}
@@ -53,14 +60,14 @@
 \citation{fan2001variable}
 \citation{zhang2010nearly}
 \citation{zou2006adaptive}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Penalized Regression}{4}{subsection.2.3}\protected@file@percent }
-\newlabel{eqn:penalized-regression-lambda}{{4}{4}{Penalized Regression}{equation.2.4}{}}
 \citation{breiman2001random}
 \citation{efron1994introduction}
 \citation{schapire1990strength}
 \citation{friedman2001greedy}
 \citation{cortes1995support}
 \citation{drucker1997support}
+\newlabel{eqn:penalized-regression-lambda}{{4}{5}{Penalized Regression}{equation.2.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Non-linear models}{5}{subsection.2.4}\protected@file@percent }
 \citation{r}
 \citation{r}
 \citation{venables2002mass}
@@ -70,66 +77,66 @@
 \citation{wright2017ranger}
 \citation{liaw2002rf}
 \citation{meyer2021e1071}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Non-linear models}{5}{subsection.2.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.5}Implementation}{5}{subsection.2.5}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces \lstinline !R! Libraries used and the models used from each library\relax }}{5}{table.caption.1}\protected@file@percent }
-\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{tab:model-libraries}{{1}{5}{\lstinline !R! Libraries used and the models used from each library\relax }{table.caption.1}{}}
 \citation{akaike1998information}
 \citation{schwarz1978estimating}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5}Implementation}{6}{subsection.2.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces \lstinline !R! Libraries used and the models used from each library\relax }}{6}{table.caption.1}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:model-libraries}{{1}{6}{\lstinline !R! Libraries used and the models used from each library\relax }{table.caption.1}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {3}Monte Carlo Simulations}{7}{section.3}\protected@file@percent }
 \newlabel{sec:simulations}{{3}{7}{Monte Carlo Simulations}{section.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Simulation Design}{7}{subsection.3.1}\protected@file@percent }
-\newlabel{eqn:linear-response}{{5}{7}{Simulation Design}{equation.3.5}{}}
-\newlabel{eqn:nonlinear-response}{{6}{7}{Simulation Design}{equation.3.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Evaluating Model Performance}{8}{subsection.3.2}\protected@file@percent }
-\newlabel{sec:evaluating-model-performance}{{3.2}{8}{Evaluating Model Performance}{subsection.3.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Simulation Design}{8}{subsection.3.1}\protected@file@percent }
+\newlabel{eqn:linear-response}{{5}{8}{Simulation Design}{equation.3.5}{}}
+\newlabel{eqn:nonlinear-response}{{6}{8}{Simulation Design}{equation.3.6}{}}
 \citation{liu2020logsum}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Linear Simulation Results}{9}{subsection.3.3}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Average mean square error using training data for linear simulations when $n = 50$ and $p = 2000$.\relax }}{10}{figure.caption.2}\protected@file@percent }
-\newlabel{fig:linear-train-mse}{{1}{10}{Average mean square error using training data for linear simulations when $n = 50$ and $p = 2000$.\relax }{figure.caption.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Average mean square error using testing data for linear simulations when $n = 50$ and $p = 2000$.\relax }}{10}{figure.caption.2}\protected@file@percent }
-\newlabel{fig:linear-test-mse}{{2}{10}{Average mean square error using testing data for linear simulations when $n = 50$ and $p = 2000$.\relax }{figure.caption.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Average $\beta $-sensitivity for linear simulations when $n = 50$ and $p = 2000$.\relax }}{10}{figure.caption.2}\protected@file@percent }
-\newlabel{fig:linear-sensitivity}{{3}{10}{Average $\beta $-sensitivity for linear simulations when $n = 50$ and $p = 2000$.\relax }{figure.caption.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Average $\beta $-specificity for linear simulations when $n = 50$ and $p = 2000$.\relax }}{10}{figure.caption.2}\protected@file@percent }
-\newlabel{fig:linear-specificity}{{4}{10}{Average $\beta $-specificity for linear simulations when $n = 50$ and $p = 2000$.\relax }{figure.caption.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Evaluating Model Performance}{9}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:evaluating-model-performance}{{3.2}{9}{Evaluating Model Performance}{subsection.3.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Linear Simulation Results}{10}{subsection.3.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Average mean square error using training data for linear simulations when $n = 50$ and $p = 2000$.\relax }}{11}{figure.caption.2}\protected@file@percent }
+\newlabel{fig:linear-train-mse}{{1}{11}{Average mean square error using training data for linear simulations when $n = 50$ and $p = 2000$.\relax }{figure.caption.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Average mean square error using testing data for linear simulations when $n = 50$ and $p = 2000$.\relax }}{11}{figure.caption.2}\protected@file@percent }
+\newlabel{fig:linear-test-mse}{{2}{11}{Average mean square error using testing data for linear simulations when $n = 50$ and $p = 2000$.\relax }{figure.caption.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Average $\beta $-sensitivity for linear simulations when $n = 50$ and $p = 2000$.\relax }}{11}{figure.caption.2}\protected@file@percent }
+\newlabel{fig:linear-sensitivity}{{3}{11}{Average $\beta $-sensitivity for linear simulations when $n = 50$ and $p = 2000$.\relax }{figure.caption.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Average $\beta $-specificity for linear simulations when $n = 50$ and $p = 2000$.\relax }}{11}{figure.caption.2}\protected@file@percent }
+\newlabel{fig:linear-specificity}{{4}{11}{Average $\beta $-specificity for linear simulations when $n = 50$ and $p = 2000$.\relax }{figure.caption.2}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Non-linear Simulation Results}{11}{subsection.3.4}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Average mean square error using training data for non-linear simulations when $n = 50$ and $p = 2000$.\relax }}{11}{figure.caption.3}\protected@file@percent }
-\newlabel{fig:nonlinear-train-mse}{{5}{11}{Average mean square error using training data for non-linear simulations when $n = 50$ and $p = 2000$.\relax }{figure.caption.3}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Average mean square error using testing data for non-linear simulations when $n = 50$ and $p = 2000$.\relax }}{11}{figure.caption.3}\protected@file@percent }
-\newlabel{fig:nonlinear-test-mse}{{6}{11}{Average mean square error using testing data for non-linear simulations when $n = 50$ and $p = 2000$.\relax }{figure.caption.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Average mean square error using training data for non-linear simulations when $n = 50$ and $p = 2000$.\relax }}{12}{figure.caption.3}\protected@file@percent }
+\newlabel{fig:nonlinear-train-mse}{{5}{12}{Average mean square error using training data for non-linear simulations when $n = 50$ and $p = 2000$.\relax }{figure.caption.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Average mean square error using testing data for non-linear simulations when $n = 50$ and $p = 2000$.\relax }}{12}{figure.caption.3}\protected@file@percent }
+\newlabel{fig:nonlinear-test-mse}{{6}{12}{Average mean square error using testing data for non-linear simulations when $n = 50$ and $p = 2000$.\relax }{figure.caption.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Average $\beta $-sensitivity for non-linear simulations when $n = 50$ and $p = 2000$.\relax }}{12}{figure.caption.4}\protected@file@percent }
+\newlabel{fig:nonlinear-specificity}{{7}{12}{Average $\beta $-sensitivity for non-linear simulations when $n = 50$ and $p = 2000$.\relax }{figure.caption.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Average $\beta $-specificity for non-linear simulations when $n = 50$ and $p = 2000$.\relax }}{12}{figure.caption.4}\protected@file@percent }
+\newlabel{fig:nonlinear-sensitivity}{{8}{12}{Average $\beta $-specificity for non-linear simulations when $n = 50$ and $p = 2000$.\relax }{figure.caption.4}{}}
 \citation{zeng2017biglasso}
 \citation{kuchenbaecker2017risks}
 \citation{antoniou2003average}
 \citation{deng2000roles}
 \citation{deng2000roles}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Average $\beta $-sensitivity for non-linear simulations when $n = 50$ and $p = 2000$.\relax }}{12}{figure.caption.4}\protected@file@percent }
-\newlabel{fig:nonlinear-specificity}{{7}{12}{Average $\beta $-sensitivity for non-linear simulations when $n = 50$ and $p = 2000$.\relax }{figure.caption.4}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Average $\beta $-specificity for non-linear simulations when $n = 50$ and $p = 2000$.\relax }}{12}{figure.caption.4}\protected@file@percent }
-\newlabel{fig:nonlinear-sensitivity}{{8}{12}{Average $\beta $-specificity for non-linear simulations when $n = 50$ and $p = 2000$.\relax }{figure.caption.4}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Empirical Data Analysis}{12}{section.4}\protected@file@percent }
-\newlabel{sec:empirical}{{4}{12}{Empirical Data Analysis}{section.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Details of Empirical Data}{12}{subsection.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Empirical Data Results}{13}{subsection.4.2}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Train MSE, test MSE, and runtime metrics for models fit using the bcTCGA data set.\relax }}{13}{table.caption.6}\protected@file@percent }
-\newlabel{tab:emp_results}{{2}{13}{Train MSE, test MSE, and runtime metrics for models fit using the bcTCGA data set.\relax }{table.caption.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Empirical Data Analysis}{13}{section.4}\protected@file@percent }
+\newlabel{sec:empirical}{{4}{13}{Empirical Data Analysis}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Details of Empirical Data}{13}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Empirical Data Results}{14}{subsection.4.2}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Mean squared error of the models fit on the bcTCGA data set. Each point represents the mean squared error for one fold, while the bars represent the average for the five folds.\relax }}{14}{figure.caption.5}\protected@file@percent }
 \newlabel{fig:empirical_mse}{{9}{14}{Mean squared error of the models fit on the bcTCGA data set. Each point represents the mean squared error for one fold, while the bars represent the average for the five folds.\relax }{figure.caption.5}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{14}{section.5}\protected@file@percent }
-\newlabel{sec:discussion}{{5}{14}{Discussion}{section.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Discussion of Simulation Results}{14}{subsection.5.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Discussion of Empirical Data Results}{16}{subsection.5.2}\protected@file@percent }
-\citation{capitaine2021random}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Train MSE, test MSE, and runtime metrics for models fit using the bcTCGA data set.\relax }}{14}{table.caption.6}\protected@file@percent }
+\newlabel{tab:emp_results}{{2}{14}{Train MSE, test MSE, and runtime metrics for models fit using the bcTCGA data set.\relax }{table.caption.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{15}{section.5}\protected@file@percent }
+\newlabel{sec:discussion}{{5}{15}{Discussion}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Discussion of Simulation Results}{15}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Discussion of Empirical Data Results}{17}{subsection.5.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{17}{section.6}\protected@file@percent }
 \newlabel{sec:conclusion}{{6}{17}{Conclusion}{section.6}{}}
-\newlabel{eqn:proposed}{{11}{17}{Conclusion}{equation.6.11}{}}
+\citation{capitaine2021random}
 \bibstyle{plain-lf}
 \bibdata{references}
 \bibcite{akaike1998information}{1}
 \bibcite{antoniou2003average}{2}
 \bibcite{breheny2011ncvreg}{3}
 \bibcite{breiman2001random}{4}
+\newlabel{eqn:proposed}{{11}{18}{Conclusion}{equation.6.11}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Acknowledgments}{18}{section.7}\protected@file@percent }
 \bibcite{capitaine2021random}{5}
 \bibcite{chen2021xgboost}{6}
 \bibcite{cortes1995support}{7}
@@ -142,23 +149,26 @@
 \bibcite{friedman2001elements}{14}
 \bibcite{friedman2001greedy}{15}
 \bibcite{greene2003econometric}{16}
-\bibcite{hoerl1970ridge}{17}
-\bibcite{james2013introduction}{18}
-\bibcite{kuchenbaecker2017risks}{19}
-\bibcite{liaw2002rf}{20}
-\@writefile{toc}{\contentsline {section}{\numberline {7}Acknowledgments}{18}{section.7}\protected@file@percent }
-\bibcite{liu2020logsum}{21}
-\bibcite{meyer2021e1071}{22}
-\bibcite{nielsen2016tree}{23}
-\bibcite{r}{24}
-\bibcite{sanchez2007filter}{25}
-\bibcite{schapire1990strength}{26}
-\bibcite{schwarz1978estimating}{27}
-\bibcite{tibshirani1996regression}{28}
-\bibcite{venables2002mass}{29}
-\bibcite{wright2017ranger}{30}
-\bibcite{zeng2017biglasso}{31}
-\bibcite{zhang2010nearly}{32}
-\bibcite{zou2006adaptive}{33}
-\bibcite{zou2005regularization}{34}
-\gdef \@abspage@last{19}
+\bibcite{guyon2003introduction}{17}
+\bibcite{hoerl1970ridge}{18}
+\bibcite{james2013introduction}{19}
+\bibcite{kuchenbaecker2017risks}{20}
+\bibcite{li2012overview}{21}
+\bibcite{liaw2002rf}{22}
+\bibcite{liu2020logsum}{23}
+\bibcite{meyer2021e1071}{24}
+\bibcite{miller2002subset}{25}
+\bibcite{nielsen2016tree}{26}
+\bibcite{r}{27}
+\bibcite{sanchez2007filter}{28}
+\bibcite{schapire1990strength}{29}
+\bibcite{schwarz1978estimating}{30}
+\bibcite{tibshirani1996regression}{31}
+\bibcite{usai2009lasso}{32}
+\bibcite{venables2002mass}{33}
+\bibcite{wright2017ranger}{34}
+\bibcite{zeng2017biglasso}{35}
+\bibcite{zhang2010nearly}{36}
+\bibcite{zou2006adaptive}{37}
+\bibcite{zou2005regularization}{38}
+\gdef \@abspage@last{20}

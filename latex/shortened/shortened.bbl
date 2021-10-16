@@ -94,6 +94,11 @@ Greene, W.~H.
 \newblock {\em Econometric analysis}.
 \newblock Pearson Education India, 2003.
 
+\bibitem{guyon2003introduction}
+Guyon, I. and Elisseeff, A.
+\newblock An introduction to variable and feature selection.
+\newblock {\em Journal of machine learning research}, 3(Mar):1157--1182, 2003.
+
 \bibitem{hoerl1970ridge}
 Hoerl, A.~E. and Kennard, R.~W.
 \newblock Ridge regression: Biased estimation for nonorthogonal problems.
@@ -112,6 +117,12 @@ Kuchenbaecker, K.~B., Hopper, J.~L., Barnes, D.~R., Phillips, K.-A., Mooij,
   and brca2 mutation carriers.
 \newblock {\em Jama}, 317(23):2402--2416, 2017.
 
+\bibitem{li2012overview}
+Li, Z. and Sillanp{\"a}{\"a}, M.~J.
+\newblock Overview of lasso-related penalized regression methods for
+  quantitative trait mapping and genomic selection.
+\newblock {\em Theoretical and applied genetics}, 125(3):419--435, 2012.
+
 \bibitem{liaw2002rf}
 Liaw, A. and Wiener, M.
 \newblock Classification and regression by randomforest.
@@ -128,6 +139,11 @@ Meyer, D., Dimitriadou, E., Hornik, K., Weingessel, A., and Leisch, F.
 \newblock {\em e1071: Misc Functions of the Department of Statistics,
   Probability Theory Group (Formerly: E1071), TU Wien}, 2021.
 \newblock R package version 1.7-7.
+
+\bibitem{miller2002subset}
+Miller, A.
+\newblock {\em Subset selection in regression}.
+\newblock CRC Press, 2002.
 
 \bibitem{nielsen2016tree}
 Nielsen, D.
@@ -161,6 +177,11 @@ Tibshirani, R.
 \newblock Regression shrinkage and selection via the lasso.
 \newblock {\em Journal of the Royal Statistical Society: Series B
   (Methodological)}, 58(1):267--288, 1996.
+
+\bibitem{usai2009lasso}
+Usai, M.~G., Goddard, M.~E., and Hayes, B.~J.
+\newblock Lasso with cross-validation for genomic selection.
+\newblock {\em Genetics research}, 91(6):427--436, 2009.
 
 \bibitem{venables2002mass}
 Venables, W.~N. and Ripley, B.~D.
