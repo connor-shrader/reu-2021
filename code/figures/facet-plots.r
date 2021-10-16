@@ -101,8 +101,8 @@ newer_plot_metric <- function(data, metric, small = FALSE, rescale = FALSE, ...)
     df2[[metric]] <- c(max1, min1, max3, min3, max6, min6)
     df2$st_dev <- mapvalues(df2$st_dev, from = old_st_dev, to = new_st_dev)
     
-    #df2$type <- factor(df2$type, levels = c("Independent", "Symmetric",
-    #                                        "Autoregressive", "Blockwise"))
+    df2$type <- factor(df2$type, levels = c("Independent", "Symmetric",
+                                            "Autoregressive", "Blockwise"))
   }
   
   ylabel <- NULL
@@ -345,6 +345,9 @@ plot_metric <- function(data, metric, facet, color, ylabel = "Mean test MSE",
   return(plt)
 }
 
+results <- readRDS("../../results/monte-carlo-linear/aggregate_linear_results.rds")
+#stop("STOP")
+
 n <- c(50, 200, 1000)
 p <- c(10, 100, 2000)
 response <- c("linear", "nonlinear")
@@ -400,7 +403,6 @@ for (row in 1:nrow(dimensions)) {
             width = 10, height = 10)
 }
 
-stop("STOP")
 
 for (response in 1:2) {
   if (response == 1) {
