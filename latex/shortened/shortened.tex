@@ -898,7 +898,7 @@
 	\end{figure}
 	\end{comment}
 	
-	This data is a prime example of the large $p$ small $n$ problem where there are many more predictors than data samples. Because of this, only penalized regression and machine learning techniques can be used. This is because there are more predictors than samples which makes least squares linear regression impossible and due to the high number of predictors, subset and stepwise regression becomes too computationally expensive to be feasible. Additionally, support vector machines struggle at such a high number of predictors and resulted in stack overflow errors which made fitting support vector machines on this data impossible.
+	This data is a prime example of the large $p$ small $n$ problem where there are many more predictors than data samples. Because of this, only penalized regression and machine learning techniques can be used. This is because there are more predictors than samples which makes least squares linear regression impossible and due to the high number of predictors, subset and stepwise regression becomes too computationally expensive to be feasible. Additionally, support vector machines struggle at such a high number of predictors and resulted in stack overflow errors which made fitting support vector machines on this data impossible. It is also important to note that we do not know whether the response variable is related linearly or non-linearly to the gene expression data. This is why it is important to analyze real, empirical data when comparing mahine learning techniques since we cannot know the functional form of the data.
 	
 	%For analyzing the error of models fitted using this empirical data, we performed nested cross validation. Many of the models fitted used cross validation for tuning purposes to find the best input parameters. Examples of these parameters include $\lambda$ for penalized regression techniques, the number of trees and number of predictors for random forest, as well as max depth and learning rate for XGBoost. However, we also perform 5-fold cross validation before we even allow the models to tune their parameters. By doing nested cross validation, testing data is not used for training the model \textit{or} tuning model parameters. This results in a more accurate error calculation. If nested cross validation was not used, models could tune their parameters in a way that overfits the model to the testing data which would lead to artificially decreased error and invalid results.
 	
@@ -1006,9 +1006,8 @@
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\newpage
 	\section{Discussion}\label{sec:discussion}
-	\subsection{Discussion of Simulation Results}
 	
-	We first discuss in detail our findings from the simulations where $n = 50$ and $p = 2000$. Then, we discuss some of the broader results that arose for other values of $n$ and $p$. We defer the reader to our supplementary document to see the figures and tables for the remaining simulations.
+	We first discuss in detail our findings from the simulations where $n = 50$ and $p = 2000$. Then, we discuss some of the broader results that arose for other values of $n$ and $p$. We defer the reader to our supplementary document to see the figures and tables for the remaining simulations. Lastly, we discuss findings from the empirical analysis.
 	
 	% discussion of findings, future work, and contributions
 	Figure \ref{fig:linear-test-mse} indicates that the best-performing algorithms on Model 1 were SCAD and MCP. 
@@ -1067,22 +1066,10 @@
 	
 	The linear models consistently had difficulty identifying important predictors with the non-linear response function. This is somewhat expected, since many of the predictors in the non-linear response did not use linear terms. Nonetheless, this shows that the linear models can be rather unreliable when estimating coefficients as non-zero when the response is not linear.
 	
-	We conclude with the following summary of findings:
-	\begin{itemize}
-		\item When the response is linear, penalized linear models have a lower MSE on test data than non-linear models.
-		\item Non-linear models had a lower MSE on training data than linear models in almost all the simulations.
-		\item When the response is non-linear, penalized linear models generally have a slightly higher test MSE when $p > n$ when compared to non-linear models. When $n > p$, the linear models had a significantly higher test MSE.
-		\item Among the linear models, SCAD and MCP generally had the lowest test MSE. OLS and ridge regression usually had the highest.
-		\item SCAD and MCP tended to be more picky about the variables they selected compared to other linear models, especially when the correlation among predictors was high. This is evidenced by these models having a lower $\beta$-sensitivity and higher $\beta$-specificity.
-		\item The linear models struggled to identify important predictors when the response was non-linear.
-		\item The standard deviation of the random error did not have any broad qualitative effects on the results, nor did the correlation structure.
-	\end{itemize}
-	
 	\begin{comment}
 	Another disadvantage for the non-linear models is that they can be controlled by many different hyperparameters, but we only considered a couple for each model. This was out of necessity; it would have been infeasible to fit models using more hyperparameters given the number of simulations that had to be run. If more hyperparameters could be included, then the performance of the non-linear models may have improved. At the same time, the more comprehensive tuning of several hyperparameters could act as a double edged sword in that it could increase the overfitting of these models. More hyperparameter tuning could lead a model to pick hyperparameters that fit the training data very precisely, but at the expense of increased testing error and computational cost.
 	\end{comment}
 	
-	\subsection{Discussion of Empirical Data Results}
 	In our empirical data study, SCAD and MCP also maintained the lowest testing mean squared error among the tested models. This can be seen in Figure \ref{fig:empirical_mse} and Table \ref{tab:emp_results}. Furthermore, the mean squared error MCP had a relatively low standard deviation across the five folds. 
 	\begin{comment}
 	This may be due in part to the fact that MCP consistently selected the fewest number of predictors compared to Lasso and Elastic Net as shown by the Venn diagrams in Figure \ref{fig:venn}. Because this empirical data most likely contains multicollinearity, the fact that MCP selects fewer predictors may have helped to reduce overfitting. This is consistent with results from the Monte Carlo simulations which indicate that MCP performed better than its counterparts in multicollinear environments.
@@ -1095,6 +1082,19 @@
 	MCP also maintained the lowest testing MSE standard deviation for the empirical data as seen in Figure \ref{tab:emp_results}. This is to be expected given the bias/variance tradeoff. Because MCP selects fewer predictors than the other models, it incurs greater bias but while also lessening variance. By definition, this means that MCP is less sensitive to changes in training data, such as changes in training data due to 5-fold cross validation. 
 	
 	The penalized regression models performed exceptionally faster than random forest and XGBoost as documented in Table \ref{tab:emp_runtimes}. On average, Lasso and Elastic Net ran approximately 56x faster than XGBoost and 510x faster than random forest. MCP and SCAD ran approximately 30x faster than XGBoost and 290x faster than random forest. This provides a significant advantage to the penalized regression techniques, especially given that MCP and other penalized techniques performed better than random forest and XGBoost. 
+	
+	We conclude with the following summary of findings:
+	\begin{itemize}
+		\item In Model 1, penalized linear models have a lower MSE on test data than non-linear models.
+		\item Non-linear models had a lower MSE on training data than linear models in almost all the simulations.
+		\item In Model 1, penalized linear models generally have a slightly higher test MSE when $p > n$ when compared to non-linear models. When $n > p$, the linear models had a significantly higher test MSE.
+		\item Among the linear models, SCAD and MCP generally had the lowest test MSE. OLS and ridge regression usually had the highest.
+		\item SCAD and MCP tended to be more picky about the variables they selected compared to other linear models, especially when the correlation among predictors was high. This is evidenced by these models having a lower $\beta$-sensitivity and higher $\beta$-specificity.
+		\item The linear models struggled to identify important predictors in Model 2.
+		\item The standard deviation of the random error did not have any broad qualitative effects on the results, nor did the correlation structure.
+		\item In the empirical analysis, SCAD and MCP performed the best and had the lowest testing MSE among tested models.
+		\item Penalized regression models ran substantially faster the than non-linear machine learning models in Model 1, Model 2, and the empirical data analysis.
+	\end{itemize}
 	
 	
 	\section{Conclusion}\label{sec:conclusion}
