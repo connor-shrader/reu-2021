@@ -118,11 +118,16 @@ newer_plot_metric <- function(data, metric, ...) {
       color = "corr",
       shape = "corr",
       fill = "corr"
-    )) +
-    geom_point(mapping = aes_string(
+    ))
+  
+  if (metric == "mean_train_mse" || metric == "mean_test_mse") {
+    plt <- plt + geom_point(mapping = aes_string(
       x = "model_name",
       y = metric),
-      data = df2, alpha = 0) +
+      data = df2, alpha = 0)
+  }
+  
+  plt <- plt +
     scale_shape_manual(values = 21:24, name = "Correlation") +
     scale_color_manual(values = hue_pal()(4), name = "Correlation") +
     scale_fill_manual(values = hue_pal()(4), name = "Correlation") +
@@ -143,13 +148,12 @@ newer_plot_metric <- function(data, metric, ...) {
       legend.box = "horizontal"
     )
   
-    if (metric == "mean_train_mse" || metric == "mean_test_mse") {
-      print(levels(dat$type))
-      plt <- plt + facet_grid(st_dev ~ type, scales = "free_y", label = "label_parsed")
-    }
-    else {
-      plt <- plt + facet_grid(rows = vars(st_dev), cols = vars(type), label = "label_parsed")
-    }
+  if (metric == "mean_train_mse" || metric == "mean_test_mse") {
+    plt <- plt + facet_grid(st_dev ~ type, scales = "free_y", label = "label_parsed")
+  }
+  else {
+    plt <- plt + facet_grid(st_dev ~ type, label = "label_parsed")
+  }
   
   return(plt)
 }
