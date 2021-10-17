@@ -101,7 +101,7 @@ mse_plot <- ggplot(data = all_results, mapping = aes(x = model_name, y = mse, la
   geom_bar(mapping = aes(fill = type), stat = "summary", fun = "mean", position = position_dodge(width = 0.8), width = 0.8, color = "black") +
   geom_point(mapping = aes(group = type), position = position_dodge(width = 0.8)) +
   #geom_text(data = aggregate, aes(label = round(mse, 4), group = type), position = position_dodge(width = 0.8), vjust=-0.25) +
-  labs(x = "Model name", y = "Mean Squared Error") +
+  labs(x = "Model", y = "Mean Squared Error") +
   scale_y_continuous(expand = expansion(mult = c(0, 0.05))) +
   reu_border +
   theme(
