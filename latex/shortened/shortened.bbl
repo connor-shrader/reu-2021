@@ -189,6 +189,12 @@ Venables, W.~N. and Ripley, B.~D.
 \newblock Springer, New York, fourth edition, 2002.
 \newblock ISBN 0-387-95457-0.
 
+\bibitem{wang2007group}
+Wang, L., Chen, G., and Li, H.
+\newblock Group scad regression analysis for microarray time course gene
+  expression data.
+\newblock {\em Bioinformatics}, 23(12):1486--1494, 2007.
+
 \bibitem{wright2017ranger}
 Wright, M.~N. and Ziegler, A.
 \newblock {ranger}: A fast implementation of random forests for high

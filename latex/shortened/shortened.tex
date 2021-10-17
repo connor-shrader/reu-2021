@@ -344,7 +344,22 @@
 	\end{equation}
 	\end{comment}
 	
-	Two additional penalized regression techniques are \textit{Smoothly-Clipped Absolute Deviation} (SCAD) and \textit{Minimax Concave Penalty} (MCP) \cite{fan2001variable, zhang2010nearly}. These methods use more complicated penalty functions that punish larger coefficients less severely. This helps to reduce the bias of the resulting models.
+	Two additional penalized regression techniques are \textit{Smoothly-Clipped Absolute Deviation} (SCAD) and \textit{Minimax Concave Penalty} (MCP) \cite{fan2001variable, wang2007group}. SCAD uses the penalty function
+	\begin{equation}
+		P(\beta) = \left\{\begin{array}{ll}
+				\lambda \vert \beta \vert, & \vert \beta \vert \leq \lambda \\
+				\frac{2a\lambda\vert\beta\vert - \beta^2 - \lambda^2}{(a - 1)}, & \lambda \leq \vert \beta \vert < a\lambda \\
+				\frac{\lambda^2(a+1)}{2}, & a\lambda < \vert \beta \vert
+			\end{array}\right.
+	\end{equation}
+	while MCP \cite{zhang2010nearly} uses
+	\begin{equation}
+		P(\beta) = \left\{\begin{array}{ll}
+			\lambda\vert \beta \vert - \frac{\beta^2}{2a}, & \vert \beta \vert \leq a\lambda \\
+			\frac{1}{2}a\lambda^2, & a\lambda < \vert \beta \vert
+		\end{array}\right.
+	\end{equation}
+	These methods use more complicated penalty functions that punish larger coefficients less severely. This helps to reduce the bias of the resulting models.
 	\begin{comment}
 	Figure \ref{fig:lasso-scad-mcp} below shows the penalty functions (and their derivatives) for lasso, SCAD, and MCP as a function of a coefficient value $\beta$. We see that lasso applies a much stronger penalty to large coefficients than SCAD or MCP. Also, note that SCAD starts with a derivative equal to that of the lasso for small values of $\beta$; on the other hand, the derivative of the penalty function for MCP starts decreasing immediately.
 	
