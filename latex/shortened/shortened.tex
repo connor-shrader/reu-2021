@@ -235,7 +235,7 @@
 	\begin{equation}\label{eqn:penalized-regression-lambda}
 		\hat{\bm{\beta}}=\argmin{\bm{\beta}}{\sum\limits_{i = 1}^n \Big[y_i - (\beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \cdots + \beta_p x_{ip})\Big]^2 + \sum\limits_{j = 1}^p P(\beta_j)}
 	\end{equation}
-	where the first summation is the usual residual sum of squares and $P(\beta)$ is a penalty function that is applied to every coefficient (besides $\beta_0$). Usually, this penalty depends on at least one tuning parameter (usually denoted by $\lambda$) that controls how strong the penalty is. A suitable choice for the tuning parameter(s) will lead to a well-performing model.
+	where the first summation is the usual residual sum of squares and $P(\beta)$ is a penalty function that is applied to each coefficient (not including the intercept $\beta_0$). Usually, this penalty depends on at least one tuning parameter (usually denoted by $\lambda$) that controls how strong the penalty is. A suitable choice for the tuning parameter(s) will lead to a well-performing model.
 	\begin{comment}
 	In general, $P(\beta)$ is an even function that is non-decreasing as $\vert \beta \vert$ increases. If $\lambda = 0$, then we have the usual ordinary least squares estimator. As $\lambda$ increases, a stronger penalty is applied which will decrease the coefficient values. As $\lambda$ approaches $\infty$, the model becomes an empty model where only the intercept term is non-zero.
 	\end{comment}
