@@ -761,36 +761,38 @@
 	
 	Figure \ref{fig:linear-train-mse} shows the average MSE for the simulated models on training data; Figure \ref{fig:linear-test-mse} shows the same results but for test data. Figure \ref{fig:linear-sensitivity} and \ref{fig:linear-specificity} display the $\beta$-sensitivity and $\beta$-specificity for the linear models that perform variable selection.
 	
-	\begin{figure}[t!]
+	\begin{figure}[!htb]
 		\centering
-		\begin{minipage}[t]{0.47\textwidth}
-			\includegraphics[width = \textwidth]{images/facet/publication_facet_train_mse_linear_50_2000.eps}
-			\captionsetup{width = 0.95\textwidth}
-			\caption{Average mean square error using training data for linear simulations when $n = 50$ and $p = 	2000$.}
-			\label{fig:linear-train-mse}
-		\end{minipage}
-		\hspace{6pt}
-		\begin{minipage}[t]{0.47\textwidth}
-			\includegraphics[width = \textwidth]{images/facet/publication_facet_test_mse_linear_50_2000.eps}
-			\captionsetup{width = 0.95\textwidth}
-			\caption{Average mean square error using testing data for linear simulations when $n = 50$ and $p = 	2000$.}
+		\begin{subfigure}[b]{0.47\textwidth}
+			\includegraphics[width=\textwidth]{images/facet/publication_facet_train_mse_linear_50_2000.eps}
+			\subcaption{Training data.}
 			\label{fig:linear-test-mse}
-		\end{minipage}
-		\vspace{6pt}
-		
-		\begin{minipage}[t]{0.47\textwidth}
-			\includegraphics[width = \textwidth]{images/facet/publication_facet_sensitivity_linear_50_2000.eps}
-			\captionsetup{width = 0.95\textwidth}
-			\caption{Average $\beta$-sensitivity for linear simulations when $n = 50$ and $p = 	2000$.}
-			\label{fig:linear-sensitivity}
-		\end{minipage}
+		\end{subfigure}
 		\hspace{6pt}
-		\begin{minipage}[t]{0.47\textwidth}
-			\includegraphics[width = \textwidth]{images/facet/publication_facet_specificity_linear_50_2000.eps}
-			\captionsetup{width = 0.95\textwidth}
-			\caption{Average $\beta$-specificity for linear simulations when $n = 50$ and $p = 	2000$.}
+		\begin{subfigure}[b]{0.47\textwidth}
+			\includegraphics[width=\textwidth]{images/facet/publication_facet_train_mse_linear_50_2000.eps}
+			\subcaption{Test data.}
+			\label{fig:linear-train-mse}
+		\end{subfigure}
+		\caption{Average mean squared error for linear simulations when $n = 50$ and $p = 2000$.}
+		\label{fig:linear-mse}
+	\end{figure}
+
+	\begin{figure}[!htb]
+		\centering
+		\begin{subfigure}[b]{0.47\textwidth}
+			\includegraphics[width=\textwidth]{images/facet/publication_facet_sensitivity_linear_50_2000.eps}
+			\subcaption{$\beta$-sensitivity.}
+			\label{fig:linear-sensitivity}
+		\end{subfigure}
+		\hspace{6pt}
+		\begin{subfigure}[b]{0.47\textwidth}
+			\includegraphics[width=\textwidth]{images/facet/publication_facet_specificity_linear_50_2000.eps}
+			\subcaption{$\beta$-specificity.}
 			\label{fig:linear-specificity}
-		\end{minipage}
+		\end{subfigure}
+		\caption{Average $\beta$-sensitivity and $\beta$-specificity for linear simulations when $n = 50$ and $p = 2000$.}
+		\label{fig:linear-beta}
 	\end{figure}
 
 	We see that the mean squared error for lasso and elastic-net are generally larger than SCAD and MCP for both the training data and test data. Gradient boosting has almost zero training mean squared error under all conditions, but has a relatively large test error. Random forest and support vector machine models have a moderate training error but a large test error. Interestingly, we see that the non-linear models all perform better when there is a strong correlation between predictors. On the other hand, the linear models are somewhat less affected by the correlation.
@@ -843,39 +845,40 @@
 	\end{comment}
 	
 	Figures \ref{fig:nonlinear-train-mse} and \ref{fig:nonlinear-test-mse} show the average mean square errors on the training data and test data, respectively. We see that the linear and non-linear models have similar test mean squared errors. Another interesting observation is that the non-linear models all have a noticeably lower test mean squared error when the correlation between predictors is high. The linear models still perform significantly worse on the training data compared to the test data. 
-	\begin{figure}[t!]
+	\begin{figure}[!htb]
 		\centering
-		\begin{minipage}[t]{0.47\textwidth}
+		\begin{subfigure}[b]{0.47\textwidth}
 			\includegraphics[width=\textwidth]{images/facet/publication_facet_train_mse_nonlinear_50_2000.eps}
-			\captionsetup{width = 0.95\textwidth}
-			\caption{Average mean square error using training data for non-linear simulations when $n = 50$ and $p = 	2000$.}
-			\label{fig:nonlinear-train-mse}
-		\end{minipage}
-		\hspace{6pt}
-		\begin{minipage}[t]{0.47\textwidth}
-			\includegraphics[width=\textwidth]{images/facet/publication_facet_test_mse_nonlinear_50_2000.eps}
-			\captionsetup{width = 0.95\textwidth}
-			\caption{Average mean square error using testing data for non-linear simulations when $n = 50$ and $p = 	2000$.}
+			\subcaption{Training data.}
 			\label{fig:nonlinear-test-mse}
-		\end{minipage}
+		\end{subfigure}
+		\hspace{6pt}
+		\begin{subfigure}[b]{0.47\textwidth}
+			\includegraphics[width=\textwidth]{images/facet/publication_facet_train_mse_nonlinear_50_2000.eps}
+			\subcaption{Test data.}
+			\label{fig:nonlinear-train-mse}
+		\end{subfigure}
+		\caption{Average mean squared error for linear simulations when $n = 50$ and $p = 2000$.}
+		\label{fig:nonlinear-mse}
 	\end{figure}
 	
 	Figures \ref{fig:nonlinear-sensitivity} and \ref{fig:nonlinear-specificity} show the results for the $\beta$-sensitivity and $\beta$-specificity for the non-linear models. We see that all of the linear models estimate almost all of the coefficients as being equal to zero! SCAD and MCP were slightly more likely to correctly estimate non-zero coefficients as being non-zero, but they were also more likely to incorrectly identify unimportant predictors as having non-zero coefficients.
-	\begin{figure}[h!]
+	\begin{figure}[!htb]
 		\centering
-		\begin{minipage}[t]{0.47\textwidth}
-			\includegraphics[width = \textwidth]{images/facet/publication_facet_sensitivity_nonlinear_50_2000.eps}
-			\captionsetup{width = 0.95\textwidth}
-			\caption{Average $\beta$-sensitivity for non-linear simulations when $n = 50$ and $p = 	2000$.}
-			\label{fig:nonlinear-specificity}
-		\end{minipage}
-		\hspace{6pt}
-		\begin{minipage}[t]{0.47\textwidth}
-			\includegraphics[width = \textwidth]{images/facet/publication_facet_specificity_nonlinear_50_2000.eps}
-			\captionsetup{width = 0.95\textwidth}
-			\caption{Average $\beta$-specificity for non-linear simulations when $n = 50$ and $p = 	2000$.}
+		\begin{subfigure}[b]{0.47\textwidth}
+			\includegraphics[width=\textwidth]{images/facet/publication_facet_sensitivity_nonlinear_50_2000.eps}
+			\subcaption{$\beta$-sensitivity.}
 			\label{fig:nonlinear-sensitivity}
-		\end{minipage}
+		\end{subfigure}
+		\hspace{6pt}
+		\begin{subfigure}[b]{0.47\textwidth}
+			\includegraphics[width=\textwidth]{images/facet/publication_facet_specificity_nonlinear_50_2000.eps}
+			\subcaption{$\beta$-specificity.}
+			\label{fig:nonlinear-specificity}
+		\end{subfigure}
+		\captionsetup{width=0.7\textwidth}
+		\caption{Average $\beta$-sensitivity and $\beta$-specificity for non-linear simulations when $n = 50$ and $p = 2000$.}
+		\label{fig:nonlinear-beta}
 	\end{figure}
 	
 	\section{Empirical Data Analysis}\label{sec:empirical}
