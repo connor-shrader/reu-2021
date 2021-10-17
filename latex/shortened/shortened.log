@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.3.27)  17 OCT 2021 11:41
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.3.27)  17 OCT 2021 11:43
 entering extended mode
 **./shortened.tex
 (shortened.tex
@@ -1340,18 +1340,12 @@ Package epstopdf Info: Source file: <images/empirical_mse.eps>
 (epstopdf)                    size: 82456 bytes
 (epstopdf)             Output file: <images/empirical_mse-eps-converted-to.pdf>
 
-(epstopdf)                    date: 2021-09-21 08:39:41
-(epstopdf)                    size: 25480 bytes
+(epstopdf)                    date: 2021-10-17 11:42:00
+(epstopdf)                    size: 24997 bytes
 (epstopdf)             Command: <miktex-epstopdf --outfile=images/empirical_mse
 -eps-converted-to.pdf images/empirical_mse.eps>
 (epstopdf)             \includegraphics on input line 921.
-runsystem(miktex-epstopdf --outfile=images/empirical_mse-eps-converted-to.pdf i
-mages/empirical_mse.eps)...executed (allowed).
-
-Package epstopdf Info: Result file: <images/empirical_mse-eps-converted-to.pdf>
-
-(epstopdf)                    date: 2021-10-17 11:42:00
-(epstopdf)                    size: 24997 bytes.
+Package epstopdf Info: Output file is already uptodate.
 
 
 pdfTeX warning: pdflatex.exe (file ./images/empirical_mse-eps-converted-to.pdf)
@@ -1419,7 +1413,7 @@ s/Connor/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti8
 .pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsf
 onts/cm/cmti9.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX 2.9/fonts/type
 1/public/amsfonts/cm/cmtt10.pfb>
-Output written on shortened.pdf (19 pages, 532969 bytes).
+Output written on shortened.pdf (19 pages, 532976 bytes).
 PDF statistics:
  512 PDF objects out of 1000 (max. 8388607)
  94 named destinations out of 1000 (max. 500000)
