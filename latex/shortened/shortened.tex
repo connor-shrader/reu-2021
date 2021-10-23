@@ -1038,6 +1038,8 @@
 	
 	The standard deviation of the random error did not have any broad qualitative effects on the results, nor did the correlation structure. The standard deviation of the random error did result in worse-performing models, but none of the models appeared to be affected more or less when varying the random error.
 	
+	Overall, we conclude that among the linear models, MCP generally had the best performance. This conclusion backs the results of similar simulation studies that compared penalized regression techniques \cite{breheny2011coordinate, zhang2010nearly}. When $p$ is large, the performance of MCP is comparable to that of the non-linear models.
+	
 	\begin{comment}
 	The wrapper methods that used BIC performed better than SCAD and MCP when $n = 1000$ and $p = 10$, but could not be used in the high dimensional case where $n = 50$ and $p = 2000$. Lasso, elastic-net, and the wrapper methods with AIC all had low test mean squared errors as well. Ridge performed the worst out of all the linear models. The non-linear models also performed very badly on test data.
 	
@@ -1119,7 +1121,7 @@
 	
 	We could also run Monte Carlo simulations where the response is categorical rather than numerical. This could be used to study how penalized regression performs when used for classification data, which is the most common case for high dimensional data sets.
 	
-	In the future, it may be useful to develop a hybrid technique between random forest and penalized regression. This method would harness the power of ensemble learning, while still being able to perform variable selection and would hopefully perform better than either random forest or penalized regression methods individually. There are some models such as SREEMforest \cite{capitaine2021random} which conduct variable selection, however, these models use wrapper methods and variable importance which can be computationally expensive and do not inherently eliminate insignificant variables the same way penalized regression does. Given that random forest models are already very slow, performing additional stepwise selection may result in an exponentially slower runtime. Thus, it is important that inherent variable selection methods such as penalized regression methods are utilized in ensemble methods.
+	In the future, it may be useful to develop and test a hybrid technique between random forest and penalized regression. This method would harness the power of ensemble learning, while still being able to perform variable selection and would hopefully perform better than either random forest or penalized regression methods individually. Some such models already exist, as seen in \cite{capitaine2021random, degenhardt2019evaluation, zhang2016variable} which conduct variable selection, however, these models use wrapper methods and variable importance which can be computationally expensive and do not inherently eliminate insignificant variables the same way penalized regression does. Given that random forest models are already very slow, performing additional stepwise selection may result in an exponentially slower runtime. Thus, it is important that inherent variable selection methods such as penalized regression methods are utilized in ensemble methods.
 	
 	\section{Acknowledgments}
 	

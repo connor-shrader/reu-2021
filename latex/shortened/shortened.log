@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.3.27)  23 OCT 2021 13:47
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.3.27)  23 OCT 2021 14:08
 entering extended mode
 **./shortened.tex
 (shortened.tex
@@ -1370,10 +1370,10 @@ Package rerunfilecheck Info: File `shortened.out' has not changed.
 (rerunfilecheck)             Checksum: BCD2A94371EE623C09596140551749AF;2720.
  ) 
 Here is how much of TeX's memory you used:
- 35023 strings out of 479287
- 747378 string characters out of 2852552
+ 35029 strings out of 479287
+ 747523 string characters out of 2852552
  1225100 words of memory out of 3000000
- 51869 multiletter control sequences out of 15000+600000
+ 51872 multiletter control sequences out of 15000+600000
  417328 words of font info for 74 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  87i,16n,89p,2067b,1801s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1408,9 +1408,9 @@ s/Connor/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti8
 .pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsf
 onts/cm/cmti9.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX 2.9/fonts/type
 1/public/amsfonts/cm/cmtt10.pfb>
-Output written on shortened.pdf (19 pages, 533900 bytes).
+Output written on shortened.pdf (19 pages, 535553 bytes).
 PDF statistics:
- 513 PDF objects out of 1000 (max. 8388607)
- 97 named destinations out of 1000 (max. 500000)
+ 520 PDF objects out of 1000 (max. 8388607)
+ 100 named destinations out of 1000 (max. 500000)
  192 words of extra memory for PDF output out of 10000 (max. 10000000)
 
