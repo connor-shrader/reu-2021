@@ -1022,36 +1022,42 @@
 	\newpage
 	\section{Discussion}\label{sec:discussion}
 	
-	We first discuss in detail our findings from the simulations where $n = 50$ and $p = 2000$. Then, we discuss some of the broader results that arose for other values of $n$ and $p$. We defer the reader to our supplementary document to see the figures and tables for the remaining simulations. Lastly, we discuss findings from the empirical analysis.
+	We first describe our key findings from the simulation study. Although results were only shown for the case when $n = 50$ and $p = 2000$, some broad conclusions from other combinations of $n$ and $p$ will be mentioned. We refer the reader to our supplementary document to see the figures and tables for those simulations. Then, we will summarize our findings from the empirical study.
 	
-	% discussion of findings, future work, and contributions
-	Figure \ref{fig:linear-test-mse} indicates that the best-performing algorithms on Model 1 were SCAD and MCP. 
+	In Model 1 (with a linear response), penalized linear models had a much lower MSE on test data than non-linear models, regardless of the values of $n$ and $p$. This indicates that linear models are superior to non-linear models when it is appropriate to assume a linear relationship.
+		
+	Linear models had a higher MSE on training data than non-linear models in almost all the simulations. Instead, the training MSE for the linear models was very close to their test MSE. This indicates that the linear models did not have any overfitting, whereas the non-linear models did.
+		
+	In Model 2 (with a non-linear response), penalized linear models generally have a slightly higher test MSE when $p > n$ when compared to non-linear models. Hence, in high-dimensional situations, the linear models are competitive with non-linear models even when the response cannot assumed to depend linearly on the predictors. When $n > p$, the linear models had a significantly higher test MSE. This is expected, since a large number of predictors helps the non-linear models suffer less from their high variance. The linear models continue to have a high bias when $n$ is large, resulting in large test errors.
+	
+	For both Model 1 and Model 2, SCAD and MCP generally had the lowest test MSE among the linear models. Subset selection methods that used BIC, where applicable, sometimes performed slightly better than SCAD and MCP. However, the difference was very small. Lasso, elastic-net, and subset selection models with AIC almost never performed as well as SCAD and MCP, but were usually not significantly worse.
+	
+	Ordinary least sqaures and ridge regression were the worst-performing linear models. These two models likely suffered from their inability to perform variable selection. Because both Model 1 and Model 2 had only a small number of important predictors, the need for variable selection is pivotal for good model performance.
+	
+	Lasso and elastic-net tended to be more picky about the variables they selected compared to other linear models, especially when the correlation among predictors was high. This is evidenced by these models having a lower $\beta$-sensitivity and higher $\beta$-specificity. Even though SCAD and MCP were more likely to identify important predictors, all of the linear models struggled to identify important predictors in Model 2. This indicates that when the response cannot assumed to have a linear dependence on the predictors, the linear models may not be reliable for inference.
+	
+	The standard deviation of the random error did not have any broad qualitative effects on the results, nor did the correlation structure. The standard deviation of the random error did result in worse-performing models, but none of the models appeared to be affected more or less when varying the random error.
+	
 	\begin{comment}
 	The wrapper methods that used BIC performed better than SCAD and MCP when $n = 1000$ and $p = 10$, but could not be used in the high dimensional case where $n = 50$ and $p = 2000$. Lasso, elastic-net, and the wrapper methods with AIC all had low test mean squared errors as well. Ridge performed the worst out of all the linear models. The non-linear models also performed very badly on test data.
-	\end{comment}
+	
 	Most other linear models considered performed relatively well, with ridge being an exception. The non-linear models all had high test MSEs, but performed much better when the correlation between predictors was large.
 	
 	In Model 2, the linear models all performed similarly well on test data. Unlike with the linear response, the non-linear models outperformed the linear models with a non-linear response function. This is especially apparent when the correlation between predictors was 0.9, where XGBoost and random forest models performed incredibly well.
 	
 	One possible explanation for this phenomenon is that the XGBoost and random forest models are less influenced by the random error when the correlation is large. For example, when the correlation is zero, only a fraction of the decision trees generated in each random forest will contain any of the important predictors; many of the trees will instead be fit using only predictors that are unrelated to the response. This means that the random forest model is fitting with a large amount of noise. On the other hand, when the correlation is high, all of the trees will contain predictors that are correlated with the  predictors with non-zero coefficients. As a result, none of the trees will truly be fitting on just random error. Similarly, for XGBoost models, the strong correlation may make it more difficult to fit using just the random noise.
 	
-	\begin{comment}
 	Notice that all the linear models except for ridge had a test mean squared error that was approximately equal to $\sigma^2$, the square of the random error. This indicates that these models had low bias and low variance, since most of their error was due to the random noise. On the other hand, ridge regression and the machine learning models had a test mean squared error that was much higher than $\sigma^2$, indicating that these models either had high bias or high variance.
-	\end{comment}
 	
-	\begin{comment}
 	Now, consider the training mean squared error results from Figures \ref{fig:linear-train-mse-1000-10} and \ref{fig:linear-train-mse-50-2000}. We see that training error for the linear models was roughly equal to the test error. This indicates that these models did not overfit to the training data. On the other hand, the non-linear models have far lower training mean squared errors than test errors. In particular, random forest models almost perfectly fit to the training data when $n = 1000$ and $p = 10$, while gradient boosting made an almost perfect fit when $n = 50$ and $p = 2000$.
-	\end{comment}
 	
 	If we compare the MSE between the training data and test data for both Model 1 and Model 2, we notice that the linear models had almost the same MSE in both cases. This demonstrates that these models have a very low variance; that is, the linear models are not very sensitive to the training data used. This is what makes penalized linear models useful in high-dimensional situations. On the other hand, the non-linear models had very low training MSEs (sometimes even lower than MCP and SCAD). This indicates that the non-linear models are overfitting, since their performance on test data is significantly worse.
 	
 	Ridge regression, which performed badly on both training data and test data, was likely restricted by its penalty function and its inability to perform variable selection. Recall that three out of the five non-zero coefficient values chosen in the linear response function were greater than one. Because the penalty function for ridge squares each coefficient, ridge was very strongly discouraged from selecting coefficient estimates close to the true non-zero coefficient values. Furthermore, because ridge regression cannot set coefficients to zero, its coefficient estimates for the true non-zero coefficients were likely even smaller because unimportant predictors were given non-zero coefficient estimates. As a result, ridge regression was unable to predict the true coefficient values as well as the other linear models.
 	
-	\begin{comment}
 	Another note about ridge regression is that it was more strongly affected by correlation between predictors when $n = 1000$ and $p = 10$, as seen in Figure \ref{fig:test-mse-1000-10}. The other linear models, which could set coefficients to zero, were likely able to eliminate unimportant predictors even though they were correlated with the important predictors. Ridge regression, unable to eliminate these unimportant predictors, may have instead given larger coefficient estimates to the incorrect predictors.
 	
 	Interestingly, the test mean squared error for random forest and support vector machine models improved as the correlation between predictors was increased. Figures \ref{fig:test-mse-1000-10} and \ref{fig:test-mse-50-2000} show that the test mean squared error for random forest and support vector machines decreased when correlation was increased. On the other hand, XGBoost was unaffected by an increase in the correlation value.
-	\end{comment}
 	
 	Note that changing the standard deviation of the random error seems to affect the mean squared errors of all the models equally. In addition, the correlation structure appears to have little influence on the training or test mean squared error.
 	
@@ -1059,7 +1065,6 @@
 	
 	With the non-linear response function, we notice that none of the linear models showed any particular strengths when considering the $\beta$-sensitivity and $\beta$-specificity. The linear models appear to set almost all of the coefficients to zero, indicating that they all did a poor job of identifying important predictors.
 	
-	\begin{comment}
 	Looking at the $\beta$-specificity results from Figures \ref{fig:linear-specificity-1000-10} and \ref{fig:linear-specificity-50-2000}, we see that lasso, elastic-net, and the BIC wrapper methods had the highest $\beta$-specificity when $n = 1000$ and $p = 10$. When $n = 50$ and $p = 2000$, lasso and elastic-net had must lower $\beta$-specificity values compared to SCAD and MCP.
 	
 	Another interesting result to note is that for both low-dimensional and high-dimensional settings, when the correlation between predictors increased, the $\beta$-specificity for SCAD and MCP typically increased. For elastic-net, a higher correlation caused the $\beta$-specificity to decrease when $n = 1000$ and $p = 10$; however, when $n = 50$ and $p = 2000$, the $\beta$-specificity of elastic-net depends heavily on the correlation structure. For a symmetric compound correlation structure, elastic-net had a much lower $\beta$-specificity as correlation increased. For an autoregressive or blockwise correlation structure, a higher correlation increased the $\beta$-specificity for elastic-net. This means that lasso and elastic-net have trouble identifying non-zero coefficients when all $p = 2000$ predictors are correlated to each other, while SCAD and MCP could handle this situation well.
@@ -1073,6 +1078,7 @@
 	Although wrapper methods and penalized regression models were the evident winners in this simulation study, it is worth noting that the non-linear models suffered from a few unfair disadvantages. For one, the simulated data assumed that there was a linear relationship between the predictors and response, which meant that the linear models were almost unbiased. The non-linear models were relatively more biased because they did not assume a linear relationship.
 	\end{comment}
 	
+	\begin{comment}
 	Now, we will discuss some results that broadly applied to our simulations, rather than just focusing on the $n = 50$ and $p = 2000$ case. Again, these results can be found at \href{https://github.com/connor-shrader/reu-2021}{github.com/connor-shrader/reu-2021}.
 	
 	The subset selection methods generally had a similar MSE on training and test data as SCAD and MCP. This makes them fairly well-performing linear models; however, these models are computationally infeasible to use with a large number of predictors. The subset selection methods that used BIC as a stopping condition typically had higher $\beta$-sensitivity and $\beta$-specificity values. This is expected since BIC will choose fewer non-zero coefficients than AIC.
@@ -1080,12 +1086,16 @@
 	The linear models consistently had a lower MSE on test data than the non-linear models with the linear response function. With a non-linear response function, the linear models were competitive with non-linear models when $p$ was sufficiently large. In cases where $p$ was relatively small compared to $n$, the non-linear models dominated.
 	
 	The linear models consistently had difficulty identifying important predictors with the non-linear response function. This is somewhat expected, since many of the predictors in the non-linear response did not use linear terms. Nonetheless, this shows that the linear models can be rather unreliable when estimating coefficients as non-zero when the response is not linear.
+	\end{comment}
 	
 	\begin{comment}
 	Another disadvantage for the non-linear models is that they can be controlled by many different hyperparameters, but we only considered a couple for each model. This was out of necessity; it would have been infeasible to fit models using more hyperparameters given the number of simulations that had to be run. If more hyperparameters could be included, then the performance of the non-linear models may have improved. At the same time, the more comprehensive tuning of several hyperparameters could act as a double edged sword in that it could increase the overfitting of these models. More hyperparameter tuning could lead a model to pick hyperparameters that fit the training data very precisely, but at the expense of increased testing error and computational cost.
 	\end{comment}
 	
-	In our empirical data study, SCAD and MCP also maintained the lowest testing mean squared error among the tested models. This can be seen in Figure \ref{fig:empirical_mse} and Table \ref{tab:emp_results}. Furthermore, the mean squared error MCP had a relatively low standard deviation across the five folds. 
+	
+	Now, we will discuss some findings from the empirical analysis.
+	
+	We found that SCAD and MCP maintained the lowest testing mean squared error among the tested models. This can be seen in Figure \ref{fig:empirical_mse} and Table \ref{tab:emp_results}. XGBoost, elastic-net, and lasso were all had very close performances to SCAD and MCP. Ridge regression and random forest models performed the worst among the models considered.
 	\begin{comment}
 	This may be due in part to the fact that MCP consistently selected the fewest number of predictors compared to Lasso and Elastic Net as shown by the Venn diagrams in Figure \ref{fig:venn}. Because this empirical data most likely contains multicollinearity, the fact that MCP selects fewer predictors may have helped to reduce overfitting. This is consistent with results from the Monte Carlo simulations which indicate that MCP performed better than its counterparts in multicollinear environments.
 	\end{comment}
@@ -1094,23 +1104,9 @@
 	An interesting result was how few predictors were selected between all four models. It would be expected that the most important predictors would be chosen by all four models, but only three to six predictors were selected in common by all the models. Between MCP, Lasso, and Elastic Net, there were slightly more selected predictors in common, but these still were much less than expected. This is most likely because MCP is very different from the other regression techniques in that it uses non-convex optimization and thus selected many predictors that were different from all the other models. Since MCP had a much higher $\beta$-sensitivity and $\beta$-specificity rate compared to the other models as determined in the Monte Carlo simulations, it can be assumed that many of these predictors solely selected by MCP were significant predictors that were missed by the other models. This could have been another reason why MCP performed the best out of all the fitted models on the empirical data.
 	\end{comment}
 	
-	MCP also maintained the lowest testing MSE standard deviation for the empirical data as seen in Figure \ref{tab:emp_results}. This is to be expected given the bias/variance tradeoff. Because MCP selects fewer predictors than the other models, it incurs greater bias but while also lessening variance. By definition, this means that MCP is less sensitive to changes in training data, such as changes in training data due to 5-fold cross validation. 
+	In addition to minimizing the test MSE, MCP also maintained the lowest standard deviation for the test MSE, as seen in Figure \ref{tab:emp_results}. Lasso and SCAD also had small standard deviations as well. On the other hand, the non-linear models had very different performances on each fold, meaning that they are more sensitive to the training data used. These results are all expected, given that the linear models have high bias (resulting in low variance) while the non-linear models have low bias (and consequently high variance). %Because MCP selects fewer predictors than the other models, it incurs greater bias but while also lessening variance. By definition, this means that MCP is less sensitive to changes in training data, such as changes in training data due to 5-fold cross validation. 
 	
-	The penalized regression models performed exceptionally faster than random forest and XGBoost as documented in Table \ref{tab:emp_runtimes}. On average, Lasso and Elastic Net ran approximately 56x faster than XGBoost and 510x faster than random forest. MCP and SCAD ran approximately 30x faster than XGBoost and 290x faster than random forest. This provides a significant advantage to the penalized regression techniques, especially given that MCP and other penalized techniques performed better than random forest and XGBoost. 
-	
-	We conclude with the following summary of findings:
-	\begin{itemize}
-		\item In Model 1, penalized linear models have a lower MSE on test data than non-linear models.
-		\item Non-linear models had a lower MSE on training data than linear models in almost all the simulations.
-		\item In Model 1, penalized linear models generally have a slightly higher test MSE when $p > n$ when compared to non-linear models. When $n > p$, the linear models had a significantly higher test MSE.
-		\item Among the linear models, SCAD and MCP generally had the lowest test MSE. OLS and ridge regression usually had the highest.
-		\item SCAD and MCP tended to be more picky about the variables they selected compared to other linear models, especially when the correlation among predictors was high. This is evidenced by these models having a lower $\beta$-sensitivity and higher $\beta$-specificity.
-		\item The linear models struggled to identify important predictors in Model 2.
-		\item The standard deviation of the random error did not have any broad qualitative effects on the results, nor did the correlation structure.
-		\item In the empirical analysis, SCAD and MCP performed the best and had the lowest testing MSE among tested models.
-		\item Penalized regression models ran substantially faster the than non-linear machine learning models in Model 1, Model 2, and the empirical data analysis.
-	\end{itemize}
-	
+	The penalized regression models performed exceptionally faster than random forest and XGBoost as documented in Table \ref{tab:emp_results}. On average, Lasso and elastic-net ran approximately 56x faster than XGBoost and 510x faster than random forest. MCP and SCAD ran approximately 30x faster than XGBoost and 290x faster than random forest. This provides a significant advantage to the penalized regression techniques, especially given that MCP and other penalized techniques performed better than random forest and XGBoost. 
 	
 	\section{Conclusion}\label{sec:conclusion}
 	
