@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.3.27)  23 OCT 2021 11:46
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.3.27)  23 OCT 2021 12:39
 entering extended mode
 **./shortened.tex
 (shortened.tex
@@ -1123,7 +1123,7 @@ LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [6] [7] Excluding 'comment' comment. [8] Excluding 'comment' comment.
-Excluding 'comment' comment. [9] Excluding 'comment' comment.
+Excluding 'comment' comment. Excluding 'comment' comment. [9]
 Excluding 'comment' comment. Excluding 'comment' comment.
 Excluding 'comment' comment.
 Package epstopdf Info: Source file: <images/facet/publication_facet_train_mse_l
@@ -1137,7 +1137,7 @@ inear_50_2000-eps-converted-to.pdf>
 (epstopdf)             Command: <miktex-epstopdf --outfile=images/facet/publica
 tion_facet_train_mse_linear_50_2000-eps-converted-to.pdf images/facet/publicati
 on_facet_train_mse_linear_50_2000.eps>
-(epstopdf)             \includegraphics on input line 783.
+(epstopdf)             \includegraphics on input line 779.
 Package epstopdf Info: Output file is already uptodate.
 
 
@@ -1151,7 +1151,7 @@ pdf Graphic file (type pdf)
 <use images/facet/publication_facet_train_mse_linear_50_2000-eps-converted-to.p
 df>
 Package pdftex.def Info: images/facet/publication_facet_train_mse_linear_50_200
-0-eps-converted-to.pdf  used on input line 783.
+0-eps-converted-to.pdf  used on input line 779.
 (pdftex.def)             Requested size: 186.81842pt x 186.81686pt.
 Package epstopdf Info: Source file: <images/facet/publication_facet_train_mse_l
 inear_50_2000.eps>
@@ -1164,14 +1164,14 @@ inear_50_2000-eps-converted-to.pdf>
 (epstopdf)             Command: <miktex-epstopdf --outfile=images/facet/publica
 tion_facet_train_mse_linear_50_2000-eps-converted-to.pdf images/facet/publicati
 on_facet_train_mse_linear_50_2000.eps>
-(epstopdf)             \includegraphics on input line 789.
+(epstopdf)             \includegraphics on input line 785.
 Package epstopdf Info: Output file is already uptodate.
 File: images/facet/publication_facet_train_mse_linear_50_2000-eps-converted-to.
 pdf Graphic file (type pdf)
 <use images/facet/publication_facet_train_mse_linear_50_2000-eps-converted-to.p
 df>
 Package pdftex.def Info: images/facet/publication_facet_train_mse_linear_50_200
-0-eps-converted-to.pdf  used on input line 789.
+0-eps-converted-to.pdf  used on input line 785.
 (pdftex.def)             Requested size: 186.81842pt x 186.81686pt.
 Package epstopdf Info: Source file: <images/facet/publication_facet_sensitivity
 _linear_50_2000.eps>
@@ -1184,7 +1184,7 @@ _linear_50_2000-eps-converted-to.pdf>
 (epstopdf)             Command: <miktex-epstopdf --outfile=images/facet/publica
 tion_facet_sensitivity_linear_50_2000-eps-converted-to.pdf images/facet/publica
 tion_facet_sensitivity_linear_50_2000.eps>
-(epstopdf)             \includegraphics on input line 800.
+(epstopdf)             \includegraphics on input line 796.
 Package epstopdf Info: Output file is already uptodate.
 
 
@@ -1198,7 +1198,7 @@ o.pdf Graphic file (type pdf)
 <use images/facet/publication_facet_sensitivity_linear_50_2000-eps-converted-to
 .pdf>
 Package pdftex.def Info: images/facet/publication_facet_sensitivity_linear_50_2
-000-eps-converted-to.pdf  used on input line 800.
+000-eps-converted-to.pdf  used on input line 796.
 (pdftex.def)             Requested size: 186.81842pt x 186.81686pt.
 Package epstopdf Info: Source file: <images/facet/publication_facet_specificity
 _linear_50_2000.eps>
@@ -1211,7 +1211,7 @@ _linear_50_2000-eps-converted-to.pdf>
 (epstopdf)             Command: <miktex-epstopdf --outfile=images/facet/publica
 tion_facet_specificity_linear_50_2000-eps-converted-to.pdf images/facet/publica
 tion_facet_specificity_linear_50_2000.eps>
-(epstopdf)             \includegraphics on input line 806.
+(epstopdf)             \includegraphics on input line 802.
 Package epstopdf Info: Output file is already uptodate.
 
 
@@ -1225,7 +1225,7 @@ o.pdf Graphic file (type pdf)
 <use images/facet/publication_facet_specificity_linear_50_2000-eps-converted-to
 .pdf>
 Package pdftex.def Info: images/facet/publication_facet_specificity_linear_50_2
-000-eps-converted-to.pdf  used on input line 806.
+000-eps-converted-to.pdf  used on input line 802.
 (pdftex.def)             Requested size: 186.81842pt x 186.81686pt.
 [10] [11 <./images/facet/publication_facet_train_mse_linear_50_2000-eps-convert
 ed-to.pdf> <./images/facet/publication_facet_sensitivity_linear_50_2000-eps-con
@@ -1242,7 +1242,7 @@ onlinear_50_2000-eps-converted-to.pdf>
 (epstopdf)             Command: <miktex-epstopdf --outfile=images/facet/publica
 tion_facet_train_mse_nonlinear_50_2000-eps-converted-to.pdf images/facet/public
 ation_facet_train_mse_nonlinear_50_2000.eps>
-(epstopdf)             \includegraphics on input line 867.
+(epstopdf)             \includegraphics on input line 863.
 Package epstopdf Info: Output file is already uptodate.
 
 
@@ -1256,7 +1256,7 @@ to.pdf Graphic file (type pdf)
 <use images/facet/publication_facet_train_mse_nonlinear_50_2000-eps-converted-t
 o.pdf>
 Package pdftex.def Info: images/facet/publication_facet_train_mse_nonlinear_50_
-2000-eps-converted-to.pdf  used on input line 867.
+2000-eps-converted-to.pdf  used on input line 863.
 (pdftex.def)             Requested size: 186.81842pt x 186.81686pt.
 Package epstopdf Info: Source file: <images/facet/publication_facet_train_mse_n
 onlinear_50_2000.eps>
@@ -1269,14 +1269,14 @@ onlinear_50_2000-eps-converted-to.pdf>
 (epstopdf)             Command: <miktex-epstopdf --outfile=images/facet/publica
 tion_facet_train_mse_nonlinear_50_2000-eps-converted-to.pdf images/facet/public
 ation_facet_train_mse_nonlinear_50_2000.eps>
-(epstopdf)             \includegraphics on input line 873.
+(epstopdf)             \includegraphics on input line 869.
 Package epstopdf Info: Output file is already uptodate.
 File: images/facet/publication_facet_train_mse_nonlinear_50_2000-eps-converted-
 to.pdf Graphic file (type pdf)
 <use images/facet/publication_facet_train_mse_nonlinear_50_2000-eps-converted-t
 o.pdf>
 Package pdftex.def Info: images/facet/publication_facet_train_mse_nonlinear_50_
-2000-eps-converted-to.pdf  used on input line 873.
+2000-eps-converted-to.pdf  used on input line 869.
 (pdftex.def)             Requested size: 186.81842pt x 186.81686pt.
 Package epstopdf Info: Source file: <images/facet/publication_facet_sensitivity
 _nonlinear_50_2000.eps>
@@ -1289,7 +1289,7 @@ _nonlinear_50_2000-eps-converted-to.pdf>
 (epstopdf)             Command: <miktex-epstopdf --outfile=images/facet/publica
 tion_facet_sensitivity_nonlinear_50_2000-eps-converted-to.pdf images/facet/publ
 ication_facet_sensitivity_nonlinear_50_2000.eps>
-(epstopdf)             \includegraphics on input line 885.
+(epstopdf)             \includegraphics on input line 881.
 Package epstopdf Info: Output file is already uptodate.
 
 
@@ -1303,7 +1303,7 @@ d-to.pdf Graphic file (type pdf)
 <use images/facet/publication_facet_sensitivity_nonlinear_50_2000-eps-converted
 -to.pdf>
 Package pdftex.def Info: images/facet/publication_facet_sensitivity_nonlinear_5
-0_2000-eps-converted-to.pdf  used on input line 885.
+0_2000-eps-converted-to.pdf  used on input line 881.
 (pdftex.def)             Requested size: 186.81842pt x 186.81686pt.
 Package epstopdf Info: Source file: <images/facet/publication_facet_specificity
 _nonlinear_50_2000.eps>
@@ -1316,7 +1316,7 @@ _nonlinear_50_2000-eps-converted-to.pdf>
 (epstopdf)             Command: <miktex-epstopdf --outfile=images/facet/publica
 tion_facet_specificity_nonlinear_50_2000-eps-converted-to.pdf images/facet/publ
 ication_facet_specificity_nonlinear_50_2000.eps>
-(epstopdf)             \includegraphics on input line 891.
+(epstopdf)             \includegraphics on input line 887.
 Package epstopdf Info: Output file is already uptodate.
 
 
@@ -1330,7 +1330,7 @@ d-to.pdf Graphic file (type pdf)
 <use images/facet/publication_facet_specificity_nonlinear_50_2000-eps-converted
 -to.pdf>
 Package pdftex.def Info: images/facet/publication_facet_specificity_nonlinear_5
-0_2000-eps-converted-to.pdf  used on input line 891.
+0_2000-eps-converted-to.pdf  used on input line 887.
 (pdftex.def)             Requested size: 186.81842pt x 186.81686pt.
 [12 <./images/facet/publication_facet_train_mse_nonlinear_50_2000-eps-converted
 -to.pdf>] Excluding 'comment' comment. Excluding 'comment' comment. [13 <./imag
@@ -1346,7 +1346,7 @@ Package epstopdf Info: Source file: <images/empirical_mse.eps>
 (epstopdf)                    size: 24997 bytes
 (epstopdf)             Command: <miktex-epstopdf --outfile=images/empirical_mse
 -eps-converted-to.pdf images/empirical_mse.eps>
-(epstopdf)             \includegraphics on input line 937.
+(epstopdf)             \includegraphics on input line 933.
 Package epstopdf Info: Output file is already uptodate.
 
 
@@ -1356,7 +1356,7 @@ pdfTeX warning: pdflatex.exe (file ./images/empirical_mse-eps-converted-to.pdf)
 File: images/empirical_mse-eps-converted-to.pdf Graphic file (type pdf)
 <use images/empirical_mse-eps-converted-to.pdf>
 Package pdftex.def Info: images/empirical_mse-eps-converted-to.pdf  used on inp
-ut line 937.
+ut line 933.
 (pdftex.def)             Requested size: 317.98921pt x 190.79338pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -1372,7 +1372,7 @@ Excluding 'comment' comment. Excluding 'comment' comment.
 Excluding 'comment' comment.
 
 LaTeX Warning: Reference `tab:emp_runtimes' on page 17 undefined on input line 
-1103.
+1099.
 
 [17] [18] (shortened.bbl [19]) Excluding 'comment' comment. [20] (shortened.aux
 )
@@ -1421,7 +1421,7 @@ s/Connor/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti8
 .pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsf
 onts/cm/cmti9.pfb><C:/Users/Connor/AppData/Local/Programs/MiKTeX 2.9/fonts/type
 1/public/amsfonts/cm/cmtt10.pfb>
-Output written on shortened.pdf (20 pages, 538997 bytes).
+Output written on shortened.pdf (20 pages, 538936 bytes).
 PDF statistics:
  522 PDF objects out of 1000 (max. 8388607)
  98 named destinations out of 1000 (max. 500000)
