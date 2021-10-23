@@ -771,7 +771,7 @@
 	
 	\end{comment}
 	
-	Figure \ref{fig:linear-train-mse} shows the average MSE for the simulated models on training data; Figure \ref{fig:linear-test-mse} shows the same results but for test data. Figure \ref{fig:linear-sensitivity} and \ref{fig:linear-specificity} display the $\beta$-sensitivity and $\beta$-specificity for the linear models that perform variable selection.
+	Figure \ref{fig:linear-mse} shows the average MSE for the simulated models on both training data and test data. Figure \ref{fig:linear-beta} displays the $\beta$-sensitivity and $\beta$-specificity for the linear models that perform variable selection.
 	
 	\begin{figure}[!htb]
 		\centering
@@ -856,7 +856,7 @@
 	
 	\end{comment}
 	
-	Figures \ref{fig:nonlinear-train-mse} and \ref{fig:nonlinear-test-mse} show the average mean square errors on the training data and test data, respectively. We see that the linear and non-linear models have similar test mean squared errors. Another interesting observation is that the non-linear models all have a noticeably lower test mean squared error when the correlation between predictors is high. The linear models still perform significantly worse on the training data compared to the test data. 
+	Figure \ref{fig:nonlinear-mse} shows the average mean square errors on both the training data and test data. We see that the linear and non-linear models have similar test mean squared errors. Another interesting observation is that the non-linear models all have a noticeably lower test mean squared error when the correlation between predictors is high. The linear models still perform significantly worse on the training data compared to the test data. 
 	\begin{figure}[!htb]
 		\centering
 		\begin{subfigure}[b]{0.47\textwidth}
@@ -874,7 +874,7 @@
 		\label{fig:nonlinear-mse}
 	\end{figure}
 	
-	Figures \ref{fig:nonlinear-sensitivity} and \ref{fig:nonlinear-specificity} show the results for the $\beta$-sensitivity and $\beta$-specificity for the non-linear models. We see that all of the linear models estimate almost all of the coefficients as being equal to zero! SCAD and MCP were slightly more likely to correctly estimate non-zero coefficients as being non-zero, but they were also more likely to incorrectly identify unimportant predictors as having non-zero coefficients.
+	Figure \ref{fig:nonlinear-beta} shows the results for the $\beta$-sensitivity and $\beta$-specificity for the non-linear models. We see that all of the linear models estimate almost all of the coefficients as being equal to zero! SCAD and MCP were slightly more likely to correctly estimate non-zero coefficients as being non-zero, but they were also more likely to incorrectly identify unimportant predictors as having non-zero coefficients.
 	\begin{figure}[!htb]
 		\centering
 		\begin{subfigure}[b]{0.47\textwidth}
