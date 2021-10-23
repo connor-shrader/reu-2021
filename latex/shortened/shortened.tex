@@ -420,8 +420,10 @@
 	\subsection{Non-linear models}
 	We next discuss several non-linear methods for regression: random forests, gradient boosting, and support vector machines.
 	
+	
+	Both random forest and gradient boosting models use \textit{decision trees} to make predictions. A decision tree is a binary tree where each non-leaf node represents a condition and each leaf node represents a prediction value. To make a prediction, start at the root node and check whether the condition at that node is true or false. If true, move down to the node's first child; if false, move to the second child. This process is repeated until a leaf node is reached, which will give the value that the decision tree predicts.
 	\begin{comment}
-	Both random forest and gradient boosting models use \textit{decision trees} to make predictions. A decision tree is a binary tree where each non-leaf node represents a condition and each leaf node represents a prediction value. To make a prediction, start at the root node and check whether the condition at that node is true or false. If true, move down to the node's first child; if false, move to the second child. This process is repeated until a leaf node is reached. This node will give a value that the decision tree predicts. Figure \ref{fig:decision-tree} gives an example of a decision tree with regression.
+	Figure \ref{fig:decision-tree} gives an example of a decision tree with regression.
 	
 	\begin{figure}[h!]
 		\centering
@@ -431,8 +433,9 @@
 		\label{fig:decision-tree}
 	\end{figure}
 	
-	Although decision trees can be used as machine learning models on their own, it is more common to use decision trees in \textit{ensemble methods}, which combine many different decision trees into a single model. This is because a single decision tree will usually have high variance since a small change in the training set can lead to a completely different decision tree \cite{james2013introduction}.
 	\end{comment}
+	Although decision trees can be used as machine learning models on their own, it is more common to use decision trees in \textit{ensemble methods}, which combine many different decision trees into a single model. This is because a single decision tree will usually have high variance since a small change in the training set can lead to a completely different decision tree \cite{james2013introduction}.
+	
 	
 	\begin{comment}
 	\textit{Random Forests} (RF) solve the issue of high variance by aggregating the predictions of many independent decision trees \cite{breiman2001random}. Each tree is fit using a subset of the observations and a subset of the predictors so that the trees are relatively independent from one another.
@@ -451,7 +454,7 @@
 	\end{figure}
 	\end{comment}
 	
-	A \textit{random forest model} aggregate the predictions of a large ensemble of decision trees to estimate the response value \cite{breiman2001random}. Each tree is fitted independently using a subset of predictors and observations. The observations are selected \textit{with replacement}, in a process called \textit{bootstrapping} \cite{efron1994introduction}.
+	A \textit{random forest model} combines many independent decision trees to make one unified prediction \cite{breiman2001random}. Each tree is fitted independently using a subset of predictors and observations. The predictors chosen for each model are chosen randomly without replacement, while the observations are chosen \textit{with replacement} in a process called \textit{bootstrapping} \cite{efron1994introduction}. To make predictions using a random forest, the predictions for each individual decision tree are first computed. Then, the set of predictions are aggregated to give one final prediction (for regression, one suitable way to aggregate individual predictions is to take the mean). 
 	
 	\begin{comment}
 	This idea of fitting multiple models with bootstrapping and aggregating the results can be used with other models besides decision trees. In general, this process is called \textit{bagging} (a combination of the words ``bootstrap'' and ``aggregating'') \cite{breiman1996bagging}. 
@@ -476,7 +479,7 @@
 	
 	There are a few different hyperparameters that can control how an XGBoost model is fit. The learning rate controls how quickly the gradient boosting model learns. If this learning rate is high, then the model learns quickly, but it may not learn as efficiently. If the learning rate is low, then the model takes longer but typically makes better predictions. The maximum tree depth determines how high each tree can be. Using smaller tree sizes may oversimplify the model, but it could also mitigate overfitting.
 	\end{comment}
-	\textit{Boosting} is the technique of sequentially improving a weak learner until it becomes a strong learner \cite{schapire1990strength}. A \textit{gradient boosting machine} (GBM) is a boosting technique that uses gradient descent to minimize error in a model and correct the shortcomings of the previous model \cite{friedman2001greedy}. Unlike random forest models, where each tree is independent of one another, the trees in a boosting model are fitted sequentially to correct the mistakes made by the previous tree.
+	\textit{Boosting} is the technique of sequentially improving a weak learner until it becomes a strong learner \cite{schapire1990strength}. Boosting is commonly used with decision trees. Unlike random forest models, where each tree is independent of one another, the trees in a boosting model are fitted sequentially to correct the mistakes made by the previous tree. A \textit{gradient boosting machine} (GBM) is a boosting technique that uses gradient descent to minimize error in a model and correct the shortcomings of previous iterations of the model \cite{friedman2001greedy}. 
 	
 	\begin{comment}
 	The final non-linear model that we considered is the \textit{support vector machine} (SVM) \cite{cortes1995support}. Support vector machines are versatile models that can be used for both classification and regression. Originally, a support vector machine was designed as a binary classifier that separates the two response classes with a hyperplane in $(p - 1)$-dimensional space. The hyperplane chosen by a support vector machine is chosen to maximize the distance between the hyperplane and any of the observation points. The observations closest to this separating hyperplane are called \textit{support vectors}. Predictions are made by determining which side of the hyperplane an observation lies on. Observations that lie above the hyperplane are assigned to one class, and observations on the other side are predicted to be the other class. Figure \ref{fig:svm} demonstrates a simple support vector machine for classification.
@@ -495,7 +498,7 @@
 	
 	Like the other non-linear methods, there are many different hyperparameters that can be tuned. The two hyperparameters that we considered are $\epsilon$ and the cost function. The hyperparameter $\epsilon$ defines how tolerant the algorithm is of small errors. If $\epsilon$ is large, then the support vector machine will tolerate larger errors; if $\epsilon$ is small, then even small errors will be punished. The cost hyperparameter $C$ determines how strongly the model punishes incorrect predictions. If $C$ is large, then the model punishes incorrect predictions more, making it fit more tightly to the training set. If $C$ is smaller, then the model is likely to allow more incorrect predictions in the training data.
 	\end{comment}
-	The final non-linear model that we considered is the \textit{support vector machine} (SVM) \cite{cortes1995support, drucker1997support}. Support vector machines find a hyperplane that closely fits the data. Unlike linear regression, support vector machines can address non-linear relationships between the response and its predictors.
+	The final non-linear model that we considered is the \textit{support vector machine} (SVM) \cite{cortes1995support, drucker1997support}. Support vector machines find a hyperplane that closely fits the data. Data observations that are close to this hyperplane are called \textit{support vectors}, and they have the strongest influence on the model. Unlike linear regression, support vector machines can address non-linear relationships between the response and its predictors. 
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	%\section{Methods}
@@ -527,13 +530,11 @@
 		\end{tabular}
 	\end{table}
 	
-	Ordinary least squares models were fitted using the \lstinline!lm! function from the \lstinline!stats! package in base \lstinline!R!.
+	Ordinary least squares models were fitted using the \lstinline!lm! function from the \lstinline!stats! package in base \lstinline!R!. Subset selection models using forward, backward, stepwise forward, and stepwise backward selections were fitted using the \lstinline!MASS! library. For each of these four algorithms, we fit models using two criteria that determine when to stop adding and removing predictors: Akaike Information Criterion (AIC) and Bayesian Information Criterion (BIC) \cite{akaike1998information, schwarz1978estimating}. In general, the AIC will lead to more predictors getting non-zero coefficient estimates.
 	
-	Subset selection models using forward, backward, stepwise forward, and stepwise backward selections were fitted using the \lstinline!MASS! library. For each of these four algorithms, we fit models using two criteria that determine when to stop adding and removing predictors: Akaike Information Criterion (AIC) and Bayesian Information Criterion (BIC) \cite{akaike1998information, schwarz1978estimating}. In general, using the AIC will lead to more predictors getting non-zero coefficient estimates.
+	Ridge, lasso, and elastic-net models were fitted using \lstinline!glmnet!. We used the \lstinline!cv.glmnet! function, which uses cross validation grid search to optimize the penalty scalar $\lambda$. Cross validation helps generate a model that performs well on both training and testing data. We used the default value of 10 folds. For elastic-net regression, we used the hyperparameter $\alpha = 0.8$ in our simulation study and $\alpha = 0.5$ in the empirical study. This means that the elastic-net model emphasizes the variable selection provided by lasso in the simulations. The remaining hyperparameters were given their default values.
 	
-	Ridge, lasso, and elastic-net models were fitted using \lstinline!glmnet!. We used the \lstinline!cv.glmnet! function, which uses cross validation grid search to determine the value of $\lambda$ that minimizes the cross validation error. Using cross validation can help generate a model that performs well on both training and testing data. We used the default value of 10 folds to fit models using \lstinline!glmnet!. For elastic-net regression, we used the hyperparameter $\alpha = 0.8$ in our simulation study. This means that the elastic-net model has a stronger lasso penalty and a weaker ridge penalty. This value of $\alpha$ was chosen so that the elastic-net model could emphasize the variable selection provided by lasso while also allowing it to handle multicollinearity from ridge. For the empirical data analysis, we instead used $\alpha = 0.5$. The remaining hyperparameters were given their default values.
-	
-	For SCAD and MCP models, we used the \lstinline!cv.ncvreg! function from the \lstinline!ncvreg! library. Both SCAD and MCP depend on an additional hyperparameter $a$. We used the default values of $a$ for both models: 3 for MCP and 3.7 for SCAD (note that the \lstinline!ncvreg! documentation calls this hyperparameter $\gamma$ instead of $a$). All other arguments were given their default values. 
+	We used the \lstinline!cv.ncvreg! function from the \lstinline!ncvreg! library for SCAD and MCP. Both SCAD and MCP depend on an additional hyperparameter $a$. We used the default values of $a$ for both models: 3 for MCP and 3.7 for SCAD (the \lstinline!ncvreg! documentation calls this parameter $\gamma$). All other arguments were given their default values. 
 	%%%%  Why did we use these values??
 	
 	For the three non-linear models (gradient boosting, random forests, and support vector machines), we used cross validation and grid search to find suitable hyperparameters, and then fit a model using the full training set using the hyperparameters selected. Because many of the data sets used had large values of $n$ and $p$, only a few hyperparameters were tuned. This ensured that the models could be fit within a reasonable amount of time. All other hyperparameters were given their default values.
