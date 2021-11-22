@@ -1,12 +1,13 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
 
-\title{An Analysis of Penalized Regression in High Dimensional Scenarios}
-\author{Gabriel Ackall$^1$*, Seongtae Kim$^2$*, Connor Shrader$^3$* \\
+\title{A Comparative Study of Penalized Regression and Machine Learning Algorithms in High Dimensional Scenarios}
+\author{Gabriel Ackall$^{1\dagger}$, Connor Shrader$^{2\dagger}$, Seongtae Kim$^3$* \\
 	{\footnotesize $^1$Georgia Institute of Technology, Civil Engineering, Atlanta, GA} \\
-	{\footnotesize $^2$North Carolina A\&T State University, Mathematics and Statistics, Greensboro, NC} \\
-	{\footnotesize $^3$University of Central  Florida, Mathematics, Orlando, FL} \\
-	{\footnotesize *Authors contributed equally}}
+	{\footnotesize $^2$University of Central  Florida, Mathematics, Orlando, FL} \\
+	{\footnotesize $^3$North Carolina A\&T State University, Mathematics and Statistics, Greensboro, NC} \\
+	{\footnotesize *Correspondence: skim@ncat.edu} \\
+	{\footnotesize $^\dagger$Authors Contributed Equally}}
 \date{\today}
 
 % Format settings
@@ -555,7 +556,7 @@
 	
 	\subsection{Simulation Design}
 	
-	Our simulation study used two different functions for the response variable $Y$. Our first function assumed a linear relationship between the response and its predictors $X_1, X_2, \dotsc, X_p$, while the second response used a non-linear relationship. By considering both linear and non-linear response functions, we obtain a more thorough understanding of how each model performs in different situations.
+	Our simulation study used two different functions for the response variable $Y$. Our first function assumed a linear relationship between the response and its predictors $X_1, X_2, \dotsc, X_p$, while the second response used a non-linear relationship. By considering both additive linear and non-linear response functions, we obtain a more thorough understanding of how each model performs in different situations.
 	
 	\begin{comment}
 	With our linear response function, we assumed that
@@ -591,11 +592,11 @@
 	Note that this response function does have linear terms, but the function as a whole is non-linear.
 	\end{comment}
 	
-	The linear response function assumes that
+	The additive linear response function assumes that
 	\begin{equation}\label{eqn:linear-response}
 		Y = 1 + 2X_i - 2X_2 + 0.5X_5 + 3X_6 + \epsilon
 	\end{equation}
-	where $\epsilon$ is an independent random error with mean 0 and constant variance. We refer to this linear response function as Model 1. Our non-linear response function uses
+	where $\epsilon$ is an independent random error with mean 0 and constant variance. We refer to this linear response function as Model 1. Our additive non-linear response function uses
 	\begin{equation}\label{eqn:nonlinear-response}
 		Y = 6\times 1_{X_1 > 0} + X_2^2 + 0.5X_6 + 3X_7 + 2\times 1_{X_8 > 0}\times 1_{X_9>0} + \epsilon
 	\end{equation}
