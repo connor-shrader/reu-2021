@@ -201,6 +201,12 @@ Venables, W.~N. and Ripley, B.~D.
 \newblock Springer, New York, fourth edition, 2002.
 \newblock ISBN 0-387-95457-0.
 
+\bibitem{wang2018enhanced}
+Wang, H., Liu, C., and Deng, L.
+\newblock Enhanced prediction of hot spots at protein-protein interfaces using
+  extreme gradient boosting.
+\newblock {\em Scientific reports}, 8(1):1--13, 2018.
+
 \bibitem{wang2007group}
 Wang, L., Chen, G., and Li, H.
 \newblock Group scad regression analysis for microarray time course gene
