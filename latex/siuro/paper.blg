@@ -1,0 +1,48 @@
+This is BibTeX, Version 0.99d (TeX Live 2021/W32TeX)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: paper.aux
+The style file: siamplain.bst
+Database file #1: references.bib
+Warning--empty journal in nielsen2016tree
+You've used 43 entries,
+            2244 wiz_defined-function locations,
+            822 strings with 11803 characters,
+and the built_in function-call counts, 17186 in all, are:
+= -- 1555
+> -- 757
+< -- 0
++ -- 306
+- -- 256
+* -- 1295
+:= -- 2470
+add.period$ -- 46
+call.type$ -- 43
+change.case$ -- 245
+chr.to.int$ -- 0
+cite$ -- 44
+duplicate$ -- 888
+empty$ -- 1469
+format.name$ -- 256
+if$ -- 3764
+int.to.chr$ -- 0
+int.to.str$ -- 43
+missing$ -- 46
+newline$ -- 135
+num.names$ -- 86
+pop$ -- 375
+preamble$ -- 1
+purify$ -- 210
+quote$ -- 0
+skip$ -- 649
+stack$ -- 0
+substring$ -- 1146
+swap$ -- 324
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 160
+warning$ -- 1
+while$ -- 175
+width$ -- 45
+write$ -- 396
+(There was 1 warning)

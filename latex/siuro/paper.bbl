@@ -1,0 +1,212 @@
+\begin{thebibliography}{10}
+
+\bibitem{akaike1998information}
+{\sc H.~Akaike}, {\em Information theory and an extension of the maximum
+  likelihood principle}, in Selected papers of hirotugu akaike, Springer, 1998,
+  pp.~199--213.
+
+\bibitem{antoniou2003average}
+{\sc A.~Antoniou, P.~D. Pharoah, S.~Narod, H.~A. Risch, J.~E. Eyfjord, J.~L.
+  Hopper, N.~Loman, H.~Olsson, O.~Johannsson, {\AA}.~Borg, et~al.}, {\em
+  Average risks of breast and ovarian cancer associated with brca1 or brca2
+  mutations detected in case series unselected for family history: a combined
+  analysis of 22 studies}, The American Journal of Human Genetics, 72 (2003),
+  pp.~1117--1130.
+
+\bibitem{breheny2011ncvreg}
+{\sc P.~Breheny and J.~Huang}, {\em Coordinate descent algorithms for nonconvex
+  penalized regression, with applications to biological feature selection},
+  Annals of Applied Statistics, 5 (2011), pp.~232--253.
+
+\bibitem{breheny2011coordinate}
+{\sc P.~Breheny and J.~Huang}, {\em Coordinate descent algorithms for nonconvex
+  penalized regression, with applications to biological feature selection}, The
+  annals of applied statistics, 5 (2011), p.~232.
+
+\bibitem{breiman2001random}
+{\sc L.~Breiman}, {\em Random forests}, Machine learning, 45 (2001), pp.~5--32.
+
+\bibitem{capitaine2021random}
+{\sc L.~Capitaine, R.~Genuer, and R.~Thi{\'e}baut}, {\em Random forests for
+  high-dimensional longitudinal data}, Statistical Methods in Medical Research,
+  30 (2021), pp.~166--184.
+
+\bibitem{chen2021xgboost}
+{\sc T.~Chen, T.~He, M.~Benesty, V.~Khotilovich, Y.~Tang, H.~Cho, K.~Chen,
+  R.~Mitchell, I.~Cano, T.~Zhou, M.~Li, J.~Xie, M.~Lin, Y.~Geng, and Y.~Li},
+  {\em xgboost: Extreme Gradient Boosting}, 2021,
+  \url{https://CRAN.R-project.org/package=xgboost}.
+\newblock R package version 1.4.1.1.
+
+\bibitem{cortes1995support}
+{\sc C.~Cortes and V.~Vapnik}, {\em Support-vector networks}, Machine learning,
+  20 (1995), pp.~273--297.
+
+\bibitem{degenhardt2019evaluation}
+{\sc F.~Degenhardt, S.~Seifert, and S.~Szymczak}, {\em Evaluation of variable
+  selection methods for random forests and omics data sets}, Briefings in
+  bioinformatics, 20 (2019), pp.~492--503.
+
+\bibitem{deng2000roles}
+{\sc C.-X. Deng and S.~G. Brodie}, {\em Roles of brca1 and its interacting
+  proteins}, Bioessays, 22 (2000), pp.~728--737.
+
+\bibitem{ding2005minimum}
+{\sc C.~Ding and H.~Peng}, {\em Minimum redundancy feature selection from
+  microarray gene expression data}, Journal of bioinformatics and computational
+  biology, 3 (2005), pp.~185--205.
+
+\bibitem{drucker1997support}
+{\sc H.~Drucker, C.~J. Burges, L.~Kaufman, A.~Smola, V.~Vapnik, et~al.}, {\em
+  Support vector regression machines}, Advances in neural information
+  processing systems, 9 (1997), pp.~155--161.
+
+\bibitem{efron1994introduction}
+{\sc B.~Efron and R.~J. Tibshirani}, {\em An introduction to the bootstrap},
+  CRC press, 1994.
+
+\bibitem{fan2001variable}
+{\sc J.~Fan and R.~Li}, {\em Variable selection via nonconcave penalized
+  likelihood and its oracle properties}, Journal of the American statistical
+  Association, 96 (2001), pp.~1348--1360.
+
+\bibitem{friedman2010regularization}
+{\sc J.~Friedman, T.~Hastie, and R.~Tibshirani}, {\em Regularization paths for
+  generalized linear models via coordinate descent}, Journal of statistical
+  software, 33 (2010), p.~1.
+
+\bibitem{friedman2001elements}
+{\sc J.~Friedman, T.~Hastie, R.~Tibshirani, et~al.}, {\em The elements of
+  statistical learning}, vol.~1, Springer series in statistics New York, 2001.
+
+\bibitem{friedman2001greedy}
+{\sc J.~H. Friedman}, {\em Greedy function approximation: a gradient boosting
+  machine}, Annals of statistics,  (2001), pp.~1189--1232.
+
+\bibitem{greene2003econometric}
+{\sc W.~H. Greene}, {\em Econometric analysis}, Pearson Education India, 2003.
+
+\bibitem{guyon2003introduction}
+{\sc I.~Guyon and A.~Elisseeff}, {\em An introduction to variable and feature
+  selection}, Journal of machine learning research, 3 (2003), pp.~1157--1182.
+
+\bibitem{hoerl1970ridge}
+{\sc A.~E. Hoerl and R.~W. Kennard}, {\em Ridge regression: Biased estimation
+  for nonorthogonal problems}, Technometrics, 12 (1970), pp.~55--67.
+
+\bibitem{james2013introduction}
+{\sc G.~James, D.~Witten, T.~Hastie, and R.~Tibshirani}, {\em An introduction
+  to statistical learning}, vol.~112, Springer, 2013.
+
+\bibitem{kuchenbaecker2017risks}
+{\sc K.~B. Kuchenbaecker, J.~L. Hopper, D.~R. Barnes, K.-A. Phillips, T.~M.
+  Mooij, M.-J. Roos-Blom, S.~Jervis, F.~E. Van~Leeuwen, R.~L. Milne,
+  N.~Andrieu, et~al.}, {\em Risks of breast, ovarian, and contralateral breast
+  cancer for brca1 and brca2 mutation carriers}, Jama, 317 (2017),
+  pp.~2402--2416.
+
+\bibitem{li2012overview}
+{\sc Z.~Li and M.~J. Sillanp{\"a}{\"a}}, {\em Overview of lasso-related
+  penalized regression methods for quantitative trait mapping and genomic
+  selection}, Theoretical and applied genetics, 125 (2012), pp.~419--435.
+
+\bibitem{liaw2002rf}
+{\sc A.~Liaw and M.~Wiener}, {\em Classification and regression by
+  randomforest}, R News, 2 (2002), pp.~18--22,
+  \url{https://CRAN.R-project.org/doc/Rnews/}.
+
+\bibitem{liu2020logsum}
+{\sc X.-Y. Liu, S.-B. Wu, W.-Q. Zeng, Z.-J. Yuan, and H.-B. Xu}, {\em Logsum+ l
+  2 penalized logistic regression model for biomarker selection and cancer
+  classification}, Scientific Reports, 10 (2020), pp.~1--16.
+
+\bibitem{meyer2021e1071}
+{\sc D.~Meyer, E.~Dimitriadou, K.~Hornik, A.~Weingessel, and F.~Leisch}, {\em
+  e1071: Misc Functions of the Department of Statistics, Probability Theory
+  Group (Formerly: E1071), TU Wien}, 2021,
+  \url{https://CRAN.R-project.org/package=e1071}.
+\newblock R package version 1.7-7.
+
+\bibitem{miller2002subset}
+{\sc A.~Miller}, {\em Subset selection in regression}, CRC Press, 2002.
+
+\bibitem{nielsen2016tree}
+{\sc D.~Nielsen}, {\em Tree boosting with xgboost-why does xgboost win ``every"
+  machine learning competition?},  (2016).
+
+\bibitem{r}
+{\sc {R Core Team}}, {\em R: A Language and Environment for Statistical
+  Computing}, R Foundation for Statistical Computing, Vienna, Austria, 2021,
+  \url{https://www.R-project.org/}.
+
+\bibitem{sanchez2007filter}
+{\sc N.~S{\'a}nchez-Maro{\~n}o, A.~Alonso-Betanzos, and
+  M.~Tombilla-Sanrom{\'a}n}, {\em Filter methods for feature selection--a
+  comparative study}, in International Conference on Intelligent Data
+  Engineering and Automated Learning, Springer, 2007, pp.~178--187.
+
+\bibitem{schapire1990strength}
+{\sc R.~E. Schapire}, {\em The strength of weak learnability}, Machine
+  learning, 5 (1990), pp.~197--227.
+
+\bibitem{schwarz1978estimating}
+{\sc G.~Schwarz}, {\em Estimating the dimension of a model}, The annals of
+  statistics,  (1978), pp.~461--464.
+
+\bibitem{tibshirani1996regression}
+{\sc R.~Tibshirani}, {\em Regression shrinkage and selection via the lasso},
+  Journal of the Royal Statistical Society: Series B (Methodological), 58
+  (1996), pp.~267--288.
+
+\bibitem{usai2009lasso}
+{\sc M.~G. Usai, M.~E. Goddard, and B.~J. Hayes}, {\em Lasso with
+  cross-validation for genomic selection}, Genetics research, 91 (2009),
+  pp.~427--436.
+
+\bibitem{venables2002mass}
+{\sc W.~N. Venables and B.~D. Ripley}, {\em Modern Applied Statistics with S},
+  Springer, New York, fourth~ed., 2002,
+  \url{https://www.stats.ox.ac.uk/pub/MASS4/}.
+\newblock ISBN 0-387-95457-0.
+
+\bibitem{wang2018enhanced}
+{\sc H.~Wang, C.~Liu, and L.~Deng}, {\em Enhanced prediction of hot spots at
+  protein-protein interfaces using extreme gradient boosting}, Scientific
+  reports, 8 (2018), pp.~1--13.
+
+\bibitem{wang2007group}
+{\sc L.~Wang, G.~Chen, and H.~Li}, {\em Group scad regression analysis for
+  microarray time course gene expression data}, Bioinformatics, 23 (2007),
+  pp.~1486--1494.
+
+\bibitem{wright2017ranger}
+{\sc M.~N. Wright and A.~Ziegler}, {\em {ranger}: A fast implementation of
+  random forests for high dimensional data in {C++} and {R}}, Journal of
+  Statistical Software, 77 (2017), pp.~1--17,
+  \url{https://doi.org/10.18637/jss.v077.i01}.
+
+\bibitem{zeng2017biglasso}
+{\sc Y.~Zeng and P.~Breheny}, {\em The biglasso package: A memory- and
+  computation-efficient solver for lasso model fitting with big data in r},
+  ArXiv e-prints,  (2017), \url{https://arxiv.org/abs/1701.05936},
+  \url{https://arxiv.org/abs/1701.05936}.
+
+\bibitem{zhang2010nearly}
+{\sc C.-H. Zhang}, {\em Nearly unbiased variable selection under minimax
+  concave penalty}, The Annals of statistics, 38 (2010), pp.~894--942.
+
+\bibitem{zhang2016variable}
+{\sc X.~Zhang, Y.~Wu, L.~Wang, and R.~Li}, {\em Variable selection for support
+  vector machines in moderately high dimensions}, Journal of the Royal
+  Statistical Society. Series B, Statistical methodology, 78 (2016), p.~53.
+
+\bibitem{zou2006adaptive}
+{\sc H.~Zou}, {\em The adaptive lasso and its oracle properties}, Journal of
+  the American statistical association, 101 (2006), pp.~1418--1429.
+
+\bibitem{zou2005regularization}
+{\sc H.~Zou and T.~Hastie}, {\em Regularization and variable selection via the
+  elastic net}, Journal of the royal statistical society: series B (statistical
+  methodology), 67 (2005), pp.~301--320.
+
+\end{thebibliography}
