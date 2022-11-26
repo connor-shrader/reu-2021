@@ -4,45 +4,45 @@ The top-level auxiliary file: paper.aux
 The style file: siamplain.bst
 Database file #1: references.bib
 Warning--empty journal in nielsen2016tree
-You've used 43 entries,
+You've used 48 entries,
             2244 wiz_defined-function locations,
-            822 strings with 11803 characters,
-and the built_in function-call counts, 17186 in all, are:
-= -- 1555
-> -- 757
+            853 strings with 12970 characters,
+and the built_in function-call counts, 19777 in all, are:
+= -- 1800
+> -- 892
 < -- 0
-+ -- 306
-- -- 256
-* -- 1295
-:= -- 2470
-add.period$ -- 46
-call.type$ -- 43
-change.case$ -- 245
++ -- 361
+- -- 304
+* -- 1495
+:= -- 2833
+add.period$ -- 51
+call.type$ -- 48
+change.case$ -- 284
 chr.to.int$ -- 0
-cite$ -- 44
-duplicate$ -- 888
-empty$ -- 1469
-format.name$ -- 256
-if$ -- 3764
+cite$ -- 49
+duplicate$ -- 1013
+empty$ -- 1654
+format.name$ -- 304
+if$ -- 4333
 int.to.chr$ -- 0
-int.to.str$ -- 43
-missing$ -- 46
-newline$ -- 135
-num.names$ -- 86
-pop$ -- 375
+int.to.str$ -- 48
+missing$ -- 51
+newline$ -- 150
+num.names$ -- 96
+pop$ -- 425
 preamble$ -- 1
-purify$ -- 210
+purify$ -- 244
 quote$ -- 0
-skip$ -- 649
+skip$ -- 759
 stack$ -- 0
-substring$ -- 1146
-swap$ -- 324
+substring$ -- 1328
+swap$ -- 384
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 160
+type$ -- 180
 warning$ -- 1
-while$ -- 175
-width$ -- 45
-write$ -- 396
+while$ -- 198
+width$ -- 50
+write$ -- 441
 (There was 1 warning)

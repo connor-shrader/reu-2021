@@ -13,6 +13,11 @@
   analysis of 22 studies}, The American Journal of Human Genetics, 72 (2003),
   pp.~1117--1130.
 
+\bibitem{bielli2011rna}
+{\sc P.~Bielli, R.~Bus{\`a}, M.~P. Paronetto, and C.~Sette}, {\em The
+  rna-binding protein sam68 is a multifunctional player in human cancer},
+  Endocrine-related cancer, 18 (2011), pp.~R91--R102.
+
 \bibitem{breheny2011ncvreg}
 {\sc P.~Breheny and J.~Huang}, {\em Coordinate descent algorithms for nonconvex
   penalized regression, with applications to biological feature selection},
@@ -82,6 +87,11 @@
 \bibitem{friedman2001greedy}
 {\sc J.~H. Friedman}, {\em Greedy function approximation: a gradient boosting
   machine}, Annals of statistics,  (2001), pp.~1189--1232.
+
+\bibitem{fu2012genetic}
+{\sc A.~Fu, D.~Leaderer, T.~Zheng, A.~E. Hoffman, R.~G. Stevens, and Y.~Zhu},
+  {\em Genetic and epigenetic associations of circadian gene timeless and
+  breast cancer risk}, Molecular carcinogenesis, 51 (2012), pp.~923--929.
 
 \bibitem{greene2003econometric}
 {\sc W.~H. Greene}, {\em Econometric analysis}, Pearson Education India, 2003.
@@ -158,10 +168,22 @@
   Journal of the Royal Statistical Society: Series B (Methodological), 58
   (1996), pp.~267--288.
 
+\bibitem{ueki2008involvement}
+{\sc T.~Ueki, T.~Nishidate, J.~Park, M.~Lin, A.~Shimo, K.~Hirata, Y.~Nakamura,
+  and T.~Katagiri}, {\em Involvement of elevated expression of multiple
+  cell-cycle regulator, dtl/ramp (denticleless/ra-regulated nuclear matrix
+  associated protein), in the growth of breast cancer cells}, Oncogene, 27
+  (2008), pp.~5672--5683.
+
 \bibitem{usai2009lasso}
 {\sc M.~G. Usai, M.~E. Goddard, and B.~J. Hayes}, {\em Lasso with
   cross-validation for genomic selection}, Genetics research, 91 (2009),
   pp.~427--436.
+
+\bibitem{vaccari2005drosophila}
+{\sc T.~Vaccari and D.~Bilder}, {\em The drosophila tumor suppressor vps25
+  prevents nonautonomous overproliferation by regulating notch trafficking},
+  Developmental cell, 9 (2005), pp.~687--698.
 
 \bibitem{venables2002mass}
 {\sc W.~N. Venables and B.~D. Ripley}, {\em Modern Applied Statistics with S},
@@ -184,6 +206,11 @@
   random forests for high dimensional data in {C++} and {R}}, Journal of
   Statistical Software, 77 (2017), pp.~1--17,
   \url{https://doi.org/10.18637/jss.v077.i01}.
+
+\bibitem{xiao2016nbr2}
+{\sc Z.-D. Xiao, X.~Liu, L.~Zhuang, and B.~Gan}, {\em Nbr2: a former junk gene
+  emerges as a key player in tumor suppression}, Molecular \& cellular
+  oncology, 3 (2016), p.~e1187322.
 
 \bibitem{zeng2017biglasso}
 {\sc Y.~Zeng and P.~Breheny}, {\em The biglasso package: A memory- and

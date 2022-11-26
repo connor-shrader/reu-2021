@@ -1019,6 +1019,15 @@
 			\hline 
 		\end{tabular}
 	\end{table}
+
+	\textbf{NEW}: For lasso, elastic-net, MCP, random forests, and gradient boosting, we also tracked the most important predictors selected by each model on each fold. For lasso, elastic-net, and MCP, we consider a predictor to be important if it was assigned a non-zero coefficient. For random forest and gradient boosting, each predictor is given an importance score by the algorithms we used; we considered the 50 predictors with the highest importance for each method. For each fold in our cross-validation, the important predictors that all five models had in common are listed below.
+	\begin{itemize}
+		\item Fold 1: DTL, NBR2, NPR2, VPS25
+		\item Fold 2: DTL, KHDRBS1, NBR2, VPS25,
+		\item Fold 3: DTL, NBR2, VPS25
+		\item Fold 4: NBR2
+		\item Fold 5: NBR2, TIMELESS.
+	\end{itemize}
 	
 	\begin{comment}
 	The models can also be compared to each other by comparing the most important predictors selected by each model. Figure \ref{fig:venn} shows five Venn diagrams. Each diagram shows the number of variables selected by lasso, elastic-net, MCP, and random forest as the most important for each of the folds. Figure \ref{fig:venn1}, for example, shows that four of the predictors were chosen by all four models as important. For lasso, elastic-net, and MCP, a predictor is considered important if its coefficient is non-zero. For random forest, we used the 50 predictors with the highest importance score (as computed by \lstinline!randomForest!). We see that the number of predictors chosen by each model varies slightly among different folds, however, there still are common trends that are upheld between the different folds. The second fold in \ref{fig:venn2} had six predictors common to all four models, whereas the models tested in the third fold in \ref{fig:venn3} only had three.
@@ -1155,7 +1164,9 @@
 	An interesting result was how few predictors were selected between all four models. It would be expected that the most important predictors would be chosen by all four models, but only three to six predictors were selected in common by all the models. Between MCP, Lasso, and Elastic Net, there were slightly more selected predictors in common, but these still were much less than expected. This is most likely because MCP is very different from the other regression techniques in that it uses non-convex optimization and thus selected many predictors that were different from all the other models. Since MCP had a much higher $\beta$-sensitivity and $\beta$-specificity rate compared to the other models as determined in the Monte Carlo simulations, it can be assumed that many of these predictors solely selected by MCP were significant predictors that were missed by the other models. This could have been another reason why MCP performed the best out of all the fitted models on the empirical data.
 	\end{comment}
 	In addition to minimizing the test MSE, MCP also maintained the lowest standard deviation for the test MSE among the five cross-validation folds, as seen in Table \ref{tab:emp_results}. Lasso and SCAD also had small standard deviations. On the other hand, the non-linear models had very different performances on each fold, meaning that they are more sensitive to the training data used. These results are all expected, given that the linear models have high bias (resulting in low variance) while the non-linear models have low bias (and consequently high variance). %Because MCP selects fewer predictors than the other models, it incurs greater bias but while also lessening variance. By definition, this means that MCP is less sensitive to changes in training data, such as changes in training data due to 5-fold cross validation. 
-	The penalized regression models were fitted exceptionally faster than random forest and XGBoost as documented in Table \ref{tab:emp_results}. On average, Lasso and elastic-net ran approximately 56x faster than XGBoost and 510x faster than random forest. MCP and SCAD ran approximately 30x faster than XGBoost and 290x faster than random forest. This provides a significant advantage to the penalized regression techniques, especially given that MCP and other penalized techniques performed better than random forest and XGBoost. 
+	The penalized regression models were fitted exceptionally faster than random forest and XGBoost as documented in Table \ref{tab:emp_results}. On average, Lasso and elastic-net ran approximately 56x faster than XGBoost and 510x faster than random forest. MCP and SCAD ran approximately 30x faster than XGBoost and 290x faster than random forest. This provides a significant advantage to the penalized regression techniques, especially given that MCP and other penalized techniques performed better than random forest and XGBoost.
+
+	\textbf{NEW}: Recall that for lasso, elastic-net, MCP, random forests, and gradient boosts, we tracked the important predictors selected by each model. On all five cross-validation folds, all five models identified NBR2 as an important feature. This gene is known to be a neighbor of the BRCA1 gene and acts as a tumor suppressant  \cite{xiao2016nbr2}. The genes DTL, TIMELESS, and KHDRBS1 (also known as Sam68), which each appeared in at least one fold, are  known to be related to breast cancer \cite{ueki2008involvement, fu2012genetic, bielli2011rna}. The last gene, VPS25, is also known to be a tumor suppressant \cite{vaccari2005drosophila}. These results show the potential for these statistical models to reveal new insights about the roles of genes in areas such as oncology.
 	
 	\section{Conclusion}\label{sec:conclusion}
 	
@@ -1176,7 +1187,7 @@
 	
 	The results here are in part based upon data generated by the TCGA Research Network: \href{https://www.cancer.gov/tcga}{https://www.cancer.gov/tcga}.
 	
-	We would also like to thank Dr. Luke, Dr. Yokley, and Yang Xue for their guidance throughout the research process.
+	We would also like to thank Dr. Nicholas Luke, Dr. Karen Yokley, and Yang Xue for their guidance throughout the research process.
 	
 	\bibliographystyle{siamplain}
 	{\footnotesize

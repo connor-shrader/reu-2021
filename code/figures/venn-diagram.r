@@ -14,6 +14,7 @@ library(VennDiagram)
 library(glmnet)
 library(ncvreg)
 library(scales)
+library(xgboost)
 
 
 for (i in 1:5) {
@@ -21,6 +22,7 @@ for (i in 1:5) {
   enet <- models[[i]]$enet
   mcp <- models[[i]]$mcp
   rf <- models[[i]]$rf
+  gbm <- models[[i]]$gbm
   
   lasso_coef <- coef(lasso) %>% as.matrix() %>% as.data.frame()
   colnames(lasso_coef) <- "L"
@@ -40,11 +42,23 @@ for (i in 1:5) {
   colnames(rf_important) <- "R"
   rf_important$predictor <- rownames(rf_important)
   
+  gbm <- models[[1]]$gbm
+  
+  xgb_importances <- xgb.importance(model = gbm)
+  xgb_important <- data.frame(
+    X = xgb_importances$Gain[1:50],
+    predictor = xgb_importances$Feature[1:50]
+  )
+  
   gdat <- merge(lasso_coef, enet_coef, by = "predictor") %>%
     merge(mcp_coef, by = "predictor") %>%
-    merge(rf_important, by = "predictor")
+    merge(rf_important, by = "predictor") %>%
+    merge(xgb_important, by = "predictor")
   
   print(gdat[gdat$L != 0 & gdat$E & gdat$M & gdat$R, ])
+  
+  # Remove XGBoost for Venn diagrams
+  gdat$X <- NULL
   
   gdat[, -1] <- ifelse(gdat[, -1] != 0, 1, 0)
   
