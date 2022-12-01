@@ -42,7 +42,6 @@ Our empirical study uses data from [The Cancer Genome Atlas](http://www.cancer.g
 All statistical analysis in this project was done using version 4.1.0 of `R`. 
 
 ## Repository Navigation
-- To see our final report for the REU, go to `latex/final-report/final-report.pdf`.
 - To see the code used to run simulations, see the files in `code/monte-carlo`.
 - To see the code used for the empirical data analysis, go to `code/empirical-data`.
 - To access simulation results, see `results`.
